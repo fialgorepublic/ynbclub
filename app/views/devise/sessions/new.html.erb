@@ -1,0 +1,89 @@
+<style>
+    .fbSignIn,
+    .twitterSignIn,
+    .googleSignIn {
+        display: inline-block;
+        text-indent: -999999px
+    }
+    .fbSignIn {
+        background: url(/assets/fb_button.png) no-repeat;
+        width: 55px;
+        height: 55px;
+        margin-right: 20px;
+        background-size: 100%
+    }
+
+    .googleSignIn {
+        background: url(/assets/google_button.png) no-repeat;
+        width: 55px;
+        height: 55px;
+        margin-right: 20px;
+        background-size: 100%;
+    }
+    .fbSignIn,
+    .googleSignIn,
+    .main {
+        overflow: hidden
+    }
+    .translation_missing {
+        display: none
+    }
+</style>
+<div class="row">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Login with</h2>
+    </div>
+  </div>
+  <div class="row social-icons-holder">
+    <div class="col-md-2 col-md-offset-3">
+      <%= link_to_login_with 'Facebook', '/auth/facebook', :class=>'fbSignIn', :id=>'fb-account-login'%>
+      <%= link_to_login_with 'Google', '/auth/google' , :class=>'googleSignIn', :id=>'google-account-login' %>
+    </div>
+  </div>
+</div>
+<h2>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+<script>
+    $(document).ready(function(){
+        $('.js-popup').click(function() {
+            centerPopup($(this).attr('href'), $(this).attr('data-width'), $(this).attr('data-height'));
+            return false;
+        });
+
+    });
+    function centerPopup(linkUrl, width, height) {
+        var sep = (linkUrl.indexOf('?') !== -1) ? '&' : '?',
+                url = linkUrl + sep + 'popup=true',
+                left = (screen.width - width) / 2 - 16,
+                top = (screen.height - height) / 2 - 50,
+                windowFeatures = 'menubar=no,toolbar=no,status=no,width=' + width +
+                        ',height=' + height + ',left=' + left + ',top=' + top;
+        return window.open(url, 'authPopup', windowFeatures);
+    }
+</script>
