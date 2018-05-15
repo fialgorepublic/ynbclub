@@ -1,2 +1,207 @@
 <h1>Welcome</h1>
 <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+
+<div id="selectRole" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-holder">
+          <h3 class="text-center">Select your role</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <% Role.all.each do |role| %>
+                  <div class="col-md-6" id="<%= role.id %>">
+                    <p style="cursor: pointer" onclick="highlight_div(<%= role.id %>)" class="role_div"><%= role.name %></p>
+                  </div>
+              <% end %>
+              <br/><br/>
+              <%= hidden_field_tag :role_id  %>
+              <a href="javascript:void(0);" onclick="add_role();" class="btn btn-info btn-block btn-lg" id="submit-role" disabled>continue</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="modal-footer">-->
+      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      <!--</div>-->
+    </div>
+
+  </div>
+</div>
+
+<div id="afterSelectRole" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-holder">
+          <div id="current_user_role">
+            <h3 class="text-center">Hi <%= current_user.name %>! You're successfully registered as <%= current_user.role.present? ? current_user.role.name : "" %> </h3>
+          </div>
+          <p>We have sent a confirmation link to your email. Please verify your account.</p>
+          <div style="text-align: center">
+            <button class="btn btn-default">open catalog</button>
+            <button class="btn btn-default">Go to brands</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="add_partner_information" class="modal fade" role="dialog" style="position:relative;">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <%= form_for :partner_information, url: add_partner_information_path, :remote => true, method: "POST", :html => {:id =>"save_partner_information"}  do |f| %>
+          <div class="modal-body">
+            <div class="modal-holder">
+              <h3 class="text-center"><%= current_user.name %>! Became a Partner of "saintlbeau.com"</h3>
+              <div id="partner-section">
+                <div class="form-group">
+                  <%= f.label :store_name %><br />
+                  <%= f.text_field :store_name, autofocus: true, placeholder: "Enter Store Name", class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :phone_no %><br />
+                  <%= f.text_field :phone_no, placeholder: "Enter Phone Number", class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :address %><br />
+                  <%= f.text_field :address, placeholder: "Enter address", class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :id_number %><br />
+                  <%= f.text_field :id_number, placeholder: "00000000 000", class: 'form-control' %>
+                </div>
+              </div>
+              <div id="billing-section">
+                <div class="form-group">
+                  <%= f.label :bank_name %><br />
+                  <%= f.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :account_number %><br />
+                  <%= f.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :account_name %><br />
+                  <%= f.text_field :account_name, placeholder: "Enter Account Name", class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+            <%= f.submit :class=>'btn btn-primary' %>
+          </div>
+          </div>
+      <% end %>
+      </div>
+
+</div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#save_partner_information").validate({
+            rules: {
+                "partner_information[store_name]": {
+                    required: true
+                },
+                "partner_information[phone_no]": {
+                    required: true
+                },
+                "partner_information[address]": {
+                    required: true
+                },
+                "partner_information[id_number]": {
+                    required: true
+                },
+                "partner_information[bank_name]": {
+                    required: true
+                },
+                "partner_information[account_number]": {
+                    required: true
+                },
+                "partner_information[account_name]": {
+                    required: true
+                }
+
+            },
+            messages: {
+                "partner_information[store_name]": {
+                    required: "Enter store name"
+                },
+                "partner_information[phone_no]": {
+                    required: "Enter phone number"
+                },
+                "partner_information[address]": {
+                    required: "Enter store address"
+                },
+                "partner_information[id_number]": {
+                    required: "Enter id number"
+                },
+                "partner_information[bank_name]": {
+                    required: "Enter bank name"
+                },
+                "partner_information[account_number]": {
+                    required: "Enter Account Number"
+                },
+                "partner_information[account_name]": {
+                    required: "Enter Account Name"
+                }
+            }
+        });
+    });
+    <% flash.each do |f| %>
+    <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
+    toastr['<%= type %>']('<%= f[1] %>', '', {"closeButton": true, "debug": false, "positionClass": "toast-top-right", "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "5000", "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut" });
+    <% end %>
+    <% if @role_selection %>
+    $('#selectRole').modal('show');
+    <% end %>
+    function highlight_div(id){
+        $(".col-md-6").attr("style", "border-style: none");
+        $('#role_id').val(id);
+        $('#submit-role').removeAttr('disabled');
+        $("#" + id).attr("style", "border-style: solid");
+    }
+    function add_role(){
+        var role_id = $('#role_id').val();
+        $.ajax({
+            url:'/update_user_role?role_id='+role_id,
+            type:'get',
+            dataType:'json',
+            processData:false,
+            success:function (data) {
+                $('#selectRole').modal('hide');
+                $('#current_user_role').load(' #current_user_role');
+                if(data.buyer == "true"){
+                    $('#afterSelectRole').modal('show');
+
+                }else{
+                    $('#add_partner_information').modal('show');
+                }
+            },
+            error:function (data) {
+                alert ('Error');
+                //    window.location.reload();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,251 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 pull-right">
+      <a href="javascript:void(0);" onclick="login_form();">Login</a>
+      <a href="javascript:void(0);" onclick="register_form();" class="btn btn-info">Register</a>
+    </div>
+  </div>
+</div>
+
+<div id="signIn" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-holder">
+
+
+          <div class="main-login">
+
+            <h3 class="text-center">Log in to Saint L'Beau</h3>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <a href='/auth/facebook' class="btn btn-lg btn-info btn-block">Login with Facebook</a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block">Login with Google +</a>
+                </div>
+              </div>
+            </div>
+            <div class="login-or">
+              <hr class="hr-or">
+              <span class="span-or text-center">or</span>
+            </div>
+
+            <%= form_for :resource, url: session_path(resource_name), :remote => true, method: "POST", :html => {:id =>"sign_in_user"}  do |f| %>
+                <div class="field">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email", :class => 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :password %><br />
+                  <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :class => 'form-control' %>
+                </div>
+
+                <% if devise_mapping.rememberable? -%>
+                    <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                <% end -%>
+
+                <div class="actions">
+                  <%= f.submit "Log in", class: "btn btn-info btn-block"  %>
+                </div>
+                <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a><br/>
+                <a href="javascript:void(0);" onclick="forgot_password();" class="text-center">Forgot password?</a>
+            <% end %>
+
+            <%#= render "devise/shared/links" %>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="signUp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-holder">
+
+
+          <div class="main-login">
+
+            <h3 class="text-center">Register to Saint L'Beau</h3>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <a href='/auth/facebook' class="btn btn-lg btn-info btn-block">Login with Facebook</a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block">Login with Google +</a>
+                </div>
+              </div>
+            </div>
+            <div class="login-or">
+              <hr class="hr-or">
+              <span class="span-or text-center">or</span>
+            </div>
+
+            <%= form_for :resource, url: registration_path(resource_name), :remote => true, method: "POST", :html => {:id =>"sign_up_user"}  do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="form-group">
+                  <%= f.label :name %><br />
+                  <%= f.text_field :name, autofocus: true, autocomplete: "Name", class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password %>
+                  <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+                </div>
+
+                <div class="actions">
+                  <%= f.submit "Sign up", class: "btn btn-info btn-block"  %>
+                  <a href="javascript:void(0);" onclick="login_form();" class="text-center">Login</a>
+                </div>
+            <% end %>
+
+            <%#= render "devise/shared/links" %>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="forgotPassword" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-holder">
+
+          <%= form_for :resource, url: password_path(resource_name), :remote => true, method: "POST", :html => {:id =>"user_user"}  do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="form-group">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control' %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Send me reset password instructions", class: "btn btn-info btn-block"  %>
+              </div>
+          <% end %>
+          <a href="javascript:void(0);" onclick="login_form();" class="text-center">Login</a><br/>
+          <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+    <% flash.each do |f| %>
+    <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
+    toastr['<%= type %>']('<%= f[1] %>', '', {"closeButton": true, "debug": false, "positionClass": "toast-top-right", "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "5000", "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut" });
+    <% end %>
+    $(document).ready(function () {
+        $("#sign_in_user").validate({
+            rules: {
+                "resource[email]": {
+                    required: true
+                },
+                "resource[password]": {
+                    required: true,
+                    minlength: 6
+                }
+
+            },
+            messages: {
+                "resource[email]": {
+                    required: "Please Enter Email"
+                }
+            }
+        });
+
+        $("#sign_up_user").validate({
+            rules: {
+                "resource[name]": {
+                    required: true
+                },
+                "resource[email]": {
+                    required: true
+                },
+                "resource[password]": {
+                    required: true,
+                    minlength: 6
+                }
+
+            },
+            messages: {
+                "resource[name]": {
+                    required: "Please Enter Name"
+                },
+                "resource[email]": {
+                    required: "Please Enter Email"
+                },
+                "resource[password]": {
+                    required: "Please Enter Password"
+                }
+            }
+        });
+
+    });
+    function login_form(){
+        $('#signUp').modal('hide');
+        $('#forgotPassword').modal('hide');
+        $('#signIn').modal('show');
+    }
+    function register_form(){
+        $('#signIn').modal('hide');
+        $('#forgotPassword').modal('hide');
+        $('#signUp').modal('show');
+    }
+    function forgot_password(){
+        $('#signIn').modal('hide');
+        $('#forgotPassword').modal('show');
+    }
+</script>

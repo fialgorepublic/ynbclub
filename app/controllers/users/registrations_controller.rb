@@ -10,9 +10,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    puts "------------------------------------",params.inspect
+    resource = User.new(sign_up_params)
+    if resource.save
+      sign_in :user, resource
+      flash[:notice] = "Successfully Signed Up"
+      redirect_to dashboard_path
+    else
+      @error_messages =[]
+      resource.errors.full_messages.map { |msg|      # Show Error messages while sign_up user
+        @error_messages << msg
+      }
+      flash[:alert] = @error_messages[0]
+      redirect_to home_path
+    end
+
+    # super
+  end
 
   # GET /resource/edit
   # def edit
@@ -63,7 +78,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:resource).permit(:name, :email, :password)
   end
 
 end

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def create
     @omniauth = request.env['omniauth.auth']
     email = @omniauth.info.email
@@ -7,16 +8,19 @@ class SessionsController < ApplicationController
     provider = @omniauth.provider
     logger.info email.inspect
     user = User.where(:email => email).first
+
     if user.present?
       sign_in :user, user
-      redirect_to root_url, notice: 'Signed in successfully'
+      redirect_to dashboard_path, notice: 'Signed in successfully'
     else
-      redirect_to root_url, notice: 'User not found'
+      user = User.create(:name => name, :email => email, :password => provider_id)
+      sign_in :user, user
+      redirect_to dashboard_path, notice: 'Signed Up successfully'
     end
+
   end
 
   def failure
-    # flash[:alert] = t('controllers.sessions.failure', provider: pretty_name(env['omniauth.error.strategy'].name))
     render_or_redirect
   end
 

@@ -1,0 +1,2 @@
+class PartnerInformation < ApplicationRecord
+end

@@ -9,9 +9,19 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    puts  "------------------- form -------------------",params.inspect
+    resource = User.where(email: params[:resource][:email].downcase).first
+    if resource.present? && resource.valid_password?(params[:resource][:password]) # validate user password
+      sign_in :user, resource
+      flash[:notice] = "Successfully logged in"
+      redirect_to dashboard_path
+    else
+      flash[:alert] = "Authentication failed"
+      redirect_to root_path
+    end
+    # super
+  end
 
   # DELETE /resource/sign_out
   # def destroy
