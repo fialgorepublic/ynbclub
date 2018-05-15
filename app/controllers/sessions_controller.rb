@@ -1,18 +1,18 @@
 class SessionsController < ApplicationController
   def create
-    logger.info "------------ params --------------"
-    logger.info params.inspect
-    logger.info "=========== win ==============="
-    logger.info params[:win].inspect
-    win_percentage = request.env['omniauth.params']['win']
-    win = win_percentage.to_i* -1
-    logger.info win
     @omniauth = request.env['omniauth.auth']
     email = @omniauth.info.email
     name = @omniauth.info.name
     provider_id = @omniauth.uid
     provider = @omniauth.provider
     logger.info email.inspect
+    user = User.where(:email => email).first
+    if user.present?
+      sign_in :user, user
+      redirect_to root_url, notice: 'Signed in successfully'
+    else
+      redirect_to root_url, notice: 'User not found'
+    end
   end
 
   def failure

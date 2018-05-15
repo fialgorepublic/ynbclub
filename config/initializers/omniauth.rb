@@ -11,7 +11,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
                    }
                }
            }
-  provider :google_oauth2, '379589292081-v7q04ljramfqbj5is5o7u641o86a98d3.apps.googleusercontent.com', 'kGNsrObFCXQtPEcfZxFPAQ4t',
+  provider :google_oauth2, '331326190192-hd1hs5sm6aec0aci26lp277ukvrr6ve9.apps.googleusercontent.com', 'lZOamR_focsB1TEofAYnSaIG',
            {
                name: 'google',
                prompt: 'select_account',
