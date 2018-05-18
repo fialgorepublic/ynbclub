@@ -1,20 +1,66 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 pull-right">
-      <a href="javascript:void(0);" onclick="login_form();">Login</a>
-      <a href="javascript:void(0);" onclick="register_form();" class="btn btn-info">Register</a>
+<header class="header-holder">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">SAINT L'BEAU</a>
     </div>
-  </div>
-</div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOG <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li class=""><a href="#">MAGAZINE <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">BLOG</a></li>
+        <li><a href="#">TRACKING</a></li>
+        <li><a href="#">BRAND AMBASSADOR</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href=""><i class="fas fa-search"></i></a></li>
+        <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
+        <li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>
+       <li class="active"> <a href="javascript:void(0);" onclick="register_form();" >Register</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</header>
+
+<!--<div class="container">-->
+  <!--<div class="row">-->
+    <!--<div class="col-md-10 pull-right">-->
+      <!--<a href="javascript:void(0);" onclick="login_form();">Login</a>-->
+      <!--<a href="javascript:void(0);" onclick="register_form();" class="btn btn-info">Register</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 <div id="signIn" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+      <!--</div>-->
       <div class="modal-body">
         <div class="modal-holder">
 
@@ -24,42 +70,49 @@
             <h3 class="text-center">Log in to Saint L'Beau</h3>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <a href='/auth/facebook' class="btn btn-lg btn-info btn-block">Login with Facebook</a>
+                <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
+                  <a href='/auth/facebook' class="btn btn-lg btn-primary btn-block"> <i class="fab fa-facebook-square"></i> Login with Facebook</a>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block">Login with Google +</a>
+                <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
+                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block"> <i class="fab fa-google-plus-square "></i> Login with Google +</a>
                 </div>
               </div>
             </div>
             <div class="login-or">
-              <hr class="hr-or">
               <span class="span-or text-center">or</span>
             </div>
 
             <%= form_for :resource, url: session_path(resource_name), :remote => true, method: "POST", :html => {:id =>"sign_in_user"}  do |f| %>
-                <div class="field">
+                <div class="form-group">
                   <%= f.label :email %><br />
                   <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email", :class => 'form-control' %>
                 </div>
 
-                <div class="field">
+                <div class="form-group">
                   <%= f.label :password %><br />
                   <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :class => 'form-control' %>
                 </div>
 
                 <% if devise_mapping.rememberable? -%>
-                    <div class="field">
+                    <div class="form-group">
                       <%= f.check_box :remember_me %>
                       <%= f.label :remember_me %>
                     </div>
                 <% end -%>
 
-                <div class="actions">
-                  <%= f.submit "Log in", class: "btn btn-info btn-block"  %>
+                <div class="actions text-center">
+                  <%= f.submit "Log in", class: "btn btn-primary btn-lg btn-bottom btn-block"  %>
                 </div>
-                <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a><br/>
-                <a href="javascript:void(0);" onclick="forgot_password();" class="text-center">Forgot password?</a>
+                <div class="row">
+                  <div class="col-md-6">
+                        <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a>
+                    </div>
+                  <div class="col-md-6 text-right">
+                    <a href="javascript:void(0);" onclick="forgot_password();" class="text-center">Forgot password?</a>
+                  </div>
+                </div>
+
+
             <% end %>
 
             <%#= render "devise/shared/links" %>
@@ -67,6 +120,11 @@
 
 
         </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
 
     </div>
@@ -79,9 +137,9 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+      <!--</div>-->
       <div class="modal-body">
         <div class="modal-holder">
 
@@ -91,16 +149,16 @@
             <h3 class="text-center">Register to Saint L'Beau</h3>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <a href='/auth/facebook' class="btn btn-lg btn-info btn-block">Login with Facebook</a>
+                <div class="col-md-6 col-sm-6 pd-l-0 pd-r-0 col-xs-6">
+                  <a href='/auth/facebook' class="btn btn-lg btn-primary btn-block"> <i class="fab fa-facebook-square"></i> Login with Facebook</a>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block">Login with Google +</a>
+                <div class="col-md-6 col-sm-6 pd-r-0 pd-l-0 col-xs-6">
+                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block"> <i class="fab fa-google-plus-square "></i> Login with Google +</a>
                 </div>
               </div>
             </div>
             <div class="login-or">
-              <hr class="hr-or">
+              <!--<hr class="hr-or">-->
               <span class="span-or text-center">or</span>
             </div>
 
@@ -124,9 +182,9 @@
                   <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
                 </div>
 
-                <div class="actions">
-                  <%= f.submit "Sign up", class: "btn btn-info btn-block"  %>
-                  <a href="javascript:void(0);" onclick="login_form();" class="text-center">Login</a>
+                <div class="actions text-center">
+                  <%= f.submit "Register", class: "btn btn-lg btn-bottom btn-primary btn-block"  %>
+                  <a href="javascript:void(0);" onclick="login_form();" class="text-center">I have an account</a>
                 </div>
             <% end %>
 
@@ -149,10 +207,10 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+      <!--</div>-->
+      <div class="modal-body" style="padding-top: 30px">
         <div class="modal-holder">
 
           <%= form_for :resource, url: password_path(resource_name), :remote => true, method: "POST", :html => {:id =>"user_user"}  do |f| %>
@@ -164,11 +222,18 @@
               </div>
 
               <div class="actions">
-                <%= f.submit "Send me reset password instructions", class: "btn btn-info btn-block"  %>
+                <%= f.submit "Send me reset password instructions", class: "btn btn-primary btn-lg btn-bottom btn-block"  %>
               </div>
           <% end %>
-          <a href="javascript:void(0);" onclick="login_form();" class="text-center">Login</a><br/>
-          <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a>
+          <div class="row">
+            <div class="col-md-6">
+              <a href="javascript:void(0);" onclick="login_form();" class="text-center">Login</a>
+            </div>
+            <div class="col-md-6 text-right">
+              <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a>
+
+            </div>
+          </div>
         </div>
 
 

@@ -1,25 +1,88 @@
-<h1>Welcome</h1>
-<%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+<!--<h1>Welcome</h1>-->
+<!--<%#= link_to('Logout', destroy_user_session_path, method: :delete) %>-->
+
+<header class="header-holder">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">SAINT L'BEAU</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOG <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li class=""><a href="#">MAGAZINE <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">BLOG</a></li>
+          <li><a href="#">TRACKING</a></li>
+          <li><a href="#">BRAND AMBASSADOR</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href=""><i class="fas fa-search"></i></a></li>
+          <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
+          <!--<li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>-->
+          <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</header>
+
 
 <div id="selectRole" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content select-role-holder">
       <div class="modal-body">
         <div class="modal-holder">
           <h3 class="text-center">Select your role</h3>
           <div class="row">
-            <div class="col-md-12">
-              <% Role.all.each do |role| %>
-                  <div class="col-md-6" id="<%= role.id %>">
-                    <p style="cursor: pointer" onclick="highlight_div(<%= role.id %>)" class="role_div"><%= role.name %></p>
+
+              <!--<#% Role.all.each do |role| %>-->
+                  <div class="col-md-6 text-center">
+                    <div class="role-box"  id="<%= Role.first.id %>" onclick="highlight_div(<%= Role.first.id %>)">
+                        <!--<i class="far fa-image"></i>-->
+                        <div class="user-image">
+
+                        </div>
+                        <h3 style="cursor: pointer"  class="role_div"><%= Role.first.name %></h3>
+                        <p>You'll be able add products to wish list, see shipping status, receive coupons </p>
+                    </div>
                   </div>
-              <% end %>
-              <br/><br/>
-              <%= hidden_field_tag :role_id  %>
-              <a href="javascript:void(0);" onclick="add_role();" class="btn btn-info btn-block btn-lg" id="submit-role" disabled>continue</a>
-            </div>
+                  <div class="col-md-6 text-center" >
+                        <div class="role-box" id="<%= Role.last.id %>" onclick="highlight_div(<%= Role.last.id %>)">
+                          <div class="user-image">
+
+                          </div>
+                        <h3 style="cursor: pointer"  class="role_div"><%= Role.last.name %></h3>
+                          <p>You'll be able add your products, post blogs together with products and check statistics </p>
+                    </div>
+                  </div>
+                  <%# end %>
+                <div class="col-md-12">
+                  <%= hidden_field_tag :role_id  %>
+                  <a href="javascript:void(0);" onclick="add_role();" class="btn btn-bottom btn-primary btn-block btn-lg" id="submit-role" disabled>continue</a>
+                </div>
           </div>
         </div>
       </div>
@@ -64,46 +127,81 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+
       <%= form_for :partner_information, url: add_partner_information_path, :remote => true, method: "POST", :html => {:id =>"save_partner_information"}  do |f| %>
           <div class="modal-body">
             <div class="modal-holder">
               <h3 class="text-center"><%= current_user.name %>! Became a Partner of "saintlbeau.com"</h3>
-              <div id="partner-section">
-                <div class="form-group">
-                  <%= f.label :store_name %><br />
-                  <%= f.text_field :store_name, autofocus: true, placeholder: "Enter Store Name", class: 'form-control' %>
+
+
+            </div>
+            <div class="stepwizard">
+              <div class="stepwizard-row row setup-panel">
+                <div class="stepwizard-step pd-l-0 pd-r-0 col-md-6 ">
+                  <a href="#step-1" type="button" class="btn btn-success btn-circle">1) Partner Information</a>
                 </div>
-                <div class="form-group">
-                  <%= f.label :phone_no %><br />
-                  <%= f.text_field :phone_no, placeholder: "Enter Phone Number", class: 'form-control' %>
+                <div class="stepwizard-step pd-l-0 pd-r-0 col-md-6">
+                  <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2) Billing Information</a>
+
                 </div>
-                <div class="form-group">
-                  <%= f.label :address %><br />
-                  <%= f.text_field :address, placeholder: "Enter address", class: 'form-control' %>
-                </div>
-                <div class="form-group">
-                  <%= f.label :id_number %><br />
-                  <%= f.text_field :id_number, placeholder: "00000000 000", class: 'form-control' %>
-                </div>
-              </div>
-              <div id="billing-section">
-                <div class="form-group">
-                  <%= f.label :bank_name %><br />
-                  <%= f.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control' %>
-                </div>
-                <div class="form-group">
-                  <%= f.label :account_number %><br />
-                  <%= f.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control' %>
-                </div>
-                <div class="form-group">
-                  <%= f.label :account_name %><br />
-                  <%= f.text_field :account_name, placeholder: "Enter Account Name", class: 'form-control' %>
-                </div>
+
               </div>
             </div>
+
+            <form role="form">
+              <div class="panel panel-primary setup-content" id="step-1">
+
+                <div class="panel-body">
+                  <div id="partner-section">
+                    <div class="form-group">
+                      <%= f.label :store_name %><br />
+                      <%= f.text_field :store_name, autofocus: true, placeholder: "Enter Store Name", class: 'form-control', required: 'true' %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :phone_no %><br />
+                      <%= f.text_field :phone_no, placeholder: "Enter Phone Number", class: 'form-control' , required: 'true' %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :address %><br />
+                      <%= f.text_field :address, placeholder: "Enter address", class: 'form-control' , required: 'true' %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :id_number %><br />
+                      <%= f.text_field :id_number, placeholder: "00000000 000", class: 'form-control' , required: 'true' %>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary nextBtn btn-lg btn-block pull-right" type="button">Continue</button>
+                </div>
+              </div>
+
+              <div class="panel panel-primary setup-content" id="step-2">
+
+                <div class="panel-body">
+                  <div id="billing-section">
+                    <div class="form-group">
+                      <%= f.label :bank_name %><br />
+                      <%= f.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :account_number %><br />
+                      <%= f.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :account_name %><br />
+                      <%= f.text_field :account_name, placeholder: "Enter Account Name", class: 'form-control' %>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary  pull-right" type="button">Finis!</button>
+                </div>
+              </div>
+
+
+
+
+            </form>
+
+
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
@@ -175,11 +273,12 @@
     <% if @role_selection %>
     $('#selectRole').modal('show');
     <% end %>
+    $('#add_partner_information').modal('show');
     function highlight_div(id){
-        $(".col-md-6").attr("style", "border-style: none");
+        $(".role-box").attr("style", "border: 3px solid  #f4f8fb");
         $('#role_id').val(id);
         $('#submit-role').removeAttr('disabled');
-        $("#" + id).attr("style", "border-style: solid");
+        $("#" + id).attr("style", "border:3px solid #337ab7");
     }
     function add_role(){
         var role_id = $('#role_id').val();
@@ -204,4 +303,48 @@
             }
         });
     }
+
+
+    $(document).ready(function () {
+
+        var navListItems = $('div.setup-panel div a'),
+                allWells = $('.setup-content'),
+                allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                    $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-success').addClass('btn-default');
+                $item.addClass('btn-success');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                    curStepBtn = curStep.attr("id"),
+                    nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                    curInputs = curStep.find("input[type='text'],input[type='url']"),
+                    isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-success').trigger('click');
+    });
 </script>
