@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home', to: 'home#index'
+  resources :referral_sales
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
   get 'update_user_role', to: 'dashboard#update_user_role'

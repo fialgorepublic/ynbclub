@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+
+      <h1>Referral Sales</h1>
+
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Order Id</th>
+          <th>Ambesdor</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @referral_sales.each do |referral_sale| %>
+            <tr>
+              <td><%= referral_sale.order_id %></td>
+              <td><%= referral_sale.user.name %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<%#= link_to 'New Referral Sale', new_referral_sale_path %>
