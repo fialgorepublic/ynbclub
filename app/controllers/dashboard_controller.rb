@@ -13,6 +13,8 @@ class DashboardController < ApplicationController
     if current_user.role.name == "Buyer"
       buyer = "true"
     else
+      referral = Devise.friendly_token
+      current_user.update_attributes(referral: referral)
       buyer = "false"
     end
     render json: {success: true, :buyer => buyer}

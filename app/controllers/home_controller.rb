@@ -7,7 +7,12 @@ class HomeController < ApplicationController
   end
 
   def get_referral
-    puts "------------------- referral is here ---------------------",params.inspect
+    referral = params[:referral]
+    order_id = params[:order_id]
+    user = User.where(referral: referral).first
+    if user.present?
+      ReferralSale.create(user_id: user.id, order_id: order_id)
+    end
     render json: {success: true}
   end
 
