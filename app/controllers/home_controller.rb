@@ -5,4 +5,10 @@ class HomeController < ApplicationController
     else
     end
   end
+
+  def get_referral
+    puts "------------------- referral is here ---------------------",params.inspect
+    render json: {success: true}
+  end
+
 end
