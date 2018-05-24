@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @referral_sale.user_id %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @referral_sale.order_id %>
+</p>
+
+<%= link_to 'Edit', edit_referral_sale_path(@referral_sale) %> |
+<%= link_to 'Back', referral_sales_path %>

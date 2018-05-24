@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   get 'home', to: 'home#index'
+  resources :referral_sales
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard_main', to: 'dashboard#dashboard_main'
   get 'update_user_role', to: 'dashboard#update_user_role'
   get 'auth/:provider/callback', to: 'sessions#create'
   post "add_partner_information", to: 'partner_informations#add_partner_information'
+  get "get_referral", to: 'home#get_referral'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :controllers => {
       :sessions => "users/sessions",

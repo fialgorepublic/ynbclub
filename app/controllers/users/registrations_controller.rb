@@ -11,7 +11,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    puts "------------------------------------",params.inspect
     resource = User.new(sign_up_params)
     if resource.save
       sign_in :user, resource

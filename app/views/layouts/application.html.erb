@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SaintLBeauApp</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>SaintLBeauApp</title>
+  <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,7 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   </head>
 
-  <body>
+
+<body>
+<% if user_signed_in? %>
+    <%=render :partial => "/shared/header"%>
     <%= yield %>
-  </body>
+<% else %>
+    <%= yield %>
+<% end %>
+</body>
 </html>

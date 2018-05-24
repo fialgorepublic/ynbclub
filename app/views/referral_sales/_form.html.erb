@@ -1,0 +1,27 @@
+<%= form_with(model: referral_sale, local: true) do |form| %>
+  <% if referral_sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(referral_sale.errors.count, "error") %> prohibited this referral_sale from being saved:</h2>
+
+      <ul>
+      <% referral_sale.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :referral_sale_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_id %>
+    <%= form.text_field :order_id, id: :referral_sale_order_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
