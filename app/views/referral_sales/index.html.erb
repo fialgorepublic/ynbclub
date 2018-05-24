@@ -9,7 +9,12 @@
         <thead>
         <tr>
           <th>Order Id</th>
-          <th>Ambesdor</th>
+          <th>Price</th>
+          <th>Customer Name</th>
+          <th>Email</th>
+          <th>Shopdomain</th>
+          <th>Address</th>
+          <th>Ambassador</th>
         </tr>
         </thead>
 
@@ -17,6 +22,11 @@
         <% @referral_sales.each do |referral_sale| %>
             <tr>
               <td><%= referral_sale.order_id %></td>
+              <td><%= referral_sale.price %></td>
+              <td><%= referral_sale.name %></td>
+              <td><%= referral_sale.email %></td>
+              <td><%= referral_sale.shopdomain %></td>
+              <td><%= referral_sale.address %></td>
               <td><%= referral_sale.user.name %></td>
             </tr>
         <% end %>
