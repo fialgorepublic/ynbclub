@@ -1,48 +1,49 @@
 <header class="header-holder">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">SAINT L'BEAU</a>
-    </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">SAINT L'BEAU</a>
+      </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOG <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-        <li class=""><a href="#">MAGAZINE <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">BLOG</a></li>
-        <li><a href="#">TRACKING</a></li>
-        <li><a href="#">BRAND AMBASSADOR</a></li>
-      </ul>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOG <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li class=""><a href="#">MAGAZINE <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">BLOG</a></li>
+          <li><a href="#">TRACKING</a></li>
+          <li><a href="#">BRAND AMBASSADOR</a></li>
+        </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href=""><i class="fas fa-search"></i></a></li>
-        <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
-        <li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>
-       <li class="active"> <a href="javascript:void(0);" onclick="register_form();" >Register</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href=""><i class="fa fa-search"></i></a></li>
+          <li><a href=""><i style="font-size: 18px;" class="fa fa-shopping-cart"></i></a></li>
+          <!--<li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>-->
+          <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 </header>
+
 
 <!--<div class="container">-->
   <!--<div class="row">-->
@@ -71,10 +72,10 @@
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
-                  <a href='/auth/facebook' class="btn btn-lg btn-primary btn-block"> <i class="fab fa-facebook-square"></i> Login with Facebook</a>
+                  <a href='/auth/facebook' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> Login with Facebook</a>
                 </div>
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
-                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block"> <i class="fab fa-google-plus-square "></i> Login with Google +</a>
+                  <a href='/auth/google' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> Login with Google +</a>
                 </div>
               </div>
             </div>

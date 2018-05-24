@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
+  get 'dashboard_main', to: 'dashboard#dashboard_main'
   get 'update_user_role', to: 'dashboard#update_user_role'
   get 'auth/:provider/callback', to: 'sessions#create'
   post "add_partner_information", to: 'partner_informations#add_partner_information'

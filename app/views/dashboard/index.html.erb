@@ -37,8 +37,8 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href=""><i class="fas fa-search"></i></a></li>
-          <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
+          <li><a href=""><i class="fa fa-search"></i></a></li>
+          <li><a href=""><i style="font-size: 18px;" class="fa fa-shopping-cart"></i></a></li>
           <!--<li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>-->
           <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         </ul>
@@ -47,6 +47,106 @@
   </nav>
 </header>
 
+<div class="dashboard-holder">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="nav-side-menu">
+          <div class="brand">
+            <div class="user-image">
+              <h3>JD</h3>
+            </div>
+            <h2>John Doe</h2>
+          </div>
+          <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+          <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+              <li>
+                <a href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
+              </li>
+
+              <li>
+                <a href="#"><i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i> Share with friends</a>
+              </li>
+
+              <li>
+                <a href="#"><i class="fa fa-file-image-o fa-lg fa-fw sidebar-icon"></i> Take a snapshot and share </a>
+              </li>
+
+              <li  data-toggle="" data-target="#" class="collapsed">
+                <a href="#"><i class="fa fa-archive fa-lg fa-fw sidebar-icon"></i> My Products  </a>
+              </li>
+
+
+              <li  data-toggle="" data-target="#" class="collapsed">
+                <a href="#"><i class="fa fa-truck fa-lg fa-fw sidebar-icon"></i> Buyer's Orders</a>
+              </li>
+
+
+              <li  data-toggle="" data-target="#" class="collapsed">
+                <a href="#"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
+              </li>
+
+
+              <li  data-toggle="" data-target="#" class="collapsed">
+                <a href="#"><i class="fa fa-credit-card-alt fa-lg fa-fw sidebar-icon"></i> Transactions</a>
+              </li>
+
+              <li  data-toggle="" data-target="#" class="collapsed">
+                <a href="#"><i class="fa fa-life-ring fa-lg fa-fw sidebar-icon"></i> My Order </a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-heart fa-lg fa-fw sidebar-icon"></i>Favourties </a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-cog fa-lg fa-fw sidebar-icon"></i>Acc settings  </a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Notification settings  </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="main">
+              <h2> <i class="fa fa-dashboard"></i> Dashboard</h2>
+            </div>
+            <hr>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <h3>Last Incomes</h3>
+            <div class="box-shadow">
+              <p>You'll see the list of sold products here. Add your products and design them to the blog posts</p>
+              <button class="btn btn-default">Go to the my products page</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <h3>Last Earned Coins</h3>
+            <div class="box-shadow">
+              <p>Here you will see the blog of your earned coins</p>
+              <button class="btn btn-default">Go to the my products page</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</div>
 
 <div id="selectRole" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
