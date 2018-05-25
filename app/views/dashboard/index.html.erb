@@ -4,105 +4,48 @@
 
 
 <div class="dashboard-holder">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="nav-side-menu">
-          <div class="brand">
-            <div class="user-image">
-              <h3>JD</h3>
-            </div>
-            <h2>John Doe</h2>
-          </div>
-          <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-          <div class="menu-list">
-
-            <ul id="menu-content" class="menu-content collapse out">
-              <li>
-                <a href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
-              </li>
-
-              <li>
-                <a href="#"><i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i> Share with friends</a>
-              </li>
-
-              <li>
-                <a href="#"><i class="fa fa-file-image-o fa-lg fa-fw sidebar-icon"></i> Take a snapshot and share </a>
-              </li>
-
-              <li  data-toggle="" data-target="#" class="collapsed">
-                <a href="#"><i class="fa fa-archive fa-lg fa-fw sidebar-icon"></i> My Products  </a>
-              </li>
+  <div class="row">
+    <div class="col-md-3">
+    <%= render partial: "shared/side_bar" %>
 
 
-              <li  data-toggle="" data-target="#" class="collapsed">
-                <a href="#"><i class="fa fa-truck fa-lg fa-fw sidebar-icon"></i> Buyer's Orders</a>
-              </li>
-
-
-              <li  data-toggle="" data-target="#" class="collapsed">
-                <a href="#"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
-              </li>
-
-
-              <li  data-toggle="" data-target="#" class="collapsed">
-                <a href="#"><i class="fa fa-credit-card-alt fa-lg fa-fw sidebar-icon"></i> Transactions</a>
-              </li>
-
-              <li  data-toggle="" data-target="#" class="collapsed">
-                <a href="#"><i class="fa fa-life-ring fa-lg fa-fw sidebar-icon"></i> My Order </a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-heart fa-lg fa-fw sidebar-icon"></i>Favourties </a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-cog fa-lg fa-fw sidebar-icon"></i>Acc settings  </a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Notification settings  </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="main">
-              <h2> <i class="fa fa-dashboard"></i> Dashboard</h2>
-            </div>
-            <hr>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <div class="col-md-12">
-            <h3>Last Incomes</h3>
-            <div class="box-shadow">
-              <p>You'll see the list of sold products here. Add your products and design them to the blog posts</p>
-              <button class="btn btn-default">Go to the my products page</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Referral Url:</h2>
-
-            <div class="box-shadow">
-
-              <div id="referral-div">https://sample.myshopify.com?referral_url=<%= current_user.referral %></div>
-            </div>
-          </div>
-        </div>
-
-
-
-      </div>
     </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-dashboard"></i> Dashboard</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <h3>Last Incomes</h3>
+          <div class="box-shadow">
+            <p>You'll see the list of sold products here. Add your products and design them to the blog posts</p>
+            <button class="btn btn-default">Go to the my products page</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Referral Url:</h2>
+
+          <div class="box-shadow">
+
+            <div id="referral-div">https://test-saint.myshopify.com/?referral_url=<%= current_user.referral %></div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
 
 </div>
 
@@ -117,31 +60,31 @@
           <h3 class="text-center">Select your role</h3>
           <div class="row">
 
-              <!--<#% Role.all.each do |role| %>-->
-                  <div class="col-md-6 text-center">
-                    <div class="role-box"  id="<%= Role.first.id %>" onclick="highlight_div(<%= Role.first.id %>)">
-                        <!--<i class="far fa-image"></i>-->
-                        <div class="user-image">
+            <!--<#% Role.all.each do |role| %>-->
+            <div class="col-md-6 text-center">
+              <div class="role-box"  id="<%= Role.first.id %>" onclick="highlight_div(<%= Role.first.id %>)">
+                <!--<i class="far fa-image"></i>-->
+                <div class="user-image">
 
-                        </div>
-                        <h3 style="cursor: pointer"  class="role_div"><%= Role.first.name %></h3>
-                        <p>You'll be able add products to wish list, see shipping status, receive coupons </p>
-                    </div>
-                  </div>
-                  <div class="col-md-6 text-center" >
-                        <div class="role-box" id="<%= Role.last.id %>" onclick="highlight_div(<%= Role.last.id %>)">
-                          <div class="user-image">
-
-                          </div>
-                        <h3 style="cursor: pointer"  class="role_div"><%= Role.last.name %></h3>
-                          <p>You'll be able add your products, post blogs together with products and check statistics </p>
-                    </div>
-                  </div>
-                  <%# end %>
-                <div class="col-md-12">
-                  <%= hidden_field_tag :role_id  %>
-                  <a href="javascript:void(0);" onclick="add_role();" class="btn btn-bottom btn-primary btn-block btn-lg" id="submit-role" disabled>continue</a>
                 </div>
+                <h3 style="cursor: pointer"  class="role_div"><%= Role.first.name %></h3>
+                <p>You'll be able add products to wish list, see shipping status, receive coupons </p>
+              </div>
+            </div>
+            <div class="col-md-6 text-center" >
+              <div class="role-box" id="<%= Role.last.id %>" onclick="highlight_div(<%= Role.last.id %>)">
+                <div class="user-image">
+
+                </div>
+                <h3 style="cursor: pointer"  class="role_div"><%= Role.last.name %></h3>
+                <p>You'll be able add your products, post blogs together with products and check statistics </p>
+              </div>
+            </div>
+            <%# end %>
+            <div class="col-md-12">
+              <%= hidden_field_tag :role_id  %>
+              <a href="javascript:void(0);" onclick="add_role();" class="btn btn-bottom btn-primary btn-block btn-lg" id="submit-role" disabled>continue</a>
+            </div>
           </div>
         </div>
       </div>
@@ -207,51 +150,51 @@
               </div>
             </div>
 
-              <div class="panel panel-primary setup-content" id="step-1">
+            <div class="panel panel-primary setup-content" id="step-1">
 
-                <div class="panel-body">
-                  <div id="partner-section">
-                    <div class="form-group">
-                      <%= f.label :store_name %><br />
-                      <%= f.text_field :store_name, autofocus: true, placeholder: "Enter Store Name", class: 'form-control', required: 'true' %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :phone_no %><br />
-                      <%= f.text_field :phone_no, placeholder: "Enter Phone Number", class: 'form-control' , required: 'true' %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :address %><br />
-                      <%= f.text_field :address, placeholder: "Enter address", class: 'form-control' , required: 'true' %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :id_number %><br />
-                      <%= f.text_field :id_number, placeholder: "00000000 000", class: 'form-control' , required: 'true' %>
-                    </div>
+              <div class="panel-body">
+                <div id="partner-section">
+                  <div class="form-group">
+                    <%= f.label :store_name %><br />
+                    <%= f.text_field :store_name, autofocus: true, placeholder: "Enter Store Name", class: 'form-control', required: 'true' %>
                   </div>
-                  <button class="btn btn-primary nextBtn btn-lg btn-block pull-right" type="button">Continue</button>
-                </div>
-              </div>
-
-              <div class="panel panel-primary setup-content" id="step-2">
-
-                <div class="panel-body">
-                  <div id="billing-section">
-                    <div class="form-group">
-                      <%= f.label :bank_name %><br />
-                      <%= f.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :account_number %><br />
-                      <%= f.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control' %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :account_name %><br />
-                      <%= f.text_field :account_name, placeholder: "Enter Account Name", class: 'form-control' %>
-                    </div>
+                  <div class="form-group">
+                    <%= f.label :phone_no %><br />
+                    <%= f.text_field :phone_no, placeholder: "Enter Phone Number", class: 'form-control' , required: 'true' %>
                   </div>
-                  <!--<button class="btn btn-primary btn-lg  pull-right" type="button">Finis!</button>-->
+                  <div class="form-group">
+                    <%= f.label :address %><br />
+                    <%= f.text_field :address, placeholder: "Enter address", class: 'form-control' , required: 'true' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :id_number %><br />
+                    <%= f.text_field :id_number, placeholder: "00000000 000", class: 'form-control' , required: 'true' %>
+                  </div>
                 </div>
+                <button class="btn btn-primary nextBtn btn-lg btn-block pull-right" type="button">Continue</button>
               </div>
+            </div>
+
+            <div class="panel panel-primary setup-content" id="step-2">
+
+              <div class="panel-body">
+                <div id="billing-section">
+                  <div class="form-group">
+                    <%= f.label :bank_name %><br />
+                    <%= f.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :account_number %><br />
+                    <%= f.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :account_name %><br />
+                    <%= f.text_field :account_name, placeholder: "Enter Account Name", class: 'form-control' %>
+                  </div>
+                </div>
+                <!--<button class="btn btn-primary btn-lg  pull-right" type="button">Finis!</button>-->
+              </div>
+            </div>
 
 
 
@@ -330,7 +273,7 @@
     <% if @role_selection %>
     $('#selectRole').modal('show');
     <% end %>
-//    $('#add_partner_information').modal('show');
+    //    $('#add_partner_information').modal('show');
 
     function highlight_div(id){
         $(".role-box").attr("style", "border: 3px solid  #f4f8fb");
