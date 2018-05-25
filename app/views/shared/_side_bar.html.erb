@@ -1,0 +1,59 @@
+<div class="nav-side-menu">
+  <div class="brand">
+    <div class="user-image">
+      <% name = current_user.name.to_s.split(" ") %>
+      <h3><%= (name[0].present? ? name[0].first : "") + (name[1].present? ? name[1].first : "") %></h3>
+    </div>
+    <h2><%= current_user.name %></h2>
+  </div>
+  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+  <div class="menu-list">
+
+    <ul id="menu-content" class="menu-content collapse out">
+      <li>
+        <a href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
+      </li>
+
+      <li>
+        <a href="#"><i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i> Share with friends</a>
+      </li>
+
+      <li>
+        <a href="#"><i class="fa fa-file-image-o fa-lg fa-fw sidebar-icon"></i> Take a snapshot and share </a>
+      </li>
+
+      <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="/referral_sales"><i class="fa fa-archive fa-lg fa-fw sidebar-icon"></i> My Sales  </a>
+      </li>
+
+
+      <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="#"><i class="fa fa-truck fa-lg fa-fw sidebar-icon"></i> Buyer's Orders</a>
+      </li>
+
+
+      <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="#"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
+      </li>
+
+
+      <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="#"><i class="fa fa-credit-card-alt fa-lg fa-fw sidebar-icon"></i> Transactions</a>
+      </li>
+
+      <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="#"><i class="fa fa-life-ring fa-lg fa-fw sidebar-icon"></i> My Order </a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-heart fa-lg fa-fw sidebar-icon"></i>Favourties </a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-cog fa-lg fa-fw sidebar-icon"></i>Acc settings  </a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Notification settings  </a>
+      </li>
+    </ul>
+  </div>
+</div>
