@@ -282,6 +282,60 @@ opacity: 1 !important;
 #referral-div {
   word-wrap: break-word;
 }
+.coin-body{
+  border: 1px solid #cad5d9;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+.coin-body p{
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.coin-body span{
+  background: #1e63ec;
+  width: 25px;
+  height: 25px;
+  float: left;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
+  line-height: 24px;
+  text-align: center;
+}
+.coin-body h3{
+  margin: 10px 0 30px;
+}
+.coin-body .coin-count{
+  background: #1e63ec;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 100px;
+}
+.coin-body .coin-price{
+  background: green;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 100px;
+}
+.count-eq{
+  font-size: 14px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+}
+.coin-body strong{
+  float: left;
+  width: 84%;
+  margin-left: 9px;
+}
+.modal-cu{
+  max-width: 650px;
+  width: 100%;
+}
 @media (max-width: 767px) {
   .main {
     margin-left: 0 !important;
