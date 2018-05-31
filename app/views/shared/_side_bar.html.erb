@@ -21,11 +21,11 @@
 
     <ul id="menu-content" class="menu-content collapse out">
       <li class="row">
-       <div class="col-md-5">
-         <p><i class="fa fa-money"> </i>12 Coins <i class="fa fa-alert"></i></p>
-       </div>
+        <div class="col-md-5">
+          <p style="color: gold"><i class="fa fa-money"> </i> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <i class="fa fa-alert"></i></p>
+        </div>
         <div class="col-md-7 text-right">
-          <p><i class="fa fa-credit-card"> </i>$ 3000 available</p>
+          <!--<p><i class="fa fa-credit-card"> </i>$ 3000 available</p>-->
         </div>
       </li>
       <li>
@@ -40,18 +40,17 @@
         <a href="#"><i class="fa fa-file-image-o fa-lg fa-fw sidebar-icon"></i> Take a snapshot and share </a>
       </li>
 
-      <li  data-toggle="" data-target="#" class="collapsed">
-        <a href="/referral_sales"><i class="fa fa-archive fa-lg fa-fw sidebar-icon"></i> My Sales  </a>
-      </li>
+      <% if current_user.role.name != "Buyer" %>
+          <li  data-toggle="" data-target="#" class="collapsed">
+            <a href="/referral_sales"><i class="fa fa-archive fa-lg fa-fw sidebar-icon"></i> My Sales  </a>
+          </li>
 
-
+          <li  data-toggle="" data-target="#" class="collapsed">
+            <a href="#"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
+          </li>
+      <% end %>
       <li  data-toggle="" data-target="#" class="collapsed">
         <a href="#"><i class="fa fa-truck fa-lg fa-fw sidebar-icon"></i> Buyer's Orders</a>
-      </li>
-
-
-      <li  data-toggle="" data-target="#" class="collapsed">
-        <a href="#"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
       </li>
 
 

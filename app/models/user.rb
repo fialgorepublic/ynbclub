@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role, optional: true
   has_many :referral_sales
+  has_many :points
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     # :storage => :s3,

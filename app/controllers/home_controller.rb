@@ -14,6 +14,8 @@ class HomeController < ApplicationController
     if user.present?
       ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
                           address: params[:address], shopdomain: params[:shopdomain], price: params[:price])
+      point_type = PointType.where(name: "Your product was ordered ").first
+      Point.create(user_id: user.id, point_type_id: point_type.id, point_value: point_type.point)
     end
     render json: {success: true}
   end
