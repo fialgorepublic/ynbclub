@@ -15,6 +15,7 @@ body{
 //  padding: 0 0;
   .navbar-default{
     background: #fff;
+    margin-bottom: 0;
   }
   .navbar-default .navbar-nav>li>a{
     color: #000;
@@ -121,6 +122,7 @@ opacity: 1 !important;
       height: 100px;
       border-radius: 50%;
       margin: 0 auto;
+
     }
     p{
       font-size: 13px;
@@ -142,6 +144,30 @@ opacity: 1 !important;
   .modal-dialog{margin: 0 auto;
   }
 }
+.middle{
+  padding-top: 90px;
+}
+.home-banner{
+  height:700px;
+  width: 100%;
+  background: asset-url('katerina-radvanska-397105-unsplash.jpg');
+  background-size:cover;
+  position: relative;
+  color: #fff;
+  h1{
+    padding-top: 220px;
+    font-size: 70px;
+  }
+  .overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(0 , 0 , 0 , 0.7);
+    width: 100%;
+  }
+}
+
 .user-image{
   width: 120px;
   height: 120px;border-radius: 50%;
@@ -153,6 +179,18 @@ opacity: 1 !important;
   font-size: 20px;
   margin-top: 20px;
   color: #fff;
+  #updateUserImage{
+    width: 120px;
+    height: 120px;
+    background: #ccc;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  img{
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+  }
   h3{
     line-height: 120px;
     margin: 0;
@@ -194,7 +232,14 @@ opacity: 1 !important;
   font-size: 22px;
   text-align: center;
   background: #fff;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  .form-box{
+    padding: 20px;
+    margin: 50px 0 30px;
+    text-align: left;
+    border: 1px solid #ccc;
+
+  }
 }
 .nav-side-menu .toggle-btn {
   display: none;
@@ -336,6 +381,33 @@ opacity: 1 !important;
   max-width: 650px;
   width: 100%;
 }
+.ab-dropdown{
+  position: absolute;
+  right: 105px;
+  top: 50px;
+ .dropdown-menu {
+    top: 61%;
+    left: 0;
+    width: 100px;
+    min-width: 115px;
+   li {
+     a{
+       padding: 8px 10px;
+     }
+   }
+  }
+    .btn{
+    background: #fff;
+    border: none;
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
+    padding: 0;
+  }
+}
 @media (max-width: 767px) {
   .main {
     margin-left: 0 !important;
@@ -374,4 +446,8 @@ opacity: 1 !important;
 .dashboard-holder{
   margin-top: 30px;
   padding: 0 20px;
+}
+
+.m-t-30{
+  margin-top: 30px;
 }

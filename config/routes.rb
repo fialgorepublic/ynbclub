@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "get_referral", to: 'home#get_referral'
   post "change_profile_picture", to: "dashboard#change_profile_picture"
   get "get_user_object", to: "dashboard#get_user_object"
+  get 'share_with_friends', to: 'dashboard#share_with_friends'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :controllers => {
       :sessions => "users/sessions",

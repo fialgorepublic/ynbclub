@@ -3,9 +3,16 @@
     <div class="user-image">
       <div id="updateUserImage">
         <%= render partial: "shared/user_image" %>
+        <div class="dropdown ab-dropdown">
+          <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown">
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li> <a href="javascript:void(0);" onclick="uploadImage();">image</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-    <a href="javascript:void(0);" onclick="uploadImage();">image</a>
+
     <h2> <%= current_user.name %></h2>
   </div>
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
