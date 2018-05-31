@@ -71,6 +71,7 @@
         <a href="#"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Notification settings  </a>
       </li>
     </ul>
+    <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-default btn-lg" style="margin-bottom: 20px; margin-left: 30px; margin-top: 10px">Copy Referral Link</a>
   </div>
 </div>
 
@@ -89,7 +90,7 @@
 
   </div>
 </div>
-
+<p id="text_element" style="display: none">https://test-saint.myshopify.com/?referral_url=<%= current_user.referral %></p>
 <script>
     function uploadImage(){
         $.ajax({
@@ -106,5 +107,26 @@
                 //    window.location.reload();
             }
         });
+    }
+    function copyToClipboard(elementId) {
+
+        // Create an auxiliary hidden input
+        var aux = document.createElement("input");
+
+        // Get the text from the element passed into the input
+        aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+        // Append the aux input to the body
+        document.body.appendChild(aux);
+
+        // Highlight the content
+        aux.select();
+
+        // Execute the copy command
+        document.execCommand("copy");
+
+        // Remove the input from the body
+        document.body.removeChild(aux);
+
     }
 </script>
