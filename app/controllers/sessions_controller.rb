@@ -6,15 +6,26 @@ class SessionsController < ApplicationController
     name = @omniauth.info.name
     provider_id = @omniauth.uid
     provider = @omniauth.provider
+    user_image = @omniauth.info.image
     logger.info email.inspect
     user = User.where(:email => email).first
 
     if user.present?
       sign_in :user, user
+      begin
+        if user.avatar.blank?
+          user.update_attributes(:avatar => user_image) # update user profile image
+        end
+      rescue Exception => e
+      end
       redirect_to dashboard_path, notice: 'Signed in successfully'
     else
       user = User.create(:name => name, :email => email, :password => provider_id)
       sign_in :user, user
+      begin
+        current_user.update_attributes(:avatar => user_image) # update user profile image
+      rescue Exception => e
+      end
       redirect_to dashboard_path, notice: 'Signed Up successfully'
     end
 

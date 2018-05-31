@@ -1,0 +1,41 @@
+<%= form_for :user, :url => {:controller => 'dashboard', :action => "change_profile_picture",:type => "post"},
+             :html => {:id =>"user_profile_picture", :multipart => true}    do |f| %>
+    <div class="modal-body">
+      <div class="modal-holder">
+        <div class="field form-group">
+          <%= image_tag(root_url+@user.avatar.url, :size => "80x80", :alt => "Add  icon" , :id =>'blah') %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :logo %><br>
+          <div class="fileUpload btn btn-primary start">
+            <span>Browse</span>
+            <%= f.file_field :avatar , :class=>'upload', :id => 'fileupload' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <%= f.submit "Save", :class=>'btn btn-primary' %>
+    </div>
+<% end %>
+<script>
+    $("#fileupload").change(function () {
+
+        readURL(this);
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+
+                var st = e.target.result;
+
+                $('#blah').attr('src', e.target.result);
+
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

@@ -1,10 +1,12 @@
 <div class="nav-side-menu">
   <div class="brand">
     <div class="user-image">
-      <% name = current_user.name.to_s.split(" ") %>
-      <h3><%= (name[0].present? ? name[0].first : "") + (name[1].present? ? name[1].first : "") %></h3>
+      <div id="updateUserImage">
+        <%= render partial: "shared/user_image" %>
+      </div>
     </div>
-    <h2><%= current_user.name %></h2>
+    <a href="javascript:void(0);" onclick="uploadImage();">image</a>
+    <h2> <%= current_user.name %></h2>
   </div>
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
@@ -58,3 +60,38 @@
     </ul>
   </div>
 </div>
+
+<div id="imageUploader" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div id="uploadImage">
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+    function uploadImage(){
+        $.ajax({
+            url:'/get_user_object',
+            type:'get',
+            dataType:'html',
+            processData:false,
+            success:function (data) {
+                $('#imageUploader').modal('show');
+                $('#uploadImage').html(data);
+            },
+            error:function (data) {
+                alert ('Error');
+                //    window.location.reload();
+            }
+        });
+    }
+</script>

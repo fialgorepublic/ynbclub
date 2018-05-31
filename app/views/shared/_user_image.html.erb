@@ -1,0 +1,6 @@
+<% if current_user.avatar.present? %>
+    <%= image_tag(root_url+current_user.avatar.url, :size => "100x100") %>
+<% else %>
+    <% name = current_user.name.to_s.split(" ") %>
+    <h3><%= (name[0].present? ? name[0].first : "") + (name[1].present? ? name[1].first : "") %></h3>
+<% end %>

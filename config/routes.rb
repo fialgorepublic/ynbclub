@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   post "add_partner_information", to: 'partner_informations#add_partner_information'
   get "get_referral", to: 'home#get_referral'
+  post "change_profile_picture", to: "dashboard#change_profile_picture"
+  get "get_user_object", to: "dashboard#get_user_object"
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :controllers => {
       :sessions => "users/sessions",

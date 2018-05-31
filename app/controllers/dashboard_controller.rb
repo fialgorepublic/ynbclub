@@ -20,4 +20,27 @@ class DashboardController < ApplicationController
     render json: {success: true, :buyer => buyer}
   end
 
+  def change_profile_picture
+    puts "----------------------------------",params.inspect
+    user = current_user.update(avatar: params[:user][:avatar])
+    respond_to do |format|
+      if user
+        format.html { redirect_to root_path, notice: 'Successfully Updated user image' }
+        format.js {  flash.now[:notice] = "Successfully Updated user image." }
+      else
+        @error_messages =[]
+        user.errors.full_messages.map { |msg| # Show Error messages while creating new system
+          @error_messages << msg
+        }
+        format.html { render :new }
+        format.js {  flash.now[:alert] = @error_messages[0] }
+      end
+    end
+  end
+
+  def get_user_object
+    @user = User.new
+    render :partial => "shared/change_profile_Image"
+  end
+
 end
