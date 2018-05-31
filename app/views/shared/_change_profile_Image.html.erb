@@ -1,14 +1,13 @@
 <%= form_for :user, :url => {:controller => 'dashboard', :action => "change_profile_picture",:type => "post"},
              :html => {:id =>"user_profile_picture", :multipart => true}    do |f| %>
     <div class="modal-body">
-      <div class="modal-holder">
+      <div class="modal-holder text-center">
         <div class="field form-group">
           <%= image_tag(root_url+@user.avatar.url, :size => "80x80", :alt => "Add  icon" , :id =>'blah') %>
         </div>
         <div class="field form-group">
           <%= f.label :logo %><br>
-          <div class="fileUpload btn btn-primary start">
-            <span>Browse</span>
+          <div class="fileUpload form-control start">
             <%= f.file_field :avatar , :class=>'upload', :id => 'fileupload' %>
           </div>
         </div>
