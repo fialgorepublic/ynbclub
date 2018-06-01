@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post "change_profile_picture", to: "dashboard#change_profile_picture"
   get "get_user_object", to: "dashboard#get_user_object"
   get 'share_with_friends', to: 'dashboard#share_with_friends'
+  get 'buyer_orders', to: 'buyers#buyer_orders'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :controllers => {
       :sessions => "users/sessions",
