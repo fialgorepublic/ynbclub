@@ -21,11 +21,11 @@
 
     <ul id="menu-content" class="menu-content collapse out">
       <li class="row">
-       <div class="col-md-5">
-         <p><i class="fa fa-money"> </i>12 Coins <i class="fa fa-alert"></i></p>
-       </div>
+        <div class="col-md-5">
+          <p style="color: gold"><i class="fa fa-money"> </i> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <i class="fa fa-alert"></i></p>
+        </div>
         <div class="col-md-7 text-right">
-          <p><i class="fa fa-credit-card"> </i>$ 3000 available</p>
+          <!--<p><i class="fa fa-credit-card"> </i>$ 3000 available</p>-->
         </div>
       </li>
       <li>
@@ -40,18 +40,17 @@
         <a href="#"><i class="fa fa-file-image-o fa-lg fa-fw sidebar-icon"></i> Take a snapshot and share </a>
       </li>
 
+      <% if current_user.role.name != "Buyer" %>
+          <li  data-toggle="" data-target="#" class="collapsed">
+            <a href="/referral_sales"><i class="fa fa-archive fa-lg fa-fw sidebar-icon"></i> My Sales  </a>
+          </li>
+
+          <li  data-toggle="" data-target="#" class="collapsed">
+            <a href="#"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
+          </li>
+      <% end %>
       <li  data-toggle="" data-target="#" class="collapsed">
-        <a href="/referral_sales"><i class="fa fa-archive fa-lg fa-fw sidebar-icon"></i> My Sales  </a>
-      </li>
-
-
-      <li  data-toggle="" data-target="#" class="collapsed">
-        <a href="#"><i class="fa fa-truck fa-lg fa-fw sidebar-icon"></i> Buyer's Orders</a>
-      </li>
-
-
-      <li  data-toggle="" data-target="#" class="collapsed">
-        <a href="#"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
+        <a href="/buyer_orders"><i class="fa fa-truck fa-lg fa-fw sidebar-icon"></i> Buyer's Orders</a>
       </li>
 
 
@@ -72,6 +71,7 @@
         <a href="#"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Notification settings  </a>
       </li>
     </ul>
+    <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-default btn-lg" style="margin-bottom: 20px; margin-left: 30px; margin-top: 10px">Copy Referral Link</a>
   </div>
 </div>
 
@@ -90,7 +90,7 @@
 
   </div>
 </div>
-
+<p id="text_element" style="display: none">https://test-saint.myshopify.com/?referral_url=<%= current_user.referral %></p>
 <script>
     function uploadImage(){
         $.ajax({
@@ -107,5 +107,26 @@
                 //    window.location.reload();
             }
         });
+    }
+    function copyToClipboard(elementId) {
+
+        // Create an auxiliary hidden input
+        var aux = document.createElement("input");
+
+        // Get the text from the element passed into the input
+        aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+        // Append the aux input to the body
+        document.body.appendChild(aux);
+
+        // Highlight the content
+        aux.select();
+
+        // Execute the copy command
+        document.execCommand("copy");
+
+        // Remove the input from the body
+        document.body.removeChild(aux);
+
     }
 </script>
