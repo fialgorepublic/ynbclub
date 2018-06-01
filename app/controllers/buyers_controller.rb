@@ -4,7 +4,11 @@ class BuyersController < ApplicationController
   def buyer_orders
     initiate_shopify_session
     customer_id = get_customer_id
-    @orders = ShopifyAPI::Order.find(:all, :params => {:status => "closed",customer_id: customer_id ,:limit => 250})
+    if customer_id.present?
+      @orders = ShopifyAPI::Order.find(:all, :params => {:status => "closed",customer_id: customer_id ,:limit => 250})
+    else
+      @orders = []
+    end
     puts "---------------------------------------",@orders.inspect
     clear_shopify_session
   end
