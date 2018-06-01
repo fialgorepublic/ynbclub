@@ -1,0 +1,12 @@
+development:
+bucket: saintalgorepublic
+access_key_id: AKIAIWQEZDBVCZVQ3PBA
+secret_access_key: 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
+test:
+bucket: saintalgorepublic
+access_key_id: AKIAIWQEZDBVCZVQ3PBA
+secret_access_key: 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
+production:
+bucket: saintalgorepublic
+access_key_id: AKIAIWQEZDBVCZVQ3PBA
+secret_access_key: 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

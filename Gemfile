@@ -29,6 +29,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem "aws-s3", :require => "aws/s3"
+# gem "aws-sdk"
+gem 'aws-sdk', '< 2.0'
 gem 'jquery-rails'
 gem 'shopify_app', '7.2.9'
 gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
