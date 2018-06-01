@@ -410,6 +410,14 @@ opacity: 1 !important;
     padding: 0;
   }
 }
+#uploadImage{
+  img{
+    object-fit: cover;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+  }
+}
 @media (max-width: 767px) {
   .main {
     margin-left: 0 !important;
