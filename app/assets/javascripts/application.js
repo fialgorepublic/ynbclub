@@ -16,4 +16,5 @@
 //= require bootstrap.min.js
 //= require jquery.validate.min.js
 //= require toastr.js
+//= require BootstrapMenu.min.js
 //= require_tree .
