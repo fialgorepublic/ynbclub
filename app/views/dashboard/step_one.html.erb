@@ -21,13 +21,13 @@
               <div class="col-md-12">
                 <p class="text-center">Insert copied link to your selfie or video. Post must contain <strong>hastag #saintL'beau</strong></p>
                 <div class="col-md-12">
-                  <div class="form-box" style="overflow: hidden">
-                    <span>Link to facebook, instagram, twitter post </span>
+                  <div class="" style="overflow: hidden">
+                    <input id="linkUrl" type="text" placeholder="Link to facebook, instagram, twitter post" class="form-control">
 
                   </div>
                 </div>
-                <div class="col-md-12 ">
-                  <a href="#" target="_blank" class="btn btn-primary btn-lg btn-block">Continue</a>
+                <div class="col-md-12 m-t-30">
+                  <a href="javascript:void(0);" onclick="gotToStepTwo();" class="btn btn-primary btn-lg btn-block">Continue</a>
                 </div>
 
               </div>
@@ -46,4 +46,14 @@
     </div>
   </div>
 </div>
+<script>
+  function gotToStepTwo(){
+      var linkUrl = $("#linkUrl").val();
+      if (linkUrl === ""){
+          alert("Please Enter link first");
+      }else{
+          window.location.href = "/step_two"
+      }
+  }
+</script>
 
