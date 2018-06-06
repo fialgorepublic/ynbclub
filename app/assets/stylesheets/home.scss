@@ -12,6 +12,7 @@ body{
 .header-holder{
   box-shadow: 0px 2px 5px 1px #eeeeee;
   background: #fff;
+
 //  padding: 0 0;
   .navbar-default{
     background: #fff;
@@ -235,6 +236,12 @@ opacity: 1 !important;
   text-align: center;
   background: #fff;
   margin-bottom: 20px;
+  .bg-circle{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    line-height: 180px;
+  }
   .form-box{
     padding: 20px;
     margin: 50px 0 30px;
@@ -435,6 +442,12 @@ opacity: 1 !important;
 }
 .ob-co{
   object-fit: cover;
+}
+.md-pd{
+  padding: 40px;
+}
+.pd-t-30{
+  padding-top: 30px;
 }
 @media (max-width: 767px) {
   .main {
