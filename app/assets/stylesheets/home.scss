@@ -449,6 +449,35 @@ opacity: 1 !important;
 .pd-t-30{
   padding-top: 30px;
 }
+.stepone{
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto;
+  right: 0;
+  top: 20%;
+  line-height: 90px;
+}
+.overlay-layer{
+  position: relative;
+
+}
+.overlay-layer:after{
+  position: absolute;
+  left: 0%;
+  right: 0;
+  width: 100%;
+  background: rgba(0 , 0 ,0, 0.7);
+  clear: both;
+  display: block;
+  content: '';
+  top: 0;
+  height: 100%;
+}
 @media (max-width: 767px) {
   .main {
     margin-left: 0 !important;
