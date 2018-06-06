@@ -418,6 +418,24 @@ opacity: 1 !important;
     height: 90px;
   }
 }
+.sm-pd{
+  padding: 0;
+}
+.image-content-snap{
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+.m-h-400{
+  min-height: 400px;
+}
+.m-b-50{
+  margin-bottom: 50px;
+}
+.ob-co{
+  object-fit: cover;
+}
 @media (max-width: 767px) {
   .main {
     margin-left: 0 !important;

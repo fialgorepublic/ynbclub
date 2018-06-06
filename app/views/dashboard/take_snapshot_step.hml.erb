@@ -1,0 +1,89 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+    <div class="col-md-9">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i> Share With Friends</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box-shadow">
+            <div class="row">
+              <div class="col-md-12">
+                <p class="text-center"> You'll receive 20 coins on the saint l' Beau web site for every registered friend by your invitation link. your friend will receive 20 coins too</p>
+                <p class="text-center"><a hre="">How can I earn and spend coins?</a></p>
+                <div class="col-md-12">
+                  <div class="form-box" style="overflow: hidden">
+                  <span style="width: 68%;
+                          float: left;
+                          font-size: 20px; word-wrap: break-word" id="shareFriendText">https://www.saintlbeou.com?invite=<%= current_user.email %></span>
+                    <a href="javascript:void(0);" onclick="copyToClipboard('shareFriendText');"  class="btn btn-default pull-right">Copy Share link</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <% url = "https://www.saintlbeou.com?invite=#{current_user.email}" %>
+            <div class="row text-center">
+              <div class="col-md-4 ">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary btn-block"> <i class="fa fa-facebook"></i> Share on facebook</a>
+              </div>
+              <div class="col-md-4">
+                <!--<a href="https://twitter.com/intent/tweet?text=“<%#= "testing here" %>”&url=<%#= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> Share on Twitter</a>-->
+                <a href="https://twitter.com/intent/tweet?url=<%= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> Share on Twitter</a>
+              </div>
+              <div class="col-md-4">
+                <a href="mailto:someone@example.com?Subject=Hello&Body=<%= url %>" target="_top" class="btn btn-warning btn-block"> <i class="fa fa-envelop"></i> Share on Mail</a>
+              </div>
+
+            </div>
+
+            <div class="row m-t-30">
+              <div class="col-md-12">
+                <p><small>*When your friend buys the first order of 400,000 VND or more</small></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+    function copyToClipboard(elementId) {
+
+        // Create an auxiliary hidden input
+        var aux = document.createElement("input");
+
+        // Get the text from the element passed into the input
+        aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+        // Append the aux input to the body
+        document.body.appendChild(aux);
+
+        // Highlight the content
+        aux.select();
+
+        // Execute the copy command
+        document.execCommand("copy");
+
+        // Remove the input from the body
+        document.body.removeChild(aux);
+
+    }
+</script>
