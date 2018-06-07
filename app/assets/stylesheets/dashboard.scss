@@ -1,3 +1,66 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.box-shadow-am.sm-pd-am{
+  padding: 20px;
+}
+.box-shadow-am{
+  box-shadow: 0px 2px 12px 3px rgba(221, 221, 221, 0.77);
+  background: #fff;
+  padding: 40px 40px;
+  textarea{
+    min-height: 405px;
+    resize: none;
+  }
+  .product-detail{
+    margin-top: 10px;
+    font-size: 17px;
+  }
+  .product-review {
+    i{
+      color: orange;
+      font-size: 24px;
+    }
+  }
+  .product-price {
+    h5{
+      font-size: 25px;
+      color: red;
+    }
+  }
+  .product-offer{
+    border-top: 1px solid #ccc;
+    font-size: 18px;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  h3{
+    margin: 0 0 10px;
+  }
+}
+.ambassador-dashboard{
+  margin-bottom: 50px;
+  .ambassdor-box{
+    .dropzone{
+      min-height: 200px;
+      border: 2px solid rgba(221, 221, 221, 0.77);
+      .dz-message{
+        margin: 3.2em 0;
+      }
+    }
+    background: #fff;
+    box-shadow: 0px 2px 12px 3px rgba(221, 221, 221, 0.77);
+    padding: 40px 40px;
+    .image-upload{
+      margin-top: 30px;
+    }
+    h2{
+      margin: 0;
+      i{
+        margin-right: 15px;
+      }
+    }
+  }
+}
