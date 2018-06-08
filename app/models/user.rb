@@ -6,6 +6,7 @@ class User < ApplicationRecord
   belongs_to :role, optional: true
   has_many :referral_sales
   has_many :points
+  has_many :share_urls
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     :storage => :s3,
