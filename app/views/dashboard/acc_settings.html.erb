@@ -1,0 +1,260 @@
+<!--<h1>Welcome</h1>-->
+<!--<%#= link_to('Logout', destroy_user_session_path, method: :delete) %>-->
+
+
+
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+
+
+    </div>
+    <div class="col-md-6 setting-holder">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-cog"></i> Account Settings </h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="box-shadow">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Email</h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Current Email</label>
+                  <input type="text" class="form-control" placeholder="p******l.com">
+                </div>
+                <div class="form-group">
+                  <label>New Email</label>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                <div class="btn btn-lg btn-block btn-primary">Save</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="box-shadow">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Password</h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Current password</label>
+                  <input type="text" class="form-control" placeholder="**********">
+                </div>
+                <div class="form-group">
+                  <label>New password</label>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>Repeat New password</label>
+                  <input type="text" class="form-control" placeholder="">
+                </div>
+                <div class="btn btn-lg btn-block btn-primary">Save</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="box-shadow">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Phone Number</h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+
+                <div class="form-group">
+                  <!--<label>New password</label>-->
+                  <input type="number" class="form-control" placeholder="+--">
+                </div>
+
+                <div class="btn btn-lg btn-block btn-primary">Save</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="box-shadow">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Personal Details</h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input maxlength="100" type="text" class="form-control" placeholder="First Name *" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input maxlength="100" type="text"  class="form-control" placeholder="Surname*" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group" >
+                  <select class="form-control" >
+                    <option>Select Gender *</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group date" data-provide="datepicker">
+                  <input type="text" class="form-control" placeholder="Date Of Birth*" id="data-date">
+                  <div class="input-group-addon date-arrow-down">
+                    ▾
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <div class="box-shadow">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Shipping Address</h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Address line 1</label>
+                      <input type="text" class="form-control" placeholder="Lorem ipsum 123">
+                    </div>
+                </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Address line 2</label>
+                      <input type="text" class="form-control" placeholder="Lorem ipsum 123">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" >
+                      <label>State</label>
+                      <select class="form-control" >
+                        <option>State</option>
+                        <option>phu yem</option>
+                        <option>phu</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" >
+                      <label>City</label>
+                      <select class="form-control" >
+                        <option>City</option>
+                        <option>Tuy Hba</option>
+                        <option>Tuy</option>
+                      </select>
+                    </div>
+                  </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Zip code</label>
+                      <input type="text" class="form-control" placeholder="00000">
+                    </div>
+                </div>
+                  <div class="col-md-12">
+                    <div class="btn btn-lg btn-block btn-primary">Save</div>
+                  </div>
+
+            </div>
+
+          </div>
+
+          <div class="box-shadow">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Bank  Account</h3>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>National Security Number</label>
+                  <input type="text" class="form-control" placeholder="000 000 000">
+                </div>
+                <div class="form-group">
+                  <label>Bank Name and Branch</label>
+                  <input type="text" class="form-control" placeholder="ex techban">
+                </div>
+                <div class="form-group">
+                  <label>Account Holder's Name</label>
+                  <input type="text" class="form-control" placeholder="ex John Doe">
+                </div>
+                <div class="form-group">
+                  <label>Account number</label>
+                  <input type="text" class="form-control" placeholder="000000 0000000 ">
+                </div>
+                <div class="btn btn-lg btn-block btn-primary">Save</div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+
+
+    <div class="col-md-3 setting-holder">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="account-list">
+            <li class="active"><a class="" href="">Email</a></li>
+            <li><a href="">Password</a></li>
+            <li><a href="">Phone Number</a></li>
+            <li><a href="">Personal Details</a></li>
+            <li><a href="">Shipping Address</a></li>
+            <li><a href="">Bank Account</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
