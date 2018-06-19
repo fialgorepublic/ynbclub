@@ -540,6 +540,31 @@ opacity: 1 !important;
     }
   }
 }
+.notification-holder{
+  .box-shadow{
+    padding: 40px;
+    .table-holder{
+      text-align: left;
+      td{
+        font-size: 15px;
+        border-top: none;
+        padding: 15px 8px;
+      }
+    }
+  }
+}
+
+.notification-holder{
+  .box-shadow{
+    tfoot{
+      td{
+        font-size: 15px;
+        border-top: 1px solid #ddd !important;
+        padding: 15px 8px;
+      }
+    }
+  }
+}
 
 @media (max-width: 767px) {
   .main {

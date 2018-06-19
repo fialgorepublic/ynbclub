@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'step_three', to: 'dashboard#step_three'
   get 'create_blog', to: 'dashboard#create_blog'
   get 'acc_settings', to: 'dashboard#acc_settings'
+  get 'notification', to: 'dashboard#notification'
   get 'take_snapshot_step', to: 'dashboard#take_snapshot_step'
   get 'buyer_orders', to: 'buyers#buyer_orders'
   # get 'auth/failure', to: redirect('/')
