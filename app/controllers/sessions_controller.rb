@@ -20,7 +20,8 @@ class SessionsController < ApplicationController
       end
       redirect_to dashboard_path, notice: 'Signed in successfully'
     else
-      user = User.create(:name => name, :email => email, :password => provider_id)
+      user = User.create(:name => name, :email => email, :password => provider_id, social_login: true)
+      user.create_profile
       sign_in :user, user
       begin
         current_user.update_attributes(:avatar => user_image) # update user profile image

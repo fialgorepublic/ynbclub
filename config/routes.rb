@@ -35,5 +35,15 @@ Rails.application.routes.draw do
     get "sign_out", to: "users/sessions#destroy"
 
   end
+
+  resources :users do
+    collection do
+      post :update_email
+      post :update_password
+    end
+  end
+
+  resources :profiles
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

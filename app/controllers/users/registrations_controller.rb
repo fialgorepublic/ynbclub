@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     resource = User.new(sign_up_params)
     if resource.save
+      resource.create_profile
       sign_in :user, resource
       flash[:notice] = "Successfully Signed Up"
       redirect_to dashboard_path
