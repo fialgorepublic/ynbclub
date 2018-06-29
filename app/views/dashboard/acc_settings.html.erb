@@ -242,7 +242,9 @@
         <div class="col-md-12">
           <ul class="account-list">
             <li class="active"><a class="" href="#email">Email</a></li>
-            <li><a href="#password">Password</a></li>
+            <% unless current_user.social_login %>
+              <li><a href="#password">Password</a></li>
+            <% end %>
             <li><a href="#phone_number">Phone Number</a></li>
             <li><a href="#personal_details">Personal Details</a></li>
             <li><a href="#shipping_address">Shipping Address</a></li>
