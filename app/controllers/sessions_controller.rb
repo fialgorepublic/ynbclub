@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
         end
       rescue Exception => e
       end
+      user.update_attributes(social_login: true)
       redirect_to dashboard_path, notice: 'Signed in successfully'
     else
       user = User.create(:name => name, :email => email, :password => provider_id, social_login: true)
