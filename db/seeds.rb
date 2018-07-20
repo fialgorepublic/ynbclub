@@ -9,7 +9,7 @@ if Role.first.blank?
   Role.create(name: "Buyer")
   Role.create(name: "Brand ambassador")
   role = Role.create(name: "Admin")
-  User.create(name: "Admin", email: 'admin@saintlbeau.com', password: 'admin123')
+  User.create(name: "Admin", email: 'admin@saintlbeau.com', password: 'admin123', role_id: role.id)
 end
 if PointType.first.blank?
   PointType.create(name: "Post the blog", point: 10)
