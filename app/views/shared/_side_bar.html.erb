@@ -44,12 +44,14 @@
             <a href="/create_blog"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
           </li>
       <% end %>
-      <li>
-        <a href="/users/brand_ambassadors"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Commission  </a>
-      </li>
-      <li>
-        <a href="/approve_sales"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Approve Sales  </a>
-      </li>
+      <% if current_user.role.present? && current_user.role.name != "Admin" %>
+          <li>
+            <a href="/users/brand_ambassadors"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Commission  </a>
+          </li>
+          <li>
+            <a href="/approve_sales"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Approve Sales  </a>
+          </li>
+      <% end %>
       <li  data-toggle="" data-target="#" class="collapsed">
         <a href="/buyer_orders"><i class="fa fa-truck fa-lg fa-fw sidebar-icon"></i> Buyer's Orders</a>
       </li>
