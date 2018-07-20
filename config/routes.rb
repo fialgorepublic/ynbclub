@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'home', to: 'home#index'
   resources :referral_sales
+  get 'approve_sales', to: 'referral_sales#approve_sales'
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard_main', to: 'dashboard#dashboard_main'
@@ -40,8 +41,12 @@ Rails.application.routes.draw do
     collection do
       post :update_email
       post :update_password
+      get :brand_ambassadors
     end
   end
+
+  put 'set_commission', to: 'settings#set_commission'
+  get 'changed_account_approved_status', to: 'settings#changed_account_approved_status'
 
   resources :profiles
 

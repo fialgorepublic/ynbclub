@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
+    puts "=------------------------------------------",params.inspect
     @omniauth = request.env['omniauth.auth']
     email = @omniauth.info.email
     name = @omniauth.info.name

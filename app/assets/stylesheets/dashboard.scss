@@ -64,3 +64,13 @@
     }
   }
 }
+.u_right_holder li span span.best_in_place{
+  min-width: 90px;
+  width: auto;
+  margin-right: 10px;
+}
+.u_right_holder li span span.best_in_place,
+.u_right_holder li span.fa.fa-pencil-square-o{
+  display: inline-block;
+  vertical-align: top;
+}

@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
+  def brand_ambassadors
+    @brand_ambassador = User.joins(:role).where("roles.name = 'Brand ambassador'")
+  end
   def update_email
     @user = current_user
     if params[:current_email] == @user.email
