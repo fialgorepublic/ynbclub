@@ -44,7 +44,7 @@
             <a href="/create_blog"><i class="fa fa-cart-arrow-down fa-lg fa-fw sidebar-icon"></i> Blogs</a>
           </li>
       <% end %>
-      <% if current_user.role.present? && current_user.role.name != "Admin" %>
+      <% if current_user.role.present? && current_user.role.name == "Admin" %>
           <li>
             <a href="/users/brand_ambassadors"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Commission  </a>
           </li>
