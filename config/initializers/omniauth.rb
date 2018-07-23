@@ -3,9 +3,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   
            {
                display: 'popup',
-               secure_image_url: 'true',
+               secure_image_url: 'false',
                image_size: 'square',
-               image_size: {width: 400, height: 400},
+               image_size: {width: 512, height: 512},
                info_fields: 'email,name,first_name,last_name,gender,age_range,birthday',
                client_options: {
                    ssl: {
