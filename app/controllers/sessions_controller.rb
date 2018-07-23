@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     provider_id = @omniauth.uid
     provider = @omniauth.provider
     user_image = @omniauth.info.image
-    logger.info email.inspect
+    logger.info"=======image============"+ user_image.inspect
     user = User.where(:email => email).first
 
     if user.present?

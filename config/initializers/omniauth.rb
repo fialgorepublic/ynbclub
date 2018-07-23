@@ -17,7 +17,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
                name: 'google',
                prompt: 'select_account',
                image_aspect_ratio: 'square',
-               image_size: 50,
+               image_size: 512,
                info_fields: 'email,name,first_name,last_name,gender, birthday',
                client_options: {
                    ssl: {
