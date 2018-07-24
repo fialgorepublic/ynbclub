@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
-
+  require 'link_thumbnailer'
   def index
     if current_user.role.blank?
       @role_selection = true
@@ -43,10 +43,23 @@ class DashboardController < ApplicationController
     render :partial => "shared/change_profile_Image"
   end
 
+  def step_two
+    @object = LinkThumbnailer.generate(params[:url])
+    if @object.title.include?('#SaintLBeau')
+      @saintlbeau_post = true
+    elsif @object.description.include?('#SaintLBeau')
+      @saintlbeau_post = true
+    else
+      @saintlbeau_post = false
+    end
+  end
+
   def step_three
     url = params[:url]
     point_type = PointType.where(name: "Take and share a snapshot").first
-    Point.create(user_id: current_user.id, point_type_id: point_type.id, point_value: point_type.point)
+    if params[:saintlbeau_post].to_s == "true"
+      Point.create(user_id: current_user.id, point_type_id: point_type.id, point_value: point_type.point)
+    end
     ShareUrl.create(url: url, user_id: current_user.id)
   end
 

@@ -17,19 +17,17 @@
       <div class="row">
         <div class="col-md-12">
          <!--  <p>Pretty nice! Confirm the post and receive coins! 100 for selfie and 200 coins for video</p> -->
-         <% require 'link_thumbnailer' %>
-         <% object = LinkThumbnailer.generate(params[:url]) %>
 
          <div>
-           <h1><%= object.title %></h1>
-           <p><%= object.description %></p>
+           <h1><%= @object.title %></h1>
+           <p><%= @object.description %></p>
          </div>
 
           <div class="box-shadow sm-pd">
             <div class="box-1">
             <div class="row">
               <div class="col-md-12">
-              <img style="max-width: 100%; max-height: 300px" src="<%= object.images.first.src.to_s %>">
+              <img style="max-width: 100%; max-height: 300px" src="<%= @object.images.first.src.to_s %>">
 
                 <!--<iframe width="100%" height="300px" src="https://twitter.com/ICC/status/1004181080885231617"></iframe>-->
                <!--  <img width="100%" height="300px" class="ob-co" src="/assets/katerina-radvanska-397105-unsplash.jpg">
@@ -56,7 +54,7 @@
 
           <div class="row" style="margin-top: 30px;">
             <div class="col-md-12">
-              <a href="/step_three?url=<%= params[:url] %>" class="btn btn-lg btn-block btn-primary">Confirm</a>
+              <a href="/step_three?url=<%= params[:url] %>&saintlbeau_post=<%= @saintlbeau_post %>" class="btn btn-lg btn-block btn-primary">Confirm</a>
 
             </div>
           </div>
