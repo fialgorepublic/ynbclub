@@ -24,6 +24,19 @@ class SessionsController < ApplicationController
     else
       user = User.create(:name => name, :email => email, :password => provider_id, social_login: true)
       user.create_profile
+      initiate_shopify_session
+      customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
+      customer = customers.detect { |c| c.email == "#{user.email}" }
+      if customer.nil?
+        customer = ShopifyAPI::Customer.new
+        customer.email = "#{user.email}"
+        customer.first_name = user.name
+        customer.last_name = ''
+        customer.metafields = [{key: "image_url", namespace: "global", value: '', value_type: "string"}]
+        customer.save
+        puts "--------------------- new customer here ---------------------",customer.inspect
+      end
+      clear_shopify_session
       sign_in :user, user
       begin
         current_user.update_attributes(:avatar => user_image) # update user profile image

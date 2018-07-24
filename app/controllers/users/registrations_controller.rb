@@ -14,6 +14,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource = User.new(sign_up_params)
     if resource.save
       resource.create_profile
+      initiate_shopify_session
+      customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
+      customer = customers.detect { |c| c.email == "#{resource.email}" }
+      if customer.nil?
+        customer = ShopifyAPI::Customer.new
+        customer.email = "#{resource.email}"
+        customer.first_name = resource.name
+        customer.last_name = ''
+        customer.metafields = [{key: "image_url", namespace: "global", value: resource.avatar.url, value_type: "string"}]
+        customer.save
+        puts "--------------------- new customer here ---------------------",customer.inspect
+      end
+      clear_shopify_session
       sign_in :user, resource
       flash[:notice] = "Successfully Signed Up"
       redirect_to dashboard_path

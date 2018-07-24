@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :allow_user_request
 
   def set_variables
-    @shopify_domain = "test-saint.myshopify.com"
-    @token = "f3646fea1b5bacf9021656e656d1c252"
+    @shopify_domain = "saint-messanger.myshopify.com"
+    @token = "881f47d0a2db78212645e4f33f5fefe8"
   end
 
   def after_sign_up_path(resource)
