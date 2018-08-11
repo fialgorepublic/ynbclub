@@ -1,0 +1,64 @@
+<%= form_with(model: user, local: true, class: 'form-horizontal') do |form| %>
+    <div class="card-body">
+      <% if user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+            <ul>
+              <% user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="form-group row">
+        <%= form.label :name, class: 'control-label text-right col-md-3' %>
+        <div class="col-md-5">
+          <%= form.text_field :name, id: :user_name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :commission, class: 'control-label text-right col-md-3' %>
+        <div class="col-md-5">
+          <%= form.text_field :commission, id: :user_commission, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :email, class: 'control-label text-right col-md-3' %>
+        <div class="col-md-5">
+          <%= form.text_field :email, id: :user_email, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :role, class: 'control-label text-right col-md-3' %>
+        <div class="col-md-5">
+          <%= collection_select(:user, :role_id, Role.where(name: "Brand ambassador"), :id, :name, {}, html_options = {:class=>"form-control"}) %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :password, class: 'control-label text-right col-md-3' %>
+        <div class="col-md-5">
+          <%= form.password_field :password, id: :user_password, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-light">
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="offset-sm-3 col-md-5">
+                <%= form.submit 'Ambassador', class: 'btn btn-primary btn-rounded submit' %>
+                <%= link_to 'Back', users_path, class: 'btn btn-secondary clear-form btn-rounded btn-outline' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

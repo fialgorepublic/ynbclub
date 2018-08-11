@@ -18,6 +18,10 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def ambassador_role_id
+    Role.find_by_name("Brand ambassador").id
+  end
+
   private
 
   def add_default_class(html_options)
