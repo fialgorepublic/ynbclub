@@ -19,4 +19,5 @@
 //= require jquery.validate.min.js
 //= require toastr.js
 //= require BootstrapMenu.min.js
+//= require jquery.dataTables.js
 //= require_tree .

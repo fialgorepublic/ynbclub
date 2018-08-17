@@ -6,16 +6,38 @@
     <div class="col-md-9">
       <p id="notice"><%= notice %></p>
 
-      <h5 class="card-header">Manage Affiliate</h5>
+      <h3 class="card-header">Manage Affiliate</h3>
+      <div class="col-md-4">
+        <h5>Payment status</h5>
+        <select class="form-control">
+          <option value="Tất cả">Tất cả</option>
+          <option value="saab">Đủ điều kiện</option>
+          <option value="opel">Chưa đủ điều kiện</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <h5>Browsing status</h5>
+        <select class="form-control">
+          <option value="volvo">Tất cả</option>
+          <option value="saab">Chưa duyệt</option>
+          <option value="opel">Đã duyệt</option>
+        </select>
+      </div>
+      <div class="col-md-12">
+        <%= link_to 'Apply Filter', new_user_path, class: 'btn btn-info pull-right' %><br/>
+      </div>
           <div class="card-body">
             <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
               <thead>
               <tr>
                 <th>Name</th>
-                <th>referral</th>
-                <th>Commission</th>
                 <th>Email</th>
-                <th>Role</th>
+                <th>Joining Date</th>
+                <th>Phone No</th>
+                <th>Shop No</th>
+                <th>Commission</th>
+                <th>Money</th>
+                <th></th>
                 <th></th>
                 <th></th>
               </tr>
@@ -25,19 +47,35 @@
               <% @users.each do |user| %>
                   <tr>
                     <td><%= user.name %></td>
-                    <td><%= user.referral %></td>
-                    <td><%= user.commission %></td>
                     <td><%= user.email %></td>
-                    <td><%= user.role.name %></td>
+                    <td><%= user.created_at.to_date %></td>
+                    <td><%= user.phone_number %></td>
+                    <td><%= user.shop_no %></td>
+                    <td><%= user.commission %></td>
+                    <td><%= user.money %></td>
+                    <td><i class="fa fa-eye-slash"></i></td>
                     <td><%= link_to 'Edit', edit_user_path(user) %></td>
                     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
               <% end %>
               </tbody>
             </table>
+            <br/><br/><br/>
             <%= link_to 'New Ambassador', new_user_path, class: 'btn btn-primary' %>
           </div>
         </div>
       </div>
   </div>
 
+<script>
+    $('#bs4-table').DataTable({
+        retrieve: true,
+        "aaSorting": [],
+        'columnDefs' : [     // see https://datatables.net/reference/option/columns.searchable
+            {
+                'searchable'    : false,
+                'targets'       : [2,4,5,6]
+            },
+        ]
+    });
+</script>
