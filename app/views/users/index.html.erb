@@ -84,30 +84,32 @@
     <% end %>
 
     function change_activeStatus(obj, id){
-        var obj_cls = $(obj).attr('class');
-        var status = ''
-        if (obj_cls == 'fa fa-eye'){
-            $(obj).removeClass(obj_cls);
-            $(obj).addClass('fa fa-eye-slash');
-            status = false
-        }else if(obj_cls == 'fa fa-eye-slash'){
-            $(obj).removeClass(obj_cls);
-            $(obj).addClass('fa fa-eye');
-            status = true
-        }
-        $.ajax({
-            url:'/change_activeStatus?id='+id+ '&value='+status,
-            type:'get',
-            dataType:'html',
-            processData:false,
-            success:function (data) {
-
-            },
-            error:function (data) {
-                alert ('Error');
-                //    window.location.reload();
+        if (confirm('Are You Sure You Want To change status?')) {
+            var obj_cls = $(obj).attr('class');
+            var status = ''
+            if (obj_cls == 'fa fa-eye') {
+                $(obj).removeClass(obj_cls);
+                $(obj).addClass('fa fa-eye-slash');
+                status = false
+            } else if (obj_cls == 'fa fa-eye-slash') {
+                $(obj).removeClass(obj_cls);
+                $(obj).addClass('fa fa-eye');
+                status = true
             }
-        });
+            $.ajax({
+                url: '/change_activeStatus?id=' + id + '&value=' + status,
+                type: 'get',
+                dataType: 'html',
+                processData: false,
+                success: function (data) {
+
+                },
+                error: function (data) {
+                    alert('Error');
+                    //    window.location.reload();
+                }
+            });
+        }
     }
     function apply_filter(){
         var browsing_status_val = $('#browsingStatus').val();
