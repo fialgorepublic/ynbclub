@@ -10,62 +10,62 @@
       <div class="col-md-4">
         <h5>Payment status</h5>
         <select class="form-control">
-          <option value="Tất cả">Tất cả</option>
-          <option value="saab">Đủ điều kiện</option>
-          <option value="opel">Chưa đủ điều kiện</option>
+          <option value="Tất cả">All</option>
+          <option value="saab">Eligible</option>
+          <option value="opel">Unqualified</option>
         </select>
       </div>
       <div class="col-md-4">
         <h5>Browsing status</h5>
-        <select class="form-control">
-          <option value="volvo">Tất cả</option>
-          <option value="saab">Chưa duyệt</option>
-          <option value="opel">Đã duyệt</option>
+        <select id="browsingStatus" class="form-control">
+          <option value="All">All</option>
+          <option value="false">Unapproved</option>
+          <option value="true">Approved</option>
         </select>
       </div>
       <div class="col-md-12">
-        <%= link_to 'Apply Filter', new_user_path, class: 'btn btn-info pull-right' %><br/>
+        <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
       </div>
-          <div class="card-body">
-            <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
-              <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Joining Date</th>
-                <th>Phone No</th>
-                <th>Shop No</th>
-                <th>Commission</th>
-                <th>Money</th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-              </thead>
+      <div class="card-body">
+        <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Joining Date</th>
+            <th>Phone No</th>
+            <th>Shop No</th>
+            <th>Commission</th>
+            <th>Money</th>
+            <th></th>
+            <!--<th></th>-->
+            <th></th>
+          </tr>
+          </thead>
 
-              <tbody>
-              <% @users.each do |user| %>
-                  <tr>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.created_at.to_date %></td>
-                    <td><%= user.phone_number %></td>
-                    <td><%= user.shop_no %></td>
-                    <td><%= user.commission %></td>
-                    <td><%= user.money %></td>
-                    <td><i class="fa fa-eye-slash"></i></td>
-                    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-                    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
-              <% end %>
-              </tbody>
-            </table>
-            <br/><br/><br/>
-            <%= link_to 'New Ambassador', new_user_path, class: 'btn btn-primary' %>
-          </div>
-        </div>
+          <tbody>
+          <% @users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.created_at.to_date %></td>
+                <td><%= user.phone_number %></td>
+                <td><%= user.shop_no %></td>
+                <td><%= user.commission %></td>
+                <td><%= user.money %></td>
+                <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
+                <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
+                <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <br/><br/><br/>
+        <%= link_to 'New Ambassador', new_user_path, class: 'btn btn-primary' %>
       </div>
+    </div>
   </div>
+</div>
 
 <script>
     $('#bs4-table').DataTable({
@@ -78,4 +78,39 @@
             },
         ]
     });
+    <% if params[:active].present? %>
+    var name = '<%= params[:active] %>';
+    $('#browsingStatus').val(name);
+    <% end %>
+
+    function change_activeStatus(obj, id){
+        var obj_cls = $(obj).attr('class');
+        var status = ''
+        if (obj_cls == 'fa fa-eye'){
+            $(obj).removeClass(obj_cls);
+            $(obj).addClass('fa fa-eye-slash');
+            status = false
+        }else if(obj_cls == 'fa fa-eye-slash'){
+            $(obj).removeClass(obj_cls);
+            $(obj).addClass('fa fa-eye');
+            status = true
+        }
+        $.ajax({
+            url:'/change_activeStatus?id='+id+ '&value='+status,
+            type:'get',
+            dataType:'html',
+            processData:false,
+            success:function (data) {
+
+            },
+            error:function (data) {
+                alert ('Error');
+                //    window.location.reload();
+            }
+        });
+    }
+    function apply_filter(){
+        var browsing_status_val = $('#browsingStatus').val();
+        window.location.href = '/users?active='+browsing_status_val;
+    }
 </script>

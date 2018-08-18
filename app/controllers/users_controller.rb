@@ -41,7 +41,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.where(role_id: ambassador_role_id)
+    if (params[:active].present? && params[:active] != "All")
+      @users = User.where(role_id: ambassador_role_id, is_activated: params[:active])
+    else
+      @users = User.where(role_id: ambassador_role_id)
+    end
   end
 
   # GET /users/1
@@ -94,6 +98,15 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def change_activeStatus
+    user = User.find(params[:id])
+    user.update_attributes(is_activated: params[:value])
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'Active status Successfully changed.' }
       format.json { head :no_content }
     end
   end

@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get "sign_out", to: "users/sessions#destroy"
 
   end
-
+  get 'change_activeStatus', to: 'users#change_activeStatus'
   resources :users do
     collection do
       post :update_email
