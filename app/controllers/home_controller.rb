@@ -1,8 +1,22 @@
 class HomeController < ApplicationController
   def index
-    if user_signed_in?
-      redirect_to dashboard_path
+    if (params[:is_shopify].present? && params[:is_shopify].to_s == "true")
+      user = User.find_by_email(params[:email])
+      if user
+        sign_in :user, user
+      else
+        role = Role.find_by_name('Admin')
+        user = User.create(name: params[:name], email: params[:email], password: Devise.friendly_token,
+                           social_login: false, is_shopify_user: true, role_id: role.id)
+        user.create_profile
+        sign_in :user, user
+      end
+      redirect_to users_path
     else
+      if user_signed_in?
+        redirect_to dashboard_path
+      else
+      end
     end
   end
 
