@@ -27,6 +27,7 @@
             </select>
           </div>
           <div class="col-md-4 m-t-30">
+            <a href="/users" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
             <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
           </div>
       </div>
@@ -52,7 +53,7 @@
               <tbody>
               <% @users.each do |user| %>
                   <tr>
-                    <td><a href="users/user_show"><%= user.name %></a></td>
+                    <td><a href="/user_show"><%= user.name %></a></td>
                     <td><%= user.email %></td>
                     <td><%= user.created_at.to_date %></td>
                     <td><%= user.phone_number %></td>
