@@ -20,4 +20,5 @@
 //= require toastr.js
 //= require BootstrapMenu.min.js
 //= require jquery.dataTables.js
+//= require apprise.min.js
 //= require_tree .

@@ -9,27 +9,27 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="card-header">Manage Affiliate</h3>
-         </div>
-          <div class="col-md-4">
-            <h5>Payment status</h5>
-            <select class="form-control">
-              <option value="Tất cả">All</option>
-              <option value="saab">Eligible</option>
-              <option value="opel">Unqualified</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <h5>Browsing status</h5>
-            <select id="browsingStatus" class="form-control">
-              <option value="All">All</option>
-              <option value="false">Unapproved</option>
-              <option value="true">Approved</option>
-            </select>
-          </div>
-          <div class="col-md-4 m-t-30">
-            <a href="/users" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
-            <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
-          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Payment status</h5>
+          <select class="form-control">
+            <option value="Tất cả">All</option>
+            <option value="saab">Eligible</option>
+            <option value="opel">Unqualified</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <h5>Browsing status</h5>
+          <select id="browsingStatus" class="form-control">
+            <option value="All">All</option>
+            <option value="false">Unapproved</option>
+            <option value="true">Approved</option>
+          </select>
+        </div>
+        <div class="col-md-4 m-t-30">
+          <a href="/users" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
+          <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
+        </div>
       </div>
       <div class="row m-t-30">
         <div class="col-md-12">
@@ -93,29 +93,37 @@
     <% end %>
 
     function change_activeStatus(obj, id){
-        if (confirm('Are You Sure You Want To change status?')) {
-            var obj_cls = $(obj).attr('class');
-            var status = ''
-            if (obj_cls == 'fa fa-eye') {
-                $(obj).removeClass(obj_cls);
-                $(obj).addClass('fa fa-eye-slash');
-                status = false
-            } else if (obj_cls == 'fa fa-eye-slash') {
-                $(obj).removeClass(obj_cls);
-                $(obj).addClass('fa fa-eye');
-                status = true
-            }
-            $.ajax({
-                url: '/change_activeStatus?id=' + id + '&value=' + status,
-                type: 'get',
-                dataType: 'html',
-                processData: false,
-                success: function (data) {
+//        if (confirm('Are You Sure You Want To change status?')) {
+//        }
+        {
+            apprise('Are You Sure You Want To change status?', {'verify': true}, function (r) {
+                if (r) {
+                    var obj_cls = $(obj).attr('class');
+                    var status = ''
+                    if (obj_cls == 'fa fa-eye') {
+                        $(obj).removeClass(obj_cls);
+                        $(obj).addClass('fa fa-eye-slash');
+                        status = false
+                    } else if (obj_cls == 'fa fa-eye-slash') {
+                        $(obj).removeClass(obj_cls);
+                        $(obj).addClass('fa fa-eye');
+                        status = true
+                    }
+                    $.ajax({
+                        url: '/change_activeStatus?id=' + id + '&value=' + status,
+                        type: 'get',
+                        dataType: 'html',
+                        processData: false,
+                        success: function (data) {
 
-                },
-                error: function (data) {
-                    alert('Error');
-                    //    window.location.reload();
+                        },
+                        error: function (data) {
+                            alert('Error');
+                            //    window.location.reload();
+                        }
+                    });
+                }
+                else {
                 }
             });
         }
