@@ -37,7 +37,7 @@
           <li><a href=""><i class="fa fa-search"></i></a></li>
           <li><a href=""><i class="fa fa-shopping-cart"></i></a></li>
           <!--<li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>-->
-          <% if !(params[:is_shopify]) %>
+          <% if !(current_user.is_shopify_user) %>
               <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
           <% end %>
         </ul>

@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     if (params[:is_shopify].present? && params[:is_shopify].to_s == "true")
       user = User.find_by_email(params[:email])
       if user
+        user.update_attributes(is_shopify_user: true)
         sign_in :user, user
       else
         role = Role.find_by_name('Admin')
