@@ -59,7 +59,9 @@
                     <td><%= user.phone_number %></td>
                     <td><%= user.shop_no %></td>
                     <td><%= user.commission %></td>
-                    <td><%= user.money %></td>
+                    <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+                    <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
+                    <td><%= percentage_price %></td>
                     <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
                     <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
                     <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
