@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'notification', to: 'dashboard#notification'
   get 'take_snapshot_step', to: 'dashboard#take_snapshot_step'
   get 'buyer_orders', to: 'buyers#buyer_orders'
+  get 'user_show', to: 'users#user_show'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {
       :sessions => "users/sessions",

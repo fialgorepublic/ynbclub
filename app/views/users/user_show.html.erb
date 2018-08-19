@@ -1,0 +1,205 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+ 
+
+  <div class="col-md-9">
+      <div class="user-show-right">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-briefcase"></i> Thông tin Partner</a></li>
+          <li><a data-toggle="tab" href="#menu1"> <i class="fa fa-list-alt"></i> Lịch sử Chiết Khấu </a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="home" class="tab-pane fade in active">
+            <div class="row">
+             
+              <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
+                <p><strong>Mã giới thiệu:</strong> 100129</p>
+                <p><strong>Tổng thu nhập:</strong>  0 ₫</p>
+                <p><strong>Đã được chi trả:</strong> 0 ₫</p>
+                <p><strong>Chưa được chi trả:</strong> 0 ₫</p>
+              </div>
+
+            </div>
+
+            <div class="row m-t-30">
+              <div class="col-md-3">
+                <h4>Thông Tin Chung</h4>
+                <small>Một số thông tin cơ bản</small>
+              </div>
+
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>Họ Và Tên</label>
+                    <input type="text" class="form-control" placeholder="Họ Và Tên">
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <label>Số Điện Thoại</label>
+                    <input type="text" class="form-control" placeholder="Họ Và Tên">
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>Địa Chỉ</label>
+                    <input type="text" class="form-control" placeholder="58 nguyễn khánh toàn,cầu giấy,hà nội">
+                  </div>
+
+                <!--   <div class="col-md-6 form-group">
+                    <label>Số Điện Thoại</label>
+                    <input type="text" class="form-control" placeholder="Họ Và Tên">
+                  </div> -->
+
+                </div>
+
+                 <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" placeholder="phuongjenny19@gmail.com">
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <label>Mật Khẩu</label>
+                    <input type="text" class="form-control" placeholder="Mật khẩu">
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 form-group">
+                    <label>Chiết Khấu %</label>
+                    <input type="text" class="form-control" placeholder="0">
+                  </div>
+
+                
+                </div>
+
+               
+              </div>
+
+            </div>
+
+             <div class="row m-t-30">
+                  <div class="col-md-3">
+                  <h4>Thông Tin Thanh Toán</h4>
+                  <small>Thông tin dùng để thanh toán/chi trả</small>
+                  </div>
+                  <div class="col-md-9">
+                      <div class="row">
+                        <div class="col-md-4 form-group">
+                          <label>Chứng Minh Nhân Dân</label>
+                          <input type="text" class="form-control" placeholder="Chứng Minh Nhân Dân">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4 form-group">
+                          <label>Tên Ngân Hàng và Chi Nhánh</label>
+                          <input type="text" class="form-control" placeholder="BIDV - CN Thái Hà">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4 form-group">
+                          <label>Tên Tài Khoản</label>
+                          <input type="text" class="form-control" placeholder="Tên chủ tài khoản">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-4 form-group">
+                          <label>Số Tài Khoản</label>
+                          <input type="text" class="form-control" placeholder="Số tài khoản tại ngân hàng">
+                        </div>
+                      </div>
+
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <hr>
+                  </div>
+
+                  <div class="col-md-1">
+                    <button class="btn btn-danger">
+                      Xoá
+                    </button>
+                  </div>
+
+                  <div class="col-md-2">
+                    <button class="btn btn-success">
+                     Duyệt Tài Khoản
+                    </button>
+                  </div>
+
+                  <div class="col-md-9 text-right pull-right">
+                    <button class="btn btn-primary">
+                     Cập Nhật
+                    </button>
+                  </div>
+
+                </div>
+
+          </div>
+          <div id="menu1" class="tab-pane fade">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table  table-striped">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Thời Gian Ghi Nhận</th>
+                      <th>Mô Tả</th>
+                      <th>Thu nhập</th>
+                      <th>Thanh toán</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>STT</td>
+                      <td>Thời Gian Ghi Nhận</td>
+                      <td>Mô Tả</td>
+                      <td>Thu nhậ</td>
+                      <td>Thanh toán</td>
+                    </tr>
+                     <tr>
+                      <td>STT</td>
+                      <td>Thời Gian Ghi Nhận</td>
+                      <td>Mô Tả</td>
+                      <td>Thu nhậ</td>
+                      <td>Thanh toán</td>
+                    </tr>
+                     <tr>
+                      <td>STT</td>
+                      <td>Thời Gian Ghi Nhận</td>
+                      <td>Mô Tả</td>
+                      <td>Thu nhậ</td>
+                      <td>Thanh toán</td>
+                    </tr>
+                     <tr>
+                      <td>STT</td>
+                      <td>Thời Gian Ghi Nhận</td>
+                      <td>Mô Tả</td>
+                      <td>Thu nhậ</td>
+                      <td>Thanh toán</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+  </div>
+</div>  
+</div>
