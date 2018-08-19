@@ -12,10 +12,10 @@
         </div>
         <div class="col-md-4">
           <h5>Payment status</h5>
-          <select class="form-control">
-            <option value="Tất cả">All</option>
-            <option value="saab">Eligible</option>
-            <option value="opel">Unqualified</option>
+          <select id="paymentStatus" class="form-control">
+            <option value="All">All</option>
+            <option value="true">Eligible</option>
+            <option value="false">Unqualified</option>
           </select>
         </div>
         <div class="col-md-4">
@@ -59,7 +59,11 @@
                     <td><%= user.phone_number %></td>
                     <td><%= user.shop_no %></td>
                     <td><%= user.commission %></td>
-                    <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+                    <% if (@activeStatus == "All") %>
+                        <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+                    <% else %>
+                        <% price = user.referral_sales.where(is_approved: @activeStatus).pluck(:price).map(&:to_f).reduce(:+) %>
+                    <% end %>
                     <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
                     <td><%= percentage_price %></td>
                     <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
@@ -92,6 +96,10 @@
     <% if params[:active].present? %>
     var name = '<%= params[:active] %>';
     $('#browsingStatus').val(name);
+    <% end %>
+    <% if params[:payment].present? %>
+    var name = '<%= params[:payment] %>';
+    $('#paymentStatus').val(name);
     <% end %>
 
     function change_activeStatus(obj, id){
@@ -132,6 +140,7 @@
     }
     function apply_filter(){
         var browsing_status_val = $('#browsingStatus').val();
-        window.location.href = '/users?active='+browsing_status_val;
+        var paymentStatus_val = $('#paymentStatus').val();
+        window.location.href = '/users?active='+browsing_status_val+'&payment='+paymentStatus_val;
     }
 </script>

@@ -46,6 +46,11 @@ class UsersController < ApplicationController
     else
       @users = User.where(role_id: ambassador_role_id)
     end
+    if (params[:payment].present? && params[:payment] != "All")
+      @activeStatus = params[:payment]
+    else
+      @activeStatus = "All"
+    end
   end
 
   # GET /users/1
