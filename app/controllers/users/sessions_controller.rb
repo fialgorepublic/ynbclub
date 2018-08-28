@@ -13,7 +13,7 @@ class Users::SessionsController < Devise::SessionsController
     puts  "------------------- form -------------------",params.inspect
     resource = User.where(email: params[:resource][:email].downcase).first
     if resource.present? && resource.valid_password?(params[:resource][:password]) # validate user password
-      user.update_attributes(is_shopify_user: false)
+      resource.update_attributes(is_shopify_user: false)
       sign_in :user, resource
       flash[:notice] = "Successfully logged in"
       redirect_to dashboard_path
