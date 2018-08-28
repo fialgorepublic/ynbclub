@@ -116,6 +116,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_show
+    @user = User.find(params[:id])
+  end
+
+  def update_profile
+    user = User.find(params[:user_id])
+    if params[:user][:password].present?
+      user.update(user_params)
+    else
+      user.update(edit_user_params)
+    end
+    if user.profile.blank?
+      user.create_profile
+    end
+    user.profile.update(profile_params)
+    flash[:success] = "Successfully update"
+    redirect_to users_path
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
@@ -131,6 +150,10 @@ class UsersController < ApplicationController
   def edit_user_params
     params.require(:user).permit(:name, :email, :role_id, :referral, :commission, :social_login, :phone_number,
                                  :shop_no, :money)
+  end
+
+  def profile_params
+    params.require(:profile).permit(:first_name, :surname, :date_of_birth, :phone_number, :gender, :address_line_1, :address_line_2, :state, :city, :zip_code, :security_number, :account_number, :acc_holder_name, :bank_name)
   end
 
 end

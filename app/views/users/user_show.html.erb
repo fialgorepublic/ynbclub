@@ -1,205 +1,205 @@
 <div class="dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
- 
+<div class="row">
+<div class="col-md-3">
+  <%= render partial: "shared/side_bar" %>
+</div>
 
-  <div class="col-md-9">
-      <div class="user-show-right">
-        <ul class="nav nav-tabs nav-justified">
-          <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-briefcase"></i> Thông tin Partner</a></li>
-          <li><a data-toggle="tab" href="#menu1"> <i class="fa fa-list-alt"></i> Lịch sử Chiết Khấu </a></li>
-        </ul>
 
-        <div class="tab-content">
-          <div id="home" class="tab-pane fade in active">
-            <div class="row">
-             
-              <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
-                <p><strong>Mã giới thiệu:</strong> 100129</p>
-                <p><strong>Tổng thu nhập:</strong>  0 ₫</p>
-                <p><strong>Đã được chi trả:</strong> 0 ₫</p>
-                <p><strong>Chưa được chi trả:</strong> 0 ₫</p>
-              </div>
+<div class="col-md-9">
+  <div class="user-show-right">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-briefcase"></i>  Partner Information</a></li>
+      <li><a data-toggle="tab" href="#menu1"> <i class="fa fa-list-alt"></i>
+        History of Discounts </a></li>
+    </ul>
 
-            </div>
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+        <div class="row">
 
+          <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
+            <p><strong>Referral code:</strong> <%= @user.referral %> </p>
+            <p><strong>Total income:</strong>  <%= @user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %> ₫</p>
+            <p><strong>Has been paid:</strong> <%= @user.referral_sales.where(is_approved: true).pluck(:price).map(&:to_f).reduce(:+) %> ₫</p>
+            <p><strong>Not paid:</strong> <%= @user.referral_sales.where(is_approved: false).pluck(:price).map(&:to_f).reduce(:+) %> ₫</p>
+          </div>
+
+        </div>
+        <%= form_tag("/update_profile", id: "update_profile", method: "post") do %>
             <div class="row m-t-30">
               <div class="col-md-3">
-                <h4>Thông Tin Chung</h4>
-                <small>Một số thông tin cơ bản</small>
+                <h4>General information</h4>
+                <small>Some basic information</small>
               </div>
 
               <div class="col-md-9">
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <label>Họ Và Tên</label>
-                    <input type="text" class="form-control" placeholder="Họ Và Tên">
+                    <label>First and last name</label>
+                    <%= text_field_tag 'user[name]', @user.name, :class => 'form-control', placeholder: "First and last name" %>
                   </div>
 
                   <div class="col-md-6 form-group">
-                    <label>Số Điện Thoại</label>
-                    <input type="text" class="form-control" placeholder="Họ Và Tên">
+                    <label>Phone number</label>
+                    <%= text_field_tag 'user[phone_number]', @user.phone_number, :class => 'form-control', placeholder: "phone number" %>
                   </div>
 
                 </div>
 
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <label>Địa Chỉ</label>
-                    <input type="text" class="form-control" placeholder="58 nguyễn khánh toàn,cầu giấy,hà nội">
+                    <label>Address</label>
+                    <%= text_field_tag 'profile[address_line_1]', @user.profile.present? ? @user.profile.address_line_1 : nil, :class => 'form-control', placeholder: "58 Nguyen Khanh To, Cau Giay, Ha Noi" %>
                   </div>
 
-                <!--   <div class="col-md-6 form-group">
-                    <label>Số Điện Thoại</label>
-                    <input type="text" class="form-control" placeholder="Họ Và Tên">
-                  </div> -->
+                  <!--   <div class="col-md-6 form-group">
+                      <label>Số Điện Thoại</label>
+                      <input type="text" class="form-control" placeholder="Họ Và Tên">
+                    </div> -->
 
                 </div>
 
-                 <div class="row">
+                <div class="row">
                   <div class="col-md-6 form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" placeholder="phuongjenny19@gmail.com">
+                    <%= text_field_tag 'user[email]', @user.email, :class => 'form-control', placeholder: "phuongjenny19@gmail.com" %>
                   </div>
 
                   <div class="col-md-6 form-group">
-                    <label>Mật Khẩu</label>
-                    <input type="text" class="form-control" placeholder="Mật khẩu">
+                    <label>Password</label>
+                    <%= text_field_tag 'user[password]', nil, :class => 'form-control', placeholder: "Password" %>
                   </div>
 
                 </div>
 
                 <div class="row">
                   <div class="col-md-4 form-group">
-                    <label>Chiết Khấu %</label>
-                    <input type="text" class="form-control" placeholder="0">
+                    <label>Discount %</label>
+                    <%= text_field_tag 'user[commission]', @user.commission, :class => 'form-control', placeholder: "0" %>
                   </div>
 
-                
+
                 </div>
 
-               
+
               </div>
 
             </div>
 
-             <div class="row m-t-30">
-                  <div class="col-md-3">
-                  <h4>Thông Tin Thanh Toán</h4>
-                  <small>Thông tin dùng để thanh toán/chi trả</small>
+            <div class="row m-t-30">
+              <div class="col-md-3">
+                <h4>Billing Information</h4>
+                <small>
+                  Information used for payment / payment</small>
+              </div>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-4 form-group">
+                    <label>Proof of the people</label>
+                    <%= text_field_tag 'profile[security_number]', @user.profile.present? ? @user.profile.security_number : nil, :class => 'form-control', placeholder: "Proof of the people" %>
                   </div>
-                  <div class="col-md-9">
-                      <div class="row">
-                        <div class="col-md-4 form-group">
-                          <label>Chứng Minh Nhân Dân</label>
-                          <input type="text" class="form-control" placeholder="Chứng Minh Nhân Dân">
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-4 form-group">
-                          <label>Tên Ngân Hàng và Chi Nhánh</label>
-                          <input type="text" class="form-control" placeholder="BIDV - CN Thái Hà">
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-4 form-group">
-                          <label>Tên Tài Khoản</label>
-                          <input type="text" class="form-control" placeholder="Tên chủ tài khoản">
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-4 form-group">
-                          <label>Số Tài Khoản</label>
-                          <input type="text" class="form-control" placeholder="Số tài khoản tại ngân hàng">
-                        </div>
-                      </div>
-
-                  </div>
-
                 </div>
 
                 <div class="row">
-                  <div class="col-md-12">
-                    <hr>
+                  <div class="col-md-4 form-group">
+                    <label>
+                      Name of Bank and Branch</label>
+                    <%= text_field_tag 'profile[bank_name]', @user.profile.present? ? @user.profile.bank_name : nil, :class => 'form-control', placeholder: "BIDV - Thai Ha branch" %>
                   </div>
-
-                  <div class="col-md-1">
-                    <button class="btn btn-danger">
-                      Xoá
-                    </button>
+                </div>
+                <%= hidden_field_tag :user_id, @user.id, id: "user_id" %>
+                <div class="row">
+                  <div class="col-md-4 form-group">
+                    <label>Account name</label>
+                    <%= text_field_tag 'profile[acc_holder_name]', @user.profile.present? ? @user.profile.acc_holder_name : nil, :class => 'form-control', placeholder: "Account name" %>
                   </div>
-
-                  <div class="col-md-2">
-                    <button class="btn btn-success">
-                     Duyệt Tài Khoản
-                    </button>
-                  </div>
-
-                  <div class="col-md-9 text-right pull-right">
-                    <button class="btn btn-primary">
-                     Cập Nhật
-                    </button>
-                  </div>
-
                 </div>
 
-          </div>
-          <div id="menu1" class="tab-pane fade">
-            <div class="row">
-              <div class="col-md-12">
-                <table class="table  table-striped">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Thời Gian Ghi Nhận</th>
-                      <th>Mô Tả</th>
-                      <th>Thu nhập</th>
-                      <th>Thanh toán</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>STT</td>
-                      <td>Thời Gian Ghi Nhận</td>
-                      <td>Mô Tả</td>
-                      <td>Thu nhậ</td>
-                      <td>Thanh toán</td>
-                    </tr>
-                     <tr>
-                      <td>STT</td>
-                      <td>Thời Gian Ghi Nhận</td>
-                      <td>Mô Tả</td>
-                      <td>Thu nhậ</td>
-                      <td>Thanh toán</td>
-                    </tr>
-                     <tr>
-                      <td>STT</td>
-                      <td>Thời Gian Ghi Nhận</td>
-                      <td>Mô Tả</td>
-                      <td>Thu nhậ</td>
-                      <td>Thanh toán</td>
-                    </tr>
-                     <tr>
-                      <td>STT</td>
-                      <td>Thời Gian Ghi Nhận</td>
-                      <td>Mô Tả</td>
-                      <td>Thu nhậ</td>
-                      <td>Thanh toán</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="row">
+                  <div class="col-md-4 form-group">
+                    <label>Account number</label>
+                    <%= text_field_tag 'profile[account_number]', @user.profile.present? ? @user.profile.account_number : nil, :class => 'form-control', placeholder: "Account number at bank" %>
+                  </div>
+                </div>
 
               </div>
+
             </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+              </div>
+
+              <div class="col-md-1">
+                <a href="/users" class="btn btn-danger">
+                  Delete
+                </a>
+              </div>
+
+              <div class="col-md-2">
+                <a class="btn btn-success">
+                  Browse Account
+                </a>
+              </div>
+
+              <div class="col-md-9 text-right pull-right">
+                <button class="submit btn btn-primary">Update</button>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <div id="menu1" class="tab-pane fade">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table  table-striped">
+              <thead>
+              <tr>
+                <th>STT</th>
+                <th>Thời Gian Ghi Nhận</th>
+                <th>Mô Tả</th>
+                <th>Thu nhập</th>
+                <th>Thanh toán</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>STT</td>
+                <td>Thời Gian Ghi Nhận</td>
+                <td>Mô Tả</td>
+                <td>Thu nhậ</td>
+                <td>Thanh toán</td>
+              </tr>
+              <tr>
+                <td>STT</td>
+                <td>Thời Gian Ghi Nhận</td>
+                <td>Mô Tả</td>
+                <td>Thu nhậ</td>
+                <td>Thanh toán</td>
+              </tr>
+              <tr>
+                <td>STT</td>
+                <td>Thời Gian Ghi Nhận</td>
+                <td>Mô Tả</td>
+                <td>Thu nhậ</td>
+                <td>Thanh toán</td>
+              </tr>
+              <tr>
+                <td>STT</td>
+                <td>Thời Gian Ghi Nhận</td>
+                <td>Mô Tả</td>
+                <td>Thu nhậ</td>
+                <td>Thanh toán</td>
+              </tr>
+              </tbody>
+            </table>
+
           </div>
-         
         </div>
       </div>
+
+    </div>
   </div>
-</div>  
+</div>
+</div>
 </div>
