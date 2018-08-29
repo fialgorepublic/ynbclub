@@ -19,9 +19,12 @@
 
           <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
             <p><strong>Referral code:</strong> <%= @user.referral %> </p>
-            <p><strong>Total income:</strong>  <%= @user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %> ₫</p>
-            <p><strong>Has been paid:</strong> <%= @user.referral_sales.where(is_approved: true).pluck(:price).map(&:to_f).reduce(:+) %> ₫</p>
-            <p><strong>Not paid:</strong> <%= @user.referral_sales.where(is_approved: false).pluck(:price).map(&:to_f).reduce(:+) %> ₫</p>
+            <% price = @user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+            <p><strong>Total income:</strong>  <%= (price.to_f * @user.commission.to_f)/100 %> ₫</p>
+            <% approved_price = @user.referral_sales.where(is_approved: true).pluck(:price).map(&:to_f).reduce(:+) %>
+            <p><strong>Has been paid:</strong> <%= (approved_price.to_f * @user.commission.to_f)/100 %> ₫</p>
+            <% not_approved_price = @user.referral_sales.where(is_approved: false).pluck(:price).map(&:to_f).reduce(:+) %>
+            <p><strong>Not paid:</strong> <%= (not_approved_price.to_f * @user.commission.to_f)/100 %> ₫</p>
           </div>
 
         </div>
@@ -168,7 +171,7 @@
                     <td><%= index + 1 %></td>
                     <td><%= sale.created_at %></td>
                     <td><%= "Order # #{sale.order_id} Approved: + #{sale.price}đ" %></td>
-                    <td><%= "+ #{sale.price}đ" %></td>
+                    <td><%= (sale.price.to_f * sale.user.commission.to_f)/100  %>đ</td>
                     <td></td>
                   </tr>
               <% end %>
