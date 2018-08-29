@@ -156,41 +156,22 @@
               <thead>
               <tr>
                 <th>STT</th>
-                <th>Thời Gian Ghi Nhận</th>
-                <th>Mô Tả</th>
-                <th>Thu nhập</th>
-                <th>Thanh toán</th>
+                <th>Recording Time</th>
+                <th>Describe</th>
+                <th>Income</th>
+                <th>Pay</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>STT</td>
-                <td>Thời Gian Ghi Nhận</td>
-                <td>Mô Tả</td>
-                <td>Thu nhậ</td>
-                <td>Thanh toán</td>
-              </tr>
-              <tr>
-                <td>STT</td>
-                <td>Thời Gian Ghi Nhận</td>
-                <td>Mô Tả</td>
-                <td>Thu nhậ</td>
-                <td>Thanh toán</td>
-              </tr>
-              <tr>
-                <td>STT</td>
-                <td>Thời Gian Ghi Nhận</td>
-                <td>Mô Tả</td>
-                <td>Thu nhậ</td>
-                <td>Thanh toán</td>
-              </tr>
-              <tr>
-                <td>STT</td>
-                <td>Thời Gian Ghi Nhận</td>
-                <td>Mô Tả</td>
-                <td>Thu nhậ</td>
-                <td>Thanh toán</td>
-              </tr>
+              <% @user.referral_sales.each_with_index do |sale, index| %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= sale.created_at %></td>
+                    <td><%= "Order # #{sale.order_id} Approved: + #{sale.price}đ" %></td>
+                    <td><%= "+ #{sale.price}đ" %></td>
+                    <td></td>
+                  </tr>
+              <% end %>
               </tbody>
             </table>
 
