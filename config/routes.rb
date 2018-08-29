@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :categories
   get 'home', to: 'home#index'
   resources :referral_sales
+  resources :blogs
   get 'approve_sales', to: 'referral_sales#approve_sales'
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
   get 'step_one', to: 'dashboard#step_one'
   get 'step_two', to: 'dashboard#step_two'
   get 'step_three', to: 'dashboard#step_three'
-  get 'create_blog', to: 'dashboard#create_blog'
+  get 'create_blog', to: 'blogs#create_blog'
   get 'acc_settings', to: 'dashboard#acc_settings'
   get 'notification', to: 'dashboard#notification'
   get 'take_snapshot_step', to: 'dashboard#take_snapshot_step'
