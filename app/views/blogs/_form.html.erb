@@ -1,37 +1,465 @@
-<%= form_with(model: blog, local: true) do |form| %>
-  <% if blog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+<div class="dashboard-holder ambassador-dashboard">
+  <%= form_with(model: blog, local: true, multipart: true) do |form| %>
+      <% if blog.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
 
-      <ul>
-      <% blog.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% blog.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
+      <div class="container">
+        <div class="ambassdor-box">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-8">
+                  <h2><a href="/blogs"><i class="fa fa-arrow-left"></i></a>Create new blog post</h2>
+                </div>
+                <div class="col-md-4 text-right pull-right">
+                  <button class="btn btn-default">Save as draft</button>
+                  <button data-target="#publishPost" data-toggle="modal" class="btn btn-default">Publish</button>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <!--<div class="image-upload">-->
+                  <!--<div class="dropzone" id="DropZoneFiddle" name="blog[avatar]">-->
+                  <!--<br/>-->
+                  <!--</div>-->
+                  <!--</div>-->
+                  <div class="field form-group" style="border: 1px solid #ccc;
+                          padding: 30px;
+                          margin: 20px 0;
+                          text-align: center;">
+                    <%= image_tag(@blog.avatar.url, :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
+                  </div>
+                  <div class="field form-group">
+                    <div class="fileUpload form-control start">
+                      <%= form.file_field :avatar, :class=>'upload', :id => 'fileupload' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row m-t-30">
+                <div class="col-md-6">
+                  <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
+                </div>
+                <div class="col-md-6">
+                  <%= form.collection_select :promote_post, ["promote 1", "promote 2", "promote 3"], :to_s, :to_s , {:include_blank => 'Promote blog post'}, html_options = {:class=>"form-control"} %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="row m-t-30">
+          <div class="col-md-8">
+            <div class="box-shadow-am">
+              <div class="form-group">
+                <label>Add Title</label>
+                <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: "Add Title",  :required => true %>
+              </div>
+              <div class="form-group">
+                <label>Enter Text</label>
+                <%= form.text_area :description, id: :blog_description, class: 'form-control', placeholder: "Enter your Text" %>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="box-shadow-am sm-pd-am">
+              <h3>Product</h3>
+              <div class="product-box">
+                <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+              </div>
+              <div class="product-detail">
+                <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+              </div>
+              <div class="product-review">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="product-price">
+                <h5>250,000</h5>
+              </div>
+              <div class="product-offer">
+                <p>20% we're getting from every purchase</p>
+              </div>
+            </div>
+
+            <div class="box-shadow-am sm-pd-am m-t-30">
+              <h4><a data-toggle="modal" href="#assignProduct">+ Assign Product</a></h4>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="actions">
+        <%= form.submit class: 'btn btn-success' %>
+      </div>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :blog_title %>
+
+<!-- Modal -->
+<div class="modal fade" id="uploadVideo" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4 class="">Add Video from Youtube</h4>
+        <div class="form-group">
+          <label></label>
+          <input type="text" class="form-control" placeholder="Paste Copied">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="publishPost" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4 class="">Are you sure you want to unpublish</h4>
+        <h5>Blog post name goes here?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" >yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="assignProduct" role="dialog">
+<div class="modal-dialog modal-lg">
+
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">Assign your product to blog post</h4>
+</div>
+<div class="modal-body ">
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>
+        Price
+      </label>
+      <select class="form-control">
+        <option>price</option>
+      </select>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :promote_post %>
-    <%= form.text_field :promote_post, id: :blog_promote_post %>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>
+        Colors
+      </label>
+      <select class="form-control">
+        <option>Colors</option>
+      </select>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :blog_description %>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>
+        Size
+      </label>
+      <select class="form-control">
+        <option>Size</option>
+      </select>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.number_field :category_id, id: :blog_category_id %>
+  <div class="col-md-3">
+    <div class="form-group">
+      <label>
+        Sorting
+      </label>
+      <select class="form-control">
+        <option>Name Az</option>
+      </select>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+</div>
+
+<div class="row  m-t-30">
+  <div class="col-md-4">
+    <div class="box-shadow-am sm-pd-am">
+      <h3>Product</h3>
+      <div class="product-box">
+        <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+      </div>
+      <div class="product-detail">
+        <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+      </div>
+      <div class="product-review">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="product-price">
+        <h5>250,000</h5>
+      </div>
+      <div class="product-offer">
+        <p>20% we're getting from every purchase</p>
+      </div>
+    </div>
+
   </div>
-<% end %>
+
+  <div class="col-md-4">
+    <div class="box-shadow-am sm-pd-am">
+      <h3>Product</h3>
+      <div class="product-box">
+        <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+      </div>
+      <div class="product-detail">
+        <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+      </div>
+      <div class="product-review">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="product-price">
+        <h5>250,000</h5>
+      </div>
+      <div class="product-offer">
+        <p>20% we're getting from every purchase</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+    <div class="box-shadow-am sm-pd-am">
+      <h3>Product</h3>
+      <div class="product-box">
+        <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+      </div>
+      <div class="product-detail">
+        <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+      </div>
+      <div class="product-review">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="product-price">
+        <h5>250,000</h5>
+      </div>
+      <div class="product-offer">
+        <p>20% we're getting from every purchase</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row m-t-30">
+  <div class="col-md-4">
+    <div class="box-shadow-am sm-pd-am">
+      <h3>Product</h3>
+      <div class="product-box">
+        <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+      </div>
+      <div class="product-detail">
+        <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+      </div>
+      <div class="product-review">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="product-price">
+        <h5>250,000</h5>
+      </div>
+      <div class="product-offer">
+        <p>20% we're getting from every purchase</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+    <div class="box-shadow-am sm-pd-am">
+      <h3>Product</h3>
+      <div class="product-box">
+        <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+      </div>
+      <div class="product-detail">
+        <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+      </div>
+      <div class="product-review">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="product-price">
+        <h5>250,000</h5>
+      </div>
+      <div class="product-offer">
+        <p>20% we're getting from every purchase</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+    <div class="box-shadow-am sm-pd-am">
+      <h3>Product</h3>
+      <div class="product-box">
+        <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+      </div>
+      <div class="product-detail">
+        <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+      </div>
+      <div class="product-review">
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="product-price">
+        <h5>250,000</h5>
+      </div>
+      <div class="product-offer">
+        <p>20% we're getting from every purchase</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" >Save</button>
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
+<script>
+    //https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/basic.min.css
+    //enctype="multipart/form-data"
+    //UploadImages
+
+    Dropzone.options.DropZoneFiddle = {
+        url: this.location,
+        paramName: "avatar", //the parameter name containing the uploaded file
+        clickable: true,
+        maxFilesize: 10, //in mb
+        uploadMultiple: false,
+        maxFiles: 1, // allowing any more than this will stress a basic php/mysql stack
+        addRemoveLinks: true,
+        acceptedFiles: '.png,.jpg', //allowed filetypes
+        dictDefaultMessage: "+ Upload image", //override the default text
+        init: function() {
+            this.on("sending", function(file, xhr, formData) {
+                //formData.append("step", "upload"); // Append all the additional input data of your form here!
+                //formData.append("id", "1"); // Append all the additional input data of your form here!
+                //alert('hd');
+            });
+            this.on("success", function(file, responseText) {
+                //auto remove buttons after upload
+
+                //$("#div-files").html(responseText);
+                //var _this = this;
+                //_this.removeFile(file);
+                alert('done');
+            });
+            this.on("maxfilesexceeded", function(file) {
+                this.removeAllFiles();
+                this.addFile(file);
+            });
+//            this.on("addedfile", function(file){
+//                alert('hi');
+//            });
+        }
+    };
+    var menu = new BootstrapMenu('#demo1Box', {
+        actions: [{
+            name: 'Upload image',
+            onClick: function() {
+//                toastr.info("'Upload image");
+                $('#uploadVideo').modal('show')
+            }
+        },
+
+            {
+                name: 'Add video from youtube',
+                onClick: function() {
+                    $('#uploadVideo').modal('show')
+                }
+            }]
+    });
+    $("#fileupload").change(function () {
+
+        readURL(this);
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+
+                var st = e.target.result;
+
+                $('#blah').attr('src', e.target.result);
+
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

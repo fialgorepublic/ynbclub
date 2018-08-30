@@ -1,33 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+    <div class="col-md-9">
+      <p id="notice"><%= notice %></p>
 
-<h1>Blogs</h1>
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="card-header">Blogs</h3>
+        </div>
+        <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Promote post</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Promote post</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <tbody>
+          <% @blogs.each do |blog| %>
+              <tr>
+                <td><%= blog.title %></td>
+                <td><%= blog.promote_post %></td>
+                <td><%= blog.description %></td>
+                <td><%= blog.category_id %></td>
+                <td><%= link_to 'Show', blog %></td>
+                <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+                <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
 
-  <tbody>
-    <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.promote_post %></td>
-        <td><%= blog.description %></td>
-        <td><%= blog.category_id %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <br>
 
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>
+        <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
