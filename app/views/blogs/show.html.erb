@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<!-- <p>
   <strong>Title:</strong>
   <%= @blog.title %>
 </p>
@@ -21,4 +21,274 @@
 </p>
 
 <%= link_to 'Edit', edit_blog_path(@blog), class: 'btn btn-default' %> |
-<%= link_to 'Back', blogs_path, class: 'btn btn-default' %>
+<%= link_to 'Back', blogs_path, class: 'btn btn-default' %> -->
+
+
+
+
+<div class="dashboard-holder detail-blog">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+    <div class="col-md-9">
+    	<div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-angle-left"></i> Go to the list of blog posts</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+      	<div class="col-md-12">
+      		<div class="detail-img">
+      			<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+      		</div>
+      	</div>
+      </div>
+
+      <div class="row">
+      	<div class="col-md-12">
+      		<div class="detail-img">
+      		<i class="fa fa-heart"></i><span>123</span>
+      		<i class="fa fa-share"></i><span>12</span>
+      		<i class="fa fa-comment"></i><span>2</span>
+      		<i class="fa fa-eye"></i><span>60k</span>
+      	</div>
+      	</div>
+      </div>
+
+      <div class="row">
+      	<div class="col-md-12">
+      		<div class="cat-row detail-img">
+      			<h5>CATEGORY NAME  <span>| 12.09.08</span> <strong><i class="fa fa-star"></i>Featured on 0109 -07:04 <i class="fa fa-edit"></i></strong></h5>
+      		</div>
+      	</div>
+  	</div>
+
+  	<div class="row">
+  		<div class="col-md-12">
+  			<div class="detail-img">
+  			<h2>Blog Post Name goes here</h2>
+  			<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+  		</div>	
+		</div>
+  	</div>
+
+  	<div class="row">
+  		<div class="col-md-4">
+  			<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+  		</div>
+  		<div class="col-md-4">
+  			<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+  		</div>
+  		<div class="col-md-4">
+  			<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+  		</div>
+  	</div>
+
+  	<div class="row" style="margin-top:20px;">
+  		<div class="col-md-12">
+  			<div class="detail-img">
+  			<blockquote>
+  					Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
+  			</blockquote>
+  		</diV>
+  		</div>
+  	</div>
+
+  	<div class="row">
+  		<div class="col-md-12">
+  			<div class="detail-img">
+  				<iframe width="100%" height="315" src="https://www.youtube.com/embed/xNwkBYmdjqo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="row">
+  		<div class="col-md-12">
+  			<div class="detail-img">
+  			<h4><strong>Lorem ipsum dolor sit amet:</strong></h4>
+  			<p>1)Lorem ipsum dolor sit amet Lorem ipsum dolor sit</p>
+  			<p>2)Lorem ipsum dolor sit amet Lorem ipsum dolor sit</p>
+  			<p>3)Lorem ipsum dolor sit amet Lorem ipsum dolor sit</p>
+  			<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+  		</div>
+  		</div>
+  	</div>
+
+  <hr>
+
+  <div class="row">
+  	<div class="col-md-12">
+  		<h2>Products</h2>
+  	</div>
+  </div>
+
+  <div class="row">
+  	<div class="col-md-4">
+  		<div class="box-shadow-am sm-pd-am">
+              <div class="product-box">
+                <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+              </div>
+              <div class="product-detail">
+                <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+              </div>
+              <div class="product-review">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="product-price">
+                <h5>250,000</h5>
+              </div>
+              <div class="product-offer">
+                <p>20% we're getting from every purchase</p>
+              </div>
+            </div>
+  	</div>
+
+  	<div class="col-md-4">
+  		<div class="box-shadow-am sm-pd-am">
+              <div class="product-box">
+                <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+              </div>
+              <div class="product-detail">
+                <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+              </div>
+              <div class="product-review">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="product-price">
+                <h5>250,000</h5>
+              </div>
+              <div class="product-offer">
+                <p>20% we're getting from every purchase</p>
+              </div>
+            </div>
+  	</div>
+
+  	<div class="col-md-4">
+  		<div class="box-shadow-am sm-pd-am">
+              <div class="product-box">
+                <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+              </div>
+              <div class="product-detail">
+                <p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>
+              </div>
+              <div class="product-review">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="product-price">
+                <h5>250,000</h5>
+              </div>
+              <div class="product-offer">
+                <p>20% we're getting from every purchase</p>
+              </div>
+            </div>
+  	</div>
+
+  </div>
+
+  <hr>
+
+  <div class="row">
+  	<div class="col-md-6">
+  		
+  			<span style="margin-top:7px; display:block">12 Comments</span>
+  	
+  	</div>
+  	<div class="col-md-6 text-right">
+  		<button class="btn btn-default">
+  			Post a comment
+  		</button>
+  	</div>
+  </div>
+  <hr>
+
+  <div class="row">
+  	<div class="col-md-12">
+  		 <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>Ryan Haywood</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">1 minute ago</h6>
+                    </div>
+                </div> 
+                <div class="post-description"> 
+                    <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+                    <div class="stats">
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-up icon"></i>2
+                        </a>
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-down icon"></i>12
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>Ryan Haywood</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">1 minute ago</h6>
+                         <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>Ryan Haywood</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">1 minute ago</h6>
+                    </div>
+                </div> 
+                <div class="post-description"> 
+                    <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+                    <div class="stats">
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-up icon"></i>2
+                        </a>
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-down icon"></i>12
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+                </div> 
+              
+            </div>
+
+
+  	</div>
+  </div>
+
+    </div>
+  </div>
+</div>
