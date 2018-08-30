@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  require 'time_ago_in_words'
 
   # GET /blogs
   # GET /blogs.json
@@ -10,6 +12,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @comments = @blog.comments
   end
 
   # GET /blogs/new
