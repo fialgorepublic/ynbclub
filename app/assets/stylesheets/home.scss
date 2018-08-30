@@ -648,3 +648,24 @@ opacity: 1 !important;
 .menu-content li p{
   margin-bottom: 0;
 }
+.card-blog-detail{
+  background:#fff;
+  padding:20px;
+  margin-top:20px;
+  border:2px solid transparent;
+  transition:all 0.3s;
+  box-shadow:0px 2px 12px 3px rgba(221, 221, 221, 0.77);
+}
+.card-blog-detail:hover{
+  border:2px solid #f4f8fb;
+
+}
+.card-blog-detail h2{
+  margin-top:0;
+}
+.card-blog-detail span{
+  margin-right:20px;
+}
+.card-blog-detail i{
+  margin-right:5px;
+}
