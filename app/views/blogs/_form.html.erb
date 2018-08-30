@@ -72,7 +72,7 @@
               </div>
               <div class="form-group">
                 <label>Enter Text</label>
-                <%= form.text_area :description, id: :blog_description, class: 'form-control', placeholder: "Enter your Text" %>
+                <%= form.text_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text" %>
 
               </div>
             </div>
@@ -391,6 +391,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
 <script>
+    $('textarea.editor').ckeditor();
     //https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/basic.min.css
     //enctype="multipart/form-data"
     //UploadImages

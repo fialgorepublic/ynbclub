@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   resources :categories
   get 'home', to: 'home#index'
   resources :referral_sales
