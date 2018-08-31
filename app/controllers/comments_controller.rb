@@ -9,4 +9,19 @@ class CommentsController < ApplicationController
     render partial: 'blogs/comments'
   end
 
+  def comment_like_unlike
+    commentAction = CommentAction.where(user_id: current_user.id, comment_id: params[:id]).first
+    like = params[:comment_action]
+    if commentAction.present?
+      if (like.to_s == commentAction.like.to_s)
+        commentAction.destroy
+      else
+        commentAction.update_attributes(like: like)
+      end
+    else
+      CommentAction.create(user_id: current_user.id, comment_id: params[:id], like: like)
+    end
+    render json: {success: true}
+  end
+
 end

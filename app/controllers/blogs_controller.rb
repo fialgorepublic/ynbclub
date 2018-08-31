@@ -64,6 +64,19 @@ class BlogsController < ApplicationController
     end
   end
 
+  def blog_like_unlike
+    puts "=================================",params.inspect
+    if params[:value].to_s == "false"
+      Like.create(user_id: current_user.id, blog_id: params[:id])
+    else
+      Like.where(user_id: current_user.id, blog_id: params[:id]).first.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to '/blogs/'+params[:id] }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog

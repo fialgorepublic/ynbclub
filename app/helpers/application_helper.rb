@@ -22,6 +22,19 @@ module ApplicationHelper
     Role.find_by_name("Brand ambassador").id
   end
 
+  def get_class user_id, comment_id
+    comment = CommentAction.where(user_id: user_id, comment_id: comment_id).first
+    if comment.present?
+      comment.like ? 'cLiked' : ''
+    end
+  end
+  def get_class_for_dislike user_id, comment_id
+    comment = CommentAction.where(user_id: user_id, comment_id: comment_id).first
+    if comment.present?
+      comment.like ? '' : 'cLiked'
+    end
+  end
+
   private
 
   def add_default_class(html_options)

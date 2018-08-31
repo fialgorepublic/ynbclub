@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'buyer_orders', to: 'buyers#buyer_orders'
   get 'user_show', to: 'users#user_show'
   get 'add_comment', to: 'comments#add_comment'
+  get 'blog_like_unlike', to: 'blogs#blog_like_unlike'
+  get 'comment_like_unlike', to: 'comments#comment_like_unlike'
   post 'update_profile', to: 'users#update_profile'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {

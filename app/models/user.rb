@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :share_urls
   has_one :profile
   has_many :comments
+  has_many :likes
+  has_many :comment_actions
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     :storage => :s3,
