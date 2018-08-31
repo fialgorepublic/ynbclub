@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require rails-ujs
+//= require turbolinks
 //= require best_in_place
 //= require best_in_place.jquery-ui
 //= require bootstrap.min.js

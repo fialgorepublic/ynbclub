@@ -395,40 +395,40 @@
     //https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/basic.min.css
     //enctype="multipart/form-data"
     //UploadImages
-
-    Dropzone.options.DropZoneFiddle = {
-        url: this.location,
-        paramName: "avatar", //the parameter name containing the uploaded file
-        clickable: true,
-        maxFilesize: 10, //in mb
-        uploadMultiple: false,
-        maxFiles: 1, // allowing any more than this will stress a basic php/mysql stack
-        addRemoveLinks: true,
-        acceptedFiles: '.png,.jpg', //allowed filetypes
-        dictDefaultMessage: "+ Upload image", //override the default text
-        init: function() {
-            this.on("sending", function(file, xhr, formData) {
-                //formData.append("step", "upload"); // Append all the additional input data of your form here!
-                //formData.append("id", "1"); // Append all the additional input data of your form here!
-                //alert('hd');
-            });
-            this.on("success", function(file, responseText) {
-                //auto remove buttons after upload
-
-                //$("#div-files").html(responseText);
-                //var _this = this;
-                //_this.removeFile(file);
-                alert('done');
-            });
-            this.on("maxfilesexceeded", function(file) {
-                this.removeAllFiles();
-                this.addFile(file);
-            });
-//            this.on("addedfile", function(file){
-//                alert('hi');
+//
+//    Dropzone.options.DropZoneFiddle = {
+//        url: this.location,
+//        paramName: "avatar", //the parameter name containing the uploaded file
+//        clickable: true,
+//        maxFilesize: 10, //in mb
+//        uploadMultiple: false,
+//        maxFiles: 1, // allowing any more than this will stress a basic php/mysql stack
+//        addRemoveLinks: true,
+//        acceptedFiles: '.png,.jpg', //allowed filetypes
+//        dictDefaultMessage: "+ Upload image", //override the default text
+//        init: function() {
+//            this.on("sending", function(file, xhr, formData) {
+//                //formData.append("step", "upload"); // Append all the additional input data of your form here!
+//                //formData.append("id", "1"); // Append all the additional input data of your form here!
+//                //alert('hd');
 //            });
-        }
-    };
+//            this.on("success", function(file, responseText) {
+//                //auto remove buttons after upload
+//
+//                //$("#div-files").html(responseText);
+//                //var _this = this;
+//                //_this.removeFile(file);
+//                alert('done');
+//            });
+//            this.on("maxfilesexceeded", function(file) {
+//                this.removeAllFiles();
+//                this.addFile(file);
+//            });
+////            this.on("addedfile", function(file){
+////                alert('hi');
+////            });
+//        }
+//    };
     var menu = new BootstrapMenu('#demo1Box', {
         actions: [{
             name: 'Upload image',
