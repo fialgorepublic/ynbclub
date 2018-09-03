@@ -30,11 +30,11 @@
             <div class="stats">
               <a href="javascript:void(0);" class="btn btn-default stat-item">
                 <i id="<%= comment.id %>_like" class="fa fa-thumbs-up icon  <%= get_class(current_user.id, comment.id) %>" onclick="like_dislike_comment(this, '<%= comment.id %>', true);"></i>
-                <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text"  id="<%= comment.id.to_s + '_c_like' %>" value="<%= comment.comment_actions.where(like: true).count %>">
+                <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text"  id="<%= comment.id.to_s + '_c_like' %>" value="<%= comment.comment_actions.where(like: true).count %>" disabled>
               </a>
               <a href="javascript:void(0);" class="btn btn-default stat-item">
                 <i id="<%= comment.id %>_dislike" class="fa fa-thumbs-down icon  <%= get_class_for_dislike(current_user.id, comment.id) %>" onclick="like_dislike_comment(this, '<%= comment.id %>', false);"></i>
-                <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="<%= comment.id.to_s + '_c_dislike' %>" value="<%= comment.comment_actions.where(like: false).count %>">
+                <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="<%= comment.id.to_s + '_c_dislike' %>" value="<%= comment.comment_actions.where(like: false).count %>" disabled>
               </a>
             </div>
           </div>
