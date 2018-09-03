@@ -809,3 +809,11 @@ opacity: 1 !important;
 .cLiked{
   color: blue;
 }
+
+.disabled {
+  /* if you also want it to fade a bit:
+     opacity: 0.5
+  */
+  pointer-events: none;
+  cursor: default;
+}

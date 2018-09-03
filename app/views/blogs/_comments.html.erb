@@ -28,12 +28,12 @@
           <div class="post-description">
             <p><%= comment.message %></p>
             <div class="stats">
-              <a href="javascript:void(0);" class="btn btn-default stat-item">
-                <i id="<%= comment.id %>_like" class="fa fa-thumbs-up icon  <%= get_class(current_user.id, comment.id) %>" onclick="like_dislike_comment(this, '<%= comment.id %>', true);"></i>
+              <a href="javascript:void(0);" class="btn btn-default stat-item <%= get_class_for_disabled(current_user.id, comment.id)  %>" onclick="like_dislike_comment(this, '<%= comment.id %>', true);">
+                <i id="<%= comment.id %>_like" class="fa fa-thumbs-up icon  <%= get_class(current_user.id, comment.id) %>"></i>
                 <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text"  id="<%= comment.id.to_s + '_c_like' %>" value="<%= comment.comment_actions.where(like: true).count %>" disabled>
               </a>
-              <a href="javascript:void(0);" class="btn btn-default stat-item">
-                <i id="<%= comment.id %>_dislike" class="fa fa-thumbs-down icon  <%= get_class_for_dislike(current_user.id, comment.id) %>" onclick="like_dislike_comment(this, '<%= comment.id %>', false);"></i>
+              <a href="javascript:void(0);" class="btn btn-default stat-item <%= get_class_for_disabled_comment(current_user.id, comment.id)  %>" onclick="like_dislike_comment(this, '<%= comment.id %>', false);">
+                <i id="<%= comment.id %>_dislike" class="fa fa-thumbs-down icon  <%= get_class_for_dislike(current_user.id, comment.id) %>"></i>
                 <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="<%= comment.id.to_s + '_c_dislike' %>" value="<%= comment.comment_actions.where(like: false).count %>" disabled>
               </a>
             </div>
@@ -90,6 +90,8 @@
 
 <script>
   function like_dislike_comment(obj, id, actionVal){
+      var link = obj;
+      obj = $(obj).children()[0];
       var obj_cls = $(obj).attr('class');
       var obj_cls_status = obj_cls.split(' ')[3];
 
@@ -104,12 +106,18 @@
       var comm_dis_val = $('#'+id+'_c_dislike').val();
       var comm_like_val = $('#'+id+'_c_like').val();
       if (actionVal == true){
+          $(link).addClass('disabled');
+          console.log($(link).siblings()[0]);
+          $($(link).siblings()[0]).removeClass("disabled");
           $('#'+id+'_dislike').removeClass('cLiked');
           $('#'+id+'_c_like').val(parseInt(comm_like_val) + 1);
           if (parseInt(comm_dis_val) != 0){
               $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) - 1);
           }
       }else if (actionVal == false){
+          $(link).addClass('disabled');
+          console.log($(link).siblings()[0]);
+          $($(link).siblings()[0]).removeClass("disabled");
           $('#'+id+'_like').removeClass('cLiked');
           if (parseInt(comm_like_val) != 0){
               $('#'+id+'_c_like').val(parseInt(comm_like_val) - 1);
