@@ -106,11 +106,15 @@
       if (actionVal == true){
           $('#'+id+'_dislike').removeClass('cLiked');
           $('#'+id+'_c_like').val(parseInt(comm_like_val) + 1);
-          $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) - 1)
+          if (parseInt(comm_dis_val) != 0){
+              $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) - 1);
+          }
       }else if (actionVal == false){
           $('#'+id+'_like').removeClass('cLiked');
-          $('#'+id+'_c_like').val(parseInt(comm_like_val) - 1);
-          $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) + 1)
+          if (parseInt(comm_like_val) != 0){
+              $('#'+id+'_c_like').val(parseInt(comm_like_val) - 1);
+          }
+          $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) + 1);
       }
       $.ajax({
           url: '/comment_like_unlike?id='+ id + '&value=' + status+'&comment_action='+actionVal,
