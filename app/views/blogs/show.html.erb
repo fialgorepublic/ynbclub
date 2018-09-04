@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="detail-img">
-            <img width="100%" src="<%= @blog.avatar.url %>">
+            <img width="100%" src="<%= @blog.avatar.present? ? @blog.avatar.url : '/assets/blogPlaceholder.jpeg' %>">
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="cat-row detail-img">
-            <h5><%= @blog.category.name %>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong><i class="fa fa-star"></i>Featured on <%= @blog.created_at.to_time.strftime("%H:%M:%S") %>< <i class="fa fa-edit"></i></strong></h5>
+            <h5><%= @blog.category.name %>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong><i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i><% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %> <i class="fa fa-edit"></i></strong></h5>
           </div>
         </div>
       </div>

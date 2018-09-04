@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'add_comment', to: 'comments#add_comment'
   get 'blog_like_unlike', to: 'blogs#blog_like_unlike'
   get 'comment_like_unlike', to: 'comments#comment_like_unlike'
+  get 'change_featured_state', to: 'blogs#change_featured_state'
   post 'update_profile', to: 'users#update_profile'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {

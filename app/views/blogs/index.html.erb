@@ -13,7 +13,7 @@
                 <div class="row">
                   <a href="/blogs/<%= blog.id %>" style="text-decoration: none;">
                     <div class="col-md-3">
-                      <img width="100%" src="<%= blog.avatar.url %>">
+                      <img width="100%" src="<%= blog.avatar.present? ? blog.avatar.url : '/assets/blogPlaceholder.jpeg' %>">
                     </div>
                   </a>
                   <div class="col-md-9">
@@ -22,7 +22,7 @@
                         <p class="category-name"><%= blog.category.name %> | <span><%= blog.created_at %></span></p>
                       </div>
                       <div class="col-md-6 text-right">
-                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star <%= blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= blog.id %>');"></i>
                         <%= link_to edit_blog_path(blog) do %>
                             <i class="fa fa-edit"></i>
                         <% end %>
@@ -68,4 +68,36 @@
     $("div.descriptionBlog").text(function(index, currentText) {
         return currentText.substr(0, 300);
     });
+    function set_featured_blog(obj, id){
+        {
+            apprise('Are You Sure You Want To change Featured status?', {'verify': true}, function (r) {
+                if (r) {
+                    var obj_cls = $(obj).attr('class');
+                    var status = ''
+                    if (obj_cls === 'fa fa-star ') {
+                        $(obj).addClass('featureBlog');
+                        status = true
+                    } else {
+                        $(obj).removeClass('featureBlog');
+                        status = false
+                    }
+                    $.ajax({
+                        url: '/change_featured_state?id=' + id + '&value=' + status,
+                        type: 'get',
+                        dataType: 'json',
+                        processData: false,
+                        success: function (data) {
+
+                        },
+                        error: function (data) {
+                            alert('Error');
+                            //    window.location.reload();
+                        }
+                    });
+                }
+                else {
+                }
+            });
+        }
+    }
 </script>

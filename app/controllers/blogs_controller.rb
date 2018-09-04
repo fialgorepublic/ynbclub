@@ -6,7 +6,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.order('created_at ASC')
   end
 
   # GET /blogs/1
@@ -75,6 +75,11 @@ class BlogsController < ApplicationController
       format.html { redirect_to '/blogs/'+params[:id] }
       format.json { head :no_content }
     end
+  end
+
+  def change_featured_state
+    blog = Blog.find(params[:id]).update_attributes(is_featured: params[:value], feature_date: DateTime.now)
+    render json: {success: true}
   end
 
   private
