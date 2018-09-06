@@ -1,8 +1,5 @@
-class Blog < ApplicationRecord
-  belongs_to :category
-  has_many :comments
-  has_many :likes
-  has_many :products
+class Product < ApplicationRecord
+  belongs_to :blog
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     :storage => :s3,

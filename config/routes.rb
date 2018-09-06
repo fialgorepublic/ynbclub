@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
   mount Ckeditor::Engine => '/ckeditor'
   resources :categories
   get 'home', to: 'home#index'
@@ -56,6 +57,7 @@ Rails.application.routes.draw do
 
   put 'set_commission', to: 'settings#set_commission'
   get 'changed_account_approved_status', to: 'settings#changed_account_approved_status'
+  get 'get_products_from_shopify', to: 'products#get_products_from_shopify'
 
   resources :profiles
 
