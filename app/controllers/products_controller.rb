@@ -64,12 +64,19 @@ class ProductsController < ApplicationController
   end
 
   def get_products_from_shopify
-    @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "ebc2533e6e4d4fd995c4e150b0756256")
-    ShopifyAPI::Base.activate_session(@session)
+    puts "==============================",params.inspect
+    @blog = Blog.find_by_id(params[:id])
+    initiate_shopify_session
     @products = ShopifyAPI::Product.all
-    puts "=====================================",@products.inspect
-    ShopifyAPI::Base.clear_session
+    clear_shopify_session
     render partial: 'blogs/products'
+  end
+
+  def get_selected_products
+    initiate_shopify_session
+    @selected_products = ShopifyAPI::Product.where(ids: params[:ids])
+    clear_shopify_session
+    render partial: 'blogs/selected_products'
   end
 
   private

@@ -105,8 +105,11 @@
             </div>
           </div>
         </div>
-
-
+        <div id="selectedProducts">
+          <% if @selected_products.present? %>
+              <%= render partial: 'blogs/selected_products' %>
+          <% end %>
+        </div>
       </div>
       <div class="actions">
         <%= form.submit class: 'btn btn-success' %>
@@ -231,7 +234,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" >Save</button>
+        <button type="button" class="btn btn-default" onclick="add_products();">Save</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
       </div>
     </div>
@@ -316,7 +319,7 @@
     function get_products(){
         $('#assignProduct').modal('show');
         $.ajax({
-            url: '/get_products_from_shopify',
+            url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
             type: 'get',
             dataType: 'html',
             processData: false,
@@ -328,5 +331,28 @@
                 //    window.location.reload();
             }
         });
+    }
+    function add_products(){
+        var ids = [];
+        $(".selected").each(function(index, v) {
+            console.log($(v).attr('class').split(' ')[0]);
+            ids.push($(v).attr('class').split(' ')[0]);
+        });
+        if (ids != ""){
+            $.ajax({
+                url: '/get_selected_products?ids='+ids,
+                type: 'get',
+                dataType: 'html',
+                processData: false,
+                success: function (data) {
+                    $('#selectedProducts').html(data);
+                    $('#assignProduct').modal('hide');
+                },
+                error: function (data) {
+                    alert('Error');
+                    //    window.location.reload();
+                }
+            });
+        }
     }
 </script>

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initiate_shopify_session
-    @session = ShopifyAPI::Session.new(@shopify_domain, @token)
+    @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "ebc2533e6e4d4fd995c4e150b0756256")
     ShopifyAPI::Base.activate_session(@session)
   end
 

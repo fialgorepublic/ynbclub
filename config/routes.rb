@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   put 'set_commission', to: 'settings#set_commission'
   get 'changed_account_approved_status', to: 'settings#changed_account_approved_status'
   get 'get_products_from_shopify', to: 'products#get_products_from_shopify'
+  get 'get_selected_products', to: 'products#get_selected_products'
 
   resources :profiles
 

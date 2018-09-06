@@ -13,6 +13,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @comments = @blog.comments
+    @selected_products = @blog.products
   end
 
   # GET /blogs/new
@@ -22,6 +23,10 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
+    selected_product_ids = @blog.products.pluck(:product_id)
+    initiate_shopify_session
+    @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
+    clear_shopify_session
   end
 
   # POST /blogs
@@ -31,6 +36,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
+        @blog.add_products(params[:product])
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
@@ -45,6 +51,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
+        @blog.update_products(params[:product])
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog }
       else
