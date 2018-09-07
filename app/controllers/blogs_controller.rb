@@ -24,9 +24,11 @@ class BlogsController < ApplicationController
   # GET /blogs/1/edit
   def edit
     selected_product_ids = @blog.products.pluck(:product_id)
-    initiate_shopify_session
-    @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
-    clear_shopify_session
+    if selected_product_ids.present?
+      initiate_shopify_session
+      @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
+      clear_shopify_session
+    end
   end
 
   # POST /blogs
