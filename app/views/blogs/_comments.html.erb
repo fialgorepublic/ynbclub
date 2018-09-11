@@ -22,6 +22,9 @@
                <h6 class="text-muted pull-right time"><%= comment.created_at.ago_in_words %></h6>
                <p><%= comment.message %> <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p></p> 
               
+                
+
+
     <div class="panel panel-white post comnt-rply-box panel-shadow">
             <div class="post-heading">
               <div class="pull-left image">
@@ -37,14 +40,14 @@
 
 <div class="post-description">
               <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
-           <!--   <div class="stats">
+              <div class="stats">
                 <a href="#" class="btn btn-default stat-item">
                   <i class="fa fa-thumbs-up icon"></i>2
                 </a>
                 <a href="#" class="btn btn-default stat-item">
                   <i class="fa fa-thumbs-down icon"></i>12
                 </a>
-              </div>-->
+              </div>
             </div>
 
               </div>
@@ -64,13 +67,12 @@
 
 
 
-<!--
+
  <div class="post-description">
                  <div class="title h5">
                 <b><%= comment.user.name %></b>
                 made a post.
-
-              </div>    
+              </div>  
 
           <div class="stats">
               <a href="javascript:void(0);" class="btn btn-default stat-item <%= get_class_for_disabled(current_user.id, comment.id)  %>" onclick="like_dislike_comment(this, '<%= comment.id %>', true);">
@@ -83,7 +85,7 @@
                 <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="<%= comment.id.to_s + '_c_dislike' %>" value="<%= comment.comment_actions.where(like: false).count %>" disabled>
               </a>
             </div>
-          </div><hr>  -->
+          </div><hr>  
         </div>
     <% end %>
 
