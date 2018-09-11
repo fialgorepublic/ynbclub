@@ -1,88 +1,135 @@
-<div class="row">
+<div class="row comnt-heading">
   <div class="col-md-6">
 
-    <span style="margin-top:7px; display:block"><%= @comments.count %> comments</span>
+    <span style="margin-top:7px; font-size: 17px; display:block"><%= @comments.count %> comments</span>
 
   </div>
-  <div class="col-md-6 text-right">
+  <div class="col-md-6  text-right">
   </div>
 </div>
-<hr>
 
-<div class="row">
-  <div class="col-md-12">
+
+<div class="row comnt-box">
+  <div class="col-md-12 comnt-shadow">
     <% @comments.each do |comment| %>
-        <div class="panel panel-white post panel-shadow">
+        <div class="panel panel-white post panel-shadow"> <hr>
           <div class="post-heading">
-            <div class="pull-left image">
+            <div class="pull-left image ">
               <img src="<%= comment.user.avatar.url %>" class="img-circle avatar" alt="user profile image">
+
             </div>
-            <div class="pull-left meta">
-              <div class="title h5">
+            <div class="pull-left meta user-name">
+               <h6 class="text-muted pull-right time"><%= comment.created_at.ago_in_words %></h6>
+               <p><%= comment.message %> <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p></p> 
+              
+    <div class="panel panel-white post comnt-rply-box panel-shadow">
+            <div class="post-heading">
+              <div class="pull-left image">
+                <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+              </div>
+              <div class="pull-left meta">
+                <div class="title h5">
+                  <a href="#"><b>Ryan Haywood</b></a>
+                  made a post.
+                <h6 class="text-muted pull-right time">1 minute ago</h6>
+
+                </div>
+
+<div class="post-description">
+              <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+           <!--   <div class="stats">
+                <a href="#" class="btn btn-default stat-item">
+                  <i class="fa fa-thumbs-up icon"></i>2
+                </a>
+                <a href="#" class="btn btn-default stat-item">
+                  <i class="fa fa-thumbs-down icon"></i>12
+                </a>
+              </div>-->
+            </div>
+
+              </div>
+            </div>
+            
+          </div>
+
+
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+
+<!--
+ <div class="post-description">
+                 <div class="title h5">
                 <b><%= comment.user.name %></b>
                 made a post.
-              </div>
-              <h6 class="text-muted time"><%= comment.created_at.ago_in_words %></h6>
-            </div>
-          </div>
-          <div class="post-description">
-            <p><%= comment.message %></p>
-            <div class="stats">
+
+              </div>    
+
+          <div class="stats">
               <a href="javascript:void(0);" class="btn btn-default stat-item <%= get_class_for_disabled(current_user.id, comment.id)  %>" onclick="like_dislike_comment(this, '<%= comment.id %>', true);">
                 <i id="<%= comment.id %>_like" class="fa fa-thumbs-up icon  <%= get_class(current_user.id, comment.id) %>"></i>
                 <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text"  id="<%= comment.id.to_s + '_c_like' %>" value="<%= comment.comment_actions.where(like: true).count %>" disabled>
               </a>
               <a href="javascript:void(0);" class="btn btn-default stat-item <%= get_class_for_disabled_comment(current_user.id, comment.id)  %>" onclick="like_dislike_comment(this, '<%= comment.id %>', false);">
                 <i id="<%= comment.id %>_dislike" class="fa fa-thumbs-down icon  <%= get_class_for_dislike(current_user.id, comment.id) %>"></i>
+                
                 <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="<%= comment.id.to_s + '_c_dislike' %>" value="<%= comment.comment_actions.where(like: false).count %>" disabled>
               </a>
             </div>
-          </div>
+          </div><hr>  -->
         </div>
     <% end %>
 
+<!--
+    <div class="panel panel-white post panel-shadow">
+      <div class="post-heading">
+        <div class="pull-left image">
+          <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+        </div>
+        <div class="pull-left meta">
+          <div class="title h5">
+            <a href="#"><b>Ryan Haywood</b></a>
+            made a post.
+            <h6 class="text-muted pull-right time">1 minute ago</h6>
+          </div>
+          
+          <div class="panel panel-white post comnt-rply-box panel-shadow">
+            <div class="post-heading">
+              <div class="pull-left image">
+                <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+              </div>
+              <div class="pull-left meta">
+                <div class="title h5">
+                  <a href="#"><b>Ryan Haywood</b></a>
+                  made a post.
+                </div>
+                <h6 class="text-muted pull-right time">1 minute ago</h6>
+              </div>
+            </div>
+            <div class="post-description">
+              <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+              <div class="stats">
+                <a href="#" class="btn btn-default stat-item">
+                  <i class="fa fa-thumbs-up icon"></i>2
+                </a>
+                <a href="#" class="btn btn-default stat-item">
+                  <i class="fa fa-thumbs-down icon"></i>12
+                </a>
+              </div>
+            </div>
+          </div>
 
-    <!--<div class="panel panel-white post panel-shadow">-->
-      <!--<div class="post-heading">-->
-        <!--<div class="pull-left image">-->
-          <!--<img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
-        <!--</div>-->
-        <!--<div class="pull-left meta">-->
-          <!--<div class="title h5">-->
-            <!--<a href="#"><b>Ryan Haywood</b></a>-->
-            <!--made a post.-->
-          <!--</div>-->
-          <!--<h6 class="text-muted time">1 minute ago</h6>-->
-          <!--<div class="panel panel-white post panel-shadow">-->
-            <!--<div class="post-heading">-->
-              <!--<div class="pull-left image">-->
-                <!--<img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
-              <!--</div>-->
-              <!--<div class="pull-left meta">-->
-                <!--<div class="title h5">-->
-                  <!--<a href="#"><b>Ryan Haywood</b></a>-->
-                  <!--made a post.-->
-                <!--</div>-->
-                <!--<h6 class="text-muted time">1 minute ago</h6>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="post-description">-->
-              <!--<p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>-->
-              <!--<div class="stats">-->
-                <!--<a href="#" class="btn btn-default stat-item">-->
-                  <!--<i class="fa fa-thumbs-up icon"></i>2-->
-                <!--</a>-->
-                <!--<a href="#" class="btn btn-default stat-item">-->
-                  <!--<i class="fa fa-thumbs-down icon"></i>12-->
-                <!--</a>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
+        </div>
+      </div>
 
-        <!--</div>-->
-      <!--</div>-->
-
-    <!--</div>-->
+    </div> -->
 
 
   </div>
