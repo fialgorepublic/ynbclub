@@ -91,6 +91,11 @@ class BlogsController < ApplicationController
     render json: {success: true}
   end
 
+  def change_publish_status
+    blog = Blog.find(params[:id]).update_attributes(is_published: params[:status])
+    redirect_to '/blogs/'+params[:id]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog

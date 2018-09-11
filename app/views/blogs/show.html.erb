@@ -35,39 +35,40 @@
 <div class="row">
   <div class="col-md-12">
     <div class="main">
-<div class="three-dots pull-right">
-<div class="dropdown">
-                    <!-- three dots -->
-                    <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                    <!-- menu -->
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="#home">Edit</a>
-                        <a href="#about">Delete</a>
-                        <a href="#contact">Unpublish</a>
-                        <a href="#contact">Show as buyers see it</a>
-                    </div>
-                </div>
-</div>
-      <h2><span> <a href="/blogs"><i class="fa fa-angle-left"></i></a> Go to the list of blog posts </span> <!-- three dot menu -->
-              </h2>
+      <div class="three-dots pull-right">
+        <div class="dropdown">
+          <!-- three dots -->
+          <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <!-- menu -->
+          <div id="myDropdown" class="dropdown-content">
+            <!--<a href="/blogs/<%#= @blog.id %>/edit">Edit</a>-->
+            <%= link_to 'Edit', edit_blog_path(@blog) %>
+            <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><%= @blog.is_published ? 'Un publish' : 'Publish' %></a>
+            <a href="#contact">Show as buyers see it</a>
+          </div>
+        </div>
+      </div>
+      <h2><span> <a href="/blogs" style="text-decoration: none;"><i class="fa fa-angle-left"></i> Go to the list of blog posts </a></span> <!-- three dot menu -->
+      </h2>
 
 
-<hr>
+      <hr>
     </div>
-    
+
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <div class="detail-img">
-      <div class="img-block"><h4>Published</h4></div>
+      <div class="img-block"><h4><%= @blog.is_published ? 'Published' : 'Unpublish' %></h4></div>
       <img width="100%" src="<%= @blog.avatar.present? ? @blog.avatar.url : 'https://saint-l-beau.herokuapp.com/blogPlaceholder.jpeg' %>">
-      
+
     </div>
   </div>
 </div>
@@ -79,9 +80,12 @@
       <i class="fa fa-share"></i><span>12</span>
       <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
       <i class="fa fa-eye"></i><span>60k</span>
-     
-     <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong><i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i><% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %> <i class="fa fa-pencil"></i></strong></h5>
-    <hr>
+
+      <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong><i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i><% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
+        <%= link_to edit_blog_path(@blog) do %>
+            <i class="fa fa-pencil"></i>
+        <% end %></strong></h5>
+      <hr>
     </div>
 
   </div>
@@ -345,29 +349,29 @@
     }
 
 
-function changeLanguage(language) {
-                    var element = document.getElementById("url");
-                    element.value = language;
-                    element.innerHTML = language;
-                }
+    function changeLanguage(language) {
+        var element = document.getElementById("url");
+        element.value = language;
+        element.innerHTML = language;
+    }
 
-                function showDropdown() {
-                    document.getElementById("myDropdown").classList.toggle("show");
-                }
+    function showDropdown() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
 
-                // Close the dropdown if the user clicks outside of it
-                window.onclick = function(event) {
-                    if (!event.target.matches('.dropbtn')) {
-                        var dropdowns = document.getElementsByClassName("dropdown-content");
-                        var i;
-                        for (i = 0; i < dropdowns.length; i++) {
-                            var openDropdown = dropdowns[i];
-                            if (openDropdown.classList.contains('show')) {
-                                openDropdown.classList.remove('show');
-                            }
-                        }
-                    }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
                 }
+            }
+        }
+    }
 
 
 </script>
