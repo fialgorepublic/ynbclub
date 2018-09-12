@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get 'get_selected_products', to: 'products#get_selected_products'
   get 'change_publish_status', to: 'blogs#change_publish_status'
   get 'change_buyer_show_status', to: 'blogs#change_buyer_show_status'
+  get 'buyer_show', to: 'blogs#buyer_show'
 
   resources :profiles
 

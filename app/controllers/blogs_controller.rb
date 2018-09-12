@@ -103,6 +103,12 @@ class BlogsController < ApplicationController
     redirect_to '/blogs/'+params[:id]
   end
 
+  def buyer_show
+    @blog = Blog.find(params[:id])
+    @comments = @blog.comments
+    @selected_products = @blog.products
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog

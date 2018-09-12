@@ -49,7 +49,7 @@
             <%= link_to 'Edit', edit_blog_path(@blog) %>
             <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
             <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><%= @blog.is_published ? 'Un publish' : 'Publish' %></a>
-            <a href="/change_buyer_show_status?id=<%= @blog.id %>&status=<%= @blog.buyer_show ? false : true %>" onclick="return confirm('Are you sure?')">Show as buyers <%= @blog.buyer_show ? 'not' : '' %> see it</a>
+            <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');">Show as buyers see it</a>
           </div>
         </div>
       </div>
@@ -297,6 +297,26 @@
   </div>
 </div>
 
+<div class="modal fade" id="buyerView" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4 class="">Buyer View</h4>
+        <%= render partial: 'blogs/buyer_view' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <script>
     function openCommentModal(){
         $('#comment_id').val('');
@@ -411,5 +431,7 @@
             });
         }
     }
-
+    function showBuyerView(id){
+        window.location.href = '/buyer_show?id='+id;
+    }
 </script>
