@@ -1063,6 +1063,13 @@ button.comnt-btn-style{
     padding: 30px;
     }
   }
+  .category-name{
+  font-size:15px;
+  color:#b0b0b0;
+  }
+.product-offer{
+  border:none;
+}
 }    
 
 .heading-featured{
@@ -1072,6 +1079,7 @@ button.comnt-btn-style{
 }
 
 .post-heading{
+margin-top:10px;
   i{
   color:#85cbff;
   }
@@ -1143,6 +1151,7 @@ button.comnt-btn-style{
 
 .post-sorting{
   border-bottom:1px solid #ccc;
+  margin-top:10px;
   .sorting-fltr{
   width:100%;
   border: none;
@@ -1160,3 +1169,49 @@ select {
 
 }
 
+.featured-listing{
+  .featured-img{
+     img{
+        width: 300px;
+      height: 200px;
+      display: block;
+      margin: 0 auto;
+      object-fit: cover;
+    }
+  }
+  .featured-icon-left{
+  margin-top:10px;
+    i{color:#000;
+    margin-right:10px;
+  font-size:20px;}
+    span{
+    color:#b0b0b0;
+    }
+  }
+  .featured-icon-right{
+
+i{
+  color:#b0b0b0;
+  font-size:20px;
+  }
+  span{
+  color:#b0b0b0;
+    }
+  }  
+.featureProduct{
+  margin-top:0px;
+  padding-top:0px;
+
+  .descriptionBlog{
+  font-size:14px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+  }
+
+}
+ 
+
+}
