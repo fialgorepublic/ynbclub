@@ -2,11 +2,12 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   require 'time_ago_in_words'
+  require 'will_paginate'
 
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all.order('created_at ASC')
+    @blogs = Blog.all.order('created_at ASC').paginate(page: params[:page], per_page: 3)
   end
 
   # GET /blogs/1
@@ -14,6 +15,7 @@ class BlogsController < ApplicationController
   def show
     @comments = @blog.comments
     @selected_products = @blog.products
+    BlogView.create(user_id: current_user.id, blog_id: @blog.id)
   end
 
   # GET /blogs/new
@@ -93,6 +95,11 @@ class BlogsController < ApplicationController
 
   def change_publish_status
     blog = Blog.find(params[:id]).update_attributes(is_published: params[:status])
+    redirect_to '/blogs/'+params[:id]
+  end
+
+  def change_buyer_show_status
+    blog = Blog.find(params[:id]).update_attributes(buyer_show: params[:status])
     redirect_to '/blogs/'+params[:id]
   end
 

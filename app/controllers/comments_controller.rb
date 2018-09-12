@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   require 'time_ago_in_words'
 
   def add_comment
-    comment = Comment.new(user_id: params[:user_id], blog_id: params[:id], message: params[:message])
+    comment = Comment.new(user_id: params[:user_id], blog_id: params[:id], message: params[:message], parent_id: params[:parent_id])
     comment.save
     @comments = Blog.find(params[:id]).comments
     render partial: 'blogs/comments'

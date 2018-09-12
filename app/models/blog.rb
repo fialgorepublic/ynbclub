@@ -3,6 +3,7 @@ class Blog < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :products, :dependent => :destroy
+  has_many :blog_views, :dependent => :destroy
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     :storage => :s3,

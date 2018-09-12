@@ -811,7 +811,7 @@ opacity: 1 !important;
   color: blue;
 }
 .featureBlog{
-  color: yellow;
+  color: deepskyblue;
 }
 .disabled {
   /* if you also want it to fade a bit:
@@ -1214,4 +1214,17 @@ i{
 }
  
 
+}
+.myIcon{
+
+  line-height: 14px;
+  background-image: image-url('tag.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 0;
+  vertical-align: text-bottom;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background-size: 100%;
 }

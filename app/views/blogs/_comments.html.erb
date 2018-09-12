@@ -11,52 +11,54 @@
 
 <div class="row comnt-box">
   <div class="col-md-12 comnt-shadow">
-    <% @comments.each do |comment| %>
+    <% @comments.where(parent_id: nil).each do |comment| %>
         <div class="panel panel-white post panel-shadow"> <hr>
           <div class="post-heading">
             <div class="pull-left image ">
-              <img src="<%= comment.user.avatar.url %>" class="img-circle avatar" alt="user profile image">
+              <img src="<%= comment.user.avatar ? comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image">
 
             </div>
             <div class="pull-left meta user-name">
               <h6 class="text-muted pull-right time"><%= comment.created_at.ago_in_words %></h6>
               <p><b><%= comment.user.name %></b>
-                made a post.</p>
+                <!--made a post.-->
+              </p>
               <p><%= comment.message %></p>
               <!--<p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p></p> -->
 
+              <% comment.children.each do |sub_comment| %>
+                  <div class="panel panel-white post comnt-rply-box panel-shadow">
+                    <div class="post-heading">
+                      <div class="pull-left image">
+                        <img src="<%= sub_comment.user.avatar ? sub_comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image">
+                      </div>
+                      <div class="pull-left meta">
+                        <div class="title h5">
+                          <a href="#"><b><%= sub_comment.user.name %></b></a>
+                          <h6 class="text-muted pull-right time"><%= sub_comment.created_at.ago_in_words %></h6>
 
+                        </div>
 
+                        <div class="post-description">
+                          <p><%= sub_comment.message %></p>
+                          <!--<div class="stats">-->
+                          <!--<a href="#" class="btn btn-default stat-item">-->
+                          <!--<i class="fa fa-thumbs-up icon"></i>2-->
+                          <!--</a>-->
+                          <!--<a href="#" class="btn btn-default stat-item">-->
+                          <!--<i class="fa fa-thumbs-down icon"></i>12-->
+                          <!--</a>-->
+                          <!--</div>-->
+                        </div>
 
-              <!--<div class="panel panel-white post comnt-rply-box panel-shadow">-->
-              <!--<div class="post-heading">-->
-              <!--<div class="pull-left image">-->
-              <!--<img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
-              <!--</div>-->
-              <!--<div class="pull-left meta">-->
-              <!--<div class="title h5">-->
-              <!--<a href="#"><b>Ryan Haywood</b></a>-->
-              <!--made a post.-->
-              <!--<h6 class="text-muted pull-right time">1 minute ago</h6>-->
+                      </div>
+                    </div>
 
-              <!--</div>-->
+                  </div>
+              <% end %>
 
-              <!--<div class="post-description">-->
-              <!--<p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>-->
-              <!--<div class="stats">-->
-              <!--<a href="#" class="btn btn-default stat-item">-->
-              <!--<i class="fa fa-thumbs-up icon"></i>2-->
-              <!--</a>-->
-              <!--<a href="#" class="btn btn-default stat-item">-->
-              <!--<i class="fa fa-thumbs-down icon"></i>12-->
-              <!--</a>-->
-              <!--</div>-->
-              <!--</div>-->
+              <a href="javascript:void(0);" style="text-decoration: none; color: #323232;" onclick="openSubCommentModal('<%= comment.id %>')">Quote</a>
 
-              <!--</div>-->
-              <!--</div>-->
-
-              <!--</div>-->
 
 
 
@@ -189,5 +191,10 @@
                 //    window.location.reload();
             }
         });
+    }
+    function openSubCommentModal(id){
+        $('#comment_id').val('');
+        $('#addComment').modal('show');
+        $('#comment_id').val(id);
     }
 </script>
