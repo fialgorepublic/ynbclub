@@ -8,97 +8,100 @@
         <h2> <i class="fa fa-star"></i> Featured</h2>
       </div>
       <div class="row product-shadow featured-product-style">
-        <div class="col-md-6">
-          <div class="box-shadow-am sm-pd-am">
-            <div class="product-box">
-              <img width="100%" src="/placeholder.png">
+        <% @blogs.where(is_featured: true).each do |blog| %>
+            <div class="col-md-6">
+              <div class="box-shadow-am sm-pd-am">
+                <div class="product-box">
+                  <a href="/blogs/<%= blog.id %>" style="text-decoration: none;">
+                    <img width="100%" src="<%= blog.avatar.present? ? blog.avatar.url : 'placeholder.png' %>">
+                  </a>
+                </div>
+                <div class="product-detail">
+                  <p><a href="/blogs/<%= blog.id %>"  style="text-decoration: none; color: #000"><%= blog.title %></a></p>
+                </div>
+                <div class="product-review">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="product-offer">
+                  <div class="descriptionBlog">
+                    <p><%= blog.description.html_safe %></p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="product-detail">
-              <p>Algo product</p>
-            </div>
-            <div class="product-review">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-price">
-              <h5>900.0</h5>
-            </div>
-            <div class="product-offer">
-              <p>20% we're getting from every purchase</p>
-            </div>
-          </div>
-        </div>
+        <% end %>
 
-        <div class="col-md-6">
-          <div class="box-shadow-am sm-pd-am">
-            <div class="product-box">
-              <img width="100%" src="/placeholder.png">
-            </div>
-            <div class="product-detail">
-              <p>future product</p>
-            </div>
-            <div class="product-review">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-price">
-              <h5>800.0</h5>
-            </div>
-            <div class="product-offer">
-              <p>20% we're getting from every purchase</p>
-            </div>
-          </div>
-        </div>
+        <!--<div class="col-md-6">-->
+        <!--<div class="box-shadow-am sm-pd-am">-->
+        <!--<div class="product-box">-->
+        <!--<img width="100%" src="/placeholder.png">-->
+        <!--</div>-->
+        <!--<div class="product-detail">-->
+        <!--<p>future product</p>-->
+        <!--</div>-->
+        <!--<div class="product-review">-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--</div>-->
+        <!--<div class="product-price">-->
+        <!--<h5>800.0</h5>-->
+        <!--</div>-->
+        <!--<div class="product-offer">-->
+        <!--<p>20% we're getting from every purchase</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
 
-        <div class="col-md-6">
-          <div class="box-shadow-am sm-pd-am">
-            <div class="product-box">
-              <img width="100%" src="/placeholder.png">
-            </div>
-            <div class="product-detail">
-              <p>test product</p>
-            </div>
-            <div class="product-review">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-price">
-              <h5>700.0</h5>
-            </div>
-            <div class="product-offer">
-              <p>20% we're getting from every purchase</p>
-            </div>
-          </div>
-        </div>
+        <!--<div class="col-md-6">-->
+        <!--<div class="box-shadow-am sm-pd-am">-->
+        <!--<div class="product-box">-->
+        <!--<img width="100%" src="/placeholder.png">-->
+        <!--</div>-->
+        <!--<div class="product-detail">-->
+        <!--<p>test product</p>-->
+        <!--</div>-->
+        <!--<div class="product-review">-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--</div>-->
+        <!--<div class="product-price">-->
+        <!--<h5>700.0</h5>-->
+        <!--</div>-->
+        <!--<div class="product-offer">-->
+        <!--<p>20% we're getting from every purchase</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
 
-        <div class="col-md-6">
-          <div class="box-shadow-am sm-pd-am">
-            <div class="product-box">
-              <img width="100%" src="/placeholder.png">
-            </div>
-            <div class="product-detail">
-              <p>test product</p>
-            </div>
-            <div class="product-review">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <div class="product-price">
-              <h5>700.0</h5>
-            </div>
-            <div class="product-offer">
-              <p>20% we're getting from every purchase</p>
-            </div>
-          </div>
-        </div>
+        <!--<div class="col-md-6">-->
+        <!--<div class="box-shadow-am sm-pd-am">-->
+        <!--<div class="product-box">-->
+        <!--<img width="100%" src="/placeholder.png">-->
+        <!--</div>-->
+        <!--<div class="product-detail">-->
+        <!--<p>test product</p>-->
+        <!--</div>-->
+        <!--<div class="product-review">-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--<i class="fa fa-star"></i>-->
+        <!--</div>-->
+        <!--<div class="product-price">-->
+        <!--<h5>700.0</h5>-->
+        <!--</div>-->
+        <!--<div class="product-offer">-->
+        <!--<p>20% we're getting from every purchase</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
 
       </div>
 
@@ -178,7 +181,7 @@
         <div>
         </div>
       </div>
-            <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>
+      <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>
     </div>
   </div></div>
 <script>
