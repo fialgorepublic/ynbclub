@@ -81,7 +81,9 @@
       <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
       <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
-      <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong><i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i><% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
+      <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
+        <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
+        <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
         <%= link_to edit_blog_path(@blog) do %>
             <i class="fa fa-pencil"></i>
         <% end %></strong></h5>
@@ -298,6 +300,7 @@
 <script>
     function openCommentModal(){
         $('#comment_id').val('');
+        $('#blog_comment').val('');
         $('#addComment').modal('show');
     }
     function add_comment(id, user_id){
@@ -376,6 +379,37 @@
             }
         }
     }
-
+    function set_featured_blog(obj, id){
+        {
+            apprise('Are You Sure You Want To change Featured status?', {'verify': true}, function (r) {
+                if (r) {
+                    var obj_cls = $(obj).attr('class');
+                    var status = ''
+                    if (obj_cls === 'fa fa-star ') {
+                        $(obj).addClass('featureBlog');
+                        status = true
+                    } else {
+                        $(obj).removeClass('featureBlog');
+                        status = false
+                    }
+                    $.ajax({
+                        url: '/change_featured_state?id=' + id + '&value=' + status,
+                        type: 'get',
+                        dataType: 'json',
+                        processData: false,
+                        success: function (data) {
+                            window.location.reload();
+                        },
+                        error: function (data) {
+                            alert('Error');
+                            //    window.location.reload();
+                        }
+                    });
+                }
+                else {
+                }
+            });
+        }
+    }
 
 </script>

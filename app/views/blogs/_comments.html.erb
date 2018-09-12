@@ -1,7 +1,7 @@
 <div class="row comnt-heading">
   <div class="col-md-6">
 
-    <span style="margin-top:7px; font-size: 17px; display:block"><%= @comments.count %> comments</span>
+    <span style="margin-top:7px; font-size: 17px; display:block"><%= @comments.where(parent_id: nil).count %> comments</span>
 
   </div>
   <div class="col-md-6  text-right">
@@ -194,6 +194,7 @@
     }
     function openSubCommentModal(id){
         $('#comment_id').val('');
+        $('#blog_comment').val('');
         $('#addComment').modal('show');
         $('#comment_id').val(id);
     }
