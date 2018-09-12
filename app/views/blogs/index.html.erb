@@ -103,7 +103,22 @@
 </div>
 
 <div class="post-heading">
+  
+  <div class="post-sorting pull-right">
+<label>Sorting</label>
+<select class="sorting-fltr">
+             <option class="fltr-dropdown">A-Z </option> 
+             <option>Newest First</option> 
+             <option>Popular First</option> 
+          </select>
+
+
+
+      
+</div>
       <h2> <i class="fa fa-file"></i> Last Posts </h2>
+
+
 
 </div>
 
@@ -164,6 +179,8 @@
           </div>
       <% end %>
       <br/>
+       <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %> 
+
        <div class="featured-pagination">
     <div>
       <ul class="pagination pagination-md">
@@ -178,7 +195,7 @@
     <div>
     </div>
   </div>
-<!--      <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %> -->
+     
 </div>
 <script>
     $("div.descriptionBlog").text(function(index, currentText) {

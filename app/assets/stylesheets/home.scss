@@ -966,12 +966,6 @@ button.comnt-btn-style{
   }
 
 
-
-
-
-
-
-
 .user-name {
   
   p{
@@ -1128,7 +1122,7 @@ button.comnt-btn-style{
 }
 
 .featured-pagination{
-  .pagination{ margin-top:5px;
+  .pagination{ margin-top:20px;
     li{
       a{
     border-radius: unset;
@@ -1139,4 +1133,30 @@ button.comnt-btn-style{
 }
 
 
+.select2-container .select2-selection--single{
+    height:34px !important;
+}
+.select2-container--default .select2-selection--single{
+         border: 1px solid #ccc !important; 
+     border-radius: 0px !important; 
+}
+
+.post-sorting{
+  border-bottom:1px solid #ccc;
+  .sorting-fltr{
+  width:100%;
+  border: none;
+  background-color: #fff;}
+
+select {
+   -webkit-appearance: none; 
+   -moz-appearance: none;
+   background-repeat: no-repeat;
+   background-position: right;
+   cursor: pointer;
+   appearance: none;       /* remove default arrow */
+   background-image: url('/assets/select-arrow.png');   /* add custom arrow */
+  }
+
+}
 
