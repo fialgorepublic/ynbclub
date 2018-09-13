@@ -77,7 +77,7 @@
   <div class="col-md-12">
     <div class="detail-img detail-icon">
       <i class="<%= @blog.likes.find_by_user_id(current_user.id) ? 'fa fa-heart liked' : 'fa fa-heart' %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
-      <i class="fa fa-share"></i><span>12</span>
+      <i class="fa fa-share"></i><span><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
       <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
       <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 

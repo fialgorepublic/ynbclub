@@ -34,7 +34,7 @@
           <div class="row featured-icon-left">
             <div class="col-md-6">
               <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
-              <i class="fa fa-share-alt"></i><span>12</span>
+              <i class="fa fa-share-alt"></i><span><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= blog.share_urls.count %>" ></span>
               <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','facebook', 'https://www.facebook.com/sharer/sharer.php?u=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-facebook"></i></a>
               <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
             </div>
@@ -183,7 +183,7 @@
               <div class="row comnt-icon-left">
                 <div class="col-md-8">
                   <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
-                  <i class="fa fa-share-alt"></i><span>12</span>
+                  <i class="fa fa-share-alt"></i><span><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= blog.share_urls.count %>" ></span>
                   <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','facebook', 'https://www.facebook.com/sharer/sharer.php?u=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-facebook"></i></a>
                   <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
                 </div>
@@ -276,15 +276,14 @@
     }
 
         function blog_share(id, type, url){
-            alert(id);
-            alert(type);
-            alert(url);
+            var blogUrl = $('#blogUrl').val();
             $.ajax({
                 url: '/share_blog?id='+ id + '&value=' + type,
                 type: 'get',
                 dataType: 'json',
                 processData: false,
                 success: function (data) {
+                    $('#blogUrl').val(parseInt(blogUrl) + 1);
                     window.open(url);
                 },
                 error: function (data) {
