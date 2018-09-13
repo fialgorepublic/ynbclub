@@ -85,11 +85,11 @@
           </div>
 
 
-          <div class="actions">   
+          <!-- <div class="actions">   
           <div class="create-blog-btn">
-        <%= form.submit class: 'btn btn-success' %>
+        <%#= form.submit class: 'btn btn-success' %>
       </div>
-</div>
+</div> -->
 
           </div>
    </div>
@@ -102,10 +102,10 @@
                 <h2> Products </h2>          
                 </div>
                 <div class="product-toolTips">
-              <div class="box-shadow-am sm-pd-am m-t-20 assign-Heading type="button" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum" title=""">
+     <div class="box-shadow-am sm-pd-am m-t-20 assign-Heading type="button" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum" title="">
               <h4><a href="javascript:void(0);" onclick="get_products();" style="text-decoration: none;">+ Assign Product</a></h4>
-            </div>
-          </div>
+                  </div>
+             </div>
           </div> 
               </div>
 
@@ -163,10 +163,15 @@
           <% end %>
         </div>
       </div>
+
+       <div class="actions">
+      <div class="blog-submt-btn">
+        <%= form.submit class: 'btn btn-success' %>
+      </div> 
+    </div>
+
       </div>
-      <!-- <div class="actions">
-        <%#= form.submit class: 'btn btn-success' %>
-      </div> -->
+
   <% end %>
 </div>
 
