@@ -95,3 +95,136 @@
   display: inline-block;
   vertical-align: top;
 }
+
+
+/*******/
+
+.newBlog-style{
+  box-shadow: unset !important;
+  h2{
+    i{
+    border: 1px solid #444;
+    color: #444;
+    padding: 10px 17px;
+    font-size: 18px;}
+  }
+button{
+  border-radius:unset;
+  padding: 10px 20px;
+  border-color:#323232;
+}
+button:hover{
+  background-color:#323232;
+  color:#fff;
+  border-color:#323232;
+}
+button:focus{
+  background-color:#323232;
+  color:#fff;
+   border-color:#323232;
+}
+button:active{
+  background-color:#323232;
+  color:#fff;
+  border-color:#323232;
+}
+.product-heading{
+  h2{
+  margin-top:15px;
+  color:#5f5f5f;}
+}
+.box-shadow-am{
+  box-shadow: unset;
+  border:1px solid #eee;
+  margin-top:15px;
+  min-height:500px;
+}
+.blog-imgUpload{
+  border:none;
+  input{
+  margin: 15% 30% auto;
+  }
+}
+.assign-Heading{
+  h4{
+  margin: 70% 20% auto;}
+  a{
+  color:#717171;}
+  }
+.blogBox-style{
+  .box-shadow-am{
+  padding:0px;
+  border: unset;
+  
+  input{
+  border: unset;
+  padding: 30px 10px;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  font-size:20px;}
+  }
+}
+  .Newblog-category{
+    .category-option{
+    border-bottom:1px solid;
+      select{
+    border:unset;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-repeat: no-repeat;
+    background-position: right;
+    cursor: pointer;
+    appearance: none;
+    background-image: url(/assets/select-arrow.png);
+      }
+    }
+
+    .blog-postCategory{
+    border-bottom:1px solid;
+      select{
+    border:unset;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-repeat: no-repeat;
+    background-position: right;
+    cursor: pointer;
+    appearance: none;
+    background-image: url(/assets/select-arrow.png);
+      }
+    }  
+  .popover{
+  border-radius:unset;
+  top: -70px!important;}
+  button.close{
+  padding: 0px 7px;
+  }
+  }
+
+  .product-toolTips{
+  .popover{
+  border-radius:unset;
+  top: 570px;
+  left: 45px;
+  width: 100%;}
+  button.close{
+  padding: 0px 7px;
+  }
+  }
+  
+
+.create-blog-btn{
+  input.btn.btn-success{
+  border-radius: unset;
+    padding: 10px 20px;
+    border-color: #323232;
+    background-color: unset;
+    color: #323232;
+  }
+  input.btn.btn-success:hover{
+  background-color:#323232;
+  color:#fff;
+  border-color:#323232;
+  }
+}
+
+}
