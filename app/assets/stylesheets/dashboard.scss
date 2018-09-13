@@ -142,7 +142,7 @@ button:active{
 .blog-imgUpload{
   border:none;
   input{
-  margin: 15% 30% auto;
+  margin:0% 30% auto;
   }
 }
 .assign-Heading{
@@ -227,4 +227,17 @@ button:active{
   }
 }
 
+}
+
+.create-blog-img{
+  img{
+    width: 300px;
+    height: 250px;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+  }
+  .box-shadow-am.sm-pd-am{
+  margin-bottom:20px;
+  }
 }

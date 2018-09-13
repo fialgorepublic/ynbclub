@@ -37,7 +37,7 @@
                           margin: 20px 0;
                           text-align: center;
                           min-height: 300px">
-                    <%#= image_tag(@blog.avatar.present? ? @blog.avatar.url : 'https://saint-l-beau.herokuapp.com/blogPlaceholder.jpeg', :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
+                    <%= image_tag(@blog.avatar.present? ? @blog.avatar.url : 'https://saint-l-beau.herokuapp.com/blogPlaceholder.jpeg', :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
                
                <div class="field form-group">
                     <div class="fileUpload form-control start blog-imgUpload">
@@ -49,7 +49,7 @@
                   </div>
                   <!-- <div class="field form-group">
                     <div class="fileUpload form-control start">
-                      <%= form.file_field :avatar, :class=>'upload', :id => 'fileupload' %>
+                      <%#= form.file_field :avatar, :class=>'upload', :id => 'fileupload' %>
                     </div>
                   </div> -->
 <div class="row m-t-20">
@@ -98,7 +98,6 @@
                 </div>
 
                 <div class="col-md-4">
-
                   <div class="product-heading"> 
                 <h2> Products </h2>          
                 </div>
@@ -157,11 +156,13 @@
             </div>
           </div> -->
        <!--  </div> -->
+       <div class="create-blog-img">
         <div id="selectedProducts">
           <% if @selected_products.present? %>
               <%= render partial: 'blogs/selected_products' %>
           <% end %>
         </div>
+      </div>
       </div>
       <!-- <div class="actions">
         <%#= form.submit class: 'btn btn-success' %>
