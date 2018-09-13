@@ -62,6 +62,8 @@ Rails.application.routes.draw do
   get 'change_publish_status', to: 'blogs#change_publish_status'
   get 'change_buyer_show_status', to: 'blogs#change_buyer_show_status'
   get 'buyer_show', to: 'blogs#buyer_show'
+  get 'blog_detail', to: 'blogs#blog_detail'
+  get 'share_blog', to: 'blogs#share_blog'
 
   resources :profiles
 

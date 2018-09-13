@@ -35,6 +35,8 @@
             <div class="col-md-6">
               <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
               <i class="fa fa-share-alt"></i><span>12</span>
+              <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','facebook', 'https://www.facebook.com/sharer/sharer.php?u=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-facebook"></i></a>
+              <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
             </div>
             <div class="col-md-6 featured-icon-right text-right">
               <i class="fa fa-eye"></i><span><%= blog.blog_views.count %></span>
@@ -182,6 +184,8 @@
                 <div class="col-md-8">
                   <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
                   <i class="fa fa-share-alt"></i><span>12</span>
+                  <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','facebook', 'https://www.facebook.com/sharer/sharer.php?u=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-facebook"></i></a>
+                  <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
                 </div>
                 <div class="col-md-4 comnt-icon-right text-right">
                   <i class="fa fa-eye"></i><span><%= blog.blog_views.count %></span>
@@ -270,6 +274,25 @@
             });
         }
     }
+
+        function blog_share(id, type, url){
+            alert(id);
+            alert(type);
+            alert(url);
+            $.ajax({
+                url: '/share_blog?id='+ id + '&value=' + type,
+                type: 'get',
+                dataType: 'json',
+                processData: false,
+                success: function (data) {
+                    window.open(url);
+                },
+                error: function (data) {
+                    alert('Error');
+                    //    window.location.reload();
+                }
+            });
+        }
 
 
 </script>

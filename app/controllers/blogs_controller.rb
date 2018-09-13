@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:blog_detail]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   require 'time_ago_in_words'
   require 'will_paginate'
@@ -107,6 +107,17 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @comments = @blog.comments
     @selected_products = @blog.products
+  end
+
+  def blog_detail
+    @blog = Blog.find(params[:id])
+    @comments = @blog.comments
+    @selected_products = @blog.products
+  end
+
+  def share_blog
+    share_url = ShareUrl.create(user_id: current_user.id, blog_id: params[:id], url_type: params[:value])
+    render json: {success: true}
   end
 
   private
