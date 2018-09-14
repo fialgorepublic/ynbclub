@@ -64,7 +64,6 @@ class ReferralSalesController < ApplicationController
 
   def approve_sales
     if params[:search].present?
-      puts "***********************",Date.parse(params[:search][:start_date]).inspect
       if (params[:search][:start_date].present? && params[:search][:end_date].present? && (params[:search][:partner].present? && params[:search][:partner] != "null"))
         date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
         @referral_sales = ReferralSale.where("created_at::date IN (?) AND user_id = (?)", date_range, params[:search][:partner].split(','))
