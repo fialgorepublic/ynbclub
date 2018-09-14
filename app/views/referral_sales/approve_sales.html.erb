@@ -13,13 +13,13 @@
         <div class="col-md-4">
           <div class="col-sm-12">
             <h5>since</h5>
-            <%= text_field_tag :since,nil, :class => 'form-control dateTime', :placeholder=>"" %>
+            <%= text_field_tag :since,nil, :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
           </div>
         </div>
         <div class="col-md-4">
           <div class="col-sm-12">
             <h5>To Date</h5>
-            <%= text_field_tag :to_date,nil, :class => 'form-control dateTime', :placeholder=>"" %>
+            <%= text_field_tag :to_date,nil, :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
           </div>
         </div>
         <div class="col-md-4">
@@ -93,8 +93,7 @@
             }
     );
     $(".dateTime").datepicker({
-        dateFormat: "dd MM yy",
-        minDate: 0
+        dateFormat: "dd MM yy"
     });
     (function( $ ){
         $.fn.valList = function(){
@@ -147,45 +146,28 @@
     $('#paymentStatus').val(name);
     <% end %>
 
-    function change_activeStatus(obj, id){
-//        if (confirm('Are You Sure You Want To change status?')) {
-//        }
-        {
-            apprise('Are You Sure You Want To change status?', {'verify': true}, function (r) {
-                if (r) {
-                    var obj_cls = $(obj).attr('class');
-                    var status = ''
-                    if (obj_cls == 'fa fa-eye') {
-                        $(obj).removeClass(obj_cls);
-                        $(obj).addClass('fa fa-eye-slash');
-                        status = false
-                    } else if (obj_cls == 'fa fa-eye-slash') {
-                        $(obj).removeClass(obj_cls);
-                        $(obj).addClass('fa fa-eye');
-                        status = true
-                    }
-                    $.ajax({
-                        url: '/change_activeStatus?id=' + id + '&value=' + status,
-                        type: 'get',
-                        dataType: 'html',
-                        processData: false,
-                        success: function (data) {
-
-                        },
-                        error: function (data) {
-                            alert('Error');
-                            //    window.location.reload();
-                        }
-                    });
-                }
-                else {
-                }
-            });
-        }
-    }
     function apply_filter(){
         var browsing_status_val = $('#browsingStatus').val();
         var paymentStatus_val = $('#paymentStatus').val();
-        window.location.href = '/users?active='+browsing_status_val+'&payment='+paymentStatus_val;
+        var since = $('#since').val();
+        var to_date = $('#to_date').val();
+        var user_ids = $('#user_id').val();
+        if (since == "" && to_date == ""){
+
+        }else{
+            if (since != ""){
+                if (to_date == ""){
+                    alert("please select to date first.");
+                    return false;
+                }
+            }
+            if (to_date != ""){
+                if (since == ""){
+                    alert("please select to since first.");
+                    return false;
+                }
+            }
+        }
+        window.location.href = '/approve_sales?search[start_date]='+since+'&search[end_date]='+to_date+'&search[partner]='+user_ids;
     }
 </script>
