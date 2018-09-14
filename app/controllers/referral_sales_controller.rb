@@ -63,13 +63,27 @@ class ReferralSalesController < ApplicationController
   end
 
   def approve_sales
-    @referral_sales = ReferralSale.all
+    if params[:search].present?
+      puts "***********************",params[:search][:partner].inspect
+      if (params[:search][:start_date].present? && params[:search][:end_date].present? && (params[:search][:partner].present? && params[:search][:partner] != "null"))
+        date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
+
+      elsif(params[:search][:start_date].present? && params[:search][:end_date].present?)
+        date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
+
+      elsif (params[:search][:partner].present?)
+        @referral_sales = ReferralSale.where(user_id: params[:search][:partner].split(','))
+      else
+        @referral_sales = ReferralSale.all
+      end
+    else
+      @referral_sales = ReferralSale.all
+    end
   end
 
   def changed_sale_approved_status
-    puts "===================================",params.inspect
-    referralSales = ReferralSale.where(user_id: params[:ids])
-    puts "===========================",referralSales.inspect
+    referralSales = ReferralSale.where(id: params[:ids].split(','))
+    referralSales.update_all(is_approved: true)
     @referral_sales = ReferralSale.all
     render partial: 'referral_sales/table'
   end
