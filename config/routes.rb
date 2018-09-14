@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :referral_sales
   resources :blogs
   get 'approve_sales', to: 'referral_sales#approve_sales'
+  get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard_main', to: 'dashboard#dashboard_main'

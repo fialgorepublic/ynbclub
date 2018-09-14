@@ -23,4 +23,5 @@
 //= require BootstrapMenu.min.js
 //= require jquery.dataTables.js
 //= require apprise.min.js
+//= require select2.js
 //= require_tree .

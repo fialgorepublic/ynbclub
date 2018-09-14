@@ -66,6 +66,14 @@ class ReferralSalesController < ApplicationController
     @referral_sales = ReferralSale.all
   end
 
+  def changed_sale_approved_status
+    puts "===================================",params.inspect
+    referralSales = ReferralSale.where(user_id: params[:ids])
+    puts "===========================",referralSales.inspect
+    @referral_sales = ReferralSale.all
+    render partial: 'referral_sales/table'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_referral_sale
