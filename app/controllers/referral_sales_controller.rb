@@ -68,8 +68,8 @@ class ReferralSalesController < ApplicationController
 
   def changed_sale_approved_status
     puts "===================================",params.inspect
-    referralSales = ReferralSale.where(user_id: params[:ids])
-    puts "===========================",referralSales.inspect
+    referralSales = ReferralSale.where(id: params[:ids].split(','))
+    referralSales.update_all(is_approved: true)
     @referral_sales = ReferralSale.all
     render partial: 'referral_sales/table'
   end
