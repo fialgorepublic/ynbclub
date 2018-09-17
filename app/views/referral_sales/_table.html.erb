@@ -9,7 +9,7 @@
         <th>TT Discount</th>
         <th>Total Money</th>
         <th>Discount</th>
-        <th>Payment Center</th>
+        <th>Payment Status</th>
         <th>Partner</th>
         <th>Referral Code</th>
       </tr>
@@ -18,16 +18,20 @@
       <tbody>
       <% @referral_sales.each do |referral_sale| %>
           <tr>
-            <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= referral_sale.is_approved ? 'disabled': '' %> /></td>
+            <%     @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "0f410bb0b1309e0f9a43808434b4499d")
+                   ShopifyAPI::Base.activate_session(@session) %>
+            <% puts "-==-------------------",ShopifyAPI::Order.find(referral_sale.order_id).financial_status.inspect %>
+            <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || ShopifyAPI::Order.find(referral_sale.order_id).financial_status == "pending") ? 'disabled': '' %> /></td>
             <td><a href="javascript:void(0);"><%= referral_sale.order_id %></a></td>
             <td><%= referral_sale.created_at %></td>
             <td><%= referral_sale.name %></td>
             <td><%=  %></td>
             <td><%= referral_sale.price%></td>
             <td><%=  %></td>
-            <td><%=  %></td>
+            <td><%= ShopifyAPI::Order.find(referral_sale.order_id).financial_status %></td>
             <td><%= referral_sale.user.present? ? referral_sale.user.name : "" %></td>
             <td><a href="/user_show?id=<%= referral_sale.user.present? ? referral_sale.user.id : "" %>"><%= referral_sale.user.present? ? referral_sale.user.referral : "" %></a></td></td>
+            <% ShopifyAPI::Base.clear_session %>
           </tr>
       <% end %>
       </tbody>
