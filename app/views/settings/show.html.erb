@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Min payment:</strong>
+  <%= @setting.min_payment %>
+</p>
+
+<p>
+  <strong>Cookie time:</strong>
+  <%= @setting.cookie_time %>
+</p>
+
+<%= link_to 'Edit', edit_setting_path(@setting) %> |
+<%= link_to 'Back', settings_path %>

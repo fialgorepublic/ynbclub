@@ -1,0 +1,61 @@
+<%= form_with(model: setting, local: true) do |form| %>
+  <% if setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+
+      <ul>
+      <% setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <section class="title-bar head-shop-setting col-md-12 col-sm-12">
+      <div class="col-md-4 float-left-moblie">
+        <h3 class="text-black"><i class="fa fa-gears"></i> Cấu Hình Chung</h3>
+      </div>
+      <div class="form-group col-md-8 text-right responsive nowrap" style="text-align: right;">
+        <%= form.submit "Lưu", class: 'btn btn-primary' %>
+      </div>
+    </section>
+
+    <div class="section col-xs-12">
+      <div class="col-md-4">
+        <h4>Tiền thanh toán Partner</h4>
+        <p></p>
+      </div>
+      <div class="col-md-8 wrapper-content p-t15">
+        <div class="form-group p-none" show-errors="">
+          <label for="min_withdraw" class="text-no-bold ws-nm">Số tiền tối thiểu chi trả</label>
+          <%= form.text_field :min_payment, id: :setting_min_payment, class: 'form-control ng-pristine ng-untouched ng-valid ng-valid-min' %>
+          <div ng-messages="configForm.min_withdraw.$error" role="alert" class="ng-inactive">
+            <!-- ngMessage: min -->
+          </div>
+          <p class="note text-font-italic mt5">Số tiền tối thiểu Partner phải đạt được vào cuối tháng để Chủ shop có thể thanh toán cho Partner đó!</p>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+    <div class="section col-xs-12">
+      <div class="col-md-4">
+        <h4>Cookie</h4>
+        <p></p>
+      </div>
+      <div class="col-md-8 wrapper-content p-t15 clearfix">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group" show-errors="">
+              <label for="ref_cookie_time" class="text-no-bold">Thời gian cookie ( tính theo ngày )</label>
+              <%= form.text_field :cookie_time, id: :setting_cookie_time, class: 'form-control ng-pristine ng-untouched ng-valid ng-valid-min' %>
+              <div ng-messages="configForm.ref_cookie_time.$error" role="alert" class="ng-inactive">
+                <!-- ngMessage: min -->
+              </div>
+              <p class="note text-font-italic mt5">Thời gian tối đa lưu trữ Linkref trên máy của khách hàng khi nhập linkref của partner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
