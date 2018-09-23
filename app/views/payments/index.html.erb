@@ -10,7 +10,7 @@
         <div class="col-md-12">
           <h3 class="card-header">View payment history</h3>
           <div class="input-group">
-            <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Mã thanh toán/Tên người nhận/Email/Số bút toán" autofocus="">
+            <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Payment code / Recipient name / Email / Journal entry" autofocus="">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
             <!-- ngIf: doSearch -->
@@ -23,7 +23,7 @@
           <%= text_field_tag :since,nil, :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
         </div>
         <div class="col-md-4">
-          <h5>Đến ngày</h5>
+          <h5>To Date</h5>
           <%= text_field_tag :to_date,nil, :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
         </div>
         <div class="col-md-4">
@@ -61,7 +61,7 @@
                     <td><%= payment.payment_code %></td>
                     <td><%= payment.payment_date %></td>
                     <td><%= payment.amount %></td>
-                    <td><%= payment.recipient_name %></td>
+                    <td><%= payment.user.name %></td>
                     <td><%= payment.email %></td>
                     <td><%= payment.number_math %></td>
                     <td><%= payment.status %></td>
@@ -92,4 +92,30 @@
     $(".dateTime").datepicker({
         format: "yyyy-mm-dd"
     });
+    function apply_filter(){
+        var since = $('#since').val();
+        var to_date = $('#to_date').val();
+        var user_ids = $('#user_id').val();
+        if (since == "" && to_date == ""){
+
+        }else{
+            if (since != ""){
+                if (to_date == ""){
+                    alert("please select to date first.");
+                    return false;
+                }
+            }
+            if (to_date != ""){
+                if (since == ""){
+                    alert("please select to since first.");
+                    return false;
+                }
+            }
+        }
+        window.location.href = '/payments?search[start_date]='+since+'&search[end_date]='+to_date+'&search[partner]='+user_ids;
+    }
+    function searchPerform(){
+        var search = $('#searchText').val();
+        window.location.href = '/payments?text='+search;
+    }
 </script>

@@ -5,7 +5,25 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.all
+    if params[:text].present?
+      @payments = Payment.where("(LOWER(payment_code) LIKE '%#{params[:text]}%' OR LOWER(email) LIKE '%#{params[:text]}%' OR LOWER(recipient_name) LIKE '%#{params[:text]}%')")
+    else
+      if params[:search].present?
+        if (params[:search][:start_date].present? && params[:search][:end_date].present? && (params[:search][:partner].present? && params[:search][:partner] != "null"))
+          date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
+          @payments = Payment.where("created_at::date IN (?) AND user_id = (?)", date_range, params[:search][:partner].split(','))
+        elsif(params[:search][:start_date].present? && params[:search][:end_date].present?)
+          date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
+          @payments = Payment.where("created_at::date IN (?)", date_range)
+        elsif (params[:search][:partner].present?)
+          @payments = Payment.where(user_id: params[:search][:partner].split(','))
+        else
+          @payments = Payment.all
+        end
+      else
+        @payments = Payment.all
+      end
+    end
   end
 
   # GET /payments/1

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :referral, uniqueness: true
   belongs_to :role, optional: true
   has_many :referral_sales
+  has_many :payments
   has_many :points
   has_many :share_urls
   has_one :profile
