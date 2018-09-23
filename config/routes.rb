@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :payments
   resources :settings
   resources :products
   mount Ckeditor::Engine => '/ckeditor'

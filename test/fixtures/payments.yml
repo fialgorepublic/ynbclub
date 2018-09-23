@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment_code: 1
+  payment_date: 2018-09-23
+  amount: 1.5
+  recipient_name: MyString
+  email: MyString
+  number_math: MyString
+  status: MyString
+  note: MyString
+
+two:
+  payment_code: 1
+  payment_date: 2018-09-23
+  amount: 1.5
+  recipient_name: MyString
+  email: MyString
+  number_math: MyString
+  status: MyString
+  note: MyString
