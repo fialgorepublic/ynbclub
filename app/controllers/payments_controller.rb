@@ -44,14 +44,20 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
-
+    @payment.payment_code = rand(10...9999999)
     respond_to do |format|
       if @payment.save
+        @payments = Payment.all
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+        format.js {  flash.now[:notice] = "Payment was successfully created." }
       else
+        @error_messages =[]
+        @payment.errors.full_messages.map { |msg| # Show Error messages while creating new system
+          @error_messages << msg
+        }
+        @payments = Payment.all
         format.html { render :new }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
+        format.js {  flash.now[:alert] = @error_messages[0] }
       end
     end
   end
@@ -80,6 +86,12 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def add_payment
+    @payments = Payment.all
+    @payment = Payment.new
+    render :json => { :success => true, :html => render_to_string(:partial => "payments/new_payment")}.to_json
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_payment
@@ -88,6 +100,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:payment_code, :payment_date, :amount, :recipient_name, :email, :number_math, :status, :note)
+      params.require(:payment).permit(:payment_code, :payment_date, :amount, :recipient_name, :email, :number_math, :status, :note, :user_id)
     end
 end

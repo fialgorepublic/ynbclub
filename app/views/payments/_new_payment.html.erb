@@ -1,0 +1,44 @@
+<%= form_for @payment, url: payments_path, :remote => true, method: "POST", :html => {:id =>"new_payment", :class => 'form-horizontal form-simple'}  do |form| %>
+    <div class="modal-body">
+      <h4 class=" text-center">CREATE PAYMENT</h4>
+
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.text_field :email, id: :payment_email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :amount_paid %>
+        <%= form.number_field :amount, id: :payment_amount, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :number_math %>
+        <%= form.text_field :number_math, id: :payment_number_math, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :note %>
+        <%= form.text_field :note, id: :payment_note, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :recipient_name %>
+        <%= form.collection_select :user_id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :name , {:include_blank => 'Select Recipient name'}, html_options = {:class=>"form-control"} %>
+      </div>
+
+      <!--<div class="form-group">-->
+        <!--<%#= form.label :status %>-->
+        <!--<%#= form.text_field :status, id: :payment_status, class: 'form-control' %>-->
+      <!--</div>-->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= form.submit :class => 'btn btn-success' %>
+      </div>
+    </div>
+    <div class="error error-holder">
+
+    </div>
+
+<% end %>
