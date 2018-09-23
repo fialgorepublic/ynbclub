@@ -57,18 +57,17 @@
               <span class="ng-binding">Cấu Hình</span>
             </a>
           </li>
-          <li>
-            <a href="/users"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Ambassadors  </a>
-          </li>
-          <li>
-            <a href="/categories"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Categories  </a>
-          </li>
           <li class="menu-item ng-scope active" ui-sref-active="active" ng-repeat="item in menu.items | orderBy: 'position'">
             <a class="auto click-close" href="/payments">
               <i class="fa fa-money"></i>
               <span class="ng-binding">Lịch sử Thanh Toán</span>
             </a>
-            <!-- ngIf: item.items && item.items.length -->
+          </li>
+          <li>
+            <a href="/users"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Ambassadors  </a>
+          </li>
+          <li>
+            <a href="/categories"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Categories  </a>
           </li>
       <% end %>
       <li  data-toggle="" data-target="#" class="collapsed">
