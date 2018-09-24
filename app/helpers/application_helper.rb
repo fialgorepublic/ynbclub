@@ -51,6 +51,10 @@ module ApplicationHelper
     end
   end
 
+  def compare_payment
+    Setting.first ? Setting.first.min_payment : 0
+  end
+
   private
 
   def add_default_class(html_options)
