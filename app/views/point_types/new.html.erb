@@ -1,0 +1,16 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+    <div class="col-md-9">
+      <p id="notice"><%= notice %></p>
+
+      <h1 class="card-header">New Point Type</h1>
+
+      <%= render 'form', point_type: @point_type %>
+      <br/>
+      <%= link_to 'Back', point_types_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+</div>

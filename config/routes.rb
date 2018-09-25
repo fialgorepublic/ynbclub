@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :payments
   resources :settings
   resources :products
+  resources :point_types
   mount Ckeditor::Engine => '/ckeditor'
   resources :categories
   get 'home', to: 'home#index'
