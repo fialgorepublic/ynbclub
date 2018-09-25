@@ -43,6 +43,7 @@ gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523b
 gem 'link_thumbnailer'
 gem 'pry'
 gem 'best_in_place', '~> 3.0.1'
+gem "roo", "~> 2.7.0"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

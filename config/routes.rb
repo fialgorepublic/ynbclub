@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get 'change_featured_state', to: 'blogs#change_featured_state'
   get 'add_payment', to: 'payments#add_payment'
   post 'update_profile', to: 'users#update_profile'
+  get 'import_partner', to: 'users#import_partner'
+  post 'import_ambassador', to: 'users#import_ambassador'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {
       :sessions => "users/sessions",

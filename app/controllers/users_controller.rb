@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  require 'csv'
+  require 'roo'
 
   def brand_ambassadors
     @brand_ambassador = User.joins(:role).where("roles.name = 'Brand ambassador'")
@@ -137,6 +139,30 @@ class UsersController < ApplicationController
     user.profile.update(profile_params)
     flash[:success] = "Successfully update"
     redirect_to users_path
+  end
+
+  def import_partner
+
+  end
+
+  def import_ambassador
+    role_id = Role.find_by_name("Brand ambassador").id
+    password = Devise.friendly_token
+    file = params[:file]
+    spreadsheet = Roo::Spreadsheet.open(file.path)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      puts "==========================================",row.inspect
+      user = User.create(name: row["Họ và tên"], email: row["Email"], phone_number: row["Số điện thoại"],
+                         referral: row["Mã giới thiệu"], commission: row["Chiết khấu (%)"], identity_card: row["Chứng minh nhân dân"],
+                         surplus: row["Số dư"], paid: row["Đã chi trả"], total_income: row["Tổng thu nhập"],
+                         status: row["Trạng thái"], password: password, role_id: role_id)
+      Profile.create(address_line_1: row["Địa chỉ"], phone_number: row["Số điện thoại"], user_id: user.id,
+                     bank_name: row["Tên ngân hàng"], acc_holder_name: row["Tên tài khoản"], account_number: row["Số tài khoản"])
+    end
+    flash[:notice] = "Successfully Imported ."
+    redirect_to import_partner_path
   end
 
   private

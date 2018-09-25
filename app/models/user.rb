@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :payments
   has_many :points
   has_many :share_urls
-  has_one :profile
+  has_one :profile, dependent: :destroy
   has_many :comments
   has_many :likes
   has_many :comment_actions
