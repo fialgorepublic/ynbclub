@@ -5,7 +5,7 @@ class PointTypesController < ApplicationController
   # GET /point_types
   # GET /point_types.json
   def index
-    @point_types = PointType.all
+    @point_types = PointType.where(is_deleted: false)
   end
 
   # GET /point_types/1
@@ -29,7 +29,7 @@ class PointTypesController < ApplicationController
 
     respond_to do |format|
       if @point_type.save
-        format.html { redirect_to @point_type, notice: 'Point type was successfully created.' }
+        format.html { redirect_to @point_type, notice: 'Reward was successfully created.' }
         format.json { render :show, status: :created, location: @point_type }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class PointTypesController < ApplicationController
   def update
     respond_to do |format|
       if @point_type.update(point_type_params)
-        format.html { redirect_to @point_type, notice: 'Point type was successfully updated.' }
+        format.html { redirect_to @point_type, notice: 'Reward was successfully updated.' }
         format.json { render :show, status: :ok, location: @point_type }
       else
         format.html { render :edit }
@@ -55,9 +55,10 @@ class PointTypesController < ApplicationController
   # DELETE /point_types/1
   # DELETE /point_types/1.json
   def destroy
-    @point_type.destroy
+    @point_type.update_attributes(is_deleted: true)
+    # @point_type.destroy
     respond_to do |format|
-      format.html { redirect_to point_types_url, notice: 'Point type was successfully destroyed.' }
+      format.html { redirect_to point_types_url, notice: 'Reward was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

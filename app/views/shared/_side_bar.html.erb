@@ -22,8 +22,8 @@
     <ul id="menu-content" class="menu-content collapse out">
       <li class="row">
         <div class="col-md-12">
-          <p style="color: gold"> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins &emsp; <i class="fa fa-money"> </i> 987d Cash
-            <button style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal" data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button>
+          <p style="color: gold"> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <button style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal" data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button> <span class="pull-right"> <i class="fa fa-money"> </i> 987d Cash</span>
+
         </div>
       </li>
 
