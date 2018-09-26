@@ -82,7 +82,9 @@ class ReferralSalesController < ApplicationController
 
   def changed_sale_approved_status
     referralSales = ReferralSale.where(id: params[:ids].split(','))
-    referralSales.update_all(is_approved: true)
+    referralSales.each do |sale|
+      sale.update_attributes(is_approved: true)
+    end
     @referral_sales = ReferralSale.all
     render partial: 'referral_sales/table'
   end
