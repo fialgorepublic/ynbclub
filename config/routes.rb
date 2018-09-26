@@ -73,6 +73,9 @@ Rails.application.routes.draw do
   get 'share_blog', to: 'blogs#share_blog'
 
   resources :profiles
+  namespace :api do
+    resources :cookies
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
