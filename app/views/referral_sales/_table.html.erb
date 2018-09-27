@@ -18,7 +18,7 @@
       <tbody>
       <% @referral_sales.each do |referral_sale| %>
           <tr>
-            <%     @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "0f410bb0b1309e0f9a43808434b4499d")
+            <%     @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "7c33c27b13f3e5aa9feb6d8f5db4563c")
                    ShopifyAPI::Base.activate_session(@session) %>
             <% puts "-==-------------------",ShopifyAPI::Order.find(referral_sale.order_id).financial_status.inspect %>
             <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || ShopifyAPI::Order.find(referral_sale.order_id).financial_status == "pending") ? 'disabled': '' %> /></td>
