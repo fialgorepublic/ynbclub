@@ -55,6 +55,11 @@ module ApplicationHelper
     Setting.first ? Setting.first.min_payment : 0
   end
 
+  def insert_points(user_id, point_name)
+    point_type = PointType.find_by_name(point_name)
+    Point.create(user_id: user_id, point_type_id: point_type.id, point_value: point_type.point)
+  end
+
   private
 
   def add_default_class(html_options)

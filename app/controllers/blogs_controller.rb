@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   require 'time_ago_in_words'
   require 'will_paginate'
-
+  include ApplicationHelper
   # GET /blogs
   # GET /blogs.json
   def index
@@ -117,6 +117,7 @@ class BlogsController < ApplicationController
 
   def share_blog
     share_url = ShareUrl.create(user_id: current_user.id, blog_id: params[:id], url_type: params[:value])
+    insert_points(current_user.id, "Post the blog")
     render json: {success: true}
   end
 

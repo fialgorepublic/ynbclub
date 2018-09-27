@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   require 'link_thumbnailer'
+  include ApplicationHelper
   def index
     if current_user.role.blank?
       @role_selection = true
@@ -45,7 +46,7 @@ class DashboardController < ApplicationController
 
   def step_two
     @object = LinkThumbnailer.generate(params[:url])
-    if @object.title.include?('#SaintLBeau')
+    if @object.description.present? && @object.description.include?('#SaintLBeau')
       @saintlbeau_post = true
     elsif @object.description.include?('#SaintLBeau')
       @saintlbeau_post = true
@@ -56,9 +57,8 @@ class DashboardController < ApplicationController
 
   def step_three
     url = params[:url]
-    point_type = PointType.where(name: "Take and share a snapshot").first
     if params[:saintlbeau_post].to_s == "true"
-      Point.create(user_id: current_user.id, point_type_id: point_type.id, point_value: point_type.point)
+      insert_points(current_user.id, "Take and share a snapshot")
     end
     ShareUrl.create(url: url, user_id: current_user.id)
   end
