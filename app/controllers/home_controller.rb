@@ -32,7 +32,7 @@ class HomeController < ApplicationController
       customer = Customer.create(name: name, email: params[:email], customer_id: customer_id)
       ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
                           address: params[:address], shopdomain: params[:shopdomain], price: params[:price])
-      insert_points(current_user.id, "Your product was ordered ")
+      insert_points(user.id, "Your product was ordered ")
     end
     render json: {success: true}
   end
