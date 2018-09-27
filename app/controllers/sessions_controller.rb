@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
-
+  include ApplicationHelper
   def create
     puts "=------------------------------------------",params.inspect
+    get_params = request.env["omniauth.params"]
+    invite = get_params["invite"]
+    puts "-------------------------------",invite.inspect
     @omniauth = request.env['omniauth.auth']
     email = @omniauth.info.email
     name = @omniauth.info.name
@@ -22,8 +25,16 @@ class SessionsController < ApplicationController
       user.update_attributes(social_login: true)
       redirect_to dashboard_path, notice: 'Signed in successfully'
     else
-      user = User.create(:name => name, :email => email, :password => provider_id, social_login: true)
+      user = User.create(:name => name, :email => email, :password => provider_id, social_login: true,
+                         referral: Devise.friendly_token)
       user.create_profile
+      if invite.present?
+        user_invited = User.find_by_email(invite)
+        if user_invited
+          insert_points(user_invited.id, "Invite user to the Soint l beou")
+          insert_points(user.id, "Invite user to the Soint l beou")
+        end
+      end
       initiate_shopify_session
       customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
       customer = customers.detect { |c| c.email == "#{user.email}" }

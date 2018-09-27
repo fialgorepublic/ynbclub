@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  include ApplicationHelper
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -12,7 +13,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     resource = User.new(sign_up_params)
+    resource.referral = Devise.friendly_token
     if resource.save
+      if params[:invite].present?
+        user_invited = User.find_by_email(params[:invite])
+        if user_invited
+          insert_points(user_invited.id, "Invite user to the Soint l beou")
+          insert_points(resource.id, "Invite user to the Soint l beou")
+        end
+      end
       resource.create_profile
       initiate_shopify_session
       customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
@@ -24,7 +33,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         customer.last_name = ''
         customer.metafields = [{key: "image_url", namespace: "global", value: resource.avatar.url, value_type: "string"}]
         customer.save
-        puts "--------------------- new customer here ---------------------",customer.inspect
       end
       clear_shopify_session
       sign_in :user, resource

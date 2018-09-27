@@ -4,13 +4,13 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    # super
+    redirect_to root_path
+  end
 
   # POST /resource/sign_in
   def create
-    puts  "------------------- form -------------------",params.inspect
     resource = User.where(email: params[:resource][:email].downcase).first
     if resource.present? && resource.valid_password?(params[:resource][:password]) # validate user password
       resource.update_attributes(is_shopify_user: false)
