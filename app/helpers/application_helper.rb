@@ -60,6 +60,53 @@ module ApplicationHelper
     Point.create(user_id: user_id, point_type_id: point_type.id, point_value: point_type.point)
   end
 
+  def get_status status
+    case status
+      when "-1"
+        "Cancel order"
+      when "1"
+        "Not received"
+      when "2"
+        "Received"
+      when "3"
+        "Merchandise / Warehoused"
+      when "4"
+        "Coordinated delivery / Delivering"
+      when "5"
+        "Delivered / Uncontrolled"
+      when "6"
+        "Checked"
+      when "7"
+        "Can not get the goods"
+      when "8"
+        "Delayed taking the goods"
+      when "9"
+        "Not delivered"
+      when "10"
+        "Delay delivery"
+      when "11"
+        "Controlled repayment of goods"
+      when "12"
+        "Coordinated loading / unloading"
+      when "20"
+        "Returned goods (COD carrying goods to pay)"
+      when "21"
+        "Returned goods (COD paid)"
+      when "123"
+        "Shipper reportedly took the goods"
+      when "127"
+        "Shipper can not pick up the item"
+      when "128"
+        "Shipper reportedly took the goods"
+      when "45"
+        "Shipper reportedly delivered"
+      when "49"
+        "	Shipper not delivered delivery"
+      when "410"
+        "Shipper Report Delay Delivery"
+    end
+  end
+
   private
 
   def add_default_class(html_options)

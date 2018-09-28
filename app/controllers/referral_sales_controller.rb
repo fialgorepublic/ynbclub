@@ -63,20 +63,28 @@ class ReferralSalesController < ApplicationController
   end
 
   def approve_sales
+    partner_ids = (params[:search].present? && params[:search][:partner] != "null") ? params[:search][:partner] : nil
+    discount_status = (params[:search].present? && params[:search][:discountStatus] != "null") ? params[:search][:discountStatus] : ""
     if params[:search].present?
-      if (params[:search][:start_date].present? && params[:search][:end_date].present? && (params[:search][:partner].present? && params[:search][:partner] != "null"))
+      if (params[:search][:start_date].present? && params[:search][:end_date].present? && partner_ids.present?)
         date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
-        @referral_sales = ReferralSale.where("created_at::date IN (?) AND user_id = (?)", date_range, params[:search][:partner].split(','))
+        @referral_sales = ReferralSale.where("created_at::date IN (?) AND user_id = (?)", date_range, partner_ids.split(','))
       elsif(params[:search][:start_date].present? && params[:search][:end_date].present?)
         date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
         @referral_sales = ReferralSale.where("created_at::date IN (?)", date_range)
-      elsif (params[:search][:partner].present?)
-        @referral_sales = ReferralSale.where(user_id: params[:search][:partner].split(','))
+      elsif (partner_ids.present?)
+        @referral_sales = ReferralSale.where(user_id: partner_ids.present?.split(','))
       else
         @referral_sales = ReferralSale.all
       end
     else
       @referral_sales = ReferralSale.all
+    end
+    if (discount_status.present? && (discount_status.split(',').size == 1))
+      @referral_sales = @referral_sales.where(is_approved: discount_status)
+    end
+    if (params[:payment].present? && params[:payment] != "null" && params[:payment].split(',').size == 1)
+      @payment = params[:payment]
     end
   end
 

@@ -16,24 +16,32 @@
       </thead>
 
       <tbody>
+      <%     @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "7c33c27b13f3e5aa9feb6d8f5db4563c")
+             ShopifyAPI::Base.activate_session(@session) %>
       <% @referral_sales.each do |referral_sale| %>
-          <tr>
-            <%     @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "7c33c27b13f3e5aa9feb6d8f5db4563c")
-                   ShopifyAPI::Base.activate_session(@session) %>
-            <% puts "-==-------------------",ShopifyAPI::Order.find(referral_sale.order_id).financial_status.inspect %>
-            <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || ShopifyAPI::Order.find(referral_sale.order_id).financial_status == "pending") ? 'disabled': '' %> /></td>
-            <td><a href="javascript:void(0);"><%= referral_sale.order_id %></a></td>
-            <td><%= referral_sale.created_at %></td>
-            <td><%= referral_sale.name %></td>
-            <td><%=  %></td>
-            <td><%= referral_sale.price%></td>
-            <td><%=  %></td>
-            <td><%= ShopifyAPI::Order.find(referral_sale.order_id).financial_status %></td>
-            <td><%= referral_sale.user.present? ? referral_sale.user.name : "" %></td>
-            <td><a href="/user_show?id=<%= referral_sale.user.present? ? referral_sale.user.id : "" %>"><%= referral_sale.user.present? ? referral_sale.user.referral : "" %></a></td></td>
-            <% ShopifyAPI::Base.clear_session %>
-          </tr>
+          <% payment_status = ShopifyAPI::Order.find(referral_sale.order_id).financial_status %>
+          <% is_show = true %>
+          <% if @payment.present? && @payment == "paid" %>
+              <% is_show = (payment_status == @payment) ? true : false %>
+          <% elsif @payment.present? %>
+              <% is_show = (payment_status != "paid") ? true : false %>
+          <% end %>
+          <% if is_show %>
+              <tr>
+                <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || ShopifyAPI::Order.find(referral_sale.order_id).financial_status == "pending") ? 'disabled': '' %> /></td>
+                <td><a href="javascript:void(0);"><%= referral_sale.order_id %></a></td>
+                <td><%= referral_sale.created_at %></td>
+                <td><%= referral_sale.name %></td>
+                <td><%= referral_sale.is_approved ? 'Approved' : "Pending" %></td>
+                <td><%= referral_sale.price %></td>
+                <td><%= (referral_sale.price.to_f * referral_sale.user.commission.to_f)/100 %></td>
+                <td><%= payment_status %></td>
+                <td><%= referral_sale.user.present? ? referral_sale.user.name : "" %></td>
+                <td><a href="/user_show?id=<%= referral_sale.user.present? ? referral_sale.user.id : "" %>"><%= referral_sale.user.present? ? referral_sale.user.referral : "" %></a></td></td>
+              </tr>
+          <% end %>
       <% end %>
+      <% ShopifyAPI::Base.clear_session %>
       </tbody>
     </table>
 <% else %>

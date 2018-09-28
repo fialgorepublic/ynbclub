@@ -28,10 +28,10 @@
           <div class="col-sm-12">
             <h5>Discount status</h5>
             <select id="discountStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
-              <option value="No Discount">No Discount</option>
-              <option value="pending" >Pending</option>
-              <option value="approved" >Approved</option>
-              <option value="cancel" >Cancel</option>
+              <!--<option value="No Discount">No Discount</option>-->
+              <option value="false" >Pending</option>
+              <option value="true" >Approved</option>
+              <!--<option value="cancel" >Cancel</option>-->
             </select>
             </div>
           </div>
@@ -43,10 +43,10 @@
           <div class="col-sm-12">
             <h5>Payment status</h5>
             <select id="paymentStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
-              <option value="unpaid">Unpaid</option>
+              <option value="pending">Unpaid</option>
               <option value="paid" >Paid</option>
-              <option value="refunded" >Refunded</option>
-              <option value="canceled" >Canceled</option>
+              <!--<option value="refunded" >Refunded</option>-->
+              <!--<option value="canceled" >Canceled</option>-->
             </select>
            </div>
          </div>
@@ -69,8 +69,8 @@
       <div class="form-inline m-b-sm">
         <div class="form-group m-b-sm">
           <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched" ng-model="multiDiscountStatus">
-            <option value="order_discount_approved"> approve discount</option>
-            <option value="order_discount_cancel"> cancel discount</option>
+            <option value="order_discount_approved"> approve sale</option>
+            <option value="order_discount_cancel"> cancel sale</option>
           </select>
           <button id="checkboxBtn" class="btn btn-sm btn-primary float-left-moblie">Apply</button>
           <label for="updateDiscountMulti" class="m-r-sm line-height-30 width-70-mb float-left-moblie">Order paid</label>
@@ -155,7 +155,7 @@
     <% end %>
 
     function apply_filter(){
-        var browsing_status_val = $('#browsingStatus').val();
+        var discountStatus = $('#discountStatus').val();
         var paymentStatus_val = $('#paymentStatus').val();
         var since = $('#since').val();
         var to_date = $('#to_date').val();
@@ -176,6 +176,6 @@
                 }
             }
         }
-        window.location.href = '/approve_sales?search[start_date]='+since+'&search[end_date]='+to_date+'&search[partner]='+user_ids;
+        window.location.href = '/approve_sales?search[start_date]='+since+'&search[end_date]='+to_date+'&search[partner]='+user_ids+'&search[discountStatus]='+discountStatus+'&payment='+paymentStatus_val;
     }
 </script>
