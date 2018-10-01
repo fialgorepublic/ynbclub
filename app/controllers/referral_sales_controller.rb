@@ -73,7 +73,7 @@ class ReferralSalesController < ApplicationController
         date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
         @referral_sales = ReferralSale.where("created_at::date IN (?)", date_range)
       elsif (partner_ids.present?)
-        @referral_sales = ReferralSale.where(user_id: partner_ids.present?.split(','))
+        @referral_sales = ReferralSale.where(user_id: partner_ids.split(','))
       else
         @referral_sales = ReferralSale.all
       end
