@@ -153,6 +153,10 @@
     var name = '<%= params[:payment] %>';
     $('#paymentStatus').val(name);
     <% end %>
+    <% if params[:search].present? && params[:search][:discountStatus].present? %>
+    var name = '<%= params[:search][:discountStatus] %>';
+    $('#discountStatus').val(name);
+    <% end %>
 
     function apply_filter(){
         var discountStatus = $('#discountStatus').val();
