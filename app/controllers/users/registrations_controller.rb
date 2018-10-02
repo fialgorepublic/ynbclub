@@ -20,9 +20,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if user_invited
           insert_points(user_invited.id, "Invite user to the Soint l beou")
           insert_points(resource.id, "Invite user to the Soint l beou")
+          UserMailer.referral_sign_up(user_invited, resource).deliver
         end
       end
       resource.create_profile
+      UserMailer.user_sign_up(resource).deliver
       initiate_shopify_session
       customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
       customer = customers.detect { |c| c.email == "#{resource.email}" }

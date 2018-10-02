@@ -33,6 +33,7 @@ class HomeController < ApplicationController
       ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
                           address: params[:address], shopdomain: params[:shopdomain], price: params[:price])
       insert_points(user.id, "Your product was ordered ")
+      UserMailer.referral_sale(user, name, params[:shopdomain]).deliver
     end
     render json: {success: true}
   end

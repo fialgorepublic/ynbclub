@@ -33,8 +33,10 @@ class SessionsController < ApplicationController
         if user_invited
           insert_points(user_invited.id, "Invite user to the Soint l beou")
           insert_points(user.id, "Invite user to the Soint l beou")
+          UserMailer.referral_sign_up(user_invited, user).deliver
         end
       end
+      UserMailer.user_sign_up(user).deliver
       initiate_shopify_session
       customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
       customer = customers.detect { |c| c.email == "#{user.email}" }
