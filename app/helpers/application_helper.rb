@@ -107,6 +107,14 @@ module ApplicationHelper
     end
   end
 
+  def buyer
+    Role.find_by_name("Buyer")
+  end
+
+  def ambassador
+    Role.find_by_name("Brand ambassador")
+  end
+
   private
 
   def add_default_class(html_options)
