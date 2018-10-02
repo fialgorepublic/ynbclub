@@ -1,6 +1,7 @@
 class ReferralSalesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_referral_sale, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /referral_sales
   # GET /referral_sales.json

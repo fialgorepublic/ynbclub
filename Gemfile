@@ -58,6 +58,7 @@ end
 gem 'rails_12factor', group: :production
 gem 'ckeditor'
 gem 'time_ago_in_words'
+gem 'cancancan', '~> 2.0'
 # gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 group :development do

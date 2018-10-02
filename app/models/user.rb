@@ -23,4 +23,13 @@ class User < ApplicationRecord
                     :path => "/files/:style/:id_:filename",
                     styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
+  def is_admin?
+    return true if(self.role.name.eql?("Admin") unless self.role.nil?)
+  end
+
+  def is_ambassador?
+    return true if(self.role.name.eql?("Brand ambassador") unless self.role.nil?)
+  end
+
 end

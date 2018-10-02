@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
   before_action :set_variables
   before_action :allow_iframe_requests
   before_action :allow_user_request
