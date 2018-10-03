@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:add_user_info]
   require 'csv'
   require 'roo'
 
@@ -154,7 +154,6 @@ class UsersController < ApplicationController
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      puts "==========================================",row.inspect
       user = User.create(name: row["Họ và tên"], email: row["Email"], phone_number: row["Số điện thoại"],
                          referral: row["Mã giới thiệu"], commission: row["Chiết khấu (%)"], identity_card: row["Chứng minh nhân dân"],
                          surplus: row["Số dư"], paid: row["Đã chi trả"], total_income: row["Tổng thu nhập"],
@@ -164,6 +163,21 @@ class UsersController < ApplicationController
     end
     flash[:notice] = "Successfully Imported ."
     redirect_to import_partner_path
+  end
+
+  def add_user_info
+    @user = User.find(params[:user][:id])
+    if @user.update(user_update_params)
+      flash[:notice] = "Partner information saved successfully"
+      redirect_to dashboard_path
+    else
+      @error_messages =[]
+      @user.errors.full_messages.map { |msg|      # Show Error messages while sign_up user
+        @error_messages << msg
+      }
+      flash[:alert] = @error_messages[0]
+      redirect_to dashboard_path
+    end
   end
 
   private
@@ -185,6 +199,10 @@ class UsersController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:first_name, :surname, :date_of_birth, :phone_number, :gender, :address_line_1, :address_line_2, :state, :city, :zip_code, :security_number, :account_number, :acc_holder_name, :bank_name)
+  end
+
+  def user_update_params
+    params.require(:user).permit(:phone_number, :identity_card, profile_attributes: [:id, :bank_name, :acc_holder_name, :account_number, :_destroy])
   end
 
 end

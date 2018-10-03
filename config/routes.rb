@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'update_user_role', to: 'dashboard#update_user_role'
   get 'auth/:provider/callback', to: 'sessions#create'
   post "add_partner_information", to: 'partner_informations#add_partner_information'
+  post "add_user_info", to: 'users#add_user_info'
   get "get_referral", to: 'home#get_referral'
   post "change_profile_picture", to: "dashboard#change_profile_picture"
   get "get_user_object", to: "dashboard#get_user_object"

@@ -3,8 +3,12 @@ class DashboardController < ApplicationController
   require 'link_thumbnailer'
   include ApplicationHelper
   def index
+    @user = current_user
     if current_user.role.blank?
       @role_selection = true
+    end
+    if current_user.role.present? && current_user.phone_number.blank?
+      @profile = true
     end
   end
 

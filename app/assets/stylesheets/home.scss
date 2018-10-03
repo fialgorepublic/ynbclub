@@ -1264,3 +1264,45 @@ i{
   margin-bottom:20px;
    }
   }
+
+#error_explanation{
+  background: #fd8f8f none repeat scroll 0 0;
+  border-radius: 0 0 4px 4px;
+  color: #fff;
+  left: 0;
+  margin: 0 auto;
+  max-width: 525px;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-transform: uppercase;
+  top: 0;
+  z-index: 2147483647;
+}
+
+#error_explanation h2 {
+  font-size: 14px;
+  padding: 14px 14px 5px;
+
+}
+#error_explanation ul{
+  padding-bottom: 5px;
+}
+
+form label.error {
+  color: #ff0000;
+}
+form .text.error {
+  color: #bdc5ce;
+  width: 100% !important;
+}
+label.error {
+  font-size: 10.5px;
+  left: 0;
+  right: 0;
+  top: 48px;
+  text-align: center;
+  font-weight: 400;
+  text-transform: capitalize;
+}

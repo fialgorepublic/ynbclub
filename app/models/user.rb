@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :points
   has_many :share_urls
   has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile, :allow_destroy => true
   has_many :comments
   has_many :likes
   has_many :comment_actions

@@ -6,7 +6,7 @@
 <div class="dashboard-holder">
   <div class="row">
     <div class="col-md-3">
-    <%= render partial: "shared/side_bar" %>
+      <%= render partial: "shared/side_bar" %>
 
 
     </div>
@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="row">
 
         <div class="col-md-12">
@@ -124,87 +124,89 @@
   </div>
 </div>
 
-<div id="add_partner_information" class="modal fade" role="dialog" >
+<div id="add_partner_information" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
-
-      <%= form_for :partner_information, url: add_partner_information_path, :remote => true, method: "POST", :html => {:id =>"save_partner_information"}  do |f| %>
+      <%= form_for(@user, url: add_user_info_path, html: { multipart: true, method: "POST", :id =>"save_partner_information"}) do |f| %>
           <div class="modal-body">
             <div class="modal-holder">
               <h3 class="text-center"><%= current_user.name %>! Became a Partner of "saintlbeau.com"</h3>
 
 
             </div>
-            <div class="stepwizard">
-              <div class="stepwizard-row row setup-panel">
-                <div class="stepwizard-step pd-l-0 pd-r-0 col-md-6 ">
-                  <a href="#step-1" type="button" class="btn btn-success btn-circle">1) Partner Information</a>
-                </div>
-                <div class="stepwizard-step pd-l-0 pd-r-0 col-md-6">
-                  <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2) Billing Information</a>
+            <!--<div class="stepwizard">-->
+            <!--<div class="stepwizard-row row setup-panel">-->
+            <!--<div class="stepwizard-step pd-l-0 pd-r-0 col-md-6 ">-->
+            <!--<a href="#step-1" type="button" class="btn btn-success btn-circle">1) Partner Information</a>-->
+            <!--</div>-->
+            <!--<div class="stepwizard-step pd-l-0 pd-r-0 col-md-6">-->
+            <!--<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2) Billing Information</a>-->
 
-                </div>
+            <!--</div>-->
 
-              </div>
-            </div>
+            <!--</div>-->
+            <!--</div>-->
 
-            <div class="panel panel-primary setup-content" id="step-1">
+            <div class="panel panel-primary">
 
               <div class="panel-body">
                 <div id="partner-section">
                   <div class="form-group">
-                    <%= f.label :store_name %><br />
-                    <%= f.text_field :store_name, autofocus: true, placeholder: "Enter Store Name", class: 'form-control', required: 'true' %>
+                    <%= f.label :phone_number %><br />
+                    <%= f.text_field :phone_number, placeholder: "Enter Phone Number", class: 'form-control', required: true, title: "Enter bank name" %>
                   </div>
+                  <%= f.hidden_field :id, value: @user.id %>
                   <div class="form-group">
-                    <%= f.label :phone_no %><br />
-                    <%= f.text_field :phone_no, placeholder: "Enter Phone Number", class: 'form-control' , required: 'true' %>
+                    <%= f.label :identity_card %><br />
+                    <%= f.text_field :identity_card, placeholder: "Enter identity card number", class: 'form-control', required: true, title: "Enter identity card number" %>
                   </div>
-                  <div class="form-group">
-                    <%= f.label :address %><br />
-                    <%= f.text_field :address, placeholder: "Enter address", class: 'form-control' , required: 'true' %>
+                  <%- @user.profile %>
+                  <%= f.fields_for :profile do |profile| %>
+                      <div class="nested-fields">
+                        <div class="form-group">
+                          <%= profile.label :bank_name %><br />
+                          <%= profile.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control', required: true, title: "Enter bank name" %>
+                        </div>
+                        <div class="form-group">
+                          <%= profile.label :acc_holder_name %><br />
+                          <%= profile.text_field :acc_holder_name, placeholder: "Enter Account Title", class: 'form-control', required: true, title: "Enter account title" %>
+                        </div>
+                        <div class="form-group">
+                          <%= profile.label :account_number %><br />
+                          <%= profile.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control', required: true, title: "Enter account number" %>
+                        </div>
+                      </div>
+                      </div>
+                  <% end %>
+                  <!--<button class="btn btn-primary nextBtn btn-lg btn-block pull-right" type="button">Continue</button>-->
                   </div>
-                  <div class="form-group">
-                    <%= f.label :id_number %><br />
-                    <%= f.text_field :id_number, placeholder: "00000000 000", class: 'form-control' , required: 'true' %>
-                  </div>
-                </div>
-                <button class="btn btn-primary nextBtn btn-lg btn-block pull-right" type="button">Continue</button>
-              </div>
             </div>
 
-            <div class="panel panel-primary setup-content" id="step-2">
+            <!--<div class="panel panel-primary setup-content" id="step-2">-->
 
-              <div class="panel-body">
-                <div id="billing-section">
-                  <div class="form-group">
-                    <%= f.label :bank_name %><br />
-                    <%= f.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :account_number %><br />
-                    <%= f.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :account_name %><br />
-                    <%= f.text_field :account_name, placeholder: "Enter Account Name", class: 'form-control' %>
-                  </div>
-                </div>
-                <!--<button class="btn btn-primary btn-lg  pull-right" type="button">Finis!</button>-->
-              </div>
-            </div>
-
-
-
-
-
-
-
+            <!--<div class="panel-body">-->
+            <!--<div id="billing-section">-->
+            <!--<div class="form-group">-->
+            <%#= f.label :bank_name %>
+            <%#= f.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control' %>
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <%#= f.label :account_number %>
+            <!--<%#= f.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control' %>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <%#= f.label :account_name %>
+            <!--<%#= f.text_field :account_name, placeholder: "Enter Account Name", class: 'form-control' %>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<button class="btn btn-primary btn-lg  pull-right" type="button">Finis!</button>-->
+            <!--</div>-->
+            <!--</div>-->
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">close</button>-->
             <%= f.submit :class=>'btn btn-primary' %>
           </div>
           </div>
@@ -217,50 +219,38 @@
     $(document).ready(function () {
         $("#save_partner_information").validate({
             rules: {
-                "partner_information[store_name]": {
+                "user[phone_number]": {
                     required: true
                 },
-                "partner_information[phone_no]": {
+                "user[identity_card]": {
                     required: true
                 },
-                "partner_information[address]": {
+                "user[profile][bank_name]": {
                     required: true
                 },
-                "partner_information[id_number]": {
+                "user[profile][acc_holder_name]": {
                     required: true
                 },
-                "partner_information[bank_name]": {
-                    required: true
-                },
-                "partner_information[account_number]": {
-                    required: true
-                },
-                "partner_information[account_name]": {
+                "user[profile][account_number]": {
                     required: true
                 }
 
             },
             messages: {
-                "partner_information[store_name]": {
-                    required: "Enter store name"
+                "user[phone_number]": {
+                    required: "Enter Phone number"
                 },
-                "partner_information[phone_no]": {
-                    required: "Enter phone number"
+                "user[identity_card]": {
+                    required: "Enter identity card number"
                 },
-                "partner_information[address]": {
-                    required: "Enter store address"
-                },
-                "partner_information[id_number]": {
-                    required: "Enter id number"
-                },
-                "partner_information[bank_name]": {
+                "user[profile][bank_name]": {
                     required: "Enter bank name"
                 },
-                "partner_information[account_number]": {
-                    required: "Enter Account Number"
+                "user[profile][acc_holder_name]": {
+                    required: "Enter account title"
                 },
-                "partner_information[account_name]": {
-                    required: "Enter Account Name"
+                "user[profile][account_number]": {
+                    required: "Enter account number"
                 }
             }
         });
@@ -272,7 +262,10 @@
     <% if @role_selection %>
     $('#selectRole').modal('show');
     <% end %>
-    //    $('#add_partner_information').modal('show');
+    <% if @profile %>
+    $('#add_partner_information').modal('show');
+    <% end %>
+
 
     function highlight_div(id){
         $(".role-box").attr("style", "border: 3px solid  #f4f8fb");
