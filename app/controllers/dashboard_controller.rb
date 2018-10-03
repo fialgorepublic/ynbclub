@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
     if current_user.role.blank?
       @role_selection = true
     end
-    if current_user.role.present? && current_user.phone_number.blank?
+    if current_user.role.present? && !current_user.is_admin? && current_user.phone_number.blank?
       @profile = true
     end
   end
