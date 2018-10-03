@@ -1,17 +1,14 @@
 class SessionsController < ApplicationController
   include ApplicationHelper
   def create
-    puts "=------------------------------------------",params.inspect
     get_params = request.env["omniauth.params"]
     invite = get_params["invite"]
-    puts "-------------------------------",invite.inspect
     @omniauth = request.env['omniauth.auth']
     email = @omniauth.info.email
     name = @omniauth.info.name
     provider_id = @omniauth.uid
     provider = @omniauth.provider
     user_image = @omniauth.info.image
-    logger.info"=======image============"+ user_image.inspect
     user = User.where(:email => email).first
 
     if user.present?
@@ -47,7 +44,6 @@ class SessionsController < ApplicationController
         customer.last_name = ''
         customer.metafields = [{key: "image_url", namespace: "global", value: '', value_type: "string"}]
         customer.save
-        puts "--------------------- new customer here ---------------------",customer.inspect
       end
       clear_shopify_session
       sign_in :user, user

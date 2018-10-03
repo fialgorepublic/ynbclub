@@ -64,7 +64,6 @@ class ProductsController < ApplicationController
   end
 
   def get_products_from_shopify
-    puts "==============================",params.inspect
     @blog = Blog.find_by_id(params[:id])
     initiate_shopify_session
     @products = ShopifyAPI::Product.all

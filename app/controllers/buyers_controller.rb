@@ -9,7 +9,6 @@ class BuyersController < ApplicationController
     else
       @orders = []
     end
-    puts "---------------------------------------",@orders.inspect
     clear_shopify_session
   end
 

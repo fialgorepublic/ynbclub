@@ -26,7 +26,6 @@ class DashboardController < ApplicationController
   end
 
   def change_profile_picture
-    puts "----------------------------------",params.inspect
     user = current_user.update(avatar: params[:user][:avatar])
     respond_to do |format|
       if user

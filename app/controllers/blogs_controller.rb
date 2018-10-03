@@ -77,7 +77,6 @@ class BlogsController < ApplicationController
   end
 
   def blog_like_unlike
-    puts "=================================",params.inspect
     if params[:value].to_s == "false"
       Like.create(user_id: current_user.id, blog_id: params[:id])
     else
