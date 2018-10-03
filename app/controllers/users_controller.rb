@@ -190,7 +190,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
-    params.require(:user).permit(:phone_number, :identity_card, profile_attributes: [:id, :bank_name, :acc_holder_name, :account_number, :_destroy])
+    params.require(:user).permit(:phone_number, :email, profile_attributes: [:id, :bank_name, :acc_holder_name, :account_number, :_destroy])
   end
 
 end
