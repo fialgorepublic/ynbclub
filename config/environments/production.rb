@@ -67,9 +67,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :user_name            => 'info.peeredge@gmail.com',
-      :password             => 'peeredge_api',
-      :authentication       => "plain",
+      :domain               => "gmail.com",
+      :user_name            => "info.saintlbeau@gmail.com",
+      :password             => "info@12345",
+      :authentication       => :plain,
       :enable_starttls_auto => true
   }
   # Ignore bad email addresses and do not raise email delivery errors.
