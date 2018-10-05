@@ -16,12 +16,24 @@ body{
 
 //  padding: 0 0;
   .navbar-default{
-    background: #fff;
+    background: #000c21;
     margin-bottom: 0;
   }
+  .btn-none{
+    background:none;
+    border:none
+  }
   .navbar-default .navbar-nav>li>a{
-    color: #000;
+    color: #f5f5f5;
+    font-weight:300;
     text-transform: uppercase;
+  }
+  .navbar-default .navbar-brand{
+    margin-left:0;
+    font-weight:300;
+    color:#fff;
+    letter-spacing:8px;
+    text-transform:uppercase
   }
 }
 .modal-content{
@@ -292,8 +304,9 @@ opacity: 1 !important;
   display: block;
   text-decoration: none;
   color: #2c2e3d;
-  font-size: 12px;
+  font-size: 15px;
   padding: 8px 0;
+  font-weight: 300
 }
 .nav-side-menu li a i {
   padding-left: 10px;
@@ -394,7 +407,7 @@ opacity: 1 !important;
 .ab-dropdown{
   position: absolute;
   right: 105px;
-  top: 50px;
+  top: 60px;
  .dropdown-menu {
     top: 61%;
     left: 0;
@@ -412,8 +425,8 @@ opacity: 1 !important;
     color: #000;
     border: 1px solid #ccc;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     line-height: 18px;
     padding: 0;
   }
@@ -491,9 +504,18 @@ opacity: 1 !important;
     box-shadow: 0px 2px 12px 3px rgba(221,221,221,0.77);
     border-radius: 5px;
     list-style: none;
-    margin: 75px 0 0;
+    margin: 0 0 0;
+    position:fixed;
+    top:100px;
     li.active {
       position: relative;
+      a{
+            background: #eef7ff;
+            margin: 0;
+            padding: 10px 30px;
+            display: inline-block;
+            min-width:200px;
+      }
     }
     li.active:after{
       position: absolute;
@@ -538,6 +560,7 @@ opacity: 1 !important;
     }
     label{
       font-size: 15px;
+      font-weight:300;
     }
   }
 }
@@ -1368,6 +1391,7 @@ label.error {
   padding: 5px 5px;}
   li:hover{
       border-left: 3px solid #125492;
+          background: #eef7ff;
   }
 }
 
