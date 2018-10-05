@@ -1306,3 +1306,89 @@ label.error {
   font-weight: 400;
   text-transform: capitalize;
 }
+
+
+/***** Account Setting ***/
+
+.account-style{
+  border-right:1px solid #eee;
+  border-left:1px solid #eee;
+  .box-shadow{
+    padding: 15px 25px 25px;
+    border: 1px solid #eee;
+    border-radius: 0px;
+    box-shadow: unset;
+
+     .btn  {
+       background: #323232;
+       border-radius: 0px;
+     }
+  }
+
+.account-heading-style{
+  h3{
+      margin-top: 0px;
+      margin-bottom: 20px;
+      }
+    }
+}
+
+
+.account-right-setting{
+      padding-left:0px;
+    .account-list{
+     box-shadow:unset;
+      a{
+      border-bottom:0px!important;
+      }
+    }
+  }
+
+
+.account-side-menu-style{
+      box-shadow: unset;
+  .brand{
+      border-bottom:0px;
+     } 
+  .account-brand-icon{
+  border-bottom:1px solid #4444;
+    p{
+      margin: 0 50px 10px;
+       span{
+          .fa-money{
+         color:#19a95a;
+          }
+        }
+      }
+  }  
+  li{
+  border-bottom:0px;
+  } 
+  li a{
+  padding: 5px 5px;}
+  li:hover{
+      border-left: 3px solid #125492;
+  }
+}
+
+.account-side-btn{
+  .acc-btn-style{
+    background-color:#323232;
+    border-radius:0px;
+        }
+   }
+
+.account-header-style{
+    .header-holder{
+      box-shadow:unset;
+    } 
+    .navbar  {
+      padding:10px;
+       .navbar-nav > li > a{
+
+            }
+
+    }
+     
+
+}

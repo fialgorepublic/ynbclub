@@ -10,7 +10,7 @@
 
 
     </div>
-    <div class="col-md-6 setting-holder">
+    <div class="col-md-6 setting-holder account-style">
       <div class="row">
         <div class="col-md-12">
           <div class="main">
@@ -21,16 +21,15 @@
       </div>
 
       <div class="row" id="email">
-        <div class="col-md-12">
-
-          <div class="box-shadow">
+       <div class="col-md-12">
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12 account-heading-style">
                 <h3>Email</h3>
               </div>
             </div>
 
-            <div class="row">
+          <div class="box-shadow">
+             <div class="row">
               <div class="col-md-12">
                 <%= form_tag update_email_users_path do |f| %>
                     <%= hidden_field_tag :id, current_user.id %>
@@ -81,12 +80,16 @@
             </div>
           <% end %>
 
-          <div class="box-shadow" id="phone_number">
-            <div class="row">
-              <div class="col-md-12">
+
+          <div class="row">
+              <div class="col-md-12 account-heading-style">
                 <h3>Phone Number</h3>
               </div>
             </div>
+
+
+          <div class="box-shadow" id="phone_number">
+            
 
             <div class="row">
               <div class="col-md-12">
@@ -101,12 +104,16 @@
 
           </div>
 
-          <div class="box-shadow" id="personal_details">
-            <div class="row">
-              <div class="col-md-12">
+
+
+          <div class="row">
+              <div class="col-md-12 account-heading-style">
                 <h3>Personal Details</h3>
               </div>
             </div>
+
+          <div class="box-shadow" id="personal_details">
+            
 
             <div class="row">
               <%= form_for current_user.profile do |f| %>
@@ -124,33 +131,37 @@
 
             <div class="row">
               <div class="col-md-6">
-
-                <div class="form-group" >
+                  <div class="form-group" >
                   <%= f.select(:gender, options_for_select(["Male", "Female"], selected: f.object.gender), {prompt: 'Select Gender *'}, {class: "form-control"}) %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group date" data-provide="datepicker">
-                  <%= f.text_field :date_of_birth, class: "form-control", placeholder: "Date Of Birth*", id: "data-date" %>
+               <%= f.text_field :date_of_birth, class: "form-control", placeholder: "Date Of Birth*", id: "data-date" %>
                   <div class="input-group-addon date-arrow-down">
                     ▾
                   </div>
-                </div>
-                <%= f.submit "Save", class: "btn btn-lg btn-block btn-primary" %>
               </div>
+
+            </div>
+            
+              <div class="col-md-12">
+                <%= f.submit "Save", class: "btn btn-lg btn-block btn-primary" %>
               <% end %>
+                </div>
             </div>
 
           </div>
 
-
-
-          <div class="box-shadow" id="shipping_address">
-            <div class="row">
-              <div class="col-md-12">
+          <div class="row">
+              <div class="col-md-12 account-heading-style">
                 <h3>Shipping Address</h3>
               </div>
             </div>
+
+
+          <div class="box-shadow" id="shipping_address">
+            
 
             <div class="row">
               <%= form_for current_user.profile do |f| %>
@@ -192,12 +203,15 @@
 
           </div>
 
-          <div class="box-shadow" id="bank_account">
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12 account-heading-style">
                 <h3>Bank  Account</h3>
               </div>
             </div>
+
+
+          <div class="box-shadow" id="bank_account">
+            
 
             <div class="row">
               <%= form_for current_user.profile do |f| %>
@@ -237,7 +251,7 @@
     </div>
 
 
-    <div class="col-md-3 setting-holder">
+    <div class="col-md-3 setting-holder account-right-setting">
       <div class="row">
         <div class="col-md-12">
           <ul class="account-list">
