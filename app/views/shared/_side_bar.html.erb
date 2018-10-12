@@ -60,6 +60,7 @@
             <a href="/approve_sales"><i><img src="/assets/iocn-5.png"> </i>Approve Sales  </a>
           </li>
           <li>
+            <% Setting.first.present? ? "" : Setting.create(min_payment: 200, cookie_time: 60) %>
             <a class="auto click-close" href="<%= edit_setting_path(Setting.first) %>">
               <i class="fa fa-gears"></i>
               <span class="ng-binding">Configuration</span>
