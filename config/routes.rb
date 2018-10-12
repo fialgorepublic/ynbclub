@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
+  get 'buyerDashboard', to: 'dashboard#buyerDashboard'
   get 'dashboard_main', to: 'dashboard#dashboard_main'
   get 'update_user_role', to: 'dashboard#update_user_role'
   get 'auth/:provider/callback', to: 'sessions#create'
