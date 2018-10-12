@@ -3,12 +3,16 @@ class DashboardController < ApplicationController
   require 'link_thumbnailer'
   include ApplicationHelper
   def index
-    @user = current_user
-    if current_user.role.blank?
-      @role_selection = true
-    end
-    if current_user.role.present? && !current_user.is_admin? && current_user.phone_number.blank?
-      @profile = true
+    if current_user.role.present? && current_user.is_buyer?
+      redirect_to buyerDashboard_path
+    else
+      @user = current_user
+      if current_user.role.blank?
+        @role_selection = true
+      end
+      if current_user.role.present? && !current_user.is_admin? && current_user.phone_number.blank?
+        @profile = true
+      end
     end
   end
 
