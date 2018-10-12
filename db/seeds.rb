@@ -19,3 +19,7 @@ if PointType.first.blank?
   PointType.create(name: "Invited user spent $50", point: 15)
   PointType.create(name: "Your product was ordered ", point: 15)
 end
+
+if Setting.first.blank?
+  Setting.create(min_payment: 200, cookie_time: 60)
+end
