@@ -28,8 +28,8 @@ class SessionsController < ApplicationController
       if invite.present?
         user_invited = User.find_by_email(invite)
         if user_invited
-          insert_points(user_invited.id, "Invite user to the Soint l beou")
-          insert_points(user.id, "Invite user to the Soint l beou")
+          insert_points(user_invited.id, 6)
+          insert_points(user.id, 6)
           UserMailer.referral_sign_up(user_invited, user).deliver
         end
       end

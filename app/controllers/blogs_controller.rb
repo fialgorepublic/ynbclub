@@ -117,7 +117,7 @@ class BlogsController < ApplicationController
 
   def share_blog
     share_url = ShareUrl.create(user_id: current_user.id, blog_id: params[:id], url_type: params[:value])
-    insert_points(current_user.id, "Post the blog")
+    insert_points(current_user.id, 3)
     render json: {success: true}
   end
 

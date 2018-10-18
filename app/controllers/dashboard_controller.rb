@@ -65,7 +65,7 @@ class DashboardController < ApplicationController
   def step_three
     url = params[:url]
     if params[:saintlbeau_post].to_s == "true"
-      insert_points(current_user.id, "Take and share a snapshot")
+      insert_points(current_user.id, 1)
     end
     ShareUrl.create(url: url, user_id: current_user.id)
   end
