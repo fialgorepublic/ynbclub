@@ -46,9 +46,9 @@
             <button class="btn btn-primary btn-none dropdown-toggle" type="button" data-toggle="dropdown"><img src="/assets/user-img.png">
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
-              <% if !(current_user.is_shopify_user) %>
+              <%# if !(current_user.is_shopify_user) %>
               <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
-            <% end %>
+            <%# end %>
             </ul>
           </div>
           </li>
