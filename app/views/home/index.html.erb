@@ -10,11 +10,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">SaintLBeau</a>
+        <a class="navbar-brand" href="/">SAINT L' BEAU</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse header-custom-style" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <!--<li class="dropdown">-->
             <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOG <span class="caret"></span></a>-->
@@ -32,13 +32,13 @@
           <li><a href="/blogs">BLOG</a></li>
           <!--<li><a href="#">TRACKING</a></li>-->
           <li><a href="/users">BRAND AMBASSADOR</a></li>
+           <li class="header-serach-bar"><input type="text" class="header-serach-bar-input" placeholder="" /><i style="font-size:20px;" class="fa fa-search"></i></li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href=""><i class="fa fa-search"></i></a></li>
-          <li><a href=""><i class="fa fa-shopping-cart"></i></a></li>
+        <ul class="nav navbar-nav navbar-right">      
+          <li><a href="javascript:void(0);"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
           <li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>
-          <li class="active"> <a href="javascript:void(0);" onclick="register_form();">Register</a></li>
+          <li class="custom-register-btn-style"> <a href="javascript:void(0);" onclick="register_form();">Register</a></li>
         </ul>
       </div>
     </div>
@@ -51,7 +51,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Who are we?</h1>
-        <button class="btn btn-danger">Share with friend to get $10</button>
+<!-- <button class="btn btn-danger">Share with friend to get $10</button> --> 
       </div>
     </div>
 
@@ -93,8 +93,8 @@
 
           <div class="row m-t-30">
             <div class="col-md-12">
-              <p><small>*When your friend buys the first order of 400,000 VND or more</small></p>
-            </div>
+           <!--    <p><small>*When your friend buys the first order of 400,000 VND or more</small></p>
+            --> </div>
           </div>
 
         </div>
@@ -122,11 +122,8 @@
       <!--</div>-->
       <div class="modal-body">
         <div class="modal-holder">
-
-
-          <div class="main-login">
-
-            <h3 class="text-center">Log in to SaintLBeau</h3>
+         <div class="main-login">
+          <h3 class="text-center">Log in to Saint L' Beau</h3>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
@@ -164,7 +161,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                        <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a>
+                        <a href="javascript:void(0);" onclick="register_form();" class="text-center">Create Account (OR)</a>
                     </div>
                   <div class="col-md-6 text-right">
                     <a href="javascript:void(0);" onclick="forgot_password();" class="text-center">Forgot password?</a>
@@ -205,14 +202,14 @@
 
           <div class="main-login">
 
-            <h3 class="text-center">Register to SaintLBeau</h3>
+            <h3 class="text-center">Register to Saint L' Beau</h3>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="col-md-6 col-sm-6 pd-l-0 pd-r-0 col-xs-6">
-                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> Login with Facebook</a>
+                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> Signup with Facebook</a>
                 </div>
                 <div class="col-md-6 col-sm-6 pd-r-0 pd-l-0 col-xs-6">
-                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> Login with Google +</a>
+                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> Signup with Google +</a>
                 </div>
               </div>
             </div>
@@ -244,7 +241,7 @@
 
                 <div class="actions text-center">
                   <%= f.submit "Register", class: "btn btn-lg btn-bottom btn-primary btn-block"  %>
-                  <a href="javascript:void(0);" onclick="login_form();" class="text-center">I have an account</a>
+                  <a href="javascript:void(0);" onclick="login_form();" class="text-center">I haven't account</a>
                 </div>
             <% end %>
 
@@ -290,7 +287,7 @@
               <a href="javascript:void(0);" onclick="login_form();" class="text-center">Login</a>
             </div>
             <div class="col-md-6 text-right">
-              <a href="javascript:void(0);" onclick="register_form();" class="text-center">I haven't account</a>
+              <a href="javascript:void(0);" onclick="register_form();" class="text-center">Create Account (OR)</a>
 
             </div>
           </div>

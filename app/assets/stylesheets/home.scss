@@ -1541,6 +1541,62 @@ label.error {
       }
     }
   }
-  
-
 }
+
+
+
+.header-custom-style{
+    ul{
+      li.header-serach-bar{
+         margin:14px 10px;
+    .header-serach-bar-input{
+         width:600px;
+         background-color: #000c21;
+         border: none;
+         color: #fff;
+      }
+    .header-serach-bar-input:focus{
+        outline: none;
+      }
+    i{
+        color: #fff;
+      } 
+    } 
+  } 
+    .navbar-nav>li>a:hover{
+        color: #b7b7b7;
+    }
+   
+    .custom-register-btn-style > a:hover{
+        color: #ccc !Important;
+    }   
+}
+
+
+.shared-header-custom-style{
+    ul{
+      li.shared-header-serach-bar-style{
+         margin:14px 10px;
+    .shared-header-serach-bar-style-input{
+         width:425px;
+         background-color: #000c21;
+         border: none;
+         color: #fff;
+      }
+    .shared-header-serach-bar-style-input:focus{
+        outline: none;
+      }
+    i{
+        color: #fff;
+      } 
+    } 
+  } 
+    .navbar-nav>li>a:hover{
+        color: #b7b7b7;
+    }     
+}
+.toast-top-right{
+  right:50px;
+  top:60px !important;
+}
+
