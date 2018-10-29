@@ -108,6 +108,14 @@
     padding: 10px 17px;
     font-size: 18px;}
   }
+
+  h2{
+    i:hover{
+    background-color: #444;
+    color: #fff;}
+  }
+
+
 button{
   border-radius:unset;
   padding: 10px 20px;
@@ -130,7 +138,6 @@ button:active{
 }
 .product-heading{
   h2{
-  margin-top:15px;
   color:#5f5f5f;}
 }
 .box-shadow-am{
@@ -199,6 +206,9 @@ button:active{
   button.close{
   padding: 0px 7px;
   }
+
+
+
   }
 
   .product-toolTips{

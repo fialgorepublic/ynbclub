@@ -47,11 +47,11 @@
           <li  data-toggle="" data-target="#" class="collapsed">
             <a href="/referral_sales"><i><img src="/assets/icon-4.png"> </i> My Sales  </a>
           </li>
-
+      <% end %>
           <li  data-toggle="" data-target="#" class="collapsed">
             <a href="/blogs"><i><img src="/assets/icon-6.png"> </i> Blogs</a>
           </li>
-      <% end %>
+
       <% if current_user.role.present? && current_user.role.name == "Admin" || current_user.is_shopify_user %>
           <li>
             <a href="/users/brand_ambassadors"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Commission  </a>
