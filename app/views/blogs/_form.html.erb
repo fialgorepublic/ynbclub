@@ -34,10 +34,10 @@
                   <!--</div>-->
                   <div class="field form-group" style="border: 1px solid #eee;
                           padding: 30px;
-                          margin: 20px 0;
+                          margin: 50px 0;
                           text-align: center;
                           min-height: 300px">
-                    <%= image_tag(@blog.avatar.present? ? @blog.avatar.url : 'https://saint-l-beau.herokuapp.com/blogPlaceholder.jpeg', :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
+                    <%= image_tag(@blog.avatar.present? ? @blog.avatar.url : 'https://saint-l-beau.herokuapp.com/xg', :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
                
                <div class="field form-group">
                     <div class="fileUpload form-control start blog-imgUpload">
@@ -55,18 +55,18 @@
 <div class="row m-t-20">
   <div class="Newblog-category">
                 <div class="col-md-4">
-                  <div class="category-option type="button" data-toggle="popover" id="tooltip-stlye-category" data-placement="top" data-content="Vivamus sagittis lacus vel augue" title="">
+                  <div class="category-option type="button" data-toggle="popover" id="tooltip-stlye-category" data-placement="top" data-content="Please Select Category First" title="">
 
                   <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
                 </div>
               </div>
                 <div class="col-md-4">
-                  <div class="blog-postCategory type="button" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue" title="">
+                  <div class="blog-postCategory type="button" data-toggle="popover" data-placement="top" data-content="Please Select Promote blog post" title="">
                   <%= form.collection_select :promote_post, ["promote 1", "promote 2", "promote 3"], :to_s, :to_s , {:include_blank => 'Promote blog post'}, html_options = {:class=>"form-control"} %>
+                  </div>
+                 </div>
                 </div>
-              </div>
-              </div>
-</div>
+               </div>
 
  <div class="row m-t-30">
           <div class="col-md-12">
@@ -79,10 +79,9 @@
               <div class="form-group">
                 <label>Enter Text</label>
                 <%= form.text_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text" %>
-
-              </div>
+             </div>
             </div>
-          </div>
+           </div>
 
 
           <!-- <div class="actions">   
@@ -90,26 +89,20 @@
         <%#= form.submit class: 'btn btn-success' %>
       </div>
 </div> -->
-
-          </div>
-   </div>
-
-
-                </div>
-
-                <div class="col-md-4">
+    </div>
+        </div>
+           </div>
+              <div class="col-md-4">
                   <div class="product-heading"> 
                 <h2> Products </h2>          
                 </div>
                 <div class="product-toolTips">
-     <div class="box-shadow-am sm-pd-am m-t-20 assign-Heading type="button" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum" title="">
+     <div class="box-shadow-am sm-pd-am m-t-20 assign-Heading type="button" data-toggle="popover" data-placement="bottom" data-content="Please Select Product" title="">
               <h4><a href="javascript:void(0);" onclick="get_products();" style="text-decoration: none;">+ Assign Product</a></h4>
                   </div>
-             </div>
-          </div> 
+                 </div>
+                </div> 
               </div>
-
-   
             </div>
           </div>
         </div>
