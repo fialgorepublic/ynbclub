@@ -17,16 +17,20 @@ class DashboardController < ApplicationController
   end
 
   def update_user_role
-    current_user.update_attributes(role_id: params[:role_id])
-    flash[:notice] = "Successfully updated role"
-    if current_user.role.name == "Buyer"
-      buyer = "true"
+    if params[:role_id].present?
+      current_user.update_attributes(role_id: params[:role_id])
+      flash[:notice] = "Successfully updated role"
+      if current_user.role.name == "Buyer"
+        buyer = "true"
+      else
+        referral = Devise.friendly_token
+        current_user.update_attributes(referral: referral)
+        buyer = "false"
+      end
+      render json: {success: true, :buyer => buyer}
     else
-      referral = Devise.friendly_token
-      current_user.update_attributes(referral: referral)
-      buyer = "false"
+      render json: {success: false}
     end
-    render json: {success: true, :buyer => buyer}
   end
 
   def change_profile_picture
