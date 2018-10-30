@@ -81,16 +81,14 @@
           <% end %>
 
 
-          <div class="row">
+          <div class="row" id="phone_number">
               <div class="col-md-12 account-heading-style">
                 <h3>Phone Number</h3>
               </div>
             </div>
 
 
-          <div class="box-shadow" id="phone_number">
-            
-
+          <div class="box-shadow">
             <div class="row">
               <div class="col-md-12">
                 <%= form_for current_user.profile do |f| %>
@@ -106,15 +104,12 @@
 
 
 
-          <div class="row">
+          <div class="row" id="personal_details">
               <div class="col-md-12 account-heading-style">
                 <h3>Personal Details</h3>
               </div>
             </div>
-
-          <div class="box-shadow" id="personal_details">
-            
-
+          <div class="box-shadow">
             <div class="row">
               <%= form_for current_user.profile do |f| %>
               <div class="col-md-6">
@@ -153,16 +148,12 @@
 
           </div>
 
-          <div class="row">
+          <div class="row" id="shipping_address">
               <div class="col-md-12 account-heading-style">
                 <h3>Shipping Address</h3>
               </div>
             </div>
-
-
-          <div class="box-shadow" id="shipping_address">
-            
-
+          <div class="box-shadow">
             <div class="row">
               <%= form_for current_user.profile do |f| %>
               <div class="col-md-12">
@@ -203,14 +194,14 @@
 
           </div>
 
-            <div class="row">
+            <div class="row" id="bank_account">
               <div class="col-md-12 account-heading-style">
                 <h3>Bank  Account</h3>
               </div>
             </div>
 
 
-          <div class="box-shadow" id="bank_account">
+          <div class="box-shadow" >
             
 
             <div class="row">
