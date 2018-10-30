@@ -330,6 +330,9 @@
     }
     function add_role(){
         var role_id = $('#role_id').val();
+        if (role_id == ""){
+            return false;
+        }
         $.ajax({
             url:'/update_user_role?role_id='+role_id,
             type:'get',
