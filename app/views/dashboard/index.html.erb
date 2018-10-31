@@ -162,9 +162,9 @@
       <div class="modal-body">
         <div class="modal-holder">
           <div id="current_user_role">
-            <h3 class="text-center">Hi <%= current_user.name %>! You're successfully registered as <%= current_user.role.present? ? current_user.role.name : "" %> </h3>
+            <h3 class="text-center">Hi <%= current_user.name %>! You're successfully registered as <%= current_user.role.present? ? current_user.role.name : "Buyer" %> </h3>
           </div>
-          <p>We have sent a confirmation link to your email. Please verify your account.</p>
+          <!--<p>We have sent a confirmation link to your email. Please verify your account.</p>-->
           <div style="text-align: center">
             <!--<button class="btn btn-default">open catalog</button>-->
             <!--<button class="btn btn-default">Go to brands</button>-->
@@ -272,6 +272,7 @@
 
 <script>
     $(document).ready(function () {
+
         $("#save_partner_information").validate({
             rules: {
                 "user[phone_number]": {
@@ -328,6 +329,8 @@
         $('#submit-role').removeAttr('disabled');
         $("#" + id).attr("style", "border:3px solid #337ab7");
     }
+    $('body').addClass('modal-dark')
+
     function add_role(){
         var role_id = $('#role_id').val();
         if (role_id == ""){
@@ -339,10 +342,12 @@
             dataType:'json',
             processData:false,
             success:function (data) {
+                $('body').removeClass('modal-dark')
                 $('#selectRole').modal('hide');
                 $('#current_user_role').load(' #current_user_role');
                 if(data.buyer == "true"){
-                    $('#afterSelectRole').modal('show');
+                    window.location.href = '/buyerDashboard'
+//                    $('#afterSelectRole').modal('show');
 
                 }else{
                     $('#add_partner_information').modal('show');
@@ -398,4 +403,11 @@
 
         $('div.setup-panel div a.btn-success').trigger('click');
     });
+
 </script>
+
+<style>
+    .modal-dark .modal-backdrop{
+        opacity: 1;
+    }
+</style>
