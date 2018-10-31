@@ -37,6 +37,7 @@
 
         <ul class="nav navbar-nav navbar-right">      
 <!--           <li><a href="javascript:void(0);"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li> -->
+          <!--<li><a href="javascript:void(0);"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>-->
           <li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>
           <li class="custom-register-btn-style"> <a href="javascript:void(0);" onclick="register_form();">Register</a></li>
         </ul>
@@ -105,6 +106,53 @@
     </div>
   </div>
 </section>
+<!--<section class="middle">-->
+  <!--<div class="container">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-12">-->
+        <!--<div class="box-shadow">-->
+          <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+              <!--<p class="text-center"> You'll receive 20 coins on the saint l' Beau web site for every registered friend by your invitation link. your friend will receive 20 coins too</p>-->
+              <!--<p class="text-center"><a hre="">How can I earn and spend coins?</a></p>-->
+              <!--<div class="col-md-12">-->
+                <!--<div class="custom-clipboard">-->
+                <!--<div class="form-box">-->
+                  <!--<input type="text" value="https://www.saintlbeou.com/invite/PAUL" id="clipboardFunctionInput">-->
+                  <!--<button class="btn btn-default pull-right" onclick="clipboardFunction()">Copy text</button>-->
+
+                <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+
+            <!--</div>-->
+          <!--</div>-->
+
+
+
+          <!--<div class="row text-center">-->
+            <!--<div class="col-md-4 ">-->
+              <!--<button class="btn btn-primary btn-block"> <i class="fa fa-facebook"></i> Share on facebook</button>-->
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+              <!--<button class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> Share on Twitter</button>-->
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+              <!--<button class="btn btn-warning btn-block"> <i class="fa fa-envelop"></i> Share on Mail</button>-->
+            <!--</div>-->
+
+          <!--</div>-->
+
+          <!--<div class="row m-t-30">-->
+            <!--<div class="col-md-12">-->
+            <!--</div>-->
+          <!--</div>-->
+
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</section>-->
 
 <!--<div class="container">-->
   <!--<div class="row">-->
@@ -231,6 +279,11 @@
                 <div class="form-group">
                   <%= f.label :email %><br />
                   <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email", class: 'form-control' %>
+                  <%= f.text_field :name, autofocus: true, autocomplete: "Name", class: 'form-control', placeholder: "Enter Name" %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "Enter Email" %>
                 </div>
                 <%= hidden_field_tag :invite  %>
 
@@ -240,6 +293,7 @@
                       <em>(<%= @minimum_password_length %> characters minimum)</em>
                   <% end %><br />
                   <%= f.password_field :password, autocomplete: "off",placeholder: "Password", class: 'form-control' %>
+                  <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Enter Password" %>
                 </div>
 
                 <div class="actions text-center">
@@ -362,6 +416,8 @@
     function login_form(){
         $('#signUp').modal('hide');
         $('#forgotPassword').modal('hide');
+        $('#signIn').validate().resetForm();
+        $('#signIn').find('.error').removeClass('error');
         $('#signIn').modal('show');
     }
     function register_form(){
@@ -369,6 +425,8 @@
         $('#invite').val(invite);
         $('#signIn').modal('hide');
         $('#forgotPassword').modal('hide');
+        $('#signUp').validate().resetForm();
+        $('#signUp').find('.error').removeClass('error');
         $('#signUp').modal('show');
     }
     function forgot_password(){

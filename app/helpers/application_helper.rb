@@ -60,6 +60,10 @@ module ApplicationHelper
     Point.create(user_id: user_id, point_type_id: point_type.id, point_value: point_type.point)
   end
 
+  def get_point(id)
+    PointType.find_by_id(id).point
+  end
+
   def get_status status
     case status
       when "-1"

@@ -211,3 +211,37 @@
   </div>
 
 </div>
+
+<div id="afterSelectRole" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-holder">
+          <div id="current_user_role">
+            <h3 class="text-center">Hi <%= current_user.name %>! You're successfully registered as <%= current_user.role.present? ? current_user.role.name : "Buyer" %> </h3>
+          </div>
+          <!--<p>We have sent a confirmation link to your email. Please verify your account.</p>-->
+          <div style="text-align: center">
+            <!--<button class="btn btn-default">open catalog</button>-->
+            <!--<button class="btn btn-default">Go to brands</button>-->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  if ('<%= params[:registered] %>' == "true"){
+      $('#afterSelectRole').modal('show');
+  }
+</script>
