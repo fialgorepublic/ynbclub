@@ -448,10 +448,10 @@ opacity: 1 !important;
   padding: 0;
 }
 .image-content-snap{
+  p{
   font-size: 18px;
-  margin-top: 20px;
-  margin-bottom: 20px;
   padding: 0 20px;
+  }
 }
 .m-h-400{
   min-height: 400px;
@@ -666,7 +666,7 @@ opacity: 1 !important;
     display: block;
   }
 }
-.dashboard-holder{
+.snapshot-dashboard-holder{
   margin-top: 30px;
   padding: 0 20px;
   .select-holder{
@@ -684,7 +684,10 @@ opacity: 1 !important;
     padding:30px 100px;
     p{
       font-weight:300;
-      margin:20px 0 ;
+      text-align:left;
+      padding: 10px 0px;
+      height: 180px;
+      overflow: hidden;
     }
     .btn{
           background-color: #323232;
@@ -1607,6 +1610,18 @@ label.error {
       width:85%;
     }
   }
+
+}
+
+
+
+.custom-side-menu{
+    i.sidebar-icon{
+      padding-right:36px;
+    }
+    i.custom-icon{
+      padding-right:26px;
+    }
 
 
 }

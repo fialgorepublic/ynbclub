@@ -22,7 +22,7 @@
   </div>
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
-  <div class="menu-list">
+  <div class="menu-list custom-side-menu">
 
     <ul id="menu-content" class="menu-content collapse out">
       <li class="row">
@@ -45,59 +45,59 @@
     
       <% if current_user.role.present? && current_user.role.name != "Buyer" %>
           <li  data-toggle="" data-target="#" class="collapsed">
-            <a href="/referral_sales"><i><img src="/assets/icon-4.png"> </i> My Sales  </a>
+            <a href="/referral_sales"><i class="custom-icon"><img src="/assets/icon-4.png"> </i>  My Sales </a>
           </li>
       <% end %>
           <li  data-toggle="" data-target="#" class="collapsed">
-            <a href="/blogs"><i><img src="/assets/icon-6.png"> </i> Blogs</a>
+            <a href="/blogs"><i class="custom-icon"><img src="/assets/icon-6.png"> </i> Blogs</a>
           </li>
 
       <% if current_user.role.present? && current_user.role.name == "Admin" || current_user.is_shopify_user %>
           <li>
-            <a href="/users/brand_ambassadors"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Commission  </a>
+            <a href="/users/brand_ambassadors"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i> Commission  </a>
           </li>
           <li>
-            <a href="/approve_sales"><i><img src="/assets/iocn-5.png"> </i>Approve Sales  </a>
+            <a href="/approve_sales"><i class="custom-icon"><img src="/assets/iocn-5.png"> </i> Approve Sales  </a>
           </li>
           <li>
             <a class="auto click-close" href="<%= edit_setting_path(Setting.first) %>">
-              <i class="fa fa-gears"></i>
-              <span class="ng-binding">Configuration</span>
+              <i class="fa fa-gears sidebar-icon"></i>
+              <span class="ng-binding"> Configuration</span>
             </a>
           </li>
           <li class="menu-item ng-scope" ng-repeat="item in menu.items | orderBy: 'position'">
             <a class="auto click-close" href="/payments">
-              <i class="fa fa-money"></i>
-              <span class="ng-binding">Payment history</span>
+              <i class="fa fa-money sidebar-icon"></i>
+              <span class="ng-binding"> Payment history</span>
             </a>
           </li>
           <li>
-            <a href="/users"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Ambassadors  </a>
+            <a href="/users"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i> Ambassadors  </a>
           </li>
           <li>
-            <a href="/categories"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Categories  </a>
+            <a href="/categories"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i> Categories  </a>
           </li>
           <li>
-            <a href="/point_types"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i>Manage Rewards  </a>
+            <a href="/point_types"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i> Manage Rewards  </a>
           </li>
       <% end %>
 
 
       <li  data-toggle="" data-target="#" class="collapsed">
-      <a href="#"> <i><img src="/assets/icon-7.png"> </i>  Transactions</a>
+      <a href="#"> <i class="custom-icon"><img src="/assets/icon-7.png"></i>  Transactions</a>
       </li>
 
       <li  data-toggle="" data-target="#" class="collapsed">
-      <a href="#"><i><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Order </span></a>
+      <a href="#"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Order </span></a>
       </li>
       <li>
-      <a href="#"> <i><img src="/assets/icon-9.png"> </i> Favourties </a>
+      <a href="#"> <i class="custom-icon"><img src="/assets/icon-9.png"> </i> Favourties </a>
       </li>
       <li>
-        <a href="/acc_settings"><i><img width="16" src="/assets/icon-10.png"> </i>Acc settings  </a>
+        <a href="/acc_settings"><i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Acc settings  </a>
       </li>
       <li>
-      <a href="#"><i><img src="/assets/icon-11.png"> </i>Notification settings  </a>
+      <a href="#"><i class="custom-icon"><img src="/assets/icon-11.png"> </i>Notification settings  </a>
       </li>
     </ul>
     
@@ -150,7 +150,7 @@
                 <p> <span class="">+15</span> <strong>Order product in the blog post</strong></p>
               </div>
               <div class="col-md-6">
-                <p> <span class="">+20</span> <strong> Invite user to the Soint l beou</strong></p>
+                <p> <span class="">+20</span> <strong> Invite user to the Saint I' beau</strong></p>
                 <p> <span class="">+15</span> <strong> Invited user spent $50</strong></p>
                 <p> <span class="">+15</span> <strong> Your product was ordered </strong></p>
               </div>
