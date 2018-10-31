@@ -361,6 +361,8 @@
     function login_form(){
         $('#signUp').modal('hide');
         $('#forgotPassword').modal('hide');
+        $('#signIn').validate().resetForm();
+        $('#signIn').find('.error').removeClass('error');
         $('#signIn').modal('show');
     }
     function register_form(){
@@ -368,6 +370,8 @@
         $('#invite').val(invite);
         $('#signIn').modal('hide');
         $('#forgotPassword').modal('hide');
+        $('#signUp').validate().resetForm();
+        $('#signUp').find('.error').removeClass('error');
         $('#signUp').modal('show');
     }
     function forgot_password(){
