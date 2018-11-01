@@ -884,6 +884,8 @@ opacity: 1 !important;
 /**********/
 
 .dashboard-holder{
+margin-top: 30px;
+    padding: 0 20px;
   .main{
        span{
        border: 1px solid;
@@ -1614,7 +1616,6 @@ label.error {
 }
 
 
-
 .custom-side-menu{
     i.sidebar-icon{
       padding-right:36px;
@@ -1622,6 +1623,4 @@ label.error {
     i.custom-icon{
       padding-right:26px;
     }
-
-
 }
