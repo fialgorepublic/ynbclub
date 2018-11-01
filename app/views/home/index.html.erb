@@ -1,4 +1,6 @@
+<div id="alert">
 
+</div>
 <header class="header-holder">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -189,7 +191,7 @@
               <span class="span-or text-center">or</span>
             </div>
 
-            <%= form_for :resource, url: session_path(resource_name),  method: "POST", :html => {:id =>"sign_in_user"}  do |f| %>
+            <%= form_for :resource, url: session_path(resource_name),  method: "POST", :html => {:id =>"sign_in_user", :onsubmit => "return false;"}  do |f| %>
                 <div class="form-group">
                   <%= f.label :email %><br />
                   <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email", :class => 'form-control' %>
@@ -208,7 +210,7 @@
                 <% end -%>
 
                 <div class="actions text-center">
-                  <%= f.submit "Log in", class: "btn btn-primary btn-lg btn-bottom btn-block"  %>
+                  <button class="btn btn-primary btn-lg btn-bottom btn-block" onclick="login_user();">Log in</button>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
@@ -406,6 +408,31 @@
         });
 
     });
+
+    function login_user(){
+        var email = $('#resource_email').val();
+        var password = $('#resource_password').val();
+        if (!jQuery("#sign_in_user").valid()) {
+            return false;
+        }
+        $.ajax({
+            url:'/sign_in_user?user[email]='+email+ '&user[password]='+password,
+            type:'post',
+            dataType:'json',
+            processData:false,
+            success:function (data) {
+                if( data.success){
+                    $('#signIn').modal('hide');
+                    window.location.href = "/dashboard"
+                }else{
+                    return toastr.error(data.message);
+                }
+            },
+            error:function (data) {
+                alert ("Error");
+            }
+        });
+    }
     function login_form(){
         $('#signUp').modal('hide');
         $('#forgotPassword').modal('hide');

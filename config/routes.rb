@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   post 'update_profile', to: 'users#update_profile'
   get 'import_partner', to: 'users#import_partner'
   post 'import_ambassador', to: 'users#import_ambassador'
+  post 'sign_in_user', to: 'home#sign_in_user'
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {
       :sessions => "users/sessions",
