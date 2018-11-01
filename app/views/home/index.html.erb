@@ -274,11 +274,11 @@
 
                 <div class="form-group">
                   <%= f.label :name %><br />
-                  <%= f.text_field :name, autofocus: true, autocomplete: "Name",placeholder: "Name", class: 'form-control' %>
+                  <%= f.text_field :name, autofocus: true, autocomplete: "Name",placeholder: "Enter Name", class: 'form-control' %>
                 </div>
                 <div class="form-group">
                   <%= f.label :email %><br />
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email", class: 'form-control' %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Enter Email", class: 'form-control' %>
                 </div>
                 <%= hidden_field_tag :invite  %>
                 <div class="form-group">
@@ -286,7 +286,7 @@
                   <% if @minimum_password_length %>
                       <em>(<%= @minimum_password_length %> characters minimum)</em>
                   <% end %><br />
-                  <%= f.password_field :password, autocomplete: "off",placeholder: "Password", class: 'form-control' %>
+                  <%= f.password_field :password, autocomplete: "off",placeholder: "Enter Password", class: 'form-control' %>
                 </div>
 
                 <div class="actions text-center">
