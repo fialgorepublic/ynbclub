@@ -86,8 +86,8 @@
       <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
         <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
         <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
-        <%= link_to edit_blog_path(@blog) do %>
-            <i class="fa fa-pencil"></i>
+        <%= link_to edit_blog_path(@blog) if current_user.users_blog?(@blog.id) do %>
+          <i class="fa fa-pencil"></i>
         <% end %></strong></h5>
       <hr>
     </div>
