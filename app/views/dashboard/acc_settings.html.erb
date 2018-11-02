@@ -171,13 +171,13 @@
                   <div class="col-md-6">
                     <div class="form-group" >
                       <label>State</label>
-                      <%= f.select(:state, options_for_select(states, selected: f.object.state), {prompt: 'Select State *'}, {class: "form-control"}) %>
+                      <%= f.select(:state, options_for_select(states, selected: f.object.state), {prompt: 'Select State *'}, { class: "form-control", required: true }) %>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group" >
                       <label>City</label>
-                      <%= f.select(:city, options_for_select(cities, selected: f.object.city), {prompt: 'Select City *'}, {class: "form-control"}) %>
+                      <%= f.select(:city, options_for_select(cities, selected: f.object.city), {prompt: 'Select City *'}, { class: "form-control", required: true }) %>
                     </div>
                   </div>
                 <div class="col-md-12">
