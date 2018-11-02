@@ -175,11 +175,13 @@
                 </div>
                 <div class="col-md-6 text-right">
                   <i class="fa fa-star <%= blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= blog.id %>');"></i>
-                  <%= link_to edit_blog_path(blog) do %>
+                  <% if current_user.users_blog?(blog.id) %>
+                    <%= link_to edit_blog_path(blog) do %>
                       <i class="fa fa-edit"></i>
-                  <% end %>
-                  <%= link_to  blog, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <% end %>
+                    <%= link_to  blog, method: :delete, data: { confirm: 'Are you sure?' } do %>
                       <i class="fa fa-trash"></i>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
