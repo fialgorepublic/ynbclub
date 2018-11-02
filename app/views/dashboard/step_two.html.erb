@@ -18,6 +18,10 @@
         <div class="col-md-12">
          <!--  <p>Pretty nice! Confirm the post and receive coins! 100 for selfie and 200 coins for video</p> -->
 
+          <div class="error">
+            <p class="<%= show_error(@saintlbeau_post)%> hide missing-hash-tag">Error: Post Does not contains <strong>hastag #saintL'beau</strong></p>
+          </div>
+
          <div>
            <h1><%= @object.title %></h1>
            <p><%= @object.description %></p>
@@ -54,8 +58,7 @@
 
           <div class="row" style="margin-top: 30px;">
             <div class="col-md-12">
-              <a href="/step_three?url=<%= params[:url] %>&saintlbeau_post=<%= @saintlbeau_post %>" class="btn btn-lg btn-block btn-primary">Confirm</a>
-
+              <a href="/step_three?url=<%= params[:url] %>&saintlbeau_post=<%= @saintlbeau_post %>" class="btn btn-lg btn-block btn-primary" <%=disable_confirm_link(@saintlbeau_post) %>>Confirm</a>
             </div>
           </div>
         </div>
