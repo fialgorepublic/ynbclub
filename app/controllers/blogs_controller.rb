@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail]
-  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create]
+  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create, :show]
   require 'time_ago_in_words'
   require 'will_paginate'
   include ApplicationHelper
@@ -13,6 +13,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @blog = Blog.find(params[:id])
     @comments = @blog.comments
     @selected_products = @blog.products
     BlogView.create(user_id: current_user.id, blog_id: @blog.id)
