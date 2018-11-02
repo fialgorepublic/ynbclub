@@ -10,7 +10,6 @@ class Users::PasswordsController < Devise::PasswordsController
   def create
     resource = User.where(email: params[:resource][:email]).first
     if resource.present?
-      resource.password = SecureRandom.hex #some random unguessable string
       raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
       resource.reset_password_token = hashed_token
       resource.reset_password_sent_at = Time.now.utc
