@@ -1,14 +1,13 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail]
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource except: [:index]
+  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create]
   require 'time_ago_in_words'
   require 'will_paginate'
   include ApplicationHelper
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all.order('created_at ASC').paginate(page: params[:page], per_page: 10)
+    @blogs = current_user.blogs.order('created_at ASC').paginate(page: params[:page], per_page: 10)
   end
 
   # GET /blogs/1
@@ -89,22 +88,21 @@ class BlogsController < ApplicationController
   end
 
   def change_featured_state
-    blog = Blog.find(params[:id]).update_attributes(is_featured: params[:value], feature_date: DateTime.now)
+    blog = @blog.update_attributes(is_featured: params[:value], feature_date: DateTime.now)
     render json: {success: true}
   end
 
   def change_publish_status
-    blog = Blog.find(params[:id]).update_attributes(is_published: params[:status])
+    blog = @blog.update_attributes(is_published: params[:status])
     redirect_to '/blogs/'+params[:id]
   end
 
   def change_buyer_show_status
-    blog = Blog.find(params[:id]).update_attributes(buyer_show: params[:status])
+    blog = @blog.update_attributes(buyer_show: params[:status])
     redirect_to '/blogs/'+params[:id]
   end
 
   def buyer_show
-    @blog = Blog.find(params[:id])
     @comments = @blog.comments
     @selected_products = @blog.products
   end
@@ -124,7 +122,7 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = current_user.blogs.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
