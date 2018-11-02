@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:index]
   require 'time_ago_in_words'
   require 'will_paginate'
   include ApplicationHelper
