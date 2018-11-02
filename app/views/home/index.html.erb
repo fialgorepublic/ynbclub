@@ -362,7 +362,8 @@
         $("#sign_in_user").validate({
             rules: {
                 "resource[email]": {
-                    required: true
+                    required: true,
+                    emailExt: true
                 },
                 "resource[password]": {
                     required: true,
@@ -383,8 +384,9 @@
                     required: true
                 },
                 "resource[email]": {
-                    required: true
-                },
+                    required: true,
+                    emailExt: true
+                  },
                 "resource[password]": {
                     required: true,
                     minlength: 6
@@ -405,6 +407,10 @@
         });
 
     });
+
+    jQuery.validator.addMethod("emailExt", function(value, element, param) {
+      return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
+    },'Please Enter A Valid Email Address.');
 
     function login_user(){
         var email = $('#resource_email').val();
