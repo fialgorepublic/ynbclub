@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource except: [:add_user_info]
+  load_and_authorize_resource except: [:add_user_info, :update_email]
   require 'csv'
   require 'roo'
 
