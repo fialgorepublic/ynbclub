@@ -1193,10 +1193,17 @@ margin-top:10px;
 .featured-pagination{
   .pagination{ margin-top:20px;
     li{
-      a{
-    border-radius: unset;
-    padding: 10px 15px;
-    color:#4c4c4c;}
+      a {
+        border-radius: unset;
+        padding: 10px 15px;
+        color:#4c4c4c;
+      }
+
+      span {
+        border-radius: unset;
+        padding: 10px 15px;
+        color:#4c4c4c;
+      }
     }
   }
 }

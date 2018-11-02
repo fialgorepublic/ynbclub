@@ -1,5 +1,6 @@
 class Blog < ApplicationRecord
   belongs_to :category
+  belongs_to :user
   has_many :comments
   has_many :likes
   has_many :products, :dependent => :destroy
@@ -16,6 +17,7 @@ class Blog < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   def add_products(product)
+    return if product.blank?
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
         Product.create(product_id: value, title: product[:title][index], price: product[:price][index],

@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :comment_actions
   has_many :blog_views
+  has_many :blogs
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     :storage => :s3,
@@ -37,4 +38,7 @@ class User < ApplicationRecord
     return true if(self.role.name.eql?("Buyer") unless self.role.nil?)
   end
 
+  def users_blog? blog_id
+    blogs.find_by(id: blog_id).present?
+  end
 end

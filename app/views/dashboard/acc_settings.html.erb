@@ -114,12 +114,12 @@
               <%= form_for current_user.profile do |f| %>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.text_field :first_name, class: "form-control", placeholder: "First Name *", max_length: 100 %>
+                  <%= f.text_field :first_name, class: "form-control", placeholder: "First Name *", max_length: 100, required: true %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.text_field :surname, class: "form-control", placeholder: "First Name *", max_length: 100 %>
+                  <%= f.text_field :surname, class: "form-control", placeholder: "First Name *", max_length: 100, required: true %>
                 </div>
               </div>
             </div>
@@ -127,12 +127,12 @@
             <div class="row">
               <div class="col-md-6">
                   <div class="form-group" >
-                  <%= f.select(:gender, options_for_select(["Male", "Female"], selected: f.object.gender), {prompt: 'Select Gender *'}, {class: "form-control"}) %>
+                  <%= f.select(:gender, options_for_select(["Male", "Female"], selected: f.object.gender), {prompt: 'Select Gender *'}, {class: "form-control", required: true}) %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group date" data-provide="datepicker">
-               <%= f.text_field :date_of_birth, class: "form-control", placeholder: "Date Of Birth*", id: "data-date" %>
+               <%= f.text_field :date_of_birth, class: "form-control", placeholder: "Date Of Birth*", id: "data-date", required: true %>
                   <div class="input-group-addon date-arrow-down">
                     ▾
                   </div>
@@ -171,13 +171,13 @@
                   <div class="col-md-6">
                     <div class="form-group" >
                       <label>State</label>
-                      <%= f.select(:state, options_for_select(states, selected: f.object.state), {prompt: 'Select State *'}, {class: "form-control"}) %>
+                      <%= f.select(:state, options_for_select(states, selected: f.object.state), {prompt: 'Select State *'}, { class: "form-control", required: true }) %>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group" >
                       <label>City</label>
-                      <%= f.select(:city, options_for_select(cities, selected: f.object.city), {prompt: 'Select City *'}, {class: "form-control"}) %>
+                      <%= f.select(:city, options_for_select(cities, selected: f.object.city), {prompt: 'Select City *'}, { class: "form-control", required: true }) %>
                     </div>
                   </div>
                 <div class="col-md-12">
@@ -209,11 +209,11 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>National Security Number</label>
-                    <%= f.text_field :security_number, class: "form-control", placeholder: "000 000 000" %>
+                    <%= f.text_field :security_number, class: "form-control", placeholder: "000 000 000", required: true %>
                   </div>
                   <div class="form-group">
                     <label>Bank Name and Branch</label>
-                    <%= f.text_field :bank_name, class: "form-control", placeholder: "ex techban" %>
+                    <%= f.text_field :bank_name, class: "form-control", placeholder: "ex techban", required: true %>
                   </div>
                   <div class="form-group">
                     <label>Account Holder's Name</label>
@@ -221,7 +221,7 @@
                   </div>
                   <div class="form-group">
                     <label>Account number</label>
-                    <%= f.text_field :account_number, class: "form-control", placeholder: "000000 0000000 " %>
+                    <%= f.text_field :account_number, class: "form-control", placeholder: "000000 0000000 ", required: true %>
                   </div>
                   <%= f.submit "Save", class: "btn btn-lg btn-block btn-primary" %>
                 </div>

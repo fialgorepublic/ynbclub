@@ -1,7 +1,6 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail]
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state]
   require 'time_ago_in_words'
   require 'will_paginate'
   include ApplicationHelper
@@ -14,6 +13,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @blog = Blog.find(params[:id])
     @comments = @blog.comments
     @selected_products = @blog.products
     BlogView.create(user_id: current_user.id, blog_id: @blog.id)
@@ -37,7 +37,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.new(blog_params)
 
     respond_to do |format|
       if @blog.save
@@ -89,22 +89,22 @@ class BlogsController < ApplicationController
   end
 
   def change_featured_state
-    blog = Blog.find(params[:id]).update_attributes(is_featured: params[:value], feature_date: DateTime.now)
+    @blog = Blog.find(params[:id])
+    blog = @blog.update_attributes(is_featured: params[:value], feature_date: DateTime.now)
     render json: {success: true}
   end
 
   def change_publish_status
-    blog = Blog.find(params[:id]).update_attributes(is_published: params[:status])
+    blog = @blog.update_attributes(is_published: params[:status])
     redirect_to '/blogs/'+params[:id]
   end
 
   def change_buyer_show_status
-    blog = Blog.find(params[:id]).update_attributes(buyer_show: params[:status])
+    blog = @blog.update_attributes(buyer_show: params[:status])
     redirect_to '/blogs/'+params[:id]
   end
 
   def buyer_show
-    @blog = Blog.find(params[:id])
     @comments = @blog.comments
     @selected_products = @blog.products
   end
@@ -124,7 +124,7 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = current_user.blogs.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

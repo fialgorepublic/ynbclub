@@ -47,6 +47,10 @@
   </div>
 </div>
 <script>
+      <% flash.each do |f| %>
+      <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
+      toastr['<%= type %>']('<%= f[1] %>', '', {"closeButton": true, "debug": false, "positionClass": "toast-top-right", "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "5000", "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut" });
+    <% end %>
   function gotToStepTwo(){
       var linkUrl = $("#linkUrl").val();
       if (linkUrl === ""){
