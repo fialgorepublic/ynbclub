@@ -46,7 +46,7 @@
           <!-- menu -->
           <div id="myDropdown" class="dropdown-content">
             <!--<a href="/blogs/<%#= @blog.id %>/edit">Edit</a>-->
-            <% if current_user.users_blog(@blog.id) %>
+            <% if current_user.users_blog?(@blog.id) %>
               <%= link_to 'Edit', edit_blog_path(@blog) %>
               <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
               <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><%= @blog.is_published ? 'Un publish' : 'Publish' %></a>
