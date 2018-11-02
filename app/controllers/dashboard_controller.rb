@@ -55,7 +55,7 @@ class DashboardController < ApplicationController
     @object = LinkThumbnailer.generate(params[:url])
     if @object.description.present? && @object.description.include?('#SaintLBeau')
       @saintlbeau_post = true
-    elsif @object.description.include?('#SaintLBeau')
+    elsif @object.description.include?("#saintL'beau")
       @saintlbeau_post = true
     else
       @saintlbeau_post = false
