@@ -1,5 +1,6 @@
 class Blog < ApplicationRecord
   belongs_to :category
+  belongs_to :user
   has_many :comments
   has_many :likes
   has_many :products, :dependent => :destroy
