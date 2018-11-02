@@ -114,12 +114,12 @@
               <%= form_for current_user.profile do |f| %>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.text_field :first_name, class: "form-control", placeholder: "First Name *", max_length: 100 %>
+                  <%= f.text_field :first_name, class: "form-control", placeholder: "First Name *", max_length: 100, required: true %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.text_field :surname, class: "form-control", placeholder: "First Name *", max_length: 100 %>
+                  <%= f.text_field :surname, class: "form-control", placeholder: "First Name *", max_length: 100, required: true %>
                 </div>
               </div>
             </div>
@@ -127,12 +127,12 @@
             <div class="row">
               <div class="col-md-6">
                   <div class="form-group" >
-                  <%= f.select(:gender, options_for_select(["Male", "Female"], selected: f.object.gender), {prompt: 'Select Gender *'}, {class: "form-control"}) %>
+                  <%= f.select(:gender, options_for_select(["Male", "Female"], selected: f.object.gender), {prompt: 'Select Gender *'}, {class: "form-control", required: true}) %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group date" data-provide="datepicker">
-               <%= f.text_field :date_of_birth, class: "form-control", placeholder: "Date Of Birth*", id: "data-date" %>
+               <%= f.text_field :date_of_birth, class: "form-control", placeholder: "Date Of Birth*", id: "data-date", required: true %>
                   <div class="input-group-addon date-arrow-down">
                     ▾
                   </div>
