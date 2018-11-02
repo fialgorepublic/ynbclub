@@ -38,7 +38,7 @@ class User < ApplicationRecord
     return true if(self.role.name.eql?("Buyer") unless self.role.nil?)
   end
 
-  def current_users_blog? blog_id
+  def users_blog? blog_id
     blogs.find_by(id: blog_id).present?
   end
 end
