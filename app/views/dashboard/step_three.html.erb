@@ -16,12 +16,12 @@
 
       <div class="row">
         <div class="col-md-12">
-          <p>Congratulations! you have received 5 coins</p>
+          <p>Congratulations! you have received <%= get_point(@point_id) %> coins</p>
           <div class="box-shadow md-pd">
             <div class="row">
               <div class="col-md-3">
                 <div class="bg-warning bg-circle">
-                    <p class="text-center">+ 5 </p>
+                    <p class="text-center">+ <%= get_point(@point_id) %> </p>
                 </div>
               </div>
                 <div class="col-md-9 pd-t-30 text-left">

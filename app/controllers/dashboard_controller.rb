@@ -67,6 +67,7 @@ class DashboardController < ApplicationController
     if params[:saintlbeau_post].to_s == "true"
       insert_points(current_user.id, 1)
     end
+    @point_id = 1
     ShareUrl.create(url: url, user_id: current_user.id)
   end
 
