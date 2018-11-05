@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         sign_out(@user)
         redirect_to root_path
       else
-        flash[:alert] = @user.errors.full_messages
+        flash[:alert] = @user.errors.full_messages.first
         redirect_to acc_settings_path
       end
     else
