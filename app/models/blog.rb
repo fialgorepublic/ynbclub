@@ -33,6 +33,7 @@ class Blog < ApplicationRecord
   end
 
   def update_products(product)
+    return if product.blank?
     self.products.delete_all
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
