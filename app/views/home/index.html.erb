@@ -414,7 +414,7 @@
     },'Please Enter A Valid Email Address.');
 
     function resetFields() {
-      $('form').find("input").val("");
+      $('form').find("input[type=tex], input[type=email], input[type=password] ").val("");
     }
     function login_user(){
         var email = $('#resource_email').val();
