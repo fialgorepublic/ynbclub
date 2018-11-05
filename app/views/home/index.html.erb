@@ -230,7 +230,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetFields()">Close</button>
       </div>
 
     </div>
@@ -301,7 +301,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetFields()">Close</button>
       </div>
     </div>
 
@@ -358,6 +358,7 @@
     <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
     toastr['<%= type %>']('<%= f[1] %>', '', {"closeButton": true, "debug": false, "positionClass": "toast-top-right", "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "5000", "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut" });
     <% end %>
+
     $(document).ready(function () {
         $("#sign_in_user").validate({
             rules: {
@@ -412,6 +413,9 @@
       return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
     },'Please Enter A Valid Email Address.');
 
+    function resetFields() {
+      $('form').find("input").val("");
+    }
     function login_user(){
         var email = $('#resource_email').val();
         var password = $('#resource_password').val();
