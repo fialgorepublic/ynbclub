@@ -41,4 +41,10 @@ class User < ApplicationRecord
   def users_blog? blog_id
     blogs.find_by(id: blog_id).present?
   end
+
+  def published_and_drafted_blogs
+    published_blogs = Blog.where(is_published: true)
+    draft_blogs = Blog.where(is_published: false, user_id: self.id)
+    published_blogs.or(draft_blogs).order('created_at ASC')
+  end
 end
