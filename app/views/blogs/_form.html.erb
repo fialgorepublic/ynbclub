@@ -354,18 +354,15 @@
         readURL(this);
     });
     function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-
-                var st = e.target.result;
-
-                $('#blah').attr('src', e.target.result);
-                $('#fileUpload').attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var st = e.target.result;
+          $('#blah').attr('src', e.target.result);
+          $('#fileUpload').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
     }
     function get_products(){
         $('#assignProduct').modal('show');
