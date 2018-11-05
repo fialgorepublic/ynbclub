@@ -23,7 +23,10 @@ class Users::SessionsController < Devise::SessionsController
     end
     # super
   end
-
+  def destroy
+    super
+    flash.delete(:notice)
+  end
   # DELETE /resource/sign_out
   # def destroy
   #   super
