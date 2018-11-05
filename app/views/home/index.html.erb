@@ -319,12 +319,12 @@
       <div class="modal-body" style="padding-top: 30px">
         <div class="modal-holder">
 
-          <%= form_for :resource, url: password_path(resource_name), method: "POST", :html => {:id =>"user_user"}  do |f| %>
+          <%= form_for :resource, url: password_path(resource_name), method: "POST", :html => {:id =>"forgot_password_form"}  do |f| %>
               <%= devise_error_messages! %>
 
               <div class="form-group">
                 <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control' %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control', required: true %>
               </div>
 
               <div class="actions">
@@ -377,6 +377,20 @@
                     required: "Please Enter Email"
                 }
             }
+        });
+
+        $("#forgot_password_form").validate({
+          rules: {
+            "resource[email]": {
+              required: true,
+              emailExt: true
+            },
+          },
+          messages: {
+            "resource[email]": {
+              required: "Please Enter Email"
+            }
+          }
         });
 
         $("#sign_up_user").validate({
