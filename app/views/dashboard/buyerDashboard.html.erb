@@ -22,14 +22,17 @@
       	</div>
       </div>
       <div class="row">
-    	<div class="col-md-3">
-          <div class="buydashboard-box text-center">
-            <img src="/assets/coin-lg.png">
-            <h4>+10 coins.</h4>
-            <p>Left a comment on the </br> "blog post name"</p>
+        <% @last_four_points.each do |point| %>
+          <div class="col-md-3">
+            <div class="buydashboard-box text-center">
+              <img src="/assets/coin-lg.png">
+              <h4>+<%= point.point_value %> coins.</h4>
+              <p><%= point.name %></p>
+            </div>
           </div>
-        </div>
-        <div class="col-md-3">
+        <% end %>
+      </div>
+        <!-- <div class="col-md-3">
           <div class="buydashboard-box text-center">
             <img src="/assets/coin-lg.png">
             <h4>+5 coins.</h4>
@@ -50,7 +53,7 @@
             <p>Invited John Doe  </br> passed $50</p>
           </div>
         </div>
-      </div>
+      </div> -->
 
        <!-- <div class="row">
         <div class="col-md-10">

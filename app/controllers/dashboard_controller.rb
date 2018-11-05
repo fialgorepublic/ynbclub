@@ -75,4 +75,7 @@ class DashboardController < ApplicationController
     ShareUrl.create(url: url, user_id: current_user.id)
   end
 
+  def buyerDashboard
+    @last_four_points = current_user.points.last(4)
+  end
 end
