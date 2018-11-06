@@ -11,7 +11,7 @@ if PointType.first.blank?
   PointType.create(id: 3, name: "Post the blog (Ghi bài Blog)", point: 10)
   PointType.create(id: 4, name: "Invited user spent 500k (Bạn bè mời tiêu hơn 500k)", point: 20)
   PointType.create(id: 5, name: "Order product in the blog post (Mua từ blog)", point: 15)
-  PointType.create(id: 6, name: "Invite user to the Saint l'beou (Mời bạn bè gia nhập tạo tài khoản với SLB)", point: 5)
+  PointType.create(id: 6, name: "Invite user to the Saint l'beau (Mời bạn bè gia nhập tạo tài khoản với SLB)", point: 5)
 end
 
 if Setting.first.blank?
