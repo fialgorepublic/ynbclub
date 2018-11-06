@@ -119,7 +119,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.text_field :surname, class: "form-control", placeholder: "First Name *", max_length: 100, required: true %>
+                  <%= f.text_field :surname, class: "form-control", placeholder: "Last Name *", max_length: 100, required: true %>
                 </div>
               </div>
             </div>
@@ -264,15 +264,10 @@
 </div>
 
 <script>
-    <% flash.each do |f| %>
-    <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
-    toastr['<%= type %>']('<%= f[1] %>', '', {"closeButton": true, "debug": false, "positionClass": "toast-top-right", "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "5000", "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut" });
-    <% end %>
-
-    $('.account-list li a').click(function(){
-      $('.account-list li').removeClass('active');
-      $(this).parent('li').addClass('active');
-    })
+  $('.account-list li a').click(function(){
+    $('.account-list li').removeClass('active');
+    $(this).parent('li').addClass('active');
+  })
 </script>
 
 

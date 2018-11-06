@@ -324,11 +324,11 @@
 
               <div class="form-group">
                 <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control', required: true %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control', required: true, id: "forgot_password_email" %>
               </div>
 
               <div class="actions">
-                <%= f.submit "Send me reset password instructions", class: "btn btn-primary btn-lg btn-bottom btn-block"  %>
+                <button class="btn btn-primary btn-lg btn-bottom btn-block" id="send_instructions";">Send me reset password instructions</button>
               </div>
           <% end %>
           <div class="row">
@@ -354,136 +354,163 @@
 
 
 <script>
-    <% flash.each do |f| %>
-    <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
-    toastr['<%= type %>']('<%= f[1] %>', '', {"closeButton": true, "debug": false, "positionClass": "toast-top-right", "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "5000", "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear", "showMethod": "fadeIn", "hideMethod": "fadeOut" });
-    <% end %>
-
-    $(document).ready(function () {
-        $("#sign_in_user").validate({
-            rules: {
-                "resource[email]": {
-                    required: true,
-                    emailExt: true
-                },
-                "resource[password]": {
-                    required: true,
-                    minlength: 6
-                }
-
-            },
-            messages: {
-                "resource[email]": {
-                    required: "Please Enter Email"
-                }
-            }
-        });
-
-        $("#forgot_password_form").validate({
+  $(document).ready(function () {
+      $("#sign_in_user").validate({
           rules: {
-            "resource[email]": {
-              required: true,
-              emailExt: true
-            },
+              "resource[email]": {
+                  required: true,
+                  emailExt: true
+              },
+              "resource[password]": {
+                  required: true,
+                  minlength: 6
+              }
+
           },
           messages: {
-            "resource[email]": {
-              required: "Please Enter Email"
-            }
+              "resource[email]": {
+                  required: "Please Enter Email"
+              }
           }
-        });
+      });
 
-        $("#sign_up_user").validate({
-            rules: {
-                "resource[name]": {
-                    required: true
-                },
-                "resource[email]": {
-                    required: true,
-                    emailExt: true
-                  },
-                "resource[password]": {
-                    required: true,
-                    minlength: 6
-                }
-
-            },
-            messages: {
-                "resource[name]": {
-                    required: "Please Enter Name"
-                },
-                "resource[email]": {
-                    required: "Please Enter Email"
-                },
-                "resource[password]": {
-                    required: "Please Enter Password"
-                }
-            }
-        });
-
-    });
-
-    jQuery.validator.addMethod("emailExt", function(value, element, param) {
-      return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
-    },'Please Enter A Valid Email Address.');
-
-    function resetFields() {
-      $('form').find("input[type=tex], input[type=email], input[type=password] ").val("");
-    }
-    function login_user(){
-        var email = $('#resource_email').val();
-        var password = $('#resource_password').val();
-        if (!jQuery("#sign_in_user").valid()) {
-            return false;
+      $("#forgot_password_form").validate({
+        rules: {
+          "resource[email]": {
+            required: true,
+            emailExt: true
+          },
+        },
+        messages: {
+          "resource[email]": {
+            required: "Please Enter Email"
+          }
         }
-        $.ajax({
-            url:'/sign_in_user?user[email]='+email+ '&user[password]='+password,
-            type:'post',
-            dataType:'json',
-            processData:false,
-            success:function (data) {
-                if( data.success){
-                    $('#signIn').modal('hide');
-                    window.location.href = "/dashboard"
-                }else{
-                    return toastr.error(data.message);
-                }
-            },
-            error:function (data) {
-                alert ("Error");
-            }
-        });
+      });
+
+      $("#sign_up_user").validate({
+          rules: {
+              "resource[name]": {
+                  required: true
+              },
+              "resource[email]": {
+                  required: true,
+                  emailExt: true
+                },
+              "resource[password]": {
+                  required: true,
+                  minlength: 6
+              }
+
+          },
+          messages: {
+              "resource[name]": {
+                  required: "Please Enter Name"
+              },
+              "resource[email]": {
+                  required: "Please Enter Email"
+              },
+              "resource[password]": {
+                  required: "Please Enter Password"
+              }
+          }
+      });
+
+  });
+
+  jQuery.validator.addMethod("emailExt", function(value, element, param) {
+    return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
+  },'Please Enter A Valid Email Address.');
+
+  function resetFields() {
+    $('form').find("input[type=tex], input[type=email], input[type=password] ").val("");
+  }
+  function login_user(){
+    var email = $('#resource_email').val();
+    var password = $('#resource_password').val();
+    if (!jQuery("#sign_in_user").valid()) {
+      return false;
     }
-    function login_form(){
-        $('#signUp').modal('hide');
-        $('#forgotPassword').modal('hide');
-        $('#signIn').validate().resetForm();
-        $('#signIn').find('.error').removeClass('error');
-        $('#signIn').modal('show');
+    $.ajax({
+      url:'/sign_in_user?user[email]='+email+ '&user[password]='+password,
+      type:'post',
+      dataType:'json',
+      processData:false,
+      success:function (data) {
+          if( data.success){
+              $('#signIn').modal('hide');
+              window.location.href = "/dashboard"
+          }else{
+              return toastr.error(data.message);
+          }
+      },
+      error:function (data) {
+          alert ("Error");
+      }
+    });
+  }
+  function login_form(){
+    $('#signUp').modal('hide');
+    $('#forgotPassword').modal('hide');
+    $('#signIn').validate().resetForm();
+    $('#signIn').find('.error').removeClass('error');
+    $('#signIn').modal('show');
+  }
+  function register_form(){
+    var invite = '<%= params[:invite] %>';
+    $('#invite').val(invite);
+    $('#signIn').modal('hide');
+    $('#forgotPassword').modal('hide');
+    $('#signUp').validate().resetForm();
+    $('#signUp').find('.error').removeClass('error');
+    $('#signUp').modal('show');
+  }
+  function forgot_password(){
+    $('#signIn').modal('hide');
+    $('#forgotPassword').modal('show');
+  }
+
+  $('#send_instructions').click(function(e) {
+    e.preventDefault();
+    var email = $('#forgot_password_email').val();
+    if (!jQuery("#forgot_password_form").valid()) {
+        return false;
     }
-    function register_form(){
-        var invite = '<%= params[:invite] %>';
-        $('#invite').val(invite);
-        $('#signIn').modal('hide');
-        $('#forgotPassword').modal('hide');
-        $('#signUp').validate().resetForm();
-        $('#signUp').find('.error').removeClass('error');
-        $('#signUp').modal('show');
-    }
-    function forgot_password(){
-        $('#signIn').modal('hide');
-        $('#forgotPassword').modal('show');
-    }
+    $.ajax({
+      url:'/d/users/password',
+      type:'post',
+      dataType:'json',
+      data: { resource: { email: email }},
+      success:function (data) {
+        if( data.success){
+          $('#forgotPassword').modal('hide');
+          window.location.href = "/home"
+        }
+        else{
+          if (!data.success) {
+            toastr.error(data.message);
+          }
+        }
+      },
+      error:function (data) {
+        return false;
+      }
+    });
+  })
+
 //        $('#signUp').modal('show')
 
 
 /*****clipboard******/
-function clipboardFunction() {
-  var copyText = document.getElementById("clipboardFunctionInput");
-  copyText.select();
-  document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
-}
+  function clipboardFunction() {
+    var copyText = document.getElementById("clipboardFunctionInput");
+    copyText.select();
+    document.execCommand("copy");
+    alert("Copied the text: " + copyText.value);
+  }
 
+  <% if params[:invite].present? %>
+    $('#signUp').modal('show');
+  <% end %>
 
 </script>
