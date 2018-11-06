@@ -324,11 +324,11 @@
 
               <div class="form-group">
                 <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control', required: true %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control', required: true, id: "forgot_password_email" %>
               </div>
 
               <div class="actions">
-                <%= f.submit "Send me reset password instructions", class: "btn btn-primary btn-lg btn-bottom btn-block"  %>
+                <button class="btn btn-primary btn-lg btn-bottom btn-block" id="send_instructions";">Send me reset password instructions</button>
               </div>
           <% end %>
           <div class="row">
@@ -469,6 +469,35 @@
         $('#signIn').modal('hide');
         $('#forgotPassword').modal('show');
     }
+
+    $('#send_instructions').click(function(e) {
+      e.preventDefault();
+      var email = $('#forgot_password_email').val();
+      if (!jQuery("#forgot_password_form").valid()) {
+          return false;
+      }
+      $.ajax({
+        url:'/d/users/password',
+        type:'post',
+        dataType:'json',
+        data: { resource: { email: email }},
+        success:function (data) {
+          if( data.success){
+            $('#forgotPassword').modal('hide');
+            window.location.href = "/home"
+          }
+          else{
+            if (!data.success) {
+              toastr.error(data.message);
+            }
+          }
+        },
+        error:function (data) {
+          return false;
+        }
+      });
+    })
+
 //        $('#signUp').modal('show')
 
 

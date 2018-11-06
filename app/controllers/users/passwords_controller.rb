@@ -16,11 +16,10 @@ class Users::PasswordsController < Devise::PasswordsController
       if resource.save
         resource.send_reset_password_instructions
         flash[:notice] = "Reset password instructions have been sent to #{resource.email}."
-        redirect_to root_path
+        render json: { success: true }
       end
     else
-      flash[:alert] = "User not found"
-      redirect_to root_path
+      render json: { success: false, message: "User not Found" }
     end
     # super
   end
