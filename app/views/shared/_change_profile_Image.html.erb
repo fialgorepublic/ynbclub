@@ -3,7 +3,7 @@
     <div class="modal-body">
       <div class="modal-holder text-center">
         <div class="field form-group">
-          <%= image_tag(current_user.avatar.url, :size => "80x80", :alt => "Add  icon" , :id =>'blah') %>
+          <%= image_tag(image_url(current_user), :size => "80x80", :alt => "Add icon" , :id =>'blah') %>
         </div>
         <div class="field form-group">
           <%= f.label :logo %><br>
