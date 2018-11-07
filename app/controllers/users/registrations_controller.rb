@@ -18,8 +18,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if params[:invite].present?
         user_invited = User.find_by_email(params[:invite])
         if user_invited
-          insert_points(user_invited.id, 6)
-          insert_points(resource.id, 6)
+          insert_points(user_invited.id, 6, "Invitation accepted by #{resource.name}")
+          insert_points(resource.id, 6, "Accepted the invitation of #{user_invited.name}")
           UserMailer.referral_sign_up(user_invited, resource).deliver
         end
       end
