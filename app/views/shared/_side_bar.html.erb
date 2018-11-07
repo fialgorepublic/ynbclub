@@ -54,7 +54,7 @@
 
       <% if current_user.role.present? && current_user.role.name == "Admin" || current_user.is_shopify_user %>
           <li>
-            <a href="/users/brand_ambassadors"><i class="fa fa-bell fa-lg fa-fw sidebar-icon"></i> Commission  </a>
+            <a href="/users/brand_ambassadors"><i class="custom-icon"><img src="/assets/tag-sidebar.png"> </i> Commission  </a>
           </li>
           <li>
             <a href="/approve_sales"><i class="custom-icon"><img src="/assets/iocn-5.png"> </i> Approve Sales  </a>
@@ -72,8 +72,16 @@
             </a>
           </li>
           <li>
-            <a href="/users"><i class="fa fa-user fa-lg fa-fw sidebar-icon"></i> Ambassadors  </a>
+            <a href="/users"><i class="custom-icon"><img src="/assets/ambassador-sidebar.png"> </i> Ambassadors  </a>
           </li>
+          <li>
+            <a href="/categories"><i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>  Categories  </a>
+          </li>
+          <li>
+            <a href="/point_types"><i class="custom-icon"><img src="/assets/reward-sidebar.png"> </i> Manage Rewards  </a>
+            </li>
+          <li><a href="/users"><i class="fa fa-user fa-lg fa-fw sidebar-icon"></i> Ambassadors  </a> 
+           </li>
           <li>
             <a href="/categories"><i class="fa fa-th-large fa-lg fa-fw sidebar-icon"></i> Categories  </a>
           </li>
@@ -242,3 +250,5 @@
 
     }
 </script>
+
+
