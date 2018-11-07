@@ -279,7 +279,7 @@
                   <%= f.label :email %><br />
                   <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Enter Email", class: 'form-control' %>
                 </div>
-                <%= hidden_field_tag :invite  %>
+                <%= hidden_field_tag :invite, params[:invite] %>
                 <div class="form-group">
                   <%= f.label :password %>
                   <% if @minimum_password_length %>
