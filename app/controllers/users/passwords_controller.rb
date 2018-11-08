@@ -30,10 +30,9 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # PUT /resource/password
-  def update
-    super
-    flash[:alert] = resource.errors.full_messages.first if resource.errors.any?
-  end
+  # def update
+  #   super
+  # end
 
   # protected
 
