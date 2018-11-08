@@ -42,6 +42,10 @@ class User < ApplicationRecord
     blogs.find_by(id: blog_id).present?
   end
 
+  def filtered_blogs
+    self.is_admin? ? Blog.all.order(is_published: :DESC) : published_and_drafted_blogs
+  end
+
   def published_and_drafted_blogs
     published_blogs = Blog.where(is_published: true)
     draft_blogs = Blog.where(is_published: false, user_id: self.id)
