@@ -59,8 +59,8 @@
               </thead>
 
               <tbody>
-              <% @users.each do |user| %>
-                  <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+                <% @users.each do |user| %>
+                    <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
                   <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
                   <% if (@activeStatus == "All") %>
                       <% is_show = true %>
@@ -83,7 +83,7 @@
                         <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
                       </tr>
                   <% end %>
-              <% end %>
+                <% end %>
               </tbody>
             </table>
             <br/><br/><br/>
@@ -91,6 +91,14 @@
           </div>
         </div>
       </div>
+
+      <div class="featured-pagination">
+        <div>
+          <ul class="pagination pagination-md">
+            <%= will_paginate @users,renderer: BootstrapPagination::Rails %>
+          </ul>
+        </div>
+      <div>
     </div>
   </div>
 </div>

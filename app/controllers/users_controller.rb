@@ -47,12 +47,12 @@ class UsersController < ApplicationController
 
   def index
     if params[:search].present?
-      @users = User.where("role_id = #{ambassador_role_id} and (LOWER(name) LIKE '%#{params[:search]}%' OR LOWER(email) LIKE '%#{params[:search]}%' OR LOWER(phone_number) LIKE '%#{params[:search]}%')")
+      users = User.where("role_id = #{ambassador_role_id} and (LOWER(name) LIKE '%#{params[:search]}%' OR LOWER(email) LIKE '%#{params[:search]}%' OR LOWER(phone_number) LIKE '%#{params[:search]}%')")
     else
       if (params[:active].present? && params[:active] != "All")
-        @users = User.where(role_id: ambassador_role_id, is_activated: params[:active])
+        users = User.where(role_id: ambassador_role_id, is_activated: params[:active])
       else
-        @users = User.where(role_id: ambassador_role_id)
+        users = User.where(role_id: ambassador_role_id)
       end
     end
     if (params[:payment].present? && params[:payment] != "All")
@@ -60,6 +60,7 @@ class UsersController < ApplicationController
     else
       @activeStatus = "All"
     end
+    @users = users.paginate(page: params[:page])
   end
 
   def show
