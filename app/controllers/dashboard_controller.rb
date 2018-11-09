@@ -55,13 +55,17 @@ class DashboardController < ApplicationController
     if ShareUrl.find_by(url: params[:url]).present?
       redirect_to step_one_path, alert: "You already have added this post."
     else
-      @object = LinkThumbnailer.generate(params[:url])
-      if @object.description.present? && @object.description.include?("#saintL'beau")
-        @saintlbeau_post = true
-      elsif @object.description.include?("#saintL'beau")
-        @saintlbeau_post = true
-      else
-        @saintlbeau_post = false
+      begin
+        @object = LinkThumbnailer.generate(params[:url])
+        if @object.description.present? && @object.description.include?("#saintL'beau")
+          @saintlbeau_post = true
+        elsif @object.description.include?("#saintL'beau")
+          @saintlbeau_post = true
+        else
+          @saintlbeau_post = false
+        end
+      rescue => ex
+        redirect_to step_one_path, alert:  "Please Make sure Url is correct."
       end
     end
   end
