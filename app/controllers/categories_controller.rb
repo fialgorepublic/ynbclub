@@ -32,6 +32,7 @@ class CategoriesController < ApplicationController
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
+        flash[:alert] = @category.errors.full_messages.first
         format.html { render :new }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
