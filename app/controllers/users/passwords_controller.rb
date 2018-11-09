@@ -24,10 +24,11 @@ class Users::PasswordsController < Devise::PasswordsController
     # super
   end
 
-  # GET /resource/password/edit?reset_password_token=abcdef
-  # def edit
-  #   super
-  # end
+  def edit
+    user = User.with_reset_password_token(params[:reset_password_token])
+    @message = user.reset_password_sent_at + 2.minutes > Time.now.utc ? "" : "Request Password Token is expired. Please request a new one." if user.present?
+    super
+  end
 
   # PUT /resource/password
   # def update

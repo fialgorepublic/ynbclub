@@ -29,3 +29,10 @@
 <% if resource.errors.any? %>
   <% flash[:alert] = resource.errors.full_messages.first %>
 <% end %>
+
+<% if @message.present? %>
+  <script type="text/javascript">
+    var message = "<%= @message %>";
+    toastr.error(message, '', {timeOut: 10000000000, closeButton: false, extendedTimeOut: 10000000000})
+  </script>
+<% end %>
