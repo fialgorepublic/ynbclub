@@ -31,6 +31,11 @@ class User < ApplicationRecord
     return true if(self.role.name.eql?("Admin") unless self.role.nil?)
   end
 
+  def is_buyer?
+    return false if role.blank?
+    role.name == "Buyer"
+  end
+
   def is_ambassador?
     return true if(self.role.name.eql?("Brand ambassador") unless self.role.nil?)
   end

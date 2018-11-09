@@ -32,7 +32,13 @@
            <!--<li class=""><a href="#">CAREERS <span class="sr-only">(current)</span></a></li>-->
           <li><a href="/blogs">BLOG</a></li>
           <!--<li><a href="#">TRACKING</a></li>-->
-          <li><a href="/users">BRAND AMBASSADOR</a></li>
+          <li>
+            <% if current_user.is_admin? %>
+              <a href="/users">BRAND AMBASSADOR</a>
+            <% elsif current_user.is_buyer? %>
+              <a href="/users">BRAND AMBASSADOR</a>
+            <% end %>
+          </li>
          <!--  <li class="shared-header-serach-bar-style"><input type="text" class="shared-header-serach-bar-style-input" placeholder="" /><i class="fa fa-search"></i></li> -->
         </ul>
 
