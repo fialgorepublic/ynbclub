@@ -62,7 +62,7 @@
         <div class="col-md-2 text-right">
           <div class="select-holder">
             <select class="form-control">
-              <option>ALl products</option>
+              <option>ALL products</option>
             </select>
           </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="col-md-2 text-right">
           <div class="select-holder">
             <select class="form-control">
-              <option>ALl Blogs</option>
+              <option>ALL Blogs</option>
             </select>
           </div>
         </div>
@@ -120,7 +120,7 @@
               <div class="role-box"  id="<%= buyer.id %>" onclick="highlight_div(<%= buyer.id %>)">
                 <!--<i class="far fa-image"></i>-->
                 <div class="user-image">
-
+                  <%= image_tag 'user-img-2.png' %>
                 </div>
                 <h3 style="cursor: pointer"  class="role_div"><%= buyer.name %></h3>
                 <p>You'll be able add products to wish list, see shipping status, receive coupons </p>
@@ -129,7 +129,7 @@
             <div class="col-md-6 text-center" >
               <div class="role-box" id="<%= ambassador.id %>" onclick="highlight_div(<%= ambassador.id %>)">
                 <div class="user-image">
-
+                  <%= image_tag 'user-img-2.png' %>
                 </div>
                 <h3 style="cursor: pointer"  class="role_div"><%= ambassador.name %></h3>
                 <p>You'll be able add your products, post blogs together with products and check statistics </p>
