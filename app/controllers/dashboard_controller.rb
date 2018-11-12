@@ -57,7 +57,7 @@ class DashboardController < ApplicationController
     begin
       @object = LinkThumbnailer.generate(params[:url])
 
-      @saintlbeau_post = @object.description.present? ? @object.description.include?("#saintL'beau") : false
+      @saintlbeau_post = @object.description.present? ? @object.description.include?("#saintlbeau") : false
     rescue => ex
       redirect_to step_one_path, alert:  "Please Make sure Url is correct."
     end
@@ -74,5 +74,6 @@ class DashboardController < ApplicationController
 
   def buyerDashboard
     @last_four_points = current_user.points.last(4)
+    @user = current_user
   end
 end
