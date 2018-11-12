@@ -36,7 +36,7 @@
             <% if current_user.is_admin? %>
               <a href="/users">BRAND AMBASSADOR</a>
             <% elsif current_user.is_buyer? %>
-              <a href="/users">BRAND AMBASSADOR</a>
+              <%= link_to "BRAND AMBASSADOR", "#", id: "become-ambassador", data: { url: update_user_role_path, role_id: ambassador.id } %>
             <% end %>
           </li>
          <!--  <li class="shared-header-serach-bar-style"><input type="text" class="shared-header-serach-bar-style-input" placeholder="" /><i class="fa fa-search"></i></li> -->

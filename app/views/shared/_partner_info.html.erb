@@ -1,0 +1,54 @@
+<div id="add_partner_information" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <%= form_for(@user, url: add_user_info_path, html: { multipart: true, method: "POST", :id =>"save_partner_information"}) do |f| %>
+        <div class="modal-body">
+          <div class="modal-holder">
+            <h3 class="text-center"><%= current_user.name %>! Became a Partner of "Saint L' beau"</h3>
+          </div>
+
+          <div class="panel panel-primary">
+            <div class="panel-body">
+              <div id="partner-section">
+                <div class="form-group">
+                  <%= f.label "Email *" %><br />
+                  <%= f.text_field :email, placeholder: "Enter identity card number", class: 'form-control', required: true, title: "Enter email"%>
+                </div>
+                <div class="form-group">
+                  <%= f.label "Phone Number *"%><br />
+                  <%= f.text_field :phone_number, placeholder: "Enter Phone Number", class: 'form-control', required: true, title: "Enter bank name" %>
+                </div>
+                <%= f.hidden_field :id, value: @user.id %>
+                <%- @user.profile %>
+                <%= f.fields_for :profile do |profile| %>
+                  <div class="nested-fields">
+                    <div class="form-group">
+                      <%= profile.label "Bank Name *" %><br />
+                      <%= profile.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control', required: true, title: "Enter bank name" %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= profile.label "Acc Holder Name *" %><br />
+                      <%= profile.text_field :acc_holder_name, placeholder: "Enter Account Title", class: 'form-control', required: true, title: "Enter account title" %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= profile.label "Account Number *" %><br />
+                      <%= profile.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control', required: true, title: "Enter account number" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal">close</button>-->
+          <%= f.submit :class=>'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
