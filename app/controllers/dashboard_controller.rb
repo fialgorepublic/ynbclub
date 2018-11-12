@@ -74,5 +74,6 @@ class DashboardController < ApplicationController
 
   def buyerDashboard
     @last_four_points = current_user.points.last(4)
+    @user = current_user
   end
 end
