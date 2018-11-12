@@ -4,9 +4,9 @@
       <%= render partial: "shared/side_bar" %>
     </div>
     <div class="col-md-9 featured-listing">
-      <!-- <div class="heading-featured">
-        <h2> <i class="fa fa-star"></i> Featured</h2>
-        </div> -->
+      <div class="heading-featured">
+        <h2> <!-- <i class="fa fa-star"></i> --> Blogs</h2>
+        </div>
       <div class="row product-shadow featured-product-style">
         <% @blogs.where(is_featured: true).each do |blog| %>
         <div class="col-md-6">
