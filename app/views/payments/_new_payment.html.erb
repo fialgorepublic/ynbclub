@@ -4,17 +4,17 @@
 
       <div class="form-group">
         <%= form.label :email %>
-        <%= form.collection_select :user_id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :email , {:include_blank => 'Select Email'}, html_options = {:class=>"form-control"} %>
+        <%= form.collection_select :user_id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :email , {:include_blank => 'Select Email'}, html_options = {:class=>"form-control", required: true} %>
       </div>
 
       <div class="form-group">
         <%= form.label :amount_paid %>
-        <%= form.number_field :amount, id: :payment_amount, class: 'form-control' %>
+        <%= form.number_field :amount, id: :payment_amount, class: 'form-control', required: true %>
       </div>
 
       <div class="form-group">
         <%= form.label :number_math %>
-        <%= form.text_field :number_math, id: :payment_number_math, class: 'form-control' %>
+        <%= form.text_field :number_math, id: :payment_number_math, class: 'form-control', required: true %>
       </div>
 
       <div class="form-group">
