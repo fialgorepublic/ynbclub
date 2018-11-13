@@ -23,7 +23,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
           UserMailer.referral_sign_up(user_invited, resource).deliver
         end
       end
-      resource.create_profile
       UserMailer.user_sign_up(resource).deliver
       initiate_shopify_session
       customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})

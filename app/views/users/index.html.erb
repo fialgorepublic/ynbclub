@@ -72,7 +72,7 @@
                     <% end %>
                     <% if is_show %>
                         <tr>
-                          <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
+                          <td><a href="/user_show?id=<%= user.id %>"><%= user.full_name %></a></td>
                           <td><%= user.email %></td>
                           <td><%= user.created_at.to_date %></td>
                           <td><%= user.phone_number %></td>
