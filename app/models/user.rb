@@ -27,6 +27,8 @@ class User < ApplicationRecord
                     styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
+  delegate :first_name, :surname, to: :profile
+
   def is_admin?
     return true if(self.role.name.eql?("Admin") unless self.role.nil?)
   end
@@ -56,5 +58,9 @@ class User < ApplicationRecord
     published_blogs = Blog.where(is_published: true)
     draft_blogs = Blog.where(is_published: false, user_id: self.id)
     published_blogs.or(draft_blogs).order('created_at ASC')
+  end
+
+  def full_name
+    [first_name, surname].join(' ')
   end
 end

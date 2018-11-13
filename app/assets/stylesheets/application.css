@@ -25,3 +25,7 @@
     /*border: 5px solid gray;*/
     /*margin: 0;*/
 /*}*/
+
+a.disabled {
+  pointer-events: none;
+}

@@ -5,6 +5,10 @@ if Role.first.blank?
   User.create(name: "Admin", email: 'admin@saintlbeau.com', password: 'admin123', role_id: role.id)
 end
 
+user = User.find_by(role_id: Role.find_by(name: "Admin").id)
+
+user.create_profile if user.profile.blank?
+
 if PointType.first.blank?
   PointType.create(id: 1, name: "Take and share a snapshot (Chụp ảnh review)", point: 20)
   PointType.create(id: 2, name: "Your product was ordered (Mua sản phẩm)", point: 10)
