@@ -57,6 +57,8 @@ class DashboardController < ApplicationController
     begin
       @object = LinkThumbnailer.generate(params[:url])
 
+      redirect_to step_one_path, alert: "Invalid Url."
+
       @saintlbeau_post = @object.description.present? ? @object.description.include?("#saintlbeau") : false
     rescue => ex
       redirect_to step_one_path, alert:  "Please Make sure Url is correct."
