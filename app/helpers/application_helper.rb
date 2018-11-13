@@ -140,4 +140,8 @@ module ApplicationHelper
       html_options[:data].merge!({width: width, height: height})
     end
   end
+
+  def active_class path
+    "active" if current_page?(path)
+  end
 end
