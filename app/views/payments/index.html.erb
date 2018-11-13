@@ -120,4 +120,14 @@
             }
         });
     }
+
+    $('#searchText').keyup(function() {
+        var dInput = this.value;
+        if (dInput == ""){
+            $.ajax({
+                url: '<%= clear_search_payments_path %>'
+            })
+        }
+    });
+
 </script>

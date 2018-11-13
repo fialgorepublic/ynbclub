@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :payments
+  resources :payments do
+    collection do
+      get :clear_search
+    end
+  end
   resources :settings
   resources :products
   resources :point_types
@@ -64,6 +68,7 @@ Rails.application.routes.draw do
       post :update_email
       post :update_password
       get :brand_ambassadors
+      get :clear_search
     end
   end
 

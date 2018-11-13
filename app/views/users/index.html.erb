@@ -11,9 +11,9 @@
           <h3 class="card-header">Manage Affiliate</h3>
           <div class="input-group">
             <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="">
-          <span class="input-group-btn">
+            <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
-            <!-- ngIf: doSearch -->
+              <!-- ngIf: doSearch -->
           <a id="crossBtn" class="btn btn-sm btn-default ng-scope" href="/users" style="display: none;"><i class="fa fa-times"></i></a>
           </span>
           </div>
@@ -60,8 +60,8 @@
                 </thead>
 
                 <tbody>
-                  <% @users.each do |user| %>
-                      <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+                <% @users.each do |user| %>
+                    <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
                     <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
                     <% if (@activeStatus == "All") %>
                         <% is_show = true %>
@@ -71,20 +71,20 @@
                         <% is_show = (percentage_price <= compare_payment ? true : false) %>
                     <% end %>
                     <% if is_show %>
-                      <tr>
-                        <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
-                        <td><%= user.email %></td>
-                        <td><%= user.created_at.to_date %></td>
-                        <td><%= user.phone_number %></td>
-                        <td><%= user.referral %></td>
-                        <td><%= user.commission %></td>
-                        <td><%= percentage_price %></td>
-                        <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
-                        <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
-                        <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
-                      </tr>
+                        <tr>
+                          <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
+                          <td><%= user.email %></td>
+                          <td><%= user.created_at.to_date %></td>
+                          <td><%= user.phone_number %></td>
+                          <td><%= user.referral %></td>
+                          <td><%= user.commission %></td>
+                          <td><%= percentage_price %></td>
+                          <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
+                          <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
+                          <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+                        </tr>
                     <% end %>
-                  <% end %>
+                <% end %>
                 </tbody>
               </table>
             </div>
@@ -100,7 +100,9 @@
             <%= will_paginate @users,renderer: BootstrapPagination::Rails %>
           </ul>
         </div>
-      <div>
+        <div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -182,12 +184,21 @@
 
 
 
-$(document).ready(function() {
-    $('#bs4-table').DataTable( {
-        "scrollY": 400,
-        "scrollX": true,
-        "paging": false
+    $(document).ready(function() {
+        $('#bs4-table').DataTable( {
+            "scrollY": 400,
+            "scrollX": true,
+            "paging": false
+        } );
     } );
-} );
+
+    $('#searchText').keyup(function() {
+        var dInput = this.value;
+        if (dInput == ""){
+            $.ajax({
+                url: '<%= clear_search_users_path %>'
+            })
+        }
+    });
 
 </script>
