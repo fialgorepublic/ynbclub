@@ -9,10 +9,10 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="card-header">View payment history</h3>
-          <button onclick="add_new_payment();" class="btn btn-default btn-sm pull-right">Make a Payment</button>
+          <button onclick="add_new_payment();" class="btn btn-info btn-sm pull-right">Make a Payment</button>
           <br/><br/>
           <div class="input-group">
-            <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Payment code / Recipient name / Email / Journal entry" autofocus="">
+            <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Payment code / Recipient name / Email " autofocus="">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
             <!-- ngIf: doSearch -->
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5>since</h5>
+          <h5>Since</h5>
           <%= text_field_tag :since,nil, :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
         </div>
         <div class="col-md-4">
@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-4">
           <h5>Partner</h5>
-          <%= collection_select(:user, :id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :name, {}, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Tìm theo mã giới thiệu/tên partner"}) %>
+          <%= collection_select(:user, :id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :name, {}, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Please select partner"}) %>
         </div>
       </div>
       <div class="col-md-12 m-t-30">
