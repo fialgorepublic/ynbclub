@@ -99,8 +99,8 @@ class BlogsController < ApplicationController
       return redirect_to @blog, alert: "You need to add picture before publishing your blog." unless @blog.avatar.present?
     end
 
-    blog = @blog.update_attributes(is_published: params[:status])
-    redirect_to '/blogs/'+params[:id]
+    @blog.update_attributes(is_published: params[:status])
+    redirect_to @blog
   end
 
   def change_buyer_show_status
