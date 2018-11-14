@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = current_user.filtered_blogs.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+    @blogs = current_user.filtered_blogs.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /blogs/1
