@@ -27,6 +27,10 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def clear_search
+    @payments = Payment.all
+  end
+
   # GET /payments/1
   # GET /payments/1.json
   def show

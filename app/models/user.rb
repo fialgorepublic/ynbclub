@@ -29,6 +29,33 @@ class User < ApplicationRecord
 
   delegate :first_name, :surname, to: :profile
 
+  after_create :generate_profile
+  after_update :update_profile_names
+
+  def update_profile_names
+    unless profile.blank?
+      first_name = nil
+      surname = nil
+      if self.name.present?
+        name = self.name.split(" ")
+        first_name = name[0]
+        surname = name[1]
+      end
+      profile.update(first_name: first_name, surname: surname)
+    end
+  end
+
+  def generate_profile
+    first_name = nil
+    surname = nil
+    if self.name.present?
+      name = self.name.split(" ")
+      first_name = name[0]
+      surname = name[1]
+    end
+    self.create_profile(phone_number: phone_number, first_name: first_name, surname: surname)
+  end
+
   def is_admin?
     return true if(self.role.name.eql?("Admin") unless self.role.nil?)
   end

@@ -42,7 +42,7 @@
 
                     <div class="col-md-6 form-group">
                       <label>Phone number</label>
-                      <%= text_field_tag 'user[phone_number]', @user.phone_number, :class => 'form-control', placeholder: "phone number" %>
+                      <%= text_field_tag 'profile[phone_number]', @user.profile.phone_number, :class => 'form-control', placeholder: "phone number" %>
                     </div>
                   </div>
 
@@ -87,32 +87,32 @@
                 <div class="col-md-3">
                   <h4>Billing Information</h4>
                   <small>
-                  Information used for payment / payment</small>
+                  Information used for payment</small>
                 </div>
                 <div class="col-md-9">
                   <div class="row">
-                    <div class="col-md-4 form-group">
-                      <label>Proof of the people</label>
+                    <div class="col-md-5 form-group">
+                      <label>National Security Number *</label>
                       <%= text_field_tag 'profile[security_number]', @user.profile.present? ? @user.profile.security_number : nil, :class => 'form-control', placeholder: "Proof of the people" %>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-5 form-group">
                       <label>
-                      Name of Bank and Branch</label>
+                      Name of Bank and Branch *</label>
                       <%= text_field_tag 'profile[bank_name]', @user.profile.present? ? @user.profile.bank_name : nil, :class => 'form-control', placeholder: "BIDV - Thai Ha branch" %>
                     </div>
                   </div>
                   <%= hidden_field_tag :user_id, @user.id, id: "user_id" %>
                   <div class="row">
-                    <div class="col-md-4 form-group">
-                      <label>Account name</label>
+                    <div class="col-md-5 form-group">
+                      <label>Account name *</label>
                       <%= text_field_tag 'profile[acc_holder_name]', @user.profile.present? ? @user.profile.acc_holder_name : nil, :class => 'form-control', placeholder: "Account name" %>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4 form-group">
-                      <label>Account number</label>
+                    <div class="col-md-5 form-group">
+                      <label>Account number *</label>
                       <%= text_field_tag 'profile[account_number]', @user.profile.present? ? @user.profile.account_number : nil, :class => 'form-control', placeholder: "Account number at bank" %>
                     </div>
                   </div>
