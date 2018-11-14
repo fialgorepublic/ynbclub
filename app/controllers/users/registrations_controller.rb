@@ -38,14 +38,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clear_shopify_session
       sign_in :user, resource
       flash[:notice] = "Successfully Signed Up"
-      redirect_to dashboard_path
+      render json: { success: true }
     else
       @error_messages =[]
       resource.errors.full_messages.map { |msg|      # Show Error messages while sign_up user
         @error_messages << msg
       }
-      flash[:alert] = @error_messages[0]
-      redirect_to home_path
+      render json: { success: false, message: @error_messages[0] }
     end
 
     # super
