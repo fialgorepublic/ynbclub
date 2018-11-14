@@ -42,19 +42,45 @@
 
                     <div class="col-md-6 form-group">
                       <label>Phone number</label>
-                      <%= text_field_tag 'profile[phone_number]', @user.profile.phone_number, :class => 'form-control', placeholder: "phone number" %>
+                      <%= text_field_tag 'user[profile_attributes[phone_number]]', @user.profile.phone_number, :class => 'form-control', placeholder: "phone number" %>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-md-6 form-group">
-                      <label>Address</label>
-                      <%= text_field_tag 'profile[address_line_1]', @user.profile.present? ? @user.profile.address_line_1 : nil, :class => 'form-control', placeholder: "58 Nguyen Khanh To, Cau Giay, Ha Noi" %>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Address line 1</label>
+                          <%= text_field_tag 'profile[address_line_1]', @user.address_line_1, class: "form-control", placeholder: "Address Line 1" %>
+                        </div>
                     </div>
-                    <!--   <div class="col-md-6 form-group">
-                      <label>Số Điện Thoại</label>
-                      <input type="text" class="form-control" placeholder="Họ Và Tên">
-                      </div> -->
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Address line 2</label>
+                        <%= text_field_tag 'profile[address_line_2]', @user.address_line_2, class: "form-control", placeholder: "Address Line 2" %>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group" >
+                        <label>State</label>
+                        <%= select_tag 'profile[state]', options_for_select(states, selected: @user.state), { prompt: 'Select State *', class: "form-control", required: true } %>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group" >
+                        <label>City</label>
+                        <%= select_tag 'profile[city]', options_for_select(cities, selected: @user.city), { prompt: 'Select City *', class: "form-control", required: true } %>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Zip code</label>
+                        <%= text_field_tag 'profile[zip_code]', @user.zip_code, class: "form-control", placeholder: "00000" %>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="row">
