@@ -78,13 +78,7 @@ class User < ApplicationRecord
   end
 
   def filtered_blogs
-    self.is_admin? ? Blog.all.order(is_published: :DESC) : published_and_drafted_blogs
-  end
-
-  def published_and_drafted_blogs
-    published_blogs = Blog.where(is_published: true)
-    draft_blogs = Blog.where(is_published: false, user_id: self.id)
-    published_blogs.or(draft_blogs).order('created_at ASC')
+    self.is_admin? ? Blog.admin_blogs : Blog.published_and_drafted_blogs(self.id)
   end
 
   def full_name

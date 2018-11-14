@@ -16,6 +16,9 @@ class Blog < ApplicationRecord
                     styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
+  scope :admin_blogs, -> { order(is_published: :desc, created_at: :desc) }
+  scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id)).order(is_published: :desc, created_at: :desc)}
+
   def add_products(product)
     return if product.blank?
     if product[:product_id].present?
