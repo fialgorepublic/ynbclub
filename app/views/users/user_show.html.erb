@@ -42,7 +42,7 @@
 
                     <div class="col-md-6 form-group">
                       <label>Phone number</label>
-                      <%= text_field_tag 'user[profile_attributes[phone_number]]', @user.profile.phone_number, :class => 'form-control', placeholder: "phone number" %>
+                      <%= text_field_tag 'profile[phone_number]', @user.phone_number, :class => 'form-control', placeholder: "phone number" %>
                     </div>
                   </div>
 
