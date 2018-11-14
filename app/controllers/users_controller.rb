@@ -60,11 +60,11 @@ class UsersController < ApplicationController
     else
       @activeStatus = "All"
     end
-    @users = users.paginate(page: params[:page])
+    @users = users.paginate(page: params[:page]).order(created_at: :desc)
   end
 
   def clear_search
-    @users = User.where(role_id: ambassador_role_id)
+    @users = User.where(role_id: ambassador_role_id).paginate(page: params[:page]).order(created_at: :desc)
   end
 
   def show

@@ -25,10 +25,11 @@ class PaymentsController < ApplicationController
         @payments = Payment.all
       end
     end
+    @payments = @payments.order(created_at: :desc)
   end
 
   def clear_search
-    @payments = Payment.all
+    @payments = Payment.all.order(created_at: :desc)
   end
 
   # GET /payments/1

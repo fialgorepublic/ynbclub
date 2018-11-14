@@ -171,18 +171,19 @@
       "scrollY": 400,
       "scrollX": true,
       "paging": false,
+      "aaSorting": [],
       "language": {
         "info": ""
       }
     });
-  });
 
-  $('#searchText').keyup(function() {
-    var dInput = this.value;
-    if (dInput == ""){
-      $.ajax({
-        url: '<%= clear_search_users_path %>'
-      })
-    }
+    $('#searchText').keyup(function() {
+      var dInput = this.value;
+      if (dInput == ""){
+        $.ajax({
+          url: '<%= clear_search_users_path %>'
+        })
+      }
+    });
   });
 </script>

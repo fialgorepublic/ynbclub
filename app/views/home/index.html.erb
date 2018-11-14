@@ -268,16 +268,16 @@
               <span class="span-or text-center">or</span>
             </div>
 
-            <%= form_for :resource, url: registration_path(resource_name), method: "POST", :html => {:id =>"sign_up_user"}  do |f| %>
+            <%= form_for :resource, url: registration_path(resource_name), method: "POST", :html => {:id =>"sign_up_user", :onsubmit => "return false;"}  do |f| %>
                 <%= devise_error_messages! %>
 
                 <div class="form-group">
                   <%= f.label :Username %><br />
-                  <%= f.text_field :name, autofocus: true, autocomplete: "Name",placeholder: "Enter Username", class: 'form-control', id: "user_name" %>
+                  <%= f.text_field :name, autofocus: true, autocomplete: "Name",placeholder: "Enter Username", class: 'form-control', id: "registration_user_name" %>
                 </div>
                 <div class="form-group">
                   <%= f.label :email %><br />
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Enter Email", class: 'form-control' %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Enter Email", class: 'form-control', id: "registration_email" %>
                 </div>
                 <%= hidden_field_tag :invite, params[:invite] %>
                 <div class="form-group">
@@ -285,11 +285,11 @@
                   <% if @minimum_password_length %>
                       <em>(<%= @minimum_password_length %> characters minimum)</em>
                   <% end %><br />
-                  <%= f.password_field :password, autocomplete: "off",placeholder: "Enter Password", class: 'form-control' %>
+                  <%= f.password_field :password, autocomplete: "off",placeholder: "Enter Password", class: 'form-control', id: "registration_password" %>
                 </div>
 
                 <div class="actions text-center">
-                  <%= f.submit "Register", class: "btn btn-lg btn-bottom btn-primary btn-block"  %>
+                  <button class="btn btn-lg btn-bottom btn-primary btn-block" onclick="sign_up_user();">Register</button>
                   <a href="javascript:void(0);" onclick="login_form();" class="text-center">I have an account</a>
                 </div>
             <% end %>
@@ -449,6 +449,33 @@
       }
     });
   }
+
+  function sign_up_user(){
+      var user_name = $('#registration_user_name').val();
+      var email = $('#registration_email').val();
+      var password = $('#registration_password').val();
+      if (!jQuery("#sign_up_user").valid()) {
+          return false;
+      }
+      $.ajax({
+          url:'/d/users',
+          type:'post',
+          dataType:'json',
+          data: { resource: { email: email, password: password, name: user_name }},
+          success:function (data) {
+              if( data.success){
+                  $('#signUp').modal('hide');
+                  window.location.href = "/dashboard"
+              }else{
+                  return toastr.error(data.message);
+              }
+          },
+          error:function (data) {
+              alert ("Error");
+          }
+      });
+  }
+
   function login_form(){
     $('#signUp').modal('hide');
     $('#forgotPassword').modal('hide');
