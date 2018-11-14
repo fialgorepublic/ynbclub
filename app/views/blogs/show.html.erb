@@ -261,14 +261,16 @@
 <!--</div>-->
 
 <!--</div>-->
+<% if @blog.is_published? %>
+  <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
+    Post a comment
+  </button>
 
-<button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
-  Post a comment
-</button>
 
-<div id="blogComment">
-  <%= render partial: 'blogs/comments' %>
-</div>
+  <div id="blogComment">
+    <%= render partial: 'blogs/comments' %>
+  </div>
+<% end %>
 
 </div>
 </div>

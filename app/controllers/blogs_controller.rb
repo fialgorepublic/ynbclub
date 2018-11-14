@@ -14,7 +14,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blog = Blog.find(params[:id])
-    @comments = @blog.comments
+    @comments = @blog.comments if @blog.is_published?
     @selected_products = @blog.products
     BlogView.create(user_id: current_user.id, blog_id: @blog.id)
   end
