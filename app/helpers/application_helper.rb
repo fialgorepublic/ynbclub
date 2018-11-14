@@ -55,9 +55,9 @@ module ApplicationHelper
     Setting.first ? Setting.first.min_payment : 0
   end
 
-  def insert_points(user_id, point_id, invitee="")
+  def insert_points(user_id, point_id, invitee="", share_url_id=nil)
     point_type = PointType.find_by_id(point_id)
-    Point.create(user_id: user_id, point_type_id: point_type.id, point_value: point_type.point, invitee: invitee)
+    Point.create(user_id: user_id, point_type_id: point_type.id, point_value: point_type.point, invitee: invitee, share_url_id: share_url_id)
   end
 
   def get_point(id)
