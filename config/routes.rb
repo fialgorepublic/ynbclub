@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       post :update_password
       get :brand_ambassadors
       get :clear_search
+      get :points
     end
   end
 

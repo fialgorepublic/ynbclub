@@ -3,8 +3,12 @@ class OrdersController < ApplicationController
 
   def my_orders
     initiate_shopify_session
-    customer_id = get_customer_id
-    @orders = customer_id.present? ? ShopifyAPI::Order.find(:all, :params => {:status => "any",customer_id: customer_id ,:limit => 250}) : []
+    if current_user.is_admin?
+      @orders = ShopifyAPI::Order.all
+    else
+      customer_id = get_customer_id
+      @orders = customer_id.present? ? ShopifyAPI::Order.find(:all, :params => {:status => "any",customer_id: customer_id ,:limit => 250}) : []
+    end
     clear_shopify_session
   end
 

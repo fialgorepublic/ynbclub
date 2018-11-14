@@ -7,7 +7,7 @@ class PaymentsController < ApplicationController
   # GET /payments.json
   def index
     if params[:text].present?
-      @payments = Payment.where("(CAST(payment_code AS TEXT) LIKE '%#{params[:text]}%' OR LOWER(email) LIKE '%#{params[:text]}%' OR LOWER(recipient_name) LIKE '%#{params[:text]}%')")
+      @payments = Payment.joins(:user).where("(CAST(payment_code AS TEXT) LIKE '%#{params[:text]}%' OR LOWER(users.email) LIKE '%#{params[:text].downcase}%' OR LOWER(users.name) LIKE '%#{params[:text].downcase}%')")
     else
       if params[:search].present?
         if (params[:search][:start_date].present? && params[:search][:end_date].present? && (params[:search][:partner].present? && params[:search][:partner] != "null"))
