@@ -60,11 +60,11 @@ class UsersController < ApplicationController
     else
       @activeStatus = "All"
     end
-    @users = users.paginate(page: params[:page])
+    @users = users.paginate(page: params[:page]).order(created_at: :desc)
   end
 
   def clear_search
-    @users = User.where(role_id: ambassador_role_id)
+    @users = User.where(role_id: ambassador_role_id).paginate(page: params[:page]).order(created_at: :desc)
   end
 
   def show
@@ -127,17 +127,12 @@ class UsersController < ApplicationController
 
   def update_profile
     user = User.find(params[:user_id])
-    if params[:user][:password].present?
-      user.update(user_params)
-    else
-      user.update(edit_user_params)
-    end
-    if user.profile.blank?
-      user.create_profile
-    end
+    params[:user][:password].present? ? user.update(user_params) : user.update(edit_user_params)
+
+    user.create_profile if user.profile.blank?
+
     user.profile.update(profile_params)
-    flash[:success] = "Successfully update"
-    redirect_to users_path
+    redirect_to users_path, success: "Successfully update"
   end
 
   def import_partner

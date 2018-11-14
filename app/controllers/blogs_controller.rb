@@ -1,13 +1,13 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail]
-  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state]
+  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog]
   require 'time_ago_in_words'
   require 'will_paginate'
   include ApplicationHelper
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = current_user.filtered_blogs.paginate(page: params[:page], per_page: 10)
+    @blogs = current_user.filtered_blogs.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
   end
 
   # GET /blogs/1
@@ -117,7 +117,7 @@ class BlogsController < ApplicationController
 
   def share_blog
     share_url = ShareUrl.create(user_id: current_user.id, blog_id: params[:id], url_type: params[:value])
-    insert_points(current_user.id, 3)
+    insert_points(current_user.id, 3, "", share_url.id)
     render json: {success: true}
   end
 

@@ -27,7 +27,7 @@ class User < ApplicationRecord
                     styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
-  delegate :first_name, :surname, to: :profile
+  delegate :first_name, :surname, :address_line_1, :address_line_2, :city, :state, :zip_code, :phone_number, to: :profile, allow_nil: true
 
   after_create :generate_profile
   after_update :update_profile_names

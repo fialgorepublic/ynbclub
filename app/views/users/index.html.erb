@@ -108,97 +108,82 @@
 </div>
 
 <script>
-    //    $('#bs4-table').DataTable({
-    //        retrieve: true,
-    //        "aaSorting": [],
-    //        language: {
-    //            searchPlaceholder: "Name / Email / Phone Number"
-    //        },
-    //        'columnDefs' : [     // see https://datatables.net/reference/option/columns.searchable
-    //            {
-    //                'searchable'    : false,
-    //                'targets'       : [2,4,5,6]
-    //            },
-    //        ]
-    //    });
+  <% if params[:search].present? %>
+  $('#searchText').val('<%= params[:search] %>');
+  $('#crossBtn').show();
+  <% end %>
+  <% if params[:active].present? %>
+  var name = '<%= params[:active] %>';
+  $('#browsingStatus').val(name);
+  <% end %>
+  <% if params[:payment].present? %>
+  var name = '<%= params[:payment] %>';
+  $('#paymentStatus').val(name);
+  <% end %>
 
-    <% if params[:search].present? %>
-    $('#searchText').val('<%= params[:search] %>');
-    $('#crossBtn').show();
-    <% end %>
-    <% if params[:active].present? %>
-    var name = '<%= params[:active] %>';
-    $('#browsingStatus').val(name);
-    <% end %>
-    <% if params[:payment].present? %>
-    var name = '<%= params[:payment] %>';
-    $('#paymentStatus').val(name);
-    <% end %>
+  function change_activeStatus(obj, id){
+    {
+      apprise('Are You Sure You Want To change status?', {'verify': true}, function (r) {
+        if (r) {
+          var obj_cls = $(obj).attr('class');
+          var status = ''
+          if (obj_cls == 'fa fa-eye') {
+            $(obj).removeClass(obj_cls);
+            $(obj).addClass('fa fa-eye-slash');
+            status = false
+          } else if (obj_cls == 'fa fa-eye-slash') {
+            $(obj).removeClass(obj_cls);
+            $(obj).addClass('fa fa-eye');
+            status = true
+          }
+          $.ajax({
+            url: '/change_activeStatus?id=' + id + '&value=' + status,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
 
-    function change_activeStatus(obj, id){
-//        if (confirm('Are You Sure You Want To change status?')) {
-//        }
-        {
-            apprise('Are You Sure You Want To change status?', {'verify': true}, function (r) {
-                if (r) {
-                    var obj_cls = $(obj).attr('class');
-                    var status = ''
-                    if (obj_cls == 'fa fa-eye') {
-                        $(obj).removeClass(obj_cls);
-                        $(obj).addClass('fa fa-eye-slash');
-                        status = false
-                    } else if (obj_cls == 'fa fa-eye-slash') {
-                        $(obj).removeClass(obj_cls);
-                        $(obj).addClass('fa fa-eye');
-                        status = true
-                    }
-                    $.ajax({
-                        url: '/change_activeStatus?id=' + id + '&value=' + status,
-                        type: 'get',
-                        dataType: 'html',
-                        processData: false,
-                        success: function (data) {
-
-                        },
-                        error: function (data) {
-                            alert('Error');
-                            //    window.location.reload();
-                        }
-                    });
-                }
-                else {
-                }
-            });
+            },
+            error: function (data) {
+                alert('Error');
+                //    window.location.reload();
+            }
+          });
         }
-    }
-    function apply_filter(){
-        var browsing_status_val = $('#browsingStatus').val();
-        var paymentStatus_val = $('#paymentStatus').val();
-        window.location.href = '/users?active='+browsing_status_val+'&payment='+paymentStatus_val;
-    }
-
-    function searchPerform(){
-        var search = $('#searchText').val();
-        window.location.href = '/users?search='+search;
-    }
-
-
-
-    $(document).ready(function() {
-        $('#bs4-table').DataTable( {
-            "scrollY": 400,
-            "scrollX": true,
-            "paging": false
-        } );
-    } );
-
-    $('#searchText').keyup(function() {
-        var dInput = this.value;
-        if (dInput == ""){
-            $.ajax({
-                url: '<%= clear_search_users_path %>'
-            })
+        else {
         }
+      });
+    }
+  }
+  function apply_filter(){
+    var browsing_status_val = $('#browsingStatus').val();
+    var paymentStatus_val = $('#paymentStatus').val();
+    window.location.href = '/users?active='+browsing_status_val+'&payment='+paymentStatus_val;
+  }
+
+  function searchPerform(){
+    var search = $('#searchText').val();
+    window.location.href = '/users?search='+search;
+  }
+
+  $(document).ready(function() {
+    $('#bs4-table').DataTable( {
+      "scrollY": 400,
+      "scrollX": true,
+      "paging": false,
+      "aaSorting": [],
+      "language": {
+        "info": ""
+      }
     });
 
+    $('#searchText').keyup(function() {
+      var dInput = this.value;
+      if (dInput == ""){
+        $.ajax({
+          url: '<%= clear_search_users_path %>'
+        })
+      }
+    });
+  });
 </script>

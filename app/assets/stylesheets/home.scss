@@ -1642,6 +1642,7 @@ label.error {
 }
 
 
+
 .nav-side-menu ul .active, .nav-side-menu li a:hover{
   border-left: 3px solid #1e63ec;
   background-color: #eef7ff;
@@ -1653,4 +1654,13 @@ label.error {
    border-left: 3px solid #1e63ec; 
 }
 
+
+
+.sidebar-style{
+
+ }
+ .nav-side-menu ul .active, .nav-side-menu li .active{
+     background-color: #eef7ff;
+     border-left: 3px solid #125492;
+ }
 
