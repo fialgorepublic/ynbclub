@@ -95,6 +95,10 @@ class BlogsController < ApplicationController
   end
 
   def change_publish_status
+    unless @blog.is_published?
+      return redirect_to @blog, alert: "You need to add picture before publishing your blog." unless @blog.avatar.present?
+    end
+
     blog = @blog.update_attributes(is_published: params[:status])
     redirect_to '/blogs/'+params[:id]
   end
