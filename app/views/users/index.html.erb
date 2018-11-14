@@ -182,12 +182,14 @@
 
 
 
-$(document).ready(function() {
+  $(document).ready(function() {
     $('#bs4-table').DataTable( {
-        "scrollY": 400,
-        "scrollX": true,
-        "paging": false
-    } );
-} );
-
+      "scrollY": 400,
+      "scrollX": true,
+      "paging": false,
+      "language": {
+        "info": ""
+      }
+    });
+  });
 </script>
