@@ -34,7 +34,7 @@
     <div class="form-group row">
       <%= form.label "commission *", class: 'control-label text-right col-md-3' %>
       <div class="col-md-5">
-        <%= form.text_field :commission, id: :user_commission, class: 'form-control', required: true %>
+        <%= form.number_field :commission, id: :user_commission, class: 'form-control', required: true, step: :any %>
       </div>
     </div>
 
