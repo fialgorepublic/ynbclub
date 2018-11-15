@@ -13,26 +13,26 @@
 
     <section class="title-bar head-shop-setting col-md-12 col-sm-12">
       <div class="col-md-4 float-left-moblie">
-        <h3 class="text-black"><i class="fa fa-gears"></i> Cấu Hình Chung</h3>
+        <h3 class="text-black"><i class="fa fa-gears"></i> General configuration</h3>
       </div>
       <div class="form-group col-md-8 text-right responsive nowrap" style="text-align: right;">
-        <%= form.submit "Lưu", class: 'btn btn-primary' %>
+        <%= form.submit "Save", class: 'btn btn-primary' %>
       </div>
     </section>
 
     <div class="section col-xs-12">
       <div class="col-md-4">
-        <h4>Tiền thanh toán Partner</h4>
+        <h4>Partner payment</h4>
         <p></p>
       </div>
       <div class="col-md-8 wrapper-content p-t15">
         <div class="form-group p-none" show-errors="">
-          <label for="min_withdraw" class="text-no-bold ws-nm">Số tiền tối thiểu chi trả</label>
+          <label for="min_withdraw" class="text-no-bold ws-nm">Minimum payment amount</label>
           <%= form.text_field :min_payment, id: :setting_min_payment, class: 'form-control ng-pristine ng-untouched ng-valid ng-valid-min' %>
           <div ng-messages="configForm.min_withdraw.$error" role="alert" class="ng-inactive">
             <!-- ngMessage: min -->
           </div>
-          <p class="note text-font-italic mt5">Số tiền tối thiểu Partner phải đạt được vào cuối tháng để Chủ shop có thể thanh toán cho Partner đó!</p>
+          <p class="note text-font-italic mt5">Affiliate minimum amount must be reached at the end of the month so shop owner can pay for that Partner!</p>
         </div>
         <div class="clear"></div>
       </div>
@@ -47,12 +47,12 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group" show-errors="">
-              <label for="ref_cookie_time" class="text-no-bold">Thời gian cookie ( tính theo ngày )</label>
+              <label for="ref_cookie_time" class="text-no-bold">Cookie time (in days)</label>
               <%= form.text_field :cookie_time, id: :setting_cookie_time, class: 'form-control ng-pristine ng-untouched ng-valid ng-valid-min' %>
               <div ng-messages="configForm.ref_cookie_time.$error" role="alert" class="ng-inactive">
                 <!-- ngMessage: min -->
               </div>
-              <p class="note text-font-italic mt5">Thời gian tối đa lưu trữ Linkref trên máy của khách hàng khi nhập linkref của partner</p>
+              <p class="note text-font-italic mt5">Maximum Linkref storage time on client machine when importing partner's linkref</p>
             </div>
           </div>
         </div>
