@@ -5,7 +5,7 @@ module DashboardHelper
         return point.invitee
       when 3
         share_url = ShareUrl.find_by(id: point.share_url_id)
-        return "Shared Blog '#{share_url.blog_title}' on #{share_url.url_type.titleize}"
+        return share_url.present? ? "Shared Blog '#{share_url.blog_title}' on #{share_url.url_type.titleize}" : point.name
       else
         point.name
       end
