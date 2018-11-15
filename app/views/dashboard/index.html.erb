@@ -47,10 +47,33 @@
 
         <div class="col-md-12">
           <h3>Last Earned Coins</h3>
-          <div class="box-shadow">
-            <img src="/assets/icon-13.png">
-            <p>Here you will see the log of your </br> earned coins.</p>
-            <!-- <button class="btn btn-default">How earn and pass coins?</button> -->
+          <div class="box-points">
+            <% if @last_four_points.present? %>
+              <div class="row">
+                <div class="col-md-12 dashboard-points">
+                  <% @last_four_points.each do |point| %>
+                    <div class="col-md-3">
+                      <div class="buydashboard-box text-center">
+                        <img src="/assets/coin-lg.png">
+                        <h4>+<%= point.point_value %> coins.</h4>
+                        <p><%= point_name(point) %></p>
+                      </div>
+                    </div>
+                  <% end %>
+                  <div class="row">
+                    <div class="col-md-offset-10 col-md-2">
+                      <a href="/users/points">Show more...</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="box-shadow">
+                <img src="/assets/icon-13.png">
+                <p>Here you will see the log of your </br> earned coins.</p>
+                <!-- <button class="btn btn-default">How earn and pass coins?</button> -->
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
