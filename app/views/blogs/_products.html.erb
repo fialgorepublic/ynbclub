@@ -2,7 +2,6 @@
   <% @products.each do |product| %>
       <div class="col-md-4">
         <div class="<%= product.id %> box-shadow-am sm-pd-am <%= (@blog.present? && @blog.products.where(product_id: product.id).count > 0) ? 'selected' : '' %>" onclick="showActive(this)">
-          <h3>Product</h3>
           <div class="product-box">
             <img width="100%" src="<%= product.images.present? ? product.images[0].src : '/placeholder.png' %>">
           </div>
