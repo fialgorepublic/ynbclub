@@ -48,18 +48,11 @@
         <div class="col-md-12">
           <h3>Last Earned Coins</h3>
           <div class="box-points">
-            <% if @last_four_points.present? %>
+            <% if @points.present? %>
               <div class="row">
                 <div class="col-md-12 dashboard-points">
-                  <% @last_four_points.each do |point| %>
-                    <div class="col-md-3">
-                      <div class="buydashboard-box text-center">
-                        <img src="/assets/coin-lg.png">
-                        <h4>+<%= point.point_value %> coins.</h4>
-                        <p><%= point_name(point) %></p>
-                      </div>
-                    </div>
-                  <% end %>
+                  <%= render partial: 'dashboard/point', collection: @points %>
+
                   <div class="row">
                     <div class="col-md-offset-10 col-md-2">
                       <a href="/users/points">Show more...</a>
