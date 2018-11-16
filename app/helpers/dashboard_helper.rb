@@ -10,4 +10,8 @@ module DashboardHelper
         point.name
       end
   end
+
+  def current_user_points user
+    user.points.count
+  end
 end
