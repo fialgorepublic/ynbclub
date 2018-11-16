@@ -1,7 +1,7 @@
 <%= form_with(model: user, local: true, class: 'form-horizontal', id: 'new-ambassedor') do |form| %>
   <div class="card-body">
     <div class="form-group row">
-      <%= form.label "name *", class: 'control-label text-right col-md-3' %>
+      <%= form.label "Username *", class: 'control-label text-right col-md-3' %>
       <div class="col-md-5">
         <%= form.text_field :name, id: :user_name, class: 'form-control', required: true %>
       </div>
