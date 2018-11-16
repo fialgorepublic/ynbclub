@@ -35,14 +35,36 @@
 
                 <div class="col-md-9">
                   <div class="row">
-                    <div class="col-md-6 form-group">
-                      <label>First and last name</label>
-                      <%= text_field_tag 'user[name]', @user.full_name, :class => 'form-control', placeholder: "First and last name" %>
+                    <div class="col-md-4 form-group">
+                      <label>Userame</label>
+                      <%= text_field_tag 'user[name]', @user.name, :class => 'form-control', placeholder: "First and last name" %>
                     </div>
 
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-4 form-group">
+                      <label>First Name</label>
+                      <%= text_field_tag 'profile[first_name]', @user.first_name, :class => 'form-control', placeholder: "First and last name" %>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                      <label>Last Name</label>
+                      <%= text_field_tag 'profile[surname]', @user.surname, :class => 'form-control', placeholder: "First and last name" %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4 form-group">
                       <label>Phone number</label>
                       <%= text_field_tag 'profile[phone_number]', @user.profile_phone_number, :class => 'form-control', placeholder: "phone number" %>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                      <label>Commission </label>
+                      <%= number_field_tag 'user[commission]', @user.commission, :class => 'form-control', placeholder: "0", step: :any %>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                      <label>Referral</label>
+                      <%= text_field_tag 'user[referral]', @user.referral, :class => 'form-control' %>
                     </div>
                   </div>
 
@@ -92,18 +114,6 @@
                     <div class="col-md-6 form-group">
                       <label>Password</label>
                       <%= text_field_tag 'user[password]', nil, :class => 'form-control', placeholder: "Password" %>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-4 form-group">
-                      <label>Commission </label>
-                      <%= number_field_tag 'user[commission]', @user.commission, :class => 'form-control', placeholder: "0", step: :any %>
-                    </div>
-
-                    <div class="col-md-4 form-group">
-                      <label>Referral</label>
-                      <%= text_field_tag 'user[referral]', @user.referral, :class => 'form-control' %>
                     </div>
                   </div>
                 </div>
