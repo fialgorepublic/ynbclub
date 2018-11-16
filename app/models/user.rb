@@ -40,7 +40,7 @@ class User < ApplicationRecord
 
     def search_ambassadors params
       if params[:search].present?
-        users =  User.joins(:profile).where("users.role_id = #{ambassador_role_id} and (LOWER(users.name) LIKE '%#{params[:search].downcase}%' OR LOWER(users.email) LIKE '%#{params[:search].downcase}%' OR LOWER(users.phone_number) LIKE '%#{params[:search]}%'
+        users =  User.joins(:profile).where("users.role_id = #{ambassador_role_id} and (LOWER(users.name) LIKE '%#{params[:search].downcase}%' OR LOWER(users.email) LIKE '%#{params[:search].downcase}%' OR LOWER(profiles.phone_number) LIKE '%#{params[:search]}%'
                                             OR LOWER(profiles.first_name) LIKE '%#{params[:search].downcase}%' OR LOWER(profiles.surname) LIKE '%#{params[:search].downcase}%')")
       else
         users = params[:active].present? && params[:active] != "All" ? User.avtive_ambassadors(params[:active]) : User.ambassadors
