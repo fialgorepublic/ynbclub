@@ -70,6 +70,7 @@ class UsersController < ApplicationController
     @user.referral = Devise.friendly_token
     respond_to do |format|
       if @user.save
+        @user.create_profile(phone_number: @user.phone_number)
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :index, status: :created, location: @user }
       else
