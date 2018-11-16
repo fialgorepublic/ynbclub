@@ -30,32 +30,32 @@ class User < ApplicationRecord
   delegate :first_name, :surname, :address_line_1, :address_line_2, :city, :state, :zip_code, to: :profile, allow_nil: true
   delegate :phone_number, to: :profile, prefix: true, allow_nil: true
 
-  after_create :generate_profile
-  after_update :update_profile_names
+  # after_create :generate_profile
+  # after_update :update_profile_names
 
-  def update_profile_names
-    unless profile.blank?
-      first_name = nil
-      surname = nil
-      if self.name.present?
-        name = self.name.split(" ")
-        first_name = name[0]
-        surname = name[1]
-      end
-      profile.update(first_name: first_name, surname: surname)
-    end
-  end
+  # def update_profile_names
+  #   unless profile.blank?
+  #     first_name = nil
+  #     surname = nil
+  #     if self.name.present?
+  #       name = self.name.split(" ")
+  #       first_name = name[0]
+  #       surname = name[1]
+  #     end
+  #     profile.update(first_name: first_name, surname: surname)
+  #   end
+  # end
 
-  def generate_profile
-    first_name = nil
-    surname = nil
-    if self.name.present?
-      name = self.name.split(" ")
-      first_name = name[0]
-      surname = name[1]
-    end
-    self.create_profile(phone_number: phone_number, first_name: first_name, surname: surname)
-  end
+  # def generate_profile
+  #   first_name = nil
+  #   surname = nil
+  #   if self.name.present?
+  #     name = self.name.split(" ")
+  #     first_name = name[0]
+  #     surname = name[1]
+  #   end
+  #   self.create_profile(phone_number: phone_number, first_name: first_name, surname: surname)
+  # end
 
   def is_admin?
     return true if(self.role.name.eql?("Admin") unless self.role.nil?)
