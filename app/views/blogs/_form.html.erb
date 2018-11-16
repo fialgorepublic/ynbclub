@@ -54,17 +54,17 @@
                   </div> -->
 <div class="row m-t-20">
   <div class="Newblog-category">
-                <div class="col-md-4">
+                <div class="col-md-12">
                   <div class="category-option" type="button" data-toggle="popover" id="tooltip-stlye-category" data-placement="top" data-content="Please Select Category First" title="">
 
                   <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
                 </div>
               </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <div class="blog-postCategory" type="button" data-toggle="popover" data-placement="top" data-content="Please Select Promote blog post" title="">
-                  <%= form.collection_select :promote_post, ["promote 1", "promote 2", "promote 3"], :to_s, :to_s , {:include_blank => 'Promote blog post'}, html_options = {:class=>"form-control"} %>
+                  <%#= form.collection_select :promote_post, ["promote 1", "promote 2", "promote 3"], :to_s, :to_s , {:include_blank => 'Promote blog post'}, html_options = {:class=>"form-control"} %>
                   </div>
-                 </div>
+                 </div> -->
                 </div>
                </div>
 
