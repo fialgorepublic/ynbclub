@@ -454,6 +454,7 @@
       var user_name = $('#registration_user_name').val();
       var email = $('#registration_email').val();
       var password = $('#registration_password').val();
+      var invite = $('#invite').val();
       if (!jQuery("#sign_up_user").valid()) {
           return false;
       }
@@ -461,7 +462,7 @@
           url:'/d/users',
           type:'post',
           dataType:'json',
-          data: { resource: { email: email, password: password, name: user_name }},
+          data: { resource: { email: email, password: password, name: user_name }, invite: invite},
           success:function (data) {
               if( data.success){
                   $('#signUp').modal('hide');
