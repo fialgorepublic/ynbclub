@@ -47,7 +47,8 @@ class UsersController < ApplicationController
 
   def index
     if params[:search].present?
-      users = User.where("role_id = #{ambassador_role_id} and (LOWER(name) LIKE '%#{params[:search].downcase}%' OR LOWER(email) LIKE '%#{params[:search].downcase}%' OR LOWER(phone_number) LIKE '%#{params[:search]}%')")
+      users = User.where("role_id = #{ambassador_role_id} and (LOWER(name) LIKE '%#{params[:search].downcase}%' OR LOWER(email) LIKE '%#{params[:search].downcase}%' OR LOWER(phone_number) LIKE '%#{params[:search]}%')") ||
+              User.joins(:profile).where("users.role_id = #{ambassador_role_id} and (LOWER(profiles.first_name) LIKE ? OR LOWER(profiles.surname) LIKE ?)", "%#{params[:search].downcase}%", "%#{params[:search].downcase}%")
     else
       if (params[:active].present? && params[:active] != "All")
         users = User.where(role_id: ambassador_role_id, is_activated: params[:active])
