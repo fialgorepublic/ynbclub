@@ -122,14 +122,16 @@
         <!--</div>-->
       </div>
       <div class="post-heading">
-        <div class="post-sorting pull-right">
-          <label>Sorting</label>
-          <select class="sorting-fltr">
-            <option class="fltr-dropdown">A-Z </option>
-            <option>Newest First</option>
-            <option>Popular First</option>
-          </select>
-        </div>
+        <% if @blogs.count > 0 %>
+          <div class="post-sorting pull-right">
+            <label>Sorting</label>
+            <select class="sorting-fltr">
+              <option class="fltr-dropdown">A-Z </option>
+              <option>Newest First</option>
+              <option>Popular First</option>
+            </select>
+          </div>
+        <% end %>
         <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
       </div>
       <div class="post-heading">
