@@ -30,6 +30,25 @@ class User < ApplicationRecord
   delegate :first_name, :surname, :address_line_1, :address_line_2, :city, :state, :zip_code, to: :profile, allow_nil: true
   delegate :phone_number, to: :profile, prefix: true, allow_nil: true
 
+  scope :avtive_ambassadors, -> (status) { where(role_id: ambassador_role_id, is_activated: status) }
+  scope :ambassadors, -> { where(role_id: ambassador_role_id) }
+
+  class << self
+    def ambassador_role_id
+      Role.find_by_name("Brand ambassador").id
+    end
+
+    def search_ambassadors params
+      if params[:search].present?
+        users =  User.joins(:profile).where("users.role_id = #{ambassador_role_id} and (LOWER(users.name) LIKE '%#{params[:search].downcase}%' OR LOWER(users.email) LIKE '%#{params[:search].downcase}%' OR LOWER(users.phone_number) LIKE '%#{params[:search]}%'
+                                            OR LOWER(profiles.first_name) LIKE '%#{params[:search].downcase}%' OR LOWER(profiles.surname) LIKE '%#{params[:search].downcase}%')")
+      else
+        users = params[:active].present? && params[:active] != "All" ? User.avtive_ambassadors(params[:active]) : User.ambassadors
+      end
+      users.order(created_at: :desc)
+    end
+  end
+
   # after_create :generate_profile
   # after_update :update_profile_names
 
