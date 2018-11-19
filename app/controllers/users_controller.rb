@@ -150,6 +150,7 @@ class UsersController < ApplicationController
   def add_user_info
     @user = User.find(params[:user][:id])
     if @user.update(user_update_params)
+      @user.profile.update(phone_number: @user.phone_number)
       flash[:notice] = "Partner information saved successfully"
       redirect_to dashboard_path
     else
