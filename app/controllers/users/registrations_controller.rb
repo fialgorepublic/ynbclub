@@ -15,6 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource = User.new(sign_up_params)
     resource.referral = Devise.friendly_token
     if resource.save
+      resource.create_profile(phone_number: resource.phone_number)
       if params[:invite].present?
         user_invited = User.find_by_email(params[:invite])
         if user_invited
