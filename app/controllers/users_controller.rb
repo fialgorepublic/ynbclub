@@ -164,7 +164,7 @@ class UsersController < ApplicationController
   end
 
   def points
-    @points = current_user.points
+    @points = current_user.points.order(created_at: :desc)
   end
 
   private
