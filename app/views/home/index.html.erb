@@ -541,4 +541,7 @@
     $('#signUp').modal('show');
   <% end %>
 
+  <% if params[:blog_not_found] %>
+    apprise("The blog no longer exist, Please contact support team for more information")
+  <% end %>
 </script>

@@ -103,7 +103,7 @@ class BlogsController < ApplicationController
     redirect_to @blog
   end
 
-  def change_buyer_show_status
+  def change_buyer_show_statusgs
     blog = @blog.update_attributes(buyer_show: params[:status])
     redirect_to '/blogs/'+params[:id]
   end
@@ -114,7 +114,9 @@ class BlogsController < ApplicationController
   end
 
   def blog_detail
-    @blog = Blog.find(params[:id])
+    @blog = Blog.find_by_id(params[:id])
+    return redirect_to root_path(blog_not_found: true) if @blog.blank?
+
     @comments = @blog.comments
     @selected_products = @blog.products
   end
