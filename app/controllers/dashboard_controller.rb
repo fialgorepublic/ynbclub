@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
         @profile = true
       end
     end
-    @points = current_user.points.last(4)
+    @points = current_user.last_four_points
   end
 
   def update_user_role
@@ -76,7 +76,7 @@ class DashboardController < ApplicationController
   end
 
   def buyerDashboard
-    @points = current_user.points.last(4)
+    @points = current_user.last_four_points
     @user = current_user
   end
 end

@@ -104,4 +104,8 @@ class User < ApplicationRecord
   def full_name
     [first_name, surname].join(' ')
   end
+
+  def last_four_points
+    points.last(4).order(created_at: :desc)
+  end
 end
