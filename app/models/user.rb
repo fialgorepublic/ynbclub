@@ -106,6 +106,6 @@ class User < ApplicationRecord
   end
 
   def last_four_points
-    points.last(4).order(created_at: :desc)
+    points.order(created_at: :desc).first(4)
   end
 end
