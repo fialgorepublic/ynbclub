@@ -27,7 +27,7 @@
             <div class="box-shadow">
                <div class="row">
                 <div class="col-md-12">
-                  <%= form_tag update_email_users_path do |f| %>
+                  <%= form_tag update_email_users_path, id: "change-email-form" do |f| %>
                       <%= hidden_field_tag :id, current_user.id %>
                     <div class="form-group">
                       <label>Current Email</label>
@@ -244,6 +244,31 @@
       $('.account-list li').removeClass('active');
       $(this).parent('li').addClass('active');
     })
+
+    $("#change-email-form").validate({
+      rules: {
+        "new_email": {
+          required: true,
+          emailExt: true
+        },
+        "current_email": {
+          required: true,
+          emailExt: true
+        }
+      },
+      messages: {
+        "new_email": {
+          required: "Please Enter email"
+        },
+        "current_email": {
+          required: "Please Enter Email"
+        }
+      }
+    });
+
+    jQuery.validator.addMethod("emailExt", function(value, element, param) {
+    return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
+    },'Please Enter A Valid Email Address.');
   </script>
 
 
