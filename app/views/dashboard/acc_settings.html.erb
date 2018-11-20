@@ -25,19 +25,19 @@
               </div>
 
             <div class="box-shadow">
-               <div class="row">
+              <div class="row">
                 <div class="col-md-12">
                   <%= form_tag update_email_users_path, id: "change-email-form" do |f| %>
-                      <%= hidden_field_tag :id, current_user.id %>
+                    <%= hidden_field_tag :id, current_user.id %>
                     <div class="form-group">
                       <label>Current Email</label>
-                      <%= email_field_tag :current_email, "", class: "form-control", placeholder: "p******l.com", required: true %>
+                      <%= email_field_tag :current_email, params[:current_email], class: "form-control", placeholder: "p******l.com", required: true %>
                     </div>
                     <div class="form-group">
                       <label>New Email</label>
-                      <%= email_field_tag :new_email, "", class: "form-control", required: true %>
+                      <%= email_field_tag :new_email, params[:new_email], class: "form-control", required: true %>
                     </div>
-                      <%= submit_tag "Save", class: "btn btn-lg btn-block btn-primary" %>
+                    <%= submit_tag "Save", class: "btn btn-lg btn-block btn-primary" %>
                   <% end %>
                 </div>
               </div>

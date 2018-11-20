@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def update_email
     @user = current_user
+    message = nil
     if params[:current_email] == @user.email
       @user.email = params[:new_email]
       if @user.save
@@ -19,12 +20,11 @@ class UsersController < ApplicationController
         sign_out(@user)
         redirect_to root_path
       else
-        flash[:alert] = @user.errors.full_messages
-        redirect_to acc_settings_path
+        message = @user.errors.full_messages
       end
     else
-      flash[:alert] = "Current email doesn't match with the profile you are currently logged in!"
-      redirect_to acc_settings_path
+      message = "Current email doesn't match with the profile you are currently logged in!"
+      redirect_to acc_settings_path(current_email: params[:current_email], new_email: params[:new_email]), alert: message
     end
   end
 
