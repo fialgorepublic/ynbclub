@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def set_variables
     @shopify_domain = "saintlbeau.myshopify.com"
-    @token = "f79d86b71f75c0d7a1fe432e095f3556"
+    @token = "65f08aa2bc5386c55298ed566ad18ccd"
   end
 
   def after_sign_up_path(resource)
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initiate_shopify_session
-    @session = ShopifyAPI::Session.new("saintlbeau.myshopify.com", "f79d86b71f75c0d7a1fe432e095f3556")
+      @session = ShopifyAPI::Session.new("saintlbeau.myshopify.com", "65f08aa2bc5386c55298ed566ad18ccd")
     ShopifyAPI::Base.activate_session(@session)
   end
 
