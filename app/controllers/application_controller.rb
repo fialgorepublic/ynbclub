@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   before_action :blog_not_found
 
   def set_variables
-    @shopify_domain = "saint-messanger.myshopify.com"
-    @token = "881f47d0a2db78212645e4f33f5fefe8"
+    @shopify_domain = "saintlbeau.myshopify.com"
+    @token = "f79d86b71f75c0d7a1fe432e095f3556"
   end
 
   def after_sign_up_path(resource)
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initiate_shopify_session
-    @session = ShopifyAPI::Session.new("saint-messanger.myshopify.com", "ebc2533e6e4d4fd995c4e150b0756256")
+    @session = ShopifyAPI::Session.new("saintlbeau.myshopify.com", "f79d86b71f75c0d7a1fe432e095f3556")
     ShopifyAPI::Base.activate_session(@session)
   end
 
