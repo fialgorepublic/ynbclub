@@ -45,8 +45,9 @@ class ApplicationController < ActionController::Base
 
   def blog_not_found
     return unless user_signed_in?
+    return if params[:blog_not_found].blank?
 
     return redirect_to buyerDashboard_path(blog_not_found: true) if controller_name == "home" && current_user.is_buyer?
-    redirect_to dashboard_path(blog_not_found: true) if controller_name == "home"
+    redirect_to dashboard_path(blog_not_found: true) if controller_name == "home
   end
 end
