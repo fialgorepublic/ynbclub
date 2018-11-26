@@ -17,7 +17,6 @@
         <tr>
           <th>Order#</th>
           <th>Date</th>
-          <th>Customer</th>
           <th>Payment Status</th>
           <th>Fulfillment Status</th>
           <th>Price</th>
@@ -27,14 +26,13 @@
         <tbody>
 
         <% @orders.each do |order| %>
-            <tr>
-              <td><%= order.name %></td>
-              <td><%= order_date(order) %></td>
-              <td><%= customer_name(order) %>
-              <td><%= order.financial_status %></td>
-              <td><%= fulfillment_status(order) %></td>
-              <td><%= number_with_delimiter(order.total_price) %></td>
-            </tr>
+          <tr>
+            <td><%= order.name %></td>
+            <td><%= order_date(order) %></td>
+            <td><%= order.financial_status %></td>
+            <td><%= fulfillment_status(order) %></td>
+            <td><%= number_with_delimiter(order.total_price) %></td>
+          </tr>
         <% end %>
         </tbody>
       </table>
