@@ -25,7 +25,7 @@
             <tbody>
             <% @referral_sales.each do |referral_sale| %>
                 <tr>
-                  <td><%= order.name %></td>
+                  <td><%= referral_sale.name %></td>
                   <td><%= number_with_delimiter(referral_sale.price) %></td>
                   <td><%= referral_sale.name %></td>
                   <td><%= referral_sale.email %></td>
