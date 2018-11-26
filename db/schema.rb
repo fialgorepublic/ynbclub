@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181114100300) do
+ActiveRecord::Schema.define(version: 20181126140617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20181114100300) do
     t.string "shopdomain"
     t.string "price"
     t.boolean "is_approved", default: false
+    t.string "order_no"
   end
 
   create_table "roles", force: :cascade do |t|
