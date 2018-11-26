@@ -35,13 +35,14 @@
               <div class="col-md-6">
                 <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
                 <i class="fa fa-share-alt btn btn-default dropdown-toggle" data-toggle="dropdown"></i>
-                <ul class="dropdown-menu" role="menu">
-                  <% if blog.is_published? %>
-                    <li>   <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','facebook', 'https://www.facebook.com/sharer/sharer.php?u=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-facebook"></i></a>
+                <% if blog.is_published? %>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                      <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','facebook', 'https://www.facebook.com/sharer/sharer.php?u=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-facebook"></i></a>
                       <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
                     </li>
-                  <% end %>
-                </ul>
+                  </ul>
+                <% end %>
                 <span><label id="blogUrl"><%= blog.share_urls.count %></label></span>
               </div>
               <div class="col-md-6 featured-icon-right text-right">
@@ -176,14 +177,14 @@
               <div class="col-md-6">
                 <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
                 <i class="fa fa-share-alt btn btn-default dropdown-toggle" data-toggle="dropdown"></i>
-                <ul class="dropdown-menu" role="menu">
-                  <% if blog.is_published? %>
+                <% if blog.is_published? %>
+                  <ul class="dropdown-menu" role="menu">
                     <li>
                       <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','facebook', 'https://www.facebook.com/sharer/sharer.php?u=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-facebook"></i></a>
                       <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
                     </li>
-                  <% end %>
-                </ul>
+                  </ul>
+                <% end %>
                 <span><label id="blogUrl"><%= blog.share_urls.count %></label></span>
               </div>
               <div class="col-md-6 featured-icon-right text-right">
