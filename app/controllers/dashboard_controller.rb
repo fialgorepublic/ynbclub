@@ -68,11 +68,11 @@ class DashboardController < ApplicationController
 
   def step_three
     url = params[:url]
-    if params[:saintlbeau_post].to_s == "true"
-      insert_points(current_user.id, 1)
-    end
     @point_id = 1
-    ShareUrl.create(url: url, user_id: current_user.id)
+
+    share_url = ShareUrl.create(url: url, user_id: current_user.id)
+
+    insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
   end
 
   def buyerDashboard
