@@ -27,6 +27,7 @@ class HomeController < ApplicationController
   end
 
   def get_referral
+    initiate_shopify_session
     referral = params[:referral]
     order_id = params[:order_id]
     name = params[:first_name].to_s + " " + params[:last_name].to_s
@@ -40,6 +41,7 @@ class HomeController < ApplicationController
       insert_points(user.id, 2)
       UserMailer.referral_sale(user, name, params[:shopdomain]).deliver
     end
+    clear_shopify_session
     render json: {success: true}
   end
 
