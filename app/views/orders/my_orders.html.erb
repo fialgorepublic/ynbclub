@@ -33,7 +33,7 @@
               <td><%= customer_name(order) %>
               <td><%= order.financial_status %></td>
               <td><%= fulfillment_status(order) %></td>
-              <td><%= order.total_price %></td>
+              <td><%= number_with_delimiter(order.total_price) %></td>
             </tr>
         <% end %>
         </tbody>
