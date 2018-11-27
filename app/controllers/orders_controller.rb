@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def my_orders
     initiate_shopify_session
     if current_user.is_admin?
-      @orders = ShopifyAPI::Order.all
+      @orders = get_all_orders
     else
       customer_id = get_customer_id
       @orders = customer_id.present? ? ShopifyAPI::Order.find(:all, :params => {:status => "any",customer_id: customer_id ,:limit => 250}) : []
@@ -16,5 +16,20 @@ class OrdersController < ApplicationController
     def get_customer_id
       customer = Customer.find_by(email: current_user.email)
       customer.present? ? customer.customer_id : nil
+    end
+
+    def get_all_orders
+      page = 1
+      orders = []
+      count = ShopifyAPI::Product.count
+      if count > 0
+        page += count.divmod(250).first
+        while page > 0
+          puts "Processing page #{page}"
+          orders += ShopifyAPI::Order.find(:all, params: { status: "any", limit: 250, page: page })
+          page -= 1
+        end
+      end
+      orders
     end
 end
