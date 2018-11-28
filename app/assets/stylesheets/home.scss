@@ -1677,6 +1677,15 @@ label.error {
    }
  }
  @media only screen and (max-width:980px){
+  .box-shadow p{
+    font-size:16px;
+  }
+  .account-side-menu-style li a{
+    padding:11px 5px 10px;
+  }
+  .dashboard-holder{
+    overflow-x:hidden;
+  }
   .navbar-default .navbar-toggle{
     border:none
   }
@@ -1696,8 +1705,14 @@ label.error {
   }
   .modal-dialog{
     max-width:360px;
-    margin:6px 12px;
+    margin:6px auto;
     width:100%;
+  }
+  .newBlog-style .assign-Heading h4{
+        margin: 14% 18% auto;
+  }
+  .modal-dialog.modal-lg{
+      margin:6px 10px;
   }
   .m-image-frame{
     padding:30px 5px !important
