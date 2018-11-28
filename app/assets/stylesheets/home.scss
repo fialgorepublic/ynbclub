@@ -1658,14 +1658,40 @@ label.error {
    border-left: 3px solid #1e63ec;
 }
 
-
-
 .sidebar-style{
 
  }
  .nav-side-menu ul .active, .nav-side-menu li .active{
      background-color: #eef7ff;
      border-left: 3px solid #125492;
+ }
+ .page-de-tab-holder{
+  border:2px solid #eee;
+  position:relative;
+  padding:15px 15px;
+  margin-bottom:15px;
+ }
+  .page-de-tab-holder p{
+    margin-bottom:0;
+//    margin-left:10px;
+//    padding-left:20px
+    font-size:18px;
+    font-weight:300;
+  }
+    .page-de-tab-holder a{
+      text-decoration:none;
+      color:#000;
+//      font-size:18px
+    }
+  .page-de-tab-holder p i{
+    font-size:20px;
+    margin-right:8px;
+  }
+ .page-de-tab-holder .pd-tab-right{
+  position:absolute;
+  right:20px;
+  top:15%;
+  font-size:25px;
  }
  @media  only screen and (min-width:980px) {
 
@@ -1677,6 +1703,12 @@ label.error {
    }
  }
  @media only screen and (max-width:980px){
+  .page-de-tab-holder p{
+    font-size:16px;
+  }
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+    background-color:transparent
+  }
   .box-shadow p{
     font-size:16px;
   }
@@ -1694,6 +1726,7 @@ label.error {
   }
   .setting-holder .account-list{
     position:relative;
+    display:none;
     top:0;
   }
   .setting-holder .account-list li.active a{
@@ -1770,6 +1803,7 @@ label.error {
   }
   .account-side-menu-style .m-profile-holder .account-brand-icon p{
     margin:0;
+    font-size:15px;
   }
   .account-side-menu-style .brand{
     padding-left:0;
