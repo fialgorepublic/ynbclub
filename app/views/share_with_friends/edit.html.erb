@@ -1,0 +1,88 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Edit Share With Friends</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <%= form_for @share_with_friend, url: share_with_friends_path, method: :put do |form|%>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box-shadow box-shadow-pd-sm edit-share-box">
+              <div class="row">
+                <div class="col-md-12 text-right cu-btn-holder">
+                  <button class="btn btn-primary">Save</button>
+                  <%= form.submit "Cancel", class: "btn btn-default" %>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Enter Text Here</label>
+                    <%= form.text_area :reward_text, class: "form-control editor" %>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Edit Link </label>
+                    <%= form.text_area :earn_coins_text, class: "form-control editor" %>
+                  </div>
+                </div>
+                <!--    <p class="text-center"> You'll receive <%= get_point(6) %> coins on the saint l' Beau web site for every registered friend by your invitation link. your friend will receive <%= get_point(6) %>  coins too</p>
+                  <p class="text-center" data-target="#coinModal" data-toggle="modal"><a href="javascript:void(0);">How can I earn and spend coins?</a></p> -->
+                <div class="col-md-12">
+                  <div class="form-box" style="overflow: hidden">
+                    <input type="text" style="width: 68%;
+                      float: left;
+                      font-size: 20px; word-wrap: break-word" id="clipboardShareFriend" value=" https://beta.saintlbeau.com?invite=<%= current_user.email %>">
+                    <a href="javascript:void(0);" onclick="clipboardShareFriend()"  class="btn btn-default pull-right">Copy Share link</a>
+                  </div>
+                </div>
+              </div>
+
+              <% url = "https://beta.saintlbeau.com?invite=#{current_user.email}" %>
+              <div class="row text-center input-holder" >
+                <div class="col-md-4 ">
+                  <a href="javascript:void(0);" target="_blank" class="btn btn-primary btn-block">
+                    <i class="fa fa-facebook"></i>
+                    <%= form.text_field :fb_btn_text, placeholder: "Enter text here" %>
+                  </a>
+                </div>
+
+                <div class="col-md-4">
+                  <!--<a href="https://twitter.com/intent/tweet?text=“<%#= "testing here" %>”&url=<%#= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> Share on Twitter</a>-->
+                  <a href="javascript:void(0);" target="_blank" class="btn btn-info btn-block">
+                    <i class="fa fa-twitter"></i>
+                    <%= form.text_field :twitter_btn_text, placeholder: "Enter text here" %>
+                  </a>
+                </div>
+
+                <div class="col-md-4">
+                  <a href="javascript:void(0);" class="btn btn-warning btn-block">
+                    <i class="fa fa-envelop"></i>
+                    <%= form.text_field :email_btn_text, placeholder: "Enter text here" %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('textarea.editor').ckeditor();
+</script>
