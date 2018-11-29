@@ -1702,6 +1702,14 @@ label.error {
   border-radius:0;
   color:#323232;
  }
+ .edit-share-box .input-holder a input{
+      border: none;
+    background: no-repeat;
+    color: #fff;
+ }
+ .edit-share-box .input-holder a input::placeholder{
+  color:#fff;
+ }
  @media  only screen and (min-width:980px) {
 
    .m-profile-holder{
