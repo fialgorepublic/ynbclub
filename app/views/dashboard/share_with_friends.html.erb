@@ -18,6 +18,14 @@
         <div class="col-md-12">
           <div class="box-shadow">
             <div class="row">
+              <div class="row">
+                <div class="col-md-12 text-right cu-btn-holder">
+                  <%= link_to edit_share_with_friends_path, class: "btn btn-default" do %>
+                    <i class="fa fa-pencil"></i> Edit
+                  <% end %>
+                </div>
+              </div>
+
               <div class="col-md-12">
                 <p class="text-center"><%= @share_with_friends.reward_text %></p>
                 <p class="text-center" data-target="#coinModal" data-toggle="modal"><a href="javascript:void(0);"><%= @share_with_friends.earn_coins_text %></a></p>
