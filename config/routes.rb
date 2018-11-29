@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'buyerDashboard', to: 'dashboard#buyerDashboard'
   get 'dashboard_main', to: 'dashboard#dashboard_main'
-  get 'edit_share_on_socialnetworks', to: 'dashboard#edit_share_on_socialnetworks'
   get 'update_user_role', to: 'dashboard#update_user_role'
   get 'auth/:provider/callback', to: 'sessions#create'
   post "add_partner_information", to: 'partner_informations#add_partner_information'
@@ -28,6 +27,7 @@ Rails.application.routes.draw do
   get "get_user_object", to: "dashboard#get_user_object"
   get 'share_with_friends', to: 'dashboard#share_with_friends'
   get 'edit_share_with_friends', to: 'dashboard#edit_share_with_friends'
+  get 'page_design', to: 'dashboard#page_design'
   get 'take_snapshot', to: 'dashboard#take_snapshot'
   get 'step_one', to: 'dashboard#step_one'
   get 'step_two', to: 'dashboard#step_two'

@@ -115,6 +115,12 @@
       <li>
         <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>"><i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Acc settings  </a>
       </li>
+
+      <li>
+        <%= link_to page_design_path, class: active_class(page_design_path) do %>
+          <i class="custom-icon"><img width="16" src="/assets/icon-10.png"></i>Pages Design
+        <% end %>
+      </li>
       <!-- <li>
         <a href="#"><i class="custom-icon"><img src="/assets/icon-11.png"> </i>Notification settings  </a>
         </li> -->
