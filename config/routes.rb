@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   post "change_profile_picture", to: "dashboard#change_profile_picture"
   get "get_user_object", to: "dashboard#get_user_object"
   get 'share_with_friends', to: 'dashboard#share_with_friends'
-  get 'edit_share_with_friends', to: 'dashboard#edit_share_with_friends'
   get 'page_design', to: 'dashboard#page_design'
   get 'take_snapshot', to: 'dashboard#take_snapshot'
   get 'step_one', to: 'dashboard#step_one'
