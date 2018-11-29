@@ -1707,6 +1707,20 @@ label.error {
     background: no-repeat;
     color: #fff;
  }
+ #coinEditModal .items{
+  margin-bottom:20px;
+  overflow:hidden;
+ }
+  #coinEditModal .items .form-group{
+    position:relative;
+    overflow:hidden
+  }
+  #coinEditModal .items i{
+    color:#000;
+    position:absolute;
+    right:0px;
+    top:5px;
+  }
  .edit-share-box .input-holder a input::placeholder{
   color:#fff;
  }
