@@ -1693,6 +1693,15 @@ label.error {
   top:15%;
   font-size:25px;
  }
+ .box-shadow-pd-sm{
+  padding: 20px 50px;
+ }
+ .cu-btn-holder .btn{
+  background:transparent;
+  border:1px solid #323232;
+  border-radius:0;
+  color:#323232;
+ }
  @media  only screen and (min-width:980px) {
 
    .m-profile-holder{
