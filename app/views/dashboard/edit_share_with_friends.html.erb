@@ -16,7 +16,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class="box-shadow box-shadow-pd-sm">
+          <div class="box-shadow box-shadow-pd-sm edit-share-box">
             <div class="row">
               <div class="col-md-12 text-right cu-btn-holder">
                 <button class="btn btn-primary">Save</button>
@@ -53,16 +53,16 @@
 
 
             <% url = "https://beta.saintlbeau.com?invite=#{current_user.email}" %>
-            <div class="row text-center">
+            <div class="row text-center input-holder" >
               <div class="col-md-4 ">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary btn-block"> <i class="fa fa-facebook"></i> Share on facebook</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary btn-block"> <i class="fa fa-facebook"></i> <input type='text' placeholder="Share on facebook"> </a>
               </div>
               <div class="col-md-4">
                 <!--<a href="https://twitter.com/intent/tweet?text=“<%#= "testing here" %>”&url=<%#= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> Share on Twitter</a>-->
-                <a href="https://twitter.com/intent/tweet?url=<%= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> Share on Twitter</a>
+                <a href="https://twitter.com/intent/tweet?url=<%= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> <input type='text' placeholder="Share on Twitter"> </a>
               </div>
               <div class="col-md-4">
-                <a href="mailto:someone@example.com?Subject=Hello&Body=<%= url %>" target="_top" class="btn btn-warning btn-block"> <i class="fa fa-envelop"></i> Share on Mail</a>
+                <a href="mailto:someone@example.com?Subject=Hello&Body=<%= url %>" target="_top" class="btn btn-warning btn-block"> <i class="fa fa-envelop"></i> <input type='text' placeholder="Share on Mail"> </a>
               </div>
 
             </div>
