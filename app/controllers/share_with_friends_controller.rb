@@ -1,0 +1,2 @@
+class ShareWithFriendsController < ApplicationController
+end
