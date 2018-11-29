@@ -1658,12 +1658,239 @@ label.error {
    border-left: 3px solid #1e63ec;
 }
 
-
-
 .sidebar-style{
 
  }
  .nav-side-menu ul .active, .nav-side-menu li .active{
      background-color: #eef7ff;
      border-left: 3px solid #125492;
+ }
+ .page-de-tab-holder{
+  border:2px solid #eee;
+  position:relative;
+  padding:15px 15px;
+  margin-bottom:15px;
+ }
+  .page-de-tab-holder p{
+    margin-bottom:0;
+//    margin-left:10px;
+//    padding-left:20px
+    font-size:18px;
+    font-weight:300;
+  }
+    .page-de-tab-holder a{
+      text-decoration:none;
+      color:#000;
+//      font-size:18px
+    }
+  .page-de-tab-holder p i{
+    font-size:20px;
+    margin-right:8px;
+  }
+ .page-de-tab-holder .pd-tab-right{
+  position:absolute;
+  right:20px;
+  top:15%;
+  font-size:25px;
+ }
+ @media  only screen and (min-width:980px) {
+
+   .m-profile-holder{
+    display:none
+   }
+   .d-profile-holder{
+    display:block
+   }
+ }
+ @media only screen and (max-width:980px){
+  .h1, h1{
+    font-size:25px;
+  }
+  .page-de-tab-holder p{
+    font-size:16px;
+  }
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+    background-color:transparent
+  }
+  .box-shadow p{
+    font-size:16px;
+  }
+  .account-side-menu-style li a{
+    padding:11px 5px 10px;
+  }
+  .dashboard-holder{
+    overflow-x:hidden;
+  }
+  .navbar-default .navbar-toggle{
+    border:none
+  }
+  .navbar-default .navbar-toggle .icon-bar{
+    background-color:#fff;
+  }
+  .setting-holder .account-list{
+    position:relative;
+    display:none;
+    top:0;
+  }
+  .setting-holder .account-list li.active a{
+    display:block;
+    width:100%;
+  }
+   .appriseOuter{
+    max-width:60%;
+  }
+  .modal-dialog{
+    max-width:360px;
+    margin:6px auto;
+    width:100%;
+  }
+  .newBlog-style .assign-Heading h4{
+        margin: 14% 18% auto;
+  }
+  .modal-dialog.modal-lg{
+      margin:6px 10px;
+  }
+  .m-image-frame{
+    padding:30px 5px !important
+  }
+  .newBlog-style button{
+    padding:10px 10px;
+  }
+  .ambassador-dashboard .ambassdor-box h2{
+    font-size:14px;
+  }
+  .ambassador-dashboard .ambassdor-box{
+    padding:40px 5px;
+  }
+   .m-profile-holder{
+    display:block;
+    color:#000;
+   }
+   .d-profile-holder{
+    display:none !important
+   }
+  .nav-side-menu .toggle-btn{
+    display:none
+  }
+  #menu-content{
+    display:block
+  }
+  .user-image{
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    display: inline-block;
+  }
+  .user-image #updateUserImage{
+        width: 60px;
+    height: 60px;
+  }
+  .user-image h3{
+        line-height: 60px;
+        text-align:center
+  }
+  .ab-dropdown{
+    right: auto;
+    top: 42px;
+    left: 40px;
+  }
+  .brand h2{
+    display: inline-block;
+    vertical-align: top;
+    font-size:20px;
+    padding:2px 0 0 10px;
+  }
+  .account-side-menu-style .m-profile-holder .account-brand-icon{
+    border:none;
+    margin-top:10px;
+  }
+  .account-side-menu-style .m-profile-holder .account-brand-icon p{
+    margin:0;
+    font-size:15px;
+  }
+  .account-side-menu-style .brand{
+    padding-left:0;
+  }
+  .m-profile-holder .account-brand-icon .btn{
+    margin:0 !important;
+    padding:0 10px;
+  }
+  .nav-side-menu ul .active, .nav-side-menu li a.active{
+    border-bottom:3px solid #1e63ec;
+    border-left:none;
+    background:none;
+  }
+  .nav-side-menu ul .active, .nav-side-menu li a:hover{
+      border-bottom:3px solid #1e63ec;
+    border-left:none;
+    background:none;
+  }
+  .h2, h2{
+    font-size:20px;
+  }
+  .snapshot-dashboard-holder .box-shadow{
+    padding:30px 20px;
+  }
+  .box-shadow{
+    padding:30px 20px;
+  }
+  .box-shadow a{
+    font-size:16px;
+  }
+    .box-shadow .btn-block{
+    margin-bottom:15px;
+  }
+  .box-shadow .form-box{
+    padding:10px;
+    input{
+      width: 100% !important;
+      float: none; 
+      font-size: 15px !important;
+    }
+    a{
+      font-size:14px;
+      display:none
+    }
+  }
+  .account-side-menu-style{
+    .menu-list {
+      overflow:auto;
+      margin-bottom:20px;
+      position:relative;
+      margin-top:20px;
+     
+      #menu-content{
+         width:1350px;
+        overflow:auto;
+         &:after{
+        clear: both;
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 400%;
+        height: 1px;
+        background: #eee;
+        top: 0;
+      }
+       &:before{
+        clear: both;
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 400%;
+        height: 1px;
+        background: #eee;
+        bottom: 0;
+      }
+        li{
+          display:inline-block;
+        }
+      }
+     
+    }
+  }
  }

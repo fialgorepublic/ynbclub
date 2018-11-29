@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'buyerDashboard', to: 'dashboard#buyerDashboard'
   get 'dashboard_main', to: 'dashboard#dashboard_main'
+  get 'edit_share_on_socialnetworks', to: 'dashboard#edit_share_on_socialnetworks'
   get 'update_user_role', to: 'dashboard#update_user_role'
   get 'auth/:provider/callback', to: 'sessions#create'
   post "add_partner_information", to: 'partner_informations#add_partner_information'
