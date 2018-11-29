@@ -1,0 +1,2 @@
+class ShareWithFriend < ApplicationRecord
+end

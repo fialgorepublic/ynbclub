@@ -5,7 +5,7 @@
         <%= render partial: "shared/user_image" %>
         <div class="dropdown ab-dropdown">
           <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown">
-            <i class="fa fa-camera"></i>
+          <i class="fa fa-camera"></i>
           </button>
           <ul class="dropdown-menu">
             <li> <a href="javascript:void(0);" onclick="uploadImage();">image</a></li>
@@ -17,96 +17,89 @@
     <h2 class="m-profile-holder">
       <div class="row">
         <div class="col-md-12">
-      <%= current_user.name %>
-
+          <%= current_user.name %>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-12 account-brand-icon">
           <p style="color: gold"> <img src="/assets/coin.png"> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <button style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal" data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button> <span class="pull-right"> 
             <img src="/assets/dollar.png"> <%= current_user.total_income %> $0</span>
-</p>
+          </p>
         </div>
       </div>
     </h2>
     <ul>
-
     </ul>
-
   </div>
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
   <div class="menu-list custom-side-menu">
-
     <ul id="menu-content" class="menu-content collapse out">
       <li class="row d-profile-holder" >
         <div class="col-md-12 account-brand-icon">
           <p style="color: gold"> <img src="/assets/coin.png"> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <button style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal" data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button> <span class="pull-right"> 
             <img src="/assets/dollar.png"> <%= current_user.total_income %> $0</span>
-</p>
+          </p>
         </div>
       </li>
-       <li>
+
+      <li>
         <%= link_to dashboard_path, class: active_class(dashboard_path) || active_class(buyerDashboard_path) do %>
-          <i><img src="/assets/icon-1.png"></i>Dashboard
+        <i><img src="/assets/icon-1.png"></i>Dashboard
         <% end %>
       </li>
+
       <li>
         <%= link_to share_with_friends_path, class: active_class(share_with_friends_path) do %>
-          <i><img src="/assets/icon-2.png"></i> Share with friends
+        <i><img src="/assets/icon-2.png"></i> Share with friends
         <% end %>
       </li>
 
       <li>
         <%= link_to take_snapshot_path, class: active_class(take_snapshot_path) do %>
-          <i><img src="/assets/icon-3.png"> </i> Take a snapshot and share
-          <% end %>
+        <i><img src="/assets/icon-3.png"> </i> Take a snapshot and share
+        <% end %>
       </li>
-    
       <% if current_user.role.present? && current_user.role.name != "Buyer" %>
-          <li  data-toggle="" data-target="#" class="collapsed">
-            <a href="/referral_sales" class="<%= active_class(referral_sales_path) %>"><i class="custom-icon"><img src="/assets/icon-4.png"> </i>  My Sales </a>
-          </li>
+        <li  data-toggle="" data-target="#" class="collapsed">
+          <a href="/referral_sales" class="<%= active_class(referral_sales_path) %>"><i class="custom-icon"><img src="/assets/icon-4.png"> </i>  My Sales </a>
+        </li>
       <% end %>
-          <li  data-toggle="" data-target="#" class="collapsed">
-            <a href="/blogs" class="<%= active_class(blogs_path) %>"><i class="custom-icon"><img src="/assets/icon-6.png"> </i> Blogs</a>
-          </li>
-
+      <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="/blogs" class="<%= active_class(blogs_path) %>"><i class="custom-icon"><img src="/assets/icon-6.png"> </i> Blogs</a>
+      </li>
       <% if current_user.role.present? && current_user.role.name == "Admin" || current_user.is_shopify_user %>
-          <li>
-            <a href="/users/brand_ambassadors" class="<%= active_class("/users/brand_ambassadors") %>"><i class="custom-icon"><img src="/assets/tag-sidebar.png"> </i> Commission  </a>
-          </li>
-          <li>
-            <a href="/approve_sales" class="<%= active_class(approve_sales_path) %>"><i class="custom-icon"><img src="/assets/iocn-5.png"> </i> Approve Sales  </a>
-          </li>
-          <li>
-            <a class="auto click-close <%= active_class(edit_setting_path(Setting.first)) %>" href="<%= edit_setting_path(Setting.first) %>">
-              <i class="fa fa-gears sidebar-icon"></i>
-              <span class="ng-binding"> Configuration</span>
-            </a>
-          </li>
-          <li class="menu-item ng-scope" ng-repeat="item in menu.items | orderBy: 'position'">
-            <a class="auto click-close <%= active_class(payments_path) %>" href="/payments">
-              <i class="fa fa-money sidebar-icon"></i>
-              <span class="ng-binding"> Payment history</span>
-            </a>
-          </li>
-          <li>
-            <a href="/users" class="<%= active_class(users_path) %>"><i class="custom-icon"><img src="/assets/ambassador-sidebar.png"> </i> Ambassadors  </a>
-          </li>
-          <li>
-            <a href="/categories" class="<%= active_class(categories_path) %>"><i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>  Categories  </a>
-          </li>
-          <li>
-            <a href="/point_types" class="<%= active_class(point_types_path) %>"><i class="custom-icon"><img src="/assets/reward-sidebar.png"> </i> Manage Rewards  </a>
-            </li>
+        <li>
+          <a href="/users/brand_ambassadors" class="<%= active_class("/users/brand_ambassadors") %>"><i class="custom-icon"><img src="/assets/tag-sidebar.png"> </i> Commission  </a>
+        </li>
+        <li>
+          <a href="/approve_sales" class="<%= active_class(approve_sales_path) %>"><i class="custom-icon"><img src="/assets/iocn-5.png"> </i> Approve Sales  </a>
+        </li>
+        <li>
+          <a class="auto click-close <%= active_class(edit_setting_path(Setting.first)) %>" href="<%= edit_setting_path(Setting.first) %>">
+          <i class="fa fa-gears sidebar-icon"></i>
+          <span class="ng-binding"> Configuration</span>
+          </a>
+        </li>
+        <li class="menu-item ng-scope" ng-repeat="item in menu.items | orderBy: 'position'">
+          <a class="auto click-close <%= active_class(payments_path) %>" href="/payments">
+          <i class="fa fa-money sidebar-icon"></i>
+          <span class="ng-binding"> Payment history</span>
+          </a>
+        </li>
+        <li>
+          <a href="/users" class="<%= active_class(users_path) %>"><i class="custom-icon"><img src="/assets/ambassador-sidebar.png"> </i> Ambassadors  </a>
+        </li>
+        <li>
+          <a href="/categories" class="<%= active_class(categories_path) %>"><i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>  Categories  </a>
+        </li>
+        <li>
+          <a href="/point_types" class="<%= active_class(point_types_path) %>"><i class="custom-icon"><img src="/assets/reward-sidebar.png"> </i> Manage Rewards  </a>
+        </li>
       <% end %>
-
-
-     <!--  <li  data-toggle="" data-target="#" class="collapsed">
-      <a href="#"> <i class="custom-icon"><img src="/assets/icon-7.png"></i>  Transactions</a>
-      </li> -->
-
+      <!--  <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="#"> <i class="custom-icon"><img src="/assets/icon-7.png"></i>  Transactions</a>
+        </li> -->
       <% if current_user.is_admin? %>
         <li  data-toggle="" data-target="#" class="collapsed">
           <a href="/my_orders" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> All Orders </span></a>
@@ -117,54 +110,57 @@
         </li>
       <% end %>
       <!-- <li>
-      <a href="#"> <i class="custom-icon"><img src="/assets/icon-9.png"> </i> Favourties </a>
-      </li> -->
+        <a href="#"> <i class="custom-icon"><img src="/assets/icon-9.png"> </i> Favourties </a>
+        </li> -->
       <li>
         <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>"><i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Acc settings  </a>
       </li>
-      <!-- <li>
-      <a href="#"><i class="custom-icon"><img src="/assets/icon-11.png"> </i>Notification settings  </a>
-      </li> -->
-    </ul>
-    
-  </div>
 
+      <li>
+        <%= link_to page_design_path, class: active_class(page_design_path) do %>
+          <i class="fa fa-paint-brush"></i> <span class="ml-4">Pages Design</span>
+        <% end %>
+      </li>
+      <!-- <li>
+        <a href="#"><i class="custom-icon"><img src="/assets/icon-11.png"> </i>Notification settings  </a>
+        </li> -->
+    </ul>
+  </div>
 </div>
 
 <div class="account-side-btn">
-<% if current_user.is_ambassador? || current_user.is_admin? %>
-        <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-lg btn-block acc-btn-style btn-primary" style="margin-bottom: 20px; margin-left: 7px; margin-top: 10px">Copy Referral Link</a>
-    <% end %>
+  <% if current_user.is_ambassador? || current_user.is_admin? %>
+    <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-lg btn-block acc-btn-style btn-primary" style="margin-bottom: 20px; margin-left: 7px; margin-top: 10px">Copy Referral Link</a>
+  <% end %>
 </div>
 
 <div id="imageUploader" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div id="uploadImage">
-
       </div>
     </div>
-
   </div>
 </div>
+
 <div id="coinModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-cu">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+
       <div class="modal-body">
         <div class="modal-holder">
           <div id="current_user_role">
             <h3 class="text-center">Earn coins and exchange them to discount</h3>
           </div>
+
           <div class="coin-body">
             <div class="row">
               <div class="col-md-12">
@@ -175,11 +171,13 @@
               <div class="col-md-12 text-center">
                 <h3>How can you earn coins?</h3>
               </div>
+
               <div class="col-md-6">
                 <p> <span class="">+10</span> <strong>Post the blog</strong></p>
                 <p> <span class="">+20</span> <strong>Take and share a snapshot</strong></p>
                 <p> <span class="">+15</span> <strong>Order product in the blog post</strong></p>
               </div>
+
               <div class="col-md-6">
                 <p> <span class="">+5</span> <strong> Invite user to the Saint I' beau</strong></p>
                 <p> <span class="">+15</span> <strong> Invited user spent $50</strong></p>
@@ -194,42 +192,48 @@
                 <h3>How can you spend coins?</h3>
                 <p>You'll be able to exchange coins during the product order</p>
               </div>
+
               <div class="col-md-3 col-md-offset-3">
                 <h4 class="coin-count">100 coins</h4>
               </div>
+
               <div class="col-md-1">
                 <p class="count-eq">=</p>
               </div>
+
               <div class="col-md-3 ">
                 <h4 class="coin-price">$10</h4>
               </div>
             </div>
             <hr/>
+
             <div class="row">
               <div class="col-md-12 text-center">
                 <p>Or you can promote your blogs</p>
               </div>
             </div>
+
             <div class="row text-center">
               <div class="col-md-3 col-md-offset-3">
                 <h4  class="coin-count">100 coins</h4>
               </div>
+
               <div class="col-md-1">
                 <p class="count-eq">=</p>
               </div>
+
               <div class="col-md-3 ">
                 <h4  class="coin-price">$10</h4>
               </div>
             </div>
           </div>
-
         </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -349,50 +353,47 @@
 
 <p id="text_element" style="display: none">https://saintlbeau.myshopify.com/?referral_url=<%= current_user.referral %></p>
 <script>
+  function uploadImage(){
+    $.ajax({
+      url:'/get_user_object',
+      type:'get',
+      dataType:'html',
+      processData:false,
+      success:function (data) {
+        $('#imageUploader').modal('show');
+        $('#uploadImage').html(data);
+      },
+      error:function (data) {
+        alert ('Error');
+      }
+    });
+  }
+  function copyToClipboard(elementId) {
 
-    function uploadImage(){
-        $.ajax({
-            url:'/get_user_object',
-            type:'get',
-            dataType:'html',
-            processData:false,
-            success:function (data) {
-                $('#imageUploader').modal('show');
-                $('#uploadImage').html(data);
-            },
-            error:function (data) {
-                alert ('Error');
-                //    window.location.reload();
-            }
-        });
-    }
-    function copyToClipboard(elementId) {
+    // Create an auxiliary hidden input
+    var aux = document.createElement("input");
 
-        // Create an auxiliary hidden input
-        var aux = document.createElement("input");
+    // Get the text from the element passed into the input
+    aux.setAttribute("value", document.getElementById(elementId).innerHTML);
 
-        // Get the text from the element passed into the input
-        aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+    // Append the aux input to the body
+    document.body.appendChild(aux);
 
-        // Append the aux input to the body
-        document.body.appendChild(aux);
+    // Highlight the content
+    aux.select();
 
-        // Highlight the content
-        aux.select();
+    // Execute the copy command
+    document.execCommand("copy");
 
-        // Execute the copy command
-        document.execCommand("copy");
-
-        // Remove the input from the body
-        document.body.removeChild(aux);
-
-    }
+    // Remove the input from the body
+    document.body.removeChild(aux);
+  }
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
   $('textarea.editor').ckeditor();
 
-  })
+  });
 
   $(document).ready(function() {
 var max_fields = 20; //maximum input boxes allowed
