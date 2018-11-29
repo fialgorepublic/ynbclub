@@ -1,4 +1,4 @@
-  <div class="dashboard-holder ambassador-dashboard">
+<div class="dashboard-holder ambassador-dashboard">
   <%= form_with(model: blog, local: true, multipart: true) do |form| %>
       <% if blog.errors.any? %>
           <div id="error_explanation">
@@ -37,14 +37,13 @@
                           margin: 50px 0;
                           text-align: center;
                           min-height: 150px">
-                    <%= image_tag(@blog.avatar.present? ? @blog.avatar.url : 'https://beta.saintlbeau.com/xg', :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
-               
-               <div class="field form-group">
-                    <div class="fileUpload form-control start blog-imgUpload">
-                      <%= form.file_field :avatar, :class=>'upload', :id => 'fileupload' %>
+                    <%= image_tag(@blog.avatar.present? ? @blog.avatar.url : "placeholder.png", :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
+                    <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
+                    <div class="field form-group" id="image-upload-button-div">
+                      <div class="fileUpload form-control start blog-imgUpload">
+                        <%= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false %>
+                      </div>
                     </div>
-                  </div> 
-
 
                   </div>
                   <!-- <div class="field form-group">
@@ -295,6 +294,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
 <script>
+  $(":file").filestyle({input: false});
+
     $('textarea.editor').ckeditor();
     //https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/basic.min.css
     //enctype="multipart/form-data"
@@ -356,11 +357,13 @@
     function readURL(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
+        var name = input.files[0].name
         reader.onload = function (e) {
           var st = e.target.result;
           $('#blah').attr('src', e.target.result);
           $('#fileUpload').attr('src', e.target.result);
         };
+        $('#file-name').text(name);
         reader.readAsDataURL(input.files[0]);
       }
     }
