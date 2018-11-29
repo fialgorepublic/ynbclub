@@ -79,4 +79,14 @@ class DashboardController < ApplicationController
     @points = current_user.last_four_points
     @user = current_user
   end
+
+  def share_with_friends
+    @share_with_friends = ShareWithFriend.first || create_new
+  end
+
+  private
+    def create_new
+      ShareWithFriend.create(reward_text: "You'll receive #{get_point(6)} coins on the saint l' Beau web site for every registered friend by your invitation link. your friend will receive #{get_point(6)}  coins too",
+                            earn_coins_text: "How can I earn and spend coins?", fb_btn_text: "Share on facebook", twitter_btn_text: "Share on Twitter", email_btn_text: "Share on Mail")
+    end
 end
