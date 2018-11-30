@@ -1,5 +1,5 @@
 class EarnCoin < ApplicationRecord
   has_many :point_types
 
-  accept_nested_ttributes :point_types
+  accepts_nested_attributes_for :point_types
 end
