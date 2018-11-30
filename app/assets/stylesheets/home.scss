@@ -1724,6 +1724,17 @@ label.error {
  .edit-share-box .input-holder a input::placeholder{
   color:#fff;
  }
+ .edit-share-box label{
+    text-align: left;
+    display: block;
+    font-weight: 300;
+ }
+ .cu-btn-holder .btn.btn-default:first-child{
+  background:#323232;
+  color:#fff;
+  padding-left:20px;
+  padding-right:20px;
+ }
  @media  only screen and (min-width:980px) {
 
    .m-profile-holder{
