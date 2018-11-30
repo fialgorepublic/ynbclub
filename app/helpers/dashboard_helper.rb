@@ -7,7 +7,8 @@ module DashboardHelper
       when 3
         return share_url.present? ? "Shared Blog '#{share_url.blog_title}' on #{share_url.url_type.titleize}" : point.name
       when 1
-        return share_url.present? ? "Shared Post from #{share_url.url_type.titleize}" : point.name
+        return if share_url.blank?
+        return share_url.url_type.present? ? "Shared Post from #{share_url.url_type.titleize}" : point.name
       else
         point.name
       end
