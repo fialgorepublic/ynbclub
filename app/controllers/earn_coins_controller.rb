@@ -1,0 +1,2 @@
+class EarnCoinsController < ApplicationController
+end
