@@ -69,9 +69,10 @@ class DashboardController < ApplicationController
 
   def step_three
     url, @point_id, user_shared_urls = params[:url], 1, current_user.share_urls
+    return redirect_to step_one_path if user_shared_urls.find_by(url: url).present?
 
-    share_url = user_shared_urls.find_by(url: url) || user_shared_urls.create(url: url)
-    insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true" && ShareUrl.find_by(url: url).blank?
+    share_url = user_shared_urls.create(url: url)
+    insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
   end
 
   def buyerDashboard
