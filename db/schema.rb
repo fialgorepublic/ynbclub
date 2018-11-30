@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181129113823) do
+ActiveRecord::Schema.define(version: 20181130120104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 20181129113823) do
     t.string "name"
     t.string "email", default: ""
     t.string "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "earn_coins", force: :cascade do |t|
+    t.string "main_text"
+    t.string "how_earn_text"
+    t.string "how_spend_text"
+    t.string "earn_way"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

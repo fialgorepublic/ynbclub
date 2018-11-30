@@ -1,0 +1,2 @@
+class EarnCoin < ApplicationRecord
+end
