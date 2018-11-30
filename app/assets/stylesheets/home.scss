@@ -1949,6 +1949,9 @@ label.error {
       margin-top:20px;
      
       #menu-content{
+        .ml-4{
+          margin-left:0;
+        }
          width:700%;
         overflow:auto;
          &:after{
@@ -1958,7 +1961,7 @@ label.error {
         position: absolute;
         left: 0;
         right: 0;
-        width: 400%;
+        width: 700%;
         height: 1px;
         background: #eee;
         top: 0;
@@ -1970,7 +1973,7 @@ label.error {
         position: absolute;
         left: 0;
         right: 0;
-        width: 400%;
+        width: 700%;
         height: 1px;
         background: #eee;
         bottom: 0;
@@ -1982,6 +1985,9 @@ label.error {
      
     }
   }
+ }
+ .featured-listing .post-heading{
+  overflow:hidden
  }
 
 .ml-4 {
