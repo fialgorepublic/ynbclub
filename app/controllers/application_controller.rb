@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :allow_iframe_requests
   before_action :allow_user_request
   before_action :blog_not_found
+  before_action :set_earn_coin
 
   def set_variables
     @shopify_domain = "saintlbeau.myshopify.com"
@@ -49,5 +50,9 @@ class ApplicationController < ActionController::Base
 
     return redirect_to buyerDashboard_path(blog_not_found: true) if controller_name == "home" && current_user.is_buyer?
     redirect_to dashboard_path(blog_not_found: true) if controller_name == "home"
+  end
+
+  def set_earn_coin
+    @earn_coin = EarnCoin.first
   end
 end
