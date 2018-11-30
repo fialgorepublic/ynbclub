@@ -9,6 +9,7 @@ class ShareUrl < ApplicationRecord
   def set_shared_website
     return if url.blank?
     return self.url_type = "facebook" if url.include?("facebook")
-    self.url_type = "twitter" if url.include?("twitter")
+    return self.url_type = "twitter" if url.include?("twitter")
+    self.url_type = "instagram" if url.include?("instagram")
   end
 end
