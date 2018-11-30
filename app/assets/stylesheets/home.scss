@@ -1729,11 +1729,58 @@ label.error {
     display: block;
     font-weight: 300;
  }
- .cu-btn-holder .btn.btn-default:first-child{
+  .edit-share-box .cu-btn-holder .btn.btn-default:first-child{
   background:#323232;
   color:#fff;
   padding-left:20px;
   padding-right:20px;
+}
+ #coinEditModal {
+  .btn{
+        background: none;
+    color: #323232;
+    border: none;
+    border-radius: 0;
+    border: 1px solid #323232;
+    outline:none
+  }
+  .coin-body .coin-count,
+  .coin-body .coin-price{
+    margin:10px auto;
+    input::placeholder{
+      color:#fff;
+
+    }
+    input{
+      background:none;
+      border:none;
+      text-align:center;
+      width:100%;
+    }
+  }
+  .items{
+    .form-control{
+      padding-left:60px;
+    }
+    .from-control-sm{
+          position: absolute;
+          width: 35px;
+          border-radius: 50%;
+          border: none;
+          background: #1e63ec;
+          color: #fff !important;
+          height: 35px;
+          top: 30px;
+          z-index: 9999;
+          left: 14px;
+          text-align:center;
+          font-size:13px;
+          outline:none;
+    }
+     .from-control-sm::placeholder{
+      color:#fff;
+     }
+  }
  }
  @media  only screen and (min-width:980px) {
 
