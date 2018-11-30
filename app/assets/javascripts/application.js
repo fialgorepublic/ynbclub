@@ -24,4 +24,5 @@
 //= require jquery.dataTables.js
 //= require apprise.min.js
 //= require select2.js
+//= require cocoon
 //= require_tree .
