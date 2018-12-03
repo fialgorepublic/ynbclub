@@ -54,5 +54,6 @@ class ApplicationController < ActionController::Base
 
   def set_earn_coin
     @earn_coin = EarnCoin.first
+    @earn_coin.point_types
   end
 end
