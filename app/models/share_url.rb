@@ -6,6 +6,8 @@ class ShareUrl < ApplicationRecord
 
   before_create :set_shared_website
 
+  scope :shared_media_urls, -> { where(blog_id: nil).order(created_at: :desc) }
+
   def set_shared_website
     return if url.blank?
     return self.url_type = "facebook" if url.include?("facebook")
