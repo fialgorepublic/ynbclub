@@ -52,6 +52,10 @@ class DashboardController < ApplicationController
     render :partial => "shared/change_profile_Image"
   end
 
+  def step_one
+    @shared_urls = current_user.share_urls.shared_media_urls
+  end
+
   def step_two
     return redirect_to step_one_path, alert: "You already have added this post." if current_user.share_urls.find_by(url: params[:url]).present?
     return redirect_to step_one_path, alert: "Someone has already added this post" if ShareUrl.find_by_url(params[:url]).present?
