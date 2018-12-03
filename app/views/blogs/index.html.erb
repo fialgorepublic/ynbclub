@@ -144,11 +144,11 @@
           <div class="card-blog-detail">
             <div class="row">
               <a href="/blogs/<%= blog.id %>" style="text-decoration: none;">
-                <div class="col-md-2 img-border">
+                <div class="col-md-2 col-xs-4 img-border">
                   <img width="100%" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
                 </div>
               </a>
-              <div class="col-md-10">
+              <div class="col-md-10 col-xs-8">
                 <div class="row">
                   <div class="col-md-6">
                     <p class="category-name"><%= blog.category.name %> | <span><%= blog.created_at %></span></p>

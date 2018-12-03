@@ -1724,6 +1724,17 @@ label.error {
  .edit-share-box .input-holder a input::placeholder{
   color:#fff;
  }
+ .edit-share-box label{
+    text-align: left;
+    display: block;
+    font-weight: 300;
+ }
+  .edit-share-box .cu-btn-holder .btn.btn-default:first-child{
+  background:#323232;
+  color:#fff;
+  padding-left:20px;
+  padding-right:20px;
+}
  #coinEditModal {
   .btn{
         background: none;
@@ -1938,7 +1949,10 @@ label.error {
       margin-top:20px;
      
       #menu-content{
-         width:1350px;
+        .ml-4{
+          margin-left:0;
+        }
+         width:700%;
         overflow:auto;
          &:after{
         clear: both;
@@ -1947,7 +1961,7 @@ label.error {
         position: absolute;
         left: 0;
         right: 0;
-        width: 400%;
+        width: 700%;
         height: 1px;
         background: #eee;
         top: 0;
@@ -1959,7 +1973,7 @@ label.error {
         position: absolute;
         left: 0;
         right: 0;
-        width: 400%;
+        width: 700%;
         height: 1px;
         background: #eee;
         bottom: 0;
@@ -1971,6 +1985,9 @@ label.error {
      
     }
   }
+ }
+ .featured-listing .post-heading{
+  overflow:hidden
  }
 
 .ml-4 {
