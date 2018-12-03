@@ -1,3 +1,5 @@
 $(document).ready(function() {
-  $('#my-orders').dataTable();
+  $('#my-orders').dataTable( {
+    "pagingType": "full_numbers"
+  });
 })

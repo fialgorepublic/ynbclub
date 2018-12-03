@@ -21,7 +21,6 @@
 //= require ckeditor/adapters/jquery.js
 //= require toastr.js
 //= require BootstrapMenu.min.js
-//= require jquery.dataTables.js
 //= require apprise.min.js
 //= require select2.js
 //= require cocoon
