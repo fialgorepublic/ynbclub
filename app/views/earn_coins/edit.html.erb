@@ -1,0 +1,86 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+
+    <div class="col-md-9" id="coinEditModal">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i><img src="/assets/icon-16.png"></i> How To Earn Coins</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <%= form_for @earn_coin, url: earn_coin_path , method: :put do |form| %>
+        <div class="row">
+          <div class="col-md-12 text-right cu-btn-holder">
+            <%= form.submit "Save", class: "btn btn-default" %>
+            <%= link_to "Cancel", page_design_path, class: "btn btn-default" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div id="current_user_role">
+              <%= form.text_area :main_text, class: "form-control editor", placeholder: "Earn coins and exchange them to discount" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>How can you earn coins?</label>
+              <%= form.text_area :how_earn_text, class: "form-control editor", placeholder: "Earn coins and exchange them to discount" %>
+            </div>
+          </div>
+        </div>
+        </br>
+
+        <div class="row items">
+          <%= form.fields_for :point_types do |point_type| %>
+            <%= render  "point_type_fields", f: point_type %>
+          <% end %>
+          <div class="">
+            <%= link_to_add_association form, :point_types, class: "btn-primary btn add_field_button" do %>
+              Add field
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row  text-center">
+          <div class="col-md-12">
+            <h3>How can you spend coins?</h3>
+            <textarea class="form-control editor"></textarea>
+          </div>
+        </div>
+        </br>
+        <div class="coin-body">
+          <div class="row text-center">
+            <div class="col-md-3 col-md-offset-2">
+              <h4 class="coin-count"><input type="text" placeholder="100 coins"></h4>
+            </div>
+
+            <div class="col-md-1">
+              <p class="count-eq">=</p>
+            </div>
+
+            <div class="col-md-3 ">
+              <h4 class="coin-price"><input type="text" placeholder="$10"></h4>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('textarea.editor').ckeditor();
+  });
+</script>
