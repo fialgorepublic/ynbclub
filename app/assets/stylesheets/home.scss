@@ -1709,7 +1709,7 @@ label.error {
  }
  #coinEditModal .items{
   margin-bottom:20px;
-  overflow:hidden;
+//  overflow:hidden;
  }
   #coinEditModal .items .form-group{
     position:relative;
@@ -1761,6 +1761,7 @@ label.error {
   .items{
     .form-control{
       padding-left:60px;
+      width:95%;
     }
     .from-control-sm{
           position: absolute;
@@ -1782,6 +1783,38 @@ label.error {
      }
   }
  }
+
+.nested-fields .remove_field{
+      position: absolute;
+    right: 0;
+    background: #000;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    top: 10px;
+    right:10px;
+    z-index: 9999;
+}
+.cu-btn-holder{
+  margin-bottom:15px;
+}
+.cu-btn-holder input.btn{
+  background:#323232 !important;
+  color:#fff !important;
+  padding-left:15px;
+  padding-right:15px;
+}
+.nested-fields{
+  margin-bottom:10px;
+}
+.nested-fields:after{
+  clear:both;
+  content:'';
+  display:block;
+}
  @media  only screen and (min-width:980px) {
 
    .m-profile-holder{
