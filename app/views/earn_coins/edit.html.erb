@@ -54,10 +54,18 @@
         <div class="row  text-center">
           <div class="col-md-12">
             <h3>How can you spend coins?</h3>
-            <textarea class="form-control editor"></textarea>
+            <%= form.text_area :how_spend_text, class: "form-control editor", placeholder: "How to spend the coins." %>
           </div>
         </div>
         </br>
+
+        <div class="row  text-center">
+          <div class="col-md-12">
+            <%= form.text_area :earn_way, class: "form-control editor", placeholder: "Enter text here" %>
+          </div>
+        </div>
+        </br>
+
         <div class="coin-body">
           <div class="row text-center">
             <div class="col-md-3 col-md-offset-2">
