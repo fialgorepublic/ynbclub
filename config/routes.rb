@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   post 'import_ambassador', to: 'users#import_ambassador'
   post 'sign_in_user', to: 'home#sign_in_user'
   get 'my_orders', to: 'orders#my_orders'
+  get 'home_page', to: 'dashboard#home_page'
 
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {
