@@ -44,7 +44,7 @@
           <%= form.fields_for :point_types do |point_type| %>
             <%= render  "point_type_fields", f: point_type %>
           <% end %>
-          <div class="">
+          <div class="col-md-12">
             <%= link_to_add_association form, :point_types, class: "btn-primary btn add_field_button" do %>
               Add field
             <% end %>
