@@ -35,6 +35,37 @@
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Shared Urls</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <table class="table table-striped table-bordered" id="shared-urls">
+        <thead>
+          <tr>
+            <th>Id#</th>
+            <th>Platform</th>
+            <th>URL</th>
+            <th>Shared at</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shared_urls.each do |shared_url| %>
+            <tr>
+              <td><%= shared_url.id %></td>
+              <td><%= platform(shared_url) %></td>
+              <td><%= link_to shared_url.url, shared_url.url, target: :blank %></td>
+              <td><%= shared_at(shared_url) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>
