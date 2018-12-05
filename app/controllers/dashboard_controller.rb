@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   require 'link_thumbnailer'
   include ApplicationHelper
   def index
-    return redirect_to my_sales_path if current_user.is_admin?
+    return redirect_to referral_sales_path if current_user.is_admin?
 
     return redirect_to buyerDashboard_path if current_user.is_buyer?
 
