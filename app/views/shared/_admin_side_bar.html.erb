@@ -1,0 +1,55 @@
+<li  data-toggle="" data-target="#" class="collapsed">
+  <a href="/referral_sales" class="<%= active_class(referral_sales_path) %>"><i class="custom-icon"><img src="/assets/icon-4.png"> </i>  My Sales </a>
+</li>
+
+<li  data-toggle="" data-target="#" class="collapsed">
+  <a href="/blogs" class="<%= active_class(blogs_path) %>"><i class="custom-icon"><img src="/assets/icon-6.png"> </i> Blogs</a>
+</li>
+
+<li>
+  <a href="/users/brand_ambassadors" class="<%= active_class("/users/brand_ambassadors") %>"><i class="custom-icon"><img src="/assets/tag-sidebar.png"> </i> Commission  </a>
+</li>
+
+<li>
+  <a href="/approve_sales" class="<%= active_class(approve_sales_path) %>"><i class="custom-icon"><img src="/assets/iocn-5.png"> </i> Approve Sales  </a>
+</li>
+
+<li>
+  <a class="auto click-close <%= active_class(edit_setting_path(Setting.first)) %>" href="<%= edit_setting_path(Setting.first) %>">
+  <i class="fa fa-gears sidebar-icon"></i>
+  <span class="ng-binding"> Configuration</span>
+  </a>
+</li>
+
+<li class="menu-item ng-scope" ng-repeat="item in menu.items | orderBy: 'position'">
+  <a class="auto click-close <%= active_class(payments_path) %>" href="/payments">
+  <i class="fa fa-money sidebar-icon"></i>
+  <span class="ng-binding"> Payment history</span>
+  </a>
+</li>
+
+<li>
+  <a href="/users" class="<%= active_class(users_path) %>"><i class="custom-icon"><img src="/assets/ambassador-sidebar.png"> </i> Ambassadors  </a>
+</li>
+
+<li>
+  <a href="/categories" class="<%= active_class(categories_path) %>"><i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>  Categories  </a>
+</li>
+
+<li>
+  <a href="/point_types" class="<%= active_class(point_types_path) %>"><i class="custom-icon"><img src="/assets/reward-sidebar.png"> </i> Manage Rewards  </a>
+</li>
+
+<li  data-toggle="" data-target="#" class="collapsed">
+  <a href="/my_orders" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> All Orders </span></a>
+</li>
+
+<li>
+  <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>"><i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Acc settings  </a>
+</li>
+
+<li>
+  <%= link_to page_design_path, class: active_class(page_design_path) do %>
+    <i class="fa fa-paint-brush"></i> <span class="ml-4">Pages Design</span>
+  <% end %>
+</li>
