@@ -1,25 +1,26 @@
 <%= form_for :user, :url => {:controller => 'dashboard', :action => "change_profile_picture",:type => "post"},
              :html => {:id =>"user_profile_picture", :multipart => true}    do |f| %>
-    <div class="modal-body">
-      <div class="modal-holder text-center">
-        <div class="field form-group">
-          <%= image_tag(image_url(current_user), :size => "80x80", :alt => "Add icon" , :id =>'blah') %>
-        </div>
-        <div class="field form-group">
-          <%= f.label :logo %><br>
-          <div class="fileUpload form-control start">
-            <%= f.file_field :avatar , :class=>'upload', :id => 'fileupload', required: true, accept: "image/png,image/gif,image/jpeg" %>
-          </div>
+  <div class="modal-body">
+    <div class="modal-holder text-center">
+      <%= image_tag(image_url(current_user), :size => "80x80", :alt => "Add icon" , :id =>'blah') %>
+      <lable for="file_name" id="file-name"><%= profile_pic_name current_user %></lable> </br>
+      <div class="field form-group" id="image-upload-button-div">
+        <div class="fileUpload start blog-imgUpload">
+          <%= f.file_field :avatar, id: 'fileupload', class: "filestyle upload", "data-input" => false, accept: "image/png,image/gif,image/jpeg" %>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      <%= f.submit "Save", :class=>'btn btn-primary' %>
-    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <%= f.submit "Save", :class=>'btn btn-primary', id: "save-pic-button" %>
+  </div>
 <% end %>
+
 <script>
+  $(":file").filestyle({input: false});
+  $('#save-pic-button').attr("disabled", true)
   $("#fileupload").change(function () {
     readURL(this);
   });
@@ -27,13 +28,15 @@
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
+      var name = input.files[0].name
 
       reader.onload = function (e) {
         var st = e.target.result;
         $('#blah').attr('src', e.target.result);
       };
+      $('#file-name').text(name);
+      $('#save-pic-button').attr("disabled", false)
       reader.readAsDataURL(input.files[0]);
     }
 }
 </script>
-
