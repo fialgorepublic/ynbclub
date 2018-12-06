@@ -4,38 +4,35 @@
       <%= render partial: "shared/side_bar" %>
     </div>
     <div class="col-md-9">
-      <p id="notice"><%= notice %></p>
 
       <h1>Brand Ambassador</h1>
+      <hr>
 
       <table class="table table-striped table-bordered">
         <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Commission</th>
-        </tr>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Commission</th>
+          </tr>
         </thead>
 
         <tbody>
-        <% @brand_ambassador.each do |order| %>
+          <% @brand_ambassador.each do |order| %>
             <tr>
               <td><%= order.name %></td>
               <td><%= order.email %></td>
               <td><span><%= best_in_place order, :commission, :url => set_commission_path(:id => order.id), :as => :input %><!-- <i class="fa fa-pencil-square-o"></i> --></span></td>
             </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<%#= link_to 'New Referral Sale', new_referral_sale_path %>
 <script>
-    $(document).ready(function() {
-        /* Activating Best In Place */
-        jQuery(".best_in_place").best_in_place();
-    });
+  $(document).ready(function() {
+    jQuery(".best_in_place").best_in_place();
+  });
 </script>
-
