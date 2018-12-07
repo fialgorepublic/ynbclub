@@ -358,6 +358,13 @@
       if (input.files && input.files[0]) {
         var reader = new FileReader();
         var name = input.files[0].name
+        var fileType = input.files[0].type
+        var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+        if ($.inArray(fileType, ValidImageTypes) < 0) {
+          return alert("File type not allowed.")
+        }
+
         reader.onload = function (e) {
           var st = e.target.result;
           $('#blah').attr('src', e.target.result);
