@@ -3,7 +3,7 @@ module PaymentsHelper
     params[:search].present? ? params[:search][:start_date] : nil
   end
 
-  def selected_o_date params
+  def selected_to_date params
     params[:search].present? ? params[:search][:to_date] : nil
   end
 
