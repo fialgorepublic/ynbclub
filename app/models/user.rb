@@ -47,6 +47,11 @@ class User < ApplicationRecord
       end
       users.order(created_at: :desc)
     end
+
+    def brand_ambassadors
+      user_with_payment = Payment.pluck(:user_id)
+      User.joins(:role).where("roles.name = 'Brand ambassador'").where(id: user_with_payment)
+    end
   end
 
   # after_create :generate_profile

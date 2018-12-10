@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-4">
           <h5>Partner</h5>
-          <%= collection_select(:user, :id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :name, { selected: selected_partner(params) }, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Please select partner" }) %>
+          <%= collection_select(:user, :id, User.brand_ambassadors, :id, :name, { selected: selected_partner(params) }, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Please select partner" }) %>
         </div>
       </div>
       <div class="col-md-12 m-t-30">
