@@ -91,7 +91,7 @@
 </div>
 
 <div class="account-side-btn">
-  <% if current_user.is_ambassador? || current_user.is_admin? %>
+  <% if current_user.is_ambassador? %>
     <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-lg btn-block acc-btn-style btn-primary" style="margin-bottom: 20px; margin-left: 7px; margin-top: 10px">Copy Referral Link</a>
   <% end %>
 </div>
