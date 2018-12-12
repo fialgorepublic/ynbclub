@@ -46,6 +46,7 @@ gem 'best_in_place', '~> 3.0.1'
 gem "roo", "~> 2.7.0"
 gem "cocoon"
 gem 'jquery-datatables'
+gem 'countries'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
