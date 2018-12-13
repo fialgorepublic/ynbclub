@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :allow_user_request
   before_action :blog_not_found
   before_action :set_earn_coin
+  before_action :set_page
 
   def set_variables
     @shopify_domain = "saintlbeau.myshopify.com"
@@ -55,5 +56,9 @@ class ApplicationController < ActionController::Base
   def set_earn_coin
     @earn_coin = EarnCoin.first
     @earn_coin.point_types
+  end
+
+  def set_page
+    @page = Page.first || Page.create(heading: "Who are we?", sub_heading: "")
   end
 end
