@@ -1,6 +1,6 @@
 class Page < ApplicationRecord
   has_attached_file :image,
-                    :default_url => "/images/:style/missing.png",
+                    :default_url => "/assets/katerina-radvanska-397105-unsplash.jpg",
                     :storage => :s3,
                     :url => 's3_domain_url',
                     :s3_host_alias => 'saintalgorepublic.s3-website-us-east-1.amazonaws.com',
