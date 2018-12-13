@@ -1814,6 +1814,16 @@ label.error {
   content:'';
   display:block;
 }
+.home-page-holder .fileUpload{
+//      width: 14%;
+    margin: 17px auto;
+}
+.home-page-holder .cu-btn-holder .btn:first-child{
+   background:#323232 !important;
+  color:#fff !important;
+  padding-left:15px;
+  padding-right:15px;
+}
  @media  only screen and (min-width:980px) {
 
    .m-profile-holder{
