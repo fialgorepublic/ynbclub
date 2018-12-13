@@ -48,12 +48,12 @@
   </nav>
 </header>
 
-<section class="home-banner">
+<section class="home-banner" style="background-image: url(<%= @page.image.url %>)">
   <div class="overlay"></div>
   <div class="container text-center">
     <div class="row">
       <div class="col-md-12">
-        <h1>Who are we?</h1>
+        <h1><%= @page.heading.html_safe %></h1>
     <!-- <button class="btn btn-danger">Share with friend to get $10</button> --> 
       </div>
     </div>
