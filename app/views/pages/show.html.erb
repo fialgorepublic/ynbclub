@@ -1,0 +1,47 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+    <div class="col-md-9 home-page-holder">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-paint-brush"></i> Home Page</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="m-image-frame" style="background-image: url(<%= @page.image.url %>);">
+            <div class="row">
+              <div class="col-md-12 text-right cu-btn-holder" >
+                <%= link_to edit_page_path, class: "btn btn-default" do %>
+                  <i class="fa fa-pencil"></i>  Edit</button>
+                <% end %>
+                <button class="btn btn-default">delete</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div id="froala-editor">
+                  <h3><%= html_safe_content @page.heading %></h3>
+                  <p><%= html_safe_content @page.sub_heading %></p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="col-md-12 text-center">
+                <input type="color" name="favcolor" value="#ff0000" class="btn btn-primary">
+                <input class="jscolor" value="Button">
+              </div>
+              </div>
+              -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
