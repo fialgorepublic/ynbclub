@@ -6,7 +6,7 @@ class ShareUrl < ApplicationRecord
 
   before_create :set_shared_website
 
-  scope :shared_media_urls, -> { where(blog_id: nil).order(created_at: :desc) }
+  scope :shared_media_urls, -> { where(blog_id: nil).order(id: :desc) }
 
   def set_shared_website
     return if url.blank?
