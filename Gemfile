@@ -48,6 +48,7 @@ gem "cocoon"
 gem 'jquery-datatables'
 gem 'countries'
 gem 'phony'
+gem 'activestorage'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
