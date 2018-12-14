@@ -1,7 +1,7 @@
 module ProfilesHelper
 
   def states
-    states = CS.states(:TH).to_a
+    states = CS.states(:VN).to_a
     states = states.map{ |state|
       state[1]
     }
@@ -9,7 +9,7 @@ module ProfilesHelper
   end
 
   def cities
-    cities = CS.states(:th).keys.flat_map { |state| CS.cities(state, :th) }
+    cities = CS.states(:VN).keys.flat_map { |state| CS.cities(state, :VN) }
     return cities.sort
   end
 
