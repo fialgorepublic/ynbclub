@@ -1,0 +1,85 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+
+    <div class="col-md-9 home-page-holder">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-paint-brush"></i> Home Page</h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <%= form_for @page, url: page_path, method: :put do |f| %>
+        <div class="row">
+          <div class="col-md-12 text-right cu-btn-holder" >
+            <%= f.submit "Save", class: "btn btn-default" %>
+            <button class="btn btn-default">Cancel</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="m-image-frame" style="background-image: url(<%= @page.image.url %>);">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="field form-group" >
+                    <div class="fileUpload text-center start blog-imgUpload">
+                      <%= f.file_field :image, id: "fileupload", class: "filestyle upload", "data-input" => false %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="froala-editor">
+                    <%= f.text_area :heading, value: @page.heading, id: 'heading' %><br>
+                    <%= f.text_area :sub_heading, value: @page.sub_heading, id: 'sub-heading', placeholde: "Sub heading for main page" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('#heading, #sub-heading').froalaEditor({
+      toolbarInline: false
+    })
+  });
+
+  $("#fileupload").change(function () {
+    readURL(this);
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      var name = input.files[0].name
+      var fileType = input.files[0].type
+      var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+      if ($.inArray(fileType, ValidImageTypes) < 0) {
+        return alert("File type not allowed.")
+      }
+
+      reader.onload = function (e) {
+        var st = e.target.result;
+        $('.m-image-frame').css('background-image', 'url(' + st + ')');
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+</script>
