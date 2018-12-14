@@ -6,4 +6,8 @@ module BlogsHelper
   def blog_attributes blog
     { id: blog.id, title: blog.title, file_name: blog.avatar_file_name }.to_json
   end
+
+  def page_title
+    action_name == "new" ? "Create new blog post" : "Edit blog post"
+  end
 end
