@@ -4,6 +4,6 @@ module BlogsHelper
   end
 
   def blog_attributes blog
-    { id: blog.id, title: blog.title, file_name: blog.avatar_file_name, description: blog.description.html_safe }.to_json
+    { id: blog.id, title: blog.title, file_name: blog.avatar_file_name }.to_json
   end
 end
