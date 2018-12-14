@@ -1,0 +1,199 @@
+<div class="dashboard-holder snapshot-dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+    <div class="col-md-9 m-b-50 edit-snapshot">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main">
+            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Edition of a  take a snapshot and share </h2>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <div class="box-shadow m-h-400 sm-pd">
+
+            <div class="box-1">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="overlay-layer">
+                  <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+                 </div>
+                </div>
+                <div class="stepone">1</div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" style="padding-right:0;">
+                  <button class="btn btn-danger btn-block">Delete</button>
+                </div>
+                <div class="col-md-6" style="padding-left:0;">
+                  <button data-target="#upload_image" data-toggle="modal" class="btn btn-primary btn-block">Upload image</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="image-content-snap">
+                  <p>Make selfie photo or video with product bought on your mobile</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="box-shadow  m-h-400 sm-pd">
+
+            <div class="box-1">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="overlay-layer">
+                    <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+                  </div>
+                </div>
+                <div class="stepone">2</div>
+              </div>
+
+               <div class="row">
+                <div class="col-md-6" style="padding-right:0;">
+                  <button class="btn btn-danger btn-block">Delete</button>
+                </div>
+                <div class="col-md-6" style="padding-left:0;">
+                  <button data-target="#upload_image" data-toggle="modal" class="btn btn-primary btn-block">Upload image</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="image-content-snap">
+                    <p>Upload to facebook , twitter or intstagram and copy link to your post, <strong>Don't forget to add a hashtag #saintlbeau </strong> </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <div class="box-shadow m-h-400 sm-pd">
+
+            <div class="box-1">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="overlay-layer">
+                    <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+                  </div>
+                </div>
+                <div class="stepone">3</div>
+              </div>
+
+               <div class="row">
+                <div class="col-md-6" style="padding-right:0;">
+                  <button class="btn btn-danger btn-block">Delete</button>
+                </div>
+                <div class="col-md-6" style="padding-left:0;">
+                  <button data-target="#upload_image" data-toggle="modal" class="btn btn-primary btn-block">Upload image</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="image-content-snap">
+                    <p>Insert copied link to the special field on the web site </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="box-shadow  m-h-400 sm-pd">
+
+            <div class="box-1">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="overlay-layer">
+                    <img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">
+                  </div>
+                </div>
+                <div class="stepone">4</div>
+              </div>
+               <div class="row">
+                <div class="col-md-6" style="padding-right:0;">
+                  <button class="btn btn-danger btn-block">Delete</button>
+                </div>
+                <div class="col-md-6" style="padding-left:0;">
+                  <button data-target="#upload_image" data-toggle="modal" class="btn btn-primary btn-block">Upload image</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="image-content-snap">
+                    <p>Confirm and receive <%= PointType.first.point.to_i %> coins!</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <a href="/step_one" class="btn btn-default btn-lg">Get Started</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  
+  <div id="upload_image" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Uplaod Image</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="file" class="form-control">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">upload Image</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript" src="https://editor-latest.s3.amazonaws.com/js/froala_editor.pkgd.min.js"></script>
+<script type="text/javascript">
+  $('.image-content-snap').froalaEditor({
+  toolbarInline: true,
+  charCounterCount: false,
+  toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'color', 'emoticons', '-', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '-', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo']
+});
+</script>
+

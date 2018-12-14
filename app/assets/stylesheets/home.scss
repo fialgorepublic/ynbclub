@@ -2035,3 +2035,13 @@ label.error {
 .ml-4 {
   margin-left: 4%;
 }
+.snapshot-dashboard-holder  .edit-snapshot .box-shadow{
+  padding:30px 40px;
+}
+.snapshot-dashboard-holder  .edit-snapshot .box-shadow .btn-danger{
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.snapshot-dashboard-holder  .edit-snapshot .box-shadow .btn{
+  outline:none
+}
