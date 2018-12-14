@@ -124,8 +124,7 @@ class BlogsController < ApplicationController
   def share_blog
     share_url = ShareUrl.create(user_id: current_user.id, blog_id: params[:id], url_type: params[:value])
     insert_points(current_user.id, 3, "", share_url.id)
-    blog = Blog.find_by_id(params[:id])
-    @count = blog.share_urls.count
+    redirect_to blogs_path
   end
 
   private
