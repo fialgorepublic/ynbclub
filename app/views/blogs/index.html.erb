@@ -40,7 +40,7 @@
                   <i class="fa fa-share-alt btn btn-default dropdown-toggle" data-toggle="dropdown"></i>
                   <ul class="dropdown-menu" role="menu">
                     <li>
-                      <a href="javascript:void(0);" onclick="openWindow('<%= blog.id %>','facebook', '<%= blog.attributes.to_json %>')"> <i class="fa fa-facebook"></a>
+                      <a href="javascript:void(0);" onclick="openWindow('<%= blog.id %>','facebook', '<%= blog.attributes.to_json %>')"> <i class="fa fa-facebook"></i></a>
                       <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
                     </li>
                   </ul>
@@ -300,7 +300,7 @@
       '&picture=http://s3.amazonaws.com/saintalgorepublic/files/original/' + id + "_" + blog.avatar_file_name +
       '&name=' + blog.title +
       '&caption=' +
-      '&description=' + blog.description +
+      '&description=' +
       '&redirect_uri=http://beta.saintlbeau.com/share_blog?id=' + id + "&value=" + type +
       '&display=popup';
 
