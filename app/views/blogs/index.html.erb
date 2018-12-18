@@ -301,7 +301,7 @@
       '&name=' + blog.title +
       '&caption=' +
       '&description=' +
-      '&redirect_uri=http://beta.saintlbeau.com/share_blog?id=' + id + "&value=" + type +
+      '&redirect_uri=' + encodeURIComponent('http://beta.saintlbeau.com/share_blog?id=' + id + "&value=" + type) +
       '&display=popup';
 
     return url;
