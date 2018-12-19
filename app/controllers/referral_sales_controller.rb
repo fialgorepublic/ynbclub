@@ -98,6 +98,15 @@ class ReferralSalesController < ApplicationController
     render partial: 'referral_sales/table'
   end
 
+  def upate_ghtk_status
+    ghtk_order = params[:order]
+    if ghtk_order.present?
+      sale = ReferralSale.find_by_order_id(ghtk_order[:id])
+      sale.update(ghtk_status: ghtk_order[:ghtk_status_id])
+    end
+    render json: { success: true }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_referral_sale
