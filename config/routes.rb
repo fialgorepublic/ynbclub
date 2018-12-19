@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   resources :categories
   get 'home', to: 'home#index'
-  resources :referral_sales
+  resources :referral_sales do
+    collection do
+      post :upate_ghtk_status
+    end
+  end
+
   resources :blogs
   get 'approve_sales', to: 'referral_sales#approve_sales'
   get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'
