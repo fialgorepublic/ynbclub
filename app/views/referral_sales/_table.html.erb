@@ -28,7 +28,7 @@
           <% end %>
           <% if is_show %>
               <tr>
-                <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || ShopifyAPI::Order.find(referral_sale.order_id).financial_status == "pending") ? 'disabled': '' %> /></td>
+                <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || payment_status == "pending") ? 'disabled': '' %> /></td>
                 <td><a href="javascript:void(0);"><%= referral_sale.order_id %></a></td>
                 <td><%= referral_sale.created_at %></td>
                 <td><%= referral_sale.name %></td>
