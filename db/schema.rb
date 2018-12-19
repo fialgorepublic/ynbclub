@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181213113137) do
+ActiveRecord::Schema.define(version: 20181219095926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,6 +210,7 @@ ActiveRecord::Schema.define(version: 20181213113137) do
     t.string "price"
     t.boolean "is_approved", default: false
     t.string "order_no"
+    t.integer "ghtk_status"
   end
 
   create_table "roles", force: :cascade do |t|
