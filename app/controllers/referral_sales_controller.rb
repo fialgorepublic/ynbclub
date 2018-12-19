@@ -102,7 +102,7 @@ class ReferralSalesController < ApplicationController
     ghtk_order = params[:order]
     if ghtk_order.present?
       sale = ReferralSale.find_by_order_id(ghtk_order[:id])
-      sale.update(ghtk_status: ghtk_order[:ghtk_status_id])
+      sale.update(ghtk_status: ghtk_order[:ghtk_status_id]) if sale.present?
     end
     render json: { success: true }
   end
