@@ -9,6 +9,8 @@ module DashboardHelper
       when 1
         return if share_url.blank?
         return share_url.url_type.present? ? "Shared Post from #{share_url.url_type.titleize}" : point.name
+      when 2
+        share_url.order_id.present? ? "Your product was ordered #{share_url.order_id} (Mua sản phẩm)" : "Your product was ordered (Mua sản phẩm)"
       else
         point.name
       end
