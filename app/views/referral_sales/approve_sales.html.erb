@@ -13,13 +13,13 @@
         <div class="col-md-4">
           <div class="col-sm-12">
             <h5>since</h5>
-            <%= text_field_tag :since,nil, :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
+            <%= text_field_tag :since, params[:start_date], :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
           </div>
         </div>
         <div class="col-md-4">
           <div class="col-sm-12">
             <h5>To Date</h5>
-            <%= text_field_tag :to_date,nil, :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
+            <%= text_field_tag :to_date, params[:end_date], :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
           </div>
         </div>
         <div class="col-md-4">
@@ -101,6 +101,10 @@
   </div>
 </div>
 
+<div class="loader">
+  <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+</div>
+
 <script>
     $(document).ready(
             function () {
@@ -129,18 +133,15 @@
 
     $('#checkboxBtn').click(function(){
         var ids = $("input:checked").valList();
+        $('.loader').show();
         $.ajax({
-            url: '/changed_sale_approved_status?ids='+ids,
-            type: 'get',
-            dataType: 'html',
-            processData: false,
-            success: function (data) {
-                $('#referralSale').html(data);
-            },
-            error: function (data) {
-                alert('Error');
-                //    window.location.reload();
-            }
+          url: '/changed_sale_approved_status?ids='+ids,
+          type: 'get',
+          contentType: 'json',
+          error: function () {
+            $('.loader').hide();
+            alert('Error');
+          }
         });
 
     });
