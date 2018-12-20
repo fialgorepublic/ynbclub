@@ -6,7 +6,7 @@ class ReferralSalesController < ApplicationController
   # GET /referral_sales
   # GET /referral_sales.json
   def index
-    @referral_sales = ReferralSale.where(user_id: current_user.id).order(id: :desc)
+    @referral_sales = ReferralSale.where(user_id: current_user.id)
   end
 
   # GET /referral_sales/1
