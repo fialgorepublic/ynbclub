@@ -35,7 +35,14 @@ class HomeController < ApplicationController
     user = User.where(referral: referral).first
     order_no = ShopifyAPI::Order.find(order_id).name
     if user.present?
-      customer = Customer.find_or_create_by(email: params[:email])
+      customers = Customer.where(email: params[:email])
+      if customers.count > 1
+        customers.each { |cus| cus.delete }
+        customer =  Customer.create(email: params[:email])
+      else
+        customer = customers.present? ? customers.first : Customer.create(email: params[:email])
+      end
+
       customer.update_attributes(name: name, customer_id: customer_id)
 
       ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
