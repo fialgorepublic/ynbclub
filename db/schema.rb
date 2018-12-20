@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181220070706) do
+ActiveRecord::Schema.define(version: 20181220072716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20181220070706) do
     t.datetime "updated_at", null: false
     t.string "invitee"
     t.integer "share_url_id"
+    t.string "order_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -233,7 +234,6 @@ ActiveRecord::Schema.define(version: 20181220070706) do
     t.datetime "updated_at", null: false
     t.integer "blog_id"
     t.string "url_type"
-    t.string "order_id"
   end
 
   create_table "share_with_friends", force: :cascade do |t|
