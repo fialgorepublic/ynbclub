@@ -35,11 +35,9 @@ class HomeController < ApplicationController
     user = User.where(referral: referral).first
     order_no = ShopifyAPI::Order.find(order_id).name
     if user.present?
-      customer = Customer.find_or_create_by(email: params[:email]) do |cus|
-        cus.name = name
-        cus.customer_id = customer_id
-        cus.save
-      end
+      customer = Customer.find_or_create_by(email: params[:email])
+      customer.update_attributes(name: name, customer_id: customer_id)
+
       ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
                           address: params[:address], shopdomain: params[:shopdomain], price: params[:price], order_no: order_no)
       insert_points(user.id, 2, "", nil, order_id)
