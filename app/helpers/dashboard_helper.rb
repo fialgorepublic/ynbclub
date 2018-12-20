@@ -3,14 +3,15 @@ module DashboardHelper
     share_url = ShareUrl.find_by(id: point.share_url_id)
     case point.point_type_id
       when 6
-        return point.invitee
+        point.invitee
       when 3
-        return share_url.present? ? "Shared Blog '#{share_url.blog_title}' on #{share_url.url_type.titleize}" : point.name
+        share_url.present? ? "Shared Blog '#{share_url.blog_title}' on #{share_url.url_type.titleize}" : point.name
       when 1
         return if share_url.blank?
-        return share_url.url_type.present? ? "Shared Post from #{share_url.url_type.titleize}" : point.name
+        share_url.url_type.present? ? "Shared Post from #{share_url.url_type.titleize}" : point.name
       when 2
-        share_url.order_id.present? ? "Your product was ordered #{share_url.order_id} (Mua sản phẩm)" : "Your product was ordered (Mua sản phẩm)"
+        return "Your product was ordered (Mua sản phẩm)" if share_url.blank? || share_url.order_id.blank?
+        "Your product was ordered #{share_url.order_id} (Mua sản phẩm)"
       else
         point.name
       end
