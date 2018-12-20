@@ -38,7 +38,7 @@ class HomeController < ApplicationController
       customer = Customer.create(name: name, email: params[:email], customer_id: customer_id)
       ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
                           address: params[:address], shopdomain: params[:shopdomain], price: params[:price], order_no: order_no)
-      insert_points(user.id, 2)
+      insert_points(user.id, 2, "", nil, order_id)
       UserMailer.referral_sale(user, name, params[:shopdomain]).deliver
     end
     clear_shopify_session
