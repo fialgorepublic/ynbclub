@@ -96,7 +96,6 @@ class ReferralSalesController < ApplicationController
       sale.update_attributes(is_approved: true)
     end
     @referral_sales = ReferralSale.all.paginate(page: params[:page])
-    render partial: 'referral_sales/table'
   end
 
   def upate_ghtk_status
