@@ -32,11 +32,7 @@
                   <!--<br/>-->
                   <!--</div>-->
                   <!--</div>-->
-                  <div class="field m-image-frame form-group" style="border: 1px solid #eee;
-                          padding: 30px;
-                          margin: 50px 0;
-                          text-align: center;
-                          min-height: 150px">
+                  <div class="field m-image-frame form-group">
                     <%= image_tag(@blog.avatar.present? ? @blog.avatar.url : "placeholder.png", :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
                     <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
                     <div class="field form-group" id="image-upload-button-div">
