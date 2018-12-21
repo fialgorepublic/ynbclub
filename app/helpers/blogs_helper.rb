@@ -10,4 +10,8 @@ module BlogsHelper
   def page_title
     action_name == "new" ? "Create new blog post" : "Edit blog post"
   end
+
+  def button_name blog
+    blog.is_published? ? "Save" : "Save as draft"
+  end
 end
