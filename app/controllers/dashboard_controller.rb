@@ -100,6 +100,9 @@ class DashboardController < ApplicationController
     end
 
     def has_hashtag? object
-      object.title.present? ? object.title.include?("#saintlbeau") : object.description.present? ? object.include?("#saintlbeau") : false
+      found = false
+      found = object.title.include?("#saintlbeau") if object.title.present?
+      found = object.description.include?("#saintlbeau") if object.description.present? && !found
+      found
     end
 end
