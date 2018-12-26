@@ -22,7 +22,7 @@
             <tr>
               <td><%= order.name %></td>
               <td><%= order.email %></td>
-              <td><%= best_in_place order, :commission, :url => set_commission_path(:id => order.id), class: "fa fa-pencil-square-o" %></td>
+              <td><%= best_in_place order, :commission, :url => set_commission_path(:id => order.id), class: "fa fa-pencil-square-o decimal-numbers" %></td>
             </tr>
           <% end %>
         </tbody>
@@ -34,5 +34,15 @@
 <script>
   $(document).ready(function() {
     jQuery(".best_in_place").best_in_place();
+  });
+
+  $(document).on("keypress", ".decimal-numbers", function(event) {
+    var keycode = event.which;
+    if(event.keyCode === 13 || event.keyCode === 9) {
+        $(this).next().focus();
+    }
+    else if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || event.keyCode === 37 || event.keyCode === 39 || (keycode >= 48 && keycode <= 57)))) {
+        event.preventDefault();
+    }
   });
 </script>
