@@ -54,7 +54,7 @@ class User < ApplicationRecord
     end
 
     def ambassadors_with_sales
-      user_with_sales = ReferralSale.plcuk(:user_id)
+      user_with_sales = ReferralSale.pluck(:user_id)
       User.joins(:role).where("roles.name = 'Brand ambassador'").where(id: user_with_sales)
     end
   end
