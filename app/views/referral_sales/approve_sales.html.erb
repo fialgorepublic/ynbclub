@@ -53,7 +53,7 @@
         <div class="col-md-4">
           <div class="referral-dropDown">
             <div class="col-sm-12">
-            <h5>Referral Code / Partner</h5>
+            <h5>Referral/ Partner</h5>
             <%= collection_select(:user, :id, User.ambassadors_with_sales, :id, :name, {}, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Tìm theo mã giới thiệu/tên partner"}) %>
             <!--<%#= text_field_tag :partner,nil, :class => 'form-control', :placeholder=>"Tìm theo mã giới thiệu/tên partner" %>-->
             </div>
