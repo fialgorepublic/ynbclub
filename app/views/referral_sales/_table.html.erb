@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th></th>
-      <th>University code</th>
+      <th>Order Id</th>
       <th>Date created</th>
       <th>Customer</th>
       <th>TT Discount</th>
@@ -28,8 +28,8 @@
       <% if is_show %>
         <tr>
           <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || payment_status == "pending") ? 'disabled': '' %> /></td>
-          <td><a href="javascript:void(0);"><%= referral_sale.order_id %></a></td>
-          <td><%= referral_sale.created_at %></td>
+          <td><%= referral_sale.order_no %></td>
+          <td><%= referral_sale.created_at.strftime("%d %m %y, %H:%M %p ") %></td>
           <td><%= referral_sale.name %></td>
           <td><%= referral_sale.is_approved ? 'Approved' : "Pending" %></td>
           <td><%= referral_sale.price %></td>
