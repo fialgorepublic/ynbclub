@@ -13,7 +13,7 @@
           <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Commission</th>
+            <th>Commission (%)</th>
           </tr>
         </thead>
 
@@ -22,7 +22,7 @@
             <tr>
               <td><%= order.name %></td>
               <td><%= order.email %></td>
-              <td><span><%= best_in_place order, :commission, :url => set_commission_path(:id => order.id), :as => :input %><!-- <i class="fa fa-pencil-square-o"></i> --></span></td>
+              <td><%= best_in_place order, :commission, :url => set_commission_path(:id => order.id), class: "fa fa-pencil-square-o" %></td>
             </tr>
           <% end %>
         </tbody>
