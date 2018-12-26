@@ -44,31 +44,35 @@
             </div>
 
             <% unless current_user.social_login %>
-              <div class="row">
+              <div class="row" id="password">
                 <div class="col-md-12">
-                  <h3>Password</h3>
-                </div>
-              </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Password</h3>
+                    </div>
+                  </div>
 
-              <div class="box-shadow" id="password">
-                <div class="row">
-                  <div class="col-md-12">
-                    <%= form_tag update_password_users_path do |f| %>
-                        <%= hidden_field_tag :id, current_user.id %>
-                        <div class="form-group">
-                          <label>Current Password</label>
-                          <%= password_field_tag :current_password, "", class: "form-control", placeholder: "**********", required: true %>
-                        </div>
-                        <div class="form-group">
-                          <label>New Password</label>
-                          <%= password_field_tag :password, "", class: "form-control", required: true %>
-                        </div>
-                        <div class="form-group">
-                          <label>Repeat New Password</label>
-                          <%= password_field_tag :password_confirmation, "", class: "form-control", required: true %>
-                        </div>
-                        <%= submit_tag "Save", class: "btn btn-lg btn-block btn-primary" %>
-                    <% end %>
+                  <div class="box-shadow">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <%= form_tag update_password_users_path do |f| %>
+                            <%= hidden_field_tag :id, current_user.id %>
+                            <div class="form-group">
+                              <label>Current Password</label>
+                              <%= password_field_tag :current_password, "", class: "form-control", placeholder: "**********", required: true %>
+                            </div>
+                            <div class="form-group">
+                              <label>New Password</label>
+                              <%= password_field_tag :password, "", class: "form-control", required: true %>
+                            </div>
+                            <div class="form-group">
+                              <label>Repeat New Password</label>
+                              <%= password_field_tag :password_confirmation, "", class: "form-control", required: true %>
+                            </div>
+                            <%= submit_tag "Save", class: "btn btn-lg btn-block btn-primary" %>
+                        <% end %>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
