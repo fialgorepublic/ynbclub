@@ -53,28 +53,37 @@
         <div class="col-md-4">
           <div class="referral-dropDown">
             <div class="col-sm-12">
-            <h5>Referral/ Partner</h5>
+            <h5>Referral / Partner</h5>
             <%= collection_select(:user, :id, User.ambassadors_with_sales, :id, :name, {}, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Tìm theo mã giới thiệu/tên partner"}) %>
             <!--<%#= text_field_tag :partner,nil, :class => 'form-control', :placeholder=>"Tìm theo mã giới thiệu/tên partner" %>-->
             </div>
          </div>
         </div>
-      </div>
-      <div class="col-md-4 m-t-30 pull-right">
-        <a href="/approve_sales" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
-        <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
-      </div>
-      <br/><br/>
-      <div class="form-inline m-b-sm">
-        <div class="form-group m-b-sm">
-          <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched" ng-model="multiDiscountStatus">
-            <option value="order_discount_approved"> approve sale</option>
-            <option value="order_discount_cancel"> cancel sale</option>
-          </select>
-          <button id="checkboxBtn" class="btn btn-sm btn-primary float-left-moblie">Apply</button>
-          <label for="updateDiscountMulti" class="m-r-sm line-height-30 width-70-mb float-left-moblie">Order paid</label>
+
+        <div class="col-md-4 m-t-30">
+          <div class="col-sm-12">
+            <button onclick="apply_filter();" class="btn btn-info">Apply filter</button>
+            <a href="/approve_sales" class="btn btn-info">Clear filter</a>
+          </div>
         </div>
       </div>
+
+      <br/><br/>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-inline m-b-sm">
+            <div class="form-group m-b-sm">
+              <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched" ng-model="multiDiscountStatus">
+                <option value="order_discount_approved"> approve sale</option>
+                <option value="order_discount_cancel"> cancel sale</option>
+              </select>
+              <button id="checkboxBtn" class="btn btn-sm btn-primary float-left-moblie">Apply</button>
+              <label for="updateDiscountMulti" class="m-r-sm line-height-30 width-70-mb float-left-moblie">Order paid</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row m-t-30">
         <div class="col-md-12">
           <div class="card-body">
