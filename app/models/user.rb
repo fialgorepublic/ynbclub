@@ -52,6 +52,11 @@ class User < ApplicationRecord
       user_with_payment = Payment.pluck(:user_id)
       User.joins(:role).where("roles.name = 'Brand ambassador'").where(id: user_with_payment)
     end
+
+    def ambassadors_with_sales
+      user_with_sales = ReferralSale.plcuk(:user_id)
+      User.joins(:role).where("roles.name = 'Brand ambassador'").where(id: user_with_sales)
+    end
   end
 
   # after_create :generate_profile
