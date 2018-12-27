@@ -76,14 +76,21 @@
         <%= render "all_blogs" %>
       </div>
       <br/>
-      <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>
-      <div class="featured-pagination">
-        <div>
-          <ul class="pagination pagination-md">
-            <%= will_paginate @blogs,renderer: BootstrapPagination::Rails %>
-          </ul>
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>
         </div>
-        <div>
+
+        <div class="col-md-6 text-right">
+          <div class="featured-pagination">
+            <div>
+              <ul class="pagination pagination-md">
+                <%= will_paginate @blogs,renderer: BootstrapPagination::Rails %>
+              </ul>
+            </div>
+            <div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
