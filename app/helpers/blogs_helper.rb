@@ -18,4 +18,8 @@ module BlogsHelper
   def blog_date blog
     blog.created_at.strftime("%y.%m.%d")
   end
+
+  def blog_description blog
+    blog.description.truncate(250).html_safe if blog.description.present?
+  end
 end
