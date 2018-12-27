@@ -61,10 +61,10 @@
           <% if @blogs.count > 0 %>
             <div class="post-sorting pull-right">
               <label>Sorting</label>
-              <select class="sorting-fltr">
-                <option class="fltr-dropdown">A-Z </option>
-                <option>Newest First</option>
-                <option>Popular First</option>
+              <select class="sorting-fltr" id="sort-blogs">
+                <option class="fltr-dropdown" value="-1">Default</option>
+                <option value="0">A-Z </option>
+                <option value="1">Newest First</option>
               </select>
             </div>
           <% end %>
@@ -72,14 +72,8 @@
         </div>
       </div>
 
-      <div class="row">
-        <% @blogs.each_with_index do |blog, index| %>
-          <% if (index + 1) % 4 == 0 %>
-            <%= render partial: 'expanded_blog', locals: { blog: blog } %>
-          <% else %>
-            <%= render partial: 'brief_description', locals: { blog: blog } %>
-          <% end %>
-        <% end %>
+      <div class="row" id="blogs">
+        <%= render "all_blogs" %>
       </div>
       <br/>
       <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>

@@ -1,0 +1,7 @@
+<% @blogs.each_with_index do |blog, index| %>
+  <% if (index + 1) % 4 == 0 %>
+    <%= render partial: 'expanded_blog', locals: { blog: blog } %>
+  <% else %>
+    <%= render partial: 'brief_description', locals: { blog: blog } %>
+  <% end %>
+<% end %>
