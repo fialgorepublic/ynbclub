@@ -1,0 +1,33 @@
+<div class="col-md-4">
+  <div class="blog-box blog-box-sm">
+    <div class="row">
+      <div class="col-md-12">
+        <%= link_to blog do %>
+          <img width="100%" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
+        <% end %>
+        <div class="blog-box-content">
+          <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class=""><%= blog.user_full_name %></span><span><%= blog_date blog %></span>
+            <span>
+            <%= blog.category_name %>
+            </span>
+          </p>
+          <h3><%= blog.title %></h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin:0;">
+      <div class="col-md-3">
+        <span ><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
+      </div>
+
+      <div class="col-md-4">
+        <span><i class="fa fa-comment"></i> <%= blog.comments.count %></span>
+      </div>
+
+      <div class="col-md-4 text-right">
+        <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
+      </div>
+    </div>
+  </div>
+</div>

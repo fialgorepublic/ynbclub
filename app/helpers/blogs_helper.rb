@@ -14,4 +14,8 @@ module BlogsHelper
   def button_name blog
     blog.is_published? ? "Save" : "Save as draft"
   end
+
+  def blog_date blog
+    blog.created_at.strftime("%y.%m.%d")
+  end
 end

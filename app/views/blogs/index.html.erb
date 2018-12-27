@@ -56,85 +56,31 @@
         <% end %>
       </div>
 
-      <div class="post-heading">
-        <% if @blogs.count > 0 %>
-        <div class="post-sorting pull-right">
-          <label>Sorting</label>
-          <select class="sorting-fltr">
-            <option class="fltr-dropdown">A-Z </option>
-            <option>Newest First</option>
-            <option>Popular First</option>
-          </select>
+      <div class="row">
+        <div class="post-heading">
+          <% if @blogs.count > 0 %>
+            <div class="post-sorting pull-right">
+              <label>Sorting</label>
+              <select class="sorting-fltr">
+                <option class="fltr-dropdown">A-Z </option>
+                <option>Newest First</option>
+                <option>Popular First</option>
+              </select>
+            </div>
+          <% end %>
+          <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
         </div>
-        <% end %>
-        <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
       </div>
 
-      <div class="post-heading">
-        <!--   <h2> <i class="fa fa-file"></i> Last Posts </h2>
-          -->
+      <div class="row">
+        <% @blogs.each_with_index do |blog, index| %>
+          <% if (index + 1) % 4 == 0 %>
+            <%= render partial: 'expanded_blog', locals: { blog: blog } %>
+          <% else %>
+            <%= render partial: 'brief_description', locals: { blog: blog } %>
+          <% end %>
+        <% end %>
       </div>
-      <% @blogs.where(is_featured: false).each do |blog| %>
-        <div class="row">
-          <div class="col-md-12 list-border-style">
-            <div class="card-blog-detail">
-              <div class="row">
-                <a href="/blogs/<%= blog.id %>" style="text-decoration: none;">
-                  <div class="col-md-2 col-xs-4 img-border">
-                    <img width="100%" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
-                  </div>
-                </a>
-                <div class="col-md-10 col-xs-8">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p class="category-name"><%= blog.category.name %> | <span><%= blog.created_at %></span></p>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <i class="fa fa-star <%= blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= blog.id %>');"></i>
-                      <% if current_user.users_blog?(blog.id) %>
-                      <%= link_to edit_blog_path(blog) do %>
-                      <i class="fa fa-edit"></i>
-                      <% end %>
-                      <%= link_to  blog, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                      <i class="fa fa-trash"></i>
-                      <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h2><a href="/blogs/<%= blog.id %>"  style="text-decoration: none; color: #000"><%= blog.title %></a></h2>
-                      <div class="descriptionBlog">
-                        <p><%= blog.description.html_safe %></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row featured-icon-left">
-                    <div class="col-md-6">
-                      <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
-                      <% if blog.is_published? %>
-                      <i class="fa fa-share-alt btn btn-default dropdown-toggle" data-toggle="dropdown"></i>
-                      <ul class="dropdown-menu" role="menu">
-                        <li>
-                          <a href="javascript:void(0);" onclick="openWindow('<%= blog.id %>','facebook', '<%= blog_attributes(blog) %>')"> <i class="fa fa-facebook"></i></a>
-                          <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
-                        </li>
-                      </ul>
-                      <span><label id="blogUrl"><%= blog.share_urls.count %></label></span>
-                      <% end %>
-                    </div>
-                    <div class="col-md-6 featured-icon-right text-right">
-                      <i class="fa fa-eye"></i><span><%= blog.blog_views.count %></span>
-                      <i class="fa fa-comment"></i><span><%= blog.comments.count %></span>
-                      <i class="myIcon"></i><span><%= blog.products.count %></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
       <br/>
       <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>
       <div class="featured-pagination">
@@ -144,275 +90,6 @@
           </ul>
         </div>
         <div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="blog-box blog-box-sm">
-            <div class="row">
-              <div class="col-md-12">
-                <img width="100%" class="h-150" src="/assets/blog-img-1.jpg">
-                <div class="blog-box-content">
-                  <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                    <span>
-                    category name
-                    </span>
-                  </p>
-                  <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" style="margin:0;">
-              <div class="col-md-3">
-                <span ><i class="fa fa-heart"></i>124</span>
-              </div>
-
-              <div class="col-md-4">
-                <span><i class="fa fa-comment"></i>124</span>
-              </div>
-
-              <div class="col-md-4 text-right">
-                <span><i class="fa fa-eye"></i>124</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="blog-box blog-box-sm">
-            <div class="row">
-              <div class="col-md-12">
-                <img width="100%" class="h-150" src="/assets/blog-img-1.jpg">
-                <div class="blog-box-content">
-                  <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                    <span>
-                    category name
-                    </span>
-                  </p>
-                  <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" style="margin:0;">
-              <div class="col-md-3">
-                <span ><i class="fa fa-heart"></i>124</span>
-              </div>
-
-              <div class="col-md-4">
-                <span><i class="fa fa-comment"></i>124</span>
-              </div>
-
-              <div class="col-md-4 text-right">
-                <span><i class="fa fa-eye"></i>124</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="blog-box blog-box-sm">
-            <div class="row">
-              <div class="col-md-12">
-                <img width="100%" class="h-150" src="/assets/blog-img-1.jpg">
-                <div class="blog-box-content">
-                  <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                    <span>
-                    category name
-                    </span>
-                  </p>
-                  <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" style="margin:0;">
-              <div class="col-md-3">
-                <span ><i class="fa fa-heart"></i>124</span>
-              </div>
-
-              <div class="col-md-4">
-                <span><i class="fa fa-comment"></i>124</span>
-              </div>
-
-              <div class="col-md-4 text-right">
-                <span><i class="fa fa-eye"></i>124</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-8">
-          <div class="blog-box blog-box-long">
-            <div class="row">
-              <div class="col-md-6">
-                <img width="100%" class="h-50vh" src="/assets/blog-img-2.jpg">
-              </div>
-
-              <div class="col-md-6">
-                <div class="blog-box-content">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                        <span>
-                        category name
-                        </span>
-                      </p>
-                      <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat </p>
-                    </div>
-                  </div>
-
-                  <div class="row" >
-                    <div class="col-md-3">
-                      <span ><i class="fa fa-heart"></i>124</span>
-                    </div>
-
-                    <div class="col-md-4">
-                      <span><i class="fa fa-comment"></i>124</span>
-                    </div>
-
-                    <div class="col-md-4 text-right">
-                      <span><i class="fa fa-eye"></i>124</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="blog-box blog-box-sm">
-            <div class="row">
-              <div class="col-md-12">
-                <img width="100%" class="h-150" src="/assets/blog-img-1.jpg">
-                <div class="blog-box-content">
-                  <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                    <span>
-                    category name
-                    </span>
-                  </p>
-                  <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" style="margin:0;">
-              <div class="col-md-3">
-                <span ><i class="fa fa-heart"></i>124</span>
-              </div>
-
-              <div class="col-md-4">
-                <span><i class="fa fa-comment"></i>124</span>
-              </div>
-
-              <div class="col-md-4 text-right">
-                <span><i class="fa fa-eye"></i>124</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="blog-box blog-box-sm">
-            <div class="row">
-              <div class="col-md-12">
-                <img width="100%" class="h-150" src="/assets/blog-img-1.jpg">
-                <div class="blog-box-content">
-                  <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                    <span>
-                    category name
-                    </span>
-                  </p>
-                  <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" style="margin:0;">
-              <div class="col-md-3">
-                <span ><i class="fa fa-heart"></i>124</span>
-              </div>
-
-              <div class="col-md-4">
-                <span><i class="fa fa-comment"></i>124</span>
-              </div>
-
-              <div class="col-md-4 text-right">
-                <span><i class="fa fa-eye"></i>124</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="blog-box blog-box-sm">
-            <div class="row">
-              <div class="col-md-12">
-                <img width="100%" class="h-150" src="/assets/blog-img-1.jpg">
-                <div class="blog-box-content">
-                  <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                    <span>
-                    category name
-                    </span>
-                  </p>
-                  <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" style="margin:0;">
-              <div class="col-md-3">
-                <span ><i class="fa fa-heart"></i>124</span>
-              </div>
-
-              <div class="col-md-4">
-                <span><i class="fa fa-comment"></i>124</span>
-              </div>
-
-              <div class="col-md-4 text-right">
-                <span><i class="fa fa-eye"></i>124</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="blog-box blog-box-sm">
-            <div class="row">
-              <div class="col-md-12">
-                <img width="100%" class="h-150" src="/assets/blog-img-1.jpg">
-                <div class="blog-box-content">
-                  <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class="">John Dow</span><span>12.11.18</span>
-                    <span>
-                    category name
-                    </span>
-                  </p>
-                  <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-                </div>
-              </div>
-            </div>
-            <div class="row" style="margin:0;">
-              <div class="col-md-3">
-                <span ><i class="fa fa-heart"></i>124</span>
-              </div>
-
-              <div class="col-md-4">
-                <span><i class="fa fa-comment"></i>124</span>
-              </div>
-
-              <div class="col-md-4 text-right">
-                <span><i class="fa fa-eye"></i>124</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
