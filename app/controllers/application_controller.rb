@@ -32,6 +32,14 @@ class ApplicationController < ActionController::Base
     ShopifyAPI::Base.clear_session
   end
 
+  def with_format(format, &block)
+    old_formats = formats
+    self.formats = [format]
+    block.call
+    self.formats = old_formats
+    nil
+  end
+
   private
 
   def allow_user_request
