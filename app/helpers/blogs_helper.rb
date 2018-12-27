@@ -22,4 +22,8 @@ module BlogsHelper
   def blog_description blog
     blog.description.truncate(250).html_safe if blog.description.present?
   end
+
+  def blog_title blog
+    blog.title.truncate(40)
+  end
 end
