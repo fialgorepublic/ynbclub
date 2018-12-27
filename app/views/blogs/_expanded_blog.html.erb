@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <%= link_to blog do %>
-          <img width="100%" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
+          <img width="100%" class="h-50vh" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
         <% end %>
       </div>
 
