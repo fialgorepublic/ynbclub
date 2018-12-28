@@ -8,12 +8,13 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     @blogs = current_user.filtered_blogs(params[:sort]).paginate(page: params[:page], per_page: 10)
+    @next_page = @blogs.next_page
 
     if request.xhr?
       with_format :html do
         @html_content = render_to_string partial: 'all_blogs'
       end
-      render json: { attachmentPartial: @html_content, success: true }
+      render json: { attachmentPartial: @html_content, success: true, next_page: @next_page, total_pages: @blogs.total_pages }
     end
   end
 
