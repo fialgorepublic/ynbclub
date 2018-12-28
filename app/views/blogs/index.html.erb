@@ -30,22 +30,27 @@
         <%= render "all_blogs" %>
       </div>
       <br/>
-      <div class="row">
-        <div class="col-md-6">
-          <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary' %>
-        </div>
 
-        <div class="col-md-6 text-right">
+      <%= hidden_field_tag :page, @next_page %>
+
+      <div class="row">
+        <% unless @blogs.next_page == @blogs.total_pages %>
+          <div class="col-md-6">
+            <%= link_to 'New Blog', "javascript:void(0);", class: 'btn btn-primary', id: "load-more" %>
+          </div>
+        <% end %>
+
+        <!-- <div class="col-md-6 text-right">
           <div class="featured-pagination">
             <div>
               <ul class="pagination pagination-md">
-                <%= will_paginate @blogs,renderer: BootstrapPagination::Rails %>
+                <%#= will_paginate @blogs,renderer: BootstrapPagination::Rails %>
               </ul>
             </div>
             <div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
