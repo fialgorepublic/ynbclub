@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :referral, uniqueness: true
+  validates :referral, uniqueness: true, if: :is_ambassador?
   belongs_to :role, optional: true
   has_many :referral_sales
   has_many :payments
