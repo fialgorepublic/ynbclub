@@ -1,0 +1,45 @@
+ <!-- <div class="row product-shadow featured-product-style">
+        <%# @blogs.where(is_featured: true).each do |blog| %>
+          <div class="col-md-6">
+            <div class="box-shadow-am sm-pd-am">
+              <div class="product-box featured-img">
+                <a href="/blogs/<%= blog.id %>" style="text-decoration: none;">
+                <img width="100%" src="<%#= blog.avatar.present? ? blog.avatar.url : 'placeholder.png' %>">
+                </a>
+              </div>
+
+              <div class="product-detail">
+                <p class="category-name"><%#= blog.category.name %> | <span><%= blog.created_at %></span></p>
+                <p><a href="/blogs/<%= blog.id %>"  style="text-decoration: none; color: #000"><%= blog.title %></a></p>
+              </div>
+
+              <div class="product-offer featureProduct">
+                <div class="descriptionBlog">
+                  <p><%= blog.description.html_safe %></p>
+                </div>
+              </div>
+
+              <div class="row featured-icon-left">
+                <div class="col-md-6">
+                  <i class="fa fa-heart"></i><span><%= blog.likes.count %></span>
+                  <%# if blog.is_published? %>
+                    <i class="fa fa-share-alt btn btn-default dropdown-toggle" data-toggle="dropdown"></i>
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a href="javascript:void(0);" onclick="openWindow('<%= blog.id %>','facebook', '<%= blog_attributes blog %>')"> <i class="fa fa-facebook"></i></a>
+                        <a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url# + #"/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
+                      </li>
+                    </ul>
+                    <span><label id="blogUrl"><%= blog.share_urls.count %></label></span>
+                  <%# end %>
+                </div>
+                <div class="col-md-6 featured-icon-right text-right">
+                  <i class="fa fa-eye"></i><span><%= blog.blog_views.count %></span>
+                  <i class="fa fa-comment"></i><span><%= blog.comments.count %></span>
+                  <i class="myIcon"></i><span><%= blog.products.count %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%# end %>
+      </div> -->
