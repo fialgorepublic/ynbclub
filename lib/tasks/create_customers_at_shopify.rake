@@ -17,11 +17,13 @@ task create_customers_at_shopify: :environment do
       begin
         if User.find_by_email(row[2]).blank?
           country = ISO3166::Country.new("VN")
-          phone_number = phone_number && Phony.normalize(phone_number)
+          if phone_number.present?
+            phone_number = phone_number && Phony.normalize(phone_number)
 
-          phone_number = "+#{country.country_code}#{phone_number}" unless phone_number.starts_with?(country.country_code)
+            phone_number = "+#{country.country_code}#{phone_number}" unless phone_number.starts_with?(country.country_code)
+          end
 
-          user = User.create(name: [first_name, last_name].join(' '), email: email, phone_number: phone_number, password: password, role: role, referral: Devise.friendly_token,
+          user = User.create(name: [first_name, last_name].join(' '), email: email, phone_number: phone_number, password: password, role: role,
                             is_shopify_user: row[20].present? ? row[20] == "No" ? false : true : false)
           user.create_profile
           user.profile.update(first_name: first_name, surname: last_name, phone_number: user.phone_number, address_line_1: address_line_1, address_line_2: address_line_2, 
