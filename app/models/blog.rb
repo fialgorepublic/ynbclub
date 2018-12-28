@@ -30,7 +30,7 @@ class Blog < ApplicationRecord
   }
 
   delegate :name, to: :category, prefix: true
-  delegate :full_name, to: :user, prefix: true
+  delegate :full_name, :name, to: :user, prefix: true, allow_nil: true
 
   def add_products(product)
     return if product.blank?
