@@ -14,12 +14,13 @@ task create_customers_at_shopify: :environment do
       orders_count = row[18].present? ? row[18].to_i : 0
       total_spent = row[17].present? ? row[17].to_f : 0.00
 
-      country = ISO3166::Country.new("VN")
-      phone_number = phone_number && Phony.normalize(phone_number)
-
-      phone_number = "+#{country.country_code}#{phone_number}" unless phone_number.starts_with?(country.country_code)
       begin
         if User.find_by_email(row[2]).blank?
+          country = ISO3166::Country.new("VN")
+          phone_number = phone_number && Phony.normalize(phone_number)
+
+          phone_number = "+#{country.country_code}#{phone_number}" unless phone_number.starts_with?(country.country_code)
+
           user = User.create(name: [first_name, last_name].join(' '), email: email, phone_number: phone_number, password: password, role: role, referral: Devise.friendly_token,
                             is_shopify_user: row[20].present? ? row[20] == "No" ? false : true : false)
           user.create_profile
