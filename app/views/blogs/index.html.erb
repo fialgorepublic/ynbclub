@@ -33,29 +33,20 @@
 
       <%= hidden_field_tag :page, @next_page %>
 
-      <div class="row">
+      <div class="row show-more-button">
         <% unless @blogs.current_page == @blogs.total_pages %>
-          <div class="col-md-6 text-left">
-            <div class="custom-showMore-btn">
+          <div class="col-md-8">
+            <div class="custom-showMore-btn pull-right">
               <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
                 <i class="fa fa-plus"></i> Show More
               <% end %>
             </div>
-            <a href="javascript:" id="custom-topPage-btn"><i class="fa fa-angle-up"></i></a>
           </div>
         <% end %>
 
-        <!-- <div class="col-md-6 text-right">
-          <div class="featured-pagination">
-            <div>
-              <ul class="pagination pagination-md">
-                <%#= will_paginate @blogs,renderer: BootstrapPagination::Rails %>
-              </ul>
-            </div>
-            <div>
-            </div>
-          </div>
-        </div> -->
+        <div class="col-md-4">
+          <a href="javascript:" id="custom-topPage-btn"><i class="fa fa-angle-up"></i></a>
+        </div>
       </div>
     </div>
   </div>
