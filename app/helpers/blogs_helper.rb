@@ -26,4 +26,8 @@ module BlogsHelper
   def blog_title blog
     blog.title.truncate(40)
   end
+
+  def blog_author_avatar(blog)
+    blog.user.avatar.present? ? blog.user.avatar.url : 'user-img.png'
+  end
 end

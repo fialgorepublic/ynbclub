@@ -6,10 +6,11 @@
           <img width="100%" class="h-150" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
         <% end %>
         <div class="blog-box-content">
-          <p><img width="30" class="circle-img" src="/assets/blog-img-1.jpg"><span class=""><%= blog.user_full_name %></span><span><%= blog_date blog %></span>
-            <span>
-            <%= blog.category_name %>
-            </span>
+          <p>
+            <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+            <span class=""><%= blog.user_full_name %></span>
+            <span><%= blog_date blog %></span>
+            <span><%= blog.category_name %></span>
           </p>
           <h3><%= blog_title blog %></h3>
         </div>
