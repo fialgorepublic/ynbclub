@@ -15,7 +15,7 @@ task create_customers_at_shopify: :environment do
       total_spent = row[17].present? ? row[17].to_f : 0.00
 
       country = ISO3166::Country.new("VN")
-      phone_number = Phony.normalize(phone_number)
+      phone_number = phone_number && Phony.normalize(phone_number)
 
       phone_number = "+#{country.country_code}#{phone_number}" unless phone_number.starts_with?(country.country_code)
       begin
