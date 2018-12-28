@@ -10,6 +10,10 @@ $(document).ready(function() {
       success: function(data) {
         $('.loader').hide();
         $('#blogs').html(data.attachmentPartial);
+        $('#page').val(data.next_page)
+        if(data.current_page == data.total_pages) {
+          $('#load-more').hide();
+        }
       },
       error: function(data) {
         $('.loader').hide()
@@ -31,7 +35,7 @@ $(document).ready(function() {
         $('.loader').hide();
         $('#blogs').append(data.attachmentPartial);
         $('#page').val(data.next_page)
-        if(data.next_page - 1 == data.total_pages) {
+        if(data.current_page == data.total_pages) {
           $('#load-more').hide();
         }
       },
