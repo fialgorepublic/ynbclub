@@ -30,4 +30,8 @@ module BlogsHelper
   def blog_author_avatar(blog)
     blog.user.avatar.present? ? blog.user.avatar.url : 'user-img.png'
   end
+
+  def blog_user_name(blog)
+    blog.user_full_name.present? ? blog.user_full_name : blog.user_name
+  end
 end

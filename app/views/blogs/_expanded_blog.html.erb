@@ -13,7 +13,7 @@
             <div class="col-md-12">
               <p>
                 <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
-                <span class=""><%= blog.user_full_name || blog.user_name %></span>
+                <span class=""><%= blog_user_name(blog) %></span>
                 <span><%= blog_date blog %></span>
                 <span><%= blog.category_name %></span>
               </p>
