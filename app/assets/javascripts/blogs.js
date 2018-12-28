@@ -31,7 +31,7 @@ $(document).ready(function() {
         $('.loader').hide();
         $('#blogs').append(data.attachmentPartial);
         $('#page').val(data.next_page)
-        if(data.next_page == data.total_pages) {
+        if(data.next_page > data.total_pages) {
           $('#load-more').hide();
         }
       },
