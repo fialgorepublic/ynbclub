@@ -34,9 +34,14 @@
       <%= hidden_field_tag :page, @next_page %>
 
       <div class="row">
-        <% unless @blogs.next_page == @blogs.total_pages %>
-          <div class="col-md-6">
-            <%= link_to 'New Blog', "javascript:void(0);", class: 'btn btn-primary', id: "load-more" %>
+        <% unless @blogs.current_page == @blogs.total_pages %>
+          <div class="col-md-6 text-left">
+            <div class="custom-showMore-btn">
+              <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
+                <i class="fa fa-plus"></i> Show More
+              <% end %>
+            </div>
+            <a href="javascript:" id="custom-topPage-btn"><i class="fa fa-angle-up"></i></a>
           </div>
         <% end %>
 
