@@ -45,4 +45,18 @@ $(document).ready(function() {
       }
     })
   })
+
+  $(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+      $('#custom-topPage-btn').fadeIn(200);    // Fade in the arrow
+    } else {
+      $('#custom-topPage-btn').fadeOut(200);   // Else fade out the arrow
+    }
+  });
+
+  $('#custom-topPage-btn').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+      scrollTop : 0                       // Scroll to top of body
+    }, 500);
+  });
 });
