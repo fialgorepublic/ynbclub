@@ -1,6 +1,5 @@
 <% @blogs.each_with_index do |blog, index| %>
-	<%= puts "================================", index + 1 %>
-  <% if (index + 1) % 4 == 0 %>
+  <% if index == 3 || index == 9 %>
     <%= render partial: 'expanded_blog', locals: { blog: blog } %>
   <% else %>
     <%= render partial: 'brief_description', locals: { blog: blog } %>
