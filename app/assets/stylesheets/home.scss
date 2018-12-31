@@ -2090,13 +2090,16 @@ label.error {
 }
 .blog-box.blog-box-long{
   padding-bottom:0;
-  .h-50vh{
-    height:265px
+  max-height: 265px;
+  .h-50vh {
+    height:265px;
   }
-  p{
+  p {
     font-family:'Montserrat', sans-serif;
-      font-weight:300;
-          
+    font-weight:300;
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
