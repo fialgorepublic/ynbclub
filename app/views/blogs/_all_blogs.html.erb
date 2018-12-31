@@ -2,11 +2,81 @@
   <% @blogs.each_with_index do |blog, index| %>
     <% if index == 3 || index == 9 %>
       <div class="col-md-8">
-        <%= render partial: 'expanded_blog', locals: { blog: blog } %>
+        <div class="blog-box blog-box-long">
+          <div class="row">
+            <div class="col-md-6">
+              <%= link_to blog do %>
+                <img width="100%" class="h-50vh" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
+              <% end %>
+            </div>
+
+            <div class="col-md-6">
+              <div class="blog-box-content">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p>
+                      <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+                      <span class=""><%= blog_user_name(blog) %></span>
+                      <span><%= blog_date blog %></span>
+                      <span><%= blog.category_name %></span>
+                    </p>
+                    <h3><%= blog_title blog %></h3>
+                    <p><%= blog_description blog %></p>
+                  </div>
+                </div>
+
+                <div class="row" >
+                  <div class="col-md-3">
+                    <span ><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
+                  </div>
+
+                  <div class="col-md-4">
+                    <span><i class="fa fa-comment"></i> <%= blog.comments.count %></span>
+                  </div>
+
+                  <div class="col-md-4 text-right">
+                    <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     <% else %>
       <div class="col-md-4">
-        <%= render partial: 'brief_description', locals: { blog: blog } %>
+        <div class="blog-box blog-box-sm">
+          <div class="row">
+            <div class="col-md-12">
+              <%= link_to blog do %>
+                <img width="100%" class="h-150" src="<%= blog.avatar.present? ? blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
+              <% end %>
+              <div class="blog-box-content">
+                <p>
+                  <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+                  <span class=""><%= blog_user_name(blog) %></span>
+                  <span><%= blog_date blog %></span>
+                  <span><%= blog.category_name %></span>
+                </p>
+                <h3><%= blog_title blog %></h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin:0;">
+            <div class="col-md-3">
+              <span ><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
+            </div>
+
+            <div class="col-md-4">
+              <span><i class="fa fa-comment"></i> <%= blog.comments.count %></span>
+            </div>
+
+            <div class="col-md-4 text-right">
+              <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
   <% end %>
