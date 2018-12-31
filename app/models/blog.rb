@@ -24,7 +24,7 @@ class Blog < ApplicationRecord
         order(title: :asc)
       when 1, "1"
         order(created_at: :desc)
-      when -1
+      when -1, "-1"
         order(is_published: :desc, updated_at: :desc)
     end
   }
