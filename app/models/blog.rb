@@ -21,9 +21,11 @@ class Blog < ApplicationRecord
   scope :sort_blogs, -> (sort_type) {
     case sort_type
       when 0, "0"
-        order(title: :asc)
+        order(created_at: :desc, is_published: :desc)
       when 1, "1"
-        order(created_at: :desc)
+        order(title: :asc, is_published: :desc )
+      when 2, "2"
+        order(title: :desc, is_published: :desc)
       when -1, "-1"
         order(is_published: :desc, updated_at: :desc)
     end
