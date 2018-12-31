@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #products{
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
   .box-shadow-am{
      border:5px solid transparent
   }
@@ -257,4 +260,25 @@ margin-top:40px;
 #coinEditModal .items .from-control-sm{
   top: 6px !important;
   left: 24px !important
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
 }
