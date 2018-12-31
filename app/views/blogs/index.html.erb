@@ -14,7 +14,6 @@
         <div class="post-heading">
           <% if @blogs.count > 0 %>
             <div class="post-sorting pull-right">
-              <label>Sorting</label>
               <select class="sorting-fltr" id="sort-blogs">
                 <option class="fltr-dropdown" value="-1">Default</option>
                 <option value="0">A-Z </option>
@@ -36,6 +35,7 @@
       <div class="row show-more-button">
         <% unless @blogs.current_page == @blogs.total_pages %>
           <div class="col-md-8">
+            <%= link_to "New Blog", new_blog_path, class: "btn btn-primary pull-left" %>
             <div class="custom-showMore-btn pull-right">
               <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
                 <i class="fa fa-plus"></i> Show More
