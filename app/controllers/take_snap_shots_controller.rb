@@ -1,2 +1,0 @@
-class TakeSnapShotsController < ApplicationController
-end
