@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :blog_not_found
   before_action :set_earn_coin
   before_action :set_page
+  before_action :set_snapshot
 
   def set_variables
     @shopify_domain = "saintlbeau.myshopify.com"
@@ -68,5 +69,10 @@ class ApplicationController < ActionController::Base
 
   def set_page
     @page = Page.first || Page.create(heading: "Who are we?", sub_heading: "")
+  end
+
+  def set_snapshot
+    @page = Snapshot.first || Snapshot.create(step1_text: "Make selfie photo or video with product bought on your mobile", step2_text: "Upload to facebook , twitter or intstagram and copy link to your post, Don't forget to add a hashtag #saintlbeau",
+                                      step3_text: "Insert copied link to the special field on the web site", step4_text: "Confirm and receive 20 coins!")
   end
 end
