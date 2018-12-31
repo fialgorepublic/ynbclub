@@ -11,6 +11,7 @@ $(document).ready(function() {
         $('.loader').hide();
         $('#blogs').html(data.attachmentPartial);
         $('#page').val(data.next_page)
+        $('#load-more').show();
         if(data.current_page == data.total_pages) {
           $('#load-more').hide();
         }
