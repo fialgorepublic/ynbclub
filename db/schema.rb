@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181220072716) do
+ActiveRecord::Schema.define(version: 20181231151010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,31 @@ ActiveRecord::Schema.define(version: 20181220072716) do
     t.string "fb_btn_text"
     t.string "twitter_btn_text"
     t.string "email_btn_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "snapshots", force: :cascade do |t|
+    t.string "step1_avatar_file_name"
+    t.string "step1_avatar_content_type"
+    t.integer "step1_avatar_file_size"
+    t.datetime "step1_avatar_updated_at"
+    t.string "step2_avatar_file_name"
+    t.string "step2_avatar_content_type"
+    t.integer "step2_avatar_file_size"
+    t.datetime "step2_avatar_updated_at"
+    t.string "step3_avatar_file_name"
+    t.string "step3_avatar_content_type"
+    t.integer "step3_avatar_file_size"
+    t.datetime "step3_avatar_updated_at"
+    t.string "step4_avatar_file_name"
+    t.string "step4_avatar_content_type"
+    t.integer "step4_avatar_file_size"
+    t.datetime "step4_avatar_updated_at"
+    t.string "step1_text"
+    t.string "step2_text"
+    t.string "step3_text"
+    t.string "step4_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
