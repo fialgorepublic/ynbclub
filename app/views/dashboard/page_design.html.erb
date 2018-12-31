@@ -28,10 +28,10 @@
       <div class='row'>
         <div class="col-md-12">
           <div class="page-de-tab-holder">
-            <a href="">
-            <p> <i class=" "><img src="/assets/icon-3.png"></i> Take a snapshot and share</p>
-            <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
-            </a>
+            <%= link_to take_snapshot_path do %>
+              <p> <i class=""><img src="/assets/icon-3.png"></i>  Take a snapshot and share</p>
+              <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
+            <% end %>
           </div>
         </div>
       </div>
