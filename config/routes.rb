@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   post 'sign_in_user', to: 'home#sign_in_user'
   get 'my_orders', to: 'orders#my_orders'
   get 'home_page', to: 'dashboard#home_page'
+  get 'edit_snapshot', to: 'dashboard#edit_snapshot'
 
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {

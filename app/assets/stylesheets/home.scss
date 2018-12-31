@@ -2035,6 +2035,7 @@ label.error {
 .ml-4 {
   margin-left: 4%;
 }
+
 .blog-box{
   background:#fff;
   box-shadow: 0 0 10px #ccc;
@@ -2153,4 +2154,14 @@ label.error {
 
 .show-more-button {
   margin-bottom: 2% !important;
+}
+.snapshot-dashboard-holder  .edit-snapshot .box-shadow{
+  padding:30px 40px;
+}
+.snapshot-dashboard-holder  .edit-snapshot .box-shadow .btn-danger{
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.snapshot-dashboard-holder  .edit-snapshot .box-shadow .btn{
+  outline:none
 }
