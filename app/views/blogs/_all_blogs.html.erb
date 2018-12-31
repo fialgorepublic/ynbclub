@@ -1,9 +1,13 @@
 <div class="row">
   <% @blogs.each_with_index do |blog, index| %>
     <% if index == 3 || index == 9 %>
-      <%= render partial: 'expanded_blog', locals: { blog: blog } %>
+      <div class="col-md-8">
+        <%= render partial: 'expanded_blog', locals: { blog: blog } %>
+      </div>
     <% else %>
-      <%= render partial: 'brief_description', locals: { blog: blog } %>
+      <div class="col-md-4">
+        <%= render partial: 'brief_description', locals: { blog: blog } %>
+      </div>
     <% end %>
   <% end %>
 </div>
