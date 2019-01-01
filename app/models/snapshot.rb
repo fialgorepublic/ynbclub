@@ -33,4 +33,12 @@ class Snapshot < ApplicationRecord
   validates_attachment_content_type :step2_avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_content_type :step3_avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_content_type :step4_avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
+
+  def delete_avatar?(id)
+    return step1_avatar.destroy if id == "step1"
+    return step2_avatar.destroy if id == "step2"
+    return step3_avatar.destroy if id == "step3"
+    step4_avatar.destroy if id == "step4"
+  end
 end
