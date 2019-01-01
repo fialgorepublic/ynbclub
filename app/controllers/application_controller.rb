@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_snapshot
-    @page = Snapshot.first || Snapshot.create(step1_text: "Make selfie photo or video with product bought on your mobile", step2_text: "Upload to facebook , twitter or intstagram and copy link to your post, Don't forget to add a hashtag #saintlbeau",
+    @snapshot = Snapshot.first || Snapshot.create(step1_text: "Make selfie photo or video with product bought on your mobile", step2_text: "Upload to facebook , twitter or intstagram and copy link to your post, Don't forget to add a hashtag #saintlbeau",
                                       step3_text: "Insert copied link to the special field on the web site", step4_text: "Confirm and receive 20 coins!")
   end
 end
