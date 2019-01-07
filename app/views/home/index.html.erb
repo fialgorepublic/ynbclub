@@ -170,7 +170,7 @@
                 </div>
 
                 <div class="actions text-center">
-                  <button class="btn btn-lg btn-bottom btn-primary btn-block" onclick="sign_up_user();">Register</button>
+                  <button class="btn btn-lg btn-bottom btn-primary btn-block" onclick="sign_up_user();" id="register-btn">Register</button>
                   <a href="javascript:void(0);" onclick="login_form();" class="text-center">I have an account</a>
                 </div>
             <% end %>
@@ -336,8 +336,10 @@
       var email = $('#registration_email').val();
       var password = $('#registration_password').val();
       var invite = $('#invite').val();
+      $('#register-btn').attr('disabled', true)
       if (!jQuery("#sign_up_user").valid()) {
           return false;
+        $('#register-btn').attr('disabled', false)
       }
       $.ajax({
           url:'/d/users',
@@ -348,8 +350,10 @@
               if( data.success){
                   $('#signUp').modal('hide');
                   window.location.href = "/dashboard"
+                  $('#register-btn').attr('disabled', false)
               }else{
                   return toastr.error(data.message);
+                  $('#register-btn').attr('disabled', false)
               }
           },
           error:function (data) {
