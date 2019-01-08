@@ -167,6 +167,12 @@ class UsersController < ApplicationController
     @points = current_user.points.order(created_at: :desc)
   end
 
+  def find_user_by_email
+    user = User.find_by_email(params[:email])
+    profile = user.profile if user.present?
+    render json: { user: user, profile: profile}
+  end
+
   private
   def set_user
     @user = User.find(params[:id])

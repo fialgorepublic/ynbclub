@@ -78,6 +78,7 @@ Rails.application.routes.draw do
       get :brand_ambassadors
       get :clear_search
       get :points
+      get :find_user_by_email
     end
   end
 
