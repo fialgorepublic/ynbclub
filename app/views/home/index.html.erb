@@ -350,6 +350,7 @@
           success:function (data) {
               if( data.success){
                   $('#signUp').modal('hide');
+                  Cookies.set('saintlbeau_current_user', email)
                   window.location.href = "/dashboard"
                   $('#register-btn').attr('disabled', false)
               }else{
