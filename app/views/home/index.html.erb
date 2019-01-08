@@ -320,7 +320,7 @@
       success:function (data) {
           if( data.success){
               $('#signIn').modal('hide');
-              setCookie('saintlbeau_current_user', email)
+              localStorage.setItem('saintlbeau_current_user', email)
               window.location.href = "/dashboard"
           }else{
               return toastr.error(data.message);
@@ -350,7 +350,7 @@
           success:function (data) {
               if( data.success){
                   $('#signUp').modal('hide');
-                  setCookie('saintlbeau_current_user', email)
+                  localStorage.setItem('saintlbeau_current_user', email)
                   window.location.href = "/dashboard"
                   $('#register-btn').attr('disabled', false)
               }else{
