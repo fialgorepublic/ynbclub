@@ -1,5 +1,5 @@
 $(document).ready(function(){
   $('#logout-link').click(function(){
-    Cookies.remove('saintlbeau_current_user')
+    document.cookie = 'saintlbeau_current_user=-1;';
   })
 });
