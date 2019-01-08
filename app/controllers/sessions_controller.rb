@@ -73,6 +73,10 @@ class SessionsController < ApplicationController
 
   end
 
+  def current_user_email
+    render json: { email: cookies[:saintlbeau_current_user] }
+  end
+
   protected
 
   def render_or_redirect
