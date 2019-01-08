@@ -320,7 +320,7 @@
       success:function (data) {
           if( data.success){
               $('#signIn').modal('hide');
-              localStorage.setItem('saintlbeau_current_user', email)
+              Cookies.set('saintlbeau_user_email', email, { domain: 'saintlbeau.com' })
               window.location.href = "/dashboard"
           }else{
               return toastr.error(data.message);
@@ -350,7 +350,7 @@
           success:function (data) {
               if( data.success){
                   $('#signUp').modal('hide');
-                  localStorage.setItem('saintlbeau_current_user', email)
+                  Cookies.set('saintlbeau_user_email', email, { domain: 'saintlbeau.com' })
                   window.location.href = "/dashboard"
                   $('#register-btn').attr('disabled', false)
               }else{
@@ -362,10 +362,6 @@
               alert ("Error");
           }
       });
-  }
-
-  function setCookie(cname, cvalue) {
-    document.cookie = cname + "=" + cvalue + ";";
   }
 
   function login_form(){
