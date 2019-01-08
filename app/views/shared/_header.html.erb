@@ -56,7 +56,7 @@
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
               <%# if !(current_user.is_shopify_user) %>
-              <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+              <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete, id: "logout-link") %></li>
             <%# end %>
             </ul>
           </div>
