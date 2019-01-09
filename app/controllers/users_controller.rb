@@ -167,9 +167,10 @@ class UsersController < ApplicationController
   end
 
   def find_user_by_email
-    user = User.find_by_email(params[:email])
-    profile = user.profile if user.present?
-    render json: { user: user, profile: profile}
+    user = find_user_from_shopify || User.find_by_email(params[:email])
+    profile = set_profile(user)
+    user_email = user.email if user.present?
+    render json: { user: user_email, profile: profile}
   end
 
   private
@@ -195,4 +196,14 @@ class UsersController < ApplicationController
     params.require(:user).permit(:phone_number, :email, profile_attributes: [:id, :bank_name, :acc_holder_name, :account_number, :_destroy])
   end
 
+  def find_user_from_shopify
+    initiate_shopify_session
+    customers = ShopifyAPI::Customer.search(query:"email:#{params[:email]}")
+    customers.first
+  end
+
+  def set_profile(user)
+    return nil if user.blank?
+    user.default_address.present? ? user.default_address : user.profile
+  end
 end
