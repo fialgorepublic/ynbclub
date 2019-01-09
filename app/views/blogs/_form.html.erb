@@ -316,7 +316,8 @@
     $(window).bind('load', function(){
       $('#blog-form').submit(validateDescriptionLength)
       var v = CKEDITOR.instances.blog_description
-
+      words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
+      if (words) { $('#display_count').text(`Total Words: ${words.length}`); }
       v.on('key', function(event) {
         words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
         if (words) {
