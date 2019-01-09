@@ -204,6 +204,6 @@ class UsersController < ApplicationController
 
   def set_profile(user)
     return nil if user.blank?
-    user.default_address.present? ? user.default_address : user.profile
+    defined?(user.default_address).present? ? user.default_address : user.profile
   end
 end
