@@ -431,4 +431,8 @@
   <% if params[:blog_not_found] %>
     apprise("The blog no longer exist, Please contact support team for more information")
   <% end %>
+
+  <% if params[:shopify_redirected] == "true" %>
+    $('#signIn').modal('show');
+  <% end %>
 </script>
