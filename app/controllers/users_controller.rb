@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:find_user_by_email]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   require 'csv'
   require 'roo'
