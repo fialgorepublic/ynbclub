@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       get :clear_search
       get :points
       get :find_user_by_email
+      get 'users/ban', to: 'users#all_users'
     end
   end
 
