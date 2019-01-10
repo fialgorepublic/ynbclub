@@ -173,6 +173,9 @@ class UsersController < ApplicationController
     render json: { user: user_email, profile: profile}
   end
 
+  def all_users
+  end
+
   private
   def set_user
     @user = User.find(params[:id])
