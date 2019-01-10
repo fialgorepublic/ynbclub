@@ -90,8 +90,9 @@
       apprise('Are You Sure You Want To Ban this User?', { 'verify': true }, function (r) {
         if (r) {
           var id = $(this).attr("id")
+          var value = $(this).val();
           $.ajax({
-            url: `/ban?id=${id}`,
+            url: `/ban?id=${id}&value=${value}`,
             type: 'get',
             dataType: 'json',
             success: function (data) {
