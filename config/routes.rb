@@ -80,6 +80,7 @@ Rails.application.routes.draw do
       get :points
       get :find_user_by_email
       get 'users/ban', to: 'users#all_users'
+      get '/ban', to: 'users#ban'
     end
   end
 
