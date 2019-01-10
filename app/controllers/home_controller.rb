@@ -57,13 +57,17 @@ class HomeController < ApplicationController
   def sign_in_user
     user = User.find_by_email(params[:user][:email])
     if user.present?
-      if user.valid_password?(params[:user][:password])
-        sign_in :user, user
-        flash[:notice] = "Successfully login"
-        render json: {success: true, message: "Successfully login"}
+      if !user.banned?
+        if user.valid_password?(params[:user][:password])
+          sign_in :user, user
+          flash[:notice] = "Successfully login"
+          render json: {success: true, message: "Successfully login"}
+        else
+          flash[:alert] = "Email and password invalid"
+          render json: {success: false, message: "Email and password invalid"}
+        end
       else
-        flash[:alert] = "Email and password invalid"
-        render json: {success: false, message: "Email and password invalid"}
+        render json: {success: false, message: "You are banned from admin"}
       end
     else
       flash[:alert] = "Email and password invalid"
