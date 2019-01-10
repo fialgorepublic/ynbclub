@@ -6,4 +6,8 @@ module UsersHelper
   def profile_pic_name user
     user.avatar.url == "/images/original/missing.png" ? "No file Chosen" : user.avatar_file_name
   end
+
+  def show_if_already_searched search_text
+    search_text.present? ? 'show' : 'hide'
+  end
 end
