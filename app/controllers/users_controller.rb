@@ -177,6 +177,12 @@ class UsersController < ApplicationController
     @users = User.all.paginate(page: params[:page])
   end
 
+  def ban
+    user = User.find_by_id(params[:id])
+    user.update(banned: params[:value])
+    redirect_to users_ban_users_path, notice: "User has been banned from accesing saintlbeau!"
+  end
+
   private
   def set_user
     @user = User.find(params[:id])
