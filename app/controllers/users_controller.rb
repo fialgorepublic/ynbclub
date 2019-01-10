@@ -174,6 +174,7 @@ class UsersController < ApplicationController
   end
 
   def all_users
+    @users = User.all.paginate(page: params[:page])
   end
 
   private

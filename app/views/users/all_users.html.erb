@@ -1,0 +1,84 @@
+<div class="dashboard-holder">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/side_bar" %>
+    </div>
+    <div class="col-md-9">
+
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="card-header">Ban Users</h1>
+          <hr>
+          <%= form_tag users_ban_users_path, method: :get do %>
+            <div class="input-group">
+              <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="">
+              <span class="input-group-btn">
+              <button class="btn btn-sm btn-default" type="submit"><i class="fa fa-search"></i></button>
+              <%= link_to users_ban_users_path,  id: "crossBtn", class: "btn btn-sm btn-default ng-scope" do %>
+                <i class="fa fa-times"></i>
+              <% end %>
+            <% end %>
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row m-t-30">
+        <div class="col-md-12">
+          <div class="card-body">
+            <div class="affiliate_table_responsive">
+              <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Banned</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @users.each do |user| %>
+                    <tr>
+                      <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
+                      <td><%= user.first_name %></td>
+                      <td><%= user.surname %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.profile_phone_number %></td>
+                      <td><%#= user.banned %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-pagination">
+        <div>
+          <ul class="pagination pagination-md">
+            <%= will_paginate @users,renderer: BootstrapPagination::Rails %>
+          </ul>
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#searchText').keyup(function() {
+      var dInput = this.value;
+      if (dInput == ""){
+        $.ajax({
+          url: '<%= clear_search_users_path %>'
+        })
+      }
+    });
+  });
+</script>
