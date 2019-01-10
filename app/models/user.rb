@@ -57,6 +57,11 @@ class User < ApplicationRecord
       user_with_sales = ReferralSale.pluck(:user_id)
       User.joins(:role).where("roles.name = 'Brand ambassador'").where(id: user_with_sales)
     end
+
+    def search_users q
+      q = q.downcase
+      joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'")
+    end
   end
 
   # after_create :generate_profile

@@ -9,12 +9,12 @@
         <div class="col-md-12">
           <h1 class="card-header">Ban Users</h1>
           <hr>
-          <%= form_tag users_ban_users_path, method: :get do %>
+          <%= form_tag users_ban_users_path, method: :get, id: "search-form" do %>
             <div class="input-group">
-              <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="">
+              <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="" value="<%= params[:q] %>">
               <span class="input-group-btn">
               <button class="btn btn-sm btn-default" type="submit"><i class="fa fa-search"></i></button>
-              <%= link_to users_ban_users_path,  id: "crossBtn", class: "btn btn-sm btn-default ng-scope show_if_already_searched(params[:q])" do %>
+              <%= link_to users_ban_users_path,  id: "crossBtn", class: "btn btn-sm btn-default ng-scope #{show_if_already_searched(params[:q])}" do %>
                 <i class="fa fa-times"></i>
               <% end %>
             <% end %>
@@ -47,7 +47,7 @@
                       <td><%= user.surname %></td>
                       <td><%= user.email %></td>
                       <td><%= user.profile_phone_number %></td>
-                      <td><%= check_box_tag user.id, user.id, user.banned?, { disabled: user.banned?, id: user.id, class: "ban-user", data: { url: ban_users_path(id: user.id) } }%></td>
+                      <td><%= check_box_tag user.id, user.id, user.banned?, { disabled: user.banned?, id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id), confrim: "Are you sure you want to ban this user?" } }%></td>
                     </tr>
                   <% end %>
                 </tbody>
@@ -75,9 +75,8 @@
     $('#searchText').keyup(function() {
       var dInput = this.value;
       if (dInput == ""){
-        $.ajax({
-          url: '<%= users_ban_users_path %>'
-        })
+        $('#searchText').val('')
+        $('#search-form').submit();
       }
     });
 
@@ -87,23 +86,11 @@
     });
 
     $('.ban-user').change(function() {
-      apprise('Are You Sure You Want To Ban this User?', { 'verify': true }, function (r) {
-        if (r) {
-          var value = $(this).prop('checked');
-          $.ajax({
-            url: $(this).data('url') + `&value=${value}`,
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-              window.location.href = '<%= users_ban_users_path %>'
-            },
-            error: function (data) {
-              alert('Something Went Wrong!');
-            }
-          });
-        }
-        else {
-        }
+      var value = $(this).prop('checked');
+      $.ajax({
+        url: $(this).data('url') + `&value=${value}`,
+        type: 'get',
+        dataType: 'html'
       });
     });
   });
