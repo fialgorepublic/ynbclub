@@ -174,13 +174,15 @@ class UsersController < ApplicationController
   end
 
   def all_users
-    @users = User.all.paginate(page: params[:page])
+    users = params[:q].present? ? User.search_users(params[:q]) : User.sort_by_banned
+    @users = users.paginate(page: params[:page])
   end
 
   def ban
     user = User.find_by_id(params[:id])
     user.update(banned: params[:value])
-    redirect_to users_ban_users_path, notice: "User has been banned from accesing saintlbeau!"
+    flash = "User has been banned from accesing saintlbeau!"
+    redirect_to users_ban_users_path
   end
 
   private

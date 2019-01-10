@@ -32,6 +32,7 @@ class User < ApplicationRecord
 
   scope :avtive_ambassadors, -> (status) { where(role_id: ambassador_role_id, is_activated: status) }
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
+  scope :sort_by_banned, -> { order(banned: :desc) }
 
   class << self
     def ambassador_role_id
@@ -60,7 +61,7 @@ class User < ApplicationRecord
 
     def search_users q
       q = q.downcase
-      joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'")
+      joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'").sort_by_banned
     end
   end
 
