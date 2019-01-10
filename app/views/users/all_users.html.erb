@@ -47,7 +47,7 @@
                       <td><%= user.surname %></td>
                       <td><%= user.email %></td>
                       <td><%= user.profile_phone_number %></td>
-                      <td><%= check_box_tag user.id, user.id, user.banned?, { disabled: user.banned?, id: user.id, class: "ban-user" }%></td>
+                      <td><%= check_box_tag user.id, user.id, user.banned?, { disabled: user.banned?, id: user.id, class: "ban-user", data: { url: ban_users_path(id: user.id) } }%></td>
                     </tr>
                   <% end %>
                 </tbody>
@@ -81,18 +81,17 @@
       }
     });
 
-    $('#crossBtn').click(){
+    $('#crossBtn').click(function(){
       $('#searchText').val('');
       $(this).hide();
-    }
+    });
 
     $('.ban-user').change(function() {
       apprise('Are You Sure You Want To Ban this User?', { 'verify': true }, function (r) {
         if (r) {
-          var id = $(this).attr("id")
-          var value = $(this).val();
+          var value = $(this).prop('checked');
           $.ajax({
-            url: `/ban?id=${id}&value=${value}`,
+            url: $(this).data('url') + `&value=${value}`,
             type: 'get',
             dataType: 'json',
             success: function (data) {
