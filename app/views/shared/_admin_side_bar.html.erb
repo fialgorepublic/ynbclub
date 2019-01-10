@@ -33,6 +33,12 @@
 </li>
 
 <li>
+  <%= link_to users_ban_users_path, class: active_class(users_ban_users_path) do %>
+    <i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Ban Users
+  <% end %>
+</li>
+
+<li>
   <a href="/categories" class="<%= active_class(categories_path) %>"><i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>  Categories  </a>
 </li>
 
