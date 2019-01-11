@@ -13,12 +13,16 @@ body{
 .header-holder{
   box-shadow: 0px 2px 5px 1px #eeeeee;
   background: #fff;
+  border-bottom: 1px solid #eee;
+  .caret{
+        border-top: 4px dashed #000;
+  }
 .navbar-default .navbar-nav>.active>a{
-    background:#000;
+    background:#020221;
 }
 //  padding: 0 0;
   .navbar-default{
-    background: #000c21;
+    background: #fff;
     margin-bottom: 0;
     border:none;
     border-radius:0;
@@ -28,14 +32,15 @@ body{
     border:none
   }
   .navbar-default .navbar-nav>li>a{
-    color: #f5f5f5;
+    color: #020221;
     font-weight:300;
     text-transform: uppercase;
   }
   .navbar-default .navbar-brand{
     margin-left:0;
+    padding: 18px 15px;
     font-weight:300;
-    color:#fff;
+    color:#020221;
     letter-spacing:8px;
     text-transform:uppercase
   }
