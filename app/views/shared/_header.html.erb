@@ -16,7 +16,8 @@
 
         <div class="collapse navbar-collapse shared-header-custom-style" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/blogs">BLOG</a></li>          <li>
+            <li><a href="/blogs">BLOG</a></li>
+            <li>
               <% if current_user.is_admin? %>
                 <a href="/users">BRAND AMBASSADOR</a>
               <% elsif current_user.is_buyer? %>
