@@ -1,75 +1,45 @@
 <div class="account-header-style">
-<header class="header-holder">
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/dashboard">
-        <img src="https://cdn.shopify.com/s/files/1/1197/6404/files/saint_lbeau_logo_2-01_192x.png?v=1544811147">
-      </a>
+  <header class="header-holder">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/dashboard">
+            <img src="https://cdn.shopify.com/s/files/1/1197/6404/files/saint_lbeau_logo_2-01_192x.png?v=1544811147">
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse shared-header-custom-style" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/blogs">BLOG</a></li>          <li>
+              <% if current_user.is_admin? %>
+                <a href="/users">BRAND AMBASSADOR</a>
+              <% elsif current_user.is_buyer? %>
+                <%= link_to "BRAND AMBASSADOR", "#", id: "become-ambassador", data: { url: update_user_role_path, role_id: ambassador.id } %>
+              <% end %>
+            </li>
+
+            <li><%= link_to "Store", "https://saintlbeau.myshopify.com/", target: :blank %></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <div class="dropdown">
+                <button class="btn btn-primary btn-none dropdown-toggle" type="button" data-toggle="dropdown"><img style="width: 38px; height: 38px; border-radius: 50%;" src="<%= current_user.avatar.present? ? current_user.avatar.url(:thumb) : "/assets/user-img.png" %>">
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete, id: "logout-link") %></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse shared-header-custom-style" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <!--<li class="dropdown">-->
-            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATALOG <span class="caret"></span></a>-->
-            <!--<ul class="dropdown-menu">-->
-              <!--<li><a href="#">Action</a></li>-->
-              <!--<li><a href="#">Another action</a></li>-->
-              <!--<li><a href="#">Something else here</a></li>-->
-              <!--<li role="separator" class="divider"></li>-->
-              <!--<li><a href="#">Separated link</a></li>-->
-              <!--<li role="separator" class="divider"></li>-->
-              <!--<li><a href="#">One more separated link</a></li>-->
-            <!--</ul>-->
-          <!--</li>-->
-          <!--<li class=""><a href="#">MAGAZINE <span class="sr-only">(current)</span></a></li>-->
-           <!--<li class=""><a href="#">CAREERS <span class="sr-only">(current)</span></a></li>-->
-          <li><a href="/blogs">BLOG</a></li>
-          <!--<li><a href="#">TRACKING</a></li>-->
-          <li>
-            <% if current_user.is_admin? %>
-              <a href="/users">BRAND AMBASSADOR</a>
-            <% elsif current_user.is_buyer? %>
-              <%= link_to "BRAND AMBASSADOR", "#", id: "become-ambassador", data: { url: update_user_role_path, role_id: ambassador.id } %>
-            <% end %>
-          </li>
-
-          <li><%= link_to "Store", "https://saintlbeau.myshopify.com/", target: :blank %></li>
-         <!--  <li class="shared-header-serach-bar-style"><input type="text" class="shared-header-serach-bar-style-input" placeholder="" /><i class="fa fa-search"></i></li> -->
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-<!--           <li><a style="padding:15px 8px;" href=""><i style="font-size:20px;" class="fa fa-search"></i></a></li> -->
-        <!--<li><a style="padding:15px 8px;" href="javascript:void(0);"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>-->
-        <!-- <li><a style="padding:15px 8px;" href="javascript:void(0);"><i style="font-size:20px;" class="fa fa-bell"></i></a></li>
-        <li><a style="padding:15px 8px;" href="javascript:void(0);"><i style="font-size:20px;" class="fa fa-envelope"></i></a></li> -->
-          <!--<li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>-->
-          <li>
-            <div class="dropdown">
-            <button class="btn btn-primary btn-none dropdown-toggle" type="button" data-toggle="dropdown"><img style="width: 38px; height: 38px; border-radius: 50%;" src="<%= current_user.avatar.present? ? current_user.avatar.url(:thumb) : "/assets/user-img.png" %>">
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <%# if !(current_user.is_shopify_user) %>
-              <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete, id: "logout-link") %></li>
-            <%# end %>
-            </ul>
-          </div>
-          </li>
-         
-        </ul>
-
-
-
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-</header>
+    </nav>
+  </header>
 </div>
