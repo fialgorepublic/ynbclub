@@ -16,7 +16,10 @@
 
         <div class="collapse navbar-collapse shared-header-custom-style" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+            <li><%= link_to "Home", "https://shop.saintlbeau.com/" %></li>
+            <li><%= link_to "Catalog", "https://shop.saintlbeau.com/collections/all" %></li>
             <li><a href="/blogs">BLOG</a></li>
+            <li><%= link_to "About us", "https://shop.saintlbeau.com/pages/about-us" %></li>
             <li>
               <% if current_user.is_admin? %>
                 <a href="/users">BRAND AMBASSADOR</a>
