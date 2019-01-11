@@ -15,7 +15,13 @@ body{
   background: #fff;
   border-bottom: 1px solid #eee;
   .caret{
-        border-top: 4px dashed #000;
+    border-top: 4px dashed #000;
+  }
+
+  .dropdown-toggle.btn-primary {
+    color: #fff;
+    border-color: none;
+    background-color: transparent !important;
   }
 .navbar-default .navbar-nav>.active>a{
     background:#020221;
