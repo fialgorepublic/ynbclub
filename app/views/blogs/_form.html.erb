@@ -75,7 +75,7 @@
                 <label>Enter Text</label>
                 <%= form.text_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
                 <span id="display_count">Total Words: 0</span>
-                <span class="float-right">Minimum Reuqired Words: 300</span>
+                <span class="float-right">Minimum Reuqired Words: 150</span>
              </div>
             </div>
            </div>
@@ -328,8 +328,8 @@
       function validateDescriptionLength(){
         var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
         if (description) {
-          if (description.length < 300) {
-            alert("Description must be atleast 300 words long.")
+          if (description.length < 150) {
+            alert("Description must be atleast 150 words long.")
             return false
           } else { return true }
         }
