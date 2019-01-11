@@ -23,6 +23,10 @@ body{
     border-color: none;
     background-color: transparent !important;
   }
+
+  .nav>li>a {
+    padding: 15px 6px;
+  }
 .navbar-default .navbar-nav>.active>a{
     background:#020221;
 }
