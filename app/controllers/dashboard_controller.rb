@@ -54,11 +54,12 @@ class DashboardController < ApplicationController
   end
 
   def step_two
-    return redirect_to step_one_path, alert: "You already have added this post." if current_user.share_urls.find_by(url: params[:url]).present?
-    return redirect_to step_one_path, alert: "Someone has already added this post" if ShareUrl.find_by_url(params[:url]).present?
+    @url = params[:url].include?('www.facebook.com') ? params[:url].split('&').first : params[:url].split('?').first
+    return redirect_to step_one_path, alert: "You already have added this post." if current_user.share_urls.find_by_url(@url).present?
+    return redirect_to step_one_path, alert: "Someone has already added this post" if ShareUrl.find_by_url(@url).present?
 
     begin
-      @object = LinkThumbnailer.generate(params[:url])
+      @object = LinkThumbnailer.generate(@url)
 
       redirect_to step_one_path, alert: "Invalid Url." if @object.images.blank?
       @saintlbeau_post = has_hashtag? @object
@@ -69,7 +70,7 @@ class DashboardController < ApplicationController
 
   def step_three
     url, @point_id, user_shared_urls = params[:url], 1, current_user.share_urls
-    return redirect_to step_one_path if user_shared_urls.find_by(url: url).present?
+    return redirect_to step_one_path if user_shared_urls.find_by_url(url).present?
 
     share_url = user_shared_urls.create(url: url)
     insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
