@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
   end
 
   def shopify_redirected?
-    params[:shopify_redirected].present?
+    params[:shopify_blog_redirected].present?
   end
 
   def redirect_to_blogs
