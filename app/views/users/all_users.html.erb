@@ -35,7 +35,7 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Phone No</th>
-                    <% if action_name == "deduct_points" %>
+                    <% if params[:deduct_points].present? %>
                       <th>Points</th>
                       <th>Deduct Points</th>
                     <% else %>
@@ -53,7 +53,7 @@
                       <td><%= user.email %></td>
                       <td><%= user.profile_phone_number %></td>
                       <td>
-                        <% if action_name == "deduct_points" %>
+                        <% if params[:deduct_points].present? %>
                           <%= user.total_points %>
                           <%= link_to "Deduct Point", deduct_points_users_path(user.id), class: "btn btn-primary"  if user.points > 0 %>
                         <% else %>
