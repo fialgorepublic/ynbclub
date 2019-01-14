@@ -35,7 +35,12 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Phone No</th>
-                    <th>Banned</th>
+                    <% if action_name == "deduct_points" %>
+                      <th>Points</th>
+                      <th>Deduct Points</th>
+                    <% else %>
+                      <th>Banned</th>
+                    <% end %>
                   </tr>
                 </thead>
 
@@ -47,7 +52,14 @@
                       <td><%= user.surname %></td>
                       <td><%= user.email %></td>
                       <td><%= user.profile_phone_number %></td>
-                      <td><%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%></td>
+                      <td>
+                        <% if action_name == "deduct_points" %>
+                          <%= user.total_points %>
+                          <%= link_to "Deduct Point", deduct_points_users_path(user.id), class: "btn btn-primary"  if user.points > 0 %>
+                        <% else %>
+                          <%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%>
+                        <% end %>
+                      </td>
                     </tr>
                   <% end %>
                 </tbody>

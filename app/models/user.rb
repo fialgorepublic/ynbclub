@@ -125,4 +125,8 @@ class User < ApplicationRecord
   def last_four_points
     points.order(created_at: :desc).first(4)
   end
+
+  def total_points
+    user.points.present? ? user.points.sum(:point_value) : 0
+  end
 end
