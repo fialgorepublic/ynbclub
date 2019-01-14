@@ -12,11 +12,12 @@
           <%= form_tag users_ban_users_path, method: :get, id: "search-form" do %>
             <div class="input-group">
               <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="" value="<%= params[:q] %>">
+              <%= hidden_field_tag :deduct_points, params[:deduct_points] %>
               <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="submit"><i class="fa fa-search"></i></button>
-              <%= link_to users_ban_users_path,  id: "crossBtn", class: "btn btn-sm btn-default ng-scope #{show_if_already_searched(params[:q])}" do %>
-                <i class="fa fa-times"></i>
-              <% end %>
+              <button class="btn btn-sm btn-default" type="submit" id="search-btn"><i class="fa fa-search"></i></button>
+              <%#= link_to users_ban_users_path,  id: "crossBtn", class: "btn btn-sm btn-default ng-scope #{show_if_already_searched(params[:q])}" do %>
+                <!-- <i class="fa fa-times"></i> -->
+              <%# end %>
             <% end %>
           </span>
           </div>
@@ -121,6 +122,10 @@
       $('#searchText').val('');
       $(this).hide();
     });
+
+    $('#search-btn').click(function(event){
+      if($('#searchText').val() == '') { event.preventDefault(); return; }
+    })
 
     $('.ban-user').change(function() {
       var value = $(this).prop('checked');
