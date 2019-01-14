@@ -187,9 +187,8 @@ class UsersController < ApplicationController
 
   def deduct_points
     user = User.find_by_id(params[:id])
-    user.points.create(point_value: params[:point_value], invitee: "Admin Deducted #{params[:point_value]}") if user.present?
-    flash[:notice] = "User points deducted successfully."
-    redirect_to users_ban_users_path(deduct_points: true)
+    user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points") if user.present?
+    render json: { sucess: true, message: "Admin points updated successfully."}
   end
 
   private
