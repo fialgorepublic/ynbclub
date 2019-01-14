@@ -185,6 +185,13 @@ class UsersController < ApplicationController
     redirect_to users_ban_users_path
   end
 
+  def deduct_points
+    user = User.find_by_id(params[:id])
+    user.points.create(point_value: params[:point_value], invitee: "Admin Deducted #{params[:point_value]}") if user.present?
+    flash[:notice] = "User points deducted successfully."
+    redirect_to users_ban_users_path(deduct_points: true)
+  end
+
   private
   def set_user
     @user = User.find(params[:id])
