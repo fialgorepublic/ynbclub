@@ -81,6 +81,7 @@ Rails.application.routes.draw do
       get :find_user_by_email
       get 'users/ban', to: 'users#all_users'
       get '/change_ban_status', to: 'users#ban'
+      get :deduct_points
     end
   end
 
