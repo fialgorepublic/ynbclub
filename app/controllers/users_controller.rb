@@ -174,7 +174,7 @@ class UsersController < ApplicationController
   end
 
   def all_users
-    users = params[:q].present? ? User.search_users(params[:q]) : User.sort_by_banned
+    users = User.all_users(params)
     @users = users.paginate(page: params[:page])
   end
 

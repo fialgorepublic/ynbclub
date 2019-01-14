@@ -63,6 +63,12 @@ class User < ApplicationRecord
       q = q.downcase
       joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'").sort_by_banned
     end
+
+    def all_users params
+      return User.search_users(params[:q]) if params[:q].present?
+      return User.all if params[:deduct_points].present?
+      User.sort_by_banned if params[:q].blank? && params[:deduct_points].blank?
+    end
   end
 
   # after_create :generate_profile
