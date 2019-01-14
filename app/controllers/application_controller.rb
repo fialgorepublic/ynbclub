@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :set_earn_coin
   before_action :set_page
   before_action :set_snapshot
+  before_action :redirect_to_blogs, if: :shopify_redirected?
 
   def set_variables
     @shopify_domain = "saintlbeau.myshopify.com"
@@ -74,5 +75,13 @@ class ApplicationController < ActionController::Base
   def set_snapshot
     @snapshot = Snapshot.first || Snapshot.create(step1_text: "Make selfie photo or video with product bought on your mobile", step2_text: "Upload to facebook , twitter or intstagram and copy link to your post, Don't forget to add a hashtag #saintlbeau",
                                       step3_text: "Insert copied link to the special field on the web site", step4_text: "Confirm and receive 20 coins!")
+  end
+
+  def shopify_redirected?
+    params[:shopify_redirected].present?
+  end
+
+  def redirect_to_blogs
+    redirect_to blogs_path if user_signed_in?
   end
 end
