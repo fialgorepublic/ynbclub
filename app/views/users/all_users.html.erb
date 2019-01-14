@@ -54,7 +54,7 @@
                       <td><%= user.profile_phone_number %></td>
                         <% if params[:deduct_points].present? %>
                           <td><%= user.total_points %></td>
-                          <td><%= link_to "Deduct Point", "javascript:void(0);", id: 'deduct_modal', class: "btn btn-primary" data: { id: user.id } if user.total_points > 0 %></td>
+                          <td><%= link_to "Deduct Point", "javascript:void(0);", id: 'deduct_modal', class: "btn btn-primary", data: { id: user.id } if user.total_points > 0 %></td>
                         <% else %>
                           <td>
                             <%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%>
@@ -85,26 +85,23 @@
 
 <div class="modal fade" id="deduct_points_modal" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-        <div class="modal-body">
-          <h4 class=" text-center">Deduct Points</h4>
-          <div class="form-group">
-            <%= form.label "Enter points to deduct" %>
-            <%= number_field_tag :point_value, id: :point_value, class: 'form-control', required: true %>
-            <%= hidden_field_tag :user_id, '' %>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= link_to "Deduct", class: 'btn btn-success', id: 'deduct_points', data: { url: deduct_points_users_path() } %>
-          </div>
+      <div class="modal-body">
+        <h4 class=" text-center">Deduct Points</h4>
+        <div class="form-group">
+          <%= label_tag "Enter points to deduct" %>
+          <%= number_field_tag :point_value, '', id: 'point_value', class: 'form-control', required: true %>
+          <%= hidden_field_tag :user_id, '' %>
         </div>
-        <div class="error error-holder">
+        <p id="value_error"></p>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= link_to "Deduct", "javascript:void(0)", class: 'btn btn-success', id: 'deduct_points', data: { url: deduct_points_users_path() } %>
+        </div>
       </div>
     </div>
   </div>
