@@ -8,6 +8,7 @@ $(document).ready ->
 
   $('#deduct_modal').click ->
     $('#user_id').val($(this).data('id'))
+    $('#deduct_points_modal').modal(show);
 
   $('#deduct_points').click ->
     value = $('#point_value').val();
