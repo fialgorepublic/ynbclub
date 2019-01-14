@@ -127,6 +127,6 @@ class User < ApplicationRecord
   end
 
   def total_points
-    user.points.present? ? user.points.sum(:point_value) : 0
+    points.present? ? points.sum(:point_value) : 0
   end
 end
