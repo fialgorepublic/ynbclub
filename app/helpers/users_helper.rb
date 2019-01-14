@@ -10,4 +10,8 @@ module UsersHelper
   def show_if_already_searched search_text
     search_text.present? ? 'show' : 'hide'
   end
+
+  def page_title deduct_points
+    deduct_points.present? ? "Deduct Points" : "Ban Users"
+  end
 end
