@@ -30,7 +30,7 @@ $(document).ready ->
       error: ->
         alert "Something wentwrong"
 
-  $('#').click ->
+  $('#createDiscountCode').click ->
     $.ajax
       url: "#{$(this).data('url')}/#{$(this).data('user-id')}",
       type: 'get',
