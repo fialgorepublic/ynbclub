@@ -20,16 +20,23 @@
         </div>
       </div>
 
-      <!-- <div class="row">
-        <div class="col-md-12">
-          <h2>Referral Url:</h2>
+      <% if current_user.is_ambassador? %>
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Discount Code:</h2>
 
-          <div class="box-shadow">
-
-            <div id="referral-div">https://saint-messanger.myshopify.com/?referral_url=<%= current_user.referral %></div>
+            <div class="box-shadow">
+              <% if current_user.discount_code %>
+                <p>Your Discount Code is: <%= current_user.discount_code %></p>
+              <% else %>
+                <div id="discountCode">
+                  <button class="btn btn-default" id='createDiscountCode'>Create My Discount Code</button>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div> -->
+      <% end %>
 
       <div class="row">
 
