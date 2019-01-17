@@ -30,7 +30,7 @@
                 <p>Your Discount Code is: <%= current_user.discount_code %></p>
               <% else %>
                 <div id="discountCode">
-                  <button class="btn btn-default" id='createDiscountCode'>Create My Discount Code</button>
+                  <button class="btn btn-default" id='createDiscountCode' data-user-id="<%= current_user.id %>" data-url="<%=generate_discount_code_users_path(id: current_user.id) %>">Create My Discount Code</button>
                 </div>
               <% end %>
             </div>
