@@ -29,3 +29,9 @@ $(document).ready ->
         window.location.href = '/users/users/ban?deduct_points=true'
       error: ->
         alert "Something wentwrong"
+
+  $('#').click ->
+    $.ajax
+      url: "#{$(this).data('url')}/#{$(this).data('user-id')}",
+      type: 'get',
+      dataType: 'json'
