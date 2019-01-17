@@ -192,6 +192,8 @@ class UsersController < ApplicationController
   end
 
   def generate_discount_code
+    ShopifyService.initiate_shopify_session
+    @success, @message = ShopifyService.new(@user).call
   end
 
   private

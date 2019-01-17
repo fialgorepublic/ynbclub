@@ -1,0 +1,6 @@
+<% if @success %>
+  toastr.success(@message);
+  window.location.href = '<%= dashboard_path %>';
+<% else %>
+  toastr.error(@message);
+<% end %>
