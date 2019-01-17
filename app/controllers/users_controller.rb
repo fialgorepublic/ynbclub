@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!, except: [:find_user_by_email]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :generate_discount_code]
   require 'csv'
   require 'roo'
 
@@ -189,6 +189,9 @@ class UsersController < ApplicationController
     user = User.find_by_id(params[:id])
     user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points") if user.present?
     render json: { sucess: true, message: "Admin points updated successfully."}
+  end
+
+  def generate_discount_code
   end
 
   private

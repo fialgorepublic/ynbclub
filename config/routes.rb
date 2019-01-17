@@ -265,6 +265,7 @@ Rails.application.routes.draw do
       get 'users/ban', to: 'users#all_users'
       get '/change_ban_status', to: 'users#ban'
       get :deduct_points
+      get :generate_discount_code
     end
   end
 
