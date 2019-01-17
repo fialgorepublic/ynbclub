@@ -1,3 +1,32 @@
+# == Schema Information
+#
+# Table name: snapshots
+#
+#  id                        :bigint(8)        not null, primary key
+#  step1_avatar_file_name    :string
+#  step1_avatar_content_type :string
+#  step1_avatar_file_size    :integer
+#  step1_avatar_updated_at   :datetime
+#  step2_avatar_file_name    :string
+#  step2_avatar_content_type :string
+#  step2_avatar_file_size    :integer
+#  step2_avatar_updated_at   :datetime
+#  step3_avatar_file_name    :string
+#  step3_avatar_content_type :string
+#  step3_avatar_file_size    :integer
+#  step3_avatar_updated_at   :datetime
+#  step4_avatar_file_name    :string
+#  step4_avatar_content_type :string
+#  step4_avatar_file_size    :integer
+#  step4_avatar_updated_at   :datetime
+#  step1_text                :string
+#  step2_text                :string
+#  step3_text                :string
+#  step4_text                :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#
+
 class Snapshot < ApplicationRecord
   has_attached_file :step1_avatar,
                     :default_url => "/assets/katerina-radvanska-397105-unsplash.jpg",

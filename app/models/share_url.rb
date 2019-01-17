@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: share_urls
+#
+#  id         :bigint(8)        not null, primary key
+#  url        :string
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  blog_id    :integer
+#  url_type   :string
+#
+
 class ShareUrl < ApplicationRecord
   belongs_to :user
   belongs_to :blog, optional: true

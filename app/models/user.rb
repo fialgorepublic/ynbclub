@@ -1,3 +1,42 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint(8)        not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  name                   :string
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  role_id                :integer
+#  referral               :string
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
+#  social_login           :boolean          default(FALSE)
+#  commission             :float
+#  phone_number           :string
+#  shop_no                :string
+#  money                  :string
+#  is_activated           :boolean          default(FALSE)
+#  is_shopify_user        :boolean          default(FALSE)
+#  identity_card          :string
+#  surplus                :string
+#  paid                   :string
+#  total_income           :float
+#  status                 :string
+#  banned                 :boolean          default(FALSE)
+#
+
 class User < ApplicationRecord
   self.per_page = 10
   # Include default devise modules. Others available are:

@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: referral_sales
+#
+#  id          :bigint(8)        not null, primary key
+#  user_id     :integer
+#  order_id    :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  name        :string
+#  email       :string
+#  address     :text
+#  shopdomain  :string
+#  price       :string
+#  is_approved :boolean          default(FALSE)
+#  order_no    :string
+#  ghtk_status :integer
+#
+
 class ReferralSale < ApplicationRecord
   self.per_page = 10
 

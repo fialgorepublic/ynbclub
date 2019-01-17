@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id                  :bigint(8)        not null, primary key
+#  title               :string
+#  promote_post        :string
+#  description         :text
+#  category_id         :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  avatar_file_name    :string
+#  avatar_content_type :string
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  is_featured         :boolean          default(FALSE)
+#  feature_date        :datetime
+#  is_published        :boolean          default(FALSE)
+#  buyer_show          :boolean          default(FALSE)
+#  user_id             :bigint(8)
+#
+
 class Blog < ApplicationRecord
   belongs_to :category
   belongs_to :user
@@ -15,7 +37,6 @@ class Blog < ApplicationRecord
                     :path => "/files/:style/:id_:filename",
                     styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-
   scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}
 
   scope :sort_blogs, -> (sort_type) {

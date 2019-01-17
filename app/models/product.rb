@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id                  :bigint(8)        not null, primary key
+#  title               :string
+#  product_id          :string
+#  price               :float
+#  currency            :string
+#  blog_id             :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  avatar_file_name    :string
+#  avatar_content_type :string
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#
+
 class Product < ApplicationRecord
   belongs_to :blog
   has_attached_file :avatar,
