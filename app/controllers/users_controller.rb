@@ -196,7 +196,7 @@ class UsersController < ApplicationController
   end
 
   def generate_discount_code
-    return redirect_to exchange_coins_users_path, alert: "You don't have enough coins." if current_user.total_points < params[:coins].to_i
+    return redirect_to exchange_coins_users_path(coins: params[:coins]), alert: "You don't have enough coins." if current_user.total_points < params[:coins].to_i
     ShopifyService.create_session
     success, message = ShopifyService.new(current_user, params[:coins]).call
     if success
@@ -205,6 +205,7 @@ class UsersController < ApplicationController
       flash[:alert] = "Something went wrong, unable to exchange at this moment!"
     end
     url_params = { coins: params[:coins] } unless success
+
     redirect_to exchange_coins_users_path(url_params)
   end
 
