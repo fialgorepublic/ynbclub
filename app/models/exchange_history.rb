@@ -1,0 +1,2 @@
+class ExchangeHistory < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190117095258) do
+ActiveRecord::Schema.define(version: 20190118104324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(version: 20190117095258) do
     t.datetime "updated_at", null: false
     t.string "coins"
     t.string "price"
+  end
+
+  create_table "exchange_histories", force: :cascade do |t|
+    t.string "discount_code"
+    t.bigint "user_id"
+    t.integer "exchanged_coins"
+    t.float "rewarded_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exchange_histories_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -312,6 +322,7 @@ ActiveRecord::Schema.define(version: 20190117095258) do
   add_foreign_key "blogs", "users", on_delete: :cascade
   add_foreign_key "comment_actions", "comments"
   add_foreign_key "comment_actions", "users"
+  add_foreign_key "exchange_histories", "users", on_delete: :cascade
   add_foreign_key "point_types", "earn_coins", on_delete: :cascade
   add_foreign_key "profiles", "users"
 end
