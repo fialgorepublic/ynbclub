@@ -20,24 +20,6 @@
         </div>
       </div>
 
-      <% if current_user.is_ambassador? %>
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Discount Code:</h2>
-
-            <div class="box-shadow">
-              <% if current_user.discount_code %>
-                <p>Your Discount Code is: <%= current_user.discount_code %></p>
-              <% else %>
-                <div id="discountCode">
-                  <button class="btn btn-default" id='createDiscountCode' data-user-id="<%= current_user.id %>" data-url="<%=generate_discount_code_users_path(id: current_user.id) %>">Create My Discount Code</button>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
       <div class="row">
 
         <div class="col-md-12">
