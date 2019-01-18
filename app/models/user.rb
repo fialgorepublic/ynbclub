@@ -56,6 +56,7 @@ class User < ApplicationRecord
   has_many :comment_actions
   has_many :blog_views
   has_many :blogs
+  has_many :exchange_histories
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     :storage => :s3,
