@@ -79,6 +79,12 @@
         </li>
 
         <li  data-toggle="" data-target="#" class="collapsed">
+          <%= link_to exchange_coins_users_path, class: "#{active_class(exchange_coins_users_path)}" do %>
+            <i class="custom-icon"><img src="/assets/icon-6.png"> </i> Exchage Coins
+          <% end %>
+        </li>
+
+        <li  data-toggle="" data-target="#" class="collapsed">
           <a href="/my_orders" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Order </span></a>
         </li>
 
