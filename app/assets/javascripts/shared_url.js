@@ -4,4 +4,9 @@ $(document).ready(function(){
     searching: false,
     "order": [[0, "desc"]]
   })
+
+  $("#bs4-table").dataTable({
+    searching: false,
+    "order": [[5, "desc"]]
+  })
 });
