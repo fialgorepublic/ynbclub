@@ -327,6 +327,8 @@
 
       function validateDescriptionLength(){
         var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
+        if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
+        if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
         if (description) {
           if (description.length < 150) {
             alert("Description must be atleast 150 words long.")
@@ -334,7 +336,7 @@
           } else { return true }
         }
         else {
-          alert("Please add blog Blog description");
+          alert("Please add Blog description");
           return false;
         }
 

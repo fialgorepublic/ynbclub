@@ -81,7 +81,7 @@
       <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
       <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
-      <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
+      <h5 class="pull-right"> <span class="category-style"><%= @blog.category_name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
         <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
         <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
         <% if current_user.users_blog?(@blog.id) %>
