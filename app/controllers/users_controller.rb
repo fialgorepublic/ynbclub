@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!, except: [:find_user_by_email]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :generate_discount_code]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   require 'csv'
   require 'roo'
 
@@ -191,9 +191,21 @@ class UsersController < ApplicationController
     render json: { sucess: true, message: "Admin points updated successfully."}
   end
 
+  def exchange_coins
+    @exchange_history = current_user.exchange_histories.paginate(page: params[:page])
+  end
+
   def generate_discount_code
-    ShopifyService.initiate_shopify_session
-    @success, @message = ShopifyService.new(@user).call
+    return redirect_to exchange_coins_users_path, alert: "You don't have enough coins." if current_user.total_points < params[:coins].to_i
+    ShopifyService.create_session
+    success, message = ShopifyService.new(current_user, params[:coins]).call
+    if success
+      flash[:notice] = "Exchange is successfully completed."
+    else
+      flash[:alert] = "Something went wrong, unable to exchange at this moment!"
+    end
+    url_params = { coins: params[:coins] } unless success
+    redirect_to exchange_coins_users_path(url_params)
   end
 
   private
