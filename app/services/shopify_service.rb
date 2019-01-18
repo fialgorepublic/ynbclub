@@ -1,8 +1,9 @@
 class ShopifyService
-  attr_reader :user
+  attr_reader :user, :coins_to_exchange
 
-  def initialize(user)
+  def initialize(user, coins)
     @user = user
+    @coins_to_exchange = coins
   end
 
   def call
@@ -29,6 +30,8 @@ class ShopifyService
   private
 
     def create_discount_code
+      convert_to_dollars
+
       user_name = user.name if user.name
       user_name = user.full_name if user.full_name.present?
       user_name = 'ambassador' if user.name.blank? && user.full_name.blank?
@@ -42,7 +45,7 @@ class ShopifyService
                         target_selection: "all",
                         allocation_method: "across",
                         value_type: "fixed_amount",
-                        value: -20,
+                        value: calculate_rewarded_amount,
                         once_per_customer: true,
                         customer_selection: "prerequisite",
                         prerequisite_customer_ids: [customer_id],
@@ -74,5 +77,13 @@ class ShopifyService
       rescue => ex
         nil
       end
+    end
+
+    def calculate_rewarded_amount
+      #get admin decided excange_rate
+      defined_coins = EarnCoin.first.coins
+      eqivalent_to  = EarnCoin.first.price
+      exhange_rate = eqivalent_to.to_f / defined_coins.to_f
+      -1 * (exhange_rate * coins_to_exchange)
     end
 end
