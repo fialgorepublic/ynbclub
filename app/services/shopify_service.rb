@@ -1,9 +1,11 @@
 class ShopifyService
-  attr_reader :user, :coins_to_exchange
+  attr_reader :user, :coins_to_exchange, :defined_coins, :eqivalent_to
 
   def initialize(user, coins)
     @user = user
-    @coins_to_exchange = coins
+    @coins_to_exchange = coins.to_f
+    @defined_coins = 0
+    @eqivalent_to = 0
   end
 
   def call
@@ -30,12 +32,11 @@ class ShopifyService
   private
 
     def create_discount_code
-      convert_to_dollars
-
       user_name = user.name if user.name
       user_name = user.full_name if user.full_name.present?
       user_name = 'ambassador' if user.name.blank? && user.full_name.blank?
       customer_id = find_or_create_shopify_customer
+      reward = calculate_rewarded_amount
 
       if customer_id.present?
         begin
@@ -45,14 +46,15 @@ class ShopifyService
                         target_selection: "all",
                         allocation_method: "across",
                         value_type: "fixed_amount",
-                        value: calculate_rewarded_amount,
+                        value: -1 * reward,
                         once_per_customer: true,
                         customer_selection: "prerequisite",
                         prerequisite_customer_ids: [customer_id],
                         starts_at: DateTime.now
                       )
           discount_code = ShopifyAPI::DiscountCode.create(price_rule_id: price_rule.id, discount_code: { code: (0...10).map { ('a'..'z').to_a[rand(26)] }.join} )
-          user.update(discount_code: discount_code.code)
+          user.exchange_histories.create(discount_code: discount_code.code, exchanged_coins: coins_to_exchange, rewarded_amount: reward)
+          user.points.create(point_value: (-1 * coins_to_exchange), invitee: "Exchanged #{coins_to_exchange.to_i} coins for deiscount code.")
           [true, "Discount code is created Successfully!"]
         rescue => ex
           [false, ex.message]
@@ -84,6 +86,6 @@ class ShopifyService
       defined_coins = EarnCoin.first.coins
       eqivalent_to  = EarnCoin.first.price
       exhange_rate = eqivalent_to.to_f / defined_coins.to_f
-      -1 * (exhange_rate * coins_to_exchange)
+      exhange_rate * coins_to_exchange
     end
 end
