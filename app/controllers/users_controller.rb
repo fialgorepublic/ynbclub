@@ -240,7 +240,8 @@ class UsersController < ApplicationController
 
   def set_profile(user)
     return nil if user.blank?
-    return user.default_address if user.kind_of?(ShopifyAPI::Customer) && user.default_address
-    user.profile
+    return user.default_address if user.kind_of?(ShopifyAPI::Customer) && defined?(user.default_address)
+    return user.profile unless user.kind_of?(ShopifyAPI::Customer)
+    nil
   end
 end
