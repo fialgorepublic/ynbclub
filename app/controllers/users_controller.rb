@@ -167,7 +167,7 @@ class UsersController < ApplicationController
   end
 
   def find_user_by_email
-    user = find_user_from_shopify || User.find_by_email(params[:email])
+    user = User.find_by_email(params[:email]) || find_user_from_shopify
     profile = set_profile(user)
     user_email = user.email if user.present?
     render json: { user: user_email, profile: profile}
@@ -240,8 +240,7 @@ class UsersController < ApplicationController
 
   def set_profile(user)
     return nil if user.blank?
-    return user.default_address if defined?(user.default_address)
-    user.profile unless user.kind_of?(ShopifyAPI::Customer)
-    nil
+    return user.default_address if user.kind_of?(ShopifyAPI::Customer) && user.default_address
+    user.profile
   end
 end
