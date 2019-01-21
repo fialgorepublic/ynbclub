@@ -17,5 +17,5 @@ class Point < ApplicationRecord
   belongs_to :point_type, optional: true
   belongs_to :user
 
-  delegate :name, to: :point_type
+  delegate :name, to: :point_type, allow_nil: true
 end

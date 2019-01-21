@@ -13,7 +13,7 @@ module DashboardHelper
         return "Your product was ordered (Mua sản phẩm)" if point.order_id.blank?
         "Your product was ordered #{point.order_id} (Mua sản phẩm)"
       else
-        point.name
+        point.invitee
       end
   end
 
