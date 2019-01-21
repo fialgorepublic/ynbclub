@@ -252,4 +252,14 @@
   <% if params[:blog_not_found] %>
     apprise("The blog no longer exist, Please contact support team for more information")
   <% end %>
+
+  $(document).ready(function(){
+    function setCookies(){
+      if (Cookies.get('saintlbeau_user_email')) { return; }
+      email = '<%= current_user.email %>'
+      Cookies.set('saintlbeau_user_email', email, { expires: 365, domain: 'saintlbeau.com' })
+    }
+
+    setCookies();
+  })
 </script>

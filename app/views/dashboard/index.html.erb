@@ -278,6 +278,14 @@
 
     $(document).ready(function () {
 
+      function setCookies(){
+        if (Cookies.get('saintlbeau_user_email')) { return; }
+        email = '<%= current_user.email %>'
+        Cookies.set('saintlbeau_user_email', email, { expires: 365, domain: 'saintlbeau.com' })
+      }
+
+      setCookies();
+
         var navListItems = $('div.setup-panel div a'),
                 allWells = $('.setup-content'),
                 allNextBtn = $('.nextBtn');
