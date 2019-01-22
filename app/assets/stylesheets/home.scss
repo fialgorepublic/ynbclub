@@ -2182,3 +2182,14 @@ label.error {
 .snapshot-dashboard-holder  .edit-snapshot .box-shadow .btn{
   outline:none
 }
+
+@media only screen and (max-width:768px){
+  .home-banner {
+    height: 700px !important;
+    width: 100%;
+    background-size: 100%;
+    position: relative;
+    color: #fff;
+    background-repeat: no-repeat;
+  }
+}
