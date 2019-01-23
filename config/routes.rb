@@ -223,7 +223,6 @@ Rails.application.routes.draw do
   get 'acc_settings', to: 'dashboard#acc_settings'
   get 'notification', to: 'dashboard#notification'
   get 'take_snapshot_step', to: 'dashboard#take_snapshot_step'
-  get 'buyer_orders', to: 'buyers#buyer_orders'
   get 'user_show', to: 'users#user_show'
   get 'add_comment', to: 'comments#add_comment'
   get 'blog_like_unlike', to: 'blogs#blog_like_unlike'
