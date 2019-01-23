@@ -188,7 +188,6 @@ Rails.application.routes.draw do
     end
   end
   resources :settings
-  resources :products
   resources :point_types
   mount Ckeditor::Engine => '/ckeditor'
   resources :categories
