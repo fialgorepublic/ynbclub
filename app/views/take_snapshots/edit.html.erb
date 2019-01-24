@@ -1,182 +1,175 @@
-<div class="dashboard-holder snapshot-dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
-    <div class="col-md-9 m-b-50 edit-snapshot">
+<div class="col-md-9 m-b-50 edit-snapshot">
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Edit take a snapshot and share </h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Edit take a snapshot and share </h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <%= form_for @snapshot, url: take_snapshots_path, method: :put do |f| %>
+    <div class="row">
+      <div class="col-md-11 text-right cu-btn-holder">
+        <%= f.submit "Update", class: "btn btn-primary" %>
+        <%= link_to "Cancel", take_snapshot_path, class: "btn btn-default" %>
+      </div>
+
+      <div class="col-md-5 col-md-offset-1">
+        <div class="box-shadow m-h-400 sm-pd">
+
+          <div class="box-1">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="overlay-layer">
+                  <%= image_tag @snapshot.step1_avatar.url, width: "100%", id: "step1_avatar_show" %>
+                </div>
+              </div>
+              <div class="stepone">1</div>
+            </div>
+            <div class="row">
+              <div class="col-md-6" style="padding-right:0;">
+                <%= link_to "Delete", take_snapshots_path(id: 'step1'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+              </div>
+              <div class="col-md-6" style="padding-left:0;">
+                <label class="btn btn-primary btn-block">
+                  Upload Image
+                  <span style="display:none;">
+                    <%= f.file_field :step1_avatar, class: 'upload-file', id: "step-1" %>
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="image-content-snap">
+                  <%= f.text_area :step1_text, value: @snapshot.step1_text, id: 'step1_text' %><br>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <hr>
         </div>
       </div>
 
-      <%= form_for @snapshot, url: take_snapshots_path, method: :put do |f| %>
-        <div class="row">
-          <div class="col-md-11 text-right cu-btn-holder">
-            <%= f.submit "Update", class: "btn btn-primary" %>
-            <%= link_to "Cancel", take_snapshot_path, class: "btn btn-default" %>
-          </div>
+      <div class="col-md-5">
+        <div class="box-shadow  m-h-400 sm-pd">
 
-          <div class="col-md-5 col-md-offset-1">
-            <div class="box-shadow m-h-400 sm-pd">
+          <div class="box-1">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="overlay-layer">
+                  <%= image_tag @snapshot.step2_avatar.url, width: "100%", id: "step2_avatar_show" %>
+                </div>
+              </div>
+              <div class="stepone">2</div>
+            </div>
 
-              <div class="box-1">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="overlay-layer">
-                      <%= image_tag @snapshot.step1_avatar.url, width: "100%", id: "step1_avatar_show" %>
-                    </div>
-                  </div>
-                  <div class="stepone">1</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6" style="padding-right:0;">
-                    <%= link_to "Delete", take_snapshots_path(id: 'step1'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
-                  </div>
-                  <div class="col-md-6" style="padding-left:0;">
-                    <label class="btn btn-primary btn-block">
-                      Upload Image
-                      <span style="display:none;">
-                        <%= f.file_field :step1_avatar, class: 'upload-file', id: "step-1" %>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="image-content-snap">
-                      <%= f.text_area :step1_text, value: @snapshot.step1_text, id: 'step1_text' %><br>
-                    </div>
-                  </div>
-                </div>
-
+             <div class="row">
+              <div class="col-md-6" style="padding-right:0;">
+                <%= link_to "Delete", take_snapshots_path(id: 'step2'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+              </div>
+              <div class="col-md-6" style="padding-left:0;">
+                <label class="btn btn-primary btn-block">
+                  Upload Image
+                  <span style="display:none;">
+                    <%= f.file_field :step2_avatar, class: 'upload-file', id: "step-2" %>
+                  </span>
+                </label>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="box-shadow  m-h-400 sm-pd">
-
-              <div class="box-1">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="overlay-layer">
-                      <%= image_tag @snapshot.step2_avatar.url, width: "100%", id: "step2_avatar_show" %>
-                    </div>
-                  </div>
-                  <div class="stepone">2</div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="image-content-snap">
+                  <%= f.text_area :step2_text, value: @snapshot.step2_text, id: 'step2_text' %><br>
                 </div>
-
-                 <div class="row">
-                  <div class="col-md-6" style="padding-right:0;">
-                    <%= link_to "Delete", take_snapshots_path(id: 'step2'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
-                  </div>
-                  <div class="col-md-6" style="padding-left:0;">
-                    <label class="btn btn-primary btn-block">
-                      Upload Image
-                      <span style="display:none;">
-                        <%= f.file_field :step2_avatar, class: 'upload-file', id: "step-2" %>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="image-content-snap">
-                      <%= f.text_area :step2_text, value: @snapshot.step2_text, id: 'step2_text' %><br>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
+
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-5 col-md-offset-1">
-            <div class="box-shadow m-h-400 sm-pd">
-
-              <div class="box-1">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="overlay-layer">
-                      <%= image_tag @snapshot.step3_avatar.url, width: "100%", id: "step3_avatar_show" %>
-                    </div>
-                  </div>
-                  <div class="stepone">3</div>
-                </div>
-
-                 <div class="row">
-                  <div class="col-md-6" style="padding-right:0;">
-                    <%= link_to "Delete", take_snapshots_path(id: 'step3'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
-                  </div>
-                  <div class="col-md-6" style="padding-left:0;">
-                    <label class="btn btn-primary btn-block">
-                      Upload Image
-                      <span style="display:none;">
-                        <%= f.file_field :step3_avatar, class: 'upload-file', id: "step-3" %>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="">
-                      <%= f.text_area :step3_text, value: @snapshot.step3_text, id: 'step3_text' %><br>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="box-shadow  m-h-400 sm-pd">
-
-              <div class="box-1">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="overlay-layer">
-                      <%= image_tag @snapshot.step4_avatar.url, width: "100%", id: "step4_avatar_show" %>
-                    </div>
-                  </div>
-                  <div class="stepone">4</div>
-                </div>
-                 <div class="row">
-                  <div class="col-md-6" style="padding-right:0;">
-                    <%= link_to "Delete", take_snapshots_path(id: 'step4'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
-                  </div>
-                  <div class="col-md-6" style="padding-left:0;">
-                    <label class="btn btn-primary btn-block">
-                      Upload Image
-                      <span style="display:none;">
-                        <%= f.file_field :step4_avatar, class: 'upload-file', id: "step-4" %>
-                      </span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="image-content-snap">
-                      <%= f.text_area :step4_text, value: @snapshot.step4_text, id: 'step4_text' %><br>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      </div>
     </div>
-  </div>
+
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+        <div class="box-shadow m-h-400 sm-pd">
+
+          <div class="box-1">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="overlay-layer">
+                  <%= image_tag @snapshot.step3_avatar.url, width: "100%", id: "step3_avatar_show" %>
+                </div>
+              </div>
+              <div class="stepone">3</div>
+            </div>
+
+             <div class="row">
+              <div class="col-md-6" style="padding-right:0;">
+                <%= link_to "Delete", take_snapshots_path(id: 'step3'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+              </div>
+              <div class="col-md-6" style="padding-left:0;">
+                <label class="btn btn-primary btn-block">
+                  Upload Image
+                  <span style="display:none;">
+                    <%= f.file_field :step3_avatar, class: 'upload-file', id: "step-3" %>
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="">
+                  <%= f.text_area :step3_text, value: @snapshot.step3_text, id: 'step3_text' %><br>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="box-shadow  m-h-400 sm-pd">
+
+          <div class="box-1">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="overlay-layer">
+                  <%= image_tag @snapshot.step4_avatar.url, width: "100%", id: "step4_avatar_show" %>
+                </div>
+              </div>
+              <div class="stepone">4</div>
+            </div>
+             <div class="row">
+              <div class="col-md-6" style="padding-right:0;">
+                <%= link_to "Delete", take_snapshots_path(id: 'step4'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+              </div>
+              <div class="col-md-6" style="padding-left:0;">
+                <label class="btn btn-primary btn-block">
+                  Upload Image
+                  <span style="display:none;">
+                    <%= f.file_field :step4_avatar, class: 'upload-file', id: "step-4" %>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="image-content-snap">
+                  <%= f.text_area :step4_text, value: @snapshot.step4_text, id: 'step4_text' %><br>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">

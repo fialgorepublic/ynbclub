@@ -1,18 +1,9 @@
-<div class="dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
-    <div class="col-md-9">
-<!--       <p id="notice"><%= notice %></p> -->
+<div class="col-md-9">
+  <p>
+    <strong>Name:</strong>
+    <%= @category.name %>
+  </p>
 
-      <p>
-        <strong>Name:</strong>
-        <%= @category.name %>
-      </p>
-
-      <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-default' %> |
-      <%= link_to 'Back', categories_path, class: 'btn btn-default' %>
-    </div>
-  </div>
+  <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-default' %> |
+  <%= link_to 'Back', categories_path, class: 'btn btn-default' %>
 </div>

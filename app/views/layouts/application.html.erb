@@ -28,7 +28,14 @@
   <body>
     <% if user_signed_in? %>
       <%=render :partial => "/shared/header"%>
-    <%= yield %>
+      <div class="dashboard-holder <%= dashboard_class %>">
+          <% unless blog_resource? %>
+            <div class="col-md-3">
+              <%= render partial: "shared/side_bar" %>
+            </div>
+          <% end %>
+          <%= yield %>
+      </div>
     <% else %>
       <%= yield %>
     <% end %>

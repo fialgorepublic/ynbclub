@@ -144,4 +144,14 @@ module ApplicationHelper
   def active_class path
     "active" if current_page?(path)
   end
+
+  def dashboard_class
+    return 'snapshot-dashboard-holder' if action_name == "edit" && controller_name == "take_snapshot"
+    return 'ambassador-dashboard' if blog_resource?
+    ''
+  end
+
+  def blog_resource?
+    (action_name == "edit" || action_name == "new") && controller_name == "blogs"
+  end
 end

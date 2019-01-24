@@ -1,34 +1,27 @@
-<div class="dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
-    <div class="col-md-9">
+<div class="col-md-9">
 
-      <h1>Brand Ambassador</h1>
-      <hr>
+  <h1>Brand Ambassador</h1>
+  <hr>
 
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Commission (%)</th>
-          </tr>
-        </thead>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Commission (%)</th>
+      </tr>
+    </thead>
 
-        <tbody>
-          <% @brand_ambassador.each do |order| %>
-            <tr>
-              <td><%= order.name %></td>
-              <td><%= order.email %></td>
-              <td><%= best_in_place order, :commission, :url => set_commission_path(:id => order.id), class: "fa fa-pencil-square-o decimal-numbers" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <tbody>
+      <% @brand_ambassador.each do |order| %>
+        <tr>
+          <td><%= order.name %></td>
+          <td><%= order.email %></td>
+          <td><%= best_in_place order, :commission, :url => set_commission_path(:id => order.id), class: "fa fa-pencil-square-o decimal-numbers" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <script>

@@ -1,92 +1,69 @@
-<!--<h1>Welcome</h1>-->
-<!--<%#= link_to('Logout', destroy_user_session_path, method: :delete) %>-->
-
-
-
-<div class="dashboard-holder">
+<div class="col-md-9">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-
-
-    </div>
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i class="fa fa-bell"></i> Notification</h2>
-          </div>
-          <hr>
-        </div>
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-bell"></i> Notification</h2>
       </div>
-
-      <div class="row notification-holder">
-        <div class="col-md-12">
-
-          <div class="box-shadow">
-
-            <div class="table-holder">
-              <table class="table ">
-                <thead>
-                    <tr>
-                        <th>Allow all notifications</th>
-                      <th><input type="checkbox"></th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    <tr>
-                      <td>New Followers</td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                      <td>Delivery Changes</td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                      <td>New Messages</td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                      <td>New Sales, discounts</td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                      <td>Product in  Wishlist</td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                      <td>Earned Coins</td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                      <td>My followings activity</td>
-                      <td><input type="checkbox"></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <td>Send me all notifications to email</td>
-                  <td><input type="checkbox"></td>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-
-            <button class="btn btn-primary btn-lg btn-block">Save</button>
-
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
+      <hr>
     </div>
   </div>
 
+  <div class="row notification-holder">
+    <div class="col-md-12">
+
+      <div class="box-shadow">
+
+        <div class="table-holder">
+          <table class="table ">
+            <thead>
+                <tr>
+                    <th>Allow all notifications</th>
+                  <th><input type="checkbox"></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                  <td>New Followers</td>
+                  <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td>Delivery Changes</td>
+                  <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td>New Messages</td>
+                  <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td>New Sales, discounts</td>
+                  <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td>Product in  Wishlist</td>
+                  <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td>Earned Coins</td>
+                  <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                  <td>My followings activity</td>
+                  <td><input type="checkbox"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td>Send me all notifications to email</td>
+              <td><input type="checkbox"></td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block">Save</button>
+
+      </div>
+    </div>
+  </div>
 </div>
-
-

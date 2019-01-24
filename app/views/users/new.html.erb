@@ -1,15 +1,8 @@
-<div class="dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
-    <div class="col-md-9">
-      <p id="notice"><%= notice %></p>
+<div class="col-md-9">
+  <p id="notice"><%= notice %></p>
 
-      <h5  class="card-header">New Ambassador </h5>
+  <h5  class="card-header">New Ambassador </h5>
 
-      <%= render 'form', user: @user %>
-      <br/>
-    </div>
-  </div>
+  <%= render 'form', user: @user %>
+  <br/>
 </div>

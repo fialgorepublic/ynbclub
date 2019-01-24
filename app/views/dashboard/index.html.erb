@@ -1,116 +1,96 @@
-<!--<h1>Welcome</h1>-->
-<!--<%#= link_to('Logout', destroy_user_session_path, method: :delete) %>-->
-
-
-
-<div class="dashboard-holder">
+<div class="col-md-9">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-
-
-    </div>
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i><img src="/assets/icon-16.png"></i> Dashboard</h2>
-          </div>
-          <hr>
-        </div>
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i><img src="/assets/icon-16.png"></i> Dashboard</h2>
       </div>
-
-      <div class="row">
-
-        <div class="col-md-12">
-          <h3>Last Incomes</h3>
-          <div class="box-shadow">
-            <img src="/assets/icon-12.png">
-            <p>You'll see the list of sold products here. </br> Add your products and design them to the blog posts</p>
-<!--             <button class="btn btn-default">Go to the my products page</button>
- -->          </div>
-        </div>
-      </div>
-
-      <div class="row">
-
-        <div class="col-md-12">
-          <h3>Last Earned Coins</h3>
-          <div class="box-points">
-            <% if @points.present? %>
-              <div class="row">
-                <div class="col-md-12 dashboard-points">
-                  <%= render partial: 'dashboard/point', collection: @points %>
-
-                  <% if current_user_points(current_user) > 4 %>
-                    <div class="row">
-                      <div class="col-md-offset-10 col-md-2">
-                        <a href="/users/points">Show more...</a>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% else %>
-              <div class="box-shadow">
-                <img src="/assets/icon-13.png">
-                <p>Here you will see the log of your </br> earned coins.</p>
-                <!-- <button class="btn btn-default">How earn and pass coins?</button> -->
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-       <div class="row">
-        <div class="col-md-10">
-          <h3>My Earnings</h3>
-        </div>
-        <div class="col-md-2 text-right">
-          <div class="select-holder">
-            <select class="form-control">
-              <option>ALL products</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-12">
-          
-          <div class="box-shadow">
-            <img src="/assets/icon-14.png">
-            <p>You'll see the chart of your earnings here. </br> Add your products and assign them to the blogs posts.</p>
-            <!-- <button class="btn btn-default">Go to the my products page</button> -->
-          </div>
-        </div>
-      </div>
-
-       <div class="row">
-         <div class="col-md-10">
-           <h3>Buyers Attendance</h3>
-        </div>
-        <div class="col-md-2 text-right">
-          <div class="select-holder">
-            <select class="form-control">
-              <option>ALL Blogs</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-12">
-         
-          <div class="box-shadow">
-            <img src="/assets/icon-15.png">
-            <p>You'll see the chart of buyer's attendance here. </br> Create your first blog posts with assigned products.</p>
-            <!-- <button class="btn btn-default">Go to the my blogs page</button> -->
-          </div>
-        </div>
-      </div>
-
-
-
+      <hr>
     </div>
   </div>
 
-</div>
+  <div class="row">
 
+    <div class="col-md-12">
+      <h3>Last Incomes</h3>
+      <div class="box-shadow">
+        <img src="/assets/icon-12.png">
+        <p>You'll see the list of sold products here. </br> Add your products and design them to the blog posts</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <h3>Last Earned Coins</h3>
+      <div class="box-points">
+        <% if @points.present? %>
+          <div class="row">
+            <div class="col-md-12 dashboard-points">
+              <%= render partial: 'dashboard/point', collection: @points %>
+
+              <% if current_user_points(current_user) > 4 %>
+                <div class="row">
+                  <div class="col-md-offset-10 col-md-2">
+                    <a href="/users/points">Show more...</a>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <div class="box-shadow">
+            <img src="/assets/icon-13.png">
+            <p>Here you will see the log of your </br> earned coins.</p>
+            <!-- <button class="btn btn-default">How earn and pass coins?</button> -->
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+   <div class="row">
+    <div class="col-md-10">
+      <h3>My Earnings</h3>
+    </div>
+    <div class="col-md-2 text-right">
+      <div class="select-holder">
+        <select class="form-control">
+          <option>ALL products</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12">
+      
+      <div class="box-shadow">
+        <img src="/assets/icon-14.png">
+        <p>You'll see the chart of your earnings here. </br> Add your products and assign them to the blogs posts.</p>
+        <!-- <button class="btn btn-default">Go to the my products page</button> -->
+      </div>
+    </div>
+  </div>
+
+   <div class="row">
+     <div class="col-md-10">
+       <h3>Buyers Attendance</h3>
+    </div>
+    <div class="col-md-2 text-right">
+      <div class="select-holder">
+        <select class="form-control">
+          <option>ALL Blogs</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12">
+     
+      <div class="box-shadow">
+        <img src="/assets/icon-15.png">
+        <p>You'll see the chart of buyer's attendance here. </br> Create your first blog posts with assigned products.</p>
+        <!-- <button class="btn btn-default">Go to the my blogs page</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="selectRole" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">

@@ -1,73 +1,64 @@
-<div class="dashboard-holder">
+<div class="col-md-9">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
-
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Take a snapshot and Share</h2>
-          </div>
-          <hr>
-        </div>
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Take a snapshot and Share</h2>
       </div>
+      <hr>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box-shadow">
-            <div class="row">
-              <div class="col-md-12">
-                <p class="text-center">Insert copied link to your selfie or video. Post must contain <strong>hashtag #saintlbeau</strong></p>
-                <div class="col-md-12">
-                  <div class="" style="overflow: hidden">
-                    <input id="linkUrl" type="text" placeholder="Link to facebook, instagram, twitter post" class="form-control">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-shadow">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center">Insert copied link to your selfie or video. Post must contain <strong>hashtag #saintlbeau</strong></p>
+            <div class="col-md-12">
+              <div class="" style="overflow: hidden">
+                <input id="linkUrl" type="text" placeholder="Link to facebook, instagram, twitter post" class="form-control">
 
-                  </div>
-                </div>
-
-                <div class="col-md-2 col-md-push-5 m-t-30">
-                  <a href="javascript:void(0);" onclick="gotToStepTwo();" class="btn btn-primary btn-lg">Continue</a>
-                </div>
               </div>
+            </div>
+
+            <div class="col-md-2 col-md-push-5 m-t-30">
+              <a href="javascript:void(0);" onclick="gotToStepTwo();" class="btn btn-primary btn-lg">Continue</a>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Shared Urls</h2>
-          </div>
-          <hr>
-        </div>
-      </div>
-
-      <table class="table table-striped table-bordered" id="shared-urls">
-        <thead>
-          <tr>
-            <th>Id#</th>
-            <th>Platform</th>
-            <th>URL</th>
-            <th>Shared at</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @shared_urls.each do |shared_url| %>
-            <tr>
-              <td><%= shared_url.id %></td>
-              <td><%= platform(shared_url) %></td>
-              <td><%= link_to shared_url.url, shared_url.url, target: :blank %></td>
-              <td><%= shared_at(shared_url) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Shared Urls</h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <table class="table table-striped table-bordered" id="shared-urls">
+    <thead>
+      <tr>
+        <th>Id#</th>
+        <th>Platform</th>
+        <th>URL</th>
+        <th>Shared at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shared_urls.each do |shared_url| %>
+        <tr>
+          <td><%= shared_url.id %></td>
+          <td><%= platform(shared_url) %></td>
+          <td><%= link_to shared_url.url, shared_url.url, target: :blank %></td>
+          <td><%= shared_at(shared_url) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <script>

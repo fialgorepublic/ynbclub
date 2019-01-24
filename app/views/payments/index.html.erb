@@ -1,60 +1,52 @@
-<div class="dashboard-holder">
+<div class="col-md-9">
+
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
+    <div class="col-md-12">
+      <h1 class="card-header">View Payment History</h1>
+      <hr>
+      <button onclick="add_new_payment();" class="btn btn-info btn-sm pull-right">Make a Payment</button>
+      <br/><br/>
+      <div class="input-group">
+        <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Payment code / Recipient name / Email " autofocus="" value="<%= params[:text] %>">
+      <span class="input-group-btn">
+        <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
+        <!-- ngIf: doSearch -->
+      <a id="crossBtn" class="btn btn-sm btn-default ng-scope" href="/users" style="display: none;"><i class="fa fa-times"></i></a>
+      </span>
+      </div>
     </div>
-    <div class="col-md-9">
-
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="card-header">View Payment History</h1>
-          <hr>
-          <button onclick="add_new_payment();" class="btn btn-info btn-sm pull-right">Make a Payment</button>
-          <br/><br/>
-          <div class="input-group">
-            <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Payment code / Recipient name / Email " autofocus="" value="<%= params[:text] %>">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
-            <!-- ngIf: doSearch -->
-          <a id="crossBtn" class="btn btn-sm btn-default ng-scope" href="/users" style="display: none;"><i class="fa fa-times"></i></a>
-          </span>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <h5>Payment Start Date</h5>
-          <%= text_field_tag :since, selected_since_date(params), :class => 'form-control dateTime', :placeholder=>"Payment Start Date" %>
-        </div>
-        <div class="col-md-4">
-          <h5>Payment End Date</h5>
-          <%= text_field_tag :to_date, selected_to_date(params), :class => 'form-control dateTime', :placeholder=> "Payment End Date" %>
-        </div>
-        <div class="col-md-4">
-          <h5>Partner</h5>
-          <%= collection_select(:user, :id, User.brand_ambassadors, :id, :name, { selected: selected_partner(params) }, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Please select partner" }) %>
-        </div>
-      </div>
-      <div class="col-md-12 m-t-30">
-        <a href="/payments" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
-        <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
-      </div>
-      <br/>
-      <br/>
-
-      <div class="row m-t-30">
-        <div class="col-md-12">
-          <div class="card-body">
-            <div id="payments">
-              <%= render partial: 'payments/table' %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-
-<%#= link_to 'New Payment', new_payment_path %>
+    <div class="col-md-4">
+      <h5>Payment Start Date</h5>
+      <%= text_field_tag :since, selected_since_date(params), :class => 'form-control dateTime', :placeholder=>"Payment Start Date" %>
+    </div>
+    <div class="col-md-4">
+      <h5>Payment End Date</h5>
+      <%= text_field_tag :to_date, selected_to_date(params), :class => 'form-control dateTime', :placeholder=> "Payment End Date" %>
+    </div>
+    <div class="col-md-4">
+      <h5>Partner</h5>
+      <%= collection_select(:user, :id, User.brand_ambassadors, :id, :name, { selected: selected_partner(params) }, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Please select partner" }) %>
     </div>
   </div>
+  <div class="col-md-12 m-t-30">
+    <a href="/payments" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
+    <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
+  </div>
+  <br/>
+  <br/>
+
+  <div class="row m-t-30">
+    <div class="col-md-12">
+      <div class="card-body">
+        <div id="payments">
+          <%= render partial: 'payments/table' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
 </div>
+
 <div class="modal fade" id="addPayment" role="dialog">
   <div class="modal-dialog">
 

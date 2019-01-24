@@ -1,52 +1,42 @@
-<div class="dashboard-holder">
+<div class="col-md-9">
+
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Take a snapshot and Share</h2>
+      </div>
+      <hr>
     </div>
-    <div class="col-md-9">
+  </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Take a snapshot and Share</h2>
-          </div>
-          <hr>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <p>Congratulations! you have received <%= get_point(@point_id) %> coins</p>
-          <div class="box-shadow md-pd">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="bg-warning bg-circle">
-                    <p class="text-center">+ <%= get_point(@point_id) %> </p>
-                </div>
-              </div>
-                <div class="col-md-9 pd-t-30 text-left">
-                  <p>You always can earn coins other ways on your web site please read our guideline described all rules.</p>
-                  <a href="#" data-target="#coinModal" data-toggle="modal" >How can I spend and earn?</a>
-                </div>
-
-            </div>
-
-
-
-
-
-
-          </div>
-          <div class="row text-center">
-            <div class="col-md-2 col-md-push-5">
-              <%= link_to "Share again", step_one_path, class: "btn btn-primary btn-lg btn-block" %>
+  <div class="row">
+    <div class="col-md-12">
+      <p>Congratulations! you have received <%= get_point(@point_id) %> coins</p>
+      <div class="box-shadow md-pd">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="bg-warning bg-circle">
+                <p class="text-center">+ <%= get_point(@point_id) %> </p>
             </div>
           </div>
+            <div class="col-md-9 pd-t-30 text-left">
+              <p>You always can earn coins other ways on your web site please read our guideline described all rules.</p>
+              <a href="#" data-target="#coinModal" data-toggle="modal" >How can I spend and earn?</a>
+            </div>
+
+        </div>
+
+
+
+
+
+
+      </div>
+      <div class="row text-center">
+        <div class="col-md-2 col-md-push-5">
+          <%= link_to "Share again", step_one_path, class: "btn btn-primary btn-lg btn-block" %>
         </div>
       </div>
-
-
     </div>
   </div>
 </div>
-

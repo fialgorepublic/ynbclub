@@ -1,37 +1,30 @@
-<div class="dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
-    <div class="col-md-9">
+<div class="col-md-9">
 
-      <h1>Rewards</h1>
-      <hr>
-      <table class="table">
-        <thead>
+  <h1>Rewards</h1>
+  <hr>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Points</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @point_types.each do |point_type| %>
         <tr>
-          <th>Name</th>
-          <th>Points</th>
-          <th colspan="3"></th>
+          <td><%= point_type.name %></td>
+          <td><%= point_type.point %></td>
+          <td><%= link_to 'Show', point_type %></td>
+          <td><%= link_to 'Edit', edit_point_type_path(point_type) %></td>
+          <td><%= link_to 'Destroy', point_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-        </thead>
+    <% end %>
+    </tbody>
+  </table>
 
-        <tbody>
-        <% @point_types.each do |point_type| %>
-            <tr>
-              <td><%= point_type.name %></td>
-              <td><%= point_type.point %></td>
-              <td><%= link_to 'Show', point_type %></td>
-              <td><%= link_to 'Edit', edit_point_type_path(point_type) %></td>
-              <td><%= link_to 'Destroy', point_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
+  <br>
 
-      <br>
-
-      <%= link_to 'New Reward', new_point_type_path, class: 'btn btn-primary' %>
-    </div>
-  </div>
+  <%= link_to 'New Reward', new_point_type_path, class: 'btn btn-primary' %>
 </div>

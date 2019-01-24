@@ -1,61 +1,53 @@
-<div class="dashboard-holder">
+<div class="col-md-9">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-paint-brush"></i> Pages Design</h2>
+      </div>
+      <hr>
     </div>
+  </div>
 
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i class="fa fa-paint-brush"></i> Pages Design</h2>
-          </div>
-          <hr>
-        </div>
+  <div class='row'>
+    <div class="col-md-12">
+      <div class="page-de-tab-holder">
+        <%= link_to page_path do %>
+          <p> <i class=""><img src="/assets/icon-1.png"></i> Home Page</p>
+          <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
+        <% end %>
       </div>
+    </div>
+  </div>
 
-      <div class='row'>
-        <div class="col-md-12">
-          <div class="page-de-tab-holder">
-            <%= link_to page_path do %>
-              <p> <i class=""><img src="/assets/icon-1.png"></i> Home Page</p>
-              <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
-            <% end %>
-          </div>
-        </div>
+  <div class='row'>
+    <div class="col-md-12">
+      <div class="page-de-tab-holder">
+        <%= link_to take_snapshot_path do %>
+          <p> <i class=""><img src="/assets/icon-3.png"></i>  Take a snapshot and share</p>
+          <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
+        <% end %>
       </div>
+    </div>
+  </div>
 
-      <div class='row'>
-        <div class="col-md-12">
-          <div class="page-de-tab-holder">
-            <%= link_to take_snapshot_path do %>
-              <p> <i class=""><img src="/assets/icon-3.png"></i>  Take a snapshot and share</p>
-              <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
-            <% end %>
-          </div>
-        </div>
+  <div class='row'>
+    <div class="col-md-12">
+      <div class="page-de-tab-holder">
+        <a href="javascript:void(0)" data-target="#coinModal" data-toggle="modal">
+          <p> <i class=""><img src="/assets/coin.png"></i> How to earn coins</p>
+          <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
+        </a>
       </div>
+    </div>
+  </div>
 
-      <div class='row'>
-        <div class="col-md-12">
-          <div class="page-de-tab-holder">
-            <a href="javascript:void(0)" data-target="#coinModal" data-toggle="modal">
-              <p> <i class=""><img src="/assets/coin.png"></i> How to earn coins</p>
-              <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class='row'>
-        <div class="col-md-12">
-          <div class="page-de-tab-holder">
-            <%= link_to share_with_friends_path do %>
-              <p> <i class=""><img src="/assets/icon-2.png"></i>  Share with friends</p>
-              <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
-            <% end %>
-          </div>
-        </div>
+  <div class='row'>
+    <div class="col-md-12">
+      <div class="page-de-tab-holder">
+        <%= link_to share_with_friends_path do %>
+          <p> <i class=""><img src="/assets/icon-2.png"></i>  Share with friends</p>
+          <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
+        <% end %>
       </div>
     </div>
   </div>

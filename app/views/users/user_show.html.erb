@@ -1,208 +1,200 @@
-<div class="dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
+<div class="col-md-9">
+  <div class="user-show-right">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-briefcase"></i>  Partner Information</a></li>
+      <li><a data-toggle="tab" href="#menu1"> <i class="fa fa-list-alt"></i>
+        History of Discounts </a>
+      </li>
+    </ul>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= link_to "Go Back", users_path, class: "btn btn-default go-back-users" %>
+      </div>
     </div>
-
-    <div class="col-md-9">
-      <div class="user-show-right">
-        <ul class="nav nav-tabs nav-justified">
-          <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-briefcase"></i>  Partner Information</a></li>
-          <li><a data-toggle="tab" href="#menu1"> <i class="fa fa-list-alt"></i>
-            History of Discounts </a>
-          </li>
-        </ul>
-
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
         <div class="row">
-          <div class="col-md-6">
-            <%= link_to "Go Back", users_path, class: "btn btn-default go-back-users" %>
+          <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
+            <p><strong>Referral code:</strong> <%= @user.referral %> </p>
+            <% price = @user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+            <p><strong>Total income:</strong>  <%= (price.to_f * @user.commission.to_f)/100 %> ₫</p>
+            <% approved_price = @user.referral_sales.where(is_approved: true).pluck(:price).map(&:to_f).reduce(:+) %>
+            <p><strong>Has been paid:</strong> <%= (approved_price.to_f * @user.commission.to_f)/100 %> ₫</p>
+            <% not_approved_price = @user.referral_sales.where(is_approved: false).pluck(:price).map(&:to_f).reduce(:+) %>
+            <p><strong>Not paid:</strong> <%= (not_approved_price.to_f * @user.commission.to_f)/100 %> ₫</p>
           </div>
         </div>
-        <div class="tab-content">
-          <div id="home" class="tab-pane fade in active">
-            <div class="row">
-              <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
-                <p><strong>Referral code:</strong> <%= @user.referral %> </p>
-                <% price = @user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
-                <p><strong>Total income:</strong>  <%= (price.to_f * @user.commission.to_f)/100 %> ₫</p>
-                <% approved_price = @user.referral_sales.where(is_approved: true).pluck(:price).map(&:to_f).reduce(:+) %>
-                <p><strong>Has been paid:</strong> <%= (approved_price.to_f * @user.commission.to_f)/100 %> ₫</p>
-                <% not_approved_price = @user.referral_sales.where(is_approved: false).pluck(:price).map(&:to_f).reduce(:+) %>
-                <p><strong>Not paid:</strong> <%= (not_approved_price.to_f * @user.commission.to_f)/100 %> ₫</p>
+        <%= form_tag("/update_profile", id: "update_profile", method: "post") do %>
+          <div class="row m-t-30">
+            <div class="col-md-3">
+              <h4>General information</h4>
+              <small>Some basic information</small>
+            </div>
+
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-4 form-group">
+                  <label>Userame</label>
+                  <%= text_field_tag 'user[name]', @user.name, :class => 'form-control', placeholder: "First and last name" %>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>First Name</label>
+                  <%= text_field_tag 'profile[first_name]', @user.first_name, :class => 'form-control', placeholder: "First and last name" %>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>Last Name</label>
+                  <%= text_field_tag 'profile[surname]', @user.surname, :class => 'form-control', placeholder: "First and last name" %>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 form-group">
+                  <label>Phone number</label>
+                  <%= text_field_tag 'profile[phone_number]', @user.profile_phone_number, :class => 'form-control', placeholder: "phone number" %>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>Commission </label>
+                  <%= number_field_tag 'user[commission]', @user.commission, :class => 'form-control', placeholder: "0", step: :any %>
+                </div>
+
+                <div class="col-md-4 form-group">
+                  <label>Referral</label>
+                  <%= text_field_tag 'user[referral]', @user.referral, :class => 'form-control' %>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Address line 1</label>
+                      <%= text_field_tag 'profile[address_line_1]', @user.address_line_1, class: "form-control", placeholder: "Address Line 1" %>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Address line 2</label>
+                    <%= text_field_tag 'profile[address_line_2]', @user.address_line_2, class: "form-control", placeholder: "Address Line 2" %>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group" >
+                    <label>State</label>
+                    <%= select_tag 'profile[state]', options_for_select(states, selected: @user.state), { prompt: 'Select State *', class: "form-control", required: true } %>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group" >
+                    <label>City</label>
+                    <%= select_tag 'profile[city]', options_for_select(cities, selected: @user.city), { prompt: 'Select City *', class: "form-control", required: true } %>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Zip code</label>
+                    <%= text_field_tag 'profile[zip_code]', @user.zip_code, class: "form-control", placeholder: "00000" %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label>Email</label>
+                  <%= text_field_tag 'user[email]', @user.email, :class => 'form-control', placeholder: "phuongjenny19@gmail.com" %>
+                </div>
+
+                <div class="col-md-6 form-group">
+                  <label>Password</label>
+                  <%= text_field_tag 'user[password]', nil, :class => 'form-control', placeholder: "Password" %>
+                </div>
               </div>
             </div>
-            <%= form_tag("/update_profile", id: "update_profile", method: "post") do %>
-              <div class="row m-t-30">
-                <div class="col-md-3">
-                  <h4>General information</h4>
-                  <small>Some basic information</small>
-                </div>
+          </div>
 
-                <div class="col-md-9">
-                  <div class="row">
-                    <div class="col-md-4 form-group">
-                      <label>Userame</label>
-                      <%= text_field_tag 'user[name]', @user.name, :class => 'form-control', placeholder: "First and last name" %>
-                    </div>
-
-                    <div class="col-md-4 form-group">
-                      <label>First Name</label>
-                      <%= text_field_tag 'profile[first_name]', @user.first_name, :class => 'form-control', placeholder: "First and last name" %>
-                    </div>
-
-                    <div class="col-md-4 form-group">
-                      <label>Last Name</label>
-                      <%= text_field_tag 'profile[surname]', @user.surname, :class => 'form-control', placeholder: "First and last name" %>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-4 form-group">
-                      <label>Phone number</label>
-                      <%= text_field_tag 'profile[phone_number]', @user.profile_phone_number, :class => 'form-control', placeholder: "phone number" %>
-                    </div>
-
-                    <div class="col-md-4 form-group">
-                      <label>Commission </label>
-                      <%= number_field_tag 'user[commission]', @user.commission, :class => 'form-control', placeholder: "0", step: :any %>
-                    </div>
-
-                    <div class="col-md-4 form-group">
-                      <label>Referral</label>
-                      <%= text_field_tag 'user[referral]', @user.referral, :class => 'form-control' %>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <label>Address line 1</label>
-                          <%= text_field_tag 'profile[address_line_1]', @user.address_line_1, class: "form-control", placeholder: "Address Line 1" %>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Address line 2</label>
-                        <%= text_field_tag 'profile[address_line_2]', @user.address_line_2, class: "form-control", placeholder: "Address Line 2" %>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group" >
-                        <label>State</label>
-                        <%= select_tag 'profile[state]', options_for_select(states, selected: @user.state), { prompt: 'Select State *', class: "form-control", required: true } %>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group" >
-                        <label>City</label>
-                        <%= select_tag 'profile[city]', options_for_select(cities, selected: @user.city), { prompt: 'Select City *', class: "form-control", required: true } %>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Zip code</label>
-                        <%= text_field_tag 'profile[zip_code]', @user.zip_code, class: "form-control", placeholder: "00000" %>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6 form-group">
-                      <label>Email</label>
-                      <%= text_field_tag 'user[email]', @user.email, :class => 'form-control', placeholder: "phuongjenny19@gmail.com" %>
-                    </div>
-
-                    <div class="col-md-6 form-group">
-                      <label>Password</label>
-                      <%= text_field_tag 'user[password]', nil, :class => 'form-control', placeholder: "Password" %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row m-t-30">
-                <div class="col-md-3">
-                  <h4>Billing Information</h4>
-                  <small>
-                  Information used for payment</small>
-                </div>
-                <div class="col-md-9">
-                  <div class="row">
-                    <div class="col-md-5 form-group">
-                      <label>National Security Number *</label>
-                      <%= text_field_tag 'profile[security_number]', @user.profile.present? ? @user.profile.security_number : nil, :class => 'form-control', placeholder: "Proof of the people" %>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5 form-group">
-                      <label>
-                      Name of Bank and Branch *</label>
-                      <%= text_field_tag 'profile[bank_name]', @user.profile.present? ? @user.profile.bank_name : nil, :class => 'form-control', placeholder: "BIDV - Thai Ha branch" %>
-                    </div>
-                  </div>
-                  <%= hidden_field_tag :user_id, @user.id, id: "user_id" %>
-                  <div class="row">
-                    <div class="col-md-5 form-group">
-                      <label>Account name *</label>
-                      <%= text_field_tag 'profile[acc_holder_name]', @user.profile.present? ? @user.profile.acc_holder_name : nil, :class => 'form-control', placeholder: "Account name" %>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-5 form-group">
-                      <label>Account number *</label>
-                      <%= text_field_tag 'profile[account_number]', @user.profile.present? ? @user.profile.account_number : nil, :class => 'form-control', placeholder: "Account number at bank" %>
-                    </div>
-                  </div>
+          <div class="row m-t-30">
+            <div class="col-md-3">
+              <h4>Billing Information</h4>
+              <small>
+              Information used for payment</small>
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <label>National Security Number *</label>
+                  <%= text_field_tag 'profile[security_number]', @user.profile.present? ? @user.profile.security_number : nil, :class => 'form-control', placeholder: "Proof of the people" %>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
-                  <hr>
-                </div>
-
-                <div class="col-md-1">
-                  <a href="/users" class="btn btn-danger">
-                  Delete
-                  </a>
-                </div>
-
-                <div class="col-md-9 text-right pull-right">
-                  <button class="submit btn btn-primary">Update</button>
+                <div class="col-md-5 form-group">
+                  <label>
+                  Name of Bank and Branch *</label>
+                  <%= text_field_tag 'profile[bank_name]', @user.profile.present? ? @user.profile.bank_name : nil, :class => 'form-control', placeholder: "BIDV - Thai Ha branch" %>
                 </div>
               </div>
-            <% end %>
-          </div>
-          <div id="menu1" class="tab-pane fade">
-            <div class="row">
-              <div class="col-md-12">
-                <table class="table  table-striped">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Recording Time</th>
-                      <th>Describe</th>
-                      <th>Income</th>
-                      <th>Pay</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @user.referral_sales.each_with_index do |sale, index| %>
-                    <tr>
-                      <td><%= index + 1 %></td>
-                      <td><%= sale.created_at %></td>
-                      <td><%= "Order # #{sale.order_id} Approved: + #{sale.price}đ" %></td>
-                      <td><%= (sale.price.to_f * sale.user.commission.to_f)/100  %>đ</td>
-                      <td></td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+              <%= hidden_field_tag :user_id, @user.id, id: "user_id" %>
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <label>Account name *</label>
+                  <%= text_field_tag 'profile[acc_holder_name]', @user.profile.present? ? @user.profile.acc_holder_name : nil, :class => 'form-control', placeholder: "Account name" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <label>Account number *</label>
+                  <%= text_field_tag 'profile[account_number]', @user.profile.present? ? @user.profile.account_number : nil, :class => 'form-control', placeholder: "Account number at bank" %>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr>
+            </div>
+
+            <div class="col-md-1">
+              <a href="/users" class="btn btn-danger">
+              Delete
+              </a>
+            </div>
+
+            <div class="col-md-9 text-right pull-right">
+              <button class="submit btn btn-primary">Update</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="menu1" class="tab-pane fade">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table  table-striped">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Recording Time</th>
+                  <th>Describe</th>
+                  <th>Income</th>
+                  <th>Pay</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @user.referral_sales.each_with_index do |sale, index| %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= sale.created_at %></td>
+                  <td><%= "Order # #{sale.order_id} Approved: + #{sale.price}đ" %></td>
+                  <td><%= (sale.price.to_f * sale.user.commission.to_f)/100  %>đ</td>
+                  <td></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

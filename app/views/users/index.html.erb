@@ -1,112 +1,105 @@
-<div class="dashboard-holder">
+<div class="col-md-9">
+
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
+    <div class="col-md-12">
+      <h1 class="card-header">Manage Affiliate</h1>
+      <hr>
+      <div class="input-group">
+        <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="">
+        <span class="input-group-btn">
+        <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
+          <!-- ngIf: doSearch -->
+      <a id="crossBtn" class="btn btn-sm btn-default ng-scope" href="/users" style="display: none;"><i class="fa fa-times"></i></a>
+      </span>
+      </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-4">
+      <h5>Payment status</h5>
+      <select id="paymentStatus" class="form-control">
+        <option value="All">All</option>
+        <option value="true">Eligible</option>
+        <option value="false">Unqualified</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <h5>Browsing status</h5>
+      <select id="browsingStatus" class="form-control">
+        <option value="All">All</option>
+        <option value="false">Unapproved</option>
+        <option value="true">Approved</option>
+      </select>
+    </div>
+    <div class="col-md-4 m-t-30">
+      <a href="/users" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
+      <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
+    </div>
+  </div>
+  <div class="row m-t-30">
+    <div class="col-md-12">
+      <div class="card-body">
+        <div class="affiliate_table_responsive">
+          <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <tr>
+              <th>Username</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Joining Date</th>
+              <th>Phone No</th>
+              <th>Referral Code</th>
+              <th>Commission</th>
+              <th>Money</th>
+              <th></th>
+              <!--<th></th>-->
+              <th></th>
+            </tr>
+            </thead>
 
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="card-header">Manage Affiliate</h1>
-          <hr>
-          <div class="input-group">
-            <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="">
-            <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
-              <!-- ngIf: doSearch -->
-          <a id="crossBtn" class="btn btn-sm btn-default ng-scope" href="/users" style="display: none;"><i class="fa fa-times"></i></a>
-          </span>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <h5>Payment status</h5>
-          <select id="paymentStatus" class="form-control">
-            <option value="All">All</option>
-            <option value="true">Eligible</option>
-            <option value="false">Unqualified</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <h5>Browsing status</h5>
-          <select id="browsingStatus" class="form-control">
-            <option value="All">All</option>
-            <option value="false">Unapproved</option>
-            <option value="true">Approved</option>
-          </select>
-        </div>
-        <div class="col-md-4 m-t-30">
-          <a href="/users" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
-          <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
-        </div>
-      </div>
-      <div class="row m-t-30">
-        <div class="col-md-12">
-          <div class="card-body">
-            <div class="affiliate_table_responsive">
-              <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                <tr>
-                  <th>Username</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Email</th>
-                  <th>Joining Date</th>
-                  <th>Phone No</th>
-                  <th>Referral Code</th>
-                  <th>Commission</th>
-                  <th>Money</th>
-                  <th></th>
-                  <!--<th></th>-->
-                  <th></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <% @users.each do |user| %>
-                    <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
-                    <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
-                    <% if (@activeStatus == "All") %>
-                        <% is_show = true %>
-                    <% elsif (@activeStatus == "true") %>
-                        <% is_show = (percentage_price >= compare_payment ? true : false) %>
-                    <% elsif (@activeStatus == "false") %>
-                        <% is_show = (percentage_price <= compare_payment ? true : false) %>
-                    <% end %>
-                    <% if is_show %>
-                        <tr>
-                          <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
-                          <td><%= user.first_name %></td>
-                          <td><%= user.surname %></td>
-                          <td><%= user.email %></td>
-                          <td><%= user.created_at.to_date %></td>
-                          <td><%= user.profile_phone_number %></td>
-                          <td><%= user.referral %></td>
-                          <td><%= user.commission %></td>
-                          <td><%= percentage_price %></td>
-                          <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
-                          <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
-                          <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
-                        </tr>
-                    <% end %>
+            <tbody>
+            <% @users.each do |user| %>
+                <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
+                <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
+                <% if (@activeStatus == "All") %>
+                    <% is_show = true %>
+                <% elsif (@activeStatus == "true") %>
+                    <% is_show = (percentage_price >= compare_payment ? true : false) %>
+                <% elsif (@activeStatus == "false") %>
+                    <% is_show = (percentage_price <= compare_payment ? true : false) %>
                 <% end %>
-                </tbody>
-              </table>
-            </div>
+                <% if is_show %>
+                    <tr>
+                      <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
+                      <td><%= user.first_name %></td>
+                      <td><%= user.surname %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.created_at.to_date %></td>
+                      <td><%= user.profile_phone_number %></td>
+                      <td><%= user.referral %></td>
+                      <td><%= user.commission %></td>
+                      <td><%= percentage_price %></td>
+                      <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
+                      <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
+                      <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
 
-            <%= link_to 'New Ambassador', new_user_path, class: 'btn btn-primary' %>
-          </div>
-        </div>
+        <%= link_to 'New Ambassador', new_user_path, class: 'btn btn-primary' %>
       </div>
+    </div>
+  </div>
 
-      <div class="featured-pagination">
-        <div>
-          <ul class="pagination pagination-md">
-            <%= will_paginate @users,renderer: BootstrapPagination::Rails %>
-          </ul>
-        </div>
-        <div>
-        </div>
-      </div>
+  <div class="featured-pagination">
+    <div>
+      <ul class="pagination pagination-md">
+        <%= will_paginate @users,renderer: BootstrapPagination::Rails %>
+      </ul>
+    </div>
+    <div>
     </div>
   </div>
 </div>
