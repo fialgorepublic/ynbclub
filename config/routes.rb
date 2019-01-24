@@ -287,6 +287,7 @@ Rails.application.routes.draw do
   resources :earn_coins, only: [:edit, :update]
   resource  :page, only: [:show, :edit, :update]
   resource  :take_snapshots, only: [:edit, :update, :destroy]
+  resources :permissions, only: [:index, :show, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
