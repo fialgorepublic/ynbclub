@@ -125,8 +125,12 @@ class User < ApplicationRecord
     end
 
     def search_users q
+      filter_users(q).sort_by_banned
+    end
+
+    def filter_users q
       q = q.downcase
-      joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'").sort_by_banned
+      joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'")
     end
 
     def all_users params
