@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!
   require 'time_ago_in_words'
 
   def get_products_from_shopify

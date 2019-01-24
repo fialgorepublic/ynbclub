@@ -1,4 +1,6 @@
 class TakeSnapshotsController < ApplicationController
+  before_action :authorize_user!
+
   def edit
   end
 

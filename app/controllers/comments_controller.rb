@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!
   require 'time_ago_in_words'
 
   def add_comment

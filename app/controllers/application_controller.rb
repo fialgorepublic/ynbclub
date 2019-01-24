@@ -84,4 +84,18 @@ class ApplicationController < ActionController::Base
   def redirect_to_blogs
     redirect_to blogs_path if user_signed_in?
   end
+
+  def authorize_user!
+    unless user_has_permission?
+      flash[:alert] = 'You are not authorized for this resource.'
+      redirect_to dashboard_path
+    end
+  end
+
+  def user_has_permission?
+    permissions = current_user.permissions
+    actions = permissions.pluck(:action_name).flatten
+    return true if actions.include?('all') #for admin user
+    actions.include?(action_name) && permissions.pluck(:controller_name).include?(controller_name)
+  end
 end

@@ -1,7 +1,10 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!, except: [:index ,:update_user_role]
+
   require 'link_thumbnailer'
   include ApplicationHelper
+
   def index
     return redirect_to referral_sales_path if current_user.is_admin?
 

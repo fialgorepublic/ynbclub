@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
+  before_action :authorize_user!
 
   def my_orders
     initiate_shopify_session
