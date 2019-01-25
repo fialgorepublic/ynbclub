@@ -42,7 +42,7 @@
                   <td><%= user.surname %></td>
                   <td><%= user.email %></td>
                   <td><%= user.profile_phone_number %></td>
-                  <td></td>
+                  <td><%= link_to 'View Permissions', permission_path(user.id) %></td>
                 </tr>
               <% end %>
             </tbody>
