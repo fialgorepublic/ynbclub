@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  a = []
   $('#change_permissions').click(function(){
     controllers = []
     $('.add-permissions:checkbox:checked').each(function() { controllers.push(this.value) });
@@ -18,4 +19,16 @@ $(document).ready(function(){
       });
     }
   });
+
+  $('.add-permissions').change(function(){
+    checked = $(this).is(':checked')
+    if (checked) {
+      a.push(checked);
+      $('#change_permissions').attr('disabled', false);
+    }
+    else {
+      a.pop();
+      if(a.length == 0) { $('#change_permissions').attr('disabled', true) };
+    }
+  })
 });
