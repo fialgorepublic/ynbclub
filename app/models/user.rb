@@ -138,6 +138,10 @@ class User < ApplicationRecord
       return User.all if params[:deduct_points].present?
       User.sort_by_banned if params[:q].blank? && params[:deduct_points].blank?
     end
+
+    def delete_user_permissions user_id
+      Permission.where(user_id: user_id).delete_all
+    end
   end
 
   def set_default_permissions

@@ -1,0 +1,77 @@
+<div class="col-md-9">
+  <div class="row">
+    <div class="col-md-12 permission-manager">
+      <h1 class="card-header"><%= link_to permissions_path do %><i class="fa fa-angle-left"></i><% end %> <%= @user.name %> Permissions</h1>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row m-t-30">
+    <div class="col-md-12">
+      <div class="card-body">
+        <div class="affiliate_table_responsive">
+          <table id="" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th>Permissions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @permissions.each do |permission| %>
+                <% have_name, name = show_dashboard_related_name(permission.controller_name) %>
+                <% if have_name %>
+                  <tr>
+                    <td><%= name  %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-9">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="card-header">Assign New Permissions</h1>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row m-t-30">
+    <div class="col-md-12">
+      <div class="card-body">
+        <div class="affiliate_table_responsive">
+          <table id="" class="table permission-holder table-striped table-bordered" style="width:35%">
+            <thead>
+              <tr>
+                <th>Choose Permissions</th>
+              </tr>
+              <tr></tr>
+            </thead>
+
+            <tbody>
+              <% Permission::CONTROLLER_NAMES.each do |controller| %>
+                <% have_name, name = show_dashboard_related_name(controller) %>
+                <% if have_name %>
+                  <tr>
+                    <td>
+                      <%= check_box_tag controller, controller, already_permitted?(@permissions, controller), { class: "add-permissions" } %>
+                      <%= name %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+
+              <tr><td class="text-center"><%= link_to 'Change Permissions',  'javascript:void(0);', id: 'change_permissions', class: 'btn btn-primary', data: { url: permissions_path(id: @user.id) } %></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
