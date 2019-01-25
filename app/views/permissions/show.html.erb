@@ -43,10 +43,10 @@
   </div>
 
   <div class="row m-t-30">
-    <div class="col-md-12">
-      <div class="card-body">
+    <div class="col-md-9">
+      <div class="card-body" style="margin-left: 34%;margin-right: 3%;">
         <div class="affiliate_table_responsive">
-          <table id="" class="table permission-holder table-striped table-bordered" style="width:35%">
+          <table id="" class="table permission-holder table-striped table-bordered" style="width:100%">
             <thead>
               <tr>
                 <th>Choose Permissions</th>
@@ -67,7 +67,7 @@
                 <% end %>
               <% end %>
 
-              <tr><td class="text-center"><%= link_to 'Change Permissions',  'javascript:void(0);', id: 'change_permissions', class: 'btn btn-primary', data: { url: permissions_path(id: @user.id) } %></td></tr>
+              <tr><td class="text-center"><%= link_to 'Change Permissions',  'javascript:void(0);', id: 'change_permissions', class: 'btn btn-primary', disabled: true, data: { url: permissions_path(id: @user.id) } %></td></tr>
             </tbody>
           </table>
         </div>
