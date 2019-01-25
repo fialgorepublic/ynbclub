@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
   def user_has_permission?
     permissions = current_user.permissions
     actions = permissions.pluck(:action_name).flatten
-    return true if actions.include?('all') #for admin user
-    actions.include?(action_name) && permissions.pluck(:controller_name).include?(controller_name)
+    return true if current_user.is_admin? #for admin user
+    permissions.pluck(:controller_name).include?(controller_name)
   end
 end
