@@ -1,5 +1,6 @@
 class PermissionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!
   before_action :set_user, except: [:index]
 
   def index
