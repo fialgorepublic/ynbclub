@@ -35,21 +35,17 @@
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   <div class="menu-list custom-side-menu">
     <ul id="menu-content" class="menu-content collapse out">
-      <% if current_user.is_admin? %>
         <li class="row d-profile-holder" >
           <div class="col-md-12 account-brand-icon">
-          </div>
-        </li>
-        <%= render "shared/admin_side_bar" %>
-      <% else %>
-        <li class="row d-profile-holder" >
-          <div class="col-md-12 account-brand-icon">
-            <p style="color: gold"> <img src="/assets/coin.png"> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <button style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal" data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button> <span class="pull-right"> 
-              <img src="/assets/dollar.png"> <%= current_user.total_income %> $0</span>
-            </p>
+            <% unless current_user.is_admin? %>
+              <p style="color: gold"> <img src="/assets/coin.png"> <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <button style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal" data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button> <span class="pull-right"> 
+                <img src="/assets/dollar.png"> <%= current_user.total_income %> $0</span>
+              </p>
+            <% end %>
           </div>
         </li>
 
+      <% unless current_user.is_admin? %>
         <li>
           <%= link_to dashboard_path, class: active_class(dashboard_path) || active_class(buyerDashboard_path) do %>
           <i class="custom-icon"><img src="/assets/icon-1.png"></i>Dashboard
@@ -68,16 +64,6 @@
           <% end %>
         </li>
 
-        <% unless current_user.is_buyer? %>
-          <li  data-toggle="" data-target="#" class="collapsed">
-            <a href="/referral_sales" class="<%= active_class(referral_sales_path) %>"><i class="custom-icon"><img src="/assets/icon-4.png"> </i>  My Sales </a>
-          </li>
-        <% end %>
-
-        <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/blogs" class="<%= active_class(blogs_path) %>"><i class="custom-icon"><img src="/assets/icon-6.png"> </i> Blogs</a>
-        </li>
-
         <li  data-toggle="" data-target="#" class="collapsed">
           <%= link_to exchange_coins_users_path, class: "#{active_class(exchange_coins_users_path)}" do %>
             <i class="fa fa-exchange" style="padding-right: 42px;"></i> Exchange Coins
@@ -87,11 +73,105 @@
         <li  data-toggle="" data-target="#" class="collapsed">
           <a href="/my_orders" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Order </span></a>
         </li>
+      <% end %>
 
-        <li>
-          <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>"><i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Acc settings  </a>
+      <% unless current_user.is_buyer? %>
+        <li  data-toggle="" data-target="#" class="collapsed">
+          <a href="/referral_sales" class="<%= active_class(referral_sales_path) %>"><i class="custom-icon"><img src="/assets/icon-4.png"> </i>  My Sales </a>
         </li>
       <% end %>
+
+      <li  data-toggle="" data-target="#" class="collapsed">
+        <a href="/blogs" class="<%= active_class(blogs_path) %>"><i class="custom-icon"><img src="/assets/icon-6.png"> </i> Blogs</a>
+      </li>
+
+      <% if current_user.is_admin? %>
+        <li  data-toggle="" data-target="#" class="collapsed">
+          <a href="/my_orders" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> All Orders </span></a>
+        </li>
+
+        <li>
+          <%= link_to permissions_path, class: active_class(permissions_path) do %>
+            <i class="fa fa-paint-brush"></i> <span class="ml-4">Permission Manager</span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('brand_ambassadors', 'users')%>
+        <li>
+          <a href="/users/brand_ambassadors" class="<%= active_class("/users/brand_ambassadors") %>"><i class="custom-icon"><img src="/assets/tag-sidebar.png"> </i> Commission  </a>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('approve_sales', 'referral_sales')%>
+        <li>
+          <a href="/approve_sales" class="<%= active_class(approve_sales_path) %>"><i class="custom-icon"><img src="/assets/iocn-5.png"> </i> Approve Sales  </a>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('approve_sales', 'referral_sales')%>
+        <li>
+          <a class="auto click-close <%= active_class(edit_setting_path(Setting.first)) %>" href="<%= edit_setting_path(Setting.first) %>">
+          <i class="fa fa-gears sidebar-icon"></i>
+          <span class="ng-binding"> Configuration</span>
+          </a>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('index', 'payments') %>
+        <li class="menu-item ng-scope" ng-repeat="item in menu.items | orderBy: 'position'">
+          <a class="auto click-close <%= active_class(payments_path) %>" href="/payments">
+          <i class="fa fa-money sidebar-icon"></i>
+          <span class="ng-binding"> Payment History</span>
+          </a>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('ambassadors', 'users') %>
+        <li>
+          <a href="/users" class="<%= active_class(users_path) %>"><i class="custom-icon"><img src="/assets/ambassador-sidebar.png"> </i> Ambassadors  </a>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('ban', 'users') %>
+        <li>
+          <%= link_to users_ban_users_path, class: active_class(users_ban_users_path) do %>
+            <i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Ban Users
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('deduct_points', 'users') %>
+        <li>
+          <%= link_to users_ban_users_path(deduct_points: true), class: active_class(users_ban_users_path(deduct_points: true)) do %>
+            <i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Deduct Points
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('categories', 'categories') %>
+        <li>
+          <a href="/categories" class="<%= active_class(categories_path) %>"><i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>  Categories  </a>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('manage_rewards', 'point_types') %>
+        <li>
+          <a href="/point_types" class="<%= active_class(point_types_path) %>"><i class="custom-icon"><img src="/assets/reward-sidebar.png"> </i> Manage Rewards  </a>
+        </li>
+      <% end %>
+
+      <% if current_user.is_admin? || current_user.has_permission?('page_desing', 'dashboard') %>
+        <li>
+          <%= link_to page_design_path, class: active_class(page_design_path) do %>
+            <i class="fa fa-paint-brush"></i> <span class="ml-4">Pages Design</span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <li>
+        <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>"><i class="custom-icon"><img width="16" src="/assets/icon-10.png"> </i>Acc settings  </a>
+      </li>
     </ul>
   </div>
 </div>

@@ -93,9 +93,27 @@ class ApplicationController < ActionController::Base
   end
 
   def user_has_permission?
-    permissions = current_user.permissions
-    actions = permissions.pluck(:action_name).flatten
     return true if current_user.is_admin? #for admin user
-    permissions.pluck(:controller_name).include?(controller_name)
+    return false if controller_name == "permissions"
+    user_has_permissions?
+  end
+
+  def user_has_permissions?
+    byebug
+    return permission_exists?(action_name, controller_name) if action_name == "approve_sales" && controller_name == "referral_sales"
+    return permission_exists?('manage_rewards', 'point_types') if controller_name == "point_types"
+    return permission_exists?('configurations', 'settings') if controller_name == "settings"
+    return permission_exists?(action_name, controller_name) if action_name == "ban" && controller_name == "users"
+    return permission_exists?(action_name, controller_name) if action_name == "deduct_points" && controller_name == "users"
+    return permission_exists?(action_name, controller_name) if action_name == "brand_ambassadors" && controller_name == "users"
+    return permission_exists?('ambassadors', 'user') if action_name == "index" && controller_name == "users"
+    return permission_exists?('index', controller_name) if controller_name == "payments"
+    return permission_exists?('categories', controller_name) if controller_name == "categories"
+    return permission_exists?('page_desgin', 'dashboard') if ['pages', 'dashboard', 'take_snapshots', 'earn_coins', 'share_with_freinds'].include?(controller_name) && !action_name == 'buyerDashboard'
+    true
+  end
+
+  def permission_exists?(action, controller)
+    current_user.permissions.where(action_name: action, controller_name: controller).present?
   end
 end

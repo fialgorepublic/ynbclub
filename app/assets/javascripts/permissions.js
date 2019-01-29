@@ -2,7 +2,9 @@ $(document).ready(function(){
   a = []
   $('#change_permissions').click(function(){
     controllers = []
-    $('.add-permissions:checkbox:checked').each(function() { controllers.push(this.value) });
+    $('.add-permissions:checkbox:checked').each(function() {
+      controllers.push({ controller: $(this).data('controller'), action: $(this).data('action')});
+    });
     confirm = confirm(`Are you sure you want to change the permission for this user?`);
     if (confirm){
       $.ajax({

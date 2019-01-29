@@ -1,39 +1,3 @@
-<div class="col-md-9">
-  <div class="row">
-    <div class="col-md-12 permission-manager">
-      <h1 class="card-header"><%= link_to permissions_path do %><i class="fa fa-angle-left"></i><% end %> <%= @user.name %> Permissions</h1>
-    </div>
-  </div>
-  <hr>
-
-  <div class="row m-t-30">
-    <div class="col-md-12">
-      <div class="card-body">
-        <div class="affiliate_table_responsive">
-          <table id="" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-              <tr>
-                <th>Permissions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @permissions.each do |permission| %>
-                <% have_name, name = show_dashboard_related_name(permission.controller_name) %>
-                <% if have_name %>
-                  <tr>
-                    <td><%= name  %></td>
-                  </tr>
-                <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="col-md-9" id="add-permission">
   <div class="row">
     <div class="col-md-12">
@@ -56,12 +20,12 @@
             </thead>
 
             <tbody>
-              <% Permission::CONTROLLER_NAMES.each do |controller| %>
-                <% have_name, name = show_dashboard_related_name(controller) %>
-                <% if have_name %>
+              <% Permission::CONTROLLER_NAMES.each do |action, controller| %>
+                <% name = show_dashboard_related_name(controller, action) %>
+                <% if true %>
                   <tr>
                     <td width="40%" class="text-right">
-                      <%= check_box_tag controller, controller, already_permitted?(@permissions, controller), { class: "add-permissions" } %>
+                      <%= check_box_tag controller, controller, already_permitted?(@permissions, controller, action), { class: "add-permissions", data: { controller: controller, action: action } } %>
                     </td>
                     <td width="60%"><%= name %></td>
                   </tr>

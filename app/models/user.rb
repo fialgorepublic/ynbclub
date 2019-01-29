@@ -138,9 +138,11 @@ class User < ApplicationRecord
       return User.all if params[:deduct_points].present?
       User.sort_by_banned if params[:q].blank? && params[:deduct_points].blank?
     end
+  end
 
-    def delete_user_permissions user_id
-      Permission.where(user_id: user_id).delete_all
+  def add_new_permissions permissions
+    permissions.each do |key, permission|
+      self.permissions.find_or_create_by(action_name: permission[:action], controller_name: permission[:controller])
     end
   end
 
@@ -152,7 +154,9 @@ class User < ApplicationRecord
 
   def create_permissions permissions
     permissions.each do |permission|
-      self.permissions.create(action_name: permission[:action_names], controller_name: permission[:controller_name])
+      permission[:action_names].each do |action|
+        self.permissions.find_or_create_by(action_name: action, controller_name: permission[:controller_name])
+      end
     end
   end
 
@@ -193,5 +197,9 @@ class User < ApplicationRecord
 
   def total_points
     points.present? ? points.sum(:point_value) : 0
+  end
+
+  def has_permission? action, controller
+    permissions.find_by(action_name: action, controller_name: controller).present?
   end
 end

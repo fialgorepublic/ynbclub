@@ -13,10 +13,7 @@ class PermissionsController < ApplicationController
   end
 
   def create
-    User.delete_user_permissions(@user.id) if params[:controllers].present?
-    params[:controllers].each do |controller_name|
-      @user.permissions.find_or_create_by(controller_name: controller_name)
-    end
+    @user.add_new_permissions(params[:controllers])
     flash[:success] = "Permission for #{@user.email} are updated successfully."
     render json: { success: true }
   end

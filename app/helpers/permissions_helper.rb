@@ -1,32 +1,28 @@
 module PermissionsHelper
-  def show_dashboard_related_name(name)
-    case name
+  def show_dashboard_related_name(controller, action)
+    action = action.to_s
+    case controller
     when 'referral_sales'
-      [true, 'Approve Sales, My Sales']
-    when 'blogs'
-      [true, 'Blogs']
+      'Approve Sales' if action == 'approve_sales'
     when 'point_types'
-      [true, 'Manage Rewards']
+      'Manage Rewards'
     when 'settings'
-      [true, 'Configuration']
+      'Configuration'
     when 'payments'
-      [true, 'Payments']
+      'Payments'
     when 'users'
-      [true, 'Ban Users, Ambassadors, Deduct Points']
+      return 'Ban Users' if action == 'ban'
+      return 'Deduct Points' if action == 'deduct_points'
+      return 'Brand Ambassadors' if action == 'brand_ambassadors'
+      'Ambassadors'
     when 'categories'
-      [true, 'Categories']
-    when 'orders'
-      [true, 'All Orders, My orders']
+      'Categories'
     when 'dashboard'
-      [true, 'Acc Settings, Pages Design']
-    when 'permissions'
-      [true, 'Permissions']
-    else
-      [false, '']
+      'Pages Design'
     end
   end
 
-  def already_permitted?(permissions, controller)
-    permissions.pluck(:controller_name).include?(controller)
+  def already_permitted?(permissions, controller, action)
+    permissions.find_by(controller_name: controller, action_name: action).present?
   end
 end
