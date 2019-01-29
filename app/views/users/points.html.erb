@@ -1,31 +1,22 @@
-<div class="dashboard-holder buyer-dashboard">
+<div class="col-md-9">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-
-
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i><img src="/assets/coin-lg.png"></i> Earned Coins</h2>
+      </div>
+      <hr>
     </div>
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i><img src="/assets/coin-lg.png"></i> Earned Coins</h2>
+  </div>
+
+  <div class="row">
+    <% @points.each do |point| %>
+        <div class="col-md-3 m-t-30">
+          <div class="buydashboard-box text-center">
+            <img src="/assets/coin-lg.png">
+            <h4>+<%= point.point_value %> coins.</h4>
+            <p><%= point_name(point) %></p>
           </div>
-          <hr>
         </div>
-      </div>
-
-      <div class="row">
-        <% @points.each do |point| %>
-            <div class="col-md-3 m-t-30">
-              <div class="buydashboard-box text-center">
-                <img src="/assets/coin-lg.png">
-                <h4>+<%= point.point_value %> coins.</h4>
-                <p><%= point_name(point) %></p>
-              </div>
-            </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

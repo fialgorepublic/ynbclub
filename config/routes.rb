@@ -188,7 +188,6 @@ Rails.application.routes.draw do
     end
   end
   resources :settings
-  resources :products
   resources :point_types
   mount Ckeditor::Engine => '/ckeditor'
   resources :categories
@@ -224,7 +223,6 @@ Rails.application.routes.draw do
   get 'acc_settings', to: 'dashboard#acc_settings'
   get 'notification', to: 'dashboard#notification'
   get 'take_snapshot_step', to: 'dashboard#take_snapshot_step'
-  get 'buyer_orders', to: 'buyers#buyer_orders'
   get 'user_show', to: 'users#user_show'
   get 'add_comment', to: 'comments#add_comment'
   get 'blog_like_unlike', to: 'blogs#blog_like_unlike'
@@ -289,6 +287,7 @@ Rails.application.routes.draw do
   resources :earn_coins, only: [:edit, :update]
   resource  :page, only: [:show, :edit, :update]
   resource  :take_snapshots, only: [:edit, :update, :destroy]
+  resources :permissions, only: [:index, :show, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

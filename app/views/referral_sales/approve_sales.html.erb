@@ -1,111 +1,104 @@
-<div class="dashboard-holder">
+<div class="col-md-9">
+  <div class="order-dropDown-style">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
+    <div class="col-md-12">
+      <h1 class="card-header">Order Management</h1>
+      <hr>
     </div>
-    <div class="col-md-9">
-      <div class="order-dropDown-style">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="card-header">Order Management</h1>
-          <hr>
-        </div>
-        <div class="col-md-4">
-          <div class="col-sm-12">
-            <h5>since</h5>
-            <%= text_field_tag :since, params[:start_date], :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="col-sm-12">
-            <h5>To Date</h5>
-            <%= text_field_tag :to_date, params[:end_date], :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="discount-dropDown">
-          <div class="col-sm-12">
-            <h5>Discount status</h5>
-            <select id="discountStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
-              <!--<option value="No Discount">No Discount</option>-->
-              <option value="false" >Pending</option>
-              <option value="true" >Approved</option>
-              <!--<option value="cancel" >Cancel</option>-->
-            </select>
-            </div>
-          </div>
+    <div class="col-md-4">
+      <div class="col-sm-12">
+        <h5>since</h5>
+        <%= text_field_tag :since, params[:start_date], :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="col-sm-12">
+        <h5>To Date</h5>
+        <%= text_field_tag :to_date, params[:end_date], :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="discount-dropDown">
+      <div class="col-sm-12">
+        <h5>Discount status</h5>
+        <select id="discountStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
+          <!--<option value="No Discount">No Discount</option>-->
+          <option value="false" >Pending</option>
+          <option value="true" >Approved</option>
+          <!--<option value="cancel" >Cancel</option>-->
+        </select>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="payment-dropDown">
-          <div class="col-sm-12">
-            <h5>Payment status</h5>
-            <select id="paymentStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
-              <option value="pending">Unpaid</option>
-              <option value="paid" >Paid</option>
-              <!--<option value="refunded" >Refunded</option>-->
-              <!--<option value="canceled" >Canceled</option>-->
-            </select>
-           </div>
-         </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="payment-dropDown">
+      <div class="col-sm-12">
+        <h5>Payment status</h5>
+        <select id="paymentStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
+          <option value="pending">Unpaid</option>
+          <option value="paid" >Paid</option>
+          <!--<option value="refunded" >Refunded</option>-->
+          <!--<option value="canceled" >Canceled</option>-->
+        </select>
+       </div>
+     </div>
+    </div>
+    <div class="col-md-4">
+      <div class="referral-dropDown">
+        <div class="col-sm-12">
+        <h5>Referral / Partner</h5>
+        <%= collection_select(:user, :id, User.ambassadors_with_sales, :id, :name, {}, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Tìm theo mã giới thiệu/tên partner"}) %>
+        <!--<%#= text_field_tag :partner,nil, :class => 'form-control', :placeholder=>"Tìm theo mã giới thiệu/tên partner" %>-->
         </div>
-        <div class="col-md-4">
-          <div class="referral-dropDown">
-            <div class="col-sm-12">
-            <h5>Referral / Partner</h5>
-            <%= collection_select(:user, :id, User.ambassadors_with_sales, :id, :name, {}, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Tìm theo mã giới thiệu/tên partner"}) %>
-            <!--<%#= text_field_tag :partner,nil, :class => 'form-control', :placeholder=>"Tìm theo mã giới thiệu/tên partner" %>-->
-            </div>
-         </div>
-        </div>
+     </div>
+    </div>
 
-        <div class="col-md-4 m-t-30">
-          <div class="col-sm-12">
-            <button onclick="apply_filter();" class="btn btn-info">Apply filter</button>
-            <a href="/approve_sales" class="btn btn-info">Clear filter</a>
-          </div>
-        </div>
+    <div class="col-md-4 m-t-30">
+      <div class="col-sm-12">
+        <button onclick="apply_filter();" class="btn btn-info">Apply filter</button>
+        <a href="/approve_sales" class="btn btn-info">Clear filter</a>
       </div>
+    </div>
+  </div>
 
-      <br/><br/>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-inline m-b-sm">
-            <div class="form-group m-b-sm">
-              <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched" ng-model="multiDiscountStatus">
-                <option value="order_discount_approved"> approve sale</option>
-                <option value="order_discount_cancel"> cancel sale</option>
-              </select>
-              <button id="checkboxBtn" class="btn btn-sm btn-primary float-left-moblie">Apply</button>
-              <label for="updateDiscountMulti" class="m-r-sm line-height-30 width-70-mb float-left-moblie">Order paid</label>
-            </div>
-          </div>
+  <br/><br/>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-inline m-b-sm">
+        <div class="form-group m-b-sm">
+          <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched" ng-model="multiDiscountStatus">
+            <option value="order_discount_approved"> approve sale</option>
+            <option value="order_discount_cancel"> cancel sale</option>
+          </select>
+          <button id="checkboxBtn" class="btn btn-sm btn-primary float-left-moblie">Apply</button>
+          <label for="updateDiscountMulti" class="m-r-sm line-height-30 width-70-mb float-left-moblie">Order paid</label>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="row m-t-30">
-        <div class="col-md-12">
-          <div class="card-body">
-            <div id="referralSale">
-                <%= render partial: 'referral_sales/table' %>
-            </div>
-            <br/><br/><br/>
-            <%#= link_to 'New Referral Sale', new_referral_sale_path %>
-          </div>
+  <div class="row m-t-30">
+    <div class="col-md-12">
+      <div class="card-body">
+        <div id="referralSale">
+            <%= render partial: 'referral_sales/table' %>
         </div>
-        </div>
+        <br/><br/><br/>
+        <%#= link_to 'New Referral Sale', new_referral_sale_path %>
       </div>
+    </div>
+    </div>
+  </div>
 
-      <div class="featured-pagination">
-        <div>
-          <ul class="pagination pagination-md">
-            <%= will_paginate @referral_sales, renderer: BootstrapPagination::Rails %>
-          </ul>
-        </div>
-        <div>
-        </div>
-      </div>
+  <div class="featured-pagination">
+    <div>
+      <ul class="pagination pagination-md">
+        <%= will_paginate @referral_sales, renderer: BootstrapPagination::Rails %>
+      </ul>
+    </div>
+    <div>
     </div>
   </div>
 </div>

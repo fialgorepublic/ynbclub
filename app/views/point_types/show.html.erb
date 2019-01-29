@@ -1,21 +1,14 @@
-<div class="dashboard-holder">
-  <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-    </div>
-    <div class="col-md-9">
-      <p>
-        <strong>Name:</strong>
-        <%= @point_type.name %>
-      </p>
+<div class="col-md-9">
+  <p>
+    <strong>Name:</strong>
+    <%= @point_type.name %>
+  </p>
 
-      <p>
-        <strong>Point:</strong>
-        <%= @point_type.point %>
-      </p>
+  <p>
+    <strong>Point:</strong>
+    <%= @point_type.point %>
+  </p>
 
-      <%= link_to 'Edit', edit_point_type_path(@point_type), class: 'btn btn-default' %> |
-      <%= link_to 'Back', point_types_path, class: 'btn btn-default' %>
-    </div>
-  </div>
+  <%= link_to 'Edit', edit_point_type_path(@point_type), class: 'btn btn-default' %> |
+  <%= link_to 'Back', point_types_path, class: 'btn btn-default' %>
 </div>

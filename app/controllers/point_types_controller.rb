@@ -1,7 +1,7 @@
 class PointTypesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!
   before_action :set_point_type, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
   # GET /point_types
   # GET /point_types.json

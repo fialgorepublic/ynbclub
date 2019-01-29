@@ -1,5 +1,5 @@
 class EarnCoinsController < ApplicationController
-
+  before_action :authorize_user!
   def edit
     @earn_coin.point_types
   end

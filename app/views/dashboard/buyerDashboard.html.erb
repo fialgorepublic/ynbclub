@@ -1,217 +1,29 @@
-<div class="dashboard-holder buyer-dashboard">
+<div class="col-md-9">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
-
-
-    </div>
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i><img src="/assets/icon-16.png"></i> Dashboard</h2>
-          </div>
-          <hr>
-        </div>
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i><img src="/assets/icon-16.png"></i> Dashboard</h2>
       </div>
-
-
-      <div class="row">
-      	<div class="col-md-12">
-          <h3>Last Earned Coins</h3>
-      	</div>
-      </div>
-      <div class="row">
-        <%= render partial: 'dashboard/point', collection: @points %>
-      </div>
-      <% if current_user_points(current_user) > 4 %>
-        <div class="row">
-          <div class="col-md-offset-10 col-md-2">
-            <a href="/users/points">Show more...</a>
-          </div>
-        </div>
-      <% end %>
-        <!-- <div class="col-md-3">
-          <div class="buydashboard-box text-center">
-            <img src="/assets/coin-lg.png">
-            <h4>+5 coins.</h4>
-            <p>Took and shared a </br> snapshot</p>
-          </div>
-        </div>
-         <div class="col-md-3">
-          <div class="buydashboard-box text-center">
-            <img src="/assets/coin-lg.png">
-            <h4>+15 coins.</h4>
-            <p>Ordered "product </br> name" in the "blog post...</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="buydashboard-box text-center">
-            <img src="/assets/coin-lg.png">
-            <h4>+15 coins.</h4>
-            <p>Invited John Doe  </br> passed $50</p>
-          </div>
-        </div>
-      </div> -->
-
-       <!-- <div class="row">
-        <div class="col-md-10">
-          <h3>Last Order</h3>
-        </div>
-        <div class="col-md-2 text-right">
-          <p style="margin-top:15px; margin-bottom:0;"><a style="color:#ccc;" href="">Show All</a></p>
-        </div>
-      </div>
-      <div class="last-order">
-     	<div class="row">
-     		<div class="col-md-2">
-     			<div class="product-img">
-     				<img width="100%" src="/assets/product.png">
-     			</div>
-     		</div>
-     		<div class="col-md-7">
-     			<div class="product-content">
-     				<span class="price-tag">+$200</span>
-     				<p>John Doe ordered Dr.jart+INTRAJET FIRMING SOLUTION(1box/5pcs)</p>
-     				<span class="product-quantity">1Box(5PCS)</span>
-     			</div>
-     		</div>
-     		<div class="col-md-3">
-     			<div class="shipping-holder">
-     				<span class="sh-status">Shipping Status</span>
-     				<h4><a href="">Delivered to the depot for sorting</a></h4>
-     				<span class="icon-next"><i class="fa fa-angle-right"></i></span>
-     			</div>
-     		</div>
-     	</div>
- 	</div>
- 	 <div class="last-order">
-     	<div class="row">
-     		<div class="col-md-2">
-     			<div class="product-img">
-     				<img width="100%" src="/assets/product.png">
-     			</div>
-     		</div>
-     		<div class="col-md-7">
-     			<div class="product-content">
-     				<span class="price-tag">+$200</span>
-     				<p>John Doe ordered Dr.jart+INTRAJET FIRMING SOLUTION(1box/5pcs)</p>
-     				<span class="product-quantity">1Box(5PCS)</span>
-     			</div>
-     		</div>
-     		<div class="col-md-3">
-     			<div class="shipping-holder">
-     				<span class="sh-status">Shipping Status</span>
-     				<h4><a href="">Delivered to the depot for sorting</a></h4>
-     				<span class="icon-next"><i class="fa fa-angle-right"></i></span>
-     			</div>
-     		</div>
-     	</div>
- 	</div>
- 	 <div class="last-order">
-     	<div class="row">
-     		<div class="col-md-2">
-     			<div class="product-img">
-     				<img width="100%" src="/assets/product.png">
-     			</div>
-     		</div>
-     		<div class="col-md-7">
-     			<div class="product-content">
-     				<span class="price-tag">+$200</span>
-     				<p>John Doe ordered Dr.jart+INTRAJET FIRMING SOLUTION(1box/5pcs)</p>
-     				<span class="product-quantity">1Box(5PCS)</span>
-     			</div>
-     		</div>
-     		<div class="col-md-3">
-     			<div class="shipping-holder">
-     				<span class="sh-status">Shipping Status</span>
-     				<h4><a href="">Delivered to the depot for sorting</a></h4>
-     				<span class="icon-next"><i class="fa fa-angle-right"></i></span>
-     			</div>
-     		</div>
-     	</div> -->
- 	</div>
-   	<!--<div class="row">-->
-         <!--<div class="col-md-10">-->
-           <!--<h3>Last Seen Products</h3>-->
-        <!--</div>-->
-      <!--</div>-->
-  	<!--<div class="row last-seen-product">-->
-      <!--<div class="col-md-4">-->
-        <!--<div class="box-shadow-am  product-shadow product-border-style sm-pd-am">-->
-          <!--<div class="product-box">-->
-            <!--<img width="100%" src="/assets/placeholder.png">-->
-          <!--</div>-->
-          <!--<div class="product-detail">-->
-            <!--<p> Product</p>-->
-          <!--</div>-->
-          <!--<div class="product-review">-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-          <!--</div>-->
-          <!--<div class="product-price">-->
-            <!--<h5> 100000</h5>-->
-          <!--</div>-->
-          <!--<div class="product-offer">-->
-            <!--<p>20% we're getting from every purchase</p>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="col-md-4">-->
-        <!--<div class="box-shadow-am  product-shadow product-border-style sm-pd-am">-->
-          <!--<div class="product-box">-->
-            <!--<img width="100%" src="/assets/placeholder.png">-->
-          <!--</div>-->
-          <!--<div class="product-detail">-->
-            <!--<p> Product</p>-->
-          <!--</div>-->
-          <!--<div class="product-review">-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-          <!--</div>-->
-          <!--<div class="product-price">-->
-            <!--<h5> 100000</h5>-->
-          <!--</div>-->
-          <!--<div class="product-offer">-->
-            <!--<p>20% we're getting from every purchase</p>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="col-md-4">-->
-        <!--<div class="box-shadow-am  product-shadow product-border-style sm-pd-am">-->
-          <!--<div class="product-box">-->
-            <!--<img width="100%" src="/assets/placeholder.png">-->
-          <!--</div>-->
-          <!--<div class="product-detail">-->
-            <!--<p> Product</p>-->
-          <!--</div>-->
-          <!--<div class="product-review">-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-            <!--<i class="fa fa-star"></i>-->
-          <!--</div>-->
-          <!--<div class="product-price">-->
-            <!--<h5> 100000</h5>-->
-          <!--</div>-->
-          <!--<div class="product-offer">-->
-            <!--<p>20% we're getting from every purchase</p>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
-<!--</div>-->
-
-
+      <hr>
     </div>
   </div>
 
+
+  <div class="row">
+  	<div class="col-md-12">
+      <h3>Last Earned Coins</h3>
+  	</div>
+  </div>
+  <div class="row">
+    <%= render partial: 'dashboard/point', collection: @points %>
+  </div>
+  <% if current_user_points(current_user) > 4 %>
+    <div class="row">
+      <div class="col-md-offset-10 col-md-2">
+        <a href="/users/points">Show more...</a>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <div id="afterSelectRole" class="modal fade" role="dialog">

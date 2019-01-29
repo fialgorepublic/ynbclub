@@ -1,10 +1,9 @@
 <div class="col-md-9">
-
   <div class="row">
     <div class="col-md-12">
-      <h1 class="card-header"><%= page_title(params[:deduct_points]) %></h1>
+      <h1 class="card-header">Permissions Manager</h1>
       <hr>
-      <%= form_tag users_ban_users_path, method: :get, id: "search-form" do %>
+      <%= form_tag permissions_path, method: :get, id: "search-form" do %>
         <div class="input-group">
           <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="" value="<%= params[:q] %>">
           <%= hidden_field_tag :deduct_points, params[:deduct_points], id: 'deduct_points_hidden_field' %>
@@ -31,12 +30,7 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone No</th>
-                <% if params[:deduct_points].present? %>
-                  <th>Points</th>
-                  <th>Deduct Points</th>
-                <% else %>
-                  <th>Banned</th>
-                <% end %>
+                <th>Actions</th>
               </tr>
             </thead>
 
@@ -48,15 +42,7 @@
                   <td><%= user.surname %></td>
                   <td><%= user.email %></td>
                   <td><%= user.profile_phone_number %></td>
-                    <% if params[:deduct_points].present? %>
-                      <td><%= user.total_points %></td>
-                      <td><%= link_to "Deduct Point", "javascript:void(0);", id: 'deduct_modal', class: "btn btn-primary", data: { id: user.id } if user.total_points > 0 %></td>
-                    <% else %>
-                      <td>
-                        <%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%>
-                      </td>
-                    <% end %>
-                  </td>
+                  <td><%= link_to 'View Permissions', permission_path(user.id) %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -73,30 +59,6 @@
       </ul>
     </div>
     <div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="deduct_points_modal" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <h4 class=" text-center">Deduct Points</h4>
-        <div class="form-group">
-          <%= label_tag "Enter points to deduct" %>
-          <%= number_field_tag :point_value, '', id: 'point_value', class: 'form-control', required: true %>
-          <%= hidden_field_tag :user_id, '' %>
-        </div>
-        <p id="value_error"></p>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= link_to "Deduct", "javascript:void(0)", class: 'btn btn-success', id: 'deduct_points', data: { url: deduct_points_users_path() } %>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -119,18 +81,5 @@
     $('#search-btn').click(function(event){
       if($('#searchText').val() == '') { event.preventDefault(); return; }
     })
-
-    $('.ban-user').change(function() {
-      var value = $(this).prop('checked');
-      var string = value ? "Ban" : "Resume"
-      var box = confirm(`Are you sure you want to ${string} this user account?`);
-      if(box) {
-        $.ajax({
-          url: $(this).data('url') + `&value=${value}`,
-          type: 'get',
-          dataType: 'html'
-        });
-      }
-    });
   });
 </script>

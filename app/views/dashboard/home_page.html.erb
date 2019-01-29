@@ -1,72 +1,63 @@
-<div class="dashboard-holder">
+<div class="col-md-9 home-page-holder">
   <div class="row">
-    <div class="col-md-3">
-      <%= render partial: "shared/side_bar" %>
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-paint-brush"></i> Home Page</h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+   <div class="row">
+      <div class="col-md-12 text-right cu-btn-holder" >
+        <button class="btn btn-default">Save</button>
+        <button class="btn btn-default">Cancel</button>
+      </div>
     </div>
 
-    <div class="col-md-9 home-page-holder">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="main">
-            <h2> <i class="fa fa-paint-brush"></i> Home Page</h2>
-          </div>
-          <hr>
-        </div>
-      </div>
-       <div class="row">
-          <div class="col-md-12 text-right cu-btn-holder" >
-            <button class="btn btn-default">Save</button>
-            <button class="btn btn-default">Cancel</button>
-          </div>
-        </div>
-
-      <div class="row">
-        <div class="col-md-12">
-             <div class=" m-image-frame" style="border: 1px solid #eee;
-                          padding: 30px;
-                          margin: 0px 0;
-                          text-align: center;
-                          min-height: 150px">
-                         <!--  <img width="150" src="/assets/placeholder.png"> -->
-                   
-                    <!-- <lable for="file_name" id="file-name">Upload</lable> -->
-               <div class="row">
-                <div class="col-md-12">
-                   <div class="field form-group" >
-                      <div class="fileUpload text-center start blog-imgUpload">
-                        <input type="file" id="fileupload" class="filestyle upload" data-input="false">
-                        <%#= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false %>
-                      </div>
-                    </div>
-                </div>
-               </div>
-
-               <div class="row">
-                <div class="col-md-12">
-                 <div id="froala-editor">
-  <h3>Click here to edit the content</h3>
-  <p>This is the inline example for the Froala rich text editor. For this you have to set the  option to <code>true</code>.</p>
-</div>
-                </div>
-               </div>
-
-               <div class="row">
-                  <div class="col-md-12 text-center">
-                    <!-- <input type="color" name="favcolor" value="#ff0000" class="btn btn-primary"> -->
-                    <input class="jscolor" value="Button">
+  <div class="row">
+    <div class="col-md-12">
+         <div class=" m-image-frame" style="border: 1px solid #eee;
+                      padding: 30px;
+                      margin: 0px 0;
+                      text-align: center;
+                      min-height: 150px">
+                     <!--  <img width="150" src="/assets/placeholder.png"> -->
+               
+                <!-- <lable for="file_name" id="file-name">Upload</lable> -->
+           <div class="row">
+            <div class="col-md-12">
+               <div class="field form-group" >
+                  <div class="fileUpload text-center start blog-imgUpload">
+                    <input type="file" id="fileupload" class="filestyle upload" data-input="false">
+                    <%#= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false %>
                   </div>
-               </div>
-
+                </div>
             </div>
+           </div>
+
+           <div class="row">
+            <div class="col-md-12">
+             <div id="froala-editor">
+                <h3>Click here to edit the content</h3>
+                <p>This is the inline example for the Froala rich text editor. For this you have to set the  option to <code>true</code>.</p>
+              </div>
+            </div>
+           </div>
+
+           <div class="row">
+              <div class="col-md-12 text-center">
+                <!-- <input type="color" name="favcolor" value="#ff0000" class="btn btn-primary"> -->
+                <input class="jscolor" value="Button">
+              </div>
+           </div>
+
         </div>
-      </div>
-
-
     </div>
   </div>
 </div>
 
-  <script>
+
+<script>
   $(function() {
     $('div#froala-editor').froalaEditor({
     toolbarInline: true,

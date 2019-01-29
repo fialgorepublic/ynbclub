@@ -1,4 +1,5 @@
 class ShareWithFriendsController < ApplicationController
+  before_action :authorize_user!
   before_action :set_share_with_friend
 
   def edit

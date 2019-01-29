@@ -1,5 +1,6 @@
 class PartnerInformationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user!
 
   def add_partner_information
     @partner_information = PartnerInformation.new(partner_information_params)

@@ -57,6 +57,7 @@ class User < ApplicationRecord
   has_many :blog_views
   has_many :blogs
   has_many :exchange_histories
+  has_many :permissions
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
                     :storage => :s3,
@@ -73,6 +74,30 @@ class User < ApplicationRecord
   scope :avtive_ambassadors, -> (status) { where(role_id: ambassador_role_id, is_activated: status) }
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
   scope :sort_by_banned, -> { order(banned: :desc) }
+
+  after_save :set_default_permissions
+
+  BUYER_PERMISSIONS = [
+                        { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
+                        { action_names: ['index'], controller_name: 'referral_sales' },
+                        { action_names: ['all_actions'], controller_name: 'profiles' },
+                        { action_names: ['get_products_from_shopify', 'get_selected_products'], controller_name: 'products' },
+                        { action_names: ['add_partner_information'], controller_name: 'partner_informations' },
+                        { action_names: ['my_orders'], controller_name: 'orders' },
+                        { action_names: ['index', 'update_user_role', 'change_profile_picture', 'get_user_object', 'step_one', 'step_two', 'step_three', 'buyerDashboard', 'share_with_friends', 'acc_settings', 'take_snapshot'],
+                          controller_name: 'dashboard' },
+                        { action_names: ['add_comment', 'comment_like_unlike'], controller_name: 'comments' }
+                      ]
+  AMBASSADOR_PERMISSIONS = [
+                            { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
+                            { action_names: ['index'], controller_name: 'referral_sales' },
+                            { action_names: ['index'], controller_name: 'profiles' },
+                            { action_names: ['get_products_from_shopify', 'get_selected_products'], controller_name: 'products' },
+                            { action_names: ['my_orders'], controller_name: 'orders' },
+                            { action_names: ['index', 'update_user_role', 'change_profile_picture', 'get_user_object', 'step_one', 'step_two', 'step_three', 'acc_settings', 'share_with_friends', 'take_snapshot'],
+                              controller_name: 'dashboard' },
+                            { action_names: ['add_comment', 'comment_like_unlike'], controller_name: 'comments' }
+                          ]
 
   class << self
     def ambassador_role_id
@@ -100,8 +125,12 @@ class User < ApplicationRecord
     end
 
     def search_users q
+      filter_users(q).sort_by_banned
+    end
+
+    def filter_users q
       q = q.downcase
-      joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'").sort_by_banned
+      joins(:profile).where("LOWER(users.name) LIKE '%#{q}%' OR LOWER(users.email) LIKE '%#{q}%' OR LOWER(profiles.phone_number) LIKE '%#{q}%'")
     end
 
     def all_users params
@@ -111,32 +140,33 @@ class User < ApplicationRecord
     end
   end
 
-  # after_create :generate_profile
-  # after_update :update_profile_names
+  def add_new_permissions permissions
+    permissions.each do |key, permission|
+      self.permissions.find_or_create_by(action_name: permission[:action], controller_name: permission[:controller])
+    end
+  end
 
-  # def update_profile_names
-  #   unless profile.blank?
-  #     first_name = nil
-  #     surname = nil
-  #     if self.name.present?
-  #       name = self.name.split(" ")
-  #       first_name = name[0]
-  #       surname = name[1]
-  #     end
-  #     profile.update(first_name: first_name, surname: surname)
-  #   end
-  # end
+  def delete_old_permissions permissions
+    permissions.each do |key, permission|
+      permission = self.permissions.find_by(action_name: permission[:action], controller_name: permission[:controller])
+      permission.delete if permission.present?
+    end
+  end
 
-  # def generate_profile
-  #   first_name = nil
-  #   surname = nil
-  #   if self.name.present?
-  #     name = self.name.split(" ")
-  #     first_name = name[0]
-  #     surname = name[1]
-  #   end
-  #   self.create_profile(phone_number: phone_number, first_name: first_name, surname: surname)
-  # end
+  def set_default_permissions
+    return if role.blank? || permissions.present?
+    create_permissions(User::BUYER_PERMISSIONS) if self.is_buyer?
+    create_permissions(User::AMBASSADOR_PERMISSIONS) if self.is_ambassador?
+  end
+
+  def create_permissions permissions
+    permissions.each do |permission|
+      permission[:action_names].each do |action|
+        self.permissions.find_or_create_by(action_name: action, controller_name: permission[:controller_name])
+      end
+    end
+  end
+
 
   def is_admin?
     return true if(self.role.name.eql?("Admin") unless self.role.nil?)
@@ -174,5 +204,9 @@ class User < ApplicationRecord
 
   def total_points
     points.present? ? points.sum(:point_value) : 0
+  end
+
+  def has_permission? action, controller
+    permissions.find_by(action_name: action, controller_name: controller).present?
   end
 end

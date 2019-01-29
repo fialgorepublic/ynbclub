@@ -18,17 +18,13 @@
   <%#= @blog.category_id %>
 </p>
 
-<%= link_to 'Edit', edit_blog_path(@blog), class: 'btn btn-default' %> |
-<%= link_to 'Back', blogs_path, class: 'btn btn-default' %> -->
+<%#= link_to 'Edit', edit_blog_path(@blog), class: 'btn btn-default' %> |
+<%#= link_to 'Back', blogs_path, class: 'btn btn-default' %> -->
 
 
 
 
-<div class="dashboard-holder detail-blog">
-<div class="row">
-<div class="col-md-3">
-  <%= render partial: "shared/side_bar" %>
-</div>
+
 <div class="col-md-9">
 <div class="row">
   <div class="col-md-12">
@@ -113,48 +109,6 @@
   </div>
 </div>
 
-<!--<div class="row">-->
-<!--<div class="col-md-4">-->
-<!--<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">-->
-<!--</div>-->
-<!--<div class="col-md-4">-->
-<!--<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">-->
-<!--</div>-->
-<!--<div class="col-md-4">-->
-<!--<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="row" style="margin-top:20px;">-->
-<!--<div class="col-md-12">-->
-<!--<div class="detail-img">-->
-<!--<blockquote>-->
-<!--Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet-->
-<!--</blockquote>-->
-<!--</diV>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="row">-->
-<!--<div class="col-md-12">-->
-<!--<div class="detail-img">-->
-<!--<iframe width="100%" height="315" src="https://www.youtube.com/embed/xNwkBYmdjqo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="row">-->
-<!--<div class="col-md-12">-->
-<!--<div class="detail-img">-->
-<!--<h4><strong>Lorem ipsum dolor sit amet:</strong></h4>-->
-<!--<p>1)Lorem ipsum dolor sit amet Lorem ipsum dolor sit</p>-->
-<!--<p>2)Lorem ipsum dolor sit amet Lorem ipsum dolor sit</p>-->
-<!--<p>3)Lorem ipsum dolor sit amet Lorem ipsum dolor sit</p>-->
-<!--<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
 
 <div class="row">
   <div class="col-md-12 product-title">
@@ -190,77 +144,7 @@
   <% end %>
 </div>
 
-<!--<div class="row">-->
-<!--<div class="col-md-4">-->
-<!--<div class="box-shadow-am sm-pd-am">-->
-<!--<div class="product-box">-->
-<!--<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">-->
-<!--</div>-->
-<!--<div class="product-detail">-->
-<!--<p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>-->
-<!--</div>-->
-<!--<div class="product-review">-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--</div>-->
-<!--<div class="product-price">-->
-<!--<h5>250,000</h5>-->
-<!--</div>-->
-<!--<div class="product-offer">-->
-<!--<p>20% we're getting from every purchase</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 
-<!--<div class="col-md-4">-->
-<!--<div class="box-shadow-am sm-pd-am">-->
-<!--<div class="product-box">-->
-<!--<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">-->
-<!--</div>-->
-<!--<div class="product-detail">-->
-<!--<p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>-->
-<!--</div>-->
-<!--<div class="product-review">-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--</div>-->
-<!--<div class="product-price">-->
-<!--<h5>250,000</h5>-->
-<!--</div>-->
-<!--<div class="product-offer">-->
-<!--<p>20% we're getting from every purchase</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-md-4">-->
-<!--<div class="box-shadow-am sm-pd-am">-->
-<!--<div class="product-box">-->
-<!--<img width="100%" src="/assets/katerina-radvanska-397105-unsplash.jpg">-->
-<!--</div>-->
-<!--<div class="product-detail">-->
-<!--<p>Drjort+ INTRAJET FIRMING SOLUTION(1 box/ 5pcs)</p>-->
-<!--</div>-->
-<!--<div class="product-review">-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--<i class="fa fa-star"></i>-->
-<!--</div>-->
-<!--<div class="product-price">-->
-<!--<h5>250,000</h5>-->
-<!--</div>-->
-<!--<div class="product-offer">-->
-<!--<p>20% we're getting from every purchase</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
 <% if @blog.is_published? %>
   <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
     Post a comment
@@ -272,8 +156,6 @@
   </div>
 <% end %>
 
-</div>
-</div>
 </div>
 
 <div class="modal fade" id="addComment" role="dialog">

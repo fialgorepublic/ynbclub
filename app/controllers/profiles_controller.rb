@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-
+  before_action :authorize_user!
   before_action :get_profile, only: [:update]
 
   def update
