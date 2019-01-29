@@ -99,7 +99,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_has_permissions?
-    byebug
     return permission_exists?(action_name, controller_name) if action_name == "approve_sales" && controller_name == "referral_sales"
     return permission_exists?('manage_rewards', 'point_types') if controller_name == "point_types"
     return permission_exists?('configurations', 'settings') if controller_name == "settings"
