@@ -146,6 +146,13 @@ class User < ApplicationRecord
     end
   end
 
+  def delete_old_permissions permissions
+    permissions.each do |key, permission|
+      permission = self.permissions.find_by(action_name: permission[:action], controller_name: permission[:controller])
+      permission.delete if permission.present?
+    end
+  end
+
   def set_default_permissions
     return if role.blank? || permissions.present?
     create_permissions(User::BUYER_PERMISSIONS) if self.is_buyer?

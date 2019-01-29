@@ -1,17 +1,23 @@
 $(document).ready(function(){
   a = []
   $('#change_permissions').click(function(){
-    controllers = []
+    new_permissions = []
+    old_permissions = []
     $('.add-permissions:checkbox:checked').each(function() {
-      controllers.push({ controller: $(this).data('controller'), action: $(this).data('action')});
+      new_permissions.push({ controller: $(this).data('controller'), action: $(this).data('action')});
     });
+
+    $('.add-permissions:checkbox:not(:checked)').each(function() {
+      old_permissions.push({ controller: $(this).data('controller'), action: $(this).data('action')});
+    });
+
     confirm = confirm(`Are you sure you want to change the permission for this user?`);
     if (confirm){
       $.ajax({
         url: $(this).data('url'),
         type: 'post',
         dataType: 'json',
-        data: { controllers: controllers },
+        data: { controllers: new_permissions, old_permissions: old_permissions },
         success: function(data) {
           window.location.href = '/permissions'
         },

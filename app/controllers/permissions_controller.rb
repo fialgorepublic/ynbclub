@@ -14,6 +14,7 @@ class PermissionsController < ApplicationController
 
   def create
     @user.add_new_permissions(params[:controllers])
+    @user.delete_old_permissions(params[:old_permissions])
     flash[:success] = "Permission for #{@user.email} are updated successfully."
     render json: { success: true }
   end
