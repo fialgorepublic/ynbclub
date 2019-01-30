@@ -32,11 +32,13 @@ $(document).ready(function(){
     checked = $(this).is(':checked')
     if (checked) {
       a.push(checked);
-      $('#change_permissions').attr('disabled', false);
+      $('#change_permissions').removeClass('disabled');
     }
     else {
       a.pop();
-      if(a.length == 0) { $('#change_permissions').attr('disabled', true) };
+      if(a.length == 0) {
+        $('#change_permissions').addClass('disabled');
+      };
     }
   })
 });
