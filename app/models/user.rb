@@ -207,6 +207,6 @@ class User < ApplicationRecord
   end
 
   def has_permission? action, controller
-    permissions.find_by(action_name: action, controller_name: controller).present?
+    permissions.where(action_name: action, controller_name: controller).present?
   end
 end
