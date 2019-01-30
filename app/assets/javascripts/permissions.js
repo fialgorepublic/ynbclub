@@ -25,10 +25,19 @@ $(document).ready(function(){
         }
       });
     }
+    else {
+      for(var checkbox in a) {
+        selected_checbox = a[checkbox];
+        selected_checbox.attr('checked', false)
+      }
+
+      a = []
+    }
   });
 
   $('.add-permissions').change(function(){
     checked = $(this).is(':checked')
+    if (checked) { a.push($(this)) };
     $('#change_permissions').removeClass('disabled');
   })
 });
