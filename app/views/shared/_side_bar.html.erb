@@ -161,7 +161,7 @@
         </li>
       <% end %>
 
-      <% if current_user.is_admin? || current_user.has_permission?('page_desing', 'dashboard') %>
+      <% if current_user.is_admin? || current_user.has_permission?('page_design', 'dashboard') %>
         <li>
           <%= link_to page_design_path, class: active_class(page_design_path) do %>
             <i class="fa fa-paint-brush"></i> <span class="ml-4">Pages Design</span>
