@@ -13,7 +13,7 @@ module PermissionsHelper
     when 'users'
       return 'Ban Users' if action == 'ban'
       return 'Deduct Points' if action == 'deduct_points'
-      return 'Ambassadors' if action == 'brand_ambassadors'
+      return 'Commission' if action == 'brand_ambassadors'
       'Ambassadors'
     when 'categories'
       'Categories'
