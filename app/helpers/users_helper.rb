@@ -14,4 +14,8 @@ module UsersHelper
   def page_title deduct_points
     deduct_points.present? ? "Deduct Points" : "Ban Users"
   end
+
+  def icon_class deduct_points
+    deduct_points.present? ? "fa-minus-circle" : "fa-ban"
+  end
 end
