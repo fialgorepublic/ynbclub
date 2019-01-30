@@ -29,15 +29,6 @@ $(document).ready(function(){
 
   $('.add-permissions').change(function(){
     checked = $(this).is(':checked')
-    if (checked) {
-      a.push(checked);
-      $('#change_permissions').removeClass('disabled');
-    }
-    else {
-      a.pop();
-      if(a.length == 0) {
-        $('#change_permissions').addClass('disabled');
-      };
-    }
+    $('#change_permissions').removeClass('disabled');
   })
 });
