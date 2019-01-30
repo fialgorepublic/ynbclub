@@ -11,8 +11,7 @@ $(document).ready(function(){
       old_permissions.push({ controller: $(this).data('controller'), action: $(this).data('action')});
     });
 
-    confirm = confirm(`Are you sure you want to change the permission for this user?`);
-    if (confirm){
+    if (confirm(`Are you sure you want to change the permission for this user?`)){
       $.ajax({
         url: $(this).data('url'),
         type: 'post',
