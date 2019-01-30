@@ -109,7 +109,7 @@
         </li>
       <% end %>
 
-      <% if current_user.is_admin? || current_user.has_permission?('approve_sales', 'referral_sales')%>
+      <% if current_user.is_admin? || current_user.has_permission?('configurations', 'settings')%>
         <li>
           <a class="auto click-close <%= active_class(edit_setting_path(Setting.first)) %>" href="<%= edit_setting_path(Setting.first) %>">
           <i class="fa fa-gears sidebar-icon"></i>
