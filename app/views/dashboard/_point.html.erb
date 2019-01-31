@@ -1,7 +1,7 @@
 <div class="col-md-3">
   <div class="buydashboard-box text-center">
     <img src="/assets/coin-lg.png">
-    <h4>+<%= point.point_value %> coins.</h4>
+    <h4><%= point.point_value < 0 ? point.point_value : "+ #{point.point_value}" %> coins.</h4>
     <p><%= point_name(point) %></p>
   </div>
 </div>

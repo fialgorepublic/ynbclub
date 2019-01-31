@@ -54,7 +54,7 @@ class ShopifyService
                       )
           discount_code = ShopifyAPI::DiscountCode.create(price_rule_id: price_rule.id, discount_code: { code: (0...10).map { ('a'..'z').to_a[rand(26)] }.join} )
           user.exchange_histories.create(discount_code: discount_code.code, exchanged_coins: coins_to_exchange, rewarded_amount: reward)
-          user.points.create(point_value: (-1 * coins_to_exchange), invitee: "Exchanged #{coins_to_exchange.to_i} coins for deiscount code.")
+          user.points.create(point_value: (-1 * coins_to_exchange), invitee: "Exchanged #{coins_to_exchange.to_i} coins for discount code.")
           [true, "Discount code is created Successfully!"]
         rescue => ex
           [false, ex.message]
