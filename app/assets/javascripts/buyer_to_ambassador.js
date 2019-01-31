@@ -3,7 +3,8 @@ $( document ).ready(function(){
     event.preventDefault();
     apprise('Are You Sure You Want To Be a Brand Ambassador?', { 'verify': true }, function (r) {
       if (r) {
-        var url = `/update_user_role?role_id=2`;//`${$(this).data('url')}/${$(this).data('role-id')}`
+        ambs_ele = $("#become-ambassador")
+        var url = `${ambs_ele.data('url')}?role_id=${ambs_ele.data('role-id')}`;//`${$(this).data('url')}/${$(this).data('role-id')}`
         $.ajax({
           url: url,
           type: 'GET',
