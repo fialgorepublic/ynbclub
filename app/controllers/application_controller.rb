@@ -105,7 +105,7 @@ class ApplicationController < ActionController::Base
     return permission_exists?(action_name, controller_name) if action_name == "ban" && controller_name == "users"
     return permission_exists?(action_name, controller_name) if action_name == "deduct_points" && controller_name == "users"
     return permission_exists?(action_name, controller_name) if action_name == "brand_ambassadors" && controller_name == "users"
-    return permission_exists?('ambassadors', 'user') if action_name == "index" && controller_name == "users"
+    return permission_exists?('ambassadors', 'users') if action_name == "index" && controller_name == "users"
     return permission_exists?('index', controller_name) if controller_name == "payments"
     return permission_exists?('categories', controller_name) if controller_name == "categories"
     return permission_exists?('page_design', 'dashboard') if ['pages', 'dashboard', 'take_snapshots', 'earn_coins', 'share_with_freinds'].include?(controller_name) && !action_name == 'buyerDashboard'
