@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @session = ShopifyAPI::Session.new("saintlbeau.myshopify.com", "3c4ad02df9475ea3ebc8668adfc65d53")
+    <% @session = ShopifyAPI::Session.new("saintlbeau.myshopify.com", "b8a6f6c3187c79cd975c9bde50c12756")
       ShopifyAPI::Base.activate_session(@session) %>
     <% @referral_sales.each do |referral_sale| %>
       <% payment_status = ShopifyAPI::Order.find(referral_sale.order_id).financial_status %>
