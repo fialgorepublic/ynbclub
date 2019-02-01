@@ -26,7 +26,7 @@ class PointTypesController < ApplicationController
   # POST /point_types
   # POST /point_types.json
   def create
-    @point_type = PointType.new(point_type_params)
+    @point_type = @earn_coin.point_types.new(point_type_params)
 
     respond_to do |format|
       if @point_type.save
