@@ -84,8 +84,12 @@ class ShopifyService
     def calculate_rewarded_amount
       #get admin decided excange_rate
       defined_coins = EarnCoin.first.coins
-      eqivalent_to  = EarnCoin.first.price
+      eqivalent_to  = filter_the_amount(EarnCoin.first.price)
       exhange_rate = eqivalent_to.to_f / defined_coins.to_f
       exhange_rate * coins_to_exchange
+    end
+
+    def filter_the_amount(price)
+      price.remove('₫').split(',').join('')
     end
 end
