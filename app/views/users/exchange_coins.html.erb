@@ -60,7 +60,7 @@
           <td><%= history.id %></td>
           <td><%= history.discount_code %></td>
           <td><%= history.exchanged_coins %></td>
-          <td><%= history.rewarded_amount %></td>
+          <td><%= format_amount_to_vnd(history.rewarded_amount) %></td>
         </tr>
       <% end %>
     </tbody>
