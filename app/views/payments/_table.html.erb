@@ -17,15 +17,12 @@
       <tr>
         <td><%= payment.payment_code %></td>
         <td><%= payment.created_at %></td>
-        <td><%= payment.amount %></td>
+        <td><%= number_with_delimiter(payment.amount, delimiter: ".") %>₫</td>
         <td><%= payment.user.name %></td>
         <td><%= payment.user.email %></td>
         <td><%= payment.number_math %></td>
         <td><%= payment.status %></td>
         <td><%= payment.note %></td>
-        <!--<td><%#= link_to 'Show', payment %></td>-->
-        <!--<td><%#= link_to 'Edit', edit_payment_path(payment) %></td>-->
-        <!--<td><%#= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
   <% end %>
   </tbody>
