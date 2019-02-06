@@ -104,12 +104,12 @@
   function createFBShareLink(id, type, blog, fbAppId) {
     var blog = JSON.parse(blog)
     var url = 'http://www.facebook.com/dialog/feed?app_id=' + fbAppId +
-      '&link=http://beta.saintlbeau.com/blog_detail?id=' + id +
+      '&link=http://ambassador.saintlbeau.com/blog_detail?id=' + id +
       '&picture=http://s3.amazonaws.com/saintalgorepublic/files/original/' + id + "_" + blog.avatar_file_name +
       '&name=' + blog.title +
       '&caption=' +
       '&description=' +
-      '&redirect_uri=' + encodeURIComponent('http://beta.saintlbeau.com/share_blog?id=' + id + "&value=" + type) +
+      '&redirect_uri=' + encodeURIComponent('http://ambassador.saintlbeau.com/share_blog?id=' + id + "&value=" + type) +
       '&display=popup';
 
     return url;
