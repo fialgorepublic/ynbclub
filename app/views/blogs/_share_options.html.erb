@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-share-alt"></i>
+  </span>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li><a href="javascript:void(0);" onclick="openWindow('<%= blog.id %>','facebook', '<%= blog_attributes blog %>')"> <i class="fa fa-facebook"></i></a></li>
+    <li><a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
+    </li>
+  </ul>
+</div>
