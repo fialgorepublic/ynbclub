@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  $('#sort-blogs').on('change', function(){
-    sort_type = $(this).val();
-
+  $('#sort-blogs, #category-dropdown').on('change', function(){
+    sort_type = $('#sort-blogs').val();
+    category_type = $('#category-dropdown').val();
     $('.loader').show()
     $.ajax({
-      url: `/blogs?sort=${sort_type}`,
+      url: `/blogs?sort=${sort_type}&category=${category_type}`,
       type: 'GET',
       dataType: 'json',
       success: function(data) {

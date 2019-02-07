@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = current_user.filtered_blogs(params[:sort]).paginate(page: params[:page], per_page: 10)
+    @blogs = current_user.filtered_blogs(params[:sort], params[:category]).paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
     if request.xhr?
       with_format :html do

@@ -52,6 +52,8 @@ class Blog < ApplicationRecord
     end
   }
 
+  scope :filter_by_category, -> (category) { where(category_id: category) }
+
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, to: :user, prefix: true, allow_nil: true
 
