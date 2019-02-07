@@ -25,6 +25,7 @@ class Payment < ApplicationRecord
   private
     def paid_amount
       errors.add(:amount, "Entered amount exceeds user's total income.") if amount > user.total_income
+      errors.add(:amount, 'Amount must be greater than zero.') if amount <= 0
     end
 
     def deduct_user_amount
