@@ -18,4 +18,16 @@
 
 class Payment < ApplicationRecord
   belongs_to :user
+
+  validate :paid_amount, on: :create
+  after_create :deduct_user_amount
+
+  private
+    def paid_amount
+      errors.add(:amount, "Entered amount exceeds user's total income.") if amount > user.total_income
+    end
+
+    def deduct_user_amount
+      user.update_attributes(total_income: user.total_income.to_f - amount.to_f)
+    end
 end

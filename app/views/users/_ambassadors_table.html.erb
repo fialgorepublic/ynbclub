@@ -16,23 +16,22 @@
 
   <tbody>
   <% @users.each do |user| %>
-      <% price = user.referral_sales.pluck(:price).map(&:to_f).reduce(:+) %>
-      <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
-      <% is_show = true %>
-      <% if is_show %>
-          <tr>
-            <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
-            <td><%= user.email %></td>
-            <td><%= user.created_at.to_date %></td>
-            <td><%= user.phone_number %></td>
-            <td><%= user.referral %></td>
-            <td><%= user.commission %></td>
-            <td><%= percentage_price %></td>
-            <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
-            <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
-            <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
-          </tr>
-      <% end %>
+    <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
+    <% is_show = true %>
+    <% if is_show %>
+      <tr>
+        <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.to_date %></td>
+        <td><%= user.phone_number %></td>
+        <td><%= user.referral %></td>
+        <td><%= user.commission %></td>
+        <td><%= number_with_delimiter(percentage_price, delimiter: ".") %>₫</td>
+        <td><i class="<%= user.is_activated ? 'fa fa-eye' : 'fa fa-eye-slash' %>" onclick="change_activeStatus(this, '<%= user.id %>');" style="cursor: pointer;"></i></td>
+        <!--<td><%#= link_to 'Edit', edit_user_path(user) %></td>-->
+        <td><%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>

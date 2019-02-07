@@ -25,6 +25,11 @@ class ReferralSale < ApplicationRecord
 
   private
     def set_ambassador_value
-      user.update_attributes(total_income: user.total_income.to_f + price.to_f) if is_approved?
+      user.update_attributes(total_income: total_income) if is_approved?
+    end
+
+    def total_income
+      user_commission = user.commission.present? ? user.commission.to_f : 8.0
+      user.total_income.to_f + (price.to_f * user_commission/100)
     end
 end

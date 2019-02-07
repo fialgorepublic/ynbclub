@@ -1,10 +1,14 @@
-$("#refresh_objective_table").html("<%= escape_javascript(render partial: 'table', locals: { payments: @payment } ) %>");
-$('#payments').load(' #payments');
-$('#addPayment').modal('hide');
-$('#addPayment')
-        .find("input,textarea,select")
-        .val('')
-        .end()
-        .find("input[type=checkbox], input[type=radio]")
-        .prop("checked", "")
-        .end();
+<% if @payment.errors.any? %>
+  toastr.error('<%= @payment.errors.messages[:amount].first %>')
+<% else %>
+  $("#refresh_objective_table").html("<%= escape_javascript(render partial: 'table', locals: { payments: @payment } ) %>");
+  $('#payments').load(' #payments');
+  $('#addPayment').modal('hide');
+  $('#addPayment')
+          .find("input,textarea,select")
+          .val('')
+          .end()
+          .find("input[type=checkbox], input[type=radio]")
+          .prop("checked", "")
+          .end();
+<% end %>

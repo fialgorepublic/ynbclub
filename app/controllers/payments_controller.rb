@@ -48,13 +48,9 @@ class PaymentsController < ApplicationController
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
         format.js {  flash.now[:notice] = "Payment was successfully created." }
       else
-        @error_messages =[]
-        @payment.errors.full_messages.map { |msg| # Show Error messages while creating new system
-          @error_messages << msg
-        }
         @payments = Payment.all
         format.html { render :new }
-        format.js {  flash.now[:alert] = @error_messages[0] }
+        format.js {  flash.now[:alert] = "Got error" }
       end
     end
   end
