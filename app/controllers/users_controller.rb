@@ -188,8 +188,12 @@ class UsersController < ApplicationController
 
   def deduct_points
     user = User.find_by_id(params[:id])
-    user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points") if user.present?
-    render json: { sucess: true, message: "Admin points updated successfully."}
+    if user.points.pluck(:point_value).sum < params[:point_value].to_i
+      render json: { success: false, message: "Invalid points value" }
+    else
+      user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points") if user.present?
+      render json: { success: true, message: "Admin points updated successfully."}
+    end
   end
 
   def exchange_coins

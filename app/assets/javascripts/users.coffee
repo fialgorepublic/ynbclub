@@ -25,7 +25,10 @@ $(document).ready ->
       type: 'get',
       dataType: 'json',
       success: (data) ->
-        alert data.message
-        window.location.href = '/users/users/ban?deduct_points=true'
+        if data.success
+          toastr.success data.message
+          window.location.href = '/users/users/ban?deduct_points=true'
+        else
+          toastr.error data.message
       error: ->
         alert "Something wentwrong"
