@@ -1,12 +1,15 @@
 $(document).ready(function(){
   $("#shared-urls").dataTable({
     "pagingType": "full_numbers",
-    searching: false,
+    searching: true,
     "order": [[0, "desc"]]
   })
 
   $("#bs4-table").dataTable({
-    searching: false,
+    searching: true,
+    "pagingType": "full_numbers",
     "order": [[5, "desc"]]
+    "paging": false,
+    "info": false
   })
 });

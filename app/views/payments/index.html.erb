@@ -44,6 +44,14 @@
       </div>
     </div>
   </div>
+
+  <div class="featured-pagination">
+    <div>
+      <ul class="pagination pagination-md">
+        <%= will_paginate @payments,renderer: BootstrapPagination::Rails %>
+      </ul>
+    </div>
+  </div>
   <br>
 </div>
 
