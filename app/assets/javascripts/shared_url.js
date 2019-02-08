@@ -8,7 +8,7 @@ $(document).ready(function(){
   $("#bs4-table").dataTable({
     searching: true,
     "pagingType": "full_numbers",
-    "order": [[5, "desc"]]
+    "order": [[5, "desc"]],
     "paging": false,
     "info": false
   })
