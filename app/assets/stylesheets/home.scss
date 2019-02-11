@@ -2184,13 +2184,17 @@ label.error {
 }
 
 @media only screen and (max-width:768px){
-  .home-banner {
+  .home-banner{
     height: 700px !important;
     width: 100%;
-    background-size: 100%;
+    background-size: cover;
     position: relative;
     color: #fff;
     background-repeat: no-repeat;
+    background-position: center;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #000;
   }
 
   .home-banner h1 {
