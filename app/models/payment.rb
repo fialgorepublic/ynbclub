@@ -17,6 +17,7 @@
 #
 
 class Payment < ApplicationRecord
+  self.per_page = 10
   belongs_to :user
 
   validate :valid_amount, on: :create
