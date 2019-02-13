@@ -28,4 +28,12 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="featured-pagination">
+    <div>
+      <ul class="pagination pagination-md">
+        <%= will_paginate @referral_sales,renderer: BootstrapPagination::Rails %>
+      </ul>
+    </div>
+  </div>
 </div>

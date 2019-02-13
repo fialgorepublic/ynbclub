@@ -6,7 +6,7 @@ class ReferralSalesController < ApplicationController
   # GET /referral_sales
   # GET /referral_sales.json
   def index
-    @referral_sales = ReferralSale.where(user_id: current_user.id)
+    @referral_sales = ReferralSale.where(user_id: current_user.id).paginate(page: params[:page])
   end
 
   # GET /referral_sales/1
