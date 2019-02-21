@@ -1,0 +1,36 @@
+<div class="row" style="margin: 0">
+  <div class="col-md-3">
+    <span ><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
+  </div>
+
+  <div class="col-md-3">
+    <span><i class="fa fa-comment"></i> <%= blog.comments.count %></span>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dropdown">
+      <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-share-alt"></i>
+      </span>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a href="javascript:void(0);" onclick="openWindow('<%= blog.id %>','facebook', '<%= blog_attributes blog %>')"> <i class="fa fa-facebook"></i></a></li>
+        <li><a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <% if current_user.users_blog?(blog.id) || current_user.is_admin? %>
+    <div class="col-md-1">
+      <span>
+        <%= link_to blog, method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+
+  <div class="col-md-3 text-right">
+    <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
+  </div>
+</div>

@@ -21,23 +21,7 @@
           </div>
         </div>
 
-        <div class="row" >
-          <div class="col-md-3">
-            <span ><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
-          </div>
-
-          <div class="col-md-2">
-            <span><i class="fa fa-comment"></i> <%= blog.comments.count %></span>
-          </div>
-
-          <div class="col-md-2">
-            <%= render partial: 'share_options', locals: { blog: blog } %>
-          </div>
-
-          <div class="col-md-4 text-right">
-            <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
-          </div>
-        </div>
+      <%= render partial: 'common_options', locals: { blog: blog } %>
       </div>
     </div>
   </div>
