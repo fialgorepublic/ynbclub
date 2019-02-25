@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail]
-  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail]
+  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail, :delete]
   require 'time_ago_in_words'
   require 'will_paginate'
   include ApplicationHelper
@@ -76,7 +76,8 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
-    @blog.destroy
+    blog = Blog.find(params[:id])
+    blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
       format.json { head :no_content }
