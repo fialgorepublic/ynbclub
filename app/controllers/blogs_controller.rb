@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail]
-  before_action :set_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail, :destroy]
+  before_action :load_user_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail, :destroy, :change_publish_status]
+  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
   require 'time_ago_in_words'
   require 'will_paginate'
   include ApplicationHelper
@@ -20,7 +21,6 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @blog = Blog.find(params[:id])
     @comments = @blog.comments if @blog.is_published?
     @selected_products = @blog.products
     BlogView.create(user_id: current_user.id, blog_id: @blog.id)
@@ -76,8 +76,7 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
-    blog = Blog.find(params[:id])
-    blog.destroy
+    @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
       format.json { head :no_content }
@@ -97,12 +96,12 @@ class BlogsController < ApplicationController
   end
 
   def change_featured_state
-    @blog = Blog.find(params[:id])
     blog = @blog.update_attributes(is_featured: params[:value], feature_date: DateTime.now)
     render json: {success: true}
   end
 
   def change_publish_status
+
     unless @blog.is_published?
       return redirect_to @blog, alert: "You need to add picture before publishing your blog." unless @blog.avatar.present?
     end
@@ -137,12 +136,16 @@ class BlogsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_blog
+    def load_user_blog
       @blog = current_user.blogs.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
       params.require(:blog).permit(:title, :promote_post, :description, :category_id, :avatar)
+    end
+
+    def set_blog
+      @blog = Blog.find(params[:id])
     end
 end
