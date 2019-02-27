@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190227142844) do
+ActiveRecord::Schema.define(version: 20190227143018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 20190227142844) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -335,6 +343,7 @@ ActiveRecord::Schema.define(version: 20190227142844) do
   end
 
   add_foreign_key "blogs", "users", on_delete: :cascade
+  add_foreign_key "cities", "states", on_delete: :cascade
   add_foreign_key "comment_actions", "comments"
   add_foreign_key "comment_actions", "users"
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
