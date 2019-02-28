@@ -143,34 +143,42 @@
       <div class="box-shadow">
         <div class="row">
           <%= form_for current_user.profile do |f| %>
-          <div class="col-md-12">
-                <div class="form-group">
-                  <label>Address line 1</label>
-                  <%= f.text_field :address_line_1, class: "form-control", placeholder: "Address Line 1" %>
-                </div>
-            </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Address line 2</label>
-                  <%= f.text_field :address_line_2, class: "form-control", placeholder: "Address Line 2" %>
-                </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address line 1</label>
+                <%= f.text_field :address_line_1, class: "form-control", placeholder: "Address Line 1" %>
               </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address line 2</label>
+                <%= f.text_field :address_line_2, class: "form-control", placeholder: "Address Line 2" %>
+              </div>
+            </div>
 
-              <div class="col-md-6">
-                <div class="form-group" >
-                  <label>City/State</label>
-                  <%= f.text_field :city, class: "form-control", placeholder: "City/State" %>
-                </div>
-              </div>
             <div class="col-md-6">
-                <div class="form-group">
-                  <label>Zip code</label>
-                  <%= f.text_field :zip_code, class: "form-control", placeholder: "00000" %>
-                </div>
-            </div>
-              <div class="col-md-12">
-                <%= f.submit "Save", class: "btn btn-lg btn-block btn-primary" %>
+              <div class="form-group" >
+                <label>Province/State</label>
+                <%= f.select :state, options_for_select(State.pluck(:name, :name), selected: get_province(f.object.state)), {prompt: 'Select Province *'}, { class: "form-control", required: true, id: 'select-state' } %>
               </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group" >
+                <label>District</label>
+                <%= f.select :city, options_for_select(@cities, selected: get_city(f.object.city)), {prompt: 'Select Disctrict *'}, { class: "form-control", required: true, id: 'cities' } %>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Zip code</label>
+                <%= f.text_field :zip_code, class: "form-control", placeholder: "00000" %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <%= f.submit "Save", class: "btn btn-lg btn-block btn-primary" %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -258,4 +266,12 @@
   jQuery.validator.addMethod("emailExt", function(value, element, param) {
   return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
   },'Please Enter A Valid Email Address.');
+
+  $('#select-state').change(function(){
+    val = $(this).val();
+    $.ajax({
+      url: `/cities?state=${val}`,
+      type: 'get'
+    });
+  })
 </script>

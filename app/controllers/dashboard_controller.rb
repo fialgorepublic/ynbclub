@@ -92,6 +92,15 @@ class DashboardController < ApplicationController
     get_share_with_friend
   end
 
+  def acc_settings
+    @cities = City.limit(2).map{|city| [city.name, city.name]}
+  end
+
+  def cities
+    @cities = State.find_by_name(params[:state])&.cities.pluck(:name, :name)
+  end
+
+
   private
 
     def get_share_with_friend
