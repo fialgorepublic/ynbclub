@@ -261,6 +261,7 @@ Rails.application.routes.draw do
       get :clear_search
       get :points
       get :find_user_by_email
+      get :find_user
       get 'users/ban', to: 'users#all_users'
       get '/change_ban_status', to: 'users#ban'
       get :deduct_points

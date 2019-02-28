@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  before_action :authenticate_user!, except: [:find_user_by_email]
-  before_action :authorize_user!, except: [:find_user_by_email]
+  before_action :authenticate_user!, except: [:find_user_by_email, :find_user]
+  before_action :authorize_user!, except: [:find_user_by_email, :find_user]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   require 'csv'
   require 'roo'
@@ -172,6 +172,12 @@ class UsersController < ApplicationController
     profile = set_profile(user)
     user_email = user.email if user.present?
     render json: { user: user_email, profile: profile}
+  end
+
+  def find_user
+    user = User.find_by_email(params[:email])
+    profile = user&.profile
+    render json: { user: user, profile: profile }
   end
 
   def all_users
