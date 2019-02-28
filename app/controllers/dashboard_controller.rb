@@ -93,7 +93,13 @@ class DashboardController < ApplicationController
   end
 
   def acc_settings
-    @cities = City.limit(2).map{|city| [city.name, city.name]}
+    city_name = current_user.profile.city
+    state = City.find_by(name: city_name)&.state
+    if state.present?
+      @cities = City.where(state: state).pluck(:name, :name)
+    else
+      @cities = []
+    end
   end
 
   def cities
