@@ -2,4 +2,6 @@ class Order < ApplicationRecord
   has_many :items
 
   accepts_nested_attributes_for :items
+
+  scope :user_orders, -> (email) { where(email: email) }
 end

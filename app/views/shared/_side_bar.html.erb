@@ -71,7 +71,7 @@
         </li>
 
         <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/my_orders" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Order </span></a>
+          <a href="/orders" class="<%= active_class(orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Order </span></a>
         </li>
       <% end %>
 
@@ -87,7 +87,7 @@
 
       <% if current_user.is_admin? %>
         <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/my_orders" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> All Orders </span></a>
+          <a href="/orders" class="<%= active_class(orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> All Orders </span></a>
         </li>
 
         <li>
