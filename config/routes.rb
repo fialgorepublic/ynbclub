@@ -234,10 +234,12 @@ Rails.application.routes.draw do
   get 'import_partner', to: 'users#import_partner'
   post 'import_ambassador', to: 'users#import_ambassador'
   post 'sign_in_user', to: 'home#sign_in_user'
-  get 'my_orders', to: 'orders#my_orders'
+  # get 'my_orders', to: 'orders#my_orders'
   get 'home_page', to: 'dashboard#home_page'
 
-  resources :orders, only: [:create]
+  resources :orders, only: [:index, :create] do
+    get :send_to_ghtk, on: :collection
+  end
 
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {
