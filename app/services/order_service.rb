@@ -17,16 +17,18 @@ class OrderService
 
     def order_params
       {
-        order_id:          params['id'],
-        order_name:        params['name'],
-        email:             params['email'],
-        customer_name:     name,
-        phone_number:      phone_number,
-        total:             params['total_price'],
-        tracking_link:     params['order_status_url'],
-        order_created_at:  params['created_at'],
-        sent_to_ghtk:      sent_to_ghtk?,
-        items_attributes:  items_attributes
+        order_id:           params['id'],
+        order_name:         params['name'],
+        email:              params['email'],
+        customer_name:      name,
+        phone_number:       phone_number,
+        total:              params['total_price'],
+        tracking_link:      params['order_status_url'],
+        order_created_at:   params['created_at'],
+        sent_to_ghtk:       sent_to_ghtk?,
+        financial_status:   params['financial_status'],
+        fulfilment_status:  fulfillment_status,
+        items_attributes:   items_attributes
       }
     end
 
@@ -66,5 +68,9 @@ class OrderService
 
         }
       end
+    end
+
+    def fulfillment_status
+      params['fulfillment_status'].present? ?  params['fulfillment_status'] : "Unfulfilled"
     end
 end
