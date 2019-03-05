@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
   def create
     OrderService.new(params[:order]).create_order
+    render head :ok
   end
 
   def send_to_ghtk
