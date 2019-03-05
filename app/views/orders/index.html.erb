@@ -68,7 +68,7 @@
     order_id = $(this).data('order_id');
     $('.loader').show();
     $.ajax({
-      url: `orders/send_to_ghtk?id=${order_id}`,
+      url: `/orders/send_to_ghtk?id=${order_id}`,
       type: 'get',
       contentType: 'json',
       error: function () {

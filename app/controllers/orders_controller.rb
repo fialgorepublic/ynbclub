@@ -24,6 +24,9 @@ class OrdersController < ApplicationController
 
   def send_to_ghtk
     result, message = GhtkService.new(params[:order_id]).place_ghtk_order
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
