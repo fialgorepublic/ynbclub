@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_user!
+  before_action :authenticate_user!, except: [:create]
+  before_action :authorize_user!, except: [:create]
 
   def my_orders
     initiate_shopify_session
@@ -13,6 +13,10 @@ class OrdersController < ApplicationController
     clear_shopify_session
   end
 
+  def create
+    OrderService.new(params[:order]).create_order
+  end
+
   private
     def get_customer_id
       customer = Customer.find_by(email: current_user.email)
@@ -22,7 +26,7 @@ class OrdersController < ApplicationController
     def get_all_orders
       page = 1
       orders = []
-      count = ShopifyAPI::Product.count
+      count = ShopifyAPI::Order.count
       if count > 0
         page += count.divmod(250).first
         while page > 0

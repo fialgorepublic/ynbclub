@@ -237,6 +237,8 @@ Rails.application.routes.draw do
   get 'my_orders', to: 'orders#my_orders'
   get 'home_page', to: 'dashboard#home_page'
 
+  resources :orders, only: [:create]
+
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {
       :sessions => "users/sessions",
