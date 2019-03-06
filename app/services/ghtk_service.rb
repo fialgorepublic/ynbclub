@@ -17,26 +17,26 @@ class GhtkService
   private
 
     def place_order
-      data_params = set_ghtk_order_params
-      begin
-        url = URI.parse('https://services.giaohangtietkiem.vn/services/shipment/order')
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        data = data_params.to_json
-        headers = {
-            'Token' => TOKEN,
-            'Content-Type' => 'application/json'
-        }
-        resp = http.post(url.path, data, headers)
-        resp_body = resp.body
-        result = JSON.parse(resp.body)
-        if result["success"]
-          order.update(ghtk_label: result["order"]["label"], fee: result["order"]["fee"])
-        end
-      rescue => e
-        [false, result['message']]
+      result, message = false, ""
+      url = URI.parse('https://services.giaohangtietkiem.vn/services/shipment/order')
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      # data = data_params.to_json
+      headers = {
+          'Token' => TOKEN,
+          'Content-Type' => 'application/json'
+      }
+      resp = http.post(url.path, set_ghtk_order_params.to_json, headers)
+      resp_body = resp.body
+      response = JSON.parse(resp.body)
+      if response['success']
+        result = order.update(ghtk_label: response['order']['label'], ghtk_status: status(response['order']['status']))
+        message = response['message']
+      elsif response['error']
+        order.update(ghtk_label: response['error']['ghtk_label'], ghtk_status: status(response['error']['status'])) if order.ghtk_label.blank? || order.ghtk_status.blank?
+        result, message = false, response["message"]
       end
-      [true, order.ghtk_label]
+      [result, message]
     end
 
     def set_ghtk_order_params
@@ -45,29 +45,79 @@ class GhtkService
 
     def set_product_params
       order.items.map { |item| { name: item.name, weight: item.weight,
-                  quantity: item.quantity, amount: item.amount  } }
+                  quantity: item.quantity, amount: item.amount.to_i  } }
     end
 
     def order_params
       # province, district = set_location
       #phone_number = set_phone_number
       {
-        id: order.order_id,
-        pick_name: "Saint L Beau",
-        pick_address: "nhà N06 119 Phổ Quang ( khu nhà phố Golden Masion ), Phổ Quang",
-        pick_province: "Ho Chi Minh",
-        pick_district: "Phường 9, Quận Phú nhuận",
-        pick_tel: '0901318892',
-        tel: order.phone_number,
-        name: order.phone_number,
-        address: order.address1,
-        province: order.province,
-        district: order.district,
-        is_freeship: "1",
-        pick_date: Time.now,
-        pick_money: order.total,
-        value: order.total
+        id:             order.order_id,
+        pick_name:      "Saint L Beau",
+        pick_address:   "nhà N06 119 Phổ Quang ( khu nhà phố Golden Masion ), Phổ Quang",
+        pick_province:  "Ho Chi Minh",
+        pick_district:  "Phường 9, Quận Phú nhuận",
+        pick_tel:       "0901318892",
+        tel:            order.phone_number,
+        name:           order.customer_name,
+        address:        order.address,
+        province:       order.province_name,
+        district:       order.city_name,
+        ward:           order.ward_name,
+        is_freeship:    "1",
+        pick_date:      Time.now,
+        pick_money:     order.total.to_i,
+        value:          order.total.to_i
       }
+    end
+
+    def status ghtk_status
+      case ghtk_status
+      when '-1' || -1 
+        'Cancel order'
+      when '1' || -1
+        'Not yet received'
+      when '2' || 2
+        'Received'
+      when '3' || 3
+        'Goods taken / Inventory imported'
+      when '4' || 4
+        'Coordinated delivery / Delivery'
+      when '5' || 5
+        'Delivered / Uncontrolled'
+      when '6' || 6
+        'Controled'
+      when '7' || 7
+        'Do not get the goods'
+      when '8' || 8
+        'Postpone taking goods'
+      when '9' || 9
+        'Do not deliver goods'
+      when '10' || 10
+        'Delay delivery'
+      when '11' || 11
+        'Debt repayment has been controlled'
+      when '12' || 12
+        'Coordinated to pick up goods / Taking goods'
+      when '13' || 13
+        'Order reimbursement'
+      when '20' || 20
+        'Returning goods (COD holds the goods to pay)'
+      when '21' || 21
+        'Delivered (COD has finished delivering goods)'
+      when '123' || 123
+        'Shipper reportedly took the goods'
+      when '127' || 127
+        'Shipper (employee taking / delivery) reported not getting the goods'
+      when '128' || 128
+        'Shipper delay report picks up goods'
+      when '45' || 45
+        'Shipper reported delivery'
+      when '49' || 49
+        'Shipper reported that delivery could not be delivered'
+      when '410' || 410
+        'Shipper reported delay delivery'
+      end
     end
 
     # def set_location

@@ -1,7 +1,7 @@
 $('.loader').hide();
 
 <% if @result %>
-  toastr.success(@message, '', {timeOut: 10000000000, closeButton: true, extendedTimeOut: 10000000000});
+  toastr.success('<%= @message %>', '', {timeOut: 10000000000, closeButton: true, extendedTimeOut: 10000000000});
 <% else %>
-  toastr.success(@message, '', {timeOut: 10000000000, closeButton: true, extendedTimeOut: 10000000000});
+  toastr.error('<%= @message %>', '', {timeOut: 10000000000, closeButton: true, extendedTimeOut: 10000000000});
 <% end %>
