@@ -1,0 +1,31 @@
+<div class="form-group">
+  <%= label_tag :province %>
+  <%= select_tag 'order[province]', options_for_select(@provinces) , { include_blank: 'Select Province', class: "form-control", required: true, id: "province-select" } %>
+</div>
+
+<div class="form-group">
+  <%= label_tag :district %>
+  <%= select_tag 'order[district]', options_for_select(@districts) , { include_blank: 'Select District', class: "form-control", required: true, id: "district-select" } %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#district-select, #province-select').select2();
+  })
+
+  $('#district-select, #province-select').change(function(){
+    district_id = $('#district-select').val();
+    province_id = $('#province-select').val();
+    $('#order_order_id').val();
+
+    $.ajax({
+      url: `/orders/wards?district_id=${district_id}&province_id=${province_id}&order_id=${order_id}`,
+      type: 'get',
+      contentType: 'json',
+      error: function () {
+        $('.loader').hide();
+        alert('Error');
+      }
+    });
+  });
+</script>

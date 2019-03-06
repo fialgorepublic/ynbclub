@@ -237,8 +237,13 @@ Rails.application.routes.draw do
   # get 'my_orders', to: 'orders#my_orders'
   get 'home_page', to: 'dashboard#home_page'
 
-  resources :orders, only: [:index, :create] do
+  resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk
+    get :edit_address
+    collection do
+      get :district_cities
+      get :wards
+    end
   end
 
   # get 'auth/failure', to: redirect('/')

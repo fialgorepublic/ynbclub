@@ -30,7 +30,55 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit_address
+    @order = Order.find(params[:order_id])
+    @cities = City.pluck(:name, :id)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def district_cities
+    city = City.includes(:districts, :provinces).find_by(id: params[:city_id])
+    @districts = city.districts.pluck(:name, :id)
+    @provinces = city.provinces.pluck(:name, :id)
+    @order = Order.find(params[:order_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def wards
+    province = Province.includes(:wards).find_by_id(params[:province_id])
+    district = District.includes(:wards).find_by_id(params[:district_id])
+    @order = Order.find(params[:order_id])
+    if province.present? && district.present?
+      wards = province.wards + district.wards
+    elsif province.present?
+      wards = province.wards
+    elsif district.present?
+      wards = district.wards
+    end
+    @wards = wards.pluck(:name, :id)
+  end
+
+  def update
+    if OrderService.new(order_params).update_address
+      flash[:success] = "Order address updated Successfully."
+      redirect_to orders_path
+    else
+      flash[:alert] = "Something went wrong"
+      redirect_to orders_path
+    end
+  end
+
+
   private
+
+    def order_params
+      params.require(:order).permit(:city, :province, :address, :ward, :district, :order_id)
+    end
+
     def get_customer_id
       customer = Customer.find_by(email: current_user.email)
       customer.present? ? customer.customer_id : nil

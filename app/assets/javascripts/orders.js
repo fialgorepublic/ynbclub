@@ -25,4 +25,18 @@ $(document).ready(function() {
       }
     });
   });
+
+  $('.edit_address').click(function(){
+    order_id = $(this).data('order-id');
+    $('#edit_address_modal').modal('show');
+    $.ajax({
+      url: `/orders/${order_id}/edit_address`,
+      type: 'get',
+      contentType: 'json',
+      error: function () {
+        $('.loader').hide();
+        alert('Error');
+      }
+    });
+  });
 })

@@ -24,6 +24,7 @@
         <th>Country</th>
       <% end %>
       <th>Price</th>
+      <th>Edit Address</th>
       <th>Send To GHTK</th>
       <th>Tracking Link</th>
     </tr>
@@ -49,6 +50,7 @@
           <th>Vietnam</th>
         <% end %>
         <td><%= number_with_delimiter(order.total, delimiter: ".") %>₫</td>
+        <td><%= link_to 'Edit Address', 'Javascript:void(0);', class: 'edit_address', data: { order_id: order.id } %></td>
         <td>
           <% if order.sent_to_ghtk? %>
             Already Sent
@@ -61,4 +63,20 @@
     <% end %>
     </tbody>
   </table>
+</div>
+
+<div class="modal fade" id="edit_address_modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div id="edit_address_form">
+
+      </div>
+    </div>
+
+  </div>
 </div>
