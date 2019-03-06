@@ -62,13 +62,13 @@ class OrderService
       if params['billing_address'].present?
         {
           address:           params['billing_address']['address1'],
-          city:              params['billing_address']['city'],
+          city:              find_city(params['billing_address']['city']),
           postcode:          params['billing_address']['zip'],
         }
       else
         {
           address:  '',
-          city:     '',
+          city:     nil,
           postcode: ''
 
         }
@@ -77,5 +77,10 @@ class OrderService
 
     def fulfillment_status
       params['fulfillment_status'].present? ?  params['fulfillment_status'] : "Unfulfilled"
+    end
+
+    def find_city city_name
+      city = City.find_by(name: 'name')
+      city.presen? ? city : nil
     end
 end
