@@ -15,7 +15,8 @@ class OrdersController < ApplicationController
   # end
 
   def index
-    @orders = current_user.is_admin? ? Order.all : Order.user_orders(current_user.email)
+    orders = current_user.is_admin? ? Order.all : Order.user_orders(current_user.email)
+    @orders = orders.paginate(page: params[:page])
   end
 
   def create

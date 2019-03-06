@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  self.per_page = 10
+
   belongs_to :city,     optional: true
   belongs_to :district, optional: true
   belongs_to :province, optional: true
