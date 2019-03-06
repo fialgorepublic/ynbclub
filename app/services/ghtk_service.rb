@@ -30,13 +30,24 @@ class GhtkService
       resp_body = resp.body
       response = JSON.parse(resp.body)
       if response['success']
-        result = order.update(ghtk_label: response['order']['label'], ghtk_status: status(response['order']['status']))
+        result = update_order(response)
         message = response['message']
       elsif response['error']
-        order.update(ghtk_label: response['error']['ghtk_label'], ghtk_status: status(response['error']['status'])) if order.ghtk_label.blank? || order.ghtk_status.blank?
+        update_order(response) if order.ghtk_label.blank? || order.ghtk_status.blank?
         result, message = false, response["message"]
       end
       [result, message]
+    end
+
+    def update_order response
+      response = response['order'] || response['error']
+      update_params = {
+                      ghtk_label:    response['ghtk_label'],
+                      ghtk_status:   status(response['status']),
+                      tracking_link: response['tracking_id']
+                    }
+
+      order.update(update_params)
     end
 
     def set_ghtk_order_params
@@ -73,7 +84,7 @@ class GhtkService
 
     def status ghtk_status
       case ghtk_status
-      when '-1' || -1 
+      when '-1' || -1
         'Cancel order'
       when '1' || -1
         'Not yet received'

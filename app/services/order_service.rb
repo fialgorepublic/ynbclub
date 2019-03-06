@@ -29,7 +29,6 @@ class OrderService
         customer_name:      name,
         phone_number:       phone_number,
         total:              params['total_price'],
-        tracking_link:      params['order_status_url'],
         order_created_at:   params['created_at'],
         sent_to_ghtk:       sent_to_ghtk?,
         financial_status:   params['financial_status'],
