@@ -238,7 +238,7 @@ Rails.application.routes.draw do
   get 'home_page', to: 'dashboard#home_page'
 
   resources :orders, only: [:index, :create] do
-    get :send_to_ghtk, on: :collection
+    get :send_to_ghtk
   end
 
   # get 'auth/failure', to: redirect('/')
