@@ -13,10 +13,10 @@ $(document).ready(function() {
   });
 
   $('.send_to_ghtk').click(function(){
-    order_id = $(this).data('order_id');
+    order_id = $(this).data('order-id');
     $('.loader').show();
     $.ajax({
-      url: `/orders/send_to_ghtk/${order_id}`,
+      url: `/orders/${order_id}/send_to_ghtk`,
       type: 'get',
       contentType: 'json',
       error: function () {
