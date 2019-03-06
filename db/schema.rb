@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190306071511) do
+ActiveRecord::Schema.define(version: 20190306071654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -394,6 +394,16 @@ ActiveRecord::Schema.define(version: 20190306071511) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wards", force: :cascade do |t|
+    t.string "name"
+    t.bigint "district_id"
+    t.bigint "province_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["district_id"], name: "index_wards_on_district_id"
+    t.index ["province_id"], name: "index_wards_on_province_id"
+  end
+
   add_foreign_key "blogs", "users", on_delete: :cascade
   add_foreign_key "cities", "states", on_delete: :cascade
   add_foreign_key "comment_actions", "comments"
@@ -405,4 +415,6 @@ ActiveRecord::Schema.define(version: 20190306071511) do
   add_foreign_key "point_types", "earn_coins", on_delete: :cascade
   add_foreign_key "profiles", "users"
   add_foreign_key "provinces", "cities", on_delete: :cascade
+  add_foreign_key "wards", "districts", on_delete: :cascade
+  add_foreign_key "wards", "provinces", on_delete: :cascade
 end
