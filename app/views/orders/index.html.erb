@@ -43,10 +43,10 @@
           <th><%= order.picked_phone? ? 'Yes' : 'No' %></th>
           <th><%= order.email %></th>
           <th><%= order.address %></th>
-          <th><%= order.ward %></th>
-          <th><%= order.province %></th>
-          <th><%= order.district %></th>
-          <th><%= order.city %></th>
+          <th><%= order.ward_name %></th>
+          <th><%= order.province_name %></th>
+          <th><%= order.district_name %></th>
+          <th><%= order.city_name %></th>
           <th>Vietnam</th>
         <% end %>
         <td><%= number_with_delimiter(order.total, delimiter: ".") %>₫</td>
