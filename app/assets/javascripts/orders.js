@@ -1,8 +1,10 @@
 $(document).ready(function() {
   $('#my-orders').dataTable( {
-    "pagingType": "full_numbers",
-    "info": false,
-    "scrollX": true
+    "info":        false,
+    "scrollX":     true,
+    'pagination':  false,
+    'paging':      false,
+    "scrollY":     500
   });
 
   $('#referral-sales').dataTable( {
