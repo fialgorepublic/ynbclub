@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190306071654) do
+ActiveRecord::Schema.define(version: 20190306105822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,14 +150,10 @@ ActiveRecord::Schema.define(version: 20190306071654) do
     t.string "ghtk_label"
     t.string "ghtk_status"
     t.string "address"
-    t.string "city"
-    t.string "province"
     t.string "postcode"
     t.string "phone_number"
     t.string "customer_name"
     t.string "total"
-    t.string "district"
-    t.string "ward"
     t.string "tracking_link"
     t.boolean "picked_phone", default: true
     t.datetime "created_at", null: false
@@ -166,6 +162,14 @@ ActiveRecord::Schema.define(version: 20190306071654) do
     t.string "order_created_at"
     t.string "fulfilment_status"
     t.string "financial_status"
+    t.bigint "city_id"
+    t.bigint "district_id"
+    t.bigint "province_id"
+    t.bigint "ward_id"
+    t.index ["city_id"], name: "index_orders_on_city_id"
+    t.index ["district_id"], name: "index_orders_on_district_id"
+    t.index ["province_id"], name: "index_orders_on_province_id"
+    t.index ["ward_id"], name: "index_orders_on_ward_id"
   end
 
   create_table "pages", force: :cascade do |t|
