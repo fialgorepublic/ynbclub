@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190305095309) do
+ActiveRecord::Schema.define(version: 20190306071229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,14 @@ ActiveRecord::Schema.define(version: 20190305095309) do
     t.string "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "districts", force: :cascade do |t|
+    t.string "name"
+    t.bigint "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_districts_on_city_id"
   end
 
   create_table "earn_coins", force: :cascade do |t|
@@ -382,6 +390,7 @@ ActiveRecord::Schema.define(version: 20190305095309) do
   add_foreign_key "cities", "states", on_delete: :cascade
   add_foreign_key "comment_actions", "comments"
   add_foreign_key "comment_actions", "users"
+  add_foreign_key "districts", "cities", on_delete: :cascade
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
   add_foreign_key "items", "orders", on_delete: :cascade
   add_foreign_key "permissions", "users", on_delete: :cascade
