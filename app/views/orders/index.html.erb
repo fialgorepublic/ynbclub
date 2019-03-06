@@ -26,7 +26,7 @@
       <th>Price</th>
       <th>Edit Address</th>
       <th>Send To GHTK</th>
-      <th>Tracking Link</th>
+      <th>Tracking ID</th>
     </tr>
     </thead>
 
@@ -58,7 +58,7 @@
             <%= link_to 'Send To GHTK', 'Javascript:void(0);', class: 'send_to_ghtk', data: { order_id: order.id } %>
           <% end %>
         </td>
-        <td><%= link_to 'Track Order(Shop)', order.tracking_link, target: :blank %></td>
+        <td><%= order.tracking_link %></td>
       </tr>
     <% end %>
     </tbody>
