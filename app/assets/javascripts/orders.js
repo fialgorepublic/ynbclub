@@ -5,7 +5,8 @@ $(document).ready(function() {
     'pagination':  false,
     'paging':      false,
     "scrollY":     500,
-    searching:     false
+    searching:     false,
+    "order":       []
   });
 
   $('#referral-sales').dataTable( {
