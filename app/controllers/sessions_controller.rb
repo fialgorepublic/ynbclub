@@ -39,8 +39,7 @@ class SessionsController < ApplicationController
       end
       UserMailer.user_sign_up(user).deliver
       initiate_shopify_session
-      customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
-      customer = customers.detect { |c| c.email == "#{user.email}" }
+      customer = ShopifyAPI::Customer.search(query:"email:#{user.email}")
       if customer.nil?
         customer = ShopifyAPI::Customer.new
         customer.email = "#{user.email}"
