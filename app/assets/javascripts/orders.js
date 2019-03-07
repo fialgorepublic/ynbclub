@@ -4,7 +4,8 @@ $(document).ready(function() {
     "scrollX":     true,
     'pagination':  false,
     'paging':      false,
-    "scrollY":     500
+    "scrollY":     500,
+    searching:     false
   });
 
   $('#referral-sales').dataTable( {
