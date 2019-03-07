@@ -37,23 +37,7 @@
     <tr>
       <th>Date</th>
       <th>Order#(Shop)</th>
-      <% if current_user.is_admin? %>
-        <th>Tracking#(GHTK)</th>
-        <th>Customer Name</th>
-        <th>Phone Number</th>
-        <th>Picked Phone</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Ward</th>
-        <th>Province</th>
-        <th>District</th>
-        <th>City</th>
-        <th>Country</th>
-      <% end %>
-      <th>Price</th>
-      <th>Edit Address</th>
-      <th>Send To GHTK</th>
-      <th>Tracking ID</th>
+      <%= render 'table_headers' %>
     </tr>
     </thead>
 
@@ -61,31 +45,7 @@
 
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order_date(order) %></td>
-        <td><%= order.order_name %></td>
-        <% if current_user.is_admin? %>
-          <td><%= order.ghtk_label %></td>
-          <td><%= order.customer_name %></td>
-          <td><%= order.phone_number %></td>
-          <th><%= order.picked_phone? ? 'Yes' : 'No' %></th>
-          <th><%= order.email %></th>
-          <th><%= order.address %></th>
-          <th><%= order.ward_name %></th>
-          <th><%= order.province_name %></th>
-          <th><%= order.district_name %></th>
-          <th><%= order.city_name %></th>
-          <th>Vietnam</th>
-        <% end %>
-        <td><%= number_with_delimiter(order.total, delimiter: ".") %>₫</td>
-        <td><%= link_to 'Edit Address', 'Javascript:void(0);', class: 'edit_address', data: { order_id: order.id } %></td>
-        <td>
-          <% if order.sent_to_ghtk? %>
-            Already Sent
-          <% else %>
-            <%= link_to 'Send To GHTK', 'Javascript:void(0);', class: 'send_to_ghtk', data: { order_id: order.id } %>
-          <% end %>
-        </td>
-        <td><%= order.tracking_link %></td>
+        <%= render partial: 'table_body', locals: { order: order } %>
       </tr>
     <% end %>
     </tbody>
