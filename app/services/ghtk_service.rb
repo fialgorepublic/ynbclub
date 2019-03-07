@@ -11,10 +11,17 @@ class GhtkService
   end
 
   def place_ghtk_order
-    place_order
+    if address_present?
+      place_order
+    else
+      [false, "Address is not valid."]
+    end
   end
 
   private
+    def address_present?
+      order.city.present? && order.district.present? && order.province.present?
+    end
 
     def place_order
       result, message = false, ""
