@@ -1,10 +1,37 @@
 <div class="col-md-9">
-  <% if current_user.is_admin? %>
-    <h1>All Orders</h1>
-  <% else %>
-    <h1>My Orders</h1>
-  <% end %>
-  <hr>
+  <div class="order-dropDown-style">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="card-header">
+          <% if current_user.is_admin? %>
+            All Orders
+          <% else %>
+            My Orders
+          <% end %>
+        </h1>
+        <hr>
+      </div>
+
+      <% if current_user.is_admin? %>
+        <div class="col-md-10">
+          <div class="col-sm-12">
+            <%= search_form_for @q do |f| %>
+              <div class="form-group">
+                <%= f.label 'Cutomer Name/ City / District / Province / Order No / Email' %>
+                <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_cont, class: 'form-control' %>
+              </div>
+
+              <div class="text-center">
+                <%= f.submit 'Search', class: 'btn btn-lg btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <table class="table table-striped table-bordered" id="my-orders">
     <thead>
     <tr>
