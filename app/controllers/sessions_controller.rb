@@ -4,7 +4,11 @@ class SessionsController < ApplicationController
     get_params = request.env["omniauth.params"]
     invite = get_params["invite"]
     @omniauth = request.env['omniauth.auth']
-    email = @omniauth.info.email
+    if @omniauth.provider == 'google'
+      email = @omniauth.extra.id_info.email
+    else
+      email = @omniauth.info.email
+    end
     name = @omniauth.info.name
     provider_id = @omniauth.uid
     provider = @omniauth.provider
