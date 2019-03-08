@@ -54,4 +54,26 @@ $(document).ready(function() {
       }
     });
   });
+
+  $('.phone-status').change(function(){
+    order_id = $(this).data('order-id');
+    status = $(this).val();
+    $.ajax({
+      url: `/orders/${order_id}/update_phone_status?status=${status}`,
+      type: 'get',
+      contentType: 'json',
+      success: function (data) {
+        if(data.result) {
+          toastr.success('Phone Status updated successuflly.');
+          window.location.href = '/orders';
+        }
+        else
+          toastr.error('Somethng Went wrong.')
+      },
+      error: function () {
+        $('.loader').hide();
+        alert('Error');
+      }
+    });
+  });
 })

@@ -6,7 +6,7 @@
   <td><%= order.phone_number %></td>
   <td>
     <div class="form-group">
-      <%= select_tag 'order[picked_phone]', options_for_select(Order.picked_phones, selected: Order.picked_phones[order.picked_phone]) , { include_blank: 'Select Status', class: "form-control phone-status", data: { order_id: order.id} } %>
+      <%= select_tag 'order[picked_phone]', options_for_select(Order.picked_phones, selected: Order.picked_phones[order.picked_phone]) , { include_blank: 'Select Status', class: "form-control phone-status", id: "order_#{order.id}", data: { order_id: order.id} } %>
     </div>
   </td>
   <td><%= order.email %></td>

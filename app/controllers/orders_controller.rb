@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: [:create]
-  before_action :authorize_user!, except: [:create]
-  skip_before_action :verify_authenticity_token, only: [:create]
+  before_action :authenticate_user!, except: [:create, :ghtk_status]
+  before_action :authorize_user!, except: [:create, :ghtk_status]
+  skip_before_action :verify_authenticity_token, only: [:create, :ghtk_status]
 
   # def my_orders
   #   initiate_shopify_session
@@ -79,6 +79,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update_phone_status
+    order = Order.find(params[:order_id])
+    if order.update(picked_phone: params[:status].to_i)
+      result = true
+    else
+      result = false
+    end
+    render json: { result: result }
+  end
 
   private
 
