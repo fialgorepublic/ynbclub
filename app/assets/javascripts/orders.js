@@ -76,4 +76,11 @@ $(document).ready(function() {
       }
     });
   });
+
+  $('#clear-btn').click(function(){
+    value = $('#search-field').val();
+    if (value == "") { return false; }
+    $('#search-field').val('');
+    window.location.href = '/orders'
+  });
 })

@@ -14,12 +14,14 @@
 
       <% if current_user.is_admin? %>
         <div class="col-md-10">
-          <div class="col-sm-12">
+          <div class="col-lg-12">
             <%= search_form_for @q do |f| %>
-              <div class="form-group">
-                <%= f.label 'Cutomer Name/ City / District / Province / Order No / Email' %>
-                <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_cont, class: 'form-control' %>
-              </div>
+              <div class="input-group">
+                <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_cont, { class: 'form-control', placeholder: "Search for Cutomer Name/ City / District / Province / Order No / Email", id: 'search-field' } %>
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-lg" id='clear-btn' type="button">Clear!</button>
+                </span>
+              </div><!-- /input-group -->
 
               <div class="text-center">
                 <%= f.submit 'Search', class: 'btn btn-lg btn-primary' %>
