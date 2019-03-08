@@ -19,6 +19,8 @@ module PermissionsHelper
       'Categories'
     when 'dashboard'
       'Pages Design'
+    when 'orders'
+      'All Orders'
     end
   end
 

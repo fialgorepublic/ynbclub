@@ -15,12 +15,8 @@ class OrdersController < ApplicationController
   # end
 
   def index
-    if current_user.is_admin?
-      @q = Order.ransack(params[:q])
-      orders = @q.result(distinct: true)
-    else
-      orders = Order.user_orders(current_user.email)
-    end
+    @q = Order.ransack(params[:q])
+    orders = @q.result(distinct: true)
     @orders = orders.includes(:city, :district, :province, :ward).paginate(page: params[:page])
   end
 
