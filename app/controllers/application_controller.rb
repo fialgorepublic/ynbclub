@@ -109,6 +109,7 @@ class ApplicationController < ActionController::Base
     return permission_exists?('index', controller_name) if controller_name == "payments"
     return permission_exists?('categories', controller_name) if controller_name == "categories"
     return permission_exists?('page_design', 'dashboard') if ['pages', 'dashboard', 'take_snapshots', 'earn_coins', 'share_with_freinds'].include?(controller_name) && !action_name == 'buyerDashboard'
+    return permission_exists?('all_orders', controller_name) if controller_name == "orders"
     true
   end
 
