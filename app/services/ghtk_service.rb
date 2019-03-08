@@ -25,7 +25,7 @@ class GhtkService
 
     def place_order
       result, message = false, ""
-      url = URI.parse('https://services.giaohangtietkiem.vn/services/shipment/order')
+      url = URI.parse('https://dev.ghtk.vn/services/shipment/order')
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       # data = data_params.to_json
@@ -51,7 +51,8 @@ class GhtkService
       update_params = {
                       ghtk_label:    response['ghtk_label'],
                       ghtk_status:   status(response['status']),
-                      tracking_link: response['tracking_id']
+                      tracking_link: response['tracking_id'],
+                      sent_to_ghtk:  true
                     }
 
       order.update(update_params)
