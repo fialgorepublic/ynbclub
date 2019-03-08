@@ -1,12 +1,13 @@
 <div class="form-group">
+  <%= label_tag :district %>
+  <%= select_tag 'order[district]', options_for_select(@districts) , { include_blank: 'Select District', class: "form-control", id: "district-select" } %>
+</div>
+
+<div class="form-group">
   <%= label_tag :province %>
   <%= select_tag 'order[province]', options_for_select(@provinces) , { include_blank: 'Select Province', class: "form-control", id: "province-select" } %>
 </div>
 
-<div class="form-group">
-  <%= label_tag :district %>
-  <%= select_tag 'order[district]', options_for_select(@districts) , { include_blank: 'Select District', class: "form-control", id: "district-select" } %>
-</div>
 
 <script type="text/javascript">
   $(document).ready(function() {
