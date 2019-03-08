@@ -17,4 +17,10 @@ class Order < ApplicationRecord
   delegate :name, :id, to: :ward,     prefix: true, allow_nil: true
 
   scope :user_orders, -> (email) { where(email: email) }
+
+  enum picked_phone: {
+    'N/A' => 0,
+    'Yes' => 1,
+    'No'  => 2
+  }
 end
