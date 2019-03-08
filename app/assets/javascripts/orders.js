@@ -8,10 +8,13 @@ $(document).ready(function() {
     searching:     false,
     "order":       [],
     rowCallback: function(row, data, index){
-            if(data[5] == 'Yes'){
+            string_index = data[5].indexOf('"selected"');
+            value = JSON.parse(data[5].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
+            console.log(value);
+            if(value == '1'){
               $('td', row).css('background-color', 'green');
             }
-            else if(data[5] == 'No'){
+            else if(value == '2'){
               $('td', row).css('background-color', 'red');
             }
         }
