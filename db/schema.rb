@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190306105822) do
+ActiveRecord::Schema.define(version: 20190308071517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,7 +155,6 @@ ActiveRecord::Schema.define(version: 20190306105822) do
     t.string "customer_name"
     t.string "total"
     t.string "tracking_link"
-    t.boolean "picked_phone", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "sent_to_ghtk", default: false
@@ -166,6 +165,7 @@ ActiveRecord::Schema.define(version: 20190306105822) do
     t.bigint "district_id"
     t.bigint "province_id"
     t.bigint "ward_id"
+    t.integer "picked_phone", default: 0
     t.index ["city_id"], name: "index_orders_on_city_id"
     t.index ["district_id"], name: "index_orders_on_district_id"
     t.index ["province_id"], name: "index_orders_on_province_id"
