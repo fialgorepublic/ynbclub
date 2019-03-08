@@ -4,9 +4,17 @@ $(document).ready(function() {
     "scrollX":     true,
     'pagination':  false,
     'paging':      false,
-    "scrollY":     500,
+    "scrollY":     600,
     searching:     false,
-    "order":       []
+    "order":       [],
+    rowCallback: function(row, data, index){
+            if(data[5] == 'Yes'){
+              $('td', row).css('background-color', 'green');
+            }
+            else if(data[5] == 'No'){
+              $('td', row).css('background-color', 'red');
+            }
+        }
   });
 
   $('#referral-sales').dataTable( {
