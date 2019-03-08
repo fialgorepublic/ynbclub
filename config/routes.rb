@@ -240,6 +240,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk
     get :edit_address
+    get :update_phone_status
     collection do
       get :district_cities
       get :wards
