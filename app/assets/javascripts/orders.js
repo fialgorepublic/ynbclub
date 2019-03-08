@@ -12,10 +12,10 @@ $(document).ready(function() {
             value = JSON.parse(data[5].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
             console.log(value);
             if(value == '1'){
-              $('td', row).css('background-color', 'green');
+              $('td', row).css('background-color', '#e4f5e5');
             }
             else if(value == '2'){
-              $('td', row).css('background-color', 'red');
+              $('td', row).css('background-color', '#e8c9c7');
             }
         }
   });
