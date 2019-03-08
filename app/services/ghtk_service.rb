@@ -5,6 +5,8 @@ class GhtkService
   attr_reader :order
 
   TOKEN = "06EAB5098DA0eA1302237f932d63319cD60202Ac"
+  PRODUCTION_URL  = 'https://services.giaohangtietkiem.vn'
+  DEVELOPMENT_URL = 'https://dev.ghtk.vn'
 
   def initialize(order_id)
     @order = Order.find(order_id)
@@ -25,7 +27,7 @@ class GhtkService
 
     def place_order
       result, message = false, ""
-      url = URI.parse('https://dev.ghtk.vn/services/shipment/order')
+      url = URI.parse("#{DEVELOPMENT_URL}/services/shipment/order")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       # data = data_params.to_json
