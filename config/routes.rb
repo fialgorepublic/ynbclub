@@ -244,6 +244,7 @@ Rails.application.routes.draw do
     collection do
       get :district_cities
       get :wards
+      get :my
     end
   end
 
