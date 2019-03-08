@@ -9,7 +9,7 @@
 
     <div class="form-group">
       <%= form.label :City %>
-      <%= form.select :city, @cities , {}, { include_blank: 'Select City', class: "form-control", required: true, id: "city-select" } %>
+      <%= form.select :city, options_for_select(@cities) , {}, { :prompt => "Gender...", class: "form-control", id: "city-select" } %>
     </div>
 
     <%= form.hidden_field :order_id, value: @order.id %>
@@ -46,5 +46,40 @@
         alert('Error');
       }
     });
+  });
+
+  $('#edit_address').submit(function(){
+    province = $('#province-select').val();
+    distrcit = $('#district-select').val();
+
+    if(province == "" && distrcit == ""){
+      toastr.error('Please select any one of province/distrcit');
+      return false;
+    }
+  });
+
+  $('#edit_address').validate({
+    rules: {
+      'address': {
+        required: true
+      },
+      'city': {
+        required: true
+      },
+      'order[ward]': {
+        required: true
+      }
+    },
+    messages: {
+      'address': {
+        required: "Please enter address"
+      },
+      "city": {
+        required: "Please Select City"
+      },
+      "order[ward]": {
+        required: "Please Select Ward"
+      }
+    }
   });
 </script>
