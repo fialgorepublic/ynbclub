@@ -24,6 +24,11 @@ class OrdersController < ApplicationController
     @orders = orders.includes(:city, :district, :province, :ward).paginate(page: params[:page])
   end
 
+  def my
+    orders = Order.user_orders(current_user.email)
+    @orders = orders.paginate(page: params[:page])
+  end
+
   def create
     OrderService.new(params[:order]).create_order
     render head :ok
