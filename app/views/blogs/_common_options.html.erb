@@ -20,24 +20,26 @@
     </div>
   </div>
 
-  <% if current_user.users_blog?(blog.id) || current_user.is_admin? %>
-    <div class="col-md-1">
-      <div class="dropdown">
-        <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-bars"></i>
-        </span>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li>
-            <%= link_to blog, method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="fa fa-trash"></i> Delete
-            <% end %>
-          </li>
-          <li>
-            <a href="/change_publish_status?id=<%= blog.id %>&status=<%= blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><i class="fa fa-upload"></i> <%= blog.is_published ? 'Un publish' : 'Publish' %></a>
-          </li>
-        </ul>
+  <% if signed_in? %>
+    <% if current_user.users_blog?(blog.id) || current_user.is_admin? %>
+      <div class="col-md-1">
+        <div class="dropdown">
+          <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-bars"></i>
+          </span>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <%= link_to blog, method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fa fa-trash"></i> Delete
+              <% end %>
+            </li>
+            <li>
+              <a href="/change_publish_status?id=<%= blog.id %>&status=<%= blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><i class="fa fa-upload"></i> <%= blog.is_published ? 'Un publish' : 'Publish' %></a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <div class="col-md-2 text-right">
