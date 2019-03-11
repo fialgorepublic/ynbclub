@@ -52,7 +52,12 @@ class Blog < ApplicationRecord
     end
   }
 
-  scope :filter_by_category, -> (category) { where(category_id: category) }
+  scope :filter_by_category,  -> (category) { where(category_id: category) }
+  scope :all_published_blogs, -> (sort_type, category) {
+    sort_by = sort_type.present? ? sort_type : 0
+    category = category.present? ? category : Category.ids
+    where(is_published: true).filter_by_category(category).sort_blogs(sort_by)
+  }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, to: :user, prefix: true, allow_nil: true

@@ -1,4 +1,4 @@
-<div class="col-md-9">
+<div class="col-md-12">
   <div class="heading-featured">
     <h1>Blogs</h1>
     <hr>
@@ -34,7 +34,7 @@
 
   <div class="row show-more-button">
     <div class="col-md-8">
-      <%= link_to "New Blog", new_blog_path, class: "btn btn-primary pull-left" %>
+      <%= link_to "New Blog", new_blog_path, class: "btn btn-primary pull-left" if signed_in? %>
       <% unless @blogs.current_page == @blogs.total_pages %>
         <div class="custom-showMore-btn pull-right">
           <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>

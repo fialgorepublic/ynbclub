@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:blog_detail]
+  before_action :authenticate_user!, except: [:blog_detail, :index, :show]
   before_action :load_user_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail, :destroy, :change_publish_status]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
   require 'time_ago_in_words'
@@ -8,7 +8,14 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = current_user.filtered_blogs(params[:sort], params[:category]).paginate(page: params[:page], per_page: 10)
+
+    blogs = \
+        if current_user.present?
+          current_user.filtered_blogs(params[:sort], params[:category])
+        else
+          Blog.all_published_blogs(params[:sort], params[:category])
+        end
+    @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
     if request.xhr?
       with_format :html do
@@ -129,7 +136,7 @@ class BlogsController < ApplicationController
   end
 
   def share_blog
-    share_url = ShareUrl.create(user_id: current_user.id, blog_id: params[:id], url_type: params[:value])
+    share_url = ShareUrl.create(user_id: current_user&.id, blog_id: params[:id], url_type: params[:value])
     insert_points(current_user.id, 3, "", share_url.id)
     redirect_to blogs_path
   end
