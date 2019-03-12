@@ -35,4 +35,13 @@ module BlogsHelper
   def blog_user_name(blog)
     blog.user_full_name.present? ? blog.user_full_name : blog.user_name
   end
+
+  def liked_class(blog)
+    return 'fa fa-heart liked' if current_user.present? && blog.likes.find_by_user_id(current_user.id)
+    'fa fa-heart'
+  end
+
+  def blog_screen_size
+    current_user.present? ? 'col-md-9' : 'col-md-12'
+  end
 end

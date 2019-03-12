@@ -1,0 +1,150 @@
+<div id="signIn" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-holder">
+          <div class="main-login">
+            <h3 class="text-center">Log in to Saint L' Beau</h3>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
+                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> Login with Facebook</a>
+                </div>
+                <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
+                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> Login with Google +</a>
+                </div>
+              </div>
+            </div>
+            <div class="login-or">
+              <span class="span-or text-center">or</span>
+            </div>
+            <%= form_for :resource, url: session_path(resource_name),  method: "POST", :html => {:id =>"sign_in_user", :onsubmit => "return false;"}  do |f| %>
+            <div class="form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email", :class => 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :class => 'form-control' %>
+            </div>
+            <% if devise_mapping.rememberable? -%>
+            <div class="form-group">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+            <% end -%>
+            <div class="actions text-center">
+              <button class="btn btn-primary btn-lg btn-bottom btn-block" onclick="login_user();">Log in</button>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <a href="javascript:void(0);" onclick="register_form();" class="text-center">Create Account</a>
+              </div>
+              <div class="col-md-6 text-right">
+                <a href="javascript:void(0);" onclick="forgot_password();" class="text-center">Forgot password?</a>
+              </div>
+            </div>
+            <% end %>
+            <%#= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetFields()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="signUp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!--<div class="modal-header">-->
+      <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+      <!--</div>-->
+      <div class="modal-body">
+        <div class="modal-holder">
+          <div class="main-login">
+            <h3 class="text-center">Register to Saint L' Beau</h3>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-md-6 col-sm-6 pd-l-0 pd-r-0 col-xs-6">
+                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> Signup with Facebook</a>
+                </div>
+                <div class="col-md-6 col-sm-6 pd-r-0 pd-l-0 col-xs-6">
+                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> Signup with Google +</a>
+                </div>
+              </div>
+            </div>
+            <div class="login-or">
+              <!--<hr class="hr-or">-->
+              <span class="span-or text-center">or</span>
+            </div>
+            <%= form_for :resource, url: registration_path(resource_name), method: "POST", :html => {:id =>"sign_up_user", :onsubmit => "return false;"}  do |f| %>
+            <%= devise_error_messages! %>
+            <div class="form-group">
+              <%= f.label :Username %><br />
+              <%= f.text_field :name, autofocus: true, autocomplete: "Name",placeholder: "Enter Username", class: 'form-control', id: "registration_user_name" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Enter Email", class: 'form-control', id: "registration_email" %>
+            </div>
+            <%= hidden_field_tag :invite, params[:invite] %>
+            <div class="form-group">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "off",placeholder: "Enter Password", class: 'form-control', id: "registration_password" %>
+            </div>
+            <div class="actions text-center">
+              <button class="btn btn-lg btn-bottom btn-primary btn-block" onclick="sign_up_user();" id="register-btn">Register</button>
+              <a href="javascript:void(0);" onclick="login_form();" class="text-center">I have an account</a>
+            </div>
+            <% end %>
+            <%#= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetFields()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="forgotPassword" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <!--<div class="modal-header">-->
+      <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+      <!--</div>-->
+      <div class="modal-body" style="padding-top: 30px">
+        <div class="modal-holder">
+          <%= form_for :resource, url: password_path(resource_name), method: "POST", :html => {:id =>"forgot_password_form"}  do |f| %>
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control', required: true, id: "forgot_password_email" %>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary btn-lg btn-bottom btn-block" id="send_instructions">Send me reset password instructions</button>
+          </div>
+          <% end %>
+          <div class="row">
+            <div class="col-md-6">
+              <a href="javascript:void(0);" onclick="login_form();" class="text-center">Login</a>
+            </div>
+            <div class="col-md-6 text-right">
+              <a href="javascript:void(0);" onclick="register_form();" class="text-center">Create Account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

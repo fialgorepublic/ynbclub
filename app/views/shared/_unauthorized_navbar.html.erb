@@ -1,0 +1,31 @@
+<header class="header-holder">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <img src="https://cdn.shopify.com/s/files/1/1197/6404/files/saint_lbeau_logo_2-01_192x.png?v=1544811147">
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse header-custom-style" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/blogs">BLOG</a></li>
+          <li><a href="/users">BRAND AMBASSADOR</a></li>
+          <li><%= link_to "Store", "https://saintlbeau.myshopify.com/" %></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>
+          <li class="custom-register-btn-style"> <a href="javascript:void(0);" onclick="register_form();">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
