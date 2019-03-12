@@ -30,7 +30,7 @@ class BlogsController < ApplicationController
   def show
     @comments = @blog.comments if @blog.is_published?
     @selected_products = @blog.products
-    BlogView.create(user_id: current_user&.id, blog_id: @blog.id)
+    @blog.blog_views.create
   end
 
   # GET /blogs/new
