@@ -61,7 +61,9 @@ class GhtkService
     end
 
     def set_ghtk_order_params
-      { products: set_product_params, order: order_params }
+      order = order_params
+      order.merge(pick_work_shift: 1) if Date.current.sunday?
+      { products: set_product_params, order: order }
     end
 
     def set_product_params
