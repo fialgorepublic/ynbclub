@@ -50,6 +50,7 @@ gem 'countries'
 gem 'phony'
 gem 'activestorage'
 gem 'ransack'
+gem 'whenever', require: false
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
