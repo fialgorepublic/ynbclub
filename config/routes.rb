@@ -195,6 +195,7 @@ Rails.application.routes.draw do
   resources :referral_sales do
     collection do
       post :upate_ghtk_status
+      post :ghtk_status
     end
   end
 

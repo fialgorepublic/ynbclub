@@ -90,6 +90,9 @@ class OrdersController < ApplicationController
     render json: { result: result }
   end
 
+  def gthk_status
+  end
+
   private
 
     def order_params
