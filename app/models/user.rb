@@ -54,7 +54,6 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :comment_actions
-  has_many :blog_views
   has_many :blogs
   has_many :exchange_histories
   has_many :permissions
