@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190308071517) do
+ActiveRecord::Schema.define(version: 20190312095356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blog_views", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "blog_id"], name: "index_blog_views_on_user_id_and_blog_id", unique: true
   end
 
   create_table "blogs", force: :cascade do |t|
