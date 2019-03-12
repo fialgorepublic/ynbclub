@@ -209,4 +209,9 @@ class User < ApplicationRecord
   def has_permission? action, controller
     permissions.where(action_name: action, controller_name: controller).present?
   end
+
+  def update_total_income(price)
+    user_commission = commission.present? ? commission.to_f : 8.0
+    self.update_attributes(total_income: total_income.to_f + (price.to_f * user_commission/100))
+  end
 end

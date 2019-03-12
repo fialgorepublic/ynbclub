@@ -23,4 +23,20 @@ class Order < ApplicationRecord
     'Yes' => 1,
     'No'  => 2
   }
+
+  after_save :update_commission, if: :status_updated?
+
+  private
+    def update_commission
+      return if ['Delivered / Uncontrolled', 'Delivered (COD has finished delivering goods)'].include?(ghtk_status)
+      referral_sale = ReferralSale.find_by(order_id: self.order_id)
+
+      return if referral_sale.blank?
+      user = referral_sale.user
+      user.update_total_income(referral_sale.price)
+    end
+
+    def status_updated?
+      ghtk_status_changed?
+    end
 end

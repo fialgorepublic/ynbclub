@@ -21,7 +21,7 @@ class ReferralSale < ApplicationRecord
   self.per_page = 10
 
   belongs_to :user
-  after_save :set_ambassador_value
+  #after_save :set_ambassador_value
 
   private
     def set_ambassador_value
