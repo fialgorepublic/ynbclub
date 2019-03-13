@@ -64,6 +64,7 @@ class ReferralSalesController < ApplicationController
   end
 
   def approve_sales
+    initiate_shopify_session
     partner_ids = (params[:search].present? && params[:search][:partner] != "null") ? params[:search][:partner] : nil
     discount_status = (params[:search].present? && params[:search][:discountStatus] != "null") ? params[:search][:discountStatus] : ""
     if params[:search].present?
