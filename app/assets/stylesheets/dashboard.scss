@@ -25,6 +25,10 @@
 .product-box{
   min-height:204px;
   border:5px solid transparent;
+img{
+  height:200px;
+}
+
 }
 
 .box-shadow-am.sm-pd-am{
@@ -41,6 +45,7 @@
   .product-detail{
     margin-top: 10px;
     font-size: 17px;
+    height: 100px;
   }
   .product-review {
     i{
@@ -151,6 +156,7 @@ button:active{
 }
 .blog-imgUpload{
   border:none;
+  box-shadow:none;
   input{
   margin:0% 30% auto;
   }
