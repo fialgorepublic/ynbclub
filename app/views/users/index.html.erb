@@ -62,9 +62,9 @@
               <% if (@activeStatus == "All") %>
                 <% is_show = true %>
               <% elsif (@activeStatus == "true") %>
-                <% is_show = (percentage_price >= compare_payment ? true : false) %>
+                <% is_show = (percentage_price.to_f >= compare_payment ? true : false) %>
               <% elsif (@activeStatus == "false") %>
-                <% is_show = (percentage_price <= compare_payment ? true : false) %>
+                <% is_show = (percentage_price.to_f <= compare_payment ? true : false) %>
               <% end %>
               <% if is_show %>
                 <tr>
