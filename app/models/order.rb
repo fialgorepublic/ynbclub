@@ -28,7 +28,7 @@ class Order < ApplicationRecord
 
   private
     def update_commission
-      return if ['Delivered / Uncontrolled', 'Delivered (COD has finished delivering goods)'].include?(ghtk_status)
+      return if ghtk_status != 'Delivered (COD has finished delivering goods)'
       referral_sale = ReferralSale.find_by(order_id: self.order_id)
 
       return if referral_sale.blank?
