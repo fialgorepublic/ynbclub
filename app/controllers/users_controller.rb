@@ -48,11 +48,11 @@ class UsersController < ApplicationController
   def index
     @activeStatus = params[:payment].present? && params[:payment] != "All" ? params[:payment] : "All"
 
-    @users = User.search_ambassadors(params).paginate(page: params[:page])
+    @users = User.search_ambassadors(params).paginate(page: params[:page], per_page: 500)
   end
 
   def clear_search
-    @users = User.where(role_id: ambassador_role_id).paginate(page: params[:page]).order(created_at: :desc)
+    @users = User.where(role_id: ambassador_role_id).paginate(page: params[:page], per_page: 500).order(created_at: :desc)
   end
 
   def show
