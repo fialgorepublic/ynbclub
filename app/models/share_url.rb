@@ -21,7 +21,7 @@ class ShareUrl < ApplicationRecord
 
   scope :shared_media_urls, -> { where(blog_id: nil) }
 
-  delegate :name, to: :user, prefix: true
+  delegate :name, to: :user, prefix: true, allow_nil: true
 
   def set_shared_website
     return if url.blank?
