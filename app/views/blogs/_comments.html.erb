@@ -15,32 +15,32 @@
         <div class="panel panel-white post panel-shadow"> <hr>
           <div class="post-heading">
             <div class="pull-left image ">
-              <img src="<%= comment.user.avatar ? comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image">
+              <img src="<%= comment.user.avatar ? comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image" width="50">
 
             </div>
-            <div class="pull-left meta user-name">
-              <h6 class="text-muted pull-right time"><%= comment.created_at.ago_in_words %></h6>
-              <p><b><%= comment.user.name %></b>
+            <div class="meta user-name">
+             <p class="pull-left" style="padding-left: 10px; padding-right: 10px;"><b><%= comment.user.name %></b>
+              <h6 class="text-muted time"><%= comment.created_at.ago_in_words %></h6>
                 <!--made a post.-->
               </p>
               <p><%= comment.message %></p>
               <!--<p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p></p> -->
 
               <% comment.children.each do |sub_comment| %>
-                  <div class="panel panel-white post comnt-rply-box panel-shadow">
+                  <div class="panel panel-white post comnt-rply-box panel-shadow col-md-12">
                     <div class="post-heading">
                       <div class="pull-left image">
-                        <img src="<%= sub_comment.user.avatar ? sub_comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image">
+                        <img src="<%= sub_comment.user.avatar ? sub_comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image" width="50">
                       </div>
                       <div class="pull-left meta">
-                        <div class="title h5">
+                        <div class="title h5" style="padding: 10px;">
                           <a href="#"><b><%= sub_comment.user.name %></b></a>
-                          <h6 class="text-muted pull-right time"><%= sub_comment.created_at.ago_in_words %></h6>
+                          <h6 class="text-muted pull-right time" style="padding-left: 10px; margin-top: 0px;"><%= sub_comment.created_at.ago_in_words %></h6>
 
                         </div>
 
                         <div class="post-description">
-                          <p><%= sub_comment.message %></p>
+                          <p style="padding: 10px;"><%= sub_comment.message %></p>
                           <!--<div class="stats">-->
                           <!--<a href="#" class="btn btn-default stat-item">-->
                           <!--<i class="fa fa-thumbs-up icon"></i>2-->

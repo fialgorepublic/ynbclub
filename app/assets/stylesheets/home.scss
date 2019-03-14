@@ -1020,6 +1020,7 @@ button.comnt-btn-style{
 .product-shadow{
  .box-shadow-am{
    box-shadow:unset;
+   margin-bottom:10px;
   }
 }
 
@@ -1801,6 +1802,8 @@ label.error {
   }
  }
 
+
+
 .nested-fields .remove_field{
       position: absolute;
     right: 0;
@@ -2093,13 +2096,19 @@ label.error {
         }
   }
 }
+
+.expended-blog-style-icon span{
+  border-right: unset !important;
+}
+
 .blog-box.blog-box-sm{
     .h-150{
       height:146px;
           object-fit: cover;
     }
     .blog-box-content{
-      padding: 20px 12px 10px;
+    padding: 10px 12px 10px;
+    height: 84px;
     }
      h3{
           font-size:18px;
@@ -2109,7 +2118,7 @@ label.error {
 }
 .blog-box.blog-box-long{
   padding-bottom:0;
-  max-height: 265px;
+//  max-height: 265px;
   .h-50vh {
     height:265px;
   }
@@ -2215,4 +2224,8 @@ label.error {
       font-size: 18px;
     }
   }
+}
+
+.comnt-shadow .panel-white{
+  background-color:unset;
 }
