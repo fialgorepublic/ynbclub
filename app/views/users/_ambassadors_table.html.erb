@@ -16,7 +16,7 @@
 
   <tbody>
   <% @users.each do |user| %>
-    <% percentage_price = (price.to_f * user.commission.to_f)/100 %>
+    <% percentage_price = user.total_income %>
     <% is_show = true %>
     <% if is_show %>
       <tr>
