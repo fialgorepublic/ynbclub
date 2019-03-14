@@ -965,6 +965,7 @@ blockquote{
 
 .detail-icon{
     color:#b0b0b0;
+    padding-top:10px;
   i{
   font-size: 22px;
   padding-right:8px;
@@ -2062,6 +2063,7 @@ label.error {
   box-shadow: 0 0 10px #ccc;
   padding-bottom:15px;
   margin-bottom:25px;
+  height:320px;
   .fa{
     color:#b0b0b0;
   }
@@ -2108,7 +2110,7 @@ label.error {
     }
     .blog-box-content{
     padding: 10px 12px 10px;
-    height: 84px;
+   // height: 84px;
     }
      h3{
           font-size:18px;

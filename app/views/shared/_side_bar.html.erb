@@ -48,30 +48,30 @@
       <% unless current_user.is_admin? %>
         <li>
           <%= link_to dashboard_path, class: active_class(dashboard_path) || active_class(buyerDashboard_path) do %>
-          <i class="custom-icon"><img src="/assets/icon-1.png"></i>Dashboard
+          <i class="custom-icon" style="padding-right: 20px;"><img src="/assets/icon-1.png"></i>Dashboard
           <% end %>
         </li>
 
         <li>
           <%= link_to share_with_friends_path, class: active_class(share_with_friends_path) do %>
-          <i><img src="/assets/icon-2.png"></i> Share with friends
+          <i style="padding-right: 17px;"><img src="/assets/icon-2.png"></i> Share with friends
           <% end %>
         </li>
 
         <li>
           <%= link_to take_snapshot_path, class: active_class(take_snapshot_path) do %>
-          <i><img src="/assets/icon-3.png"> </i> Take a snapshot and share
+          <i style="padding-right: 17px;"><img src="/assets/icon-3.png"> </i> Take a snapshot and share
           <% end %>
         </li>
 
         <li  data-toggle="" data-target="#" class="collapsed">
           <%= link_to exchange_coins_users_path, class: "#{active_class(exchange_coins_users_path)}" do %>
-            <i class="fa fa-exchange" style="padding-right: 42px;"></i> Exchange Coins
+            <i class="fa fa-exchange" style="padding-right: 21px;"></i> Exchange Coins
           <% end %>
         </li>
 
         <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/orders/my" class="<%= active_class(my_orders_path) %>"><i class="custom-icon"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Orders </span></a>
+          <a href="/orders/my" class="<%= active_class(my_orders_path) %>"><i class="custom-icon" style="padding-right: 19px;"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Orders </span></a>
         </li>
       <% end %>
 
