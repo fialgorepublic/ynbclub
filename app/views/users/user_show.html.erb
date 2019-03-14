@@ -17,9 +17,9 @@
         <div class="row">
           <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
             <p><strong>Referral code:</strong> <%= @user.referral %> </p>
-            <p><strong>Total income:</strong>  <%= @user.total_income.to_f %> ₫</p>
-            <p><strong>Has been paid:</strong> <%= @user.paid %> ₫</p>
-            <p><strong>Not paid:</strong> <%= @user.total_income.to_f - @user.paid.to_f %> ₫</p>
+            <p><strong>Total income:</strong>  <%= number_with_delimiter(@user.total_income.to_f, delimiter: ".") %> ₫</p>
+            <p><strong>Has been paid:</strong> <%= number_with_delimiter(@user.paid.to_f, delimiter: ".") %> ₫</p>
+            <p><strong>Not paid:</strong> <%= number_with_delimiter(@user.total_income.to_f - @user.paid.to_f, delimiter: ".") %> ₫</p>
           </div>
         </div>
         <%= form_tag("/update_profile", id: "update_profile", method: "post") do %>
@@ -82,14 +82,14 @@
                 <div class="col-md-6">
                   <div class="form-group" >
                     <label>State</label>
-                    <%= select_tag 'profile[state]', options_for_select(states, selected: @user.state), { prompt: 'Select State *', class: "form-control", required: true } %>
+                    <%= select_tag 'profile[state]', options_for_select(states, selected: @user.state), { prompt: 'Select State', class: "form-control" } %>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group" >
                     <label>City</label>
-                    <%= select_tag 'profile[city]', options_for_select(cities, selected: @user.city), { prompt: 'Select City *', class: "form-control", required: true } %>
+                    <%= select_tag 'profile[city]', options_for_select(cities, selected: @user.city), { prompt: 'Select City', class: "form-control" } %>
                   </div>
                 </div>
 
