@@ -30,6 +30,7 @@
             <span><i class="fa fa-comment"></i> <%= blog.comments.count %></span>
           </div>
 
+          <% if blog.is_published? %>
           <div class="col-md-2" style="padding-left: 0px;">
             <div class="dropdown expended-blog-style-icon">
               <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,6 +43,8 @@
               </ul>
             </div>
           </div>
+          <% else %>
+          <% end %>
 
           <% if signed_in? %>
             <% if current_user.users_blog?(blog.id) || current_user.is_admin? %>
