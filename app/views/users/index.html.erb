@@ -68,7 +68,7 @@
                 <tr>
                   <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
                   <td><%= user.email %></td>
-                  <td><%= user.created_at.to_date %></td>
+                  <td><%= user.created_at.strftime('%B %d, %y') %></td>
                   <td><%= user.profile_phone_number %></td>
                   <td><%= user.referral %></td>
                   <td><%= user.commission %></td>
