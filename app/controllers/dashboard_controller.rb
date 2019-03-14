@@ -106,7 +106,6 @@ class DashboardController < ApplicationController
     @cities = State.find_by_name(params[:state])&.cities.pluck(:name, :name)
   end
 
-
   private
 
     def get_share_with_friend
