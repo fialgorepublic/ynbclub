@@ -27,7 +27,7 @@ class GhtkService
 
     def place_order
       result, message = false, ""
-      url = URI.parse("#{DEVELOPMENT_URL}/services/shipment/order")
+      url = URI.parse("#{PRODUCTION_URL}/services/shipment/order")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       # data = data_params.to_json
