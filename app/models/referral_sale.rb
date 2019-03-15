@@ -20,6 +20,8 @@
 class ReferralSale < ApplicationRecord
   self.per_page = 100
 
+  belongs_to :order, ->(sale) { where(order_id: sale.order_id) }, optional: true
+
   belongs_to :user
   #after_save :set_ambassador_value
 
