@@ -27,7 +27,7 @@ class GhtkService
 
     def place_order
       result, message = false, ""
-      url = URI.parse("#{PRODUCTION_URL}/services/shipment/order")
+      url = URI.parse("#{DEVELOPMENT_URL}/services/shipment/order")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       # data = data_params.to_json
@@ -38,7 +38,10 @@ class GhtkService
       resp = http.post(url.path, set_ghtk_order_params.to_json, headers)
       resp_body = resp.body
       response = JSON.parse(resp.body)
+
       if response['success']
+        UpdateOrderStatusService.new([] << order ).call
+
         result = update_order(response)
         message = response['message']
       elsif response['error']
