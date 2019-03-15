@@ -11,9 +11,17 @@ $(document).ready(function(){
         "order": [[5, "desc"]],
         "paging": false,
         "info": false,
-        scrollY: '60vh',
         scrollCollapse: true,
         scrollX: true
+    })
 
+    $("#deduct_points").dataTable({
+      searching: true,
+      "pagingType": "full_numbers",
+      "paging": false,
+      "info":   false,
+      scrollY:  600,
+      scrollCollapse: true,
+      scrollX: true
     })
 });

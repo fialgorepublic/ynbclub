@@ -18,4 +18,9 @@ module UsersHelper
   def icon_class deduct_points
     deduct_points.present? ? "fa-minus-circle" : "fa-ban"
   end
+
+  def table_id(params)
+    params[:deduct_points].blank? ? 'bs4-table' : 'deduct_points'
+
+  end
 end
