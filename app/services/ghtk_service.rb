@@ -40,10 +40,9 @@ class GhtkService
       response = JSON.parse(resp.body)
 
       if response['success']
-        UpdateOrderStatusService.new([] << order ).call
-
         result = update_order(response)
         message = response['message']
+        UpdateOrderStatusService.new([] << order ).call
       elsif response['error']
         update_order(response) if order.ghtk_label.blank? || order.ghtk_status.blank?
         result, message = false, response["message"]
