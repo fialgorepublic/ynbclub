@@ -44,4 +44,18 @@ module BlogsHelper
   def blog_screen_size
     current_user.present? ? 'col-md-9' : 'col-md-12'
   end
+
+  def render_row_class(blog_type)
+    return 'pl-4' if blog_type == 'expanded'
+    'row pl-5'
+  end
+
+  def render_padding_class(blog_type)
+    return 'pl-0' if blog_type == 'expanded'
+  end
+
+  def render_blog_count_class(blog_type)
+    return 'col-md-3' if blog_type == 'expanded'
+    'col-md-2 text-right'
+  end
 end
