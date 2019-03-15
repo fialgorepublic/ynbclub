@@ -29,7 +29,6 @@
         <td><a href="/user_show?id=<%= referral_sale.user.present? ? referral_sale.user.id : "" %>"><%= referral_sale.user.present? ? referral_sale.user.referral : "" %></a></td></td>
       </tr>
     <% end %>
-    <% ShopifyAPI::Base.clear_session %>
   </tbody>
 </table>
 
