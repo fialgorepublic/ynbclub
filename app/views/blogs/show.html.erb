@@ -149,7 +149,7 @@
 </div>
 
 
-<% if @blog.is_published? %>
+<% if @blog.is_published? && signed_in? %>
   <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
     Post a comment
   </button>
