@@ -1,14 +1,10 @@
 class GhtkService
-  require "uri"
-  require "net/http"
-
-  attr_reader :order
+  attr_reader :order, :base_url
 
   TOKEN = "06EAB5098DA0eA1302237f932d63319cD60202Ac"
-  PRODUCTION_URL  = 'https://services.giaohangtietkiem.vn'
-  DEVELOPMENT_URL = 'https://dev.ghtk.vn'
 
   def initialize(order_id)
+    @base_url = Rails.env.development? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
     @order = Order.find(order_id)
   end
 
@@ -27,7 +23,7 @@ class GhtkService
 
     def place_order
       result, message = false, ""
-      url = URI.parse("#{PRODUCTION_URL}/services/shipment/order")
+      url = URI.parse("#{base_url}/services/shipment/order")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       # data = data_params.to_json

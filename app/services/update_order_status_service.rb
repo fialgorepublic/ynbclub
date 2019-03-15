@@ -1,12 +1,11 @@
 class UpdateOrderStatusService
-  attr_reader :orders
+  attr_reader :orders, :base_url
 
   TOKEN = "06EAB5098DA0eA1302237f932d63319cD60202Ac"
-  PRODUCTION_URL  = 'https://services.giaohangtietkiem.vn'
-  DEVELOPMENT_URL = 'https://dev.ghtk.vn'
 
   def initialize(orders)
-    @orders = orders
+    @base_url = Rails.env.development? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
+    @orders  = orders
   end
 
   def call
@@ -24,7 +23,7 @@ class UpdateOrderStatusService
     end
 
     def get_ghtk_status ghtk_label
-      url = URI.parse("#{PRODUCTION_URL}/services/shipment/v2/#{ghtk_label}")
+      url = URI.parse("#{base_url}/services/shipment/v2/#{ghtk_label}")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       headers = {
