@@ -20,10 +20,13 @@
 class ReferralSale < ApplicationRecord
   self.per_page = 100
 
-  belongs_to :order, ->(sale) { where(order_id: sale.order_id) }, foreign_key: 'order_id', optional: true
-
   belongs_to :user
   #after_save :set_ambassador_value
+
+  def order_ghtk_status
+    order =  Order.find_by(order_id: self.order_id)
+    order.present? ? order.status : 'Status not updated yet.'
+  end
 
   private
     def set_ambassador_value

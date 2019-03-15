@@ -16,27 +16,18 @@
 
   <tbody>
     <% @referral_sales.each do |referral_sale| %>
-        <% payment_status = ShopifyAPI::Order.find(referral_sale.order_id).financial_status rescue "" %>
-      <% is_show = true %>
-      <% if @payment.present? && @payment == "paid" %>
-        <% is_show = (payment_status == @payment) ? true : false %>
-      <% elsif @payment.present? %>
-        <% is_show = (payment_status != "paid") ? true : false %>
-      <% end %>
-      <% if is_show %>
-        <tr>
-          <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved || payment_status == "pending") ? 'disabled': '' %> /></td>
-          <td><%= referral_sale.order_no %></td>
-          <td><%= referral_sale.created_at.strftime("%d-%m-%y, %H:%M %p") %></td>
-          <td><%= referral_sale.name %></td>
-          <td><%= referral_sale.is_approved ? 'Approved' : "Pending" %></td>
-          <td><%= number_with_delimiter(referral_sale.price, delimiter: ".") %>₫</td>
-          <td><%= number_with_delimiter((referral_sale.price.to_f * referral_sale.user.commission.to_f)/100, delimiter: ".") %>₫</td>
-          <td><%= payment_status %></td>
-          <td><%= referral_sale.user.present? ? referral_sale.user.name : "" %></td>
-          <td><a href="/user_show?id=<%= referral_sale.user.present? ? referral_sale.user.id : "" %>"><%= referral_sale.user.present? ? referral_sale.user.referral : "" %></a></td></td>
-        </tr>
-      <% end %>
+      <tr>
+        <td><input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= (referral_sale.is_approved ? 'disabled': '' %> /></td>
+        <td><%= referral_sale.order_no %></td>
+        <td><%= referral_sale.created_at.strftime("%d-%m-%y, %H:%M %p") %></td>
+        <td><%= referral_sale.name %></td>
+        <td><%= referral_sale.is_approved ? 'Approved' : "Pending" %></td>
+        <td><%= number_with_delimiter(referral_sale.price, delimiter: ".") %>₫</td>
+        <td><%= number_with_delimiter((referral_sale.price.to_f * referral_sale.user.commission.to_f)/100, delimiter: ".") %>₫</td>
+        <td><%= referral_sale.order_ghtk_status %></td>
+        <td><%= referral_sale.user.present? ? referral_sale.user.name : "" %></td>
+        <td><a href="/user_show?id=<%= referral_sale.user.present? ? referral_sale.user.id : "" %>"><%= referral_sale.user.present? ? referral_sale.user.referral : "" %></a></td></td>
+      </tr>
     <% end %>
     <% ShopifyAPI::Base.clear_session %>
   </tbody>
