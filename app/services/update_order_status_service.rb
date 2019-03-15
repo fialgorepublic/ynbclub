@@ -24,7 +24,7 @@ class UpdateOrderStatusService
     end
 
     def get_ghtk_status ghtk_label
-      url = URI.parse("#{DEVELOPMENT_URL}/services/shipment/v2/#{ghtk_label}")
+      url = URI.parse("#{PRODUCTION_URL}/services/shipment/v2/#{ghtk_label}")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       headers = {
