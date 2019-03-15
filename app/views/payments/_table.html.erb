@@ -17,7 +17,7 @@
       <tr>
         <td><%= payment.payment_code %></td>
         <td><%= payment.created_at %></td>
-        <td><%= number_with_delimiter(payment.amount, delimiter: ".") %>₫</td>
+        <td><%= number_with_delimiter(payment.amount.to_i, delimiter: ".") %>₫</td>
         <td><%= payment.user.name %></td>
         <td><%= payment.user.email %></td>
         <td><%= payment.number_math %></td>

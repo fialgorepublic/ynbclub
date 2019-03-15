@@ -17,9 +17,9 @@
         <div class="row">
           <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
             <p><strong>Referral code:</strong> <%= @user.referral %> </p>
-            <p><strong>Total income:</strong>  <%= number_with_delimiter(@user.total_income.to_f, delimiter: ".") %> ₫</p>
-            <p><strong>Has been paid:</strong> <%= number_with_delimiter(@user.paid.to_f, delimiter: ".") %> ₫</p>
-            <p><strong>Not paid:</strong> <%= number_with_delimiter(@user.total_income.to_f - @user.paid.to_f, delimiter: ".") %> ₫</p>
+            <p><strong>Total income:</strong>  <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
+            <p><strong>Has been paid:</strong> <%= number_with_delimiter(@user.paid.to_i, delimiter: ".") %> ₫</p>
+            <p><strong>Not paid:</strong> <%= number_with_delimiter(@user.total_income.to_i - @user.paid.to_i, delimiter: ".") %> ₫</p>
           </div>
         </div>
         <%= form_tag("/update_profile", id: "update_profile", method: "post") do %>

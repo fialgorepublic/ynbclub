@@ -22,7 +22,7 @@
           <td><%= order_date(order) %></td>
           <td><%= order.financial_status %></td>
           <td><%= fulfillment_status(order) %></td>
-          <td><%= number_with_delimiter(order.total_price, delimiter: ".") %>₫</td>
+          <td><%= number_with_delimiter(order.total_price.to_i, delimiter: ".") %>₫</td>
         </tr>
       <% end %>
     </tbody>

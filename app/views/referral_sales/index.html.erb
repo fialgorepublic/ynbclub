@@ -18,7 +18,7 @@
       <% @referral_sales.each do |referral_sale| %>
         <tr>
           <td><%= referral_sale.order_no %></td>
-          <td><%= number_with_delimiter(referral_sale.price, delimiter: ".") %>₫</td>
+          <td><%= number_with_delimiter(referral_sale.price.to_i, delimiter: ".") %>₫</td>
           <td><%= referral_sale.name %></td>
           <td><%= referral_sale.email %></td>
           <td><%= referral_sale.shopdomain %></td>
