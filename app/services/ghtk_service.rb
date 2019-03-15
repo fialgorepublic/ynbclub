@@ -50,13 +50,14 @@ class GhtkService
 
     def update_order response
       response = response['order'] || response['error']
+      ghtk_label = response['ghtk_label'].present? ? response['ghtk_label'] : response['label']
       update_params = {
-                      ghtk_label:    response['ghtk_label'],
+                      ghtk_label:    ghtk_label,
                       ghtk_status:   status(response['status']),
-                      tracking_link: response['tracking_id'],
                       sent_to_ghtk:  true
                     }
 
+      update_params.merge(tracking_link: response['tracking_id']) if order.tracking_link.blank?
       order.update(update_params)
     end
 
