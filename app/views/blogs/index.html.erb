@@ -1,51 +1,53 @@
-<div class="<%= blog_screen_size %>">
-  <div class="heading-featured">
-    <h1>Blogs</h1>
-    <hr>
-  </div>
-
-  <div class="row">
-    <div class="post-heading">
-      <% if @blogs.count > 0 %>
-        <div class="row">
-          <div class="col-md-2 post-sorting pull-right" style="margin-left: 15px;">
-            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: 'All', class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
-          </div>
-          <div class="col-md-2 post-sorting pull-right">
-            <select class="sorting-fltr" id="sort-blogs">
-              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-              <option value="0">Newest First</option>
-              <option value="1">A-Z </option>
-              <option value="2">Z-A </option>
-            </select>
-          </div>
-        </div>
-      <% end %>
-      <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
-    </div>
-  </div>
-
-  <div class="row" id="blogs">
-    <%= render "all_blogs" %>
-  </div>
-  <br/>
-
-  <%= hidden_field_tag :page, @next_page %>
-
-  <div class="row show-more-button">
-    <div class="col-md-8">
-      <%= link_to "New Blog", new_blog_path, class: "btn btn-primary pull-left" if signed_in? %>
-      <% unless @blogs.current_page == @blogs.total_pages %>
-        <div class="custom-showMore-btn pull-right">
-          <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
-            <i class="fa fa-plus"></i> Show More
-          <% end %>
-        </div>
-      <% end %>
+<div class="<%= add_container %>">
+  <div class="<%= blog_screen_size %>">
+    <div class="heading-featured">
+      <h1>Blogs</h1>
+      <hr>
     </div>
 
-    <div class="col-md-4">
-      <a href="javascript:" id="custom-topPage-btn"><i class="fa fa-angle-up"></i></a>
+    <div class="row">
+      <div class="post-heading">
+        <% if @blogs.count > 0 %>
+          <div class="row">
+            <div class="col-md-2 post-sorting pull-right" style="margin-left: 15px;">
+              <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: 'All', class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+            </div>
+            <div class="col-md-2 post-sorting pull-right">
+              <select class="sorting-fltr" id="sort-blogs">
+                <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+                <option value="0">Newest First</option>
+                <option value="1">A-Z </option>
+                <option value="2">Z-A </option>
+              </select>
+            </div>
+          </div>
+        <% end %>
+        <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
+      </div>
+    </div>
+
+    <div class="row" id="blogs">
+      <%= render "all_blogs" %>
+    </div>
+    <br/>
+
+    <%= hidden_field_tag :page, @next_page %>
+
+    <div class="row show-more-button">
+      <div class="col-md-8">
+        <%= link_to "New Blog", new_blog_path, class: "btn btn-primary pull-left" if signed_in? %>
+        <% unless @blogs.current_page == @blogs.total_pages %>
+          <div class="custom-showMore-btn pull-right">
+            <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
+              <i class="fa fa-plus"></i> Show More
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <a href="javascript:" id="custom-topPage-btn"><i class="fa fa-angle-up"></i></a>
+      </div>
     </div>
   </div>
 </div>

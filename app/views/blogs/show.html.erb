@@ -24,141 +24,141 @@
 
 
 
+<div class="<%= add_container %>">
+  <div class="<%= blog_screen_size %>">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="main">
+          <div class="three-dots pull-right">
+            <div class="dropdown">
+              <!-- three dots -->
+              <% if signed_in? %>
+                <% if current_user.users_blog?(@blog.id) %>
+                  <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <!-- menu -->
+                  <div id="myDropdown" class="dropdown-content">
+                    <!--<a href="/blogs/<%#= @blog.id %>/edit">Edit</a>-->
+                    <%= link_to 'Edit', edit_blog_path(@blog) %>
+                    <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><%= @blog.is_published ? 'Un publish' : 'Publish' %></a>
+                    <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');">Show as buyers see it</a>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <h2><span> <a href="/blogs" style="text-decoration: none;"><i class="fa fa-angle-left"></i> Go to the list of blog posts </a></span> <!-- three dot menu -->
+          </h2>
 
-<div class="<%= blog_screen_size %>">
-<div class="row">
-  <div class="col-md-12">
-    <div class="main">
-      <div class="three-dots pull-right">
-        <div class="dropdown">
-          <!-- three dots -->
-          <% if signed_in? %>
-            <% if current_user.users_blog?(@blog.id) %>
-              <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-                <li></li>
-                <li></li>
-                <li></li>
-              </ul>
-              <!-- menu -->
-              <div id="myDropdown" class="dropdown-content">
-                <!--<a href="/blogs/<%#= @blog.id %>/edit">Edit</a>-->
-                <%= link_to 'Edit', edit_blog_path(@blog) %>
-                <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><%= @blog.is_published ? 'Un publish' : 'Publish' %></a>
-                <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');">Show as buyers see it</a>
-              </div>
+
+          <hr>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="detail-img">
+          <div class="img-block"><h4><%= @blog.is_published ? 'Published' : 'Unpublish' %></h4></div>
+          <img width="100%" src="<%= @blog.avatar.present? ? @blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="detail-img detail-icon">
+          <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
+          <i class="fa fa-share"></i><span><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
+          <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
+          <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
+
+          <h5 class="pull-right"> <span class="category-style"><%= @blog.category_name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
+            <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
+            <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
+            <% if signed_in? %>
+              <% if current_user.users_blog?(@blog.id) %>
+                <%= link_to edit_blog_path(@blog) do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %></strong></h5>
+              <% end %>
             <% end %>
-          <% end %>
+          <hr>
+        </div>
+
+      </div>
+    </div>
+
+    <!--<div class="row">
+      <div class="col-md-12">
+        <div class="cat-row detail-img">
+         
         </div>
       </div>
-      <h2><span> <a href="/blogs" style="text-decoration: none;"><i class="fa fa-angle-left"></i> Go to the list of blog posts </a></span> <!-- three dot menu -->
-      </h2>
-
-
-      <hr>
     </div>
-
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="detail-img">
-      <div class="img-block"><h4><%= @blog.is_published ? 'Published' : 'Unpublish' %></h4></div>
-      <img width="100%" src="<%= @blog.avatar.present? ? @blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
-
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="detail-img detail-icon">
-      <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
-      <i class="fa fa-share"></i><span><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
-      <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
-      <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
-
-      <h5 class="pull-right"> <span class="category-style"><%= @blog.category_name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
-        <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
-        <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
-        <% if signed_in? %>
-          <% if current_user.users_blog?(@blog.id) %>
-            <%= link_to edit_blog_path(@blog) do %>
-              <i class="fa fa-pencil"></i>
-            <% end %></strong></h5>
-          <% end %>
-        <% end %>
-      <hr>
-    </div>
-
-  </div>
-</div>
-
-<!--<div class="row">
-  <div class="col-md-12">
-    <div class="cat-row detail-img">
-     
-    </div>
-  </div>
-</div>
--->
-<div class="row">
-  <div class="col-md-12 title-style">
-    <div class="detail-img">
-      <h2><%= @blog.title %></h2>
-      <p><%= @blog.description.html_safe %></p>
-    </div>
-    <hr>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-md-12 product-title">
-    <h2>Products</h2>
-  </div>
-</div>
-
-<div class="row product-shadow product-border-style">
-  <% @selected_products.each do |product| %>
-      <div class="col-md-4">
-        <div class="box-shadow-am sm-pd-am">
-          <div class="product-box">
-            <img width="100%" src="<%= product.avatar.present? ? product.avatar.url : '/placeholder.png' %>">
-          </div>
-          <div class="product-detail">
-            <p><%= product.title %></p>
-          </div>
-          <div class="product-review">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="product-price">
-            <h5><%= product.price %></h5>
-          </div>
-          <div class="product-offer">
-            <p>20% we're getting from every purchase</p>
-          </div>
+    -->
+    <div class="row">
+      <div class="col-md-12 title-style">
+        <div class="detail-img">
+          <h2><%= @blog.title %></h2>
+          <p><%= @blog.description.html_safe %></p>
         </div>
+        <hr>
       </div>
-
-  <% end %>
-</div>
+    </div>
 
 
-<% if @blog.is_published? && signed_in? %>
-  <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
-    Post a comment
-  </button>
+    <div class="row">
+      <div class="col-md-12 product-title">
+        <h2>Products</h2>
+      </div>
+    </div>
 
-  <div id="blogComment">
-    <%= render partial: 'blogs/comments' %>
+    <div class="row product-shadow product-border-style">
+      <% @selected_products.each do |product| %>
+          <div class="col-md-4">
+            <div class="box-shadow-am sm-pd-am">
+              <div class="product-box">
+                <img width="100%" src="<%= product.avatar.present? ? product.avatar.url : '/placeholder.png' %>">
+              </div>
+              <div class="product-detail">
+                <p><%= product.title %></p>
+              </div>
+              <div class="product-review">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+              <div class="product-price">
+                <h5><%= product.price %></h5>
+              </div>
+              <div class="product-offer">
+                <p>20% we're getting from every purchase</p>
+              </div>
+            </div>
+          </div>
+
+      <% end %>
+    </div>
+
+
+    <% if @blog.is_published? && signed_in? %>
+      <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
+        Post a comment
+      </button>
+
+      <div id="blogComment">
+        <%= render partial: 'blogs/comments' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-
 </div>
 
 <div class="modal fade" id="addComment" role="dialog">

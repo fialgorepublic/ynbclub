@@ -58,4 +58,8 @@ module BlogsHelper
     return 'col-md-3' if blog_type == 'expanded'
     'col-md-2 text-right'
   end
+
+  def add_container
+    current_user.present? ? '' : 'container-fluid'
+  end
 end
