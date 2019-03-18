@@ -4,8 +4,6 @@ development:
   host: localhost
   database: saintLBeau-app
   pool: 5
-  username: postgres
-  password: Elslearn001
 
 test:
   adapter: postgresql
@@ -13,13 +11,15 @@ test:
   host: localhost
   database: saintLBeau-app
   pool: 5
-  username: postgres
-  password: Elslearn001
 
 production:
   adapter: postgresql
   encoding: unicode
   database: saintLBeau-app
   pool: 5
-  username: postgres
-  password: Elslearn001
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: saintlbeau-staging
+  pool: 5
