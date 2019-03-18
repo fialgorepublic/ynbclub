@@ -43,6 +43,7 @@
                 <% else %>
                   <th>Banned</th>
                 <% end %>
+                <th>Points History</th>
               </tr>
             </thead>
 
@@ -60,6 +61,9 @@
                         <%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%>
                       </td>
                     <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "Points History", points_users_path(user_id: user.id) %>
                   </td>
                 </tr>
               <% end %>

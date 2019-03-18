@@ -164,7 +164,8 @@ class UsersController < ApplicationController
   end
 
   def points
-    @points = current_user.points.order(created_at: :desc)
+    user = params[:user_id].present? ? User.find(params[:user_id]) : current_user
+    @points = user.points.order(created_at: :desc)
   end
 
   def find_user_by_email
