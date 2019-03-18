@@ -20,7 +20,6 @@ module UsersHelper
   end
 
   def table_id(params)
-    params[:deduct_points].blank? ? 'bs4-table' : 'deduct_points'
-
+    params[:deduct_points].blank? ? 'ban_users_table' : 'deduct_points_table'
   end
 end

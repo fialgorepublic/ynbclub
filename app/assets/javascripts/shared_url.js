@@ -11,11 +11,12 @@ $(document).ready(function(){
         "order": [[5, "desc"]],
         "paging": false,
         "info": false,
+        scrollY:  600,
         scrollCollapse: true,
         scrollX: true
     })
 
-    $("#deduct_points").dataTable({
+    $("#ban_users_table").dataTable({
       searching: true,
       "pagingType": "full_numbers",
       "paging": false,
@@ -23,5 +24,16 @@ $(document).ready(function(){
       scrollY:  600,
       scrollCollapse: true,
       scrollX: true
+    })
+
+    $("#deduct_points_table").dataTable({
+      searching: true,
+      "pagingType": "full_numbers",
+      "paging": false,
+      "info":   false,
+      scrollY:  600,
+      scrollCollapse: true,
+      scrollX: true,
+      "order": [[4, "desc"]],
     })
 });

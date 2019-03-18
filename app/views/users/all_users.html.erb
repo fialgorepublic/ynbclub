@@ -8,14 +8,22 @@
         <div class="input-group">
           <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="" value="<%= params[:q] %>">
           <%= hidden_field_tag :deduct_points, params[:deduct_points], id: 'deduct_points_hidden_field' %>
+          <%= hidden_field_tag :filter_type, nil, id: 'filter_type_hidden_field' %>
           <span class="input-group-btn">
           <button class="btn btn-sm btn-default" type="submit" id="search-btn"><i class="fa fa-search"></i></button>
           <%#= link_to users_ban_users_path,  id: "crossBtn", class: "btn btn-sm btn-default ng-scope #{show_if_already_searched(params[:q])}" do %>
             <!-- <i class="fa fa-times"></i> -->
           <%# end %>
-        <% end %>
-      </span>
-      </div>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <br/>
+  <div class="row">
+    <div class="col-md-6">
+      <%= select_tag :users, options_for_select([['User With Points', 'filter'], ['All Users', 'all']], selected: params[:filter_type]) , { include_blank: 'Select Filter Type', class: "form-control", id: "filter-users" } %>
     </div>
   </div>
 
@@ -130,7 +138,11 @@
       else { $(this).attr('checked', false) }
 
     });
+
+    $('#filter-users').change(function(){
+      type = $(this).val();
+      $('#filter_type_hidden_field').val(type);
+      $('#search-form').submit();
+    });
   });
 </script>
-
-

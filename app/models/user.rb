@@ -138,6 +138,15 @@ class User < ApplicationRecord
       return User.all if params[:deduct_points].present?
       User.sort_by_banned if params[:q].blank? && params[:deduct_points].blank?
     end
+
+    def users_with_points
+      users_with_points = []
+      users = User.includes(:points).all
+      users.each do |user|
+        users_with_points << user.id if user.total_points > 0
+      end
+      User.where(id: users_with_points)
+    end
   end
 
   def add_new_permissions permissions
