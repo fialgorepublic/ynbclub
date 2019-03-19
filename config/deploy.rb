@@ -34,7 +34,6 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 ## Linked Files & Directories (Default None):
 set :bundle_binstubs, nil
-set :linked_files, %w{config/database.yml}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :puma do
@@ -53,7 +52,13 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      if fetch(:stage) == (:staging || 'staging')
+        if `git rev-parse HEAD` != `git rev-parse origin/staging`
+          puts "WARNING: HEAD is not the same as origin/staging"
+          puts "Run `git push` to sync changes."
+          exit
+        end
+      elsif `git rev-parse HEAD` != `git rev-parse origin/master`
         puts "WARNING: HEAD is not the same as origin/master"
         puts "Run `git push` to sync changes."
         exit
