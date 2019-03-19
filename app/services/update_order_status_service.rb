@@ -4,7 +4,7 @@ class UpdateOrderStatusService
   TOKEN = "06EAB5098DA0eA1302237f932d63319cD60202Ac"
 
   def initialize(orders)
-    @base_url = Rails.env.development? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
+    @base_url = Rails.env.development? || Rails.env.staging? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
     @orders  = orders
   end
 
