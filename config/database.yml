@@ -23,3 +23,5 @@ staging:
   encoding: unicode
   database: saintlbeau-staging
   pool: 5
+  username: postgres
+  password: 12345
