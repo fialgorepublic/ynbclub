@@ -1,27 +1,22 @@
-development:
+default: &default
   adapter: postgresql
-  encoding: unicode
-  host: localhost
-  database: saintLBeau-app
-  pool: 5
-
-test:
-  adapter: postgresql
-  encoding: unicode
-  host: localhost
-  database: saintLBeau-app
-  pool: 5
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: saintLBeau-app
-  pool: 5
-
-staging:
-  adapter: postgresql
-  encoding: unicode
-  database: saintlbeau-staging
-  pool: 5
   username: postgres
   password: 12345
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: saintLBeau-app
+
+test:
+  <<: *default
+  database: saintLBeau-app
+
+production:
+  <<: *default
+  database: saintLBeau-app
+
+staging:
+  <<: *default
+  database: saintlbeau-staging
