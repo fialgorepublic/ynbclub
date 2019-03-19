@@ -71,6 +71,7 @@ gem 'cancancan', '~> 2.0'
 # gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'sprockets', '~>3.7.2'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -80,6 +81,11 @@ group :development do
   gem "letter_opener"
   gem 'colorize'
   gem 'annotate'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
