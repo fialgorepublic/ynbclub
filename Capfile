@@ -6,7 +6,10 @@ require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/puma'
+require "capistrano/scm/git"
 
+install_plugin Capistrano::Puma
+install_plugin Capistrano::SCM::Git
 
 # Load the SCM plugin appropriate to your project:
 #
@@ -16,8 +19,6 @@ require 'capistrano/puma'
 # require "capistrano/scm/svn"
 # install_plugin Capistrano::SCM::Svn
 # or
-require "capistrano/scm/git"
-install_plugin Capistrano::SCM::Git
 
 # Include tasks from other gems included in your Gemfile
 #

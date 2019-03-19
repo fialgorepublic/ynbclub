@@ -3,7 +3,7 @@ lock "~> 3.11.0"
 
 # Change these
 server '142.93.83.74', roles: [:web, :app, :db], primary: true
-  
+
 set :repo_url,        'git@github.com:AlgoRepublic/SaintlBeau.Affiliate.git'
 set :user,            'root'
 set :puma_threads,    [4, 16]
