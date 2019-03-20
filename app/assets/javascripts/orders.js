@@ -24,7 +24,9 @@ $(document).ready(function() {
     "pagingType": "full_numbers",
     "order": [[0, "desc"]],
     "paging": false,
-    "info": false
+    "info": false,
+    "scrollY":  600,
+    'scrollX':  true 
   });
 
   $('.send_to_ghtk').click(function(){
