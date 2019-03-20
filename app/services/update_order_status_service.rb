@@ -35,7 +35,7 @@ class UpdateOrderStatusService
 
     def status status
       if Rails.env.staging? || Rails.env.development?
-        'Delivered (COD has finished delivering goods)' if status.to_i == 2
+        'Controled' if status.to_i == 2
       else
         case status
         when '-1', -1
