@@ -1,14 +1,14 @@
 <div class="<%= render_row_class(blog_type) %>">
-  <div class="col-md-3 <%= render_padding_class(blog_type) %>">
+  <div class="col-md-3 <%= render_padding_class(blog_type) %> pr-0">
     <span ><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-3 pr-0">
     <span><i class="fa fa-comment <%= render_padding_class(blog_type) %>"></i> <%= blog.comments.count %></span>
   </div>
 
   <% if blog.is_published? %>
-    <div class="col-md-2 <%= render_padding_class(blog_type) %>">
+    <div class="col-md-2 <%= render_padding_class(blog_type) %> pr-0">
       <div class="dropdown expended-blog-style-icon">
         <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-share-alt"></i>
@@ -24,7 +24,7 @@
 
   <% if signed_in? %>
     <% if current_user.users_blog?(blog.id) || current_user.is_admin? %>
-      <div class="col-md-1 <%= render_padding_class(blog_type) %>">
+      <div class="col-md-1 <%= render_padding_class(blog_type) %> pr-0 expended-blog-style-icon">
         <div class="dropdown">
           <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-bars"></i>
@@ -44,7 +44,7 @@
     <% end %>
   <% end %>
 
-  <div class="<%= render_blog_count_class(blog_type) %>">
+  <div class="col-md-3">
     <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
   </div>
 </div>
