@@ -14,6 +14,7 @@
         <th>Commission</th>
         <th>Tracking Id</th>
         <th>Shipment Status</th>
+        <th>Payment Status</th>
       </tr>
     </thead>
 
@@ -30,6 +31,7 @@
           <td><%= number_with_delimiter(user_commission(referral_sale), delimiter: ".") %></td>
           <td><%= referral_sale.tracking_id %></td>
           <td><%= referral_sale.order_ghtk_status %></td>
+          <td><%= referral_sale.is_approved? ? "Paid" : "Pending" %></td>
         </tr>
       <% end %>
     </tbody>
