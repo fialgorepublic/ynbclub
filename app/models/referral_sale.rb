@@ -24,10 +24,18 @@ class ReferralSale < ApplicationRecord
   belongs_to :user
   #after_save :set_ambassador_value
 
+  delegate :commission, :name, to: :user, prefix: true
+
   def order_ghtk_status
     order =  Order.find_by(order_id: self.order_id)
     return 'GHTK Order Not Found' if order.blank?
     order.ghtk_status.present? ? order.ghtk_status : 'Status not updated yet.'
+  end
+
+  def tracking_id
+    order =  Order.find_by(order_id: self.order_id)
+    return '--' if order.blank?
+    order.tracking_link
   end
 
   private
