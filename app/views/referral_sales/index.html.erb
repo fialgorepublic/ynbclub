@@ -15,7 +15,9 @@
     </thead>
 
     <tbody>
+      <% previous_order_no = '' %>
       <% @referral_sales.each do |referral_sale| %>
+        <% previous_order_no == referral_sale.order_no ? next : previous_order_no = referral_sale.order_no %>
         <tr>
           <td><%= referral_sale.order_no %></td>
           <td><%= number_with_delimiter(referral_sale.price.to_i, delimiter: ".") %>₫</td>
