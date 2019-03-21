@@ -76,8 +76,8 @@
         <div class="detail-img detail-icon">
           <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
           <i class="fa fa-share"></i><span><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
-          <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
-          <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
+<!--           <i class="fa fa-comment"></i><span><#%= @blog.comments.count %></span>
+ -->          <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
           <h5 class="pull-right"> <span class="category-style"><%= @blog.category_name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
             <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
