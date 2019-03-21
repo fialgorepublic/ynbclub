@@ -38,6 +38,12 @@ class ReferralSale < ApplicationRecord
     order.tracking_link
   end
 
+  def discount_is_not_paid?
+    order =  Order.find_by(order_id: self.order_id)
+    return true if order.blank?
+    order.ghtk_status == 'Controled' ? false : true
+  end
+
   private
     def set_ambassador_value
       user.update_attributes(total_income: total_income) if is_approved?

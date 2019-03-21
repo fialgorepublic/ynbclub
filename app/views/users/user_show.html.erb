@@ -179,9 +179,8 @@
                 </tr>
               </thead>
               <tbody>
-                <% previous_order_no = '' %>
                 <% @user.referral_sales.where(is_approved: true).each_with_index do |sale, index| %>
-                  <% previous_order_no == sale.order_no ? next : previous_order_no = sale.order_no %>
+                  <% next if sale.discount_is_not_paid? %>
                   <tr>
                     <td><%= index + 1 %></td>
                     <td><%= sale.created_at %></td>
