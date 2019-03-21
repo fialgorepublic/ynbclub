@@ -15,21 +15,23 @@ class HomeController < ApplicationController
     customer_id = params[:customer_id]
     user = User.where(referral: referral).first
     order_no = ShopifyAPI::Order.find(order_id).name
-    if user.present?
-      customers = Customer.where(email: params[:email])
-      if customers.count > 1
-        customers.each { |cus| cus.delete }
-        customer =  Customer.create(email: params[:email])
-      else
-        customer = customers.present? ? customers.first : Customer.create(email: params[:email])
+    if ReferralSale.find_by_order_no(order_no).blank?
+      if user.present?
+        customers = Customer.where(email: params[:email])
+        if customers.count > 1
+          customers.each { |cus| cus.delete }
+          customer =  Customer.create(email: params[:email])
+        else
+          customer = customers.present? ? customers.first : Customer.create(email: params[:email])
+        end
+
+        customer.update_attributes(name: name, customer_id: customer_id)
+
+        ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
+                            address: params[:address], shopdomain: params[:shopdomain], price: params[:price], order_no: order_no)
+        insert_points(user.id, 2, "", nil, order_no)
+        UserMailer.referral_sale(user, name, params[:shopdomain]).deliver
       end
-
-      customer.update_attributes(name: name, customer_id: customer_id)
-
-      ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
-                          address: params[:address], shopdomain: params[:shopdomain], price: params[:price], order_no: order_no)
-      insert_points(user.id, 2, "", nil, order_no)
-      UserMailer.referral_sale(user, name, params[:shopdomain]).deliver
     end
     clear_shopify_session
     render json: {success: true}

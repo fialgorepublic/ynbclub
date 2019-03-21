@@ -15,7 +15,9 @@
   </thead>
 
   <tbody>
+    <% previous_order_no = '' %>
     <% @referral_sales.each do |referral_sale| %>
+      <% previous_order_no == referral_sale.order_no ? next : previous_order_no = referral_sale.order_no %>
       <tr>
         <td>
           <input id="chk_<%= referral_sale.id %>" name="approve[]" type="checkbox" value="<%= referral_sale.id %>" <%= referral_sale.is_approved ? 'disabled': '' %> />
