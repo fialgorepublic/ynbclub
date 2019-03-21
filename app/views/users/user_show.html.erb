@@ -185,8 +185,8 @@
                   <tr>
                     <td><%= index + 1 %></td>
                     <td><%= sale.created_at %></td>
-                    <td><%= "Order # #{sale.order_no} Approved: + #{sale.price}đ" %></td>
-                    <td><%= (sale.price.to_f * sale.user.commission.to_f)/100  %>đ</td>
+                    <td><%= "Order #{sale.order_no} Approved: + #{number_with_delimiter(sale.price.to_i, delimiter: '.')}đ" %></td>
+                    <td><%= number_with_delimiter(((sale.price.to_f * sale.user.commission.to_f)/100).to_i, delimiter: ".")  %>đ</td>
                     <td></td>
                   </tr>
                 <% end %>
