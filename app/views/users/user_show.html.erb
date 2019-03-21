@@ -180,7 +180,7 @@
               </thead>
               <tbody>
                 <% previous_order_no = '' %>
-                <% @user.referral_sales.where(is_aprroved: true).each_with_index do |sale, index| %>
+                <% @user.referral_sales.where(is_approved: true).each_with_index do |sale, index| %>
                   <% previous_order_no == sale.order_no ? next : previous_order_no = sale.order_no %>
                   <tr>
                     <td><%= index + 1 %></td>
