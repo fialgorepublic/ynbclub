@@ -179,14 +179,16 @@
                 </tr>
               </thead>
               <tbody>
-                <% @user.referral_sales.each_with_index do |sale, index| %>
-                <tr>
-                  <td><%= index + 1 %></td>
-                  <td><%= sale.created_at %></td>
-                  <td><%= "Order # #{sale.order_id} Approved: + #{sale.price}đ" %></td>
-                  <td><%= (sale.price.to_f * sale.user.commission.to_f)/100  %>đ</td>
-                  <td></td>
-                </tr>
+                <% previous_order_no = '' %>
+                <% @user.referral_sales.where(is_aprroved: true).each_with_index do |sale, index| %>
+                  <% previous_order_no == sale.order_no ? next : previous_order_no = sale.order_no %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= sale.created_at %></td>
+                    <td><%= "Order # #{sale.order_no} Approved: + #{sale.price}đ" %></td>
+                    <td><%= (sale.price.to_f * sale.user.commission.to_f)/100  %>đ</td>
+                    <td></td>
+                  </tr>
                 <% end %>
               </tbody>
             </table>
