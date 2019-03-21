@@ -1,25 +1,22 @@
-development:
+default: &default
   adapter: postgresql
-  encoding: unicode
-  host: localhost
-  database: saintLBeau-app
-  pool: 5
   username: postgres
-  password: Elslearn001
+  password: 12345
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: saintLBeau-app
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  host: localhost
+  <<: *default
   database: saintLBeau-app
-  pool: 5
-  username: postgres
-  password: Elslearn001
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: saintLBeau-app
-  pool: 5
-  username: postgres
-  password: Elslearn001
+
+staging:
+  <<: *default
+  database: saintlbeau-staging

@@ -4,7 +4,7 @@ class UpdateOrderStatusService
   TOKEN = "06EAB5098DA0eA1302237f932d63319cD60202Ac"
 
   def initialize(orders)
-    @base_url = Rails.env.development? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
+    @base_url = Rails.env.development? || Rails.env.staging? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
     @orders  = orders
   end
 
@@ -34,51 +34,55 @@ class UpdateOrderStatusService
     end
 
     def status status
-      case status
-      when '-1', -1
-        'Cancel order'
-      when '1' , 1
-        'Not yet received'
-      when '2' , 2
-        'Received'
-      when '3' , 3
-        'Goods taken / Inventory imported'
-      when '4' , 4
-        'Coordinated delivery / Delivery'
-      when '5' , 5
-        'Delivered / Uncontrolled'
-      when '6' , 6
-        'Controled'
-      when '7' , 7
-        'Do not get the goods'
-      when '8' , 8
-        'Postpone taking goods'
-      when '9' , 9
-        'Do not deliver goods'
-      when '10' , 10
-        'Delay delivery'
-      when '11' , 11
-        'Debt repayment has been controlled'
-      when '12' , 12
-        'Coordinated to pick up goods / Taking goods'
-      when '13' , 13
-        'Order reimbursement'
-      when '20' , 20
-        'Returning goods (COD holds the goods to pay)'
-      when '21' , 21
-        'Delivered (COD has finished delivering goods)'
-      when '123' , 123
-        'Shipper reportedly took the goods'
-      when '127' , 127
-        'Shipper (employee taking / delivery) reported not getting the goods'
-      when '128' , 128
-        'Shipper delay report picks up goods'
-      when '45' , 45
-        'Shipper reported delivery'
-      when '49' , 49
-        'Shipper reported that delivery could not be delivered'
-      when '410' , 410
-        'Shipper reported delay delivery'
+      if Rails.env.staging? || Rails.env.development?
+        'Controled' if status.to_i == 2
+      else
+        case status
+        when '-1', -1
+          'Cancel order'
+        when '1' , 1
+          'Not yet received'
+        when '2' , 2
+          'Received'
+        when '3' , 3
+          'Goods taken / Inventory imported'
+        when '4' , 4
+          'Coordinated delivery / Delivery'
+        when '5' , 5
+          'Delivered / Uncontrolled'
+        when '6' , 6
+          'Controled'
+        when '7' , 7
+          'Do not get the goods'
+        when '8' , 8
+          'Postpone taking goods'
+        when '9' , 9
+          'Do not deliver goods'
+        when '10' , 10
+          'Delay delivery'
+        when '11' , 11
+          'Debt repayment has been controlled'
+        when '12' , 12
+          'Coordinated to pick up goods / Taking goods'
+        when '13' , 13
+          'Order reimbursement'
+        when '20' , 20
+          'Returning goods (COD holds the goods to pay)'
+        when '21' , 21
+          'Delivered (COD has finished delivering goods)'
+        when '123' , 123
+          'Shipper reportedly took the goods'
+        when '127' , 127
+          'Shipper (employee taking / delivery) reported not getting the goods'
+        when '128' , 128
+          'Shipper delay report picks up goods'
+        when '45' , 45
+          'Shipper reported delivery'
+        when '49' , 49
+          'Shipper reported that delivery could not be delivered'
+        when '410' , 410
+          'Shipper reported delay delivery'
+        end
       end
     end
 end

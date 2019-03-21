@@ -4,7 +4,7 @@ class GhtkService
   TOKEN = "06EAB5098DA0eA1302237f932d63319cD60202Ac"
 
   def initialize(order_id)
-    @base_url = Rails.env.development? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
+    @base_url = Rails.env.development? || Rails.env.staging? ? 'https://dev.ghtk.vn' : 'https://services.giaohangtietkiem.vn'
     @order = Order.find(order_id)
   end
 

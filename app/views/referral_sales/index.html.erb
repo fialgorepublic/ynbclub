@@ -11,6 +11,10 @@
         <th>Shop Name</th>
         <th>Address</th>
         <th>Ambassador</th>
+        <th>Commission</th>
+        <th>Tracking Id</th>
+        <th>Shipment Status</th>
+        <th>Payment Status</th>
       </tr>
     </thead>
 
@@ -25,7 +29,11 @@
           <td><%= referral_sale.email %></td>
           <td><%= referral_sale.shopdomain %></td>
           <td><%= referral_sale.address %></td>
-          <td><%= referral_sale.user.name %></td>
+          <td><%= referral_sale.user_name %></td>
+          <td><%= number_with_delimiter(user_commission(referral_sale), delimiter: ".") %></td>
+          <td><%= referral_sale.tracking_id %></td>
+          <td><%= referral_sale.order_ghtk_status %></td>
+          <td><%= referral_sale.is_approved? ? "Paid" : "Pending" %></td>
         </tr>
       <% end %>
     </tbody>
