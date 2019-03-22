@@ -58,6 +58,7 @@ class User < ApplicationRecord
   has_many :exchange_histories
   has_many :permissions
   has_many :notifications, foreign_key: 'target_id'
+  has_many :commission_histories
 
   has_attached_file :avatar,
                     :default_url => "/images/:style/missing.png",
