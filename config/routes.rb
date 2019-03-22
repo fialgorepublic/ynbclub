@@ -249,7 +249,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :shared_urls, only: [:index]
+  resources :shared_urls,   only: [:index]
+  resources :notifications, only: [:index]
 
   # get 'auth/failure', to: redirect('/')
   devise_for :users, :path_prefix => 'd', :controllers => {
