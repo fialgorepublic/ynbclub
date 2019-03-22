@@ -15,9 +15,12 @@
         <%= select_tag :source_type, options_for_select([['Income History', 'CommissionHistory'], ['Order History', 'Order']], selected: @source_type) , { include_blank: 'Select Filter Type', class: "form-control" } %>
       </div>
 
-      <div class="col-md-4">
-        <%= select_tag :partner_id, options_for_select(@ambassadors, selected: params[:partner_id]) , { include_blank: 'Select Partner', class: "form-control", id: "filter-users" } %>
-      </div>
+      <% if current_user.is_admin? %>
+        <div class="col-md-4">
+          <%= select_tag :partner_id, options_for_select(@ambassadors, selected: params[:partner_id]) , { include_blank: 'Select Partner', class: "form-control", id: "filter-users" } %>
+        </div>
+      <% end %>
+
       <div class="col-md-4">
         <button type="submit" class="btn btn-info">Search Notifications</button>
         <%= link_to 'Clear Search', notifications_path, class: "btn btn-info" %>
