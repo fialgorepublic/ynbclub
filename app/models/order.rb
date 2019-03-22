@@ -36,7 +36,7 @@ class Order < ApplicationRecord
       return if referral_sale.blank?
       return if ghtk_status != 'Controled'
       user = referral_sale.user
-      user.update_total_income(referral_sale.price, self.order_no)
+      user.update_total_income(referral_sale.price, self.order_name)
     end
 
     def status_updated?
