@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190322055325) do
+ActiveRecord::Schema.define(version: 20190322062338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20190322055325) do
 
   create_table "commission_histories", force: :cascade do |t|
     t.bigint "user_id"
-    t.float "total_income_was"
-    t.float "with_commission"
+    t.float "old_income"
+    t.float "new_income"
     t.string "order_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
