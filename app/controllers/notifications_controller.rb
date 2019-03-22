@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :block_buyers
 
   def index
     set_up_ambassadors
@@ -9,6 +10,13 @@ class NotificationsController < ApplicationController
   end
 
   private
+
+  def block_buyers
+    if current_user.is_buyer?
+      flash[:alert] = 'You are not permitted for this operation.'
+      redirect_to root_path and return
+    end
+  end
 
   def set_up_ambassadors
     @ambassadors = User.includes(:profile).ambassadors.map{|user| [user.name, user.id] }
