@@ -40,6 +40,6 @@ class Order < ApplicationRecord
     end
 
     def status_updated?
-      ghtk_status_changed?
+      saved_change_to_ghtk_status?
     end
 end
