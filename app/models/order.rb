@@ -8,6 +8,7 @@ class Order < ApplicationRecord
   belongs_to :ward,     optional: true
 
   has_many :items
+  has_many :notifications, as: :source
 
   accepts_nested_attributes_for :items
 
