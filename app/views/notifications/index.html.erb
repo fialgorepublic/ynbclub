@@ -1,3 +1,53 @@
 <div class="col-md-9">
-  <h1>Hellow Notifications</h1>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="card-header"><i class="fa fa-bell"></i> Notifications</h1>
+      <hr>
+    </div>
+  </div>
+
+  <br/>
+  <div class="row">
+    <div class="col-md-6">
+      <%= select_tag :users, options_for_select([['User With Points', 'filter'], ['All Users', 'all']], selected: params[:filter_type]) , { include_blank: 'Select Filter Type', class: "form-control", id: "filter-users" } %>
+    </div>
+  </div>
+
+  <div class="row m-t-30">
+    <div class="col-md-12">
+      <div class="card-body">
+        <div class="affiliate_table_responsive">
+          <table id="notifications-table" class="table table-striped table-bordered nowrap" style="width:100%">
+            <thead>
+              <%= render 'table_headers' %>
+            </thead>
+
+            <tbody>
+              <% @notifications.each do |notification| %>
+                <tr>
+                  <%= render partial: 'table_body', locals: { notification: notification } %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-pagination">
+    <div>
+      <ul class="pagination pagination-md">
+        <%= will_paginate @notifications,renderer: BootstrapPagination::Rails %>
+      </ul>
+    </div>
+    <div>
+    </div>
+  </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+  });
+</script>

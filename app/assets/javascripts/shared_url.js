@@ -36,4 +36,14 @@ $(document).ready(function(){
       scrollX: true,
       "order": [[4, "desc"]],
     })
+
+    $("#notifications-table").dataTable({
+      searching: true,
+      "pagingType": "full_numbers",
+      "paging": false,
+      "info":   false,
+      scrollY:  600,
+      scrollCollapse: true,
+      scrollX: true
+    })
 });

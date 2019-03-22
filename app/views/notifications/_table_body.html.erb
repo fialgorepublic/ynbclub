@@ -1,0 +1,11 @@
+<% if notification.source_type == "CommissionHistory" %>
+  <td><%= link_to notification.target.email, user_show_path(id: notification.target.id) %></td>
+  <td><%= notification.source.order_no %></td>
+  <td><%= number_with_delimiter(notification.source.new_income.to_i - notification.source.old_income.to_i, delimiter: '.') %></td>
+  <td><%= number_with_delimiter(notification.source.old_income.to_i, delimiter: '.' )%></td>
+  <td><%= number_with_delimiter(notification.source.new_income.to_i, delimiter: '.' )%></td>
+<% else %>
+  <td><%= notification.source.order_name %></td>
+  <td><%= notification.source.ghtk_status %></td>
+  <td><%= link_to notification.target.email, user_show_path(id: notification.target.id) %></td>
+<% end %>
