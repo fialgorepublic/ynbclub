@@ -8,11 +8,22 @@
   </div>
 
   <br/>
-  <div class="row">
-    <div class="col-md-6">
-      <%= select_tag :users, options_for_select([['User With Points', 'filter'], ['All Users', 'all']], selected: params[:filter_type]) , { include_blank: 'Select Filter Type', class: "form-control", id: "filter-users" } %>
+
+  <%= form_tag notifications_path, method: :get do %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= select_tag :source_type, options_for_select([['Income History', 'CommissionHistory'], ['Order History', 'Order']], selected: @source_type) , { include_blank: 'Select Filter Type', class: "form-control" } %>
+      </div>
+
+      <div class="col-md-4">
+        <%= select_tag :partner_id, options_for_select(@ambassadors, selected: params[:partner_id]) , { include_blank: 'Select Partner', class: "form-control", id: "filter-users" } %>
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-info">Search Notifications</button>
+        <%= link_to 'Clear Search', notifications_path, class: "btn btn-info" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="row m-t-30">
     <div class="col-md-12">
@@ -47,7 +58,8 @@
   </div>
 </div>
 
-<script>
+<script type="text/javascript">
   $(document).ready(function() {
-  });
+    $('#filter-users').select2();
+  })
 </script>

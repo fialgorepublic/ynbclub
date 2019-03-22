@@ -3,4 +3,7 @@ class Notification < ApplicationRecord
 
   belongs_to :source, polymorphic: true
   belongs_to :target, class_name: 'User', optional: true
+
+  scope :filter_by_source_type, -> (type)      { where(source_type: type) }
+  scope :filter_by_target,      -> (target_id) { where(target_id: target_id) }
 end
