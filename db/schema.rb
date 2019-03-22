@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190312095356) do
+ActiveRecord::Schema.define(version: 20190322054738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 20190312095356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
+  end
+
+  create_table "commission_histories", force: :cascade do |t|
+    t.bigint "user_id"
+    t.float "total_income_was"
+    t.float "with_commission"
+    t.string "order_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_commission_histories_on_user_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -410,6 +420,7 @@ ActiveRecord::Schema.define(version: 20190312095356) do
   add_foreign_key "cities", "states", on_delete: :cascade
   add_foreign_key "comment_actions", "comments"
   add_foreign_key "comment_actions", "users"
+  add_foreign_key "commission_histories", "users", on_delete: :cascade
   add_foreign_key "districts", "cities", on_delete: :cascade
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
   add_foreign_key "items", "orders", on_delete: :cascade
