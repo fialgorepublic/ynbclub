@@ -32,13 +32,15 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <%= link_to notifications_path do %>
-                <i class="fa fa-bell" style="margin-top: 16px;font-size: 17px;">
-                  <span class="badge">4</span>
-                </i>
-              <% end %>
-            </li>
+            <% if current_user.is_admin? ||  current_user.is_ambassador? %>
+              <li>
+                <%= link_to notifications_path do %>
+                  <i class="fa fa-bell" style="margin-top: 16px;font-size: 17px;">
+                    <span class="badge">4</span>
+                  </i>
+                <% end %>
+              </li>
+            <% end %>
 
             <li>
               <div class="dropdown">
