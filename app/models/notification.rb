@@ -1,6 +1,8 @@
 class Notification < ApplicationRecord
   self.per_page = 100
 
+  default_scope { order(created_at: :desc) }
+
   belongs_to :source, polymorphic: true
   belongs_to :target, class_name: 'User', optional: true
 
