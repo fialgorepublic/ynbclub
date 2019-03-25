@@ -6,7 +6,6 @@
   <title>SaintLBeau</title>
   <%= csrf_meta_tags %>
 
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
@@ -26,6 +25,8 @@
 </head>
 
   <body>
+    
+    <%= disqus_sso(current_user) if user_signed_in? %>
     <% if user_signed_in? %>
       <%=render :partial => "/shared/header"%>
       <div class="dashboard-holder <%= dashboard_class %>">
