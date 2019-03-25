@@ -31,7 +31,7 @@ class Order < ApplicationRecord
     def update_commission
       referral_sale = ReferralSale.find_by(order_id: self.order_id)
       user =  referral_sale.blank? ? User.find_by(role: Role.find_by_name('Admin')) : referral_sale.user
-      self.notifications.create(target: user)
+      self.notifications.find_or_create_by(target: user)
 
       return if referral_sale.blank?
       return if ghtk_status != 'Controled'
