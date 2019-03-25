@@ -52,6 +52,7 @@ gem 'activestorage'
 gem 'ransack'
 gem 'whenever', require: false
 gem 'listen', '>= 3.0.5', '< 3.2'
+gem 'disqus_rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
