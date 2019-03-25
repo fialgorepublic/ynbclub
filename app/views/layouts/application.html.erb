@@ -25,7 +25,7 @@
 </head>
 
   <body>
-    <% get_disqus_sso(current_user) %>
+    <% get_disqus_sso(current_user) if user_signed_in? %>
     <% if user_signed_in? %>
       <%=render :partial => "/shared/header"%>
       <div class="dashboard-holder <%= dashboard_class %>">
