@@ -33,6 +33,7 @@ module DisqusHelper
       };
     </script>".html_safe
   end
+
   def render_disqus(user, url)
     "<script type=\"text/javascript\">
       var disqus_shortname = \"saintlbeau-affiliate\";
@@ -42,15 +43,17 @@ module DisqusHelper
       var disqus_title = \"#{escape_javascript(user.try(:name))}\";
       var disqus_url = '#{url}';
       (function() {
+        debugger;
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'https://saintlbeau-affiliate.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
       (function () {
+        debugger;
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';
         s.src = 'https://saintlbeau-affiliate.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);
       }());
     </script>".html_safe
   end
