@@ -4,10 +4,10 @@
   <td><%= number_with_delimiter(notification.source.new_income.to_i - notification.source.old_income.to_i, delimiter: '.') %></td>
   <td><%= number_with_delimiter(notification.source.old_income.to_i, delimiter: '.' )%></td>
   <td><%= number_with_delimiter(notification.source.new_income.to_i, delimiter: '.' )%></td>
-  <td><%= notification.target.updated_at.strftime("%B %d, %y, %H:%M %p") %>
+  <td><%= notification.target.updated_at.strftime("%B %d, %y, %H:%M %p") %></td>
 <% else %>
   <td><%= notification.source.order_name %></td>
   <td><%= notification.source.ghtk_status %></td>
   <td><%= link_to notification.target.name, user_show_path(id: notification.target.id) %></td>
-  <td><%= notification.source.updated_at.strftime("%B %d, %y, %H:%M %p")
+  <td><%= notification.source.updated_at.strftime("%B %d, %y, %H:%M %p") %></td>
 <% end %>
