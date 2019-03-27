@@ -30,6 +30,6 @@ class Payment < ApplicationRecord
     end
 
     def deduct_user_amount
-      user.update_attributes(total_income: user.total_income.to_f - amount.to_f, paid: self.amount)
+      user.update_attributes(total_income: user.total_income.to_f - amount.to_f, paid: self.amount + user.paid.to_f)
     end
 end
