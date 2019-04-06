@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   self.per_page = 200
-  default_scope { order(order_id: :desc) }
+  default_scope { order(id: :desc) }
 
   belongs_to :city,     optional: true
   belongs_to :district, optional: true
