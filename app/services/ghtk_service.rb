@@ -89,7 +89,8 @@ class GhtkService
         is_freeship:    "1",
         pick_date:      Time.now,
         pick_money:     order.total.to_i,
-        value:          order.total.to_i
+        value:          order.total.to_i,
+        transport:      transport_type
       }
     end
 
@@ -99,6 +100,11 @@ class GhtkService
 
     def district_name
       order.district_name || order.city_name
+    end
+
+    def transport_type
+      return order.transport_type if order.fly?
+      'road'
     end
 
     def status ghtk_status
