@@ -25,6 +25,11 @@ class Order < ApplicationRecord
     'No'  => 2
   }
 
+  enum transport_type: {
+    truck: 1,
+    fly:   2
+  }
+
   after_save :update_commission, if: :status_updated?
 
   private
