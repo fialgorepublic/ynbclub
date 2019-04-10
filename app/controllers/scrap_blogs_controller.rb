@@ -1,0 +1,2 @@
+class ScrapBlogsController < ApplicationController
+end
