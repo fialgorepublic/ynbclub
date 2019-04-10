@@ -12,7 +12,10 @@ class OrderService
   def update_address
     order = Order.find_by_id(params[:order_id])
     return false if order.blank?
-    order.update(city_id: params[:city], province_id: params[:province], district_id: params[:district], ward_id: params[:ward], address: params[:address])
+    order.update(
+      city_id: params[:city], province_id: params[:province], customer_name: params[:customer_name],
+      district_id: params[:district], ward_id: params[:ward], address: params[:address], transport_type: params[:transport_type]
+    )
   end
 
   private
