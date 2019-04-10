@@ -199,6 +199,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :scrap_blogs, path: :medium_blogs, only: [:index]
+
   resources :blogs
   get 'approve_sales', to: 'referral_sales#approve_sales'
   get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'
