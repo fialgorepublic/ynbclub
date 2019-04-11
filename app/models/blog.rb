@@ -21,7 +21,7 @@
 #
 
 class Blog < ApplicationRecord
-  belongs_to :category
+  belongs_to :category, optional: true
   belongs_to :user
   has_many :comments
   has_many :likes
