@@ -7,8 +7,12 @@
 
     <div class="row">
       <div class="post-heading">
-        <% if @blogs.count > 0 %>
-          <div class="row">
+        <div class="row">
+          <div class="col-md-4">
+            <%= link_to "Medium blogs", scrap_blogs_path, class: 'btn btn-primary' %>
+          </div>
+
+          <% if @blogs.count > 0 %>
             <div class="col-md-2 post-sorting pull-right" style="margin-left: 15px;">
               <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: 'All', class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
             </div>
@@ -20,8 +24,8 @@
                 <option value="2">Z-A </option>
               </select>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
         <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
       </div>
     </div>
