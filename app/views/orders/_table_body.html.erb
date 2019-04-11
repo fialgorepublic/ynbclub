@@ -16,7 +16,9 @@
 <td><%= order.district_name %></td>
 <td><%= order.city_name %></td>
 <td>Vietnam</td>
+
 <td><%= number_with_delimiter(order.total.to_i, delimiter: ".") %>₫</td>
+<td><%= order.transport_type.titleize %></td>
 <td><%= link_to 'Edit Address', 'Javascript:void(0);', class: 'edit_address', data: { order_id: order.id } %></td>
 <td>
   <% if order.sent_to_ghtk? %>

@@ -8,6 +8,16 @@
     </div>
 
     <div class="form-group">
+      <%= form.label 'Edit username' %>
+      <%= form.text_field :customer_name, value: @order.customer_name, class: "form-control", required: true, id: "username" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :transport %>
+      <%= form.select :transport_type, options_for_select(Order.transport_types.keys, selected: Order.transport_types[@order.transport_type]) , {}, { class: "form-control", id: "transport-select" } %>
+    </div>
+
+    <div class="form-group">
       <%= form.label :City %>
       <%= form.select :city, options_for_select(@cities) , {}, { :prompt => "Gender...", class: "form-control", id: "city-select" } %>
     </div>

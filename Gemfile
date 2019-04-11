@@ -52,6 +52,8 @@ gem 'activestorage'
 gem 'ransack'
 gem 'whenever', require: false
 gem 'listen', '>= 3.0.5', '< 3.2'
+gem 'httparty'
+gem 'google-cloud-translate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
