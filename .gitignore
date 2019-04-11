@@ -22,4 +22,3 @@
 /db/schema.rb
 /.idea
 /config/local_env.yml
-/config/google_cloud.json
