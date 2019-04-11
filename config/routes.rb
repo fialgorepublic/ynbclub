@@ -199,7 +199,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :scrap_blogs, path: :medium_blogs, only: [:index]
+  resources :scrap_blogs, path: :medium_blogs, only: [:index, :destroy] do
+    get :translate_and_edit, on: :member
+  end
 
   resources :blogs
   get 'approve_sales', to: 'referral_sales#approve_sales'
