@@ -53,6 +53,7 @@ $(document).ready(function(){
       "info":   false,
       scrollY:  600,
       scrollCollapse: true,
-      scrollX: true
+      scrollX: true,
+      "order": [[3, "desc"]]
     })
 });
