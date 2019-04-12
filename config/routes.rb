@@ -246,6 +246,7 @@ Rails.application.routes.draw do
       get :district_cities
       get :wards
       get :my
+      get :update_status
     end
   end
 
