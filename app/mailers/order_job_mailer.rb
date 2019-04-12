@@ -1,10 +1,12 @@
 class OrderJobMailer < ApplicationMailer
+  default to: 'talha.junaid@algorepublic.com'
+
   def start_job_email
-    mail(to: 'Lucas@saintlbeau.com', subject: "GHTK Order sweeper notification")
+    mail(subject: "GHTK Order sweeper notification")
   end
 
   def end_job_email(message)
     @message = message
-    mail(to: 'Lucas@saintlbeau.com', subject: "GHTK Order sweeper notification")
+    mail(subject: "GHTK Order sweeper notification")
   end
 end
