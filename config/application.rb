@@ -18,6 +18,7 @@ module SaintLBeauApp
     config.action_dispatch.default_headers = {
         'X-XSS-Protection' => '0;'
     }
+    config.active_job.queue_adapter = :sidekiq
 
     config.secret_key_base = "f99d5c6ceadd66e53177b0955c7d6a03104000d8d50dc170ce465ed9e0cd4c2aec44cbb72da02ebe1edd1bc1400874470ef1744e3b40171ec44aa1dab928369b"
 
