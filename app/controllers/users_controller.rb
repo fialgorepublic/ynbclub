@@ -62,6 +62,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_share_link_count
+    current_user.update_attributes(share_link_count: current_user.share_link_count + 1)
+    respond_to do |format|
+      format.js { head :ok }
+    end
+  end
+
   def brand_ambassadors
     @brand_ambassador = User.joins(:role).where("roles.name = 'Brand ambassador'")
   end
