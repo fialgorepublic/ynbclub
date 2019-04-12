@@ -287,6 +287,7 @@ Rails.application.routes.draw do
       get :exchange_coins
       post :generate_discount_code
       get :update_share_link_count
+      get :share_link_count, path: '/invite_count'
     end
   end
 
