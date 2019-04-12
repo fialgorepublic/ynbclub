@@ -46,4 +46,13 @@ $(document).ready(function(){
       scrollCollapse: true,
       scrollX: true
     })
+
+    $("#share-link-count-table").dataTable({
+      searching: true,
+      "paging": false,
+      "info":   false,
+      scrollY:  600,
+      scrollCollapse: true,
+      scrollX: true
+    })
 });

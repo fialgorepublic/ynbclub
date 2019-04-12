@@ -229,6 +229,11 @@ class UsersController < ApplicationController
     redirect_to exchange_coins_users_path(url_params)
   end
 
+  def share_link_count
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).paginate(page: params[:page])
+  end
+
   private
   def set_user
     @user = User.find(params[:id])

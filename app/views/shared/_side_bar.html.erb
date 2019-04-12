@@ -175,6 +175,14 @@
         </li>
       <% end %>
 
+      <% if current_user.is_admin? %>
+        <li>
+          <%= link_to share_link_count_users_path, class: active_class(share_link_count_users_path) do %>
+            <i class="fa fa-history" style="padding-right: 2px;"></i> <span class="side-nav-style">Invite Friends History</span>
+          <% end %>
+        </li>
+      <% end %>
+
       <li>
         <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>"><i class="custom-icon" style="padding-right: 2px;"><img width="16" src="/assets/icon-10.png"> </i> <span class="side-nav-style">Acc settings </span> </a>
       </li>
