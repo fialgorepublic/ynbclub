@@ -286,6 +286,7 @@ Rails.application.routes.draw do
       get :deduct_points
       get :exchange_coins
       post :generate_discount_code
+      get :update_share_link_count
     end
   end
 
