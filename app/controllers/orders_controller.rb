@@ -94,6 +94,13 @@ class OrdersController < ApplicationController
   def gthk_status
   end
 
+  def update_status
+    UpdateOrderStatusJob.perform_later
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
     def order_params
