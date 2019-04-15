@@ -48,7 +48,6 @@ gem "cocoon"
 gem 'jquery-datatables'
 gem 'countries'
 gem 'phony'
-gem 'activestorage'
 gem 'ransack'
 gem 'whenever', require: false
 gem 'listen', '>= 3.0.5', '< 3.2'
