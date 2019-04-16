@@ -1,10 +1,10 @@
 module BlogsHelper
   def file_name blog
-    blog.avatar.url == "/images/original/missing.png" ? "No file Chosen" : blog.avatar_file_name
+    blog.avatar == "/images/original/missing.png" ? "No file Chosen" : blog.avatar.filename
   end
 
   def blog_attributes blog
-    { id: blog.id, title: blog.title, file_name: blog.avatar_file_name }.to_json
+    { id: blog.id, title: blog.title, file_name: blog.avatar.filename }.to_json
   end
 
   def blog_page_title
@@ -29,7 +29,7 @@ module BlogsHelper
   end
 
   def blog_author_avatar(blog)
-    blog.user.avatar.present? ? blog.user.avatar.url : 'user-img.png'
+    blog.user.avatar.attached? ? blog.user.avatar : 'user-img.png'
   end
 
   def blog_user_name(blog)
@@ -61,5 +61,10 @@ module BlogsHelper
 
   def add_container
     current_user.present? ? '' : 'container-fluid'
+  end
+
+  def render_image(blog)
+    return 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' unless blog.avatar.attached?
+    blog.avatar.variant(combine_options: { resize: '800x400^', gravity: 'Center', extent: '1050x400^', background: "grey", quality: 95 })
   end
 end

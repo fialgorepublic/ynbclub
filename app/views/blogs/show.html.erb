@@ -65,8 +65,7 @@
       <div class="col-md-12">
         <div class="detail-img">
           <div class="img-block"><h4><%= @blog.is_published ? 'Published' : 'Unpublish' %></h4></div>
-          <img width="100%" src="<%= @blog.avatar.present? ? @blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
-
+          <%= image_tag render_image(@blog) %>
         </div>
       </div>
     </div>
