@@ -5,19 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
-# Use sqlite3 as the database for Active Record
+gem 'rails', '~> 5.2.0'
 gem 'pg'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'thin'
 gem 'city-state'
-# Use Puma as the app server
 gem 'puma', '~> 3.7'
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,7 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,15 +29,10 @@ gem "aws-s3", :require => "aws/s3"
 # gem "aws-sdk"
 gem 'aws-sdk', '< 2.0'
 gem 'jquery-rails'
-gem 'shopify_app', '7.2.9'
-gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'shopify_app'
 gem 'link_thumbnailer'
 gem 'pry'
-gem 'best_in_place', '~> 3.0.1'
+gem 'best_in_place'
 gem "roo", "~> 2.7.0"
 gem "cocoon"
 gem 'jquery-datatables'
@@ -55,13 +45,8 @@ gem 'httparty'
 gem 'google-cloud'
 gem 'google-cloud-translate'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 end
@@ -70,7 +55,6 @@ gem 'rails_12factor', group: :production
 gem 'ckeditor'
 gem 'time_ago_in_words'
 gem 'cancancan', '~> 2.0'
-# gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'sprockets', '~>3.7.2'
 
