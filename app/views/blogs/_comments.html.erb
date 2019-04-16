@@ -1,60 +1,61 @@
-<div class="row comnt-heading">
-  <div class="col-md-6">
+  <div class="row comnt-heading">
+    <div class="col-md-6">
 
-    <span style="margin-top:7px; font-size: 17px; display:block"><%= @comments.where(parent_id: nil).count %> comments</span>
+      <span style="margin-top:7px; font-size: 17px; display:block"><%= @comments.where(parent_id: nil).count %> comments</span>
 
+    </div>
+    <div class="col-md-6  text-right">
+    </div>
   </div>
-  <div class="col-md-6  text-right">
-  </div>
-</div>
 
 
-<div class="row comnt-box">
-  <div class="col-md-12 comnt-shadow">
-    <% @comments.where(parent_id: nil).each do |comment| %>
+  <div class="row comnt-box">
+    <div class="col-md-12 comnt-shadow">
+      <% @comments.where(parent_id: nil).each do |comment| %>
         <div class="panel panel-white post panel-shadow"> <hr>
           <div class="post-heading">
             <div class="pull-left image ">
-              <img src="<%= comment.user.avatar ? comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image" width="50">
+
+              <img src="<%= comment.user.avatar ? comment.user.avatar.url : '/assets/images/user-img-2.png' %>" class="img-circle avatar" alt="user profile image" width="50">
 
             </div>
             <div class="meta user-name">
-             <p class="pull-left" style="padding-left: 10px; padding-right: 10px;"><b><%= comment.user.name %></b>
+              <p class="pull-left" style="padding-left: 10px; padding-right: 10px;"><b><%= comment.user.name %></b>
               <h6 class="text-muted time"><%= comment.created_at.ago_in_words %></h6>
-                <!--made a post.-->
+              <!--made a post.-->
               </p>
               <p><%= comment.message %></p>
               <!--<p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p></p> -->
 
               <% comment.children.each do |sub_comment| %>
-                  <div class="panel panel-white post comnt-rply-box panel-shadow col-md-12">
-                    <div class="post-heading">
-                      <div class="pull-left image">
-                        <img src="<%= sub_comment.user.avatar ? sub_comment.user.avatar.url : '/placeholder.png' %>" class="img-circle avatar" alt="user profile image" width="50">
-                      </div>
-                      <div class="pull-left meta">
-                        <div class="title h5" style="padding: 10px;">
-                          <a href="#"><b><%= sub_comment.user.name %></b></a>
-                          <h6 class="text-muted pull-right time" style="padding-left: 10px; margin-top: 0px;"><%= sub_comment.created_at.ago_in_words %></h6>
-
-                        </div>
-
-                        <div class="post-description">
-                          <p style="padding: 10px;"><%= sub_comment.message %></p>
-                          <!--<div class="stats">-->
-                          <!--<a href="#" class="btn btn-default stat-item">-->
-                          <!--<i class="fa fa-thumbs-up icon"></i>2-->
-                          <!--</a>-->
-                          <!--<a href="#" class="btn btn-default stat-item">-->
-                          <!--<i class="fa fa-thumbs-down icon"></i>12-->
-                          <!--</a>-->
-                          <!--</div>-->
-                        </div>
-
-                      </div>
+                <div class="panel panel-white post comnt-rply-box panel-shadow col-md-12">
+                  <div class="post-heading">
+                    <div class="pull-left image">
+                      <img src="<%= sub_comment.user.avatar ? sub_comment.user.avatar.url : '/assets/images/user-img-2.png' %>" class="img-circle avatar" alt="user profile image" width="50">
                     </div>
+                    <div class="pull-left meta">
+                      <div class="title h5" style="padding: 10px;">
+                        <a href="#"><b><%= sub_comment.user.name %></b></a>
+                        <h6 class="text-muted pull-right time" style="padding-left: 10px; margin-top: 0px;"><%= sub_comment.created_at.ago_in_words %></h6>
 
+                      </div>
+
+                      <div class="post-description">
+                        <p style="padding: 10px;"><%= sub_comment.message %></p>
+                        <!--<div class="stats">-->
+                        <!--<a href="#" class="btn btn-default stat-item">-->
+                        <!--<i class="fa fa-thumbs-up icon"></i>2-->
+                        <!--</a>-->
+                        <!--<a href="#" class="btn btn-default stat-item">-->
+                        <!--<i class="fa fa-thumbs-down icon"></i>12-->
+                        <!--</a>-->
+                        <!--</div>-->
+                      </div>
+
+                    </div>
                   </div>
+
+                </div>
               <% end %>
 
               <a href="javascript:void(0);" style="text-decoration: none; color: #323232;" onclick="openSubCommentModal('<%= comment.id %>')">Quote</a>
@@ -92,110 +93,110 @@
             </div>
           </div><hr>
         </div>
-    <% end %>
+      <% end %>
 
-    <!--
-        <div class="panel panel-white post panel-shadow">
-          <div class="post-heading">
-            <div class="pull-left image">
-              <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
-            </div>
-            <div class="pull-left meta">
-              <div class="title h5">
-                <a href="#"><b>Ryan Haywood</b></a>
-                made a post.
-                <h6 class="text-muted pull-right time">1 minute ago</h6>
+      <!--
+          <div class="panel panel-white post panel-shadow">
+            <div class="post-heading">
+              <div class="pull-left image">
+                <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
               </div>
+              <div class="pull-left meta">
+                <div class="title h5">
+                  <a href="#"><b>Ryan Haywood</b></a>
+                  made a post.
+                  <h6 class="text-muted pull-right time">1 minute ago</h6>
+                </div>
 
-              <div class="panel panel-white post comnt-rply-box panel-shadow">
-                <div class="post-heading">
-                  <div class="pull-left image">
-                    <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
-                  </div>
-                  <div class="pull-left meta">
-                    <div class="title h5">
-                      <a href="#"><b>Ryan Haywood</b></a>
-                      made a post.
+                <div class="panel panel-white post comnt-rply-box panel-shadow">
+                  <div class="post-heading">
+                    <div class="pull-left image">
+                      <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
                     </div>
-                    <h6 class="text-muted pull-right time">1 minute ago</h6>
+                    <div class="pull-left meta">
+                      <div class="title h5">
+                        <a href="#"><b>Ryan Haywood</b></a>
+                        made a post.
+                      </div>
+                      <h6 class="text-muted pull-right time">1 minute ago</h6>
+                    </div>
+                  </div>
+                  <div class="post-description">
+                    <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+                    <div class="stats">
+                      <a href="#" class="btn btn-default stat-item">
+                        <i class="fa fa-thumbs-up icon"></i>2
+                      </a>
+                      <a href="#" class="btn btn-default stat-item">
+                        <i class="fa fa-thumbs-down icon"></i>12
+                      </a>
+                    </div>
                   </div>
                 </div>
-                <div class="post-description">
-                  <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
-                  <div class="stats">
-                    <a href="#" class="btn btn-default stat-item">
-                      <i class="fa fa-thumbs-up icon"></i>2
-                    </a>
-                    <a href="#" class="btn btn-default stat-item">
-                      <i class="fa fa-thumbs-down icon"></i>12
-                    </a>
-                  </div>
-                </div>
+
               </div>
-
             </div>
-          </div>
 
-        </div> -->
+          </div> -->
 
 
+    </div>
   </div>
-</div>
 
-<script>
-    function like_dislike_comment(obj, id, actionVal){
-        var link = obj;
-        obj = $(obj).children()[0];
-        var obj_cls = $(obj).attr('class');
-        var obj_cls_status = obj_cls.split(' ')[3];
+  <script>
+      function like_dislike_comment(obj, id, actionVal){
+          var link = obj;
+          obj = $(obj).children()[0];
+          var obj_cls = $(obj).attr('class');
+          var obj_cls_status = obj_cls.split(' ')[3];
 
-        var status = '';
-        if (obj_cls_status == "cLiked"){
-            status = false;
-            $(obj).removeClass('cLiked');
-        }else{
-            status = true;
-            $(obj).addClass('cLiked');
-        }
-        var comm_dis_val = $('#'+id+'_c_dislike').val();
-        var comm_like_val = $('#'+id+'_c_like').val();
-        if (actionVal == true){
-            $(link).addClass('disabled');
-            console.log($(link).siblings()[0]);
-            $($(link).siblings()[0]).removeClass("disabled");
-            $('#'+id+'_dislike').removeClass('cLiked');
-            $('#'+id+'_c_like').val(parseInt(comm_like_val) + 1);
-            if (parseInt(comm_dis_val) != 0){
-                $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) - 1);
-            }
-        }else if (actionVal == false){
-            $(link).addClass('disabled');
-            console.log($(link).siblings()[0]);
-            $($(link).siblings()[0]).removeClass("disabled");
-            $('#'+id+'_like').removeClass('cLiked');
-            if (parseInt(comm_like_val) != 0){
-                $('#'+id+'_c_like').val(parseInt(comm_like_val) - 1);
-            }
-            $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) + 1);
-        }
-        $.ajax({
-            url: '/comment_like_unlike?id='+ id + '&value=' + status+'&comment_action='+actionVal,
-            type: 'get',
-            dataType: 'json',
-            processData: false,
-            success: function (data) {
+          var status = '';
+          if (obj_cls_status == "cLiked"){
+              status = false;
+              $(obj).removeClass('cLiked');
+          }else{
+              status = true;
+              $(obj).addClass('cLiked');
+          }
+          var comm_dis_val = $('#'+id+'_c_dislike').val();
+          var comm_like_val = $('#'+id+'_c_like').val();
+          if (actionVal == true){
+              $(link).addClass('disabled');
+              console.log($(link).siblings()[0]);
+              $($(link).siblings()[0]).removeClass("disabled");
+              $('#'+id+'_dislike').removeClass('cLiked');
+              $('#'+id+'_c_like').val(parseInt(comm_like_val) + 1);
+              if (parseInt(comm_dis_val) != 0){
+                  $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) - 1);
+              }
+          }else if (actionVal == false){
+              $(link).addClass('disabled');
+              console.log($(link).siblings()[0]);
+              $($(link).siblings()[0]).removeClass("disabled");
+              $('#'+id+'_like').removeClass('cLiked');
+              if (parseInt(comm_like_val) != 0){
+                  $('#'+id+'_c_like').val(parseInt(comm_like_val) - 1);
+              }
+              $('#'+id+'_c_dislike').val(parseInt(comm_dis_val) + 1);
+          }
+          $.ajax({
+              url: '/comment_like_unlike?id='+ id + '&value=' + status+'&comment_action='+actionVal,
+              type: 'get',
+              dataType: 'json',
+              processData: false,
+              success: function (data) {
 
-            },
-            error: function (data) {
-                alert('Error');
-                //    window.location.reload();
-            }
-        });
-    }
-    function openSubCommentModal(id){
-        $('#comment_id').val('');
-        $('#blog_comment').val('');
-        $('#addComment').modal('show');
-        $('#comment_id').val(id);
-    }
-</script>
+              },
+              error: function (data) {
+                  alert('Error');
+                  //    window.location.reload();
+              }
+          });
+      }
+      function openSubCommentModal(id){
+          $('#comment_id').val('');
+          $('#blog_comment').val('');
+          $('#addComment').modal('show');
+          $('#comment_id').val(id);
+      }
+  </script>
