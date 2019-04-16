@@ -42,7 +42,8 @@
 
             <li>
               <div class="dropdown">
-                <button class="btn btn-primary btn-none dropdown-toggle" type="button" data-toggle="dropdown"><img style="width: 38px; height: 38px; border-radius: 50%;" src="<%= current_user.avatar.attached? ? current_user.avatar : "/assets/user-img.png" %>">
+                <button class="btn btn-primary btn-none dropdown-toggle" type="button" data-toggle="dropdown">
+                  <%= image_tag current_user.avatar.attached? ? current_user.avatar.variant(resize: "100x100") : "/assets/user-img.png", class: 'user-image-header' %>
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete, id: "logout-link") %></li>
