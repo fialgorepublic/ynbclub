@@ -32,7 +32,7 @@
                 <!--</div>-->
                 <!--</div>-->
                 <div class="field m-image-frame form-group">
-                  <%= image_tag(@blog.avatar.attached? ? @blog.avatar : "placeholder.png", :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
+                  <%= image_tag(@blog.avatar.attached? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : "placeholder.png", alt: "Add  icon", id: 'blah') %>
                   <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
                   <div class="field form-group" id="image-upload-button-div">
                     <div class="fileUpload form-control start blog-imgUpload">
