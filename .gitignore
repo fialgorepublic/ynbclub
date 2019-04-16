@@ -22,3 +22,4 @@
 /db/schema.rb
 /.idea
 /config/local_env.yml
+storage/
