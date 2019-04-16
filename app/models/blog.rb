@@ -28,15 +28,8 @@ class Blog < ApplicationRecord
   has_many :products, :dependent => :destroy
   has_many :blog_views, :dependent => :destroy
   has_many :share_urls, :dependent => :destroy
-  has_attached_file :avatar,
-                    :default_url => "/images/:style/missing.png",
-                    :storage => :s3,
-                    :url => 's3_domain_url',
-                    :s3_host_alias => 'saintalgorepublic.s3-website-us-east-1.amazonaws.com',
-                    :s3_credentials => File.join(Rails.root, 'config', 's3.yml'),
-                    :path => "/files/:style/:id_:filename",
-                    styles: { medium: "300x300>", thumb: "100x100>" }
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  has_one_attached :avatar
+
   scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}
 
   scope :sort_blogs, -> (sort_type) {

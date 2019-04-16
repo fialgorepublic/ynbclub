@@ -60,15 +60,7 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: 'target_id'
   has_many :commission_histories
 
-  has_attached_file :avatar,
-                    :default_url => "/images/:style/missing.png",
-                    :storage => :s3,
-                    :url => 's3_domain_url',
-                    :s3_host_alias => 'saintalgorepublic.s3-website-us-east-1.amazonaws.com',
-                    :s3_credentials => File.join(Rails.root, 'config', 's3.yml'),
-                    :path => "/files/:style/:id_:filename",
-                    styles: { medium: "300x300>", thumb: "100x100>" }
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  has_one_attached :avatar
 
   delegate :first_name, :surname, :address_line_1, :address_line_2, :city, :state, :zip_code, to: :profile, allow_nil: true
   delegate :phone_number, to: :profile, prefix: true, allow_nil: true
