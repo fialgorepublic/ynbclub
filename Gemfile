@@ -44,6 +44,7 @@ gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'httparty'
 gem 'google-cloud'
 gem 'google-cloud-translate'
+gem 'bootsnap'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
