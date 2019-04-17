@@ -148,15 +148,16 @@
     </div>
 
 
-    <!-- <#% if @blog.is_published? && signed_in? %> -->
-      <!-- <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
+     <% if @blog.is_published? && signed_in? %>
+       <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
         Post a comment
-      </button> -->
+      </button>
 
     <div id="blogComment">
-      <%= render partial: 'disqus' %>
-    </div>
-    <!-- <#% end %> -->
+      <%= render partial: 'comments' %>
+      <%#= render partial: 'disqus' %>
+<!--    </div>-->
+     <% end %>
   </div>
 </div>
 
