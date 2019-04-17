@@ -47,6 +47,7 @@ gem 'google-cloud-translate'
 gem 'bootsnap'
 gem "aws-sdk-s3", require: false
 gem "mini_magick"
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
