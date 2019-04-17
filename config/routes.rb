@@ -189,7 +189,6 @@ Rails.application.routes.draw do
   end
   resources :settings
   resources :point_types
-  mount Ckeditor::Engine => '/ckeditor'
   resources :categories
   get 'home', to: 'home#index'
   resources :referral_sales do
