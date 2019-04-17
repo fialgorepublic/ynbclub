@@ -16,9 +16,6 @@
 //= require best_in_place.jquery-ui
 //= require bootstrap.min.js
 //= require jquery.validate.min.js
-//= require ckeditor/init
-//= require ckeditor/ckeditor.js
-//= require ckeditor/adapters/jquery.js
 //= require toastr.js
 //= require BootstrapMenu.min.js
 //= require apprise.min.js
