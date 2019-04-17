@@ -1,6 +1,6 @@
 module BlogsHelper
   def file_name blog
-    blog.avatar == "/images/original/missing.png" ? "No file Chosen" : blog.avatar.filename
+    blog.avatar.attached? ?  blog.avatar.filename : "No file Chosen"
   end
 
   def blog_attributes blog
