@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: f6ce3a98b29efec16fcff7bcf34b1e4e6827d835
+  specs:
+    ckeditor (5.0.0)
+      orm_adapter (~> 0.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,8 +131,6 @@ GEM
     chronic (0.10.2)
     city-state (0.0.13)
       rubyzip (~> 1.1)
-    ckeditor (5.0.0)
-      orm_adapter (~> 0.5.0)
     climate_control (0.2.0)
     cocoon (1.2.12)
     coderay (1.1.2)
@@ -620,7 +625,7 @@ DEPENDENCIES
   capistrano3-puma
   capybara (~> 2.13)
   city-state
-  ckeditor
+  ckeditor!
   cocoon
   coffee-rails
   colorize

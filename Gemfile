@@ -48,8 +48,7 @@ gem 'bootsnap'
 gem "aws-sdk-s3", require: false
 gem "mini_magick"
 gem 'paperclip'
-gem 'ckeditor'
-
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -58,7 +57,6 @@ group :development, :test do
 end
 
 gem 'rails_12factor', group: :production
-gem 'ckeditor'
 gem 'time_ago_in_words'
 gem 'cancancan', '~> 2.0'
 gem 'will_paginate-bootstrap'
