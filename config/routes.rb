@@ -182,6 +182,7 @@
 #  attachment_file DELETE /attachment_files/:id(.:format) ckeditor/attachment_files#destroy
 
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   resources :payments do
     collection do
       get :clear_search
