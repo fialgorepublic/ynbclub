@@ -51,7 +51,7 @@
             <div class="col-md-4">
               <div class="box-shadow-am sm-pd-am">
                 <div class="product-box">
-                  <img width="100%" src="<%= product.avatar.present? ? product.avatar.url : '/placeholder.png' %>">
+                  <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width: "100%" %>
                 </div>
                 <div class="product-detail">
                   <p><%= product.title %></p>
