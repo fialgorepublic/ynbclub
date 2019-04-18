@@ -82,4 +82,12 @@ class Blog < ApplicationRecord
     end
 
   end
+
+  def attach_default_image
+    self.avatar.attach(io: File.open(Rails.root.join('app/assets/images/default-blog-image.jpg')), filename: 'default-blog-image.jpg', content_type: 'image/jpg')
+  end
+
+  def default_image?
+    self.avatar.filename == 'default-blog-image.jpg'
+  end
 end
