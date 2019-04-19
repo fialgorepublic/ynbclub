@@ -59,8 +59,9 @@ class Blog < ApplicationRecord
     return if product.blank?
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
-        Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
-                       blog_id: self.id, avatar: product[:avatar][index])
+        new_product = Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
+                       blog_id: self.id)
+        new_product.attach_avatar(product[:avatar][index])
       end
     end
     # products = Product.where("id IN (?)", product_ids)
@@ -76,8 +77,9 @@ class Blog < ApplicationRecord
     self.products.delete_all
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
-        Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
-                       blog_id: self.id, avatar: product[:avatar][index])
+        new_product = Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
+                       blog_id: self.id)
+        new_product.attach_avatar(product[:avatar][index])
       end
     end
 
@@ -90,4 +92,5 @@ class Blog < ApplicationRecord
   def default_image?
     self.avatar.filename == 'default-blog-image.jpg'
   end
+
 end

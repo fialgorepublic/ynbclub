@@ -155,6 +155,6 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = Blog.with_attached_avatar.find(params[:id])
     end
 end

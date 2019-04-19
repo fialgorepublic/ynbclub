@@ -19,4 +19,13 @@
 class Product < ApplicationRecord
   belongs_to :blog
   has_one_attached :avatar
+
+
+  def attach_avatar(url)
+    uri = URI.parse(url)
+    download_image = open(url)
+    basename = File.basename(uri.path)
+    extname = File.extname(uri.path).remove('.')
+    self.avatar.attach(io: download_image, filename: basename, content_type: "image/#{extname}")
+  end
 end
