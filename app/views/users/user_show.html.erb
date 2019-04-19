@@ -19,7 +19,7 @@
             <p><strong>Referral code:</strong> <%= @user.referral %> </p>
             <p><strong>Total income:</strong>  <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
             <p><strong>Has been paid:</strong> <%= number_with_delimiter(@user.paid.to_i, delimiter: ".") %> ₫</p>
-            <p><strong>Not paid:</strong> <%= number_with_delimiter(@user.total_income.to_i - @user.paid.to_i, delimiter: ".") %> ₫</p>
+            <p><strong>Not paid:</strong> <%= number_with_delimiter(not_paid_amount(@user), delimiter: ".") %> ₫</p>
           </div>
         </div>
         <%= form_tag("/update_profile", id: "update_profile", method: "post") do %>
