@@ -2,7 +2,7 @@ module SimpleDiscussion::ForumPostsHelper
   # Override this to use avatars from other places than Gravatar
   def avatar_tag(email)
     user = User.find_by_email(email)
-    image = user.present? && user.avatar.attached? ? user.avatar : 'user-img.png'
+    image = user.present? && user.avatar.attached? ? user.avatar.variant(combine_options: { resize: '80x80^', gravity: 'Center', extent: '80x80^', background: "grey", quality: 95 }) : 'user-img.png'
     image_tag image
   end
 
