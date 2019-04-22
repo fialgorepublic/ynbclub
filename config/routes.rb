@@ -183,6 +183,8 @@
 
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+  mount SimpleDiscussion::Engine => "/forum" # routes for simple_discussion for chat
+
   resources :payments do
     collection do
       get :clear_search
