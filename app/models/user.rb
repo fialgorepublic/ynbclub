@@ -39,6 +39,8 @@
 
 class User < ApplicationRecord
   self.per_page = 500
+  include SimpleDiscussion::ForumUser
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -200,6 +202,11 @@ class User < ApplicationRecord
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
     self.is_admin? ? Blog.filter_by_category(category).sort_blogs(sort_by) : Blog.filter_by_category(category).published_and_drafted_blogs(self.id).sort_blogs(sort_by)
+  end
+
+  #this method is being used by simple_discussion gem
+  def name
+    "#{first_name} #{surname}"
   end
 
   def full_name
