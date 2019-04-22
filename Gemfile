@@ -49,6 +49,8 @@ gem "aws-sdk-s3", require: false
 gem "mini_magick"
 gem 'paperclip'
 gem 'ckeditor', github: 'galetahub/ckeditor'
+
+#simple discussion gem by GoRails for implementing disucssion
 gem 'simple_discussion'
 
 group :development, :test do
