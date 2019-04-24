@@ -7,10 +7,9 @@
       <hr>
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-12">
-      <div class="box-shadow">
+      <div class="box-shadow" style="background-image: url('<%= @share_with_friends.image.attached? ? rails_blob_url(@share_with_friends.image) : "" %>')">
         <% if current_user.is_admin? %>
           <div class="row">
             <div class="col-md-12 text-right cu-btn-holder">
