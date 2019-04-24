@@ -9,7 +9,7 @@
   <!-- Facebook Open Graph data -->
   <meta property="og:title" content="SaintLBeau" />
   <meta property="og:type" content="website" />
-  <%= tag :meta, property: 'og:url' content: request.host %>
+  <%= tag :meta, property: 'og:url', content: request.host %>
   <meta property="og:image" content="<%= @page.image.attached? ? rails_blob_url(@page.image) :  meta_image  %>)" />
   <meta property="og:description" content="SaintLBeau Discription" />
 
