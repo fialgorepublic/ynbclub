@@ -128,6 +128,7 @@
 
     $("meta[property='og\\:title']").attr('content', `${blog.title}`);
     $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
+    $("meta[property='og\\:type']").attr('content', 'article');
     return url;
   }
 
