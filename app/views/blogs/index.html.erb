@@ -125,17 +125,32 @@
       &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
       &display=popup`;
 
+      FB.ui({
+        method: 'share_open_graph',
+        action_type: 'og.likes',
+        action_properties: JSON.stringify({
+          object: {
+            'og:url': 'https://ambassador-staging.saintlbeau.com/blog_detail?id=137',
+            'og:title': blog.title,
+            'og:description': blog.title,
+            'og:image': blog.file_name
+          }
+        })
+      },
+      function (response) {
+      // Action after response
+      });
     return url;
   }
 
   function openWindow(blog_id, type, blog){
     var blog = JSON.parse(blog)
-    $("meta[property='og\\:title']").attr('content', `${blog.title}`);
-    $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
-    $("meta[property='og\\:type']").attr('content', 'article');
+    // $("meta[property='og\\:title']").attr('content', `${blog.title}`);
+    // $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
+    // $("meta[property='og\\:type']").attr('content', 'article');
     var url = createFBShareLink(blog_id, type, blog, '164286157812635');
 
-    window.open(url);
+    // window.open(url);
 
   }
 </script>
