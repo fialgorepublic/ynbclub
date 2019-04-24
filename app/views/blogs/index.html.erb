@@ -126,6 +126,8 @@
       &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
       &display=popup`;
 
+    $("meta[property='og\\:title']").attr('content', `${blog.title}`);
+    $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
     return url;
   }
 
