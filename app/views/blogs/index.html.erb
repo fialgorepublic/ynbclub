@@ -116,7 +116,6 @@
 
   function createFBShareLink(id, type, blog, fbAppId) {
     var link = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
-    var blog = JSON.parse(blog)
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
       &link=${link}/blog_detail?id=${id}
       &picture=${encodeURIComponent(`${blog.file_name}`)}
@@ -130,7 +129,10 @@
   }
 
   function openWindow(blog_id, type, blog){
-
+    var blog = JSON.parse(blog)
+    $("meta[property='og\\:title']").attr('content', `${blog.title}`);
+    $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
+    $("meta[property='og\\:type']").attr('content', 'article');
     var url = createFBShareLink(blog_id, type, blog, '164286157812635');
 
     window.open(url);
