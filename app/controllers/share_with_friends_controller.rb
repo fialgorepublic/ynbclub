@@ -16,7 +16,7 @@ class ShareWithFriendsController < ApplicationController
 
   private
     def share_with_friends_params
-      params.require(:share_with_friend).permit!
+      params.require(:share_with_friend).permit(:image)
     end
 
     def set_share_with_friend

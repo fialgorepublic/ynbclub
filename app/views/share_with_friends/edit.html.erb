@@ -7,12 +7,14 @@
       <hr>
     </div>
   </div>
-
   <%= form_for @share_with_friend, url: share_with_friends_path, method: :put do |form|%>
     <div class="row">
       <div class="col-md-12">
-        <div class="box-shadow box-shadow-pd-sm edit-share-box">
+        <div class="box-shadow box-shadow-pd-sm edit-share-box" style="background-image: url(<%= @share_with_friend.image.attached? ? rails_blob_url(@share_with_friend.image) : "" %>)">
           <div class="row">
+            <div class="fileUpload text-center start blog-imgUpload">
+                  <%= form.file_field :image, class: "filestyle upload", "data-input" => false %>
+                </div>
             <div class="col-md-12 text-right cu-btn-holder">
               <%= form.submit "Save", class: "btn btn-default" %>
               <%= link_to "Cancel", share_with_friends_path, class: "btn btn-default" %>
