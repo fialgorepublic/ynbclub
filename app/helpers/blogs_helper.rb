@@ -4,7 +4,7 @@ module BlogsHelper
   end
 
   def blog_attributes blog
-    { id: blog.id, title: blog.title, file_name: rails_blob_url(blog.avatar) }.to_json
+    { id: blog.id, title: blog.title, file_name: rails_blob_url(blog.avatar), description: blog.description }.to_json
   end
 
   def blog_page_title

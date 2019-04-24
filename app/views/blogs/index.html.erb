@@ -116,23 +116,23 @@
 
   function createFBShareLink(id, type, blog, fbAppId) {
     var link = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
-    var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-      &link=${link}/blog_detail?id=${id}
-      &picture=${encodeURIComponent(`${blog.file_name}`)}
-      &name=${blog.title}
-      &caption=SainLBeau blogs
-      &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
-      &display=popup`;
+    // var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+    //   &link=
+    //   &picture=${encodeURIComponent(`${blog.file_name}`)}
+    //   &name=${blog.title}
+    //   &caption=SainLBeau blogs
+    //   &description=This is just for testing purpose
+    //   &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
+    //   &display=popup`;
 
       FB.ui({
         method: 'share_open_graph',
         action_type: 'og.likes',
         action_properties: JSON.stringify({
           object: {
-            'og:url': 'https://ambassador-staging.saintlbeau.com/blog_detail?id=137',
+            'og:url': `${link}/blog_detail?id=${id}`,
             'og:title': blog.title,
-            'og:description': blog.title,
+            'og:description': blog.description,
             'og:image': blog.file_name
           }
         })
