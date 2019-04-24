@@ -3,7 +3,26 @@
 <head>
 
 
-  <title>SaintLBeau</title>
+  <!-- <title>SaintLBeau</title> -->
+  <title><%= meta_title %></title>
+  <meta name="description" content="<%= meta_description %>">
+  <!-- Facebook Open Graph data -->
+  <meta property="og:title" content="<%= meta_title %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ambassador.saintlbeau.com?invite=<%= current_user.email if current_user %>" />
+  <meta property="og:image" content="<%= @page.image.attached? ? rails_blob_url(@page.image) :  meta_image  %>)" />
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:description" content="<%= meta_description %>" />
+  <meta property="og:site_name" content="<%= meta_title %>" />
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="<%= @page.image.attached? ? rails_blob_url(@page.image) :  meta_image  %>)">
+  <meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
+  <meta name="twitter:title" content="<%= meta_title %>" >
+  <meta name="twitter:description" content="<%= meta_description %>">
+  <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
+  <meta name="twitter:image:src" content="<%= @page.image.attached? ? rails_blob_url(@page.image) :  meta_image  %>)">
   <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
