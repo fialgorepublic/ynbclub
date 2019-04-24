@@ -115,15 +115,17 @@
   }
 
   function createFBShareLink(id, type, blog, fbAppId) {
+    debugger
+    var link = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
     var blog = JSON.parse(blog)
-    var url = 'http://www.facebook.com/dialog/feed?app_id=' + fbAppId +
-      '&link=http://ambassador.saintlbeau.com/blog_detail?id=' + id +
-      '&picture=http://s3.amazonaws.com/saintalgorepublic/files/original/' + id + "_" + blog.avatar_file_name +
-      '&name=' + blog.title +
-      '&caption=' +
-      '&description=' +
-      '&redirect_uri=' + encodeURIComponent('http://ambassador.saintlbeau.com/share_blog?id=' + id + "&value=" + type) +
-      '&display=popup';
+    var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+      &link=${link}/blog_detail?id=${id}
+      &picture=${encodeURIComponent(`${blog.file_name}`)}
+      &name=${blog.title}
+      &caption=SainLBeau blogs
+      &description=This is just for testing purpose
+      &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
+      &display=popup`;
 
     return url;
   }
