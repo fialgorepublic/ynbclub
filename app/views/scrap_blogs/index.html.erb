@@ -14,10 +14,10 @@
             <div class="form-group">
               <%= text_field_tag :blog_name, params[:blog_name], class: "form-control", required: true %>
             </div><!-- /input-group -->
-
+            <%= hidden_field_tag :page, nil, id: 'page-value' %>
             <br>
             <div class="text-center">
-              <%= submit_tag 'Search', class: 'btn btn-lg btn-primary' %>
+              <%= submit_tag 'Search', class: 'btn btn-lg btn-primary', id: 'search-blog-btn' %>
             </div>
           <% end %>
         </div>
@@ -50,3 +50,31 @@
       <hr>
     </div>
   <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <% if @previous_page >= 1 %>
+        <%= link_to "Previous", "javascript:void(0);", class: "btn btn-primary blogs-pagination", data: { page: @previous_page } %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <% if @next_page > 0 %>
+        <%= link_to "Next",  "javascript:void(0);", class: "btn btn-primary blogs-pagination pull-right", data: { page: @next_page } %>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.blogs-pagination').click(function(){
+      $('.loader').show();
+      page = $(this).data("page");
+      $('#page-value').val(page);
+      $('#search-blog-btn').click();
+    });
+  });
+</script>

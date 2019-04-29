@@ -8,12 +8,12 @@ class MediumBlogsService
   BLOGS_XPATH         = "//div[contains(@class, 'js-postListHandle')]/div[contains(@class, 'js-block')]"
   BLOGS_CONTENT_XPATH = "//div[contains(@class, 'postArticle-content')]//div[contains(@class, 'section-content')]"
 
-  def initialize(tag)
+  def initialize(tag, page)
     @tag = tag
+    @next_page = page
   end
 
   def get_blogs
-    @next_page   = 1
     @blogs_urls  = []
     @blogs_slugs = []
     @blogs       = []
@@ -23,64 +23,58 @@ class MediumBlogsService
   private
 
   def search_blogs
-    # while next_page >= 1 do
-    #   get_json_from_medium
-    # end
+    get_json_from_medium
     get_blogs_by_slugs
     puts "Blogs URLS", blogs_urls
 
     get_blogs_content
-    blogs
+    [blogs, next_page, next_page - 2]
   end
 
-  # def get_json_from_medium
-  #   json_response = HTTParty.get("#{JSON_BASE_URL}&#{query_params}")
-  #   set_page_count(json_response)
-  # end
+  def get_json_from_medium
+    json_response = HTTParty.get("#{JSON_BASE_URL}&#{query_params}")
+    set_page_count(json_response)
+  end
 
-  # def query_params
-  #   "q=#{tag}&page=#{next_page}"
-  # end
+  def query_params
+    "q=#{tag}&page=#{next_page}"
+  end
 
-  # def set_page_count(json_response)
-  #   json_response.to_s.slice!('])}')
-  #   json_response.to_s.slice!('while(1)')
-  #   json_response.to_s.slice!('</x>')
+  def set_page_count(json_response)
+    json_response.to_s.slice!('])}')
+    json_response.to_s.slice!('while(1)')
+    json_response.to_s.slice!('</x>')
 
-  #   json_response = JSON.parse(json_response.to_s[1..-1])
+    json_response = JSON.parse(json_response.to_s[1..-1])
 
-  #   paging = json_response['payload']['paging']
-  #   next_obj = paging['next'].presence
-  #   get_slugs(json_response['payload']['value']) if json_response['payload']['value'].present?
-  #   get_blogs_by_slugs
-  #   get_blogs_content
-  #   if next_obj.present?
-  #     @next_page  = next_obj['page']
-  #   else
-  #     @next_page = 0
-  #   end
-  # end
+    paging = json_response['payload']['paging']
+    next_obj = paging['next'].presence
+    get_slugs(json_response['payload']['value']) if json_response['payload']['value'].present?
+    # get_blogs_by_slugs
+    # get_blogs_content
+    if next_obj.present?
+      @next_page = next_obj['page']
+    else
+      @next_page = 0
+    end
+  end
 
-  # def get_slugs(blogs)
-  #   blogs.each { |blog| blogs_slugs << blog['slug'] }
-  #   puts "blogs_slugs", blogs_slugs
-  # end
+  def get_slugs(blogs)
+    blogs.each { |blog| blogs_slugs << blog['slug'] }
+  end
 
   def get_blogs_by_slugs
-    # blogs_slugs.each do |slug|
-
-    http_reposne = HTTParty.get(URI.parse(URI.escape("#{BASE_URL}?q=#{tag}")))
-    doc = Nokogiri::HTML(http_reposne)
-    get_blogs_urls(doc)
-    # end
+    blogs_slugs.each do |slug|
+      http_reposne = HTTParty.get(URI.parse(URI.escape("#{BASE_URL}?q=#{slug}")))
+      doc = Nokogiri::HTML(http_reposne)
+      get_blogs_urls(doc)
+    end
   end
 
   def get_blogs_urls(doc)
     return unless doc
     doc.xpath(BLOGS_XPATH).each_with_index do |div_element, index|
-      puts "Index", index
       blogs_urls << div_element.css('.postArticle-content').css('a')[0]['href']
-      puts "blogs_urls", blogs_urls
     end
   end
 

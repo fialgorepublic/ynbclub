@@ -3,8 +3,10 @@ class ScrapBlogsController < ApplicationController
   before_action :set_blog, except: [:index]
 
   def index
+    @next_page, @previous_page = 0, 0
     if params[:blog_name]
-      blogs = MediumBlogsService.new(params[:blog_name]).get_blogs
+      page = params[:page].presence || 1
+      blogs, @next_page, @previous_page = MediumBlogsService.new(params[:blog_name], page).get_blogs
     end
     @blogs = blogs.presence || []
   end
