@@ -26,7 +26,6 @@ class MediumBlogsService
     get_json_from_medium
     get_blogs_by_slugs
     puts "Blogs URLS", blogs_urls
-
     get_blogs_content
     [blogs, next_page, next_page - 2]
   end
@@ -73,9 +72,8 @@ class MediumBlogsService
 
   def get_blogs_urls(doc)
     return unless doc
-    doc.xpath(BLOGS_XPATH).each_with_index do |div_element, index|
-      blogs_urls << div_element.css('.postArticle-content').css('a')[0]['href']
-    end
+    div_element = doc.xpath(BLOGS_XPATH)[0]#.each_with_index do |div_element, index|
+    blogs_urls << div_element.css('.postArticle-content').css('a')[0]['href'] if div_element.present?
   end
 
   def get_blogs_content
