@@ -205,7 +205,9 @@ Rails.application.routes.draw do
     get :translate_and_edit, on: :member
   end
 
-  resources :blogs
+  resources :blogs do
+    get :feed, on: :collection
+  end
   get 'approve_sales', to: 'referral_sales#approve_sales'
   get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'
   root :to => 'home#index'
