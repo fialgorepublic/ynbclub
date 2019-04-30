@@ -18,7 +18,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="m-image-frame" style="background-image: url(<%= @page.image.url %>);">
+        <div class="m-image-frame" style="background-image: url(<%= @page.image.attached? ? rails_blob_url(@page.image) : "" %>);">
           <div class="row">
             <div class="col-md-12">
               <div class="field form-group" >

@@ -33,7 +33,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         customer.email = "#{resource.email}"
         customer.first_name = resource.name
         customer.last_name = ''
-        customer.metafields = [{key: "image_url", namespace: "global", value: resource.avatar.url, value_type: "string"}]
         customer.save
       end
       clear_shopify_session

@@ -36,6 +36,7 @@ class BlogsController < ApplicationController
   # GET /blogs/new
   def new
     @blog = Blog.new
+    @blog.attach_default_image
   end
 
   # GET /blogs/1/edit
@@ -55,6 +56,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
+        @blog.attach_default_image unless @blog.avatar.attached?
         @blog.add_products(params[:product])
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
@@ -110,7 +112,7 @@ class BlogsController < ApplicationController
   def change_publish_status
 
     unless @blog.is_published?
-      return redirect_to @blog, alert: "You need to add picture before publishing your blog." unless @blog.avatar.present?
+      return redirect_to @blog, alert: "You need to change default picture before publishing your blog." if @blog.default_image?
     end
 
     @blog.update_attributes(is_published: params[:status])
@@ -153,6 +155,6 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = Blog.with_attached_avatar.find(params[:id])
     end
 end

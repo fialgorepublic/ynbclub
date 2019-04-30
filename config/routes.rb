@@ -184,6 +184,8 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+  mount Ckeditor::Engine => '/ckeditor'
+  mount SimpleDiscussion::Engine => "/forum" # routes for simple_discussion for chat
 
   resources :payments do
     collection do
@@ -192,7 +194,6 @@ Rails.application.routes.draw do
   end
   resources :settings
   resources :point_types
-  mount Ckeditor::Engine => '/ckeditor'
   resources :categories
   get 'home', to: 'home#index'
   resources :referral_sales do
@@ -200,6 +201,10 @@ Rails.application.routes.draw do
       post :upate_ghtk_status
       post :ghtk_status
     end
+  end
+
+  resources :scrap_blogs, path: :medium_blogs, only: [:index, :destroy] do
+    get :translate_and_edit, on: :member
   end
 
   resources :blogs
@@ -286,6 +291,8 @@ Rails.application.routes.draw do
       get :deduct_points
       get :exchange_coins
       post :generate_discount_code
+      get :update_share_link_count
+      get :share_link_count, path: '/invite_count'
     end
   end
 

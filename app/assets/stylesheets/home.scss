@@ -2104,6 +2104,7 @@ label.error {
 }
 
 .blog-box.blog-box-sm{
+  height: min-content;
     .h-150{
       height:146px;
           object-fit: cover;
@@ -2120,6 +2121,7 @@ label.error {
 }
 .blog-box.blog-box-long{
   padding-bottom:0;
+  height: min-content;
 //  max-height: 265px;
   .h-50vh {
     height:265px;
@@ -2246,4 +2248,10 @@ label.error {
 
 .pr-0 {
   padding-right: 0px;
+}
+
+.user-image-header {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
 }

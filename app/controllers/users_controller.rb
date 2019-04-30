@@ -6,45 +6,6 @@ class UsersController < ApplicationController
   require 'csv'
   require 'roo'
 
-  def brand_ambassadors
-    @brand_ambassador = User.joins(:role).where("roles.name = 'Brand ambassador'")
-  end
-
-  def update_email
-    @user = current_user
-    message = nil
-    if params[:current_email] == @user.email
-      @user.email = params[:new_email]
-      if @user.save
-        flash[:notice] = "Email successfully updated!. You need to login again to continue"
-        sign_out(@user)
-        redirect_to root_path
-      else
-        message = @user.errors.full_messages
-      end
-    else
-      message = "Current email doesn't match with the profile you are currently logged in!"
-      redirect_to acc_settings_path(current_email: params[:current_email], new_email: params[:new_email]), alert: message
-    end
-  end
-
-  def update_password
-    @user = current_user
-    if @user.valid_password?(params[:current_password])
-      if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
-        flash[:notice] = "Password is updated!. You need to login again to continue"
-        sign_out(@user)
-        redirect_to root_path
-      else
-        flash[:alert] = @user.errors.full_messages.first
-        redirect_to acc_settings_path
-      end
-    else
-      flash[:alert] = "Current password doesn't match!"
-      redirect_to acc_settings_path
-    end
-  end
-
   def index
     @activeStatus = params[:payment].present? && params[:payment] != "All" ? params[:payment] : "All"
 
@@ -98,6 +59,52 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def update_share_link_count
+    current_user.update_attributes(share_link_count: current_user.share_link_count + 1)
+    respond_to do |format|
+      format.js { head :ok }
+    end
+  end
+
+  def brand_ambassadors
+    @brand_ambassador = User.joins(:role).where("roles.name = 'Brand ambassador'")
+  end
+
+  def update_email
+    @user = current_user
+    message = nil
+    if params[:current_email] == @user.email
+      @user.email = params[:new_email]
+      if @user.save
+        flash[:notice] = "Email successfully updated!. You need to login again to continue"
+        sign_out(@user)
+        redirect_to root_path
+      else
+        message = @user.errors.full_messages
+      end
+    else
+      message = "Current email doesn't match with the profile you are currently logged in!"
+      redirect_to acc_settings_path(current_email: params[:current_email], new_email: params[:new_email]), alert: message
+    end
+  end
+
+  def update_password
+    @user = current_user
+    if @user.valid_password?(params[:current_password])
+      if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+        flash[:notice] = "Password is updated!. You need to login again to continue"
+        sign_out(@user)
+        redirect_to root_path
+      else
+        flash[:alert] = @user.errors.full_messages.first
+        redirect_to acc_settings_path
+      end
+    else
+      flash[:alert] = "Current password doesn't match!"
+      redirect_to acc_settings_path
     end
   end
 
@@ -220,6 +227,11 @@ class UsersController < ApplicationController
     url_params = { coins: params[:coins] } unless success
 
     redirect_to exchange_coins_users_path(url_params)
+  end
+
+  def share_link_count
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).paginate(page: params[:page])
   end
 
   private

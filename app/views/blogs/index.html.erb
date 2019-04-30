@@ -7,8 +7,14 @@
 
     <div class="row">
       <div class="post-heading">
-        <% if @blogs.count > 0 %>
-          <div class="row">
+        <div class="row">
+          <% if current_user&.is_admin? %>
+            <div class="col-md-4">
+              <%= link_to "Medium blogs", scrap_blogs_path, class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+
+          <% if @blogs.count > 0 %>
             <div class="col-md-2 post-sorting pull-right" style="margin-left: 15px;">
               <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: 'All', class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
             </div>
@@ -20,8 +26,8 @@
                 <option value="2">Z-A </option>
               </select>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
         <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
       </div>
     </div>
@@ -109,24 +115,42 @@
   }
 
   function createFBShareLink(id, type, blog, fbAppId) {
-    var blog = JSON.parse(blog)
-    var url = 'http://www.facebook.com/dialog/feed?app_id=' + fbAppId +
-      '&link=http://ambassador.saintlbeau.com/blog_detail?id=' + id +
-      '&picture=http://s3.amazonaws.com/saintalgorepublic/files/original/' + id + "_" + blog.avatar_file_name +
-      '&name=' + blog.title +
-      '&caption=' +
-      '&description=' +
-      '&redirect_uri=' + encodeURIComponent('http://ambassador.saintlbeau.com/share_blog?id=' + id + "&value=" + type) +
-      '&display=popup';
+    var link = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
+    // var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+    //   &link=
+    //   &picture=${encodeURIComponent(`${blog.file_name}`)}
+    //   &name=${blog.title}
+    //   &caption=SainLBeau blogs
+    //   &description=This is just for testing purpose
+    //   &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
+    //   &display=popup`;
 
+      FB.ui({
+        method: 'share_open_graph',
+        action_type: 'og.likes',
+        action_properties: JSON.stringify({
+          object: {
+            'og:url': `${link}/blog_detail?id=${id}`,
+            'og:title': blog.title,
+            'og:description': blog.title,
+            'og:image': blog.file_name
+          }
+        })
+      },
+      function (response) {
+      // Action after response
+      });
     return url;
   }
 
   function openWindow(blog_id, type, blog){
-
+    var blog = JSON.parse(blog)
+    // $("meta[property='og\\:title']").attr('content', `${blog.title}`);
+    // $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
+    // $("meta[property='og\\:type']").attr('content', 'article');
     var url = createFBShareLink(blog_id, type, blog, '164286157812635');
 
-    window.open(url);
+    // window.open(url);
 
   }
 </script>

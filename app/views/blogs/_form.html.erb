@@ -32,7 +32,7 @@
                 <!--</div>-->
                 <!--</div>-->
                 <div class="field m-image-frame form-group">
-                  <%= image_tag(@blog.avatar.present? ? @blog.avatar.url : "placeholder.png", :size => "100x100", :alt => "Add  icon" , :id =>'blah') %>
+                  <%= image_tag(@blog.avatar.attached? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : "placeholder.png", alt: "Add  icon", id: 'blah', size: '100x100') %>
                   <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
                   <div class="field form-group" id="image-upload-button-div">
                     <div class="fileUpload form-control start blog-imgUpload">
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group">
               <label>Enter Text</label>
-              <%= form.text_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
+              <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
               <span id="display_count">Total Words: 0</span>
               <span class="float-right">Minimum Reuqired Words: 150</span>
            </div>
@@ -292,7 +292,7 @@
 <script>
   $(":file").filestyle({input: false});
 
-    $('textarea.editor').ckeditor();
+    // $('textarea.editor').ckeditor();
 
     var menu = new BootstrapMenu('#demo1Box', {
         actions: [{

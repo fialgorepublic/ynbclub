@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190410072033) do
+ActiveRecord::Schema.define(version: 2019_04_22_065034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "blog_views", force: :cascade do |t|
     t.integer "blog_id"
@@ -37,6 +58,7 @@ ActiveRecord::Schema.define(version: 20190410072033) do
     t.boolean "is_published", default: false
     t.boolean "buyer_show", default: false
     t.bigint "user_id"
+    t.string "image_url"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
@@ -131,6 +153,43 @@ ActiveRecord::Schema.define(version: 20190410072033) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_exchange_histories_on_user_id"
+  end
+
+  create_table "forum_categories", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "color", default: "000000"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forum_posts", id: :serial, force: :cascade do |t|
+    t.integer "forum_thread_id"
+    t.integer "user_id"
+    t.text "body"
+    t.boolean "solved", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forum_subscriptions", id: :serial, force: :cascade do |t|
+    t.integer "forum_thread_id"
+    t.integer "user_id"
+    t.string "subscription_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forum_threads", id: :serial, force: :cascade do |t|
+    t.integer "forum_category_id"
+    t.integer "user_id"
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.integer "forum_posts_count", default: 0
+    t.boolean "pinned", default: false
+    t.boolean "solved", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "items", force: :cascade do |t|
@@ -413,6 +472,8 @@ ActiveRecord::Schema.define(version: 20190410072033) do
     t.string "status"
     t.boolean "banned", default: false
     t.string "discount_code"
+    t.integer "share_link_count", default: 0
+    t.boolean "moderator"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -427,6 +488,7 @@ ActiveRecord::Schema.define(version: 20190410072033) do
     t.index ["province_id"], name: "index_wards_on_province_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "users", on_delete: :cascade
   add_foreign_key "cities", "states", on_delete: :cascade
   add_foreign_key "comment_actions", "comments"
@@ -434,6 +496,12 @@ ActiveRecord::Schema.define(version: 20190410072033) do
   add_foreign_key "commission_histories", "users", on_delete: :cascade
   add_foreign_key "districts", "cities", on_delete: :cascade
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
+  add_foreign_key "forum_posts", "forum_threads"
+  add_foreign_key "forum_posts", "users"
+  add_foreign_key "forum_subscriptions", "forum_threads"
+  add_foreign_key "forum_subscriptions", "users"
+  add_foreign_key "forum_threads", "forum_categories"
+  add_foreign_key "forum_threads", "users"
   add_foreign_key "items", "orders", on_delete: :cascade
   add_foreign_key "permissions", "users", on_delete: :cascade
   add_foreign_key "point_types", "earn_coins", on_delete: :cascade

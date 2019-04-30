@@ -65,8 +65,7 @@
       <div class="col-md-12">
         <div class="detail-img">
           <div class="img-block"><h4><%= @blog.is_published ? 'Published' : 'Unpublish' %></h4></div>
-          <img width="100%" src="<%= @blog.avatar.present? ? @blog.avatar.url : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' %>">
-
+          <%= image_tag render_image(@blog) %>
         </div>
       </div>
     </div>
@@ -125,7 +124,7 @@
           <div class="col-md-4">
             <div class="box-shadow-am sm-pd-am">
               <div class="product-box">
-                <img width="100%" src="<%= product.avatar.present? ? product.avatar.url : '/placeholder.png' %>">
+                <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width: "100%" %>
               </div>
               <div class="product-detail">
                 <p><%= product.title %></p>
@@ -149,15 +148,16 @@
     </div>
 
 
-    <!-- <#% if @blog.is_published? && signed_in? %> -->
-      <!-- <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
+     <% if @blog.is_published? && signed_in? %>
+       <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
         Post a comment
-      </button> -->
+      </button>
 
     <div id="blogComment">
-      <%= render partial: 'disqus' %>
-    </div>
-    <!-- <#% end %> -->
+      <%= render partial: 'comments' %>
+      <%#= render partial: 'disqus' %>
+<!--    </div>-->
+     <% end %>
   </div>
 </div>
 

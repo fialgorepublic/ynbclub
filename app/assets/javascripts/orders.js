@@ -83,6 +83,7 @@ $(document).ready(function() {
     value = $('#search-field').val();
     if (value == "") { return false; }
     $('#search-field').val('');
-    window.location.href = '/orders'
+    url = $(this).data('url');
+    window.location.href = url
   });
 })

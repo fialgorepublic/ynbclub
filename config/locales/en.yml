@@ -30,8 +30,4 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  helpers:
-    submit:
-      user:
-        create: "Create Ambassador"
-        update: "Update Ambassador"
+  hello: "Hello world"

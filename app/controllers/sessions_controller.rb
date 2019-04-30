@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     if user.present?
       sign_in :user, user
       begin
-        if user.avatar.blank?
+        if user.avatar.attached?
           user.update_attributes(:avatar => user_image) # update user profile image
         end
       rescue Exception => e

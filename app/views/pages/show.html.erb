@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="m-image-frame" style="background-image: url(<%= @page.image.url %>);">
+      <div class="m-image-frame" style="background-image: url(<%= @page.image.attached? ? rails_blob_url(@page.image) : "" %>);">
         <div class="row">
           <div class="col-md-12 text-right cu-btn-holder" >
             <%= link_to edit_page_path, class: "btn btn-default" do %>

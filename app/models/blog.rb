@@ -21,22 +21,15 @@
 #
 
 class Blog < ApplicationRecord
-  belongs_to :category
+  belongs_to :category, optional: true
   belongs_to :user
   has_many :comments
   has_many :likes
   has_many :products, :dependent => :destroy
   has_many :blog_views, :dependent => :destroy
   has_many :share_urls, :dependent => :destroy
-  has_attached_file :avatar,
-                    :default_url => "/images/:style/missing.png",
-                    :storage => :s3,
-                    :url => 's3_domain_url',
-                    :s3_host_alias => 'saintalgorepublic.s3-website-us-east-1.amazonaws.com',
-                    :s3_credentials => File.join(Rails.root, 'config', 's3.yml'),
-                    :path => "/files/:style/:id_:filename",
-                    styles: { medium: "300x300>", thumb: "100x100>" }
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  has_one_attached :avatar
+
   scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}
 
   scope :sort_blogs, -> (sort_type) {
@@ -66,8 +59,9 @@ class Blog < ApplicationRecord
     return if product.blank?
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
-        Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
-                       blog_id: self.id, avatar: product[:avatar][index])
+        new_product = Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
+                       blog_id: self.id)
+        new_product.attach_avatar(product[:avatar][index])
       end
     end
     # products = Product.where("id IN (?)", product_ids)
@@ -83,10 +77,20 @@ class Blog < ApplicationRecord
     self.products.delete_all
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
-        Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
-                       blog_id: self.id, avatar: product[:avatar][index])
+        new_product = Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
+                       blog_id: self.id)
+        new_product.attach_avatar(product[:avatar][index])
       end
     end
 
   end
+
+  def attach_default_image
+    self.avatar.attach(io: File.open(Rails.root.join('app/assets/images/default-blog-image.jpg')), filename: 'default-blog-image.jpg', content_type: 'image/jpg')
+  end
+
+  def default_image?
+    self.avatar.filename == 'default-blog-image.jpg'
+  end
+
 end

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <title>SaintLBeau</title>
+  <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= favicon_link_tag "/assets/favico.ico" %>
+    <%= stylesheet_link_tag 'simple_discussion_custom' %>
+    <%= javascript_include_tag 'simple_discussion' %>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row col-md-12" style="margin: 3%;">
+      <h3>SaintLBeau Forum</h3>
+      <h3 class="ml-3"><%= link_to "SaintLBeau Home", root_path, class: 'float-right' %></h3>
+    </div>
+    <hr/>
+
+    <div class="row simple_discussion">
+      <div class="col-md-3 mb-3">
+
+        <div class="card card-body">
+          <%= link_to t('ask_a_question'), simple_discussion.new_forum_thread_path, class: "btn btn-outline-primary btn-block" %>
+          <hr />
+
+          <div class="forum-thread-filters">
+            <h5>
+              <strong>
+                <%= t('filters') %>
+              </strong>
+            </h5>
+            <div>
+              <%= forum_link_to simple_discussion.forum_threads_path, exact: true do %>
+                <%= icon "bars" %>
+                <%= t('.all_threads') %>
+              <% end %>
+            </div>
+            <% if user_signed_in? %>
+              <div>
+                <%= forum_link_to simple_discussion.mine_forum_threads_path do %><%= icon "user-circle-o" %>
+                  <%= t('.my_questions') %>
+                <% end %>
+              </div>
+              <div>
+                <%= forum_link_to simple_discussion.participating_forum_threads_path do %>
+                  <%= icon "comments-o" %>
+                  <%= t('.participating') %>
+                <% end %>
+              </div>
+            <% end %>
+            <div>
+              <%= forum_link_to simple_discussion.answered_forum_threads_path do %>
+                <%= icon "check" %>
+                <%= t('.answered') %>
+              <% end %>
+            </div>
+            <div>
+              <%= forum_link_to simple_discussion.unanswered_forum_threads_path do %>
+                <%= icon "question" %>
+                <%= t('.unanswered') %>
+              <% end %>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="forum-thread-filters">
+            <h6>
+              <strong>
+                <%= t('.by_category') %>
+              </strong>
+            </h6>
+            <div><%= forum_link_to simple_discussion.forum_threads_path, exact: true do %><%= icon "circle" %> All<% end %></div>
+            <% ForumCategory.sorted.each do |category| %>
+              <div>
+                <%= forum_link_to simple_discussion.forum_category_forum_threads_path(category) do %>
+                  <%= icon "circle", style: "color: #{category.color}" %>
+                  <%= category.name %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <% if @forum_thread.present? && @forum_thread.persisted? %>
+            <hr />
+
+            <%# User has not posted in the thread or subscribed %>
+            <h5><%= t('.notifications') %></h5>
+
+            <%= link_to simple_discussion.forum_thread_notifications_path(@forum_thread), method: :post, class: "btn btn-secondary btn-sm btn-block mb-2" do %>
+              <% if @forum_thread.subscribed? current_user %>
+                <%= icon "bell-slash" %> Unsubscribe
+              <% else %>
+                <%= icon "bell" %>
+                <%= t('.suscribe') %>
+              <% end %>
+            <% end %>
+
+            <small><%= @forum_thread.subscribed_reason(current_user) %></small>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div class="col-md-9 mb-3">
+
+        <div class="card card-body">
+          <%= yield %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
