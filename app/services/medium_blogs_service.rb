@@ -78,15 +78,19 @@ class MediumBlogsService
 
   def get_blogs_content
     blogs_urls.each do |blog_page_url|
-      doc = Nokogiri::HTML(open("#{blog_page_url}"))
-      content_div    = doc.xpath(BLOGS_CONTENT_XPATH)
-      blog_image_div = content_div.css('.graf--figure').first
-      image_url      = blog_image_div.css('img')[0]['src'] if blog_image_div.present? && blog_image_div.css('img').present?
-      blog_title     = content_div.css('.graf--title')&.text()
-      content_div.search('h1').remove
-      content_div.search('.js-postMetaLockup').remove
-      content_div.search('.graf-after--h3').remove
-      create_blog({title: blog_title, image_url: image_url, content: content_div.to_html})
+      begin
+        doc = Nokogiri::HTML(open("#{blog_page_url}"))
+        content_div    = doc.xpath(BLOGS_CONTENT_XPATH)
+        blog_image_div = content_div.css('.graf--figure').first
+        image_url      = blog_image_div.css('img')[0]['src'] if blog_image_div.present? && blog_image_div.css('img').present?
+        blog_title     = content_div.css('.graf--title')&.text()
+        content_div.search('h1').remove
+        content_div.search('.js-postMetaLockup').remove
+        content_div.search('.graf-after--h3').remove
+        create_blog({title: blog_title, image_url: image_url, content: content_div.to_html})
+      rescue OpenURI::HTTPError => ex
+        puts "URL not found"
+      end
     end
   end
 
