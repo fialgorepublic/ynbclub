@@ -22,4 +22,10 @@ module UsersHelper
   def table_id(params)
     params[:deduct_points].blank? ? 'ban_users_table' : 'deduct_points_table'
   end
+
+  def not_paid_amount(user)
+    not_paid = user.total_income.to_i - user.paid.to_i
+    return 0 if not_paid <= 0
+    not_paid
+  end
 end

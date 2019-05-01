@@ -182,6 +182,8 @@
 #  attachment_file DELETE /attachment_files/:id(.:format) ckeditor/attachment_files#destroy
 
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'
   mount SimpleDiscussion::Engine => "/forum" # routes for simple_discussion for chat
 
@@ -254,6 +256,7 @@ Rails.application.routes.draw do
       get :district_cities
       get :wards
       get :my
+      get :update_status
     end
   end
 

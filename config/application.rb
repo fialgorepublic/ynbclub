@@ -20,6 +20,7 @@ module SaintLBeauApp
     config.action_dispatch.default_headers = {
         'X-XSS-Protection' => '0;'
     }
+    config.active_job.queue_adapter = :sidekiq
 
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')

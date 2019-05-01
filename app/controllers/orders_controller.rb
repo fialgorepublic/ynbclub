@@ -20,15 +20,26 @@ class OrdersController < ApplicationController
     @orders = orders.includes(:city, :district, :province, :ward).paginate(page: params[:page])
   end
 
+  def create
+    OrderService.new(params[:order]).create_order
+    render head :ok
+  end
+
+  def update
+    if OrderService.new(order_params).update_address
+      flash[:success] = "Order address updated Successfully."
+      redirect_to orders_path
+    else
+      flash[:alert] = "Something went wrong"
+      redirect_to orders_path
+    end
+  end
+
   def my
     orders = Order.user_orders(current_user.email)
     @orders = orders.paginate(page: params[:page])
   end
 
-  def create
-    OrderService.new(params[:order]).create_order
-    render head :ok
-  end
 
   def send_to_ghtk
     @result, @message = GhtkService.new(params[:order_id]).place_ghtk_order
@@ -70,16 +81,6 @@ class OrdersController < ApplicationController
     @wards = wards.pluck(:name, :id)
   end
 
-  def update
-    if OrderService.new(order_params).update_address
-      flash[:success] = "Order address updated Successfully."
-      redirect_to orders_path
-    else
-      flash[:alert] = "Something went wrong"
-      redirect_to orders_path
-    end
-  end
-
   def update_phone_status
     order = Order.find(params[:order_id])
     if order.update(picked_phone: params[:status].to_i)
@@ -91,6 +92,13 @@ class OrdersController < ApplicationController
   end
 
   def gthk_status
+  end
+
+  def update_status
+    UpdateOrderStatusJob.perform_later
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

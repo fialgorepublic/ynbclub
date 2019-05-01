@@ -177,6 +177,10 @@
 
       <% if current_user.is_admin? %>
         <li>
+          <%= link_to update_status_orders_path, remote: :true, class: active_class(update_status_orders_path) do %>
+            <i class="fa fa-job" style="padding-right: 2px;"></i> <span class="side-nav-style">Update GHTK Status</span>
+          <% end %>
+
           <%= link_to share_link_count_users_path, class: active_class(share_link_count_users_path) do %>
             <i class="fa fa-history" style="padding-right: 2px;"></i> <span class="side-nav-style">Invite Friends History</span>
           <% end %>

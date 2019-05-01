@@ -29,7 +29,7 @@ gem "aws-s3", :require => "aws/s3"
 # gem "aws-sdk"
 gem 'aws-sdk', '< 2.0'
 gem 'jquery-rails'
-gem 'shopify_app'
+gem 'shopify_app', '~> 7.2.9'
 gem 'link_thumbnailer'
 gem 'pry'
 gem 'best_in_place'
@@ -44,6 +44,7 @@ gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'httparty'
 gem 'google-cloud'
 gem 'google-cloud-translate'
+gem 'sidekiq'
 gem 'bootsnap'
 gem "aws-sdk-s3", require: false
 gem "mini_magick"
