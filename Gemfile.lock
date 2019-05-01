@@ -448,8 +448,8 @@ GEM
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
-    omniauth-shopify-oauth2 (1.2.1)
-      omniauth-oauth2 (~> 1.5.0)
+    omniauth-shopify-oauth2 (1.1.15)
+      omniauth-oauth2 (~> 1.2)
     orm_adapter (0.5.0)
     os (1.0.1)
     paperclip (6.1.0)
@@ -545,10 +545,10 @@ GEM
       activeresource (>= 3.0.0)
       graphql-client
       rack
-    shopify_app (8.2.4)
-      omniauth-shopify-oauth2 (~> 1.2.0)
+    shopify_app (7.2.11)
+      omniauth-shopify-oauth2 (~> 1.1.11)
       rails (>= 5.0.0)
-      shopify_api (>= 4.3.5)
+      shopify_api (>= 4.3.2)
     sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (>= 1.5.0)
@@ -676,7 +676,7 @@ DEPENDENCIES
   roo (~> 2.7.0)
   sass-rails (~> 5.0)
   selenium-webdriver
-  shopify_app
+  shopify_app (~> 7.2.9)
   sidekiq
   simple_discussion
   spring
