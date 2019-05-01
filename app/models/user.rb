@@ -204,11 +204,6 @@ class User < ApplicationRecord
     self.is_admin? ? Blog.filter_by_category(category).sort_blogs(sort_by) : Blog.filter_by_category(category).published_and_drafted_blogs(self.id).sort_blogs(sort_by)
   end
 
-  #this method is being used by simple_discussion gem
-  def name
-    "#{first_name} #{surname}"
-  end
-
   def full_name
     [first_name, surname].join(' ')
   end
