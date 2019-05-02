@@ -9,7 +9,8 @@
   <!-- Facebook Open Graph data -->
   <meta property="og:title" content="SaintLBeau" />
   <meta property="og:type" content="website" />
-  <%= tag :meta, property: 'og:url', content: request.fullpath.include?("invite") ? "https://ambassador-staging.saintlbeau.com?invite=#{params[:invite]}" : "https://ambassador-staging.saintlbeau.com" %>
+  <% byebug %>
+  <%= tag :meta, property: 'og:url', content: request.fullpath.include?("invite") ? "#{request.host}?invite=#{params[:invite]}" : request.host %>
   <%= tag :meta, property: 'og:image', content: request.fullpath.include?("invite") ? rails_blob_url(@share_with_friends.image) : rails_blob_url(@page.image) %>
   <meta property="og:description" content="SaintLBeau Discription" />
   <meta property="fb:app_id" content="164286157812635">
