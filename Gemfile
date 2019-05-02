@@ -57,7 +57,6 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
-gem 'rails_12factor', group: :production
 gem 'time_ago_in_words'
 gem 'cancancan', '~> 2.0'
 gem 'will_paginate-bootstrap'
