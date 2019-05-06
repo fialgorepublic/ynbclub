@@ -96,4 +96,7 @@ class Blog < ApplicationRecord
     self.avatar.filename == 'default-blog-image.jpg'
   end
 
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 end
