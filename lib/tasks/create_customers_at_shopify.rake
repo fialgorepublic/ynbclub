@@ -2,8 +2,8 @@ desc "Create customers at shopify"
 
 task create_customers_at_shopify: :environment do
   customer_files = Dir.glob("#{Rails.root}/db/customers/**")
-  @session = ShopifyAPI::Session.new("saintlbeau.myshopify.com", "65f08aa2bc5386c55298ed566ad18ccd")
-  ShopifyAPI::Base.activate_session(@session)
+  shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8a6f6c3187c79cd975c9bde50c12756', api_version: '2019-04')
+  ShopifyAPI::Base.activate_session(shopify_session)
 
   customer_files.each do |file_path|
     puts "Importting Users from File-------------#{file_path}"

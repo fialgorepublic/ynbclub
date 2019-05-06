@@ -167,13 +167,11 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
     friendly_id (5.2.5)
       activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    google-api-client (0.28.7)
+    google-api-client (0.29.0)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.10.0)
       httpclient (>= 2.8.1, < 3.0)
@@ -350,7 +348,6 @@ GEM
     graphql-client (0.14.0)
       activesupport (>= 3.0, < 6.0)
       graphql (~> 1.6)
-    gravatar_image_tag (1.2.0)
     grpc (1.20.0)
       google-protobuf (~> 3.7)
       googleapis-common-protos-types (~> 1.0.0)
@@ -445,9 +442,9 @@ GEM
       jwt (>= 2.0)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.5)
-    omniauth-oauth2 (1.5.0)
+    omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
-      omniauth (~> 1.2)
+      omniauth (~> 1.9)
     omniauth-shopify-oauth2 (1.1.15)
       omniauth-oauth2 (~> 1.2)
     orm_adapter (0.5.0)
@@ -459,7 +456,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     pg (1.1.4)
-    phony (2.18.1)
+    phony (2.18.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -488,11 +485,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (5.2.3)
       actionpack (= 5.2.3)
       activesupport (= 5.2.3)
@@ -541,8 +533,8 @@ GEM
     selenium-webdriver (3.142.0)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
-    shopify_api (6.0.0)
-      activeresource (>= 3.0.0)
+    shopify_api (7.0.1)
+      activeresource (>= 4.1.0, < 6.0.0)
       graphql-client
       rack
     shopify_app (7.2.11)
@@ -559,12 +551,6 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simple_discussion (1.0.0)
-      font-awesome-sass (~> 4.7.0)
-      friendly_id (>= 5.2.0)
-      gravatar_image_tag
-      rails (>= 4.2)
-      will_paginate (>= 3.1.0)
     sixarm_ruby_unaccent (1.2.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -653,6 +639,7 @@ DEPENDENCIES
   colorize
   countries
   devise
+  friendly_id (~> 5.2.4)
   google-cloud
   google-cloud-translate
   httparty
@@ -671,14 +658,12 @@ DEPENDENCIES
   pry
   puma (~> 3.7)
   rails (~> 5.2.0)
-  rails_12factor
   ransack
   roo (~> 2.7.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   shopify_app (~> 7.2.9)
   sidekiq
-  simple_discussion
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets (~> 3.7.2)

@@ -21,6 +21,9 @@
 #
 
 class Blog < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   belongs_to :category, optional: true
   belongs_to :user
   has_many :comments
@@ -94,4 +97,7 @@ class Blog < ApplicationRecord
     self.avatar.filename == 'default-blog-image.jpg'
   end
 
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 end

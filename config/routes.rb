@@ -185,7 +185,6 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'
-  mount SimpleDiscussion::Engine => "/forum" # routes for simple_discussion for chat
 
   resources :payments do
     collection do

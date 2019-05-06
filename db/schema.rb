@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_065034) do
+ActiveRecord::Schema.define(version: 2019_05_03_145643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2019_04_22_065034) do
     t.boolean "buyer_show", default: false
     t.bigint "user_id"
     t.string "image_url"
+    t.string "slug"
+    t.index ["slug"], name: "index_blogs_on_slug", unique: true
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
@@ -155,41 +157,16 @@ ActiveRecord::Schema.define(version: 2019_04_22_065034) do
     t.index ["user_id"], name: "index_exchange_histories_on_user_id"
   end
 
-  create_table "forum_categories", id: :serial, force: :cascade do |t|
-    t.string "name", null: false
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
-    t.string "color", default: "000000"
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
     t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "forum_posts", id: :serial, force: :cascade do |t|
-    t.integer "forum_thread_id"
-    t.integer "user_id"
-    t.text "body"
-    t.boolean "solved", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "forum_subscriptions", id: :serial, force: :cascade do |t|
-    t.integer "forum_thread_id"
-    t.integer "user_id"
-    t.string "subscription_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "forum_threads", id: :serial, force: :cascade do |t|
-    t.integer "forum_category_id"
-    t.integer "user_id"
-    t.string "title", null: false
-    t.string "slug", null: false
-    t.integer "forum_posts_count", default: 0
-    t.boolean "pinned", default: false
-    t.boolean "solved", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
   create_table "items", force: :cascade do |t|
@@ -496,12 +473,6 @@ ActiveRecord::Schema.define(version: 2019_04_22_065034) do
   add_foreign_key "commission_histories", "users", on_delete: :cascade
   add_foreign_key "districts", "cities", on_delete: :cascade
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
-  add_foreign_key "forum_posts", "forum_threads"
-  add_foreign_key "forum_posts", "users"
-  add_foreign_key "forum_subscriptions", "forum_threads"
-  add_foreign_key "forum_subscriptions", "users"
-  add_foreign_key "forum_threads", "forum_categories"
-  add_foreign_key "forum_threads", "users"
   add_foreign_key "items", "orders", on_delete: :cascade
   add_foreign_key "permissions", "users", on_delete: :cascade
   add_foreign_key "point_types", "earn_coins", on_delete: :cascade

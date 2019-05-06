@@ -50,9 +50,7 @@ gem "aws-sdk-s3", require: false
 gem "mini_magick"
 gem 'paperclip'
 gem 'ckeditor', github: 'galetahub/ckeditor'
-
-#simple discussion gem by GoRails for implementing disucssion
-gem 'simple_discussion'
+gem 'friendly_id', '~> 5.2.4'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -60,7 +58,6 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
-gem 'rails_12factor', group: :production
 gem 'time_ago_in_words'
 gem 'cancancan', '~> 2.0'
 gem 'will_paginate-bootstrap'
