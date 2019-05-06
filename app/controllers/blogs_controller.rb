@@ -146,7 +146,7 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_user_blog
-      @blog = current_user.blogs.find(params[:id])
+      @blog = current_user.blogs.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -155,6 +155,6 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.with_attached_avatar.find(params[:id])
+      @blog = Blog.with_attached_avatar.friendly.find(params[:id])
     end
 end
