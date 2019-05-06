@@ -1,6 +1,6 @@
 atom_feed do |feed|
   feed.title   "SaintLBeau Blogs"
-  feed.updated @blogs[0].updated_at
+  feed.updated @blogs.present? ? @blogs[0].updated_at : Time.now
 
   @blogs.each do |blog|
     feed.entry blog, published: blog.updated_at do |entry|
