@@ -1,11 +1,6 @@
 class BlogsController < ApplicationController
-<<<<<<< HEAD
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog]
   before_action :load_user_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail, :destroy, :change_publish_status]
-=======
-  before_action :authenticate_user!, except: [:blog_detail, :index, :show, :feed]
-  before_action :load_user_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail, :destroy, :change_publish_status, :feed]
->>>>>>> 8ce5a9607372e8d960d9e2d557d7ff52f68cfc13
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
   require 'time_ago_in_words'
   require 'will_paginate'
