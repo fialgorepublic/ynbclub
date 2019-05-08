@@ -116,20 +116,20 @@
 
   function createFBShareLink(id, type, blog, fbAppId) {
     var link = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
-    // var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-    //   &link=
-    //   &picture=${encodeURIComponent(`${blog.file_name}`)}
-    //   &name=${blog.title}
-    //   &caption=SainLBeau blogs
-    //   &description=This is just for testing purpose
-    //   &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
-    //   &display=popup`;
+   var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+     &link=https://ambassador.saintlbeau.com/blog_detail?id=${id}
+     &picture=${encodeURIComponent(`${blog.file_name}`)}
+     &name=${blog.title}
+     &caption=SainLBeau blogs
+     &description=This is just for testing purpose
+     &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
+     &display=popup`;
 
       // FB.ui({
       //   method: 'share',
       //   action_properties: JSON.stringify({
       //     object: {
-      //       "og:url": 'https://ambassador.saintlbeau.com/blog_detail?id=' + id,
+      //       "og:url": ',
       //       "og:title": blog.title,
       //       "og:description": blog.title,
       //       "og:image": blog.file_name,
@@ -140,38 +140,19 @@
       // function (response) {
       // // Action after response
       // });
-      debugger
-      console.log(blog.file_name)
-    link = `https://ambassador.saintlbeau.com/blog_detail?id=${id}`
-    FB.ui({
-    method: 'share_open_graph',
-    action_type: 'og.shares',
-    display:     'popup',
-    action_properties: JSON.stringify({
-      object: {
-       'og:url': link,
-       'og:title': blog.title,
-       'og:description': blog.title,
-       'og:image': blog.file_name,
-       'og:type':  'article'
-       }
-      })
-    }, function(response){
-      // Debug response (optional)
-      console.log(response);
-    });
+      
     
-    return link;
+    return url;
   }
 
   function openWindow(blog_id, type, blog){
     var blog = JSON.parse(blog)
-    // $("meta[property='og\\:title']").attr('content', `${blog.title}`);
-    // $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
-    // $("meta[property='og\\:type']").attr('content', 'article');
+    $("meta[property='og\\:title']").attr('content', `${blog.title}`);
+    $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
+    $("meta[property='og\\:type']").attr('content', 'article');
     var url = createFBShareLink(blog_id, type, blog, '164286157812635');
 
-    // window.open(url);
+    window.open(url);
 
   }
 </script>
