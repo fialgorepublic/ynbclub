@@ -72,7 +72,7 @@ class ShopifyService
         customer = ShopifyAPI::Customer.search(query:"email:#{user.email}")
         return customer.first.id if customer.present?
 
-        customer = ShopifyAPI::Customer.create({ first_name: user.first_name, last_name: user.last_name.present? ? user.last_name : "user", email: user.email});
+        customer = ShopifyAPI::Customer.create({ first_name: user.first_name, last_name: user.surname.presence || "user", email: user.email});
         customer.first.id if customer.present?
       rescue => ex
         nil
