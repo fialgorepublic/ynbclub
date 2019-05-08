@@ -7,7 +7,7 @@
   <title>SaintLBeau</title>
   <meta name="description" content="SaintLBeau">
   <!-- Facebook Open Graph data -->
-  <%= tag :meta, property: "og:title", content: content_for?(:og_title) : "Saint L Beau" %>
+  <%= tag :meta, property: "og:title", content: content_for?(:og_title) ? yield(:og_title) : "Saint L Beau" %>
   <%= tag :meta, property: "og:type", content: content_for?(:og_type) ? yield(:og_type) : "website" %>
   <%= tag :meta, property: 'og:url', content: content_for?(:og_url) ? yield(:og_url) : request.fullpath.include?("invite") ? "#{request.host}?invite=#{params[:invite]}" : request.host %>
   <%= tag :meta, property: 'og:image', content: content_for?(:og_image) ? yield(:og_image) : request.fullpath.include?("invite") ? rails_blob_url(@share_with_friends.image) : rails_blob_url(@page.image) %>
