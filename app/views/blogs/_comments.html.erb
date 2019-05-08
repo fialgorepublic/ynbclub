@@ -31,7 +31,7 @@
                 <div class="panel panel-white post comnt-rply-box panel-shadow col-md-12">
                   <div class="post-heading">
                     <div class="pull-left image">
-                      <img src="<%= sub_comment.user.avatar ? sub_comment.user.avatar.url : '/assets/images/user-img-2.png' %>" class="img-circle avatar" alt="user profile image" width="50">
+                      <%= image_tag sub_comment.user.avatar.attached? ? sub_comment.user.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', background: "grey", quality: 95 }) : '/assets/images/user-img-2.png', class: "img-circle avatar", alt: "user profile image", width: "50" %>
                     </div>
                     <div class="pull-left meta">
                       <div class="title h5" style="padding: 10px;">
