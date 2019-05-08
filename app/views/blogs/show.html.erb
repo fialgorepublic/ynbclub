@@ -50,9 +50,22 @@
       <div class="col-md-12">
         <div class="detail-img detail-icon">
           <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
-          <i class="fa fa-share"></i><span><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
-<!--           <i class="fa fa-comment"></i><span><#%= @blog.comments.count %></span>
- -->          <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
+          <i class="fa fa-share"></i><span style="display:inline-block;"><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
+          <% if @blog.is_published? %>
+            <div class="pr-0" style="display: inline-block;">
+              <div class="dropdown expended-blog-style-icon">
+                <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-share-alt"></i>
+                </span>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a href="javascript:void(0);" onclick="openWindow('<%= @blog.id %>','facebook', '<%= blog_attributes @blog %>')"> <i class="fa fa-facebook"></i></a></li>
+                  <li><a href="javascript:void(0);" onclick="blog_share('<%= @blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{@blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+          <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
           <h5 class="pull-right"> <span class="category-style"><%= @blog.category_name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
             <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
@@ -168,128 +181,169 @@
   function showSignInModal() {
     $('#signIn').modal('show');
   }
-    function openCommentModal(){
-      if(!user_signed_in) {
-        showSignInModal();
-        return;
-      }
-        $('#comment_id').val('');
-        $('#blog_comment').val('');
-        $('#addComment').modal('show');
+  function openCommentModal(){
+    if(!user_signed_in) {
+      showSignInModal();
+      return;
     }
-    function add_comment(id, user_id){
-        var text = $('#blog_comment').val();
-        if (text == ''){
-            apprise("please enter comment first");
-            return false;
-        }
-        var parentId = $('#comment_id').val();
-        $.ajax({
-            url:'/add_comment?id='+id+'&user_id='+user_id+'&message='+text+'&parent_id='+parentId,
-            type:'get',
-            dataType:'html',
-            processData:false,
-            async: false,
-            success:function (data) {
-                $('#addComment').modal('hide');
-                $('#blogComment').html(data);
-                $('#comment_id').val('');
-            },
-            error:function (data) {
+    $('#comment_id').val('');
+    $('#blog_comment').val('');
+    $('#addComment').modal('show');
+  }
+  function add_comment(id, user_id){
+    var text = $('#blog_comment').val();
+    if (text == ''){
+      apprise("please enter comment first");
+      return false;
+    }
+    var parentId = $('#comment_id').val();
+    $.ajax({
+      url:'/add_comment?id='+id+'&user_id='+user_id+'&message='+text+'&parent_id='+parentId,
+      type:'get',
+      dataType:'html',
+      processData:false,
+      async: false,
+      success:function (data) {
+          $('#addComment').modal('hide');
+          $('#blogComment').html(data);
+          $('#comment_id').val('');
+      },
+      error:function (data) {
 //                alert ('Error');
-            }
-        });
+      }
+    });
+  }
+  function like_comment(obj,id){
+    if(!user_signed_in) {
+      showSignInModal();
+      return;
+      }
+    var obj_cls = $(obj).attr('class');
+    var text_val = $('#blogText').val();
+    var obj_cls_status = obj_cls.split(' ')[2];
+    var status = '';
+    if (obj_cls_status == "liked"){
+        status = true;
+        $(obj).removeClass('liked');
+        $('#blogText').val(parseInt(text_val) - 1);
+    }else{
+        status = false;
+        $(obj).addClass('liked');
+        $('#blogText').val(parseInt(text_val) + 1);
     }
-    function like_comment(obj,id){
-        if(!user_signed_in) {
-          showSignInModal();
-          return;
-         }
-        var obj_cls = $(obj).attr('class');
-        var text_val = $('#blogText').val();
-        var obj_cls_status = obj_cls.split(' ')[2];
-        var status = '';
-        if (obj_cls_status == "liked"){
-            status = true;
-            $(obj).removeClass('liked');
-            $('#blogText').val(parseInt(text_val) - 1);
-        }else{
-            status = false;
-            $(obj).addClass('liked');
-            $('#blogText').val(parseInt(text_val) + 1);
+    $.ajax({
+        url: '/blog_like_unlike?id='+ id + '&value=' + status,
+        type: 'get',
+        dataType: 'html',
+        processData: false,
+        success: function (data) {
+
+        },
+        error: function (data) {
+            alert('Error');
+            //    window.location.reload();
         }
-        $.ajax({
-            url: '/blog_like_unlike?id='+ id + '&value=' + status,
-            type: 'get',
-            dataType: 'html',
-            processData: false,
-            success: function (data) {
-
-            },
-            error: function (data) {
-                alert('Error');
-                //    window.location.reload();
-            }
-        });
-    }
+    });
+  }
 
 
-    function changeLanguage(language) {
-        var element = document.getElementById("url");
-        element.value = language;
-        element.innerHTML = language;
-    }
+  function changeLanguage(language) {
+    var element = document.getElementById("url");
+    element.value = language;
+    element.innerHTML = language;
+  }
 
-    function showDropdown() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
+  function showDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
 
     // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+          }
+      }
     }
-    function set_featured_blog(obj, id){
-        {
-            apprise('Are You Sure You Want To change Featured status?', {'verify': true}, function (r) {
-                if (r) {
-                    var obj_cls = $(obj).attr('class');
-                    var status = ''
-                    if (obj_cls === 'fa fa-star ') {
-                        $(obj).addClass('featureBlog');
-                        status = true
-                    } else {
-                        $(obj).removeClass('featureBlog');
-                        status = false
-                    }
-                    $.ajax({
-                        url: '/change_featured_state?id=' + id + '&value=' + status,
-                        type: 'get',
-                        dataType: 'json',
-                        processData: false,
-                        success: function (data) {
-                            window.location.reload();
-                        },
-                        error: function (data) {
-                            alert('Error');
-                            //    window.location.reload();
-                        }
-                    });
-                }
-                else {
-                }
-            });
-        }
-    }
-    function showBuyerView(id){
-        window.location.href = '/buyer_show?id='+id;
-    }
+  }
+  function set_featured_blog(obj, id){
+      {
+          apprise('Are You Sure You Want To change Featured status?', {'verify': true}, function (r) {
+              if (r) {
+                  var obj_cls = $(obj).attr('class');
+                  var status = ''
+                  if (obj_cls === 'fa fa-star ') {
+                      $(obj).addClass('featureBlog');
+                      status = true
+                  } else {
+                      $(obj).removeClass('featureBlog');
+                      status = false
+                  }
+                  $.ajax({
+                      url: '/change_featured_state?id=' + id + '&value=' + status,
+                      type: 'get',
+                      dataType: 'json',
+                      processData: false,
+                      success: function (data) {
+                          window.location.reload();
+                      },
+                      error: function (data) {
+                          alert('Error');
+                          //    window.location.reload();
+                      }
+                  });
+              }
+              else {
+              }
+          });
+      }
+  }
+  function showBuyerView(id){
+      window.location.href = '/buyer_show?id='+id;
+  }
+
+  function blog_share(id, type, url){
+    var blogUrl = $('#blogUrl').val();
+
+    $.ajax({
+      url: '/share_blog?id='+ id + '&value=' + type,
+      type: 'get',
+      dataType: 'json',
+      processData: false,
+      success: function (data) {
+        $('#blogUrl').val(parseInt(blogUrl) + 1);
+        window.open(url);
+      },
+      error: function (data) {
+        alert('Error');
+      }
+    });
+  }
+
+  function createFBShareLink(id, type, blog, fbAppId) {
+    var link = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
+    var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+      &link=https://ambassador.saintlbeau.com/blog_detail?id=${id}
+      &picture=${encodeURIComponent(`${blog.file_name}`)}
+      &name=${blog.title}
+      &caption=SainLBeau blogs
+      &description=This is just for testing purpose
+      &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
+      &display=popup`;
+
+    
+    return url;
+  }
+
+  function openWindow(blog_id, type, blog){
+    var blog = JSON.parse(blog)
+    var url = createFBShareLink(blog_id, type, blog, '164286157812635');
+
+    window.open(url);
+  }
+
 </script>

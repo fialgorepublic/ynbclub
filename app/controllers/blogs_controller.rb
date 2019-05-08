@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:blog_detail, :index, :show]
+  before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog]
   before_action :load_user_blog, except: [:blog_like_unlike, :index, :new, :create, :show, :change_featured_state, :share_blog, :blog_detail, :destroy, :change_publish_status]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
   require 'time_ago_in_words'
@@ -139,7 +139,7 @@ class BlogsController < ApplicationController
 
   def share_blog
     share_url = ShareUrl.create(user_id: current_user&.id, blog_id: params[:id], url_type: params[:value])
-    insert_points(current_user.id, 3, "", share_url.id)
+    insert_points(current_user.id, 3, "", share_url.id) if current_user.present?
     redirect_to blogs_path
   end
 
