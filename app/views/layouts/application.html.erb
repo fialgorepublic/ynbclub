@@ -14,24 +14,6 @@
   <meta property="og:description" content="SaintLBeau Discription" />
   <meta property="fb:app_id" content="164286157812635">
 
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId            : '164286157812635',
-        autoLogAppEvents : true,
-        xfbml            : true,
-        version          : 'v2.10'
-      });
-      FB.AppEvents.logPageView();
-    };
-    (function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
   <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -54,7 +36,6 @@
 </head>
 
   <body>
-    <% get_disqus_sso(current_user) if user_signed_in? %>
     <% if user_signed_in? %>
       <%=render :partial => "/shared/header"%>
       <div class="dashboard-holder <%= dashboard_class %>">
@@ -83,6 +64,26 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.min.js'></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '164286157812635',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+      };
+      // (function(d, s, id){
+      // var js, fjs = d.getElementsByTagName(s)[0];
+      // if (d.getElementById(id)) {return;}
+      // js = d.createElement(s); js.id = id;
+      // js.src = "//connect.facebook.net/en_US/sdk.js";
+      // fjs.parentNode.insertBefore(js, fjs);
+      // }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
     <script type="text/javascript">
       $(document).ready(function () {
         $("#sign_in_user").validate({

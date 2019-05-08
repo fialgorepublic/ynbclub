@@ -125,21 +125,33 @@
     //   &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
     //   &display=popup`;
 
-      FB.ui({
-        method: 'share',
-        action_properties: JSON.stringify({
-          object: {
-            "og:url": 'https://ambassador.saintlbeau.com/blog_detail?id=' + id,
-            "og:title": blog.title,
-            "og:description": blog.title,
-            "og:image": blog.file_name,
-            "og:type":  'article'
-          }
-        })
-      },
-      function (response) {
-      // Action after response
-      });
+      // FB.ui({
+      //   method: 'share',
+      //   action_properties: JSON.stringify({
+      //     object: {
+      //       "og:url": 'https://ambassador.saintlbeau.com/blog_detail?id=' + id,
+      //       "og:title": blog.title,
+      //       "og:description": blog.title,
+      //       "og:image": blog.file_name,
+      //       "og:type":  'article'
+      //     }
+      //   })
+      // },
+      // function (response) {
+      // // Action after response
+      // });
+
+    FB.ui({
+    method: 'share_open_graph',
+    action_type: 'og.likes',
+    action_properties: JSON.stringify({
+      object:'https://developers.facebook.com/docs/javascript/examples',
+      })
+    }, function(response){
+      // Debug response (optional)
+      console.log(response);
+    });
+    
     return link;
   }
 
