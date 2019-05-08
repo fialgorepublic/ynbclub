@@ -145,7 +145,13 @@
     method: 'share_open_graph',
     action_type: 'og.likes',
     action_properties: JSON.stringify({
-      object:'https://developers.facebook.com/docs/javascript/examples',
+      object: {
+       "og:url": 'https://ambassador.saintlbeau.com/blog_detail',
+       "og:title": blog.title,
+       "og:description": blog.title,
+       "og:image": blog.file_name,
+       "og:type":  'article'
+     }
       })
     }, function(response){
       // Debug response (optional)
