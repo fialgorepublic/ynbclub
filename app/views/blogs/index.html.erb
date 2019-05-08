@@ -144,15 +144,17 @@
     link = `https://ambassador.saintlbeau.com/blog_detail?id=${id}`
     FB.ui({
     method: 'share_open_graph',
-    action_type: 'og.likes',
+    action_type: 'og.shares',
+    display:     'popup'
     action_properties: JSON.stringify({
       object: {
-       "og:url": link,
-       "og:title": blog.title,
-       "og:description": blog.title,
-       "og:image": blog.file_name,
-       "og:type":  'article'
-     }
+       'og:url': link,
+       'og:title': blog.title,
+       'og:description': blog.title,
+       'og:image': blog.file_name,
+       'og:type':  'article'
+       'og:image:width': '1200',
+        'og:image:height': '630'     }
       })
     }, function(response){
       // Debug response (optional)
