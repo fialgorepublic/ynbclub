@@ -141,6 +141,7 @@
       // // Action after response
       // });
       debugger
+      console.log(blog.file_name)
     link = `https://ambassador.saintlbeau.com/blog_detail?id=${id}`
     FB.ui({
     method: 'share_open_graph',
@@ -152,9 +153,8 @@
        'og:title': blog.title,
        'og:description': blog.title,
        'og:image': blog.file_name,
-       'og:type':  'article',
-       'og:image:width': '1200',
-        'og:image:height': '630'     }
+       'og:type':  'article'
+       }
       })
     }, function(response){
       // Debug response (optional)
