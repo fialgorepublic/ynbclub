@@ -126,8 +126,7 @@
     //   &display=popup`;
 
       FB.ui({
-        method: 'share_open_graph',
-        action_type: 'og.likes',
+        method: 'share',
         action_properties: JSON.stringify({
           object: {
             "og:url": 'https://ambassador.saintlbeau.com/blog_detail?id=' + id,
