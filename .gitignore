@@ -23,3 +23,6 @@
 /.idea
 /config/local_env.yml
 storage/
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

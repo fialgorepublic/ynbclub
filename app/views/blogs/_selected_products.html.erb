@@ -8,7 +8,7 @@
 
 <div class="row">
   <% @selected_products.each do |product| %>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="box-shadow-am sm-pd-am">
           <div class="product-box">
             <%= hidden_field_tag 'product[product_id][]', product.id %>
@@ -17,20 +17,13 @@
             <%= hidden_field_tag 'product[price][]', product.variants.first.price %>
             <img width="80%" src="<%= product.images.present? ? product.images[0].src : '/placeholder.png' %>">
           </div>
+
+          <div class="product-price">
+            <h5><%= number_with_delimiter(product.variants.first.price, delimiter: '.') %>₫</h5>
+          </div>
+
           <div class="product-detail">
             <p><%= product.title %></p>
-          </div>
-          <div class="product-review">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="product-price">
-            <h5><%= product.variants.first.price %></h5>
-          </div>
-          <div class="product-offer">
-            <p>20% we're getting from every purchase</p>
           </div>
         </div>
       </div>

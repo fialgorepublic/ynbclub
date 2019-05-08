@@ -54,9 +54,10 @@ class Blog < ApplicationRecord
     category = category.present? ? category : Category.ids
     where(is_published: true).filter_by_category(category).sort_blogs(sort_by)
   }
+  scope :first_three_latest_blogs, -> { where(is_published: true).order(updated_at: :desc).first(3) }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
-  delegate :full_name, :name, to: :user, prefix: true, allow_nil: true
+  delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
   def add_products(product)
     return if product.blank?
