@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('#my-orders').dataTable( {
+  $('#orders').dataTable( {
     "info":        false,
     "scrollX":     true,
     'pagination':  false,
@@ -18,6 +18,14 @@ $(document).ready(function() {
               $('td', row).css('background-color', '#e8c9c7');
             }
         }
+  });
+
+  $('#my-orders').dataTable({
+    "pagingType": "full_numbers",
+    "paging": false,
+    "info": false,
+    "scrollY": 600,
+    'scrollX': true
   });
 
   $('#referral-sales').dataTable( {
