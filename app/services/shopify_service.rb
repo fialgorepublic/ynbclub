@@ -32,9 +32,7 @@ class ShopifyService
   private
 
     def create_discount_code
-      user_name = user.name if user.name
-      user_name = user.full_name if user.full_name.present?
-      user_name = 'ambassador' if user.name.blank? && user.full_name.blank?
+      user_name = user.name.presence || user.full_name.presence || 'ambassador'
       customer_id = find_or_create_shopify_customer
       reward = calculate_rewarded_amount
 
