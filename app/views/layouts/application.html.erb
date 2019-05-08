@@ -7,11 +7,11 @@
   <title>SaintLBeau</title>
   <meta name="description" content="SaintLBeau">
   <!-- Facebook Open Graph data -->
-  <meta property="og:title" content="SaintLBeau" />
-  <meta property="og:type" content="website" />
-  <%= tag :meta, property: 'og:url', content: request.fullpath.include?("invite") ? "#{request.host}?invite=#{params[:invite]}" : request.host %>
-  <%= tag :meta, property: 'og:image', content: request.fullpath.include?("invite") ? rails_blob_url(@share_with_friends.image) : rails_blob_url(@page.image) %>
-  <meta property="og:description" content="SaintLBeau Discription" />
+  <%= tag :meta, property: "og:title", content: content_for?(:og_title) : "Saint L Beau" %>
+  <%= tag :meta, property: "og:type", content: content_for?(:og_type) ? yield(:og_type) : "website" %>
+  <%= tag :meta, property: 'og:url', content: content_for?(:og_url) ? yield(:og_url) : request.fullpath.include?("invite") ? "#{request.host}?invite=#{params[:invite]}" : request.host %>
+  <%= tag :meta, property: 'og:image', content: content_for?(:og_image) ? yield(:og_image) : request.fullpath.include?("invite") ? rails_blob_url(@share_with_friends.image) : rails_blob_url(@page.image) %>
+  <%= tag :meta, property: "og:description", content: content_for?(:og_discription) ? yield(:og_discription) : "SaintLBeau" %>
   <meta property="fb:app_id" content="164286157812635">
 
   <%= csrf_meta_tags %>
@@ -64,26 +64,6 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.min.js'></script>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId            : '164286157812635',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v2.10'
-        });
-        FB.AppEvents.logPageView();
-      };
-      // (function(d, s, id){
-      // var js, fjs = d.getElementsByTagName(s)[0];
-      // if (d.getElementById(id)) {return;}
-      // js = d.createElement(s); js.id = id;
-      // js.src = "//connect.facebook.net/en_US/sdk.js";
-      // fjs.parentNode.insertBefore(js, fjs);
-      // }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
-
     <script type="text/javascript">
       $(document).ready(function () {
         $("#sign_in_user").validate({

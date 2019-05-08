@@ -1,3 +1,10 @@
+<%= content_for :og_title,       @blog.title %>
+<%= content_for :og_type,        'article' %>
+<%= content_for :og_url,         request.host %>
+<%= content_for :og_image,       rails_blob_url(@blog.avatar) %>
+<%= content_for :og_description, @blog.description %>
+
+
 <div class="detail-blog">
     <div class="col-md-12">
 
