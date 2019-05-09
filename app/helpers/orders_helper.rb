@@ -10,7 +10,7 @@ module OrdersHelper
   end
 
   def fulfillment_status order
-    order.fulfillment_status.present? ?  order.fulfillment_status : "Unfulfilled"
+    order.fulfilment_status.present? ?  order.fulfilment_status : "Unfulfilled"
   end
 
   def order_date order

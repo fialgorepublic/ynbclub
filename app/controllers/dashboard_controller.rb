@@ -93,7 +93,7 @@ class DashboardController < ApplicationController
   end
 
   def acc_settings
-    city_name = current_user.profile.city
+    city_name = current_user&.profile&.city
     state = City.find_by(name: city_name)&.state
     if state.present?
       @cities = City.where(state: state).pluck(:name, :name)

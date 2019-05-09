@@ -15,14 +15,15 @@
     </tr>
     </thead>
 
+
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= order.name %></td>
+          <td><%= order.order_name %></td>
           <td><%= order_date(order) %></td>
           <td><%= order.financial_status %></td>
           <td><%= fulfillment_status(order) %></td>
-          <td><%= number_with_delimiter(order.total_price.to_i, delimiter: ".") %>₫</td>
+          <td><%= number_with_delimiter(order.total.to_i, delimiter: ".") %>₫</td>
         </tr>
       <% end %>
     </tbody>
