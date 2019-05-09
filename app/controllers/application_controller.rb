@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
-  before_action :set_variables
   before_action :allow_iframe_requests
   before_action :allow_user_request
   before_action :blog_not_found
@@ -12,11 +11,6 @@ class ApplicationController < ActionController::Base
   before_action :get_share_with_friend
   before_action :set_snapshot
   before_action :redirect_to_blogs, if: :shopify_redirected?
-
-  def set_variables
-    @shopify_domain = "saintlbeau.myshopify.com"
-    @token = "b8a6f6c3187c79cd975c9bde50c12756"
-  end
 
   def after_sign_up_path(resource)
     dashboard_path # after sign_up redirect to dashboard path
