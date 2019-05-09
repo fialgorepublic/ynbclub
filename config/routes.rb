@@ -210,6 +210,7 @@ Rails.application.routes.draw do
     collection do
       get  :feed
       post :banner
+      post :create_or_update_cateogry
     end
   end
   get 'approve_sales', to: 'referral_sales#approve_sales'
