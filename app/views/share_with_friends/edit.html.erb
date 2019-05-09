@@ -25,14 +25,14 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Enter Text Here</label>
-                <%= form.text_area :reward_text, class: "form-control editor" %>
+                <%= form.cktext_area :reward_text, class: "form-control editor" %>
               </div>
             </div>
 
             <div class="col-md-12">
               <div class="form-group">
                 <label>Edit Link </label>
-                <%= form.text_area :earn_coins_text, class: "form-control editor" %>
+                <%= form.cktext_area :earn_coins_text, class: "form-control editor" %>
               </div>
             </div>
             <!--    <p class="text-center"> You'll receive <%= get_point(6) %> coins on the saint l' Beau web site for every registered friend by your invitation link. your friend will receive <%= get_point(6) %>  coins too</p>
@@ -76,7 +76,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-  $('textarea.editor').ckeditor();
-</script>
