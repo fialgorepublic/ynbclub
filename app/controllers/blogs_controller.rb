@@ -37,6 +37,7 @@ class BlogsController < ApplicationController
   def new
     @blog = Blog.new
     @blog.attach_default_image
+    @category = Category.new
   end
 
   # GET /blogs/1/edit
@@ -152,6 +153,20 @@ class BlogsController < ApplicationController
     redirect_to blogs_path
   end
 
+  def create_or_update_cateogry
+    if category_params[:id].present?
+      category = Category.find_by(id: category_params[:id])
+      @success = category.update(category_params)
+    else
+      category = Category.new(category_params)
+      @success = category.save
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_user_blog
@@ -165,5 +180,9 @@ class BlogsController < ApplicationController
 
     def set_blog
       @blog = Blog.with_attached_avatar.friendly.find(params[:id])
+    end
+
+    def category_params
+      params.require(:category).permit(:id, :name)
     end
 end
