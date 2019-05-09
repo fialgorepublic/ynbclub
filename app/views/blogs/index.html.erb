@@ -1,5 +1,5 @@
 <div class="<%= add_container %>">
-  <div class="<%= blog_screen_size %>">
+  <div class="<%= blog_screen_size %>"  style="height: 341px;background-image: url('<%= @page.blog_banner.attached? ? url_for(@page.blog_banner) : "" %>')">
     <div class="heading-featured">
       <h1>Blogs</h1>
       <hr>
@@ -9,8 +9,16 @@
       <div class="post-heading">
         <div class="row">
           <% if current_user&.is_admin? %>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <%= link_to "Medium blogs", scrap_blogs_path, class: 'btn btn-primary' %>
+            </div>
+
+            <div class="col-md-2">
+              <%= link_to "Blog Library", scrap_blogs_path, class: 'btn btn-primary' %>
+            </div>
+
+            <div class="col-md-3">
+              <%= link_to "Edit banner", "javascript:void(0);", class: 'btn btn-primary', id: 'uploaderBanner' %>
             </div>
           <% end %>
 
@@ -58,7 +66,23 @@
   </div>
 </div>
 
+<div id="bannerUploadModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <%= render 'blogs/upload_banner' %>
+    </div>
+  </div>
+</div>
+
 <script>
+  $('#uploaderBanner').click(function(){
+    $('#bannerUploadModal').modal('show');
+  });
+
   $("div.descriptionBlog").text(function(index, currentText) {
     return currentText.substr(0, 300);
   });

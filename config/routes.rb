@@ -207,7 +207,10 @@ Rails.application.routes.draw do
   end
 
   resources :blogs do
-    get :feed, on: :collection
+    collection do
+      get  :feed
+      post :banner
+    end
   end
   get 'approve_sales', to: 'referral_sales#approve_sales'
   get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'

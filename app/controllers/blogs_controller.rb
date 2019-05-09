@@ -147,6 +147,11 @@ class BlogsController < ApplicationController
     @blogs = Blog.first_three_latest_blogs
   end
 
+  def banner
+    @page.update(blog_banner: params[:page][:blog_banner])
+    redirect_to blogs_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_user_blog

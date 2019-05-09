@@ -67,4 +67,12 @@ module BlogsHelper
     return 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' unless blog.avatar.attached?
     blog.avatar.variant(combine_options: { resize: '800x400^', gravity: 'Center', extent: '1050x400^', background: "grey", quality: 95 })
   end
+
+  def banner_url page
+    page.blog_banner.attached? ? page.blog_banner : "/assets/user-img-2.png"
+  end
+
+  def banner_name page
+    page.blog_banner.attached? ? page.blog_banner.filename : "No file Chosen"
+  end
 end
