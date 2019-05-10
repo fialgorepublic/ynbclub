@@ -2,4 +2,4 @@
 <%= content_for :og_type,        'article' %>
 <%= content_for :og_url,         request.host %>
 <%= content_for :og_image,       rails_blob_url(@blog.avatar) %>
-<%= content_for :og_description, @blog.description.html_safe %>
+<%= content_for :og_description,  ActionView::Base.full_sanitizer.sanitize(@blog.description) %>
