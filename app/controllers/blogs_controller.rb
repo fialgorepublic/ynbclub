@@ -42,6 +42,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
+    @category = Category.new
     selected_product_ids = @blog.products.pluck(:product_id)
     if selected_product_ids.present?
       initiate_shopify_session
