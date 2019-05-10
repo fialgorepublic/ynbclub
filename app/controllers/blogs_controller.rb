@@ -54,7 +54,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = current_user.blogs.new(blog_params)
+    @blog = current_user.blogs.new(blog_params.merge({is_published: true}))
 
     respond_to do |format|
       if @blog.save
@@ -73,7 +73,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1.json
   def update
     respond_to do |format|
-      if @blog.update(blog_params)
+      if @blog.update(blog_params.merge({is_published: true}))
         @blog.update_products(params[:product])
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog }
