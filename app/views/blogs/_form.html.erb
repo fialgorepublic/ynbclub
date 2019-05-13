@@ -212,6 +212,19 @@
       </div>
 
       <div class="modal-body ">
+        <div id="product-search-form">
+          <%= form_tag(search_products_path, method: "get", remote: true, id: 'search-form') do %>
+            <div class="row">
+              <div class="col-md-10">
+                <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title') %>
+              </div>
+              <div class="col-md-2">
+                <%= submit_tag("Search", class: 'btn btn-primary form-group') %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
         <div id="products">
           <% if @products.present? %>
             <%= render partial: 'blogs/products' %>
@@ -234,6 +247,13 @@
     $('#create-or-edit-category-modal').modal('show');
     $('#update-category-name').attr('disabled', true);
   });
+
+  $('#search-form').submit(function(){
+    searchText = $('#product-title').val();
+    if(searchText == '') { return false; }
+    if(searchText.length < 3) { $('#search-form').append('<p>Please enter three or more letters</p>'); return false; }
+    $("p").hide('slow');
+  })
 
   $('#category_id').change(function(){
     $('#update-category-name').attr('disabled', false);
