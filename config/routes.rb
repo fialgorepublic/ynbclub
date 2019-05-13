@@ -305,6 +305,7 @@ Rails.application.routes.draw do
   get 'changed_account_approved_status', to: 'settings#changed_account_approved_status'
   get 'get_products_from_shopify', to: 'products#get_products_from_shopify'
   get 'get_selected_products', to: 'products#get_selected_products'
+  get 'search_products', to: 'products#search_products'
   get 'change_publish_status', to: 'blogs#change_publish_status'
   get 'change_buyer_show_status', to: 'blogs#change_buyer_show_status'
   get 'buyer_show', to: 'blogs#buyer_show'
