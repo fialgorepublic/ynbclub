@@ -1,0 +1,5 @@
+<% if @products.present? %>
+ $('#products').html("<%= j render 'blogs/products' %>");
+<% else %>
+  $('#products').html("<p>Not found any matching products, try changing the letters");
+<% end %>
