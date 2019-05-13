@@ -30,7 +30,8 @@ class Order < ApplicationRecord
     fly:   2
   }
 
-  after_save :update_commission, if: :status_updated?
+  after_save   :update_commission, if: :status_updated?
+  after_create :add_product_coins
 
   private
     def update_commission
@@ -46,5 +47,10 @@ class Order < ApplicationRecord
 
     def status_updated?
       saved_change_to_ghtk_status?
+    end
+
+    def add_product_coins
+      product_titles = items.pluck(:title)
+      Product.where(title: product_titles).collect(&:blog).collect(&:user).map{ |user| user.points.create(point_value: 5, invitee: "Your product is bought.") }
     end
 end
