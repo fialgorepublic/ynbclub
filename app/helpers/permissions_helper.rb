@@ -21,6 +21,8 @@ module PermissionsHelper
       'Pages Design'
     when 'orders'
       'All Orders'
+    when 'scrap_blogs'
+      'Blog Library'
     end
   end
 
