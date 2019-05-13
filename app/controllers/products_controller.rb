@@ -17,4 +17,10 @@ class ProductsController < ApplicationController
     clear_shopify_session
     render partial: 'blogs/selected_products'
   end
+
+  def search_products
+    initiate_shopify_session
+    @products = ShopifyAPI::Product.find(:all, params: { title: params[:q] })
+    clear_shopify_session
+  end
 end
