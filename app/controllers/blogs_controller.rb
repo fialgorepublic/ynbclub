@@ -162,6 +162,7 @@ class BlogsController < ApplicationController
       category = Category.new(category_params)
       @success = category.save
     end
+    @url = params[:url]
 
     respond_to do |format|
       format.js

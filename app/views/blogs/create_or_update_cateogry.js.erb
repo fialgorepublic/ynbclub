@@ -1,5 +1,5 @@
 <% if @success %>
-  window.location.href = "<%= new_blog_path %>"
+  window.location.href = "<%= @url %>"
 <% else %>
   toastr.error("Name has already been taken")
 <% end %>

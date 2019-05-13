@@ -157,7 +157,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Create or Edit Category</h4>
       </div>
-
+      <%= hidden_field_tag :url, action_name == 'edit' ? edit_blog_path(@blog) : new_blog_path  %>
       <div class="modal-body">
         <h4>Create New</h4>
         <br>
