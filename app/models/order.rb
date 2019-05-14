@@ -51,6 +51,12 @@ class Order < ApplicationRecord
 
     def add_product_coins
       product_titles = items.pluck(:name)
-      Product.where(title: product_titles).collect(&:blog)&.collect(&:user)&.uniq&.map{ |user| user.points.create(point_value: 5, invitee: "Your product is bought.") }
+      already_visited = nil
+      Product.where(title: product_titles).collect(&:blog).compact.each do |blog|
+        user = blog.user
+        next if user == already_visited
+        user.points.create(point_value: 5, invitee: "Your product is bought.")
+        already_visited = user
+      end
     end
 end
