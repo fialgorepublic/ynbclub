@@ -95,10 +95,10 @@ class MediumBlogsService
   end
 
   def create_blog(blogs_params)
-    blogs << Blog.find_or_create_by(title: blogs_params[:title], user: User.first) do |blog|
+    blogs << Blog.find_or_create_by(title: blogs_params[:title]) do |blog|
       blog.description = blogs_params[:content]
-      blog.avatar      = URI.parse(blogs_params[:image_url]) if blogs_params[:image_url].present?
       blog.save
+      blog.attach_default_image
     end
   end
 end

@@ -73,7 +73,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1.json
   def update
     respond_to do |format|
-      if @blog.update(blog_params.merge({is_published: true}))
+      if @blog.update(blog_params.merge({is_published: true, user: current_user}))
         @blog.update_products(params[:product])
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog }
@@ -172,7 +172,11 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_user_blog
-      @blog = current_user.blogs.friendly.find(params[:id])
+      if params[:translate_edit].present? && params[:translate_edit] == 'true'
+        set_blog
+      else
+        @blog = current_user.blogs.friendly.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

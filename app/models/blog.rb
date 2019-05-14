@@ -25,7 +25,7 @@ class Blog < ApplicationRecord
   friendly_id :title, use: :slugged
 
   belongs_to :category, optional: true
-  belongs_to :user
+  belongs_to :user,     optional: true
   has_many :comments
   has_many :likes
   has_many :products, :dependent => :destroy
