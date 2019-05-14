@@ -51,6 +51,6 @@ class Order < ApplicationRecord
 
     def add_product_coins
       product_titles = items.pluck(:name)
-      Product.where(title: product_titles).collect(&:blog).collect(&:user).uniq.map{ |user| user.points.create(point_value: 5, invitee: "Your product is bought.") }
+      Product.where(title: product_titles).collect(&:blog)&.collect(&:user)&.uniq&.map{ |user| user.points.create(point_value: 5, invitee: "Your product is bought.") }
     end
 end
