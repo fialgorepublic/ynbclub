@@ -215,11 +215,12 @@
         <div id="product-search-form">
           <%= form_tag(search_products_path, method: "get", remote: true, id: 'search-form') do %>
             <div class="row">
-              <div class="col-md-10">
-                <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title') %>
+              <div class="col-md-9">
+                <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title', data: { type: 'search' } ) %>
               </div>
-              <div class="col-md-2">
-                <%= submit_tag("Search", class: 'btn btn-primary form-group') %>
+              <div class="col-md-3">
+                <%= submit_tag("Search", class: 'btn btn-primary form-group', id: 'search-btn') %>
+                <%= submit_tag("Clear", class: 'btn btn-default form-group', id: 'clear-btn-search') %>
               </div>
             </div>
           <% end %>
@@ -249,11 +250,21 @@
   });
 
   $('#search-form').submit(function(){
+    if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }
     searchText = $('#product-title').val();
     if(searchText == '') { return false; }
     if(searchText.length < 3) { $('#search-form').append('<p>Please enter three or more letters</p>'); return false; }
     $("p").hide('slow');
   })
+
+  $('#clear-btn-search').click(function(e){
+    if ($('#product-title').val() == '') { return false; };
+    $('#product-title').data('type', 'clear');
+  });
+
+  $('#search-btn').click(function(e){
+    $('#product-title').data('type', 'search');
+  });
 
   $('#category_id').change(function(){
     $('#update-category-name').attr('disabled', false);

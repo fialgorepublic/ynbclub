@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
   def search_products
     initiate_shopify_session
-    @products = ShopifyAPI::Product.find(:all, params: { title: params[:q] })
+    @products = params[:q].present? ? ShopifyAPI::Product.find(:all, params: { title: params[:q] }) : ShopifyAPI::Product.all
     clear_shopify_session
   end
 end
