@@ -54,7 +54,7 @@ class Order < ApplicationRecord
       already_visited = nil
       Product.where(title: product_titles).collect(&:blog).compact.each do |blog|
         user = blog.user
-        next !blog.is_published? || if user == already_visited
+        next if !blog.is_published? || user == already_visited
         user.points.create(point_value: 5, invitee: "Your product is bought.")
         already_visited = user
       end
