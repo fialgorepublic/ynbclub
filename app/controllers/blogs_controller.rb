@@ -141,7 +141,8 @@ class BlogsController < ApplicationController
 
   def share_blog
     share_url = ShareUrl.create(user_id: current_user&.id, blog_id: params[:id], url_type: params[:value])
-    insert_points(current_user.id, 3, "", share_url.id) if current_user.present?
+    point_type = PointType.find_by(name: 'Share blog on facebook')&.id
+    insert_points(current_user.id, point_type, "", share_url.id) if current_user.present?
     redirect_to blogs_path
   end
 
