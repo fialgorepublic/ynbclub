@@ -71,4 +71,12 @@ module BlogsHelper
   def banner_name page
     page.blog_banner.attached? ? page.blog_banner.filename : "No file Chosen"
   end
+
+  def share_button_classes
+    action_name == 'index' ? 'share-on-facebook' :  'share-on-facebook btn btn-primary'
+  end
+
+  def share_button_text
+    action_name == 'index' ? '' :  'Share on Facebook'
+  end
 end

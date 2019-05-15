@@ -10,7 +10,7 @@
           <i class="fa fa-share-alt"></i>
         </span>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a href="javascript:void(0);" onclick="openWindow('<%= blog.id %>','facebook', '<%= blog_attributes blog %>')"> <i class="fa fa-facebook"></i></a></li>
+          <li><%= render partial: 'facebook_share_button', locals: { blog: blog } %></li>
           <li><a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
           </li>
         </ul>
@@ -44,3 +44,9 @@
     <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    user_has_shared = <%= signed_in? ? current_user.already_shared_blog?(blog.id, 'facebook') : false %>;
+  })
+</script>

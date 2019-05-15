@@ -65,7 +65,8 @@ $(document).ready(function() {
     blog_id = $(this).data('id');
     type    = $(this).data('type');
     blog    = $(this).data('attributes');
-    already_shared_blog(blog_id)
+    url     = $(this).data('share-url')
+    already_shared_blog(blog_id, url)
     if (user_signed_in) {
       if (user_has_shared) { toastr.error('You already have shared this blog'); return false; }
       var url = createFBShareLink(blog_id, type, blog, '164286157812635');
@@ -77,9 +78,9 @@ $(document).ready(function() {
     }
   });
 
-  function already_shared_blog(blog_id) {
+  function already_shared_blog(blog_id, url) {
     $.ajax({
-      url: `${blog_id}/shared`,
+      url: url,
       method: 'get',
       dataType: 'json',
       async: false,
