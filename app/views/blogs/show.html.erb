@@ -52,7 +52,9 @@
           <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
           <i class="fa fa-share"></i><span style="display:inline-block;"><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
           <% if @blog.is_published? %>
-            <a href="javascript:void(0);" onclick="openWindow('<%= @blog.id %>','facebook', '<%= blog_attributes @blog %>')" class="btn btn-primary"><i class="fa fa-facebook"></i> Share on Facebook</a>
+            <%= link_to "javascript:void(0);", class: "share-on-facebook btn btn-primary", data: { id: @blog.id, type: 'facebook', attributes: blog_attributes(@blog) } do %>
+              <i class="fa fa-facebook"></i> Share on Facebook
+            <% end %>
           <% end %>
           <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
@@ -179,7 +181,7 @@
 
 <script>
   user_signed_in = <%= signed_in? %>;
-  user_has_shared = <%= current_user&.already_shared_blog?(@blog.id, 'facebook') %>;
+  user_has_shared = <%= signed_in? ? current_user.already_shared_blog?(@blog.id, 'facebook') : false %>;
   if (user_has_shared) {
   } else {
     setTimeout(showShareModal, 10000);
@@ -332,46 +334,5 @@
         alert('Error');
       }
     });
-  }
-
-  function createFBShareLink(id, type, blog, fbAppId) {
-    var link = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
-    var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-      &link=https://ambassador.saintlbeau.com/blog_detail?id=${id}
-      &picture=${encodeURIComponent(`${blog.file_name}`)}
-      &name=${blog.title}
-      &caption=SainLBeau blogs
-      &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
-      &display=popup`;
-
-    
-    return url;
-  }
-
-  function openWindow(blog_id, type, blog){
-    already_shared_blog(blog_id)
-    if(user_has_shared) { toastr.error('You already have shared this blog'); return false; }
-    if(user_signed_in) {
-      var blog = JSON.parse(blog)
-      var url = createFBShareLink(blog_id, type, blog, '164286157812635');
-
-      window.open(url);
-    } else
-    {
-      window.location.href = '<%= root_path(signin: true) %>'
-    }
-  }
-
-  function already_shared_blog(blog_id) {
-    $.ajax({
-      url: `${blog_id}/shared`,
-      method: 'get',
-      dataType: 'json',
-      async: false,
-      success:  function (data) {
-        user_has_shared = data.shared
-      }
-    })
   }
 </script>
