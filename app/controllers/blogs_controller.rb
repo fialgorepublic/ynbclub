@@ -170,7 +170,7 @@ class BlogsController < ApplicationController
   end
 
   def shared
-    render json: { shared: current_user.already_shared_blog?(params[:id]) }
+    render json: { shared: current_user.already_shared_blog?(params[:blog_id], 'facebook') }
   end
 
   private

@@ -179,10 +179,13 @@
 
 <script>
   user_signed_in = <%= signed_in? %>;
-
-  setTimeout(showShareModal, 10000);
-  function showShareModal() {
-    $('#shareBlogModal').modal('show');
+  user_has_shared = <%= current_user&.already_shared_blog?(@blog.id, 'facebook') %>;
+  if (user_has_shared) {
+  } else {
+    setTimeout(showShareModal, 10000);
+    function showShareModal() {
+      $('#shareBlogModal').modal('show');
+    }
   }
 
   function showSignInModal() {
@@ -347,6 +350,8 @@
   }
 
   function openWindow(blog_id, type, blog){
+    already_shared_blog(blog_id)
+    if(user_has_shared) { toastr.error('You already have shared this blog'); return false; }
     if(user_signed_in) {
       var blog = JSON.parse(blog)
       var url = createFBShareLink(blog_id, type, blog, '164286157812635');
@@ -356,5 +361,17 @@
     {
       window.location.href = '<%= root_path(signin: true) %>'
     }
+  }
+
+  function already_shared_blog(blog_id) {
+    $.ajax({
+      url: `${blog_id}/shared`,
+      method: 'get',
+      dataType: 'json',
+      async: false,
+      success:  function (data) {
+        user_has_shared = data.shared
+      }
+    })
   }
 </script>

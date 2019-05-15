@@ -226,7 +226,7 @@ class User < ApplicationRecord
     self.notifications.find_or_create_by(source: commission_history)
   end
 
-  def already_shared_blog? blog_id
-    share_urls.find_by(blog_id: blog_id).present?
+  def already_shared_blog?(blog_id, url_type)
+    share_urls.find_by(blog_id: blog_id, url_type: url_type).present?
   end
 end
