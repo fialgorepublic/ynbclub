@@ -17,3 +17,12 @@
     </div>
   </div>
 </section>
+
+<script>
+  $(document).ready(function() {
+    <% if params[:signin].present? %>
+      login_form();
+      toastr.info('You need to signin to continue.');
+    <% end %>
+  });
+</script>
