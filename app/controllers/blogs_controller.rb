@@ -169,6 +169,10 @@ class BlogsController < ApplicationController
     end
   end
 
+  def shared
+    render json: { shared: current_user.already_shared_blog?(params[:id]) }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_user_blog

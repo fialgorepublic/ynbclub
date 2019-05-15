@@ -225,4 +225,8 @@ class User < ApplicationRecord
     commission_history = self.commission_histories.find_or_create_by(order_no: order_no, old_income: old_income, new_income: self.total_income)
     self.notifications.find_or_create_by(source: commission_history)
   end
+
+  def already_shared_blog? blog_id
+    share_urls.find_by(blog_id: blog_id).present?
+  end
 end
