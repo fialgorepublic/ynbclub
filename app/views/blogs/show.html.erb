@@ -52,9 +52,7 @@
           <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
           <i class="fa fa-share"></i><span style="display:inline-block;"><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
           <% if @blog.is_published? %>
-            <%= link_to "javascript:void(0);", class: "share-on-facebook btn btn-primary", data: { id: @blog.id, type: 'facebook', attributes: blog_attributes(@blog) } do %>
-              <i class="fa fa-facebook"></i> Share on Facebook
-            <% end %>
+            <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
           <% end %>
           <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
@@ -169,7 +167,7 @@
       </div>
       <div class="modal-body text-center">
         <h4 class="">Share this Blog on facebook and receieve 5 coins.</h4>
-        <a href="javascript:void(0);" onclick="openWindow('<%= @blog.id %>','facebook', '<%= blog_attributes @blog %>')" class="btn btn-primary"><i class="fa fa-facebook"></i> Share on Facebook</a>
+        <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
