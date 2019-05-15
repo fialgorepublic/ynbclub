@@ -77,6 +77,8 @@
 </div>
 
 <script>
+  user_signed_in = <%= signed_in? %>;
+
   $('#uploaderBanner').click(function(){
     $('#bannerUploadModal').modal('show');
   });
@@ -168,13 +170,15 @@
   }
 
   function openWindow(blog_id, type, blog){
-    var blog = JSON.parse(blog)
-    $("meta[property='og\\:title']").attr('content', `${blog.title}`);
-    $("meta[property='og\\:image']").attr('content', `${blog.file_name}`);
-    $("meta[property='og\\:type']").attr('content', 'article');
-    var url = createFBShareLink(blog_id, type, blog, '164286157812635');
+    if(user_signed_in) {
+      var blog = JSON.parse(blog)
+      var url = createFBShareLink(blog_id, type, blog, '164286157812635');
 
-    window.open(url);
+      window.open(url);
+    } else
+    {
+      window.location.href = '<%= root_path(signin: true) %>'
+    }
 
   }
 </script>
