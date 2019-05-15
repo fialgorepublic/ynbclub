@@ -73,11 +73,11 @@ $(document).ready(function() {
 
       window.open(url);
     } else {
-      hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000' : window.location.hostname
-      window.location.href = `${hostname}?signin=true`
+      hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : `${window.location.hostname}?signin=true`
+      window.location.href = hostname
     }
   });
-
+    
   function already_shared_blog(blog_id, url) {
     $.ajax({
       url: url,
