@@ -212,6 +212,7 @@ Rails.application.routes.draw do
       post :banner
       post :create_or_update_cateogry
     end
+    get :shared
   end
   get 'approve_sales', to: 'referral_sales#approve_sales'
   get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'
