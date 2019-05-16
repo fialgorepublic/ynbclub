@@ -15,6 +15,7 @@
             <%= hidden_field_tag 'product[title][]', product.title %>
             <%= hidden_field_tag 'product[avatar][]', product.images.present? ? product.images[0].src : '' %>
             <%= hidden_field_tag 'product[price][]', product.variants.first.price %>
+            <%= hidden_field_tag 'product[handle][]', product.handle %>
             <img width="80%" src="<%= product.images.present? ? product.images[0].src : '/placeholder.png' %>">
           </div>
 

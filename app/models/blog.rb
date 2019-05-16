@@ -64,7 +64,7 @@ class Blog < ApplicationRecord
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
         new_product = Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
-                       blog_id: self.id)
+                       blog_id: self.id, url: "https://www.saintlbeau.com/products/#{product[:handle][index]}")
         new_product.attach_avatar(product[:avatar][index])
       end
     end
@@ -82,7 +82,7 @@ class Blog < ApplicationRecord
     if product[:product_id].present?
       product[:product_id].each_with_index do |value, index|
         new_product = Product.create(product_id: value, title: product[:title][index], price: product[:price][index],
-                       blog_id: self.id)
+                       blog_id: self.id, url: "https://www.saintlbeau.com/products/#{product[:handle][index]}")
         new_product.attach_avatar(product[:avatar][index])
       end
     end
