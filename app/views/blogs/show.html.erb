@@ -41,7 +41,7 @@
       <div class="col-md-12">
         <div class="detail-img">
           <div class="img-block"><h4><%= @blog.is_published ? 'Published' : 'Unpublish' %></h4></div>
-          <%= image_tag render_image(@blog) %>
+          <%= image_tag render_image(@blog), width: '100%' %>
         </div>
       </div>
     </div>
