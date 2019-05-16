@@ -139,13 +139,14 @@
       }
 
       function login_user() {
+        var redirect_to_saved_path = "<%= params[:signin] %>"
         var email = $('#resource_email').val();
         var password = $('#resource_password').val();
         if (!jQuery("#sign_in_user").valid()) {
           return false;
         }
         $.ajax({
-          url: '/sign_in_user?user[email]=' + email + '&user[password]=' + password,
+          url: `/sign_in_user?user[email]=${email}&user[password]=${password}&redirect=${redirect_to_saved_path}`,
           type: 'post',
           dataType: 'json',
           processData: false,
@@ -156,7 +157,7 @@
                 expires: 365,
                 domain: 'saintlbeau.com'
               })
-              window.location.href = "/dashboard"
+              window.location.href = data.path
             } else {
               return toastr.error(data.message);
             }

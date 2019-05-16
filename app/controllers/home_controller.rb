@@ -42,9 +42,10 @@ class HomeController < ApplicationController
     if user.present?
       if !user.banned?
         if user.valid_password?(params[:user][:password])
+          path = params[:redirect].present? ? blogs_path : dashboard_path
           sign_in :user, user
           flash[:notice] = "Successfully login"
-          render json: {success: true, message: "Successfully login"}
+          render json: { success: true, message: "Successfully login", path: path }
         else
           flash[:alert] = "Email and password invalid"
           render json: {success: false, message: "Email and password invalid"}
