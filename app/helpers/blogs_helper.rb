@@ -79,4 +79,8 @@ module BlogsHelper
   def share_button_text
     action_name == 'index' ? '' :  'Share on Facebook'
   end
+
+  def banner_size
+    current_user.present? ? '1000x450^' :  '1200x500^'
+  end
 end

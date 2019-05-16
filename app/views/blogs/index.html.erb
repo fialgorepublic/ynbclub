@@ -1,7 +1,7 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>"">
-    <div class="banner">
-      <%= image_tag @page.blog_banner.variant(combine_options: { resize: '851x341^', gravity: 'Center', extent: '851x341^', background: "grey", quality: 95 }) %>
+    <div class="banner text-center">
+      <%= image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }) %>
     </div>
     <div class="heading-featured">
       <h1>Blogs</h1>
