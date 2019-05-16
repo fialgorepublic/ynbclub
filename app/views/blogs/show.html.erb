@@ -99,25 +99,25 @@
 
     <div class="row product-shadow product-border-style">
       <% @selected_products.each do |product| %>
-          <div class="col-md-3">
-            <div class="box-shadow-am sm-pd-am">
-              <div class="product-box">
-                <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width: "100%" %>
+        <div class="col-md-3">
+          <div class="box-shadow-am sm-pd-am">
+            <%= link_to product.url, target: :blank do %>
+              <div class="">
+                <%= image_tag product.avatar.attached? ? product.avatar.variant(resize: product_image_size) : '/placeholder.png' %>
               </div>
+            <% end %>
 
-              <div class="product-price">
-                <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
-              </div>
+            <div class="product-price">
+              <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
+            </div>
 
-              <div class="product-detail">
-                <p><%= product.title %></p>
-              </div>
+            <div class="product-detail">
+              <p><%= product.title %></p>
             </div>
           </div>
-
+        </div>
       <% end %>
     </div>
-
 
      <% if @blog.is_published? && signed_in? %>
        <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">

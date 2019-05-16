@@ -83,4 +83,8 @@ module BlogsHelper
   def banner_size
     current_user.present? ? '1000x350^' :  '1200x350^'
   end
+
+  def product_image_size
+    current_user.present? ? '180x170^' :  '260x200^'
+  end
 end
