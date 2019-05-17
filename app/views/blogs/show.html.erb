@@ -103,7 +103,7 @@
           <div class="box-shadow-am sm-pd-am">
             <%= link_to product.url, target: :blank do %>
               <div class="">
-                <%= image_tag product.avatar.attached? ? product.avatar.variant(resize: product_image_size) : '/placeholder.png' %>
+                <%= image_tag product.avatar.attached? ? product.avatar.variant(combine_options: { resize: product_image_size, gravity: 'Center', extent: product_image_size, background: "grey", quality: 95 }) : '/placeholder.png', width: '100%' %>
               </div>
             <% end %>
 
