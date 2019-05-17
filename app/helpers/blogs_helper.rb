@@ -85,6 +85,6 @@ module BlogsHelper
   end
 
   def product_image_size
-    current_user.present? ? '180x170^' :  '260x200^'
+    current_user.present? ? '180x130^' :  '270x200^'
   end
 end
