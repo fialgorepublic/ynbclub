@@ -13,7 +13,7 @@ class BlogsController < ApplicationController
         if current_user.present?
           current_user.filtered_blogs(params[:sort], params[:category])
         else
-          Blog.all_published_blogs(params[:sort], params[:category])
+          Blog.with_attached_avatar.all_published_blogs(params[:sort], params[:category])
         end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
@@ -132,7 +132,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_detail
-    @blog = Blog.find_by_id(params[:id])
+    @blog = Blog.with_attached_avatar.find_by_id(params[:id])
     return redirect_to root_path(blog_not_found: true) if @blog.blank?
 
     @comments = @blog.comments
@@ -180,7 +180,7 @@ class BlogsController < ApplicationController
       if params[:translate_edit].present? && params[:translate_edit] == 'true'
         set_blog
       else
-        @blog = current_user.blogs.friendly.find(params[:id])
+        @blog = current_user.blogs.with_attached_avatar.friendly.find(params[:id])
       end
     end
 

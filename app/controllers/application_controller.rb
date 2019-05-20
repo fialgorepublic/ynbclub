@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_page
-    @page = Page.first || Page.create(heading: "Who are we?", sub_heading: "")
+    @page = Page.with_attached_image.first || Page.create(heading: "Who are we?", sub_heading: "")
   end
 
   def set_snapshot
