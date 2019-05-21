@@ -22,7 +22,15 @@
 
 class Blog < ApplicationRecord
   extend FriendlyId
-  friendly_id :title, :use => [:slugged]
+  friendly_id do |config|
+    config.base = :title
+    config.use :slugged
+    config.use Module.new {
+      def normalize_friendly_id(text)
+        text.to_slug.normalize! :transliterations => [:vietnamese]
+      end
+    }
+  end
 
   belongs_to :category, optional: true
   belongs_to :user,     optional: true
@@ -60,7 +68,7 @@ class Blog < ApplicationRecord
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
   after_create :add_coins_to_user_account
-  before_validation  :set_slug
+
   def add_products(product)
     return if product.blank?
     if product[:product_id].present?
@@ -99,10 +107,6 @@ class Blog < ApplicationRecord
     self.avatar.filename == 'default-blog-image.jpg'
   end
 
-  def should_generate_new_friendly_id?
-    title_changed?
-  end
-
   private
     def add_coins_to_user_account
       point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
@@ -110,7 +114,8 @@ class Blog < ApplicationRecord
       user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
     end
 
-    def set_slug
-      self.slug = title.to_s.to_slug.normalize(transliterations: :vietnamese).to_s
+    def should_generate_new_friendly_id?
+      title_changed?
     end
+
 end
