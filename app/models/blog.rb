@@ -59,6 +59,8 @@ class Blog < ApplicationRecord
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
+  after_create :add_coins_to_user_account
+
   def add_products(product)
     return if product.blank?
     if product[:product_id].present?
@@ -100,4 +102,11 @@ class Blog < ApplicationRecord
   def should_generate_new_friendly_id?
     title_changed?
   end
+
+  private
+    def add_coins_to_user_account
+      point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
+      return if point_type.blank?
+      user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
+    end
 end
