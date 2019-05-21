@@ -92,6 +92,7 @@ GEM
       nokogiri (~> 1)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
+    babosa (1.0.2)
     bcrypt (3.1.12)
     best_in_place (3.1.1)
       actionpack (>= 3.2)
@@ -624,6 +625,7 @@ DEPENDENCIES
   aws-s3
   aws-sdk (< 2.0)
   aws-sdk-s3
+  babosa
   best_in_place
   bootsnap
   byebug
