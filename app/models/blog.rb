@@ -22,7 +22,7 @@
 
 class Blog < ApplicationRecord
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title, :use => [:slugged]
 
   belongs_to :category, optional: true
   belongs_to :user,     optional: true
@@ -60,7 +60,7 @@ class Blog < ApplicationRecord
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
   after_create :add_coins_to_user_account
-
+  before_validation  :set_slug
   def add_products(product)
     return if product.blank?
     if product[:product_id].present?
@@ -108,5 +108,9 @@ class Blog < ApplicationRecord
       point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
       return if point_type.blank?
       user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
+    end
+
+    def set_slug
+      self.slug = title.to_s.to_slug.normalize(transliterations: :vietnamese).to_s
     end
 end
