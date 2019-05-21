@@ -83,8 +83,8 @@ class GhtkService
         tel:            order.phone_number,
         name:           order.customer_name,
         address:        order.address,
-        province:       province_name,
-        district:       district_name,
+        province:       province_district_name,
+        district:       province_district_name,
         ward:           order.ward_name,
         is_freeship:    "1",
         pick_date:      Time.now,
@@ -94,12 +94,8 @@ class GhtkService
       }
     end
 
-    def province_name
-      order.province_name || order.city_name
-    end
-
-    def district_name
-      order.district_name || order.city_name
+    def province_district_name
+      order.district_name || order.province_name
     end
 
     def transport_type
