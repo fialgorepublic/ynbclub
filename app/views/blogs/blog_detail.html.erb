@@ -1,80 +1,69 @@
 <%= render 'blogs/og_tags_content' %>
 
 <div class="detail-blog">
-    <div class="col-md-12">
-
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="detail-img">
-            <%= image_tag @blog.avatar.attached? ? @blog.avatar : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
-          </div>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="detail-img">
+          <%= image_tag @blog.avatar.attached? ? @blog.avatar : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="detail-img detail-icon">
-            <i class="fa fa-heart"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
-            <i class="fa fa-share"></i><span>12</span>
-            <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
-            <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="detail-img detail-icon">
+          <i class="fa fa-heart"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
+          <i class="fa fa-share"></i><span>12</span>
+          <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
+          <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
-            <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
-              <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i>
-              <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
-            </strong></h5>
-            <hr>
-          </div>
-
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 title-style">
-          <div class="detail-img">
-            <h2><%= @blog.title %></h2>
-            <p><%= @blog.description.html_safe %></p>
-          </div>
+          <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
+            <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i>
+            <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
+          </strong></h5>
           <hr>
         </div>
+
       </div>
+    </div>
 
-
-      <div class="row">
-        <div class="col-md-12 product-title">
-          <h2>Products</h2>
+    <div class="row">
+      <div class="col-md-12 title-style">
+        <div class="detail-img">
+          <h2><%= @blog.title %></h2>
+          <p><%= @blog.description.html_safe %></p>
         </div>
+        <hr>
       </div>
+    </div>
 
-      <div class="row product-shadow product-border-style">
-        <% @selected_products.each do |product| %>
-            <div class="col-md-2">
-              <div class="box-shadow-am sm-pd-am">
-                <div class="product-box">
-                  <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width: "100%" %>
-                </div>
-                <div class="product-price">
-                  <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
-                </div>
+    <div class="row">
+      <div class="col-md-12 product-title">
+        <h2>Products</h2>
+      </div>
+    </div>
 
-                <div class="product-detail">
-                  <p><%= product.title %></p>
-                </div>
+    <div class="row product-shadow product-border-style">
+      <% @selected_products.each do |product| %>
+          <div class="col-md-2">
+            <div class="box-shadow-am sm-pd-am">
+              <div class="product-box">
+                <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width: "100%" %>
+              </div>
+              <div class="product-price">
+                <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
+              </div>
+
+              <div class="product-detail">
+                <p><%= product.title %></p>
               </div>
             </div>
+          </div>
 
-        <% end %>
-      </div>
-
-      <!--<button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">-->
-        <!--Post a comment-->
-      <!--</button>-->
-
-      <!--<div id="blogComment">-->
-        <!--<%#= render partial: 'blogs/comments' %>-->
-      <!--</div>-->
-
+      <% end %>
     </div>
+  </div>
 </div>
 
 <script>

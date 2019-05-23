@@ -293,7 +293,7 @@
             }]
     });
 
-    $(window).bind('load', function(){
+    $(document).on('turbolinks:load', function(){
       $('#blog-form').submit(validateDescriptionLength)
       $('#blog-form').submit(validateDefaultImage)
       var v = CKEDITOR.instances.blog_description
@@ -333,9 +333,9 @@
     });
 
     $("#fileupload").change(function () {
-
-        readURL(this);
+      readURL(this);
     });
+
     function readURL(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -357,43 +357,44 @@
       }
     }
     function get_products(){
-        $('#assignProduct').modal('show');
-        $.ajax({
-            url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
-            type: 'get',
-            dataType: 'html',
-            processData: false,
-            success: function (data) {
-                $('#products').html(data);
-            },
-            error: function (data) {
-                alert('Error');
-                //    window.location.reload();
-            }
-        });
+      $('#assignProduct').modal('show');
+      $.ajax({
+          url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
+          type: 'get',
+          dataType: 'html',
+          processData: false,
+          success: function (data) {
+              $('#products').html(data);
+          },
+          error: function (data) {
+              alert('Error');
+              //    window.location.reload();
+          }
+      });
     }
+
     function add_products(){
-        var ids = [];
-        $(".selected").each(function(index, v) {
-            console.log($(v).attr('class').split(' ')[0]);
-            ids.push($(v).attr('class').split(' ')[0]);
-        });
-        if (ids != ""){
-            $.ajax({
-                url: '/get_selected_products?ids='+ids,
-                type: 'get',
-                dataType: 'html',
-                processData: false,
-                success: function (data) {
-                    $('#selectedProducts').html(data);
-                    $('#assignProduct').modal('hide');
-                },
-                error: function (data) {
-                    alert('Error');
-                    //    window.location.reload();
-                }
-            });
-        }
+      var ids = [];
+      $(".selected").each(function(index, v) {
+          console.log($(v).attr('class').split(' ')[0]);
+          ids.push($(v).attr('class').split(' ')[0]);
+      });
+      if (ids != ""){
+          $.ajax({
+              url: '/get_selected_products?ids='+ids,
+              type: 'get',
+              dataType: 'html',
+              processData: false,
+              success: function (data) {
+                  $('#selectedProducts').html(data);
+                  $('#assignProduct').modal('hide');
+              },
+              error: function (data) {
+                  alert('Error');
+                  //    window.location.reload();
+              }
+          });
+      }
     }
 
 
