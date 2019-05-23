@@ -25,7 +25,7 @@ class PaymentsController < ApplicationController
         @payments = Payment.all
       end
     end
-    @payments = @payments.order(created_at: :desc).paginate(page: params[:page])
+    @payments = @payments.includes(:user).order(created_at: :desc).paginate(page: params[:page])
   end
 
   def clear_search
