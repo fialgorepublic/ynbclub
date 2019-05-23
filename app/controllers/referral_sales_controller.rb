@@ -87,7 +87,7 @@ class ReferralSalesController < ApplicationController
     if (params[:payment].present? && params[:payment] != "null" && params[:payment].split(',').size == 1)
       @payment = params[:payment]
     end
-    @referral_sales = referral_sales.paginate(page: params[:page])
+    @referral_sales = referral_sales.includes(:user).paginate(page: params[:page])
   end
 
   def changed_sale_approved_status

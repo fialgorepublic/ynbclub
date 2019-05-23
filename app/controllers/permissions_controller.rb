@@ -5,7 +5,7 @@ class PermissionsController < ApplicationController
 
   def index
     users = params[:q].present? ? User.filter_users(params[:q]) : User.all
-    @users = users.paginate(page: params[:page])
+    @users = users.includes(:profile).paginate(page: params[:page])
   end
 
   def show
@@ -21,6 +21,6 @@ class PermissionsController < ApplicationController
 
   private
     def set_user
-      @user = User.find(params[:id])
+      @user = User.includes(:profile).find(params[:id])
     end
 end
