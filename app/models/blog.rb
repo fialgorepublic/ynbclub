@@ -63,7 +63,8 @@ class Blog < ApplicationRecord
     where(is_published: true).filter_by_category(category).sort_blogs(sort_by)
   }
   scope :first_three_latest_blogs, -> { where(is_published: true).order(updated_at: :desc).first(3) }
-
+  scope :eager_load_objects , -> { includes(:category, :user, :comments, :likes, :products, :blog_views).with_attached_avatar }
+  # Ex:- scope :active, -> {where(:active => true)}
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
