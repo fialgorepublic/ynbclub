@@ -3,24 +3,17 @@
   <%= select_tag 'order[district]', options_for_select(@districts) , { include_blank: 'Select District', class: "form-control", id: "district-select" } %>
 </div>
 
-<div class="form-group">
-  <%= label_tag :province %>
-  <%= select_tag 'order[province]', options_for_select(@provinces) , { include_blank: 'Select Province', class: "form-control", id: "province-select" } %>
-</div>
-
-
 <script type="text/javascript">
   $(document).ready(function() {
-    $('#district-select, #province-select').select2();
+    $('#district-select').select2();
   })
 
-  $('#district-select, #province-select').change(function(){
+  $('#district-select').change(function(){
     district_id = $('#district-select').val();
-    province_id = $('#province-select').val();
     $('#order_order_id').val();
 
     $.ajax({
-      url: `/orders/wards?district_id=${district_id}&province_id=${province_id}&order_id=${order_id}`,
+      url: `/orders/wards?district_id=${district_id}&order_id=${order_id}`,
       type: 'get',
       contentType: 'json',
       error: function () {

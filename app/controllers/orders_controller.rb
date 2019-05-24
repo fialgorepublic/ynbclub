@@ -68,16 +68,16 @@ class OrdersController < ApplicationController
   end
 
   def wards
-    province = Province.includes(:wards).find_by_id(params[:province_id])
+    # province = Province.includes(:wards).find_by_id(params[:province_id])
     district = District.includes(:wards).find_by_id(params[:district_id])
     @order = Order.find(params[:order_id])
-    if province.present? && district.present?
-      wards = province.wards + district.wards
-    elsif province.present?
-      wards = province.wards
-    elsif district.present?
-      wards = district.wards
-    end
+    # if province.present? && district.present?
+    #   wards = province.wards + district.wards
+    # elsif province.present?
+    #   wards = province.wards
+    # if district.present?
+    wards = district.wards
+    # end
     @wards = wards.pluck(:name, :id)
   end
 
