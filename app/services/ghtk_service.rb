@@ -18,7 +18,7 @@ class GhtkService
 
   private
     def address_present?
-      order.province.present? && (order.district.present? ||  order.city.present?)
+      order.city.present? && order.district.present?
     end
 
     def place_order
@@ -83,7 +83,7 @@ class GhtkService
         tel:            order.phone_number,
         name:           order.customer_name,
         address:        order.address,
-        province:       order.province_name,
+        province:       order.city_name,
         district:       district_name,
         ward:           order.ward_name,
         is_freeship:    "1",
