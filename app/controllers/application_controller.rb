@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
   before_action :get_share_with_friend
   before_action :set_snapshot
   before_action :redirect_to_blogs, if: :shopify_redirected?
-  before_action do
-    if current_user && current_user.is_admin?
-      Rack::MiniProfiler.authorize_request
-    end
-  end
+  # before_action do
+  #   if current_user && current_user.is_admin?
+  #     Rack::MiniProfiler.authorize_request
+  #   end
+  # end
 
   def after_sign_up_path(resource)
     dashboard_path # after sign_up redirect to dashboard path
