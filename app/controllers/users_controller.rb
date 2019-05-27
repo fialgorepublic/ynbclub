@@ -230,7 +230,7 @@ class UsersController < ApplicationController
   end
 
   def share_link_count
-    @q = User.ransack(params[:q])
+    @q = User.includes(:profile).ransack(params[:q])
     @users = @q.result(distinct: true).paginate(page: params[:page])
   end
 

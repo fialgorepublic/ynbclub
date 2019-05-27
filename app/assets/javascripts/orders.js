@@ -1,4 +1,5 @@
-$(document).ready(function() {
+
+$(document).on('turbolinks:load', function() {
   $('#orders').dataTable( {
     "info":        false,
     "scrollX":     true,
@@ -10,7 +11,6 @@ $(document).ready(function() {
     rowCallback: function(row, data, index){
             string_index = data[5].indexOf('"selected"');
             value = JSON.parse(data[5].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
-            console.log(value);
             if(value == '1'){
               $('td', row).css('background-color', '#e4f5e5');
             }
@@ -34,7 +34,7 @@ $(document).ready(function() {
     "paging": false,
     "info": false,
     "scrollY":  600,
-    'scrollX':  true 
+    'scrollX': true
   });
 
   $('.send_to_ghtk').click(function(){

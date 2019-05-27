@@ -38,12 +38,13 @@ class HomeController < ApplicationController
   end
 
   def sign_in_user
-    user = User.find_by_email(params[:user][:email])
+    user = User.includes(:points, :profile).with_attached_avatar.find_by_email(params[:user][:email])
     if user.present?
       if !user.banned?
         if user.valid_password?(params[:user][:password])
           path = params[:redirect].present? ? blogs_path : dashboard_path
           sign_in :user, user
+
           flash[:notice] = "Successfully login"
           render json: { success: true, message: "Successfully login", path: path }
         else

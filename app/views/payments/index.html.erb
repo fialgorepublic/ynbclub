@@ -1,15 +1,16 @@
 <div class="col-md-9">
-
   <div class="row">
     <div class="col-md-12">
       <h1 class="card-header">View Payment History</h1>
       <hr>
-      <button onclick="add_new_payment();" class="btn btn-info btn-sm pull-right">Make a Payment</button>
+      <%= link_to 'Make a Payment', 'javascript:void(0);', class: "btn btn-info btn-sm pull-right", id: 'make-new-payment' %>
       <br/><br/>
       <div class="input-group">
         <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Payment code / Recipient name / Email " autofocus="" value="<%= params[:text] %>">
       <span class="input-group-btn">
-        <button class="btn btn-sm btn-default" type="button" onclick="searchPerform();"><i class="fa fa-search"></i></button>
+      <%= link_to 'javascript:void(0);', class: "btn btn-sm btn-default", id: 'search-user' do %>
+        <i class="fa fa-search"></i>
+      <% end %>
         <!-- ngIf: doSearch -->
       <a id="crossBtn" class="btn btn-sm btn-default ng-scope" href="/users" style="display: none;"><i class="fa fa-times"></i></a>
       </span>
@@ -30,7 +31,7 @@
   </div>
   <div class="col-md-12 m-t-30">
     <a href="/payments" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
-    <button onclick="apply_filter();" class="btn btn-info pull-right">Apply filter</button>
+    <%= link_to 'Apply filter', 'javascript:void(0);', class: "btn btn-info pull-right", id: 'apply-filter' %>
   </div>
   <br/>
   <br/>
@@ -70,64 +71,10 @@
 
   </div>
 </div>
-<script>
-    $(document).ready(
-            function () {
-                $("#user_id").select2();
-            }
-    );
-    $(".dateTime").datepicker({
-        format: "yyyy-mm-dd"
-    });
-    function apply_filter(){
-        var since = $('#since').val();
-        var to_date = $('#to_date').val();
-        var user_ids = $('#user_id').val();
-        if (since == "" && to_date == ""){
 
-        }else{
-            if (since != ""){
-                if (to_date == ""){
-                    alert("please select to date first.");
-                    return false;
-                }
-            }
-            if (to_date != ""){
-                if (since == ""){
-                    alert("please select to since first.");
-                    return false;
-                }
-            }
-        }
-        window.location.href = '/payments?search[start_date]='+since+'&search[end_date]='+to_date+'&search[partner]='+user_ids;
-    }
-    function searchPerform(){
-        var search = $('#searchText').val();
-        window.location.href = '/payments?text='+search;
-    }
-    function add_new_payment(){
-        $('#addPayment').modal('show');
-        $.ajax({
-            url:'/add_payment',
-            type:'get',
-            dataType:'json',
-            processData:false,
-            success:function (data) {
-                $('#new_payment').html(data.html);
-            },
-            error:function (data) {
-                alert ('Error');
-            }
-        });
-    }
-
-    $('#searchText').keyup(function() {
-        var dInput = this.value;
-        if (dInput == ""){
-            $.ajax({
-                url: '<%= clear_search_payments_path %>'
-            })
-        }
-    });
-
-</script>
+<% content_for :js_init  do %>
+  Payments.init();
+  Payments.addNewPayment();
+  Payments.searchPerform();
+  Payments.applyFilter();
+<% end %>

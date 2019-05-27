@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
     $("#shared-urls").dataTable({
         "pagingType": "full_numbers",
         searching: true,
@@ -6,14 +6,14 @@ $(document).ready(function(){
     })
 
     $("#bs4-table").dataTable({
-        searching: true,
-        "pagingType": "full_numbers",
-        "order": [[5, "desc"]],
-        "paging": false,
-        "info": false,
-        scrollY:  600,
-        scrollCollapse: true,
-        scrollX: true
+      searching: true,
+      "pagingType": "full_numbers",
+      "order": [[5, "desc"]],
+      "paging": false,
+      "info": false,
+      scrollY:  600,
+      scrollCollapse: true,
+      scrollX: true
     })
 
     $("#ban_users_table").dataTable({

@@ -24,7 +24,7 @@ class ReferralSale < ApplicationRecord
   belongs_to :user
   #after_save :set_ambassador_value
 
-  delegate :commission, :name, to: :user, prefix: true
+  delegate :commission, :name, to: :user, prefix: true, allow_nil: true
 
   def order_ghtk_status
     order =  Order.find_by(order_id: self.order_id)
