@@ -1,4 +1,4 @@
-$( document ).ready(function(){
+$(document).on('turbolinks:load', function () {
   $("#become-ambassador").click(function(event){
     event.preventDefault();
     apprise('Are You Sure You Want To Be a Brand Ambassador?', { 'verify': true }, function (r) {

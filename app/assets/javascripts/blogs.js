@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function () {
   $('#sort-blogs, #category-dropdown').on('change', function(){
     sort_type = $('#sort-blogs').val();
     category_type = $('#category-dropdown').val();

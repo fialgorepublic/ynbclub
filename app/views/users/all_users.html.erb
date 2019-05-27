@@ -55,7 +55,7 @@
                   <td><%= user.profile_phone_number %></td>
                     <% if params[:deduct_points].present? %>
                       <td><%= user.total_points %></td>
-                      <td><%= link_to "Deduct Point", "javascript:void(0);", id: 'deduct_modal', class: "btn btn-primary", data: { id: user.id } if user.total_points > 0 %></td>
+                      <td><%= link_to "Deduct Point", "javascript:void(0);", class: "deduct_modal btn btn-primary", data: { id: user.id } if user.total_points > 0 %></td>
                     <% else %>
                       <td>
                         <%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%>

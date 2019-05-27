@@ -1,4 +1,4 @@
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   $('#user_commission').focusout ->
     value = parseInt($(this).val())
     if value < 0 || value > 100
@@ -6,7 +6,7 @@ $(document).ready ->
     else
       $('#commission').remove();
 
-  $('#deduct_modal').click ->
+  $('.deduct_modal').click ->
     $('#user_id').val($(this).data('id'))
     $('#deduct_points_modal').modal('show')
 

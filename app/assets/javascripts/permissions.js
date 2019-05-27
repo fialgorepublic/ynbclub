@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function () {
   a = []
   $('#change_permissions').click(function(){
     new_permissions = []

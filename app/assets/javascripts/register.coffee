@@ -1,4 +1,4 @@
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   $('#user_name, #profile_first_name, #profile_surname').keypress (event) ->
     inputValue = event.which
     # allow letters and whitespaces only.
