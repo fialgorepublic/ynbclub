@@ -111,6 +111,7 @@ class Blog < ApplicationRecord
     def add_coins_to_user_account
       point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
       return if point_type.blank?
+      return if user.blank?
       user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
     end
 
