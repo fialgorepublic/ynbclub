@@ -16,18 +16,18 @@
 
         <div class="collapse navbar-collapse shared-header-custom-style" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Home", "https://shop.saintlbeau.com/" %></li>
-            <li><%= link_to "Catalog", "https://shop.saintlbeau.com/collections/all" %></li>
-            <li><a href="/blogs">BLOG</a></li>
-            <li><%= link_to "About us", "https://shop.saintlbeau.com/pages/about-us" %></li>
+            <li><%= link_to t('unauthorized_header.home_label'), "https://shop.saintlbeau.com/" %></li>
+            <li><%= link_to t('header.catalog_label'), "https://shop.saintlbeau.com/collections/all" %></li>
+            <li><a href="/blogs"><%= t('unauthorized_header.blog_label') %></a></li>
+            <li><%= link_to t('header.about_us_label'), "https://shop.saintlbeau.com/pages/about-us" %></li>
             <li>
               <% if current_user.is_admin? %>
-                <a href="/users">BRAND AMBASSADOR</a>
+                <a href="/users"><%= t('unauthorized_header.brand_ambassador_label') %></a>
               <% elsif current_user.is_buyer? %>
-                <%= link_to "BRAND AMBASSADOR", "#", id: "become-ambassador", data: { url: update_user_role_path, role_id: ambassador.id } %>
+                <%= link_to t('unauthorized_header.brand_ambassador_label'), "#", id: "become-ambassador", data: { url: update_user_role_path, role_id: ambassador.id } %>
               <% end %>
             </li>
-            <li><%= link_to "Store", "https://saintlbeau.myshopify.com/" %></li>
+            <li><%= link_to t('unauthorized_header.store_label'), "https://saintlbeau.myshopify.com/" %></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
@@ -45,7 +45,8 @@
                   <%= image_tag current_user.avatar.attached? ? current_user.avatar.variant(resize: "100x100") : "/assets/user-img.png", class: 'user-image-header' %>
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li class="active"><%= link_to('Logout', destroy_user_session_path, method: :delete, id: "logout-link") %></li>
+                  <li class="active">
+                    <%= link_to t('header.logout_lable'), destroy_user_session_path, method: :delete, id: "logout-link" %></li>
                 </ul>
               </div>
             </li>

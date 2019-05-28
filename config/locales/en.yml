@@ -5,6 +5,13 @@ en:
     store_label:            Store
     login_label:            Login
     register_label:         Register
+
+  header: 
+    home_label:             Home
+    catalog_label:          Catalog
+    about_us_label:         About Us
+    logout_lable:           Logout
+
   sidebar:
     dashboard_label_text:     Dashboard
     share_with_friends_label: Share With Friends
