@@ -16,14 +16,14 @@
 
       <div class="collapse navbar-collapse header-custom-style" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/blogs">BLOG</a></li>
-          <li><a href="/users">BRAND AMBASSADOR</a></li>
-          <li><%= link_to "Store", "https://saintlbeau.myshopify.com/" %></li>
+          <li><a href="/blogs"><%= t('unauthorized_header.blog_label') %></a></li>
+          <li><a href="/users"><%= t('unauthorized_header.brand_ambassador_label') %></a></li>
+          <li><%= link_to t('unauthorized_header.store_label'), "https://saintlbeau.myshopify.com/" %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li> <a href="javascript:void(0);" onclick="login_form();">Login</a></li>
-          <li class="custom-register-btn-style"> <a href="javascript:void(0);" onclick="register_form();">Register</a></li>
+          <li> <a href="javascript:void(0);" onclick="login_form();"><%= t('unauthorized_header.login_label') %></a></li>
+          <li class="custom-register-btn-style"> <a href="javascript:void(0);" onclick="register_form();"><%= t('unauthorized_header.register_label') %></a></li>
         </ul>
       </div>
     </div>

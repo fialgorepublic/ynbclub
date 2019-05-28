@@ -1,4 +1,10 @@
 en:
+  unauthorized_header:
+    blog_label:             Blog
+    brand_ambassador_label: Brand Ambassador
+    store_label:            Store
+    login_label:            Login
+    register_label:         Register
   sidebar:
     dashboard_label_text:     Dashboard
     share_with_friends_label: Share With Friends
