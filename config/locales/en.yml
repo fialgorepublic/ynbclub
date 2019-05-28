@@ -78,3 +78,11 @@ en:
       tracking_label:         Tracking Id
       shipment_label:         Shipment Status
       payment_status:         Payment Status
+
+  blogs:
+    index:
+      page_title:             Blogs
+      blog_libray_label:      Blog Library
+      edit_banner_label:      Edit Banner
+      new_blog_label:         New Blog
+      show_more_label:        Show More
