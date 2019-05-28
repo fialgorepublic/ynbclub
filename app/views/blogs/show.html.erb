@@ -21,16 +21,18 @@
                   </ul>
                   <!-- menu -->
                   <div id="myDropdown" class="dropdown-content">
-                    <%= link_to 'Edit', edit_blog_path(@blog) %>
-                    <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><%= @blog.is_published ? 'Un publish' : 'Publish' %></a>
-                    <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');">Show as buyers see it</a>
+                    <%= link_to t(:edit_label), edit_blog_path(@blog) %>
+                    <%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %>
+                    <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')">
+                      <%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
+                    </a>
+                    <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %></a>
                   </div>
                 <% end %>
               <% end %>
             </div>
           </div>
-          <h2><span> <a href="/blogs" style="text-decoration: none;"><i class="fa fa-angle-left"></i> Go to the list of blog posts </a></span> <!-- three dot menu -->
+          <h2><span> <a href="/blogs" style="text-decoration: none;"><i class="fa fa-angle-left"></i> <%= t('blogs.goto_list_label') %> </a></span> <!-- three dot menu -->
           </h2>
           <hr>
         </div>
@@ -40,7 +42,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="detail-img">
-          <div class="img-block"><h4><%= @blog.is_published ? 'Published' : 'Unpublish' %></h4></div>
+          <div class="img-block"><h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %></h4></div>
           <%= image_tag render_image(@blog), width: '100%' %>
         </div>
       </div>
@@ -85,7 +87,7 @@
 
     <div class="row">
       <div class="col-md-12 product-title">
-        <h2>Products</h2>
+        <h2><%= t('blogs.new.products_label') %></h2>
       </div>
     </div>
 
@@ -113,7 +115,7 @@
 
     <% if @blog.is_published? && signed_in? %>
       <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
-        Post a comment
+        <%= t('blogs.post_comment_label') %>
       </button>
 
       <div id="blogComment">
@@ -132,16 +134,16 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body text-center">
-        <h4 class="">Add Comment</h4>
+        <h4 class=""><%= t('blogs.show.comment_modal.title') %></h4>
         <div class="form-group">
           <label></label>
-          <input type="text" class="form-control" placeholder="Enter comment here" id="blog_comment">
+          <input type="text" class="form-control" placeholder="<%= t('blogs.show.comment_modal.comment_placeholder') %>" id="blog_comment">
           <%= hidden_field_tag :comment_id %>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" onclick="add_comment('<%= @blog.id %>','<%= current_user&.id %>')">Save</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" onclick="add_comment('<%= @blog.id %>','<%= current_user&.id %>')"><%= t(:save_label) %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:cancel_label) %></button>
       </div>
     </div>
 
@@ -157,11 +159,11 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body text-center">
-        <h4 class="">Share this Blog on facebook and receieve 5 coins.</h4>
+        <h4 class=""><%= t('blogs.show.share_modal.title') %></h4>
         <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:cancel_label) %></button>
       </div>
     </div>
 
@@ -273,7 +275,7 @@
   }
   function set_featured_blog(obj, id){
       {
-          apprise('Are You Sure You Want To change Featured status?', {'verify': true}, function (r) {
+          apprise('<%= t('blogs.feautre_blog_text') %>', {'verify': true}, function (r) {
               if (r) {
                   var obj_cls = $(obj).attr('class');
                   var status = ''

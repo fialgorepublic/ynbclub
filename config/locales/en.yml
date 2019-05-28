@@ -100,10 +100,26 @@ en:
       descriptn_length_errr:  Description must be atleast 150 words long.
       default_image_error:    please change the default image before publishing.
       publish_btn_label:      Publish
+    show:
+      buyer_view_label:       Show as buyers see it
+      comment_modal:
+        title:                Add Comment
+        comment_placeholder:  Enter comment here
+      share_modal:
+        title:                Share this Blog on facebook and receieve 5 coins.
     assign_product_modal:
       assign_title:           Assign your product to blog post
+    share_on_facebook_label:  Share on Facebook
+    feautre_blog_text:        Are you sure you Want to change featured status?
+    goto_list_label:          Go to the list of blog posts
+    post_comment_label:       Post a comment
 
   cancel_label:               Cancel
   save_label:                 Save
   search_label:               Search
   clear_label:                Clear
+  edit_label:                 Edit
+  delete_label:               Delete
+  delete_confirmation:        Are you sure?
+  publish_label:              Publish
+  ubpublish_label:            Unpublish

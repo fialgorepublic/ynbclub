@@ -77,7 +77,7 @@ module BlogsHelper
   end
 
   def share_button_text
-    action_name == 'index' ? '' :  'Share on Facebook'
+    action_name == 'index' ? '' :  I18n.t('blogs.share_on_facebook_label')
   end
 
   def banner_size
