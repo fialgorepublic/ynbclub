@@ -33,6 +33,9 @@ en:
     create_account_label:     Create Account
     forgot_password_label:    Forgot Password?
 
+  forgot_password:
+    send_instruction_label:  Send me reset password instructions
+
   sidebar:
     dashboard_label_text:     Dashboard
     share_with_friends_label: Share With Friends
