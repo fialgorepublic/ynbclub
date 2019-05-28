@@ -35,7 +35,7 @@
                 <div class="Newblog-category">
                   <div class="col-md-12">
                     <div class="category-option" type="button" data-toggle="popover" id="tooltip-stlye-category" data-placement="top" data-content="Please Select Category First" title="">
-                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
+                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => t('blogs.new.category_placeholder')}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
               <% if current_user.is_admin? %>
                 <div class="row m-t-20">
                   <div class="col-md-8">
-                    <%= link_to 'Add or edit category', "javascript:void(0)", id: 'create-or-edit-category'%>
+                    <%= link_to t('blogs.new.category_label'), "javascript:void(0)", id: 'create-or-edit-category'%>
                   </div>
                 </div>
               <% end %>
@@ -54,14 +54,14 @@
                   <div class="blogBox-style">
                     <div class="box-shadow-am">
                       <div class="form-group">
-                        <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: "Add Title",  :required => true %>
+                        <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: t('blogs.new.title_placeholder'),  :required => true %>
                       </div>
 
                       <div class="form-group">
                         <label>Enter Text</label>
                         <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
-                        <span id="display_count">Total Words: 0</span>
-                        <span class="float-right">Minimum Reuqired Words: 150</span>
+                        <span id="display_count"><%= t('blogs.new.total_words') %>: 0</span>
+                        <span class="float-right"><%= t('blogs.new.minimum_required_words') %>: 150</span>
                       </div>
                     </div>
                   </div>
@@ -71,12 +71,12 @@
 
             <div class="col-md-4">
               <div class="product-heading">
-                <h2> Products </h2>
+                <h2><%= t('blogs.new.products_label') %></h2>
               </div>
 
               <div class="product-toolTips">
                 <div class="box-shadow-am sm-pd-am m-t-20 assign-Heading" type="button" data-toggle="popover" data-placement="bottom" data-content="Please Select Product" title="">
-                  <h4><a href="javascript:void(0);" onclick="get_products();" style="text-decoration: none;">+ Assign Product</a></h4>
+                  <h4><a href="javascript:void(0);" onclick="get_products();" style="text-decoration: none;">+ <%= t('blogs.new.assign_products') %></a></h4>
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@
 
     <div class="actions">
       <div class="blog-submt-btn">
-        <%= form.submit "Publish", class: 'btn btn-success' %>
+        <%= form.submit t('blogs.new.publish_btn_label'), class: 'btn btn-success' %>
       </div>
     </div>
   </div>
@@ -209,7 +209,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Assign your product to blog post</h4>
+        <h4 class="modal-title"><%= t('blogs.assign_product_modal.assign_title') %></h4>
       </div>
 
       <div class="modal-body ">
@@ -220,8 +220,8 @@
                 <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title', data: { type: 'search' } ) %>
               </div>
               <div class="col-md-3">
-                <%= submit_tag("Search", class: 'btn btn-primary form-group', id: 'search-btn') %>
-                <%= submit_tag("Clear", class: 'btn btn-default form-group', id: 'clear-btn-search') %>
+                <%= submit_tag(t(:search_label), class: 'btn btn-primary form-group', id: 'search-btn') %>
+                <%= submit_tag(t(:clear_label), class: 'btn btn-default form-group', id: 'clear-btn-search') %>
               </div>
             </div>
           <% end %>
@@ -235,8 +235,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="add_products();">Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default" onclick="add_products();"><%= t(:save_label) %></button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t(:cancel_label) %></button>
       </div>
     </div>
 
@@ -298,11 +298,11 @@
       $('#blog-form').submit(validateDefaultImage)
       var v = CKEDITOR.instances.blog_description
       words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
-      if (words) { $('#display_count').text(`Total Words: ${words.length}`); }
+      if (words) { $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`); }
       v.on('key', function(event) {
         words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
         if (words) {
-          $('#display_count').text(`Total Words: ${words.length}`);
+          $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
         }
       });
 
@@ -312,12 +312,12 @@
         if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
         if (description) {
           if (description.length < 150) {
-            alert("Description must be atleast 150 words long.")
+            alert("<%= t('blogs.new.descriptn_length_errr') %>")
             return false
           } else { return true }
         }
         else {
-          alert("Please add Blog description");
+          alert("<%= t('blogs.new.blog_description_empty') %>");
           return false;
         }
 
@@ -326,7 +326,7 @@
       function validateDefaultImage(){
         file = $('#fileupload').val();
         if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
-          toastr.error('please change the default image before publishing');
+          toastr.error('<%= t('blogs.new.default_image_error') %>');
           return false;
         }
       }

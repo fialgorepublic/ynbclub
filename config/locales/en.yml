@@ -86,6 +86,24 @@ en:
       edit_banner_label:      Edit Banner
       new_blog_label:         New Blog
       show_more_label:        Show More
-    
+    new:
+      create_blog_title:      Create new blog post
+      edit_blog_title:        Edit blog post
+      category_label:         Add or edit category
+      category_placeholder:   Select Category
+      title_placeholder:      Add Title
+      total_words:            Total Words
+      minimum_required_words: Minimum Reuqired Words
+      products_label:         Products
+      assign_products:        Assign Product
+      blog_description_empty: Please add Blog description
+      descriptn_length_errr:  Description must be atleast 150 words long.
+      default_image_error:    please change the default image before publishing.
+      publish_btn_label:      Publish
+    assign_product_modal:
+      assign_title:           Assign your product to blog post
+
   cancel_label:               Cancel
   save_label:                 Save
+  search_label:               Search
+  clear_label:                Clear
