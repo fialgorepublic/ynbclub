@@ -114,6 +114,31 @@ en:
     goto_list_label:          Go to the list of blog posts
     post_comment_label:       Post a comment
 
+  orders:
+    index:
+      title:                  All Orders
+      search_placeholder:     Search for Cutomer Name/ City / District / Province / Order No / Email
+      table_headers:
+        date_label:           Date
+        order_label:          Order#(Shop)
+        tracking_label:       Tracking#(GHTK)
+        customer_name_label:  Customer Name
+        number_label:         Phone Number
+        picked_phone_label:   Picked Phone
+        email_label:          Email
+        address_label:        Address
+        ward_label:           Ward
+        province_label:       Province
+        district_label:       District
+        city_label:           City
+        country_label:        Country
+        price_label:          Price
+        transport_label:      Transport Type
+        edit_address_label:   Edit Address
+        send_ghtk_label:      Send To GHTK
+      update_adress_modal:
+        title:                Edit Address
+
   cancel_label:               Cancel
   save_label:                 Save
   search_label:               Search
@@ -123,3 +148,5 @@ en:
   delete_confirmation:        Are you sure?
   publish_label:              Publish
   ubpublish_label:            Unpublish
+  close_label:                Close
+
