@@ -166,6 +166,28 @@ en:
       url_label:              URL
       shared_at_label:        Shared at
 
+  approve_sales:
+    title:                    Order Management
+    since_label:              Since
+    to_date_label:            To Date
+    discount_status_label:    Discount Status
+    payment_status_label:     Payment Status
+    referral_partner_label:   Referral / Partner
+    order_paid_label:         Order Paid
+    errors:
+      date_error:             please select to date first.
+      since_date_error:       please select since date first.
+    table_headers:
+      order_id_label:         Order Id
+      created_date_label:     Date Created
+      customer_label:         Customer
+      tt_discount_label:      TT Discount
+      total_money:            Total Money
+      discount_label:         Discount
+      payment_status_label:   Payment Status
+      partner_label:          Partner
+      referral_code_label:    Referral Code
+
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
@@ -178,5 +200,10 @@ en:
   ubpublish_label:            Unpublish
   close_label:                Close
   commission_label:           Commission
+  apply_filter_label:         Apply Filter
+  clear_filter_label:         Clear Filter
+  approve_sales_label:        Approve Sale
+  cancel_sale_label:          Cancel Sale
+  apply_label:                Apply
 
 
