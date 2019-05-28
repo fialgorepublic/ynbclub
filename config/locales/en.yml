@@ -155,6 +155,15 @@ en:
     phone_no_label:           Phone No
     join_date_label:          Joined Date
 
+  shared_urls:
+    title:                    Shared Urls
+    table_headers:
+      id_label:               Id#
+      shared_by_label:        Shared By
+      platform_label:         Platform
+      url_label:              URL
+      shared_at_label:        Shared at
+
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
