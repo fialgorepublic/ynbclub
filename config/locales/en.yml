@@ -12,6 +12,20 @@ en:
     about_us_label:         About Us
     logout_lable:           Logout
 
+  register:
+    register_label:           Register to Saint L' Beau
+    facebook_signup_label:    Signup with Facebook
+    google_signup_label:      Signup with Google +
+    or_label:                 or
+    enter_name_placeholder:   Enter Username
+    username_label:           Username
+    email_label:              Email
+    email_placeholder:        Enter Email
+    password_label:           Password
+    password_placeholder:     Enter Password
+    have_account_label:       I have an account
+    close_label:              Close
+
   sidebar:
     dashboard_label_text:     Dashboard
     share_with_friends_label: Share With Friends
