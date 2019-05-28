@@ -26,6 +26,13 @@ en:
     have_account_label:       I have an account
     close_label:              Close
 
+  login:
+    login_label:              Log in to Saint L' Beau
+    facebook_signin_label:    Login with Facebook
+    google_signin_label:      Login with Google +
+    create_account_label:     Create Account
+    forgot_password_label:    Forgot Password?
+
   sidebar:
     dashboard_label_text:     Dashboard
     share_with_friends_label: Share With Friends

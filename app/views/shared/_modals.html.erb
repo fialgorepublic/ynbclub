@@ -4,28 +4,28 @@
       <div class="modal-body">
         <div class="modal-holder">
           <div class="main-login">
-            <h3 class="text-center">Log in to Saint L' Beau</h3>
+            <h3 class="text-center"><%= t('login.login_label') %></h3>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
-                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> Login with Facebook</a>
+                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> <%= t('login.facebook_signin_label') %></a>
                 </div>
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
-                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> Login with Google +</a>
+                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> <%= t('login.facebook_signin_label') %></a>
                 </div>
               </div>
             </div>
             <div class="login-or">
-              <span class="span-or text-center">or</span>
+              <span class="span-or text-center"><%= t('register.or_label') %></span>
             </div>
             <%= form_for :resource, url: session_path(resource_name),  method: "POST", :html => {:id =>"sign_in_user", :onsubmit => "return false;"}  do |f| %>
             <div class="form-group">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email", :class => 'form-control' %>
+              <%= f.label t('register.email_label') %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: t('register.email_placeholder'), :class => 'form-control' %>
             </div>
             <div class="form-group">
-              <%= f.label :password %><br />
-              <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :class => 'form-control' %>
+              <%= f.label t('register.password_label') %><br />
+              <%= f.password_field :password, autocomplete: "off",placeholder: t('register.password_placeholder'), :class => 'form-control' %>
             </div>
             <% if devise_mapping.rememberable? -%>
             <div class="form-group">
@@ -34,14 +34,14 @@
             </div>
             <% end -%>
             <div class="actions text-center">
-              <button class="btn btn-primary btn-lg btn-bottom btn-block" onclick="login_user();">Log in</button>
+              <button class="btn btn-primary btn-lg btn-bottom btn-block" onclick="login_user();"><%= t('unauthorized_header.login_label') %></button>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <a href="javascript:void(0);" onclick="register_form();" class="text-center">Create Account</a>
+                <a href="javascript:void(0);" onclick="register_form();" class="text-center"><%= t('login.create_account_label') %></a>
               </div>
               <div class="col-md-6 text-right">
-                <a href="javascript:void(0);" onclick="forgot_password();" class="text-center">Forgot password?</a>
+                <a href="javascript:void(0);" onclick="forgot_password();" class="text-center"><%= t('login.forgot_password_label') %></a>
               </div>
             </div>
             <% end %>
@@ -50,11 +50,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetFields()">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetFields()"><%= t('register.close_label') %></button>
       </div>
     </div>
   </div>
 </div>
+
 <div id="signUp" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -115,6 +116,7 @@
     </div>
   </div>
 </div>
+
 <div id="forgotPassword" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
