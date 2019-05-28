@@ -138,7 +138,24 @@ en:
         send_ghtk_label:      Send To GHTK
       update_adress_modal:
         title:                Edit Address
+  permissions:
+    index:
+      title:                  Permissions Manager
+      view_permissions_label: View Permissions
+    show:
+      title:                  Assign New Permissions
+      change_btn_label:       Change Permissions
+      choose_permision_label: Choose Permissions
 
+  users:
+    username_label:           Username
+    firstname_label:          First Name
+    lastname_label:           Last Name
+    email_label:              Email
+    phone_no_label:           Phone No
+    join_date_label:          Joined Date
+
+  actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
   search_label:               Search
