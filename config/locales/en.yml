@@ -1,33 +1,26 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  sidebar:
+    dashboard_label_text:     Dashboard
+    share_with_friends_label: Share With Friends
+    take_and_share_label:     Take a snapshot and share
+    exchange_coins_label:     Exchange Coins
+    my_orders_label:          My Orders
+    referral_sales_label:     Referral Sales
+    blogs_label:              Blogs
+    all_orders_label:         All Orders
+    permissions_label:        Permission Manager
+    shared_urls_label:        Shared URL's
+    commission_label:         Commission
+    approve_sales_label:      Approve Sales
+    configuration_label:      Configuration
+    payment_histroy_label:    Payment History
+    ambassadors_label:        Ambassadors
+    ban_users_label:          Ban Users
+    deduct_points_label:      Deduct Points
+    categories_label:         Categories
+    manage_rewards_label:     Manage Rewards
+    pages_design_label:       Pages Design
+    ghtk_status_label:        Update GHTK Status
+    invite_history_label:     Invite Friends History
+    acc_setting_label:        Acc settings
+    referral_link_label:      Copy Referral Link
