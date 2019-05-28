@@ -154,6 +154,8 @@ en:
     email_label:              Email
     phone_no_label:           Phone No
     join_date_label:          Joined Date
+    ambassador_label:         Brand Ambassador
+    name_label:               Name
 
   shared_urls:
     title:                    Shared Urls
@@ -175,4 +177,6 @@ en:
   publish_label:              Publish
   ubpublish_label:            Unpublish
   close_label:                Close
+  commission_label:           Commission
+
 
