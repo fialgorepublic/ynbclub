@@ -61,3 +61,20 @@ en:
     invite_history_label:     Invite Friends History
     acc_setting_label:        Acc settings
     referral_link_label:      Copy Referral Link
+
+  referral_sales:
+    index:
+      page_title:             Referral Sales
+
+    table_headers:
+      order_label:            Order
+      price_label:            Price
+      customer_name:          Customer_name
+      email_label:            Email
+      shop_name_label:        Shop Name
+      address_label:          Address
+      ambassador_label:       Ambassador
+      commission_label:       Commission
+      tracking_label:         Tracking Id
+      shipment_label:         Shipment Status
+      payment_status:         Payment Status
