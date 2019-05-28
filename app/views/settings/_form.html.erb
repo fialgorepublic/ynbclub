@@ -12,29 +12,29 @@
   <% end %>
 
     <section class="title-bar head-shop-setting col-md-12 col-sm-12">
-      <div class="col-md-4 float-left-moblie">
-        <h1 class="text-black"><i class="fa fa-gears"></i> General configuration</h1>
+      <div class="col-md-10 float-left-moblie">
+        <h1 class="text-black"><i class="fa fa-gears"></i><%= t('setting.title') %></h1>
         <hr>
       </div>
 
-      <div class="form-group col-md-8 text-right responsive nowrap" style="text-align: right;">
-        <%= form.submit "Save", class: 'btn btn-primary' %>
+      <div class="form-group col-md-2 text-right responsive nowrap" style="text-align: right;">
+        <%= form.submit t(:save_label), class: 'btn btn-primary' %>
       </div>
     </section>
 
     <div class="section col-xs-12">
       <div class="col-md-4">
-        <h4>Partner payment</h4>
+        <h4><%= t('setting.payement_setting_label') %></h4>
         <p></p>
       </div>
       <div class="col-md-8 wrapper-content p-t15">
         <div class="form-group p-none" show-errors="">
-          <label for="min_withdraw" class="text-no-bold ws-nm">Minimum payment amount</label>
+          <label for="min_withdraw" class="text-no-bold ws-nm"><%= t('setting.minimum_payment_label') %></label>
           <%= form.text_field :min_payment, id: :setting_min_payment, class: 'form-control ng-pristine ng-untouched ng-valid ng-valid-min' %>
           <div ng-messages="configForm.min_withdraw.$error" role="alert" class="ng-inactive">
             <!-- ngMessage: min -->
           </div>
-          <p class="note text-font-italic mt5">Affiliate minimum amount must be reached at the end of the month so shop owner can pay for that Partner!</p>
+          <p class="note text-font-italic mt5"><%= t('setting.amount_description_label') %></p>
         </div>
         <div class="clear"></div>
       </div>
@@ -42,19 +42,19 @@
 
     <div class="section col-xs-12">
       <div class="col-md-4">
-        <h4>Cookie</h4>
+        <h4><%= t('setting.cookies_setting_label') %></h4>
         <p></p>
       </div>
       <div class="col-md-8 wrapper-content p-t15 clearfix">
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group" show-errors="">
-              <label for="ref_cookie_time" class="text-no-bold">Cookie time (in days)</label>
+              <label for="ref_cookie_time" class="text-no-bold"><%= t('setting.cookie_time_label') %></label>
               <%= form.text_field :cookie_time, id: :setting_cookie_time, class: 'form-control ng-pristine ng-untouched ng-valid ng-valid-min' %>
               <div ng-messages="configForm.ref_cookie_time.$error" role="alert" class="ng-inactive">
                 <!-- ngMessage: min -->
               </div>
-              <p class="note text-font-italic mt5">Maximum Linkref storage time on client machine when importing partner's linkref</p>
+              <p class="note text-font-italic mt5"><%= t('setting.cookie_description_label') %></p>
             </div>
           </div>
         </div>

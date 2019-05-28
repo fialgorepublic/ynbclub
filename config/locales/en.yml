@@ -187,6 +187,14 @@ en:
       payment_status_label:   Payment Status
       partner_label:          Partner
       referral_code_label:    Referral Code
+  setting:
+    title:                    General configuration
+    payement_setting_label:   Partner payment
+    minimum_payment_label:    Minimum payment amount
+    amount_description_label: Affiliate minimum amount must be reached at the end of the month so shop owner can pay for that Partner!
+    cookies_setting_label:    Cookie
+    cookie_time_label:        Cookie time (in days)
+    cookie_description_label: Maximum Linkref storage time on client machine when importing partner's linkref
 
   actions_lable:              Actions
   cancel_label:               Cancel
