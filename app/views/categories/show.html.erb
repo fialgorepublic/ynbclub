@@ -1,9 +1,9 @@
 <div class="col-md-9">
   <p>
-    <strong>Name:</strong>
+    <strong><%= t('categories.name_label') %>:</strong>
     <%= @category.name %>
   </p>
 
-  <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-default' %> |
-  <%= link_to 'Back', categories_path, class: 'btn btn-default' %>
+  <%= link_to t(:edit_label), edit_category_path(@category), class: 'btn btn-default' %> |
+  <%= link_to t(:back_label), categories_path, class: 'btn btn-default' %>
 </div>

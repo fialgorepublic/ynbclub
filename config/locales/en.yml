@@ -223,6 +223,14 @@ en:
       points_label:           Points
     edit:
       title:                  Edit Rewards
+  
+  categories:
+    index:
+      title:                  Categories
+      new_btn_label:          New Category
+    name_label:               Name
+    edit:
+      title:                  Edit Category
 
   actions_lable:              Actions
   cancel_label:               Cancel
