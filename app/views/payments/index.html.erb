@@ -1,9 +1,9 @@
 <div class="col-md-9">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="card-header">View Payment History</h1>
+      <h1 class="card-header"><%= t('payments.title') %></h1>
       <hr>
-      <%= link_to 'Make a Payment', 'javascript:void(0);', class: "btn btn-info btn-sm pull-right", id: 'make-new-payment' %>
+      <%= link_to t('payments.make_payment_label'), 'javascript:void(0);', class: "btn btn-info btn-sm pull-right", id: 'make-new-payment' %>
       <br/><br/>
       <div class="input-group">
         <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Payment code / Recipient name / Email " autofocus="" value="<%= params[:text] %>">
@@ -17,21 +17,21 @@
       </div>
     </div>
     <div class="col-md-4">
-      <h5>Payment Start Date</h5>
+      <h5><%= t('payments.payemnt_start_date_label') %></h5>
       <%= text_field_tag :since, selected_since_date(params), :class => 'form-control dateTime', :placeholder=>"Payment Start Date" %>
     </div>
     <div class="col-md-4">
-      <h5>Payment End Date</h5>
+      <h5><%= t('payments.payemnt_end_date_label') %></h5>
       <%= text_field_tag :to_date, selected_to_date(params), :class => 'form-control dateTime', :placeholder=> "Payment End Date" %>
     </div>
     <div class="col-md-4">
-      <h5>Partner</h5>
+      <h5><%= t('payments.partner_label') %></h5>
       <%= collection_select(:user, :id, User.brand_ambassadors, :id, :name, { selected: selected_partner(params) }, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Please select partner" }) %>
     </div>
   </div>
   <div class="col-md-12 m-t-30">
-    <a href="/payments" class="btn btn-info pull-right" style="margin-left: 5px;">Clear filter</a>
-    <%= link_to 'Apply filter', 'javascript:void(0);', class: "btn btn-info pull-right", id: 'apply-filter' %>
+    <a href="/payments" class="btn btn-info pull-right" style="margin-left: 5px;"><%= t(:clear_filter_label) %></a>
+    <%= link_to t(:apply_filter_label), 'javascript:void(0);', class: "btn btn-info pull-right", id: 'apply-filter' %>
   </div>
   <br/>
   <br/>

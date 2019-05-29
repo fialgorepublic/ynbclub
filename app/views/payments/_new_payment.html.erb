@@ -1,24 +1,24 @@
 <%= form_for @payment, url: payments_path, :remote => true, method: "POST", :html => {:id =>"new_payment", :class => 'form-horizontal form-simple'}  do |form| %>
     <div class="modal-body">
-      <h4 class=" text-center">CREATE PAYMENT</h4>
+      <h4 class=" text-center"><%= t('payments.modal.create_payment_label') %></h4>
 
       <div class="form-group">
-        <%= form.label :email %>
+        <%= form.label  t('payments.table_headers.email_label') %>
         <%= form.collection_select :user_id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :email , {:include_blank => 'Select Email'}, html_options = {:class=>"form-control", required: true, id: "user-id-select"} %>
       </div>
 
       <div class="form-group">
-        <%= form.label :amount_paid %>
+        <%= form.label t('payments.table_headers.amount_label') %>
         <%= form.number_field :amount, id: :payment_amount, class: 'form-control', required: true %>
       </div>
 
       <div class="form-group">
-        <%= form.label :number_math %>
+        <%= form.label t('payments.table_headers.number_math_label') %>
         <%= form.text_field :number_math, id: :payment_number_math, class: 'form-control', required: true %>
       </div>
 
       <div class="form-group">
-        <%= form.label :note %>
+        <%= form.label t('payments.table_headers.note_label') %>
         <%= form.text_field :note, id: :payment_note, class: 'form-control' %>
       </div>
 
@@ -33,8 +33,8 @@
       <!--</div>-->
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= form.submit :class => 'btn btn-success' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:close_label) %></button>
+        <%= form.submit t('payments.modal.create_btn_label'), :class => 'btn btn-success' %>
       </div>
     </div>
     <div class="error error-holder">

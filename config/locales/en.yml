@@ -1,16 +1,16 @@
 en:
   unauthorized_header:
-    blog_label:             Blog
-    brand_ambassador_label: Brand Ambassador
-    store_label:            Store
-    login_label:            Login
-    register_label:         Register
+    blog_label:               Blog
+    brand_ambassador_label:   Brand Ambassador
+    store_label:              Store
+    login_label:              Login
+    register_label:           Register
 
   header: 
-    home_label:             Home
-    catalog_label:          Catalog
-    about_us_label:         About Us
-    logout_lable:           Logout
+    home_label:               Home
+    catalog_label:            Catalog
+    about_us_label:           About Us
+    logout_lable:             Logout
 
   register:
     register_label:           Register to Saint L' Beau
@@ -195,6 +195,24 @@ en:
     cookies_setting_label:    Cookie
     cookie_time_label:        Cookie time (in days)
     cookie_description_label: Maximum Linkref storage time on client machine when importing partner's linkref
+  payments:
+    title:                    View Payment History
+    make_payment_label:       Make a Payment
+    payemnt_start_date_label: Payment Start Date
+    payemnt_end_date_label:   Payment End Date
+    partner_label:            Partner
+    table_headers:
+      payment_code_label:     Payment code
+      payment_date_label:     Payment date
+      amount_label:           Amount
+      recipient_name_label:   Recipient name
+      email_label:            Email
+      number_math_label:      Number Math
+      status_label:           Status
+      note_label:             Note
+    modal:
+      create_payment_label:   CREATE PAYMENT
+      create_btn_label:       Create Payment
 
   actions_lable:              Actions
   cancel_label:               Cancel
