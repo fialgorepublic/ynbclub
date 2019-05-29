@@ -214,6 +214,16 @@ en:
       create_payment_label:   CREATE PAYMENT
       create_btn_label:       Create Payment
 
+  point_types:
+    index:
+      title:                  Rewards
+      new_btn_label:          New Reward
+    table_headers:
+      name_label:             Name
+      points_label:           Points
+    edit:
+      title:                  Edit Rewards
+
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
@@ -231,5 +241,8 @@ en:
   approve_sales_label:        Approve Sale
   cancel_sale_label:          Cancel Sale
   apply_label:                Apply
+  show_label:                 Show
+  destroy_label:              Destroy
+  back_label:                 Back
 
 

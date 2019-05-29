@@ -1,12 +1,12 @@
 <div class="col-md-9">
   <p id="notice"><%= notice %></p>
 
-  <h1 class="card-header">Editing Reward</h1>
+  <h1 class="card-header"><%= t('point_types.edit.title') %></h1>
 
   <%= render 'form', point_type: @point_type %>
   <br/>
-  <%= link_to 'Show', @point_type, class: 'btn btn-default' %> |
-  <%= link_to 'Back', point_types_path, class: 'btn btn-default' %>
+  <%= link_to t(:show_label), @point_type, class: 'btn btn-default' %> |
+  <%= link_to t(:back_label), point_types_path, class: 'btn btn-default' %>
 </div>
 
 <script type="text/javascript">
@@ -15,4 +15,3 @@
   });
 
 </script>
-
