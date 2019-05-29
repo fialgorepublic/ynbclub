@@ -36,7 +36,7 @@ class OrderService
         sent_to_ghtk:       sent_to_ghtk?,
         financial_status:   params['financial_status'],
         fulfilment_status:  fulfillment_status,
-        items_attributes:   items_attributes
+        items_attributes:   items_attributes,
         store:              set_store
       }
     end
