@@ -37,6 +37,7 @@ class OrderService
         financial_status:   params['financial_status'],
         fulfilment_status:  fulfillment_status,
         items_attributes:   items_attributes
+        store:              set_store
       }
     end
 
@@ -85,5 +86,13 @@ class OrderService
     def find_city city_name
       city = City.find_by(name: 'name')
       city.present? ? city : nil
+    end
+
+    def set_store
+      status_url = params['order_status_url']
+      return "" if status_url.blank?
+      return 'SaintlBeau' if status_url.include?('www.saintlbeau.com')
+      return 'ynbclub'    if status_url.include?('checkout.shopify.com')
+      ''
     end
 end
