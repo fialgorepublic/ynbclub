@@ -113,7 +113,10 @@ en:
     feautre_blog_text:        Are you sure you Want to change featured status?
     goto_list_label:          Go to the list of blog posts
     post_comment_label:       Post a comment
-
+    controller:
+      create_blog_success:    Blog was successfully created.
+      updated_blog:           Blog was successfully updated.
+      destroy_blog_success:   Blog was successfully destroyed.
   orders:
     index:
       title:                  All Orders
