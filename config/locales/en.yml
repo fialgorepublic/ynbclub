@@ -163,6 +163,8 @@ en:
     city_label:               City
     zipcode_label:            Zip code
     password_label:           Password
+    date_of_birth_label:      Date Of Brith
+    select_gender_label:      Select Gender
     billing_info:
       title:                  Billing Information
       sub_title:              Information used for payment
@@ -170,7 +172,7 @@ en:
       bank_branch_name_label: Name of Bank and Branch
       account_name_label:     Account name
       account_number_label:   Account number
-
+      bank_account_label:     Bank Account
     show:
       partner_info_label:     Partner Information
       discount_label:         History of Discounts
@@ -265,6 +267,16 @@ en:
   invite:
     title:                    Invite Friends History
 
+  acc_settings:
+    title:                    Account Settings
+    current_email_label:      Current Email
+    new_email_label:          New Email
+    current_password_label:   Current Password
+    new_password_label:       New Password
+    rept_new_passwd_label:    Repeat New Password
+    personal_details_label:   Personal Details
+    shipping_address_label:   Shipping Address
+      
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
