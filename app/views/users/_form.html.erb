@@ -1,21 +1,21 @@
 <%= form_with(model: user, local: true, class: 'form-horizontal', id: 'new-ambassedor') do |form| %>
   <div class="card-body">
     <div class="form-group row">
-      <%= form.label "Username *", class: 'control-label text-right col-md-3' %>
+      <%= form.label "#{t('users.username_label')} *", class: 'control-label text-right col-md-3' %>
       <div class="col-md-5">
         <%= form.text_field :name, id: :user_name, class: 'form-control', required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <%= form.label "email *", class: 'control-label text-right col-md-3' %>
+      <%= form.label "#{t('users.email_label')} *", class: 'control-label text-right col-md-3' %>
       <div class="col-md-5">
         <%= form.text_field :email, id: :user_email, class: 'form-control', required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <%= form.label "phone_number", class: 'control-label text-right col-md-3' %>
+      <%= form.label t('users.phone_no_label'), class: 'control-label text-right col-md-3' %>
       <div class="col-md-5">
         <%= form.text_field :phone_number, id: :user_phone_number, class: 'form-control' %>
       </div>
@@ -32,14 +32,14 @@
 
 
     <div class="form-group row">
-      <%= form.label "commission *", class: 'control-label text-right col-md-3' %>
+      <%= form.label "#{t(:commission_label)} *", class: 'control-label text-right col-md-3' %>
       <div class="col-md-5">
         <%= form.number_field :commission, id: :user_commission, class: 'form-control', required: true, step: :any %>
       </div>
     </div>
 
     <div class="form-group row">
-      <%= form.label "password *", class: 'control-label text-right col-md-3' %>
+      <%= form.label "#{t('users.password_label')} *", class: 'control-label text-right col-md-3' %>
       <div class="col-md-5">
         <%= form.password_field :password, id: :user_password, class: 'form-control', required: true %>
       </div>
@@ -53,7 +53,7 @@
           <div class="row">
             <div class="offset-sm-3 col-md-5">
               <%= form.submit class: 'btn btn-primary btn-rounded submit' %>
-              <%= link_to 'Back', users_path, class: 'btn btn-secondary clear-form btn-rounded btn-outline' %>
+              <%= link_to t(:back_label), users_path, class: 'btn btn-secondary clear-form btn-rounded btn-outline' %>
             </div>
           </div>
         </div>
