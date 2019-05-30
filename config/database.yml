@@ -1,6 +1,6 @@
 default: &default
   adapter: postgresql
-  username: postgres
+  username: mac
   password: 12345
   pool: 5
   timeout: 5000

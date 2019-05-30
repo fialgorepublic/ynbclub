@@ -267,7 +267,11 @@ en:
     name_label:               Name
     edit:
       title:                  Edit Category
-
+    controller:
+      create_success:         Category was successfully created.
+      update_success:         Category was successfully updated.
+      destroy_success:        Category was successfully destroyed.
+  
   invite:
     title:                    Invite Friends History
 
