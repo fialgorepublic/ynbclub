@@ -346,3 +346,7 @@ en:
   post_shared_by_someone:     Someone has already added this post
   url_make_sure:              Please Make sure Url is correct.
   invalid_url:                Invalid Url.
+  changes_saved_message:      Changes saved successfully.
+  login_success:              Successfully login
+  email_password_invalid:     Email and password invalid
+  banned_message:             You are banned from admin
