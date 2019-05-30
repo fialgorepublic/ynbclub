@@ -19,7 +19,7 @@ class DashboardController < ApplicationController
 
   def update_user_role
     current_user.update_attributes(role_id: params[:role_id])
-    flash[:notice] = "Successfully updated role"
+    flash[:notice] = I18n.t(:update_role_success_label)
     if current_user.role.name == "Buyer"
       buyer = "true"
     else
@@ -34,8 +34,8 @@ class DashboardController < ApplicationController
     user = current_user.update(avatar: params[:user][:avatar])
     respond_to do |format|
       if user
-        format.html { redirect_to root_path, notice: 'Successfully Updated user image' }
-        format.js {  flash.now[:notice] = "Successfully Updated user image." }
+        format.html { redirect_to root_path, notice: I18n.t(:image_success_message) }
+        format.js {  flash.now[:notice] = I18n.t(:image_success_message) }
       else
         @error_messages =[]
         user.errors.full_messages.map { |msg| # Show Error messages while creating new system
@@ -58,16 +58,16 @@ class DashboardController < ApplicationController
 
   def step_two
     @url = params[:url].include?('www.facebook.com') ? params[:url].split('&').first : params[:url].split('?').first
-    return redirect_to step_one_path, alert: "You already have added this post." if current_user.share_urls.find_by_url(@url).present?
-    return redirect_to step_one_path, alert: "Someone has already added this post" if ShareUrl.find_by_url(@url).present?
+    return redirect_to step_one_path, alert: I18n.t(:post_duplicate_sare) if current_user.share_urls.find_by_url(@url).present?
+    return redirect_to step_one_path, alert: I18n.t(:post_shared_by_someone) if ShareUrl.find_by_url(@url).present?
 
     begin
       @object = LinkThumbnailer.generate(@url)
 
-      redirect_to step_one_path, alert: "Invalid Url." if @object.images.blank?
+      redirect_to step_one_path, alert: I18n.t(:invalid_url) if @object.images.blank?
       @saintlbeau_post = has_hashtag? @object
     rescue => ex
-      redirect_to step_one_path, alert:  "Please Make sure Url is correct."
+      redirect_to step_one_path, alert: I18n.t(:url_make_sure)
     end
   end
 
