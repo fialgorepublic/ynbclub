@@ -156,7 +156,36 @@ en:
     join_date_label:          Joined Date
     ambassador_label:         Brand Ambassador
     name_label:               Name
+    referral_label:           Referral
+    address_line1_label:      Address line 1
+    address_line2_label:      Address line 2
+    state_label:              State
+    city_label:               City
+    zipcode_label:            Zip code
+    password_label:           Password
+    billing_info:
+      title:                  Billing Information
+      sub_title:              Information used for payment
+      ncn_number_label:       National Security Number
+      bank_branch_name_label: Name of Bank and Branch
+      account_name_label:     Account name
+      account_number_label:   Account number
 
+    show:
+      partner_info_label:     Partner Information
+      discount_label:         History of Discounts
+      go_back_label:          Go Back
+      referral_code_label:    Referral Code
+      total_income_label:     Total Income
+      has_paid_label:         Has been paid
+      not_paid_label:         Not paid
+      general_info_label:     General information
+      basic_info_label:       Some basic information
+      stt_label:              STT
+      recording_time_label:   Recording Time
+      describe_label:         Describe
+      income_label:           Income
+      pay_label:              Pay
   shared_urls:
     title:                    Shared Urls
     table_headers:
@@ -195,6 +224,7 @@ en:
     cookies_setting_label:    Cookie
     cookie_time_label:        Cookie time (in days)
     cookie_description_label: Maximum Linkref storage time on client machine when importing partner's linkref
+
   payments:
     title:                    View Payment History
     make_payment_label:       Make a Payment
@@ -232,6 +262,9 @@ en:
     edit:
       title:                  Edit Category
 
+  invite:
+    title:                    Invite Friends History
+
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
@@ -252,5 +285,6 @@ en:
   show_label:                 Show
   destroy_label:              Destroy
   back_label:                 Back
+  update_label:               Update
 
 
