@@ -291,7 +291,13 @@ en:
     share_on_facebook_label:  Share On Facebook
     share_on_twitter_label:   Share On Twitter
     share_on_email_label:     Share On Email
-    
+  
+  affiliates:
+    title:                    Manage Affiliate
+    search_placeholder:        Name / Email / Phone Number
+    payment_status:           Payment Status
+    browsing_status:          Browsing Status
+
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
@@ -314,5 +320,8 @@ en:
   back_label:                 Back
   update_label:               Update
   upload_image_label:         Upload Image
+  joining_date_label:         Joining Date
+  referral_code_label:        Referral Code
+  money_label:                Money
 
 
