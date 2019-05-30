@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="main">
-        <h2> <i class="fa fa-paint-brush"></i> Pages Design</h2>
+        <h2> <i class="fa fa-paint-brush"></i> <%= t('page_design.title') %></h2>
       </div>
       <hr>
     </div>
@@ -12,7 +12,7 @@
     <div class="col-md-12">
       <div class="page-de-tab-holder">
         <%= link_to page_path do %>
-          <p> <i class=""><img src="/assets/icon-1.png"></i> Home Page</p>
+          <p> <i class=""><img src="/assets/icon-1.png"></i> <%= t('page_design.home_page_label') %></p>
           <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
         <% end %>
       </div>
@@ -23,7 +23,7 @@
     <div class="col-md-12">
       <div class="page-de-tab-holder">
         <%= link_to take_snapshot_path do %>
-          <p> <i class=""><img src="/assets/icon-3.png"></i>  Take a snapshot and share</p>
+          <p> <i class=""><img src="/assets/icon-3.png"></i>  <%= t('page_design.snapshot_label') %></p>
           <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
         <% end %>
       </div>
@@ -34,7 +34,7 @@
     <div class="col-md-12">
       <div class="page-de-tab-holder">
         <a href="javascript:void(0)" data-target="#coinModal" data-toggle="modal">
-          <p> <i class=""><img src="/assets/coin.png"></i> How to earn coins</p>
+          <p> <i class=""><img src="/assets/coin.png"></i> <%= t('page_design.earn_coins_label') %></p>
           <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
         </a>
       </div>
@@ -45,7 +45,7 @@
     <div class="col-md-12">
       <div class="page-de-tab-holder">
         <%= link_to share_with_friends_path do %>
-          <p> <i class=""><img src="/assets/icon-2.png"></i>  Share with friends</p>
+          <p> <i class=""><img src="/assets/icon-2.png"></i>  <%= t('page_design.share_label') %></p>
           <p class="pd-tab-right"><i class="fa fa-angle-right"></i></p>
         <% end %>
       </div>

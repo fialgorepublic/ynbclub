@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="main">
-        <h2> <i class="fa fa-paint-brush"></i> Home Page</h2>
+        <h2> <i class="fa fa-paint-brush"></i> <%= t('page_design.home_page_label') %></h2>
       </div>
       <hr>
     </div>
@@ -13,9 +13,9 @@
         <div class="row">
           <div class="col-md-12 text-right cu-btn-holder" >
             <%= link_to edit_page_path, class: "btn btn-default" do %>
-              <i class="fa fa-pencil"></i>  Edit</button>
+              <i class="fa fa-pencil"></i>  <%= t(:edit_label) %></button>
             <% end %>
-            <button class="btn btn-default">delete</button>
+            <button class="btn btn-default"><%= t(:delete_label) %></button>
           </div>
         </div>
 

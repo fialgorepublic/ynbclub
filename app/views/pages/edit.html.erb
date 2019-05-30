@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="main">
-        <h2> <i class="fa fa-paint-brush"></i> Home Page</h2>
+        <h2> <i class="fa fa-paint-brush"></i> <%= t('page_design.home_page_label') %></h2>
       </div>
       <hr>
     </div>
@@ -11,8 +11,8 @@
   <%= form_for @page, url: page_path, method: :put do |f| %>
     <div class="row">
       <div class="col-md-12 text-right cu-btn-holder" >
-        <%= f.submit "Save", class: "btn btn-default" %>
-        <button class="btn btn-default">Cancel</button>
+        <%= f.submit t(:save_label), class: "btn btn-default" %>
+        <button class="btn btn-default"><%= t(:cancel_label) %></button>
       </div>
     </div>
 

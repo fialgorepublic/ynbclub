@@ -188,6 +188,7 @@ en:
       describe_label:         Describe
       income_label:           Income
       pay_label:              Pay
+
   shared_urls:
     title:                    Shared Urls
     table_headers:
@@ -276,7 +277,21 @@ en:
     rept_new_passwd_label:    Repeat New Password
     personal_details_label:   Personal Details
     shipping_address_label:   Shipping Address
-      
+
+  page_design:
+    title:                    Pages Design
+    home_page_label:          Home Page
+    snapshot_label:           Take a snapshot and share
+    earn_coins_label:         How to earn coins
+    share_label:              Share with friends
+    edit_snapshot_label:      Edit take a snapshot and share
+    copy_share_link_label:    Copy Share link
+    share_referral_label:     Share Referral Url
+    share_description_label:  Share your referral url with your friends
+    share_on_facebook_label:  Share On Facebook
+    share_on_twitter_label:   Share On Twitter
+    share_on_email_label:     Share On Email
+    
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
@@ -298,5 +313,6 @@ en:
   destroy_label:              Destroy
   back_label:                 Back
   update_label:               Update
+  upload_image_label:         Upload Image
 
 

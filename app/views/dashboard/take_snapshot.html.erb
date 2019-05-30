@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="main">
-        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Take a snapshot and Share </h2>
+        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i><%= t('page_design.snapshot_label') %> </h2>
       </div>
       <hr>
     </div>
@@ -14,10 +14,10 @@
       <div class="row">
         <div class="col-md-11 text-right cu-btn-holder">
           <%= link_to edit_take_snapshots_path, class: "btn btn-default" do %>
-            <i class="fa fa-pencil"></i> Edit
+            <i class="fa fa-pencil"></i> <%= t(:edit_label) %>
           <% end %>
 
-          <%= link_to 'Go Back', page_design_path, class: "btn btn-default" %>
+          <%= link_to t('users.show.go_back_label'), page_design_path, class: "btn btn-default" %>
         </div>
       </div>
     <% end %>
