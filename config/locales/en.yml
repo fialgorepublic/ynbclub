@@ -294,10 +294,19 @@ en:
   
   affiliates:
     title:                    Manage Affiliate
-    search_placeholder:        Name / Email / Phone Number
+    search_placeholder:       Name / Email / Phone Number
     payment_status:           Payment Status
     browsing_status:          Browsing Status
 
+  all_users:
+    deduct_label:             Deduct Points
+    ban_label:                Ban Users
+    filter_type_label:        Select Filter Type
+    points_label:             Points
+    banned_label:             Banned
+    points_history_label:     Points History
+    deduct_btn_label:         Deduct
+    deduct_field_label:       "Enter points to deduct"
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
