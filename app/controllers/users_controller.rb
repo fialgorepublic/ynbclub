@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.create_profile(phone_number: @user.phone_number)
-        format.html { redirect_to users_path, notice: 'User was successfully created.' }
+        format.html { redirect_to users_path, notice: I18n.t(:user_create_success) }
         format.json { render :index, status: :created, location: @user }
       else
         flash[:alert] = @user.errors.full_messages.first
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(params[:user][:password].present? ? user_params : edit_user_params)
-        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_path, notice: I18n.t(:user_update_success) }
         format.json { render :index, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: I18n.t(:user_destroy_success) }
       format.json { head :no_content }
     end
   end
@@ -79,14 +79,14 @@ class UsersController < ApplicationController
     if params[:current_email] == @user.email
       @user.email = params[:new_email]
       if @user.save
-        flash[:notice] = "Email successfully updated!. You need to login again to continue"
+        flash[:notice] = I18n.t(:user_email_update)
         sign_out(@user)
         redirect_to root_path
       else
         message = @user.errors.full_messages
       end
     else
-      message = "Current email doesn't match with the profile you are currently logged in!"
+      message = I18n.t(:email_not_matched)
       redirect_to acc_settings_path(current_email: params[:current_email], new_email: params[:new_email]), alert: message
     end
   end
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.valid_password?(params[:current_password])
       if @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
-        flash[:notice] = "Password is updated!. You need to login again to continue"
+        flash[:notice] = I18n.t(:password_update_success)
         sign_out(@user)
         redirect_to root_path
       else
@@ -103,7 +103,7 @@ class UsersController < ApplicationController
         redirect_to acc_settings_path
       end
     else
-      flash[:alert] = "Current password doesn't match!"
+      flash[:alert] = I18n.t(:password_mismatch)
       redirect_to acc_settings_path
     end
   end
@@ -112,7 +112,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.update_attributes(is_activated: params[:value])
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Active status Successfully changed.' }
+      format.html { redirect_to users_url, notice: I18n.t(:active_status_changed) }
       format.json { head :no_content }
     end
   end
@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     user.create_profile if user.profile.blank?
 
     user.profile.update(profile_params)
-    redirect_to users_path, success: "Successfully update"
+    redirect_to users_path, success: I18n.t(:profile_update)
   end
 
   def import_partner
@@ -158,7 +158,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:user][:id])
     if @user.update(user_update_params)
       @user.profile.update(phone_number: @user.phone_number)
-      flash[:notice] = "Partner information saved successfully"
+      flash[:notice] = I18n.t(:partner_info_success)
       redirect_to dashboard_path
     else
       @error_messages =[]
@@ -197,17 +197,17 @@ class UsersController < ApplicationController
   def ban
     user = User.find_by_id(params[:id])
     user.update(banned: params[:value])
-    flash = "User has been banned from accesing saintlbeau!"
+    flash = I18n.t(:banned_user_message)
     redirect_to users_ban_users_path
   end
 
   def deduct_points
     user = User.find_by_id(params[:id])
     if user.points.pluck(:point_value).sum < params[:point_value].to_i
-      render json: { success: false, message: "Invalid points value" }
+      render json: { success: false, message: I18n.t(:invalid_points) }
     else
       user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points") if user.present?
-      render json: { success: true, message: "Admin points updated successfully."}
+      render json: { success: true, message: I18n.t(:admin_update_points)}
     end
   end
 
@@ -216,13 +216,13 @@ class UsersController < ApplicationController
   end
 
   def generate_discount_code
-    return redirect_to exchange_coins_users_path(coins: params[:coins]), alert: "You don't have enough coins." if current_user.total_points < params[:coins].to_i
+    return redirect_to exchange_coins_users_path(coins: params[:coins]), alert: I18n.t(:enough_coins_message)  if current_user.total_points < params[:coins].to_i
     ShopifyService.create_session
     success, message = ShopifyService.new(current_user, params[:coins]).call
     if success
-      flash[:notice] = "Exchange is successfully completed."
+      flash[:notice] = I18n.t(:exchange_success)
     else
-      flash[:alert] = "Something went wrong, unable to exchange at this moment!"
+      flash[:alert] = I18n.t(:exchange_error)
     end
     url_params = { coins: params[:coins] } unless success
 

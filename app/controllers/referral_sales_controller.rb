@@ -30,7 +30,7 @@ class ReferralSalesController < ApplicationController
 
     respond_to do |format|
       if @referral_sale.save
-        format.html { redirect_to @referral_sale, notice: 'Referral sale was successfully created.' }
+        format.html { redirect_to @referral_sale, notice: I18n.t(:referral_sale_create_suces) }
         format.json { render :show, status: :created, location: @referral_sale }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ReferralSalesController < ApplicationController
   def update
     respond_to do |format|
       if @referral_sale.update(referral_sale_params)
-        format.html { redirect_to @referral_sale, notice: 'Referral sale was successfully updated.' }
+        format.html { redirect_to @referral_sale, notice: I18n.t(:referral_sale_update_suces)}
         format.json { render :show, status: :ok, location: @referral_sale }
       else
         format.html { render :edit }

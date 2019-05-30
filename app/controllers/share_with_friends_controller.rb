@@ -7,7 +7,7 @@ class ShareWithFriendsController < ApplicationController
 
   def update
     if @share_with_friend.update(share_with_friends_params)
-      redirect_to share_with_friends_path, notice: "Changes are updated successfully."
+      redirect_to share_with_friends_path, notice: I18n.t(:changes_update_success)
     else
       flash[:alert] = @share_with_friend.errors.full_messages
       render :edit

@@ -6,7 +6,7 @@ class TakeSnapshotsController < ApplicationController
 
   def update
     if @snapshot.update(snapshot_params)
-      redirect_to take_snapshot_path, notice: "Succeffully updated."
+      redirect_to take_snapshot_path, notice: I18n.t(:update_snapshot)
     else
       render :edit
     end
@@ -14,9 +14,9 @@ class TakeSnapshotsController < ApplicationController
 
   def destroy
     if @snapshot.delete_avatar?(params[:id])
-      redirect_to take_snapshot_path, notice: "Picture removed."
+      redirect_to take_snapshot_path, notice: I18n.t(:picture_removed)
     else
-      redirect_to edit_take_snapshots_path, alert: "Something went wrong!."
+      redirect_to edit_take_snapshots_path, alert: I18n.t(:order_update_error)
     end
   end
 

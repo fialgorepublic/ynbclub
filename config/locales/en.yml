@@ -350,3 +350,36 @@ en:
   login_success:              Successfully login
   email_password_invalid:     Email and password invalid
   banned_message:             You are banned from admin
+  blocked_buyer_message:      You are not permitted for this operation.
+  order_address_success:      Order address updated Successfully.
+  order_update_error:         Something went wrong!
+  gthk_address_error:         Address is not valid.
+  partner_info_success:       Partner information saved successfully
+  payment_created_success:    Payment was successfully created.
+  permission_success_message: "Permissions for %{email} are updated successfully."
+  reward_success:             Reward was successfully created.
+  reward_update_success:      Reward was successfully updated.
+  reward_destroy_success:     Reward was successfully destroyed.
+  profile_update_success:     Profile successfully updated!
+  referral_sale_create_suces: Referral sale was successfully created.
+  referral_sale_update_suces: Referral sale was successfully updated.
+  successfully_signin:        Signed in successfully
+  successfully_signed_up:     Signed Up successfully
+  changes_update_success:     Changes are updated successfully.
+  update_snapshot:            Succeffully updated.
+  picture_removed:            Picture removed.
+  user_create_success:        User was successfully created.
+  user_update_success:        User was successfully updated.
+  user_destroy_success:       User was successfully destroyed.
+  user_email_update:          Email successfully updated!. You need to login again to continue
+  email_not_matched:          Current email doesn't match with the profile you are currently logged in!
+  password_update_success:    Password is updated!. You need to login again to continue
+  password_mismatch:          Current password doesn't match!
+  active_status_changed:      Active status Successfully changed.
+  profile_update:             Successfully update
+  banned_user_message:        User has been banned from accesing saintlbeau!
+  invalid_points:             Invalid points value
+  admin_update_points:        Admin points updated successfully.
+  enough_coins_message:       You don't have enough coins.
+  exchange_sucess:            Exchange is successfully completed.
+  exchange_error:             Something went wrong, unable to exchange at this moment!

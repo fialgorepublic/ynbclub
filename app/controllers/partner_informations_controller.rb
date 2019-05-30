@@ -6,7 +6,7 @@ class PartnerInformationsController < ApplicationController
     @partner_information = PartnerInformation.new(partner_information_params)
 
     if @partner_information.save
-      flash[:notice] = "Partner information saved successfully"
+      flash[:notice] = I18n.t(:partner_info_success)
       redirect_to dashboard_path
     else
       @error_messages =[]
