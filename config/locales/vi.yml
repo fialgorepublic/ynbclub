@@ -390,3 +390,5 @@ vi:
   enough_coins_message:       Bạn không có đủ xu.
   exchange_sucess:            Trao đổi đã được hoàn thành
   exchange_error:             Đã xảy ra lỗi, không thể trao đổi tại thời điểm này!
+  language:                   ngôn ngữ
+

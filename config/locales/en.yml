@@ -383,3 +383,4 @@ en:
   enough_coins_message:       You don't have enough coins.
   exchange_sucess:            Exchange is successfully completed.
   exchange_error:             Something went wrong, unable to exchange at this moment!
+  language:                   Language
