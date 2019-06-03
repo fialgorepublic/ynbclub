@@ -132,7 +132,7 @@
   <% unless current_user.is_admin? %>
     <div class="row">
       <div class="col-md-12 text-center">
-        <a href="/step_one" class="btn btn-default btn-lg">Get Started</a>
+        <a href="/step_one" class="btn btn-default btn-lg"><%= t(:getting_started_label) %></a>
       </div>
     </div>
   <% end %>

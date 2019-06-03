@@ -25,12 +25,12 @@
 
           <% if @blogs.count > 0 %>
             <div class="col-md-2 post-sorting pull-right" style="margin-left: 15px;">
-              <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: 'All', class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+              <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:all_label), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
             </div>
             <div class="col-md-2 post-sorting pull-right">
               <select class="sorting-fltr" id="sort-blogs">
                 <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-                <option value="0">Newest First</option>
+                <option value="0"><%= t(:newest_first_label) %></option>
                 <option value="1">A-Z </option>
                 <option value="2">Z-A </option>
               </select>

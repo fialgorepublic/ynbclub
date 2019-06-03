@@ -9,7 +9,7 @@
         <div class="col-lg-12">
           <%= search_form_for @q, url: share_link_count_users_path do |f| %>
             <div class="input-group">
-              <%= f.search_field :name_or_email_or_phone_number_cont, { class: 'form-control', placeholder: "Search for Name / Email", id: 'search-field' } %>
+              <%= f.search_field :name_or_email_or_phone_number_cont, { class: 'form-control', placeholder: t('invite.search_placeholer'), id: 'search-field' } %>
               <span class="input-group-btn">
                 <button class="btn btn-default btn-lg" id='clear-btn' type="button" data-url="<%= share_link_count_users_path %>">
                   <i class="fa fa-times" aria-hidden="true"></i>

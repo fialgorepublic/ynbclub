@@ -6,7 +6,7 @@
       <hr>
       <%= form_tag permissions_path, method: :get, id: "search-form" do %>
         <div class="input-group">
-          <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="Name / Email / Phone Number" autofocus="" value="<%= params[:q] %>">
+          <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="<%= t('affiliates.search_placeholder') %>" autofocus="" value="<%= params[:q] %>">
           <%= hidden_field_tag :deduct_points, params[:deduct_points], id: 'deduct_points_hidden_field' %>
           <span class="input-group-btn">
           <button class="btn btn-sm btn-default" type="submit" id="search-btn"><i class="fa fa-search"></i></button>

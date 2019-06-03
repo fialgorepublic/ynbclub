@@ -19,12 +19,12 @@
 
 <td><%= number_with_delimiter(order.total.to_i, delimiter: ".") %>₫</td>
 <td><%= order.transport_type.titleize %></td>
-<td><%= link_to 'Edit Address', 'Javascript:void(0);', class: 'edit_address', data: { order_id: order.id } %></td>
+<td><%= link_to t('orders.index.table_headers.edit_address_label'), 'Javascript:void(0);', class: 'edit_address', data: { order_id: order.id } %></td>
 <td>
   <% if order.sent_to_ghtk? %>
-    Already Sent
+    <%= t('orders.index.already_sent') %>
   <% else %>
-    <%= link_to 'Send To GHTK', 'Javascript:void(0);', class: 'send_to_ghtk', data: { order_id: order.id } %>
+    <%= link_to t('orders.index.table_headers.send_ghtk_label'), 'Javascript:void(0);', class: 'send_to_ghtk', data: { order_id: order.id } %>
   <% end %>
 </td>
 <!-- <#% else %>

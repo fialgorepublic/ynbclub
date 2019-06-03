@@ -58,7 +58,7 @@
                       </div>
 
                       <div class="form-group">
-                        <label>Enter Text</label>
+                        <label><%=t('blogs.new.description') %></label>
                         <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
                         <span id="display_count"><%= t('blogs.new.total_words') %>: 0</span>
                         <span class="float-right"><%= t('blogs.new.minimum_required_words') %>: 150</span>

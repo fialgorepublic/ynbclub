@@ -100,6 +100,7 @@ vi:
       descriptn_length_errr:   Phần mô tả phải có độ dài ít nhất 150 từ
       default_image_error:     Vui lòng thay đổi hình ảnh mặc định trước khi đăng bài 
       publish_btn_label:       Đăng bài 
+      description:             Nhập văn bản
 
     show:
       buyer_view_label:        Hiển thị khi người mua thấy 
@@ -123,7 +124,8 @@ vi:
   orders:
     index:
       title:                  Tất cả các đơn hang 
-      search_placeholder:     Tìm kiếm tên khách hàng/Thành phố/Quận/Tỉnh/Mã đơn hàng/Email 
+      search_placeholder:     Tìm kiếm tên khách hàng/Thành phố/Quận/Tỉnh/Mã đơn hàng/Email
+      already_sent:           Đã gửi
       table_headers:
         date_label:           Ngày
         order_label:          Mã đơn hàng#(Shop)
@@ -145,6 +147,7 @@ vi:
 
       update_adress_modal:
         title:                Chỉnh sửa địa chỉ
+    sweeper_message:          Đang trong quá trình quét. Bạn sẽ nhận được email ngay sau khi quá trình hoàn tất
 
   permissions:
     index:
@@ -227,6 +230,10 @@ vi:
       payment_status_label:   Tình trạng thanh toán 
       partner_label:          Đối tác 
       referral_code_label:    Mã giới thiệu 
+    placeholders:
+      select_option:          Chọn một tùy chọn
+      start_date:             Vui lòng chọn ngày kể từ khi bộ lọc bắt đầu
+      end_date:               Vui lòng chọn ngày kể từ khi bộ lọc kết thúc
 
   setting:
     title:                    Cấu hình chung 
@@ -242,7 +249,11 @@ vi:
     make_payment_label:       Thực hiện thanh toán 
     payemnt_start_date_label: Ngày bắt đầu thanh toán 
     payemnt_end_date_label:   Ngày kết thúc thanh toán 
-    partner_label:            Đối tác 
+    partner_label:            Đối tác
+    end_date_placeholder:     Ngày kết thúc thanh toán
+    start_date_placeholder:   Ngày bắt đầu thanh toán
+    selct_partnr_placeholder: Vui lòng lựa chọn đối tác
+    search_placeholder:       Mã thanh toán/ Tên người nhận/ Email
     table_headers:
       payment_code_label:     Mã thanh toán 
       payment_date_label:     Ngày thanh toán 
@@ -259,7 +270,8 @@ vi:
   point_types:
     index:
       title:                  Phần thưởng 
-      new_btn_label:          Phần thưởng mới 
+      new_btn_label:          Phần thưởng mới
+      reward_label:           Phần thưởng
     table_headers:
       name_label:             Tên 
       points_label:           Số điểm thưởng 
@@ -273,6 +285,8 @@ vi:
     name_label:               Tên 
     edit:
       title:                  Chỉnh sửa danh mục 
+    new:
+      create_category_label:  Tạo danh mục
     controller:
       create_success:         Danh mục đã được tạo thành công 
       update_success:         Danh mục đã được cập nhập thành công 
@@ -280,6 +294,7 @@ vi:
   
   invite:
     title:                    Lịch sử mời bạn bè
+    search_placeholer:        Tìm kiếm theo tên / Email
 
   acc_settings: 
     title:                    Cài đặt tài khoản
@@ -320,6 +335,28 @@ vi:
     points_history_label:    Lịch sử điểm 
     deduct_btn_label:         Điểm trừ
     deduct_field_label:       “Nhập điểm để khấu trừ”
+
+  scrap_blogs:
+    title:                    Tìm kiếm bài blogs
+    translate:                Biên dịch và chỉnh sửa
+    belongs_to_other:         Bài blog này thuộc sở hữu của một người dùng khác. Bạn không thể chỉnh sửa blog này
+
+  will_paginate:
+    previous_label:           Trước đó
+    next_label:               Tiếp theo
+  
+  my_orders:
+    order_label:              Đơn đặt hàng
+    date_label:               Ngày
+    payment_status:           Tình trạng thanh toán
+    fulfilment_status:        Tình trạng hoàn thành
+    price_label:              Giá
+
+  validations:
+    username:                 Please enter username
+    password:                 Please enter password
+    email:                    Vui lòng nhập email
+    valid_email:              Vui lòng nhập một địa chỉ email hợp lệ          
 
   actions_lable:              Các hoạt động 
   cancel_label:               Huỷ 
@@ -391,4 +428,29 @@ vi:
   exchange_sucess:            Trao đổi đã được hoàn thành
   exchange_error:             Đã xảy ra lỗi, không thể trao đổi tại thời điểm này!
   language:                   ngôn ngữ
+  earned_coins:               Xu đã nhận
+  status_change_cofirmation:  Bạn có chắc chắn muốn thay đổi trạng thái?
+  last_earned_coins_label:    Xu đã nhận lần cuối
+  show_more_label:            Xem thêm
+  getting_started_label:      Get Started
+  step_one_label:             Chèn liên kết được sao chép trong hình ảnh selfie hay video của bạn. Bài đăng phải đính kèm hashtag
+  continue_label:             Continue
+  number_of_coin_label:       Số xu
+  exchange_label:             Giao dịch
+  exchange_history_label:     Lịch sử giao dịch
+  discount_code_label:        Mã khuyến mãi
+  exchanged_coins_label:      Xu giao dịch
+  rewarded_discount_label:    Mã thưởng khuyến mãi
+  enter_email:                Please enter email
+  valid_email:                Please enter a valid email address.
+  newest_first_label:         Mới nhất
+  all_label:                  Tất cả
+  remember_me:                Nhớ tôi
 
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: này đã được sử dụng.

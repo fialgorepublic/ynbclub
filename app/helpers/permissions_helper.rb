@@ -3,26 +3,26 @@ module PermissionsHelper
     action = action.to_s
     case controller
     when 'referral_sales'
-      'Approve Sales' if action == 'approve_sales'
+      I18n.t('sidebar.approve_sales_label') if action == 'approve_sales'
     when 'point_types'
-      'Manage Rewards'
+      I18n.t('sidebar.manage_rewards_label')
     when 'settings'
-      'Configuration'
+      I18n.t('sidebar.configuration_label')
     when 'payments'
-      'Payment History'
+      I18n.t('sidebar.payment_histroy_label')
     when 'users'
-      return 'Ban Users' if action == 'ban'
-      return 'Deduct Points' if action == 'deduct_points'
-      return 'Commission' if action == 'brand_ambassadors'
-      'Ambassadors'
+      return I18n.t('sidebar.ban_users_label') if action == 'ban'
+      return I18n.t('sidebar.deduct_points_label') if action == 'deduct_points'
+      return I18n.t('sidebar.commission_label') if action == 'brand_ambassadors'
+      I18n.t('sidebar.ambassadors_label')
     when 'categories'
-      'Categories'
+      I18n.t('sidebar.categories_label')
     when 'dashboard'
-      'Pages Design'
+      I18n.t('sidebar.pages_design_label')
     when 'orders'
-      'All Orders'
+      I18n.t('sidebar.all_orders_label')
     when 'scrap_blogs'
-      'Blog Library'
+      I18n.t('blogs.index.blog_libray_label')
     end
   end
 

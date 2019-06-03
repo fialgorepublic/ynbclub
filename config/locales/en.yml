@@ -100,6 +100,7 @@ en:
       descriptn_length_errr:  Description must be atleast 150 words long.
       default_image_error:    please change the default image before publishing.
       publish_btn_label:      Publish
+      description:            Enter Text
     show:
       buyer_view_label:       Show as buyers see it
       comment_modal:
@@ -121,6 +122,7 @@ en:
     index:
       title:                  All Orders
       search_placeholder:     Search for Cutomer Name/ City / District / Province / Order No / Email
+      already_sent:           Already Sent
       table_headers:
         date_label:           Date
         order_label:          Order#(Shop)
@@ -141,6 +143,7 @@ en:
         send_ghtk_label:      Send To GHTK
       update_adress_modal:
         title:                Edit Address
+    sweeper_message:          Sweeper in progress. You will receive an email when it completes.
   permissions:
     index:
       title:                  Permissions Manager
@@ -222,6 +225,11 @@ en:
       payment_status_label:   Payment Status
       partner_label:          Partner
       referral_code_label:    Referral Code
+    placeholders:
+      select_option:          Select an option
+      start_date:             Please select date since filter started
+      end_date:               Please select date since filter ended
+      
   setting:
     title:                    General configuration
     payement_setting_label:   Partner payment
@@ -237,6 +245,10 @@ en:
     payemnt_start_date_label: Payment Start Date
     payemnt_end_date_label:   Payment End Date
     partner_label:            Partner
+    end_date_placeholder:     Payment end date
+    start_date_placeholder:   Payment start date
+    selct_partnr_placeholder: Please select partner
+    search_placeholder:       Payment code / Recipient name / Email
     table_headers:
       payment_code_label:     Payment code
       payment_date_label:     Payment date
@@ -254,6 +266,7 @@ en:
     index:
       title:                  Rewards
       new_btn_label:          New Reward
+      reward_label:           abcdef
     table_headers:
       name_label:             Name
       points_label:           Points
@@ -267,6 +280,8 @@ en:
     name_label:               Name
     edit:
       title:                  Edit Category
+    new:
+      create_category_label:  Create Category
     controller:
       create_success:         Category was successfully created.
       update_success:         Category was successfully updated.
@@ -274,6 +289,7 @@ en:
   
   invite:
     title:                    Invite Friends History
+    search_placeholer:        Search for Name / Email
 
   acc_settings:
     title:                    Account Settings
@@ -314,6 +330,25 @@ en:
     points_history_label:     Points History
     deduct_btn_label:         Deduct
     deduct_field_label:       "Enter points to deduct"
+  
+  scrap_blogs:
+    title:                    Search blogs from Blog Library
+    translate:                Translate and Edit
+    belongs_to_other:         This blog belongs to another user. you can't modify that.
+  
+  my_orders:
+    order_label:              Order
+    date_label:               Date
+    payment_status:           Payment Status
+    fulfilment_status:        Fulfilment Status
+    price_label:              Price
+
+  validations:
+    username:                 Please enter username
+    password:                 Please enter password
+    email:                    Please enter email
+    valid_email:              Please Enter a valid email address.             
+
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save
@@ -384,3 +419,21 @@ en:
   exchange_sucess:            Exchange is successfully completed.
   exchange_error:             Something went wrong, unable to exchange at this moment!
   language:                   Language
+  earned_coins:               Earned Coins
+  status_change_cofirmation:  Are You Sure You Want To change status?
+  last_earned_coins_label:    Last Earned Coins
+  show_more_label:            Show more
+  getting_started_label:      Get Started
+  step_one_label:             Insert copied link to your selfie or video. Post must contain hashtag
+  continue_label:             Continue
+  number_of_coin_label:       Number of coins
+  exchange_label:             Exchange
+  exchange_history_label:     Exchange History
+  discount_code_label:        Discount Code
+  exchanged_coins_label:      Exchanged Coins
+  rewarded_discount_label:    Rewarded discount
+  enter_email:                Please enter email
+  valid_email:                Please enter a valid email address.
+  newest_first_label:         Newest first
+  all_label:                  All
+  remember_me:                Remember me

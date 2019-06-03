@@ -8,20 +8,20 @@
     <div class="col-md-4">
       <div class="col-sm-12">
         <h5><%= t('approve_sales.since_label')  %></h5>
-        <%= text_field_tag :since, params[:start_date], :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
+        <%= text_field_tag :since, params[:start_date], :class => 'form-control dateTime', placeholder: t('approve_sales.placeholders.start_date') %>
       </div>
     </div>
     <div class="col-md-4">
       <div class="col-sm-12">
         <h5><%= t('approve_sales.to_date_label')  %></h5>
-        <%= text_field_tag :to_date, params[:end_date], :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
+        <%= text_field_tag :to_date, params[:end_date], :class => 'form-control dateTime', placeholder: t('approve_sales.placeholders.end_date') %>
       </div>
     </div>
     <div class="col-md-4">
       <div class="discount-dropDown">
       <div class="col-sm-12">
         <h5><%= t('approve_sales.discount_status_label')  %></h5>
-        <select id="discountStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
+        <select id="discountStatus" class="form-control" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
           <!--<option value="No Discount">No Discount</option>-->
           <option value="false" >Pending</option>
           <option value="true" >Approved</option>
@@ -36,7 +36,7 @@
       <div class="payment-dropDown">
       <div class="col-sm-12">
         <h5><%= t('approve_sales.payment_status_label')  %></h5>
-        <select id="paymentStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
+        <select id="paymentStatus" class="form-control" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
           <option value="pending">Unpaid</option>
           <option value="paid" >Paid</option>
           <!--<option value="refunded" >Refunded</option>-->

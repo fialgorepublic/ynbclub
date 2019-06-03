@@ -117,13 +117,13 @@
           },
           messages: {
             "resource[name]": {
-              required: "Please Enter Username"
+              required: "<%= t('validations.username') %>"
             },
             "resource[email]": {
-              required: "Please Enter Email"
+              required: "<%= t('validations.email') %>"
             },
             "resource[password]": {
-              required: "Please Enter Password"
+              required: "<%= t('validations.password') %>"
             }
           }
         });
@@ -132,7 +132,7 @@
 
       jQuery.validator.addMethod("emailExt", function (value, element, param) {
         return value.match(/^[a-zA-Z0-9_\.%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/);
-      }, 'Please Enter A Valid Email Address.');
+      }, '<%= t('validations.valid_email') %>');
 
       function resetFields() {
         $('form').find("input[type=tex], input[type=email], input[type=password] ").val("");
