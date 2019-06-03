@@ -353,8 +353,8 @@ vi:
     price_label:              Giá
 
   validations:
-    username:                 Please enter username
-    password:                 Please enter password
+    username:                 Tên đăng nhập
+    password:                 Mật mã
     email:                    Vui lòng nhập email
     valid_email:              Vui lòng nhập một địa chỉ email hợp lệ          
 

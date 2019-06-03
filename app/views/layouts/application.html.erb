@@ -78,10 +78,14 @@
               minlength: 6
             }
 
+
           },
           messages: {
             "resource[email]": {
-              required: "Please Enter Email"
+              required: "<%= t('validations.email') %>"
+            },
+            "resource[password]": {
+              required: "<%= t('validations.password') %>"
             }
           }
         });
@@ -95,7 +99,7 @@
           },
           messages: {
             "resource[email]": {
-              required: "Please Enter Email"
+              required: "<%= t('validations.email') %>"
             }
           }
         });
