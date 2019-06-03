@@ -432,7 +432,7 @@ vi:
   status_change_cofirmation:  Bạn có chắc chắn muốn thay đổi trạng thái?
   last_earned_coins_label:    Xu đã nhận lần cuối
   show_more_label:            Xem thêm
-  getting_started_label:      Get Started
+  getting_started_label:      bắt đầu
   step_one_label:             Chèn liên kết được sao chép trong hình ảnh selfie hay video của bạn. Bài đăng phải đính kèm hashtag
   continue_label:             Continue
   number_of_coin_label:       Số xu
@@ -446,6 +446,7 @@ vi:
   newest_first_label:         Mới nhất
   all_label:                  Tất cả
   remember_me:                Nhớ tôi
+  update_role_success_label:  Vai trò được cập nhật thành công
 
   activerecord:
     errors:

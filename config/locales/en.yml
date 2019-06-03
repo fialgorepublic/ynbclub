@@ -229,7 +229,7 @@ en:
       select_option:          Select an option
       start_date:             Please select date since filter started
       end_date:               Please select date since filter ended
-      
+
   setting:
     title:                    General configuration
     payement_setting_label:   Partner payment
@@ -437,3 +437,4 @@ en:
   newest_first_label:         Newest first
   all_label:                  All
   remember_me:                Remember me
+  update_role_success_label:  Role is updated successfully.
