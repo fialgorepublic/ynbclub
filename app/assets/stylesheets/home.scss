@@ -486,18 +486,29 @@ opacity: 1 !important;
   padding-top: 30px;
 }
 .stepone{
-  width: 90px;
-  height: 90px;
-  position: absolute;
+  width: 60px;
+  height: 60px;
+  // position: absolute;
   text-align: center;
   left: 0;
-  background: #fff;
+  border:2px solid #444;
+  // background: #fff;
   border-radius: 50%;
-  margin: 0 auto;
+  margin: 5px;
   right: 0;
   top: 20%;
-  line-height: 90px;
+  float: left;
+  font-size: 42px;
+  line-height: 60px;
 }
+
+.image-content-snap{
+  margin:10px;
+  font-size: 20px;
+  line-height: 1;
+  text-align: left;
+}
+
 .overlay-layer{
   position: relative;
 
@@ -507,7 +518,7 @@ opacity: 1 !important;
   left: 0%;
   right: 0;
   width: 100%;
-  background: rgba(0 , 0 ,0, 0.7);
+  //background: rgba(0 , 0 ,0, 0.7);
   clear: both;
   display: block;
   content: '';
