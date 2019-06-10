@@ -91,8 +91,9 @@ class OrderService
     def set_store
       status_url = params['order_status_url']
       return "" if status_url.blank?
-      return 'SaintlBeau' if status_url.include?('www.saintlbeau.com')
-      return 'ynbclub'    if status_url.include?('ynbclub.com')
+      return 'SaintlBeau'      if status_url.include?('www.saintlbeau.com')
+      return 'ynbclub'         if status_url.include?('ynbclub.com')
+      return 'dantrangrang'    if status_url.include?('dantrangrang.com')
       ''
     end
 end
