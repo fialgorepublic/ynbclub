@@ -4,7 +4,7 @@
       <%= image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
     </div>
     <div class="heading-featured">
-      <h1>Blogs</h1>
+      <h1><%= t('blogs.index.page_title') %></h1>
       <hr>
     </div>
 
@@ -13,24 +13,24 @@
         <div class="row">
           <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
             <div class="col-md-2">
-              <%= link_to "Blog Library", scrap_blogs_path, class: 'btn btn-primary' %>
+              <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn btn-primary' %>
             </div>
           <% end %>
 
           <% if current_user&.is_admin? %>
             <div class="col-md-3">
-              <%= link_to "Edit banner", "javascript:void(0);", class: 'btn btn-primary', id: 'uploaderBanner' %>
+              <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn btn-primary', id: 'uploaderBanner' %>
             </div>
           <% end %>
 
           <% if @blogs.count > 0 %>
             <div class="col-md-2 post-sorting pull-right" style="margin-left: 15px;">
-              <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: 'All', class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+              <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:all_label), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
             </div>
             <div class="col-md-2 post-sorting pull-right">
               <select class="sorting-fltr" id="sort-blogs">
                 <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-                <option value="0">Newest First</option>
+                <option value="0"><%= t(:newest_first_label) %></option>
                 <option value="1">A-Z </option>
                 <option value="2">Z-A </option>
               </select>
@@ -50,11 +50,11 @@
 
     <div class="row show-more-button">
       <div class="col-md-8">
-        <%= link_to "New Blog", new_blog_path, class: "btn btn-primary pull-left" if signed_in? %>
+        <%= link_to t('blogs.index.new_blog_label'), new_blog_path, class: "btn btn-primary pull-left" if signed_in? %>
         <% unless @blogs.current_page == @blogs.total_pages %>
           <div class="custom-showMore-btn pull-right">
             <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
-              <i class="fa fa-plus"></i> Show More
+              <i class="fa fa-plus"></i> <%= t('blogs.index.new_blog_label') %>
             <% end %>
           </div>
         <% end %>

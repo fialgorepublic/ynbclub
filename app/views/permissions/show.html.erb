@@ -1,7 +1,7 @@
 <div class="col-md-9" id="add-permission">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="card-header"><i class="fa fa-universal-access"></i> Assign New Permissions</h1>
+      <h1 class="card-header"><i class="fa fa-universal-access"></i> <%= t('permissions.show.title') %></h1>
       <hr>
     </div>
   </div>
@@ -13,7 +13,7 @@
           <table id="" class="table permission-holder table-striped table" style="width:100%">
             <thead>
               <tr>
-                <th>Choose Permissions</th>
+                <th><%= t('permissions.show.choose_permision_label') %></th>
                 <th></th>
               </tr>
               <tr></tr>
@@ -32,7 +32,7 @@
                 <% end %>
               <% end %>
 
-              <tr><td class="text-right"><%= link_to 'Change Permissions', 'javascript:void(0);', id: 'change_permissions', class: 'btn btn-primary disabled', data: { url: permissions_path(id: @user.id) } %></td>
+              <tr><td class="text-right"><%= link_to t('permissions.show.change_btn_label'), 'javascript:void(0);', id: 'change_permissions', class: 'btn btn-primary disabled', data: { url: permissions_path(id: @user.id) } %></td>
                 <td></td>
                 </tr>
             </tbody>

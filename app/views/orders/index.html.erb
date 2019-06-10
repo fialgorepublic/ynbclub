@@ -2,9 +2,7 @@
   <div class="order-dropDown-style">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="card-header">
-            All Orders
-        </h1>
+        <h1 class="card-header"><%= t('orders.index.title') %></h1>
         <hr>
       </div>
 
@@ -12,7 +10,7 @@
         <div class="col-lg-12">
           <%= search_form_for @q do |f| %>
             <div class="input-group">
-              <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_cont, { class: 'form-control', placeholder: "Search for Cutomer Name/ City / District / Province / Order No / Email", id: 'search-field' } %>
+              <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_cont, { class: 'form-control', placeholder: t('orders.index.search_placeholder'), id: 'search-field' } %>
               <span class="input-group-btn">
                 <button class="btn btn-default btn-lg" id='clear-btn' type="button" data-url="<%= orders_path %>">
                   <i class="fa fa-times" aria-hidden="true"></i>
@@ -22,7 +20,7 @@
 
             <br>
             <div class="text-center">
-              <%= f.submit 'Search', class: 'btn btn-lg btn-primary' %>
+              <%= f.submit t(:search_label), class: 'btn btn-lg btn-primary' %>
             </div>
           <% end %>
         </div>
@@ -33,9 +31,10 @@
 
   <table class="table table-striped table-bordered" id="orders">
     <thead>
+
     <tr>
-      <th>Date</th>
-      <th>Order#</th>
+      <th><%= t('orders.index.table_headers.date_label') %></th>
+      <th><%= t('orders.index.table_headers.order_label') %></th>
       <th>Store</th>
       <%= render 'table_headers' %>
     </tr>

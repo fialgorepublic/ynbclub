@@ -6,7 +6,7 @@ class EarnCoinsController < ApplicationController
 
   def update
     if @earn_coin.update(earn_coin_params)
-      redirect_to page_design_path, notice: "Changes saved successfully."
+      redirect_to page_design_path, notice: I18n.t(:changes_saved_message)
     else
       render :edit
     end

@@ -27,10 +27,10 @@ class OrdersController < ApplicationController
 
   def update
     if OrderService.new(order_params).update_address
-      flash[:success] = "Order address updated Successfully."
+      flash[:success] = I18n.t(:order_address_success)
       redirect_to orders_path
     else
-      flash[:alert] = "Something went wrong"
+      flash[:alert] = I18n.t(:order_update_error)
       redirect_to orders_path
     end
   end

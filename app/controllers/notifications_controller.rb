@@ -13,7 +13,7 @@ class NotificationsController < ApplicationController
 
   def block_buyers
     if current_user.is_buyer?
-      flash[:alert] = 'You are not permitted for this operation.'
+      flash[:alert] = I18n.t(:blocked_buyer_message)
       redirect_to root_path and return
     end
   end

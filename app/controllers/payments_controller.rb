@@ -45,8 +45,8 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       if @payment.save
         @payments = Payment.all
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
-        format.js {  flash.now[:notice] = "Payment was successfully created." }
+        format.html { redirect_to @payment, notice: I18n.t(:payment_created_success) }
+        format.js {  flash.now[:notice] = I18n.t(:payment_created_success) }
       else
         @payments = Payment.all
         format.html { render :new }

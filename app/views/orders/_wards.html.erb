@@ -1,5 +1,5 @@
 <div class="form-group">
-  <%= label_tag :wards %>
+  <%= label_tag t('orders.index.table_headers.ward_label')%>
   <%= select_tag 'order[ward]', options_for_select(@wards) , { include_blank: 'Select Ward', class: "form-control", id: "ward-select" } %>
 </div>
 

@@ -1,17 +1,17 @@
 <div class="col-md-9">
-  <h1>My Orders</h1>
+  <h1><%= t('sidebar.my_orders_label') %></h1>
   <hr>
   <table class="table table-striped table-bordered" id="my-orders">
     <thead>
     <tr>
-      <th>Order#</th>
-      <th>Date</th>
+      <th><%= t('my_orders.order_label') %>#</th>
+      <th><%= t('my_orders.date_label') %></th>
       <% if current_user.is_admin? %>
         <th>Customer</th>
       <% end %>
-      <th>Payment Status</th>
-      <th>Fulfillment Status</th>
-      <th>Price</th>
+      <th><%= t('my_orders.payment_status') %></th>
+      <th><%= t('my_orders.fulfilment_status') %></th>
+      <th><%= t('my_orders.price_label') %></th>
     </tr>
     </thead>
 

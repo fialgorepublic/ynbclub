@@ -45,19 +45,23 @@ class HomeController < ApplicationController
           path = params[:redirect].present? ? blogs_path : dashboard_path
           sign_in :user, user
 
-          flash[:notice] = "Successfully login"
-          render json: { success: true, message: "Successfully login", path: path }
+          flash[:notice] = I18n.t(:login_success)
+          render json: { success: true, message: I18n.t(:login_success), path: path }
         else
-          flash[:alert] = "Email and password invalid"
-          render json: {success: false, message: "Email and password invalid"}
+          flash[:alert] = I18n.t(:email_password_invalid)
+          render json: {success: false, message: I18n.t(:email_password_invalid)}
         end
       else
-        render json: {success: false, message: "You are banned from admin"}
+        render json: {success: false, message: I18n.t(:banned_message)}
       end
     else
-      flash[:alert] = "Email and password invalid"
-      render json: {success: false, message: "Email and password invalid"}
+      flash[:alert] = I18n.t(:email_password_invalid)
+      render json: {success: false, message: I18n.t(:email_password_invalid) }
     end
   end
 
+  def set_default_language
+    I18n.default_locale = params[:locale]
+    redirect_to root_path
+  end
 end

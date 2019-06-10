@@ -12,7 +12,7 @@ class GhtkService
     if address_present?
       place_order
     else
-      [false, "Address is not valid."]
+      [false, I18n.t(:gthk_address_error)]
     end
   end
 

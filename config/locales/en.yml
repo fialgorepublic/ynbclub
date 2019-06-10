@@ -1,33 +1,440 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  unauthorized_header:
+    blog_label:               Blog
+    brand_ambassador_label:   Brand Ambassador
+    store_label:              Store
+    login_label:              Login
+    register_label:           Register
+
+  header: 
+    home_label:               Home
+    catalog_label:            Catalog
+    about_us_label:           About Us
+    logout_lable:             Logout
+
+  register:
+    register_label:           Register to Saint L' Beau
+    facebook_signup_label:    Signup with Facebook
+    google_signup_label:      Signup with Google +
+    or_label:                 or
+    enter_name_placeholder:   Enter Username
+    username_label:           Username
+    email_label:              Email
+    email_placeholder:        Enter Email
+    password_label:           Password
+    password_placeholder:     Enter Password
+    have_account_label:       I have an account
+    close_label:              Close
+
+  login:
+    login_label:              Log in to Saint L' Beau
+    facebook_signin_label:    Login with Facebook
+    google_signin_label:      Login with Google +
+    create_account_label:     Create Account
+    forgot_password_label:    Forgot Password?
+
+  forgot_password:
+    send_instruction_label:  Send me reset password instructions
+
+  sidebar:
+    dashboard_label_text:     Dashboard
+    share_with_friends_label: Share With Friends
+    take_and_share_label:     Take a snapshot and share
+    exchange_coins_label:     Exchange Coins
+    my_orders_label:          My Orders
+    referral_sales_label:     Referral Sales
+    blogs_label:              Blogs
+    all_orders_label:         All Orders
+    permissions_label:        Permission Manager
+    shared_urls_label:        Shared URL's
+    commission_label:         Commission
+    approve_sales_label:      Approve Sales
+    configuration_label:      Configuration
+    payment_histroy_label:    Payment History
+    ambassadors_label:        Ambassadors
+    ban_users_label:          Ban Users
+    deduct_points_label:      Deduct Points
+    categories_label:         Categories
+    manage_rewards_label:     Manage Rewards
+    pages_design_label:       Pages Design
+    ghtk_status_label:        Update GHTK Status
+    invite_history_label:     Invite Friends History
+    acc_setting_label:        Acc settings
+    referral_link_label:      Copy Referral Link
+
+  referral_sales:
+    index:
+      page_title:             Referral Sales
+
+    table_headers:
+      order_label:            Order
+      price_label:            Price
+      customer_name:          Customer_name
+      email_label:            Email
+      shop_name_label:        Shop Name
+      address_label:          Address
+      ambassador_label:       Ambassador
+      commission_label:       Commission
+      tracking_label:         Tracking Id
+      shipment_label:         Shipment Status
+      payment_status:         Payment Status
+
+  blogs:
+    index:
+      page_title:             Blogs
+      blog_libray_label:      Blog Library
+      edit_banner_label:      Edit Banner
+      new_blog_label:         New Blog
+      show_more_label:        Show More
+    new:
+      create_blog_title:      Create new blog post
+      edit_blog_title:        Edit blog post
+      category_label:         Add or edit category
+      category_placeholder:   Select Category
+      title_placeholder:      Add Title
+      total_words:            Total Words
+      minimum_required_words: Minimum Reuqired Words
+      products_label:         Products
+      assign_products:        Assign Product
+      blog_description_empty: Please add Blog description
+      descriptn_length_errr:  Description must be atleast 150 words long.
+      default_image_error:    please change the default image before publishing.
+      publish_btn_label:      Publish
+      description:            Enter Text
+    show:
+      buyer_view_label:       Show as buyers see it
+      comment_modal:
+        title:                Add Comment
+        comment_placeholder:  Enter comment here
+      share_modal:
+        title:                Share this Blog on facebook and receieve 5 coins.
+    assign_product_modal:
+      assign_title:           Assign your product to blog post
+    share_on_facebook_label:  Share on Facebook
+    feautre_blog_text:        Are you sure you Want to change featured status?
+    goto_list_label:          Go to the list of blog posts
+    post_comment_label:       Post a comment
+    controller:
+      create_blog_success:    Blog was successfully created.
+      updated_blog:           Blog was successfully updated.
+      destroy_blog_success:   Blog was successfully destroyed.
+  orders:
+    index:
+      title:                  All Orders
+      search_placeholder:     Search for Cutomer Name/ City / District / Province / Order No / Email
+      already_sent:           Already Sent
+      table_headers:
+        date_label:           Date
+        order_label:          Order#(Shop)
+        tracking_label:       Tracking#(GHTK)
+        customer_name_label:  Customer Name
+        number_label:         Phone Number
+        picked_phone_label:   Picked Phone
+        email_label:          Email
+        address_label:        Address
+        ward_label:           Ward
+        province_label:       Province
+        district_label:       District
+        city_label:           City
+        country_label:        Country
+        price_label:          Price
+        transport_label:      Transport Type
+        edit_address_label:   Edit Address
+        send_ghtk_label:      Send To GHTK
+      update_adress_modal:
+        title:                Edit Address
+    sweeper_message:          Sweeper in progress. You will receive an email when it completes.
+  permissions:
+    index:
+      title:                  Permissions Manager
+      view_permissions_label: View Permissions
+    show:
+      title:                  Assign New Permissions
+      change_btn_label:       Change Permissions
+      choose_permision_label: Choose Permissions
+
+  users:
+    username_label:           Username
+    firstname_label:          First Name
+    lastname_label:           Last Name
+    email_label:              Email
+    phone_no_label:           Phone No
+    join_date_label:          Joined Date
+    ambassador_label:         Brand Ambassador
+    name_label:               Name
+    referral_label:           Referral
+    address_line1_label:      Address line 1
+    address_line2_label:      Address line 2
+    state_label:              State
+    city_label:               City
+    zipcode_label:            Zip code
+    password_label:           Password
+    date_of_birth_label:      Date Of Brith
+    select_gender_label:      Select Gender
+    billing_info:
+      title:                  Billing Information
+      sub_title:              Information used for payment
+      ncn_number_label:       National Security Number
+      bank_branch_name_label: Name of Bank and Branch
+      account_name_label:     Account name
+      account_number_label:   Account number
+      bank_account_label:     Bank Account
+    show:
+      partner_info_label:     Partner Information
+      discount_label:         History of Discounts
+      go_back_label:          Go Back
+      referral_code_label:    Referral Code
+      total_income_label:     Total Income
+      has_paid_label:         Has been paid
+      not_paid_label:         Not paid
+      general_info_label:     General information
+      basic_info_label:       Some basic information
+      stt_label:              STT
+      recording_time_label:   Recording Time
+      describe_label:         Describe
+      income_label:           Income
+      pay_label:              Pay
+
+  shared_urls:
+    title:                    Shared Urls
+    table_headers:
+      id_label:               Id#
+      shared_by_label:        Shared By
+      platform_label:         Platform
+      url_label:              URL
+      shared_at_label:        Shared at
+
+  approve_sales:
+    title:                    Order Management
+    since_label:              Since
+    to_date_label:            To Date
+    discount_status_label:    Discount Status
+    payment_status_label:     Payment Status
+    referral_partner_label:   Referral / Partner
+    order_paid_label:         Order Paid
+    errors:
+      date_error:             please select to date first.
+      since_date_error:       please select since date first.
+    table_headers:
+      order_id_label:         Order Id
+      created_date_label:     Date Created
+      customer_label:         Customer
+      tt_discount_label:      TT Discount
+      total_money:            Total Money
+      discount_label:         Discount
+      payment_status_label:   Payment Status
+      partner_label:          Partner
+      referral_code_label:    Referral Code
+    placeholders:
+      select_option:          Select an option
+      start_date:             Please select date since filter started
+      end_date:               Please select date since filter ended
+
+  setting:
+    title:                    General configuration
+    payement_setting_label:   Partner payment
+    minimum_payment_label:    Minimum payment amount
+    amount_description_label: Affiliate minimum amount must be reached at the end of the month so shop owner can pay for that Partner!
+    cookies_setting_label:    Cookie
+    cookie_time_label:        Cookie time (in days)
+    cookie_description_label: Maximum Linkref storage time on client machine when importing partner's linkref
+
+  payments:
+    title:                    View Payment History
+    make_payment_label:       Make a Payment
+    payemnt_start_date_label: Payment Start Date
+    payemnt_end_date_label:   Payment End Date
+    partner_label:            Partner
+    end_date_placeholder:     Payment end date
+    start_date_placeholder:   Payment start date
+    selct_partnr_placeholder: Please select partner
+    search_placeholder:       Payment code / Recipient name / Email
+    table_headers:
+      payment_code_label:     Payment code
+      payment_date_label:     Payment date
+      amount_label:           Amount
+      recipient_name_label:   Recipient name
+      email_label:            Email
+      number_math_label:      Number Math
+      status_label:           Status
+      note_label:             Note
+    modal:
+      create_payment_label:   CREATE PAYMENT
+      create_btn_label:       Create Payment
+
+  point_types:
+    index:
+      title:                  Rewards
+      new_btn_label:          New Reward
+      reward_label:           abcdef
+    table_headers:
+      name_label:             Name
+      points_label:           Points
+    edit:
+      title:                  Edit Rewards
+  
+  categories:
+    index:
+      title:                  Categories
+      new_btn_label:          New Category
+    name_label:               Name
+    edit:
+      title:                  Edit Category
+    new:
+      create_category_label:  Create Category
+    controller:
+      create_success:         Category was successfully created.
+      update_success:         Category was successfully updated.
+      destroy_success:        Category was successfully destroyed.
+  
+  invite:
+    title:                    Invite Friends History
+    search_placeholer:        Search for Name / Email
+
+  acc_settings:
+    title:                    Account Settings
+    current_email_label:      Current Email
+    new_email_label:          New Email
+    current_password_label:   Current Password
+    new_password_label:       New Password
+    rept_new_passwd_label:    Repeat New Password
+    personal_details_label:   Personal Details
+    shipping_address_label:   Shipping Address
+
+  page_design:
+    title:                    Pages Design
+    home_page_label:          Home Page
+    snapshot_label:           Take a snapshot and share
+    earn_coins_label:         How to earn coins
+    share_label:              Share with friends
+    edit_snapshot_label:      Edit take a snapshot and share
+    copy_share_link_label:    Copy Share link
+    share_referral_label:     Share Referral Url
+    share_description_label:  Share your referral url with your friends
+    share_on_facebook_label:  Share On Facebook
+    share_on_twitter_label:   Share On Twitter
+    share_on_email_label:     Share On Email
+  
+  affiliates:
+    title:                    Manage Affiliate
+    search_placeholder:       Name / Email / Phone Number
+    payment_status:           Payment Status
+    browsing_status:          Browsing Status
+
+  all_users:
+    deduct_label:             Deduct Points
+    ban_label:                Ban Users
+    filter_type_label:        Select Filter Type
+    points_label:             Points
+    banned_label:             Banned
+    points_history_label:     Points History
+    deduct_btn_label:         Deduct
+    deduct_field_label:       "Enter points to deduct"
+  
+  scrap_blogs:
+    title:                    Search blogs from Blog Library
+    translate:                Translate and Edit
+    belongs_to_other:         This blog belongs to another user. you can't modify that.
+  
+  my_orders:
+    order_label:              Order
+    date_label:               Date
+    payment_status:           Payment Status
+    fulfilment_status:        Fulfilment Status
+    price_label:              Price
+
+  validations:
+    username:                 Please enter username
+    password:                 Please enter password
+    email:                    Please enter email
+    valid_email:              Please Enter a valid email address.             
+
+  actions_lable:              Actions
+  cancel_label:               Cancel
+  save_label:                 Save
+  search_label:               Search
+  clear_label:                Clear
+  edit_label:                 Edit
+  delete_label:               Delete
+  delete_confirmation:        Are you sure?
+  publish_label:              Publish
+  ubpublish_label:            Unpublish
+  close_label:                Close
+  commission_label:           Commission
+  apply_filter_label:         Apply Filter
+  clear_filter_label:         Clear Filter
+  approve_sales_label:        Approve Sale
+  cancel_sale_label:          Cancel Sale
+  apply_label:                Apply
+  show_label:                 Show
+  destroy_label:              Destroy
+  back_label:                 Back
+  update_label:               Update
+  upload_image_label:         Upload Image
+  joining_date_label:         Joining Date
+  referral_code_label:        Referral Code
+  money_label:                Money
+  new_ambassador_label:       New Ambassador
+  update_role_success_mesage: Successfully updated role
+  image_success_message:      Successfully Updated user image
+  post_duplicate_share:       You already have added this post.
+  post_shared_by_someone:     Someone has already added this post
+  url_make_sure:              Please Make sure Url is correct.
+  invalid_url:                Invalid Url.
+  changes_saved_message:      Changes saved successfully.
+  login_success:              Successfully login
+  email_password_invalid:     Email and password invalid
+  banned_message:             You are banned from admin
+  blocked_buyer_message:      You are not permitted for this operation.
+  order_address_success:      Order address updated Successfully.
+  order_update_error:         Something went wrong!
+  gthk_address_error:         Address is not valid.
+  partner_info_success:       Partner information saved successfully
+  payment_created_success:    Payment was successfully created.
+  permission_success_message: "Permissions for %{email} are updated successfully."
+  reward_success:             Reward was successfully created.
+  reward_update_success:      Reward was successfully updated.
+  reward_destroy_success:     Reward was successfully destroyed.
+  profile_update_success:     Profile successfully updated!
+  referral_sale_create_suces: Referral sale was successfully created.
+  referral_sale_update_suces: Referral sale was successfully updated.
+  successfully_signin:        Signed in successfully
+  successfully_signed_up:     Signed Up successfully
+  changes_update_success:     Changes are updated successfully.
+  update_snapshot:            Succeffully updated.
+  picture_removed:            Picture removed.
+  user_create_success:        User was successfully created.
+  user_update_success:        User was successfully updated.
+  user_destroy_success:       User was successfully destroyed.
+  user_email_update:          Email successfully updated!. You need to login again to continue
+  email_not_matched:          Current email doesn't match with the profile you are currently logged in!
+  password_update_success:    Password is updated!. You need to login again to continue
+  password_mismatch:          Current password doesn't match!
+  active_status_changed:      Active status Successfully changed.
+  profile_update:             Successfully update
+  banned_user_message:        User has been banned from accesing saintlbeau!
+  invalid_points:             Invalid points value
+  admin_update_points:        Admin points updated successfully.
+  enough_coins_message:       You don't have enough coins.
+  exchange_sucess:            Exchange is successfully completed.
+  exchange_error:             Something went wrong, unable to exchange at this moment!
+  language:                   Language
+  earned_coins:               Earned Coins
+  status_change_cofirmation:  Are You Sure You Want To change status?
+  last_earned_coins_label:    Last Earned Coins
+  show_more_label:            Show more
+  getting_started_label:      Get Started
+  step_one_label:             Insert copied link to your selfie or video. Post must contain hashtag
+  continue_label:             Continue
+  number_of_coin_label:       Number of coins
+  exchange_label:             Exchange
+  exchange_history_label:     Exchange History
+  discount_code_label:        Discount Code
+  exchanged_coins_label:      Exchanged Coins
+  rewarded_discount_label:    Rewarded discount
+  enter_email:                Please enter email
+  valid_email:                Please enter a valid email address.
+  newest_first_label:         Newest first
+  all_label:                  All
+  remember_me:                Remember me
+  update_role_success_label:  Role is updated successfully.

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="main">
-        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i>Edit take a snapshot and share </h2>
+        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i><%= t('page_design.edit_snapshot_label') %> </h2>
       </div>
       <hr>
     </div>
@@ -12,8 +12,8 @@
   <%= form_for @snapshot, url: take_snapshots_path, method: :put do |f| %>
     <div class="row">
       <div class="col-md-11 text-right cu-btn-holder">
-        <%= f.submit "Update", class: "btn btn-primary" %>
-        <%= link_to "Cancel", take_snapshot_path, class: "btn btn-default" %>
+        <%= f.submit t(:update_label), class: "btn btn-primary" %>
+        <%= link_to t(:cancel_label), take_snapshot_path, class: "btn btn-default" %>
       </div>
 
       <div class="col-md-5 col-md-offset-1">
@@ -30,11 +30,11 @@
             </div>
             <div class="row">
               <div class="col-md-6" style="padding-right:0;">
-                <%= link_to "Delete", take_snapshots_path(id: 'step1'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+                <%= link_to t(:delete_label), take_snapshots_path(id: 'step1'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
               </div>
               <div class="col-md-6" style="padding-left:0;">
                 <label class="btn btn-primary btn-block">
-                  Upload Image
+                  <%= t(:upload_image_label) %>
                   <span style="display:none;">
                     <%= f.file_field :step1_avatar, class: 'upload-file', id: "step-1" %>
                   </span>
@@ -68,11 +68,11 @@
 
              <div class="row">
               <div class="col-md-6" style="padding-right:0;">
-                <%= link_to "Delete", take_snapshots_path(id: 'step2'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+                <%= link_to t(:delete_label), take_snapshots_path(id: 'step2'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
               </div>
               <div class="col-md-6" style="padding-left:0;">
                 <label class="btn btn-primary btn-block">
-                  Upload Image
+                  <%= t(:upload_image_label) %>
                   <span style="display:none;">
                     <%= f.file_field :step2_avatar, class: 'upload-file', id: "step-2" %>
                   </span>
@@ -108,11 +108,11 @@
 
              <div class="row">
               <div class="col-md-6" style="padding-right:0;">
-                <%= link_to "Delete", take_snapshots_path(id: 'step3'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+                <%= link_to t(:delete_label), take_snapshots_path(id: 'step3'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
               </div>
               <div class="col-md-6" style="padding-left:0;">
                 <label class="btn btn-primary btn-block">
-                  Upload Image
+                  <%= t(:upload_image_label) %>
                   <span style="display:none;">
                     <%= f.file_field :step3_avatar, class: 'upload-file', id: "step-3" %>
                   </span>
@@ -145,11 +145,11 @@
             </div>
              <div class="row">
               <div class="col-md-6" style="padding-right:0;">
-                <%= link_to "Delete", take_snapshots_path(id: 'step4'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
+                <%= link_to t(:delete_label), take_snapshots_path(id: 'step4'), method: :delete, class: "btn btn-danger btn-block", data: { confirm: "Are you sure? "} %>
               </div>
               <div class="col-md-6" style="padding-left:0;">
                 <label class="btn btn-primary btn-block">
-                  Upload Image
+                  <%= t(:upload_image_label) %>
                   <span style="display:none;">
                     <%= f.file_field :step4_avatar, class: 'upload-file', id: "step-4" %>
                   </span>

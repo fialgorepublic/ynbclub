@@ -1,14 +1,14 @@
 <div class="col-md-9">
   <p>
-    <strong>Name:</strong>
+    <strong><%= t('point_types.table_headers.name_label') %>:</strong>
     <%= @point_type.name %>
   </p>
 
   <p>
-    <strong>Point:</strong>
+    <strong><%= t('point_types.table_headers.points_label') %>:</strong>
     <%= @point_type.point %>
   </p>
 
-  <%= link_to 'Edit', edit_point_type_path(@point_type), class: 'btn btn-default' %> |
-  <%= link_to 'Back', point_types_path, class: 'btn btn-default' %>
+  <%= link_to t(:edit_label), edit_point_type_path(@point_type), class: 'btn btn-default' %> |
+  <%= link_to t(:back_label), point_types_path, class: 'btn btn-default' %>
 </div>

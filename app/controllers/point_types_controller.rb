@@ -30,7 +30,7 @@ class PointTypesController < ApplicationController
 
     respond_to do |format|
       if @point_type.save
-        format.html { redirect_to @point_type, notice: 'Reward was successfully created.' }
+        format.html { redirect_to @point_type, notice: I18n.t(:reward_success) }
         format.json { render :show, status: :created, location: @point_type }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class PointTypesController < ApplicationController
   def update
     respond_to do |format|
       if @point_type.update(point_type_params)
-        format.html { redirect_to @point_type, notice: 'Reward was successfully updated.' }
+        format.html { redirect_to @point_type, notice: I18n.t(:reward_update_success) }
         format.json { render :show, status: :ok, location: @point_type }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class PointTypesController < ApplicationController
     @point_type.update_attributes(is_deleted: true)
     # @point_type.destroy
     respond_to do |format|
-      format.html { redirect_to point_types_url, notice: 'Reward was successfully destroyed.' }
+      format.html { redirect_to point_types_url, notice: I18n.t(:reward_destroy_success) }
       format.json { head :no_content }
     end
   end

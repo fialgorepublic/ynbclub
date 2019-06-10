@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       rescue Exception => e
       end
       user.update_attributes(social_login: true)
-      redirect_to dashboard_path, notice: 'Signed in successfully'
+      redirect_to dashboard_path, notice: I18n.t(:successfully_signin)
     else
       user = User.create(:name => name, :email => email, :password => provider_id, social_login: true,
                          referral: Devise.friendly_token)
@@ -54,7 +54,7 @@ class SessionsController < ApplicationController
         current_user.update_attributes(:avatar => user_image) # update user profile image
       rescue Exception => e
       end
-      redirect_to dashboard_path, notice: 'Signed Up successfully'
+      redirect_to dashboard_path, notice: I18n.t(:successfully_signed_up)
     end
 
   end

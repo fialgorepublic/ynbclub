@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile.update(profile_params)
-    flash[:notice] = "Profile successfully updated!"
+    flash[:notice] = I18n.t(:profile_update_success)
     redirect_to acc_settings_path
   end
 

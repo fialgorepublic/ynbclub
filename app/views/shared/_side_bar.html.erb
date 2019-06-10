@@ -48,78 +48,99 @@
       <% unless current_user.is_admin? %>
         <li>
           <%= link_to dashboard_path, class: active_class(dashboard_path) || active_class(buyerDashboard_path) do %>
-          <i class="custom-icon" style="padding-right: 20px;"><img src="/assets/icon-1.png"></i>Dashboard
+            <i class="custom-icon" style="padding-right: 20px;"><img src="/assets/icon-1.png"></i><%= t('sidebar.dashboard_label_text') %>
           <% end %>
         </li>
 
         <li>
           <%= link_to share_with_friends_path, class: active_class(share_with_friends_path) do %>
-          <i style="padding-right: 17px;"><img src="/assets/icon-2.png"></i> Share with friends
+          <i style="padding-right: 20px;"><img src="/assets/icon-2.png"></i><%= t('sidebar.share_with_friends_label') %>
           <% end %>
         </li>
 
         <li>
           <%= link_to take_snapshot_path, class: active_class(take_snapshot_path) do %>
-          <i style="padding-right: 17px;"><img src="/assets/icon-3.png"> </i> Take a snapshot and share
+            <i style="padding-right: 17px;"><img src="/assets/icon-3.png"> </i>
+            <span><%= t('sidebar.take_and_share_label') %></span>
           <% end %>
         </li>
 
         <li  data-toggle="" data-target="#" class="collapsed">
           <%= link_to exchange_coins_users_path, class: "#{active_class(exchange_coins_users_path)}" do %>
-            <i class="fa fa-exchange" style="padding-right: 21px;"></i> Exchange Coins
+            <i class="fa fa-exchange" style="padding-right: 20px;"></i>
+            <span class=""><%= t('sidebar.exchange_coins_label') %></span>
           <% end %>
         </li>
 
         <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/orders/my" class="<%= active_class(my_orders_path) %>"><i class="custom-icon" style="padding-right: 19px;"><img src="/assets/icon-8.png"> </i> <span style="display:inline-block;margin-left:6px;"> My Orders </span></a>
+          <a href="/orders/my" class="<%= active_class(my_orders_path) %>">
+            <i class="custom-icon" style="padding-right: 20px;">
+              <img src="/assets/icon-8.png">
+            </i>
+            <span style="display:inline-block;margin-left:6px;"><%= t('sidebar.my_orders_label') %></span>
+          </a>
         </li>
       <% end %>
 
       <% unless current_user.is_buyer? %>
         <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/referral_sales" class="<%= active_class(referral_sales_path) %>"><i class="custom-icon"><img src="/assets/icon-4.png"> </i><span class="side-nav-style"> My Sales</span> </a>
+          <a href="/referral_sales" class="<%= active_class(referral_sales_path) %>">
+            <i class="custom-icon"><img src="/assets/icon-4.png"> </i>
+            <span class="side-nav-style"> <%= t('sidebar.referral_sales_label') %></span> </a>
         </li>
       <% end %>
 
       <li  data-toggle="" data-target="#" class="collapsed">
-        <a href="/blogs" class="<%= active_class(blogs_path) %>"><i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i> <span class="side-nav-style">Blogs</span></a>
+        <a href="/blogs" class="<%= active_class(blogs_path) %>">
+        <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
+        <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
       </li>
 
       <% if current_user.is_admin? || current_user.has_permission?('all_orders', 'orders') %>
         <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/orders" class="<%= active_class(orders_path) %>"><i class="custom-icon" style="padding-right: 6px;"><img src="/assets/icon-8.png"> </i> <span class="side-nav-style">All Orders </span></a>
+          <a href="/orders" class="<%= active_class(orders_path) %>">
+            <i class="custom-icon" style="padding-right: 6px;"><img src="/assets/icon-8.png"> </i>
+            <span class="side-nav-style"><%= t('sidebar.all_orders_label') %> </span>
+          </a>
         </li>
       <% end %>
 
       <% if current_user.is_admin? %>
         <li>
           <%= link_to permissions_path, class: active_class(permissions_path) do %>
-            <i class="custom-icon fa fa-universal-access" style="padding-right: 2px;"></i> <span class="side-nav-style">Permission Manager</span>
+            <i class="custom-icon fa fa-universal-access" style="padding-right: 2px;"></i>
+            <span class="side-nav-style"><%= t('sidebar.permissions_label') %></span>
           <% end %>
 
           <%= link_to shared_urls_path, class: active_class(shared_urls_path) do %>
-            <i class="custom-icon fa fa-share-alt" style="padding-right: 2px;"></i> <span class="side-nav-style">Shared URL's</span>
+            <i class="custom-icon fa fa-share-alt" style="padding-right: 2px;"></i> <span class="side-nav-style"><%= t('sidebar.shared_urls_label') %></span>
           <% end %>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('brand_ambassadors', 'users')%>
         <li>
-          <a href="/users/brand_ambassadors" class="<%= active_class("/users/brand_ambassadors") %>"><i class="custom-icon"><img src="/assets/tag-sidebar.png"> </i> <span class="side-nav-style">Commission </span> </a>
+          <a href="/users/brand_ambassadors" class="<%= active_class("/users/brand_ambassadors") %>">
+            <i class="custom-icon"><img src="/assets/tag-sidebar.png"> </i>
+            <span class="side-nav-style"><%= t('sidebar.commission_label') %> </span>
+          </a>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('approve_sales', 'referral_sales')%>
         <li>
-          <a href="/approve_sales" class="<%= active_class(approve_sales_path) %>"><i class="custom-icon"><img src="/assets/iocn-5.png"> </i> <span class="side-nav-style">Approve Sales</span>  </a>
+          <a href="/approve_sales" class="<%= active_class(approve_sales_path) %>">
+            <i class="custom-icon"><img src="/assets/iocn-5.png"> </i>
+            <span class="side-nav-style"><%= t('sidebar.approve_sales_label') %></span>
+          </a>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('configurations', 'settings')%>
         <li>
           <a class="auto click-close <%= active_class(edit_setting_path(Setting.first)) %>" href="<%= edit_setting_path(Setting.first) %>">
-          <i class="fa fa-gears sidebar-icon"></i>
-          <span class="side-nav-style ng-binding"> Configuration</span>
+            <i class="fa fa-gears sidebar-icon"></i>
+            <span class="side-nav-style ng-binding"><%= t('sidebar.configuration_label') %></span>
           </a>
         </li>
       <% end %>
@@ -127,22 +148,25 @@
       <% if current_user.is_admin? || current_user.has_permission?('index', 'payments') %>
         <li class="menu-item ng-scope" ng-repeat="item in menu.items | orderBy: 'position'">
           <a class="auto click-close <%= active_class(payments_path) %>" href="/payments">
-          <i class="fa fa-money sidebar-icon"></i>
-           <span class="side-nav-style ng-binding"> Payment History</span>
+            <i class="fa fa-money sidebar-icon"></i>
+            <span class="side-nav-style ng-binding"><%= t('sidebar.payment_histroy_label') %></span>
           </a>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('ambassadors', 'users') %>
         <li>
-          <a href="/users" class="<%= active_class(users_path) %>"><i class="custom-icon"><img src="/assets/ambassador-sidebar.png"> </i> <span class="side-nav-style">Ambassadors </span> </a>
+          <a href="/users" class="<%= active_class(users_path) %>">
+            <i class="custom-icon"><img src="/assets/ambassador-sidebar.png"> </i>
+            <span class="side-nav-style"><%= t('sidebar.ambassadors_label') %></span>
+          </a>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('ban', 'users') %>
         <li>
           <%= link_to users_ban_users_path, class: active_class(users_ban_users_path) do %>
-            <i class="sidebar-icon fa fa-ban" style="padding-right: 8px;"></i><span class="side-nav-style">Ban Users</span>
+            <i class="sidebar-icon fa fa-ban" style="padding-right: 8px;"></i><span class="side-nav-style"><%= t('sidebar.ban_users_label') %></span>
           <% end %>
         </li>
       <% end %>
@@ -150,27 +174,32 @@
       <% if current_user.is_admin? || current_user.has_permission?('deduct_points', 'users') %>
         <li>
           <%= link_to users_ban_users_path(deduct_points: true), class: active_class(users_ban_users_path(deduct_points: true)) do %>
-            <i class="custom-icon fa fa-minus-circle" style="padding-right: 4px;"></i> <span class="side-nav-style">Deduct Points</span>
+            <i class="custom-icon fa fa-minus-circle" style="padding-right: 4px;"></i> <span class="side-nav-style"><%= t('sidebar.deduct_points_label') %></span>
           <% end %>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('categories', 'categories') %>
         <li>
-          <a href="/categories" class="<%= active_class(categories_path) %>"><i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i> <span class="side-nav-style"> Categories </span> </a>
+          <a href="/categories" class="<%= active_class(categories_path) %>">
+            <i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>
+            <span class="side-nav-style"> <%= t('sidebar.categories_label') %> </span> </a>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('manage_rewards', 'point_types') %>
         <li>
-          <a href="/point_types" class="<%= active_class(point_types_path) %>"><i class="custom-icon"><img src="/assets/reward-sidebar.png"> </i> <span class="side-nav-style">Manage Rewards </span> </a>
+          <a href="/point_types" class="<%= active_class(point_types_path) %>">
+            <i class="custom-icon"><img src="/assets/reward-sidebar.png"> </i>
+            <span class="side-nav-style"><%= t('sidebar.manage_rewards_label') %></span>
+          </a>
         </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('page_design', 'dashboard') %>
         <li>
           <%= link_to page_design_path, class: active_class(page_design_path) do %>
-            <i class="fa fa-paint-brush" style="padding-right: 2px;"></i> <span class="side-nav-style">Pages Design</span>
+            <i class="fa fa-paint-brush" style="padding-right: 2px;"></i> <span class="side-nav-style"><%= t('sidebar.pages_design_label') %></span>
           <% end %>
         </li>
       <% end %>
@@ -178,17 +207,19 @@
       <% if current_user.is_admin? %>
         <li>
           <%= link_to update_status_orders_path, remote: :true, class: active_class(update_status_orders_path) do %>
-            <i class="fa fa-job" style="padding-right: 2px;"></i> <span class="side-nav-style">Update GHTK Status</span>
+            <i class="fa fa-job" style="padding-right: 2px;"></i> <span class="side-nav-style"><%= t('sidebar.ghtk_status_label') %></span>
           <% end %>
 
           <%= link_to share_link_count_users_path, class: active_class(share_link_count_users_path) do %>
-            <i class="fa fa-history" style="padding-right: 2px;"></i> <span class="side-nav-style">Invite Friends History</span>
+            <i class="fa fa-history" style="padding-right: 2px;"></i> <span class="side-nav-style"><%= t('sidebar.invite_history_label') %></span>
           <% end %>
         </li>
       <% end %>
 
       <li>
-        <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>"><i class="custom-icon" style="padding-right: 2px;"><img width="16" src="/assets/icon-10.png"> </i> <span class="side-nav-style">Acc settings </span> </a>
+        <a href="/acc_settings" class="<%= active_class(acc_settings_path) %>">
+          <i class="custom-icon" style="padding-right: 2px;"><img width="16" src="/assets/icon-10.png"> </i>
+          <span class="side-nav-style"><%= t('sidebar.acc_setting_label') %></span> </a>
       </li>
     </ul>
   </div>
@@ -196,7 +227,7 @@
 
 <div class="account-side-btn">
   <% if current_user.is_ambassador? %>
-    <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-lg btn-block acc-btn-style btn-primary" style="margin-bottom: 20px; margin-left: 7px; margin-top: 10px">Copy Referral Link</a>
+    <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-lg btn-block acc-btn-style btn-primary" style="margin-bottom: 20px; margin-left: 7px; margin-top: 10px"><%= t('sidebar.referral_link_label') %></a>
   <% end %>
 </div>
 

@@ -2,26 +2,26 @@
   <div class="order-dropDown-style">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="card-header">Order Management</h1>
+      <h1 class="card-header"><%= t('approve_sales.title')  %></h1>
       <hr>
     </div>
     <div class="col-md-4">
       <div class="col-sm-12">
-        <h5>since</h5>
-        <%= text_field_tag :since, params[:start_date], :class => 'form-control dateTime', :placeholder=>"Please select date since filter started" %>
+        <h5><%= t('approve_sales.since_label')  %></h5>
+        <%= text_field_tag :since, params[:start_date], :class => 'form-control dateTime', placeholder: t('approve_sales.placeholders.start_date') %>
       </div>
     </div>
     <div class="col-md-4">
       <div class="col-sm-12">
-        <h5>To Date</h5>
-        <%= text_field_tag :to_date, params[:end_date], :class => 'form-control dateTime', :placeholder=> "Please select date since filter ended" %>
+        <h5><%= t('approve_sales.to_date_label')  %></h5>
+        <%= text_field_tag :to_date, params[:end_date], :class => 'form-control dateTime', placeholder: t('approve_sales.placeholders.end_date') %>
       </div>
     </div>
     <div class="col-md-4">
       <div class="discount-dropDown">
       <div class="col-sm-12">
-        <h5>Discount status</h5>
-        <select id="discountStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
+        <h5><%= t('approve_sales.discount_status_label')  %></h5>
+        <select id="discountStatus" class="form-control" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
           <!--<option value="No Discount">No Discount</option>-->
           <option value="false" >Pending</option>
           <option value="true" >Approved</option>
@@ -35,8 +35,8 @@
     <div class="col-md-4">
       <div class="payment-dropDown">
       <div class="col-sm-12">
-        <h5>Payment status</h5>
-        <select id="paymentStatus" class="form-control" data-placeholder="Select an option" name="label[]" multiple>
+        <h5><%= t('approve_sales.payment_status_label')  %></h5>
+        <select id="paymentStatus" class="form-control" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
           <option value="pending">Unpaid</option>
           <option value="paid" >Paid</option>
           <!--<option value="refunded" >Refunded</option>-->
@@ -48,7 +48,7 @@
     <div class="col-md-4">
       <div class="referral-dropDown">
         <div class="col-sm-12">
-        <h5>Referral / Partner</h5>
+        <h5><%= t('approve_sales.referral_partner_label')  %></h5>
         <%= collection_select(:user, :id, User.ambassadors_with_sales, :id, :name, {}, html_options = {:class=>"form-control", :multiple=>"multiple", :placeholder => "Tìm theo mã giới thiệu/tên partner"}) %>
         <!--<%#= text_field_tag :partner,nil, :class => 'form-control', :placeholder=>"Tìm theo mã giới thiệu/tên partner" %>-->
         </div>
@@ -57,8 +57,8 @@
 
     <div class="col-md-4 m-t-30">
       <div class="col-sm-12">
-        <button onclick="apply_filter();" class="btn btn-info">Apply filter</button>
-        <a href="/approve_sales" class="btn btn-info">Clear filter</a>
+        <button onclick="apply_filter();" class="btn btn-info"><%= t(:apply_filter_label) %></button>
+        <a href="/approve_sales" class="btn btn-info"><%= t(:clear_filter_label) %></a>
       </div>
     </div>
   </div>
@@ -69,11 +69,11 @@
       <div class="form-inline m-b-sm">
         <div class="form-group m-b-sm">
           <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched" ng-model="multiDiscountStatus">
-            <option value="order_discount_approved"> approve sale</option>
-            <option value="order_discount_cancel"> cancel sale</option>
+            <option value="order_discount_approved"> <%= t(:approve_sales_label) %></option>
+            <option value="order_discount_cancel"> <%= t(:cancel_sale_label) %></option>
           </select>
-          <button id="checkboxBtn" class="btn btn-sm btn-primary float-left-moblie">Apply</button>
-          <label for="updateDiscountMulti" class="m-r-sm line-height-30 width-70-mb float-left-moblie">Order paid</label>
+          <button id="checkboxBtn" class="btn btn-sm btn-primary float-left-moblie"><%= t(:apply_label) %></button>
+          <label for="updateDiscountMulti" class="m-r-sm line-height-30 width-70-mb float-left-moblie"><%= t(:order_paid_label) %></label>
         </div>
       </div>
     </div>
@@ -161,13 +161,13 @@
       }else{
           if (since != ""){
               if (to_date == ""){
-                  alert("please select to date first.");
+                  alert("<%= t('approve_sales.errors.date_error') %>");
                   return false;
               }
           }
           if (to_date != ""){
               if (since == ""){
-                  alert("please select to since first.");
+                  alert("t('approve_sales.errors.since_date_error') %>");
                   return false;
               }
           }

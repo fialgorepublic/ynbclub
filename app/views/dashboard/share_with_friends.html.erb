@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="main">
-        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i> Share With Friends</h2>
+        <h2> <i class="fa fa-share-alt fa-lg fa-fw sidebar-icon"></i> <%= t('page_design.share_label') %></h2>
       </div>
       <hr>
     </div>
@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-md-12 text-right cu-btn-holder">
               <%= link_to edit_share_with_friends_path, class: "btn btn-default" do %>
-                <i class="fa fa-pencil"></i> Edit
+                <i class="fa fa-pencil"></i> <%= t(:edit_label) %>
               <% end %>
             </div>
           </div>
@@ -29,7 +29,7 @@
                 <input type="text" style="width: 68%;
                   float: left;
                   font-size: 20px; word-wrap: break-word" id="clipboardShareFriend" value=" https://ambassador.saintlbeau.com?invite=<%= current_user.email %>">
-                <a href="javascript:void(0);" onclick="clipboardShareFriend()"  class="btn btn-default pull-right">Copy Share link</a>
+                <a href="javascript:void(0);" onclick="clipboardShareFriend()"  class="btn btn-default pull-right"><%= t('page_design.copy_share_link_label') %></a>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
   </div>
 
   <% if current_user.is_ambassador? %>
-    <h2>Share Referral Url</h2>
+    <h2><%= t('page_design.share_referral_label') %></h2>
     <hr>
 
     <div class="row">
@@ -64,13 +64,13 @@
         <div class="box-shadow">
           <div class="row">
             <div class="col-md-12">
-              <p class="text-center">Share your referral url with your friends</p>
+              <p class="text-center"><%= t('page_design.share_description_label') %></p>
               <div class="col-md-12">
                 <div class="form-box" style="overflow: hidden">
                   <input type="text" style="width: 68%;
                     float: left;
                     font-size: 20px; word-wrap: break-word" id="clipboardShareReferral" value="https://shop.saintlbeau.com/?referral_url=<%= current_user.referral %>">
-                  <a href="javascript:void(0);" onclick="clipboardShareReferral()"  class="btn btn-default pull-right">Copy Referral link</a>
+                  <a href="javascript:void(0);" onclick="clipboardShareReferral()"  class="btn btn-default pull-right"><%= t('sidebar.referral_link_label') %></a>
                 </div>
               </div>
             </div>
@@ -81,15 +81,15 @@
       <% url = "https://shop.saintlbeau.com/?referral_url=#{current_user.referral}" %>
       <div class="row text-center">
         <div class="col-md-4 ">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary btn-block"> <i class="fa fa-facebook"></i> Share on Facebook</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary btn-block"> <i class="fa fa-facebook"></i> <%= t('page_design.share_on_facebook_label') %></a>
         </div>
 
         <div class="col-md-4">
-          <a href="https://twitter.com/intent/tweet?url=<%= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i>Share on Twitter</a>
+          <a href="https://twitter.com/intent/tweet?url=<%= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i><%= t('page_design.share_on_twitter_label') %></a>
         </div>
 
         <div class="col-md-4">
-          <a href="mailto:someone@example.com?Subject=Hello&Body=<%= url %>" target="_top" class="btn btn-warning btn-block"> <i class="fa fa-envelop"></i>Share on Email</a>
+          <a href="mailto:someone@example.com?Subject=Hello&Body=<%= url %>" target="_top" class="btn btn-warning btn-block"> <i class="fa fa-envelop"></i><%= t('page_design.share_on_email_label') %></a>
         </div>
       </div>
     </div>

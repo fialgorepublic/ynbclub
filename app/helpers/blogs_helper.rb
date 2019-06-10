@@ -8,7 +8,7 @@ module BlogsHelper
   end
 
   def blog_page_title
-    action_name == "new" ? "Create new blog post" : "Edit blog post"
+    action_name == "new" ? I18n.t('blogs.new.create_blog_title') : I18n.t('blogs.new.edit_blog_title')
   end
 
   def blog_date blog
@@ -77,7 +77,7 @@ module BlogsHelper
   end
 
   def share_button_text
-    action_name == 'index' ? '' :  'Share on Facebook'
+    action_name == 'index' ? '' :  I18n.t('blogs.share_on_facebook_label')
   end
 
   def banner_size

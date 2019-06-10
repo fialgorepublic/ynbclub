@@ -1,65 +1,65 @@
 <div class="col-md-9">
   <div class="user-show-right">
     <ul class="nav nav-tabs nav-justified">
-      <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-briefcase"></i>  Partner Information</a></li>
+      <li class="active"><a data-toggle="tab" href="#home"> <i class="fa fa-briefcase"></i>  <%= t('users.show.partner_info_label') %></a></li>
       <li><a data-toggle="tab" href="#menu1"> <i class="fa fa-list-alt"></i>
-        History of Discounts </a>
+        <%= t('users.show.discount_label') %> </a>
       </li>
     </ul>
 
     <div class="row">
       <div class="col-md-6">
-        <%= link_to "Go Back", users_path, class: "btn btn-default go-back-users" %>
+        <%= link_to t('users.show.go_back_label') , users_path, class: "btn btn-default go-back-users" %>
       </div>
     </div>
     <div class="tab-content">
       <div id="home" class="tab-pane fade in active">
         <div class="row">
           <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
-            <p><strong>Referral code:</strong> <%= @user.referral %> </p>
-            <p><strong>Total income:</strong>  <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
-            <p><strong>Has been paid:</strong> <%= number_with_delimiter(@user.paid.to_i, delimiter: ".") %> ₫</p>
-            <p><strong>Not paid:</strong> <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
+            <p><strong><%= t('users.show.referral_code_label') %>:</strong> <%= @user.referral %> </p>
+            <p><strong><%= t('users.show.total_income_label') %>:</strong>  <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
+            <p><strong><%= t('users.show.has_paid_label') %>:</strong> <%= number_with_delimiter(@user.paid.to_i, delimiter: ".") %> ₫</p>
+            <p><strong><%= t('users.show.not_paid_label') %>:</strong> <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
           </div>
         </div>
         <%= form_tag("/update_profile", id: "update_profile", method: "post") do %>
           <div class="row m-t-30">
             <div class="col-md-3">
-              <h4>General information</h4>
-              <small>Some basic information</small>
+              <h4><%= t('users.show.general_info_label') %></h4>
+              <small><%= t('users.show.basic_info_label') %></small>
             </div>
 
             <div class="col-md-9">
               <div class="row">
                 <div class="col-md-4 form-group">
-                  <label>Userame</label>
+                  <label><%= t('users.username_label') %></label>
                   <%= text_field_tag 'user[name]', @user.name, :class => 'form-control', placeholder: "First and last name" %>
                 </div>
 
                 <div class="col-md-4 form-group">
-                  <label>First Name</label>
+                  <label><%= t('users.firstname_label') %></label>
                   <%= text_field_tag 'profile[first_name]', @user.first_name, :class => 'form-control', placeholder: "First and last name" %>
                 </div>
 
                 <div class="col-md-4 form-group">
-                  <label>Last Name</label>
+                  <label><%= t('users.lastname_label') %></label>
                   <%= text_field_tag 'profile[surname]', @user.surname, :class => 'form-control', placeholder: "First and last name" %>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-4 form-group">
-                  <label>Phone number</label>
+                  <label><%= t('users.phone_no_label') %></label>
                   <%= text_field_tag 'profile[phone_number]', @user.profile_phone_number, :class => 'form-control', placeholder: "phone number" %>
                 </div>
 
                 <div class="col-md-4 form-group">
-                  <label>Commission </label>
+                  <label><%= t(:commission_label) %> </label>
                   <%= number_field_tag 'user[commission]', @user.commission, :class => 'form-control', placeholder: "0", step: :any %>
                 </div>
 
                 <div class="col-md-4 form-group">
-                  <label>Referral</label>
+                  <label><%= t('users.referral_label') %></label>
                   <%= text_field_tag 'user[referral]', @user.referral, :class => 'form-control' %>
                 </div>
               </div>
@@ -67,35 +67,35 @@
               <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                      <label>Address line 1</label>
+                      <label><%= t('users.address_line1_label') %></label>
                       <%= text_field_tag 'profile[address_line_1]', @user.address_line_1, class: "form-control", placeholder: "Address Line 1" %>
                     </div>
                 </div>
 
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Address line 2</label>
+                    <label><%= t('users.address_line2_label') %></label>
                     <%= text_field_tag 'profile[address_line_2]', @user.address_line_2, class: "form-control", placeholder: "Address Line 2" %>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group" >
-                    <label>State</label>
+                    <label><%= t('users.state_label') %></label>
                     <%= select_tag 'profile[state]', options_for_select(states, selected: @user.state), { prompt: 'Select State', class: "form-control" } %>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group" >
-                    <label>City</label>
+                    <label><%= t('users.city_label') %></label>
                     <%= select_tag 'profile[city]', options_for_select(cities, selected: @user.city), { prompt: 'Select City', class: "form-control" } %>
                   </div>
                 </div>
 
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Zip code</label>
+                    <label><%= t('users.zipcode_label') %></label>
                     <%= text_field_tag 'profile[zip_code]', @user.zip_code, class: "form-control", placeholder: "00000" %>
                   </div>
                 </div>
@@ -103,12 +103,12 @@
 
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <label>Email</label>
+                  <label><%= t('users.email_label') %></label>
                   <%= text_field_tag 'user[email]', @user.email, :class => 'form-control', placeholder: "phuongjenny19@gmail.com" %>
                 </div>
 
                 <div class="col-md-6 form-group">
-                  <label>Password</label>
+                  <label><%= t('users.password_label') %></label>
                   <%= text_field_tag 'user[password]', nil, :class => 'form-control', placeholder: "Password" %>
                 </div>
               </div>
@@ -117,34 +117,33 @@
 
           <div class="row m-t-30">
             <div class="col-md-3">
-              <h4>Billing Information</h4>
+              <h4><%= t('users.billing_info.title') %></h4>
               <small>
-              Information used for payment</small>
+              <%= t('users.billing_info.sub_title') %></small>
             </div>
             <div class="col-md-9">
               <div class="row">
                 <div class="col-md-5 form-group">
-                  <label>National Security Number *</label>
+                  <label><%= t('users.billing_info.ncn_number_label') %> *</label>
                   <%= text_field_tag 'profile[security_number]', @user.profile.present? ? @user.profile.security_number : nil, :class => 'form-control', placeholder: "Proof of the people" %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-5 form-group">
-                  <label>
-                  Name of Bank and Branch *</label>
+                  <label><%= t('users.billing_info.bank_branch_name_label') %> *</label>
                   <%= text_field_tag 'profile[bank_name]', @user.profile.present? ? @user.profile.bank_name : nil, :class => 'form-control', placeholder: "BIDV - Thai Ha branch" %>
                 </div>
               </div>
               <%= hidden_field_tag :user_id, @user.id, id: "user_id" %>
               <div class="row">
                 <div class="col-md-5 form-group">
-                  <label>Account name *</label>
+                  <label><%= t('users.billing_info.account_name_label') %> *</label>
                   <%= text_field_tag 'profile[acc_holder_name]', @user.profile.present? ? @user.profile.acc_holder_name : nil, :class => 'form-control', placeholder: "Account name" %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-5 form-group">
-                  <label>Account number *</label>
+                  <label><%= t('users.billing_info.account_number_label') %> *</label>
                   <%= text_field_tag 'profile[account_number]', @user.profile.present? ? @user.profile.account_number : nil, :class => 'form-control', placeholder: "Account number at bank" %>
                 </div>
               </div>
@@ -156,11 +155,11 @@
             </div>
 
             <div class="col-md-1">
-              <%= link_to "Delete", user_path(@user), method: :delete, class: "btn btn-danger" %>
+              <%= link_to t(:delete_label), user_path(@user), method: :delete, class: "btn btn-danger" %>
             </div>
 
             <div class="col-md-9 text-right pull-right">
-              <button class="submit btn btn-primary">Update</button>
+              <button class="submit btn btn-primary"><%= t(:delete_label) %></button>
             </div>
           </div>
         <% end %>
@@ -171,11 +170,11 @@
             <table class="table  table-striped">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>Recording Time</th>
-                  <th>Describe</th>
-                  <th>Income</th>
-                  <th>Pay</th>
+                  <th><%= t('users.show.stt_label') %></th>
+                  <th><%= t('users.show.recording_time_label') %></th>
+                  <th><%= t('users.show.describe_label') %></th>
+                  <th><%= t('users.show.income_label') %></th>
+                  <th><%= t('users.show.pay_label') %></th>
                 </tr>
               </thead>
               <tbody>

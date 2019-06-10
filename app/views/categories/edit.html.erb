@@ -1,8 +1,8 @@
 <div class="col-md-9">
-  <h1 class="card-header">Editing Category</h1>
+  <h1 class="card-header"><%= t('categories.edit.title') %></h1>
 
   <%= render 'form', category: @category %>
   <br/>
-  <%= link_to 'Show', @category, class: 'btn btn-default' %> |
-  <%= link_to 'Back', categories_path, class: 'btn btn-default' %>
+  <%= link_to t(:show_label), @category, class: 'btn btn-default' %> |
+  <%= link_to t(:back_label), categories_path, class: 'btn btn-default' %>
 </div>

@@ -60,7 +60,7 @@ class BlogsController < ApplicationController
       if @blog.save
         @blog.attach_default_image unless @blog.avatar.attached?
         @blog.add_products(params[:product])
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
+        format.html { redirect_to @blog, notice: I18n.t('blogs.controller.create_blog_success') }
         format.json { render :show, status: :created, location: @blog }
       else
         format.html { render :new }
@@ -75,7 +75,7 @@ class BlogsController < ApplicationController
     respond_to do |format|
       if @blog.update(blog_params.merge({is_published: true, user: current_user}))
         @blog.update_products(params[:product])
-        format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
+        format.html { redirect_to @blog, notice: I18n.t('blogs.controller.updated_blog') }
         format.json { render :show, status: :ok, location: @blog }
       else
         format.html { render :edit }
@@ -89,7 +89,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+      format.html { redirect_to blogs_url, notice: I18n.t('blogs.controller.destroy_blog_success') }
       format.json { head :no_content }
     end
   end
