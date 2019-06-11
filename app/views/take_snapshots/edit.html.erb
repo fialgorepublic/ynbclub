@@ -1,4 +1,9 @@
 <div class="col-md-9 m-b-50 edit-snapshot">
+  <% if @page.snapshot_banner.attached? %>
+    <%= render 'take_snapshots/banner' %>
+  <% end %>
+
+  <br>
 
   <div class="row">
     <div class="col-md-12">
