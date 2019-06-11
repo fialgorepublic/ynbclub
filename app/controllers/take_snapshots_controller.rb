@@ -20,6 +20,11 @@ class TakeSnapshotsController < ApplicationController
     end
   end
 
+  def banner
+    @page.update(snapshot_banner: params[:page][:snapshot_banner])
+    redirect_to take_snapshot_path
+  end
+
   private
     def snapshot_params
       params.require(:snapshot).permit(:step1_avatar, :step2_avatar, :step3_avatar, :step4_avatar, :step1_text, :step2_text, :step3_text, :step4_text)
