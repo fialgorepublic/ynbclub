@@ -16,4 +16,5 @@
 class Page < ApplicationRecord
   has_one_attached :image
   has_one_attached :blog_banner
+  has_one_attached :snapshot_banner
 end
