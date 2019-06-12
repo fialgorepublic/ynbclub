@@ -18,15 +18,18 @@
           <ul class="nav navbar-nav">
             <li><%= link_to t('header.home_label'), "https://shop.saintlbeau.com/" %></li>
             <li><%= link_to t('header.catalog_label'), "https://shop.saintlbeau.com/collections/all" %></li>
+            <li><%= link_to t('header.groups'), " " %></li>
+            <li><%= link_to t('unauthorized_header.conversations'), " " %></li>
+
+            <!-- <li> -->
+              <%# if current_user.is_admin? %>
+                <!-- <a href="/users"><%#= t('unauthorized_header.brand_ambassador_label') %></a> -->
+              <%# elsif current_user.is_buyer? %>
+                <%#= link_to t('unauthorized_header.brand_ambassador_label'), "#", id: "become-ambassador", data: { url: update_user_role_path, role_id: ambassador.id } %>
+              <%# end %>
+            <!-- </li> -->
             <li><a href="/blogs"><%= t('unauthorized_header.blog_label') %></a></li>
             <li><%= link_to t('header.about_us_label'), "https://shop.saintlbeau.com/pages/about-us" %></li>
-            <li>
-              <% if current_user.is_admin? %>
-                <a href="/users"><%= t('unauthorized_header.brand_ambassador_label') %></a>
-              <% elsif current_user.is_buyer? %>
-                <%= link_to t('unauthorized_header.brand_ambassador_label'), "#", id: "become-ambassador", data: { url: update_user_role_path, role_id: ambassador.id } %>
-              <% end %>
-            </li>
             <li><%= link_to t('unauthorized_header.store_label'), "https://saintlbeau.myshopify.com/" %></li>
           </ul>
 
