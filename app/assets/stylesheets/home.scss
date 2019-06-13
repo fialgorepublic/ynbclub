@@ -2455,7 +2455,8 @@ label.error {
   display:none;
 }
 
-@media only screen and (min-width: 375px) {
+
+@media screen and (min-width: 320px) and (max-width: 600px){
   .user-image{
     float:left;
     margin: 0px 20px 0px 0px;
