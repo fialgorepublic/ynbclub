@@ -25,11 +25,12 @@
           <div class="col-md-12">
             <div class="col-md-6">
               <div class="step_icon"><span> 1</span> </div>
-            <p class="text-center">Share this with friends  and earn 5 coins  for ambassadors program<%#= html_safe_content @share_with_friends.reward_text %></p>
-            </div>
+              <p class="text-center"><%= html_safe_content @share_with_friends.reward_text %></p>
+              </div>
+
               <div class="col-md-6">
-              <div class="step_icon"><span> 2</span> </div>
-            <p class="text-center">Share this with friends  to earn 8% on every order  of products<%#= html_safe_content @share_with_friends.reward_text %></p>
+                <div class="step_icon"><span> 2</span> </div>
+                <p class="text-center"><%= html_safe_content @share_with_friends.reward_text %></p>
               </div>
 <!--             <span class="text-center" data-target="#coinModal" data-toggle="modal"><a href="javascript:void(0);"><%= html_safe_content @share_with_friends.earn_coins_text %></a></span> -->
             <div class="col-md-12">

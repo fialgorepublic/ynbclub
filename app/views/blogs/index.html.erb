@@ -1,63 +1,57 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
+    <% if false  %>
+    <% else %>
+      <%= render "create_new" %>
+    <% end %>
     <div class="banner text-center">
       <%= image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
     </div>
     
     <div class="row">
-        <div class="col-md-12 blog_banner_btn">
-            <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
-              <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
-          <% end %>
+      <div class="col-md-12 blog_banner_btn">
+        <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
+          <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
+        <% end %>
 
-          <% if current_user&.is_admin? %>
-            <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
-          <% end %>
-
-        </div>
-</div>
-    <div class="row">
-      <div class="post-heading blog-redesign-style">
-       
-
-          <div class="col-md-4">
- <div class="heading-featured">
-      <h1><%= t('blogs.index.page_title') %></h1>
-    </div>
-
-</div>
-
-        
-
-          <% if @blogs.count > 0 %>
-           
-            <div class="col-md-2 post-sorting  ">
-              <p>CATEGORY</p>
-              <select class="sorting-fltr" id="sort-blogs">
-                <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-                <option value="0"><%= t(:All_Categories) %></option>
-                <option value="1">A-Z </option>
-                <option value="2">Z-A </option>
-              </select>
-            </div>
-        <div class="col-md-2 post-sorting  ">
-              <p>SORTING</p>
-              <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:A_Z), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
-            </div>
-
-            <div class="col-md-3 pull-right">
-        <%= link_to t('blogs.index.+_Add_New_Blog_Post'), new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
-                  </div>
-          <% end %>
-
-
-        
-        <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
+        <% if current_user&.is_admin? %>
+          <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
+        <% end %>
       </div>
     </div>
 
+    <div class="row">
+      <div class="post-heading blog-redesign-style">
+        <div class="col-md-4">
+          <div class="heading-featured">
+            <h1><%= t('blogs.index.page_title') %></h1>
+          </div>
+        </div>
 
+        <% if @blogs.count > 0 %>
+          <div class="col-md-2 post-sorting  ">
+            <p>CATEGORY</p>
+            <select class="sorting-fltr" id="sort-blogs">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <option value="0"><%= t(:All_Categories) %></option>
+              <option value="1">A-Z </option>
+              <option value="2">Z-A </option>
+            </select>
+          </div>
 
+          <div class="col-md-2 post-sorting">
+            <p>SORTING</p>
+            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:A_Z), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+          </div>
+        <% end %>
+
+        <div class="col-md-3 pull-right">
+          <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
+        </div>
+
+        <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
+      </div>
+    </div>
 
     <div class="row" id="blogs">
       <%= render "all_blogs" %>
@@ -68,7 +62,6 @@
 
     <div class="row show-more-button">
       <div class="col-md-8">
-
         <% unless @blogs.current_page == @blogs.total_pages %>
           <div class="custom-showMore-btn pull-right">
             <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
@@ -82,9 +75,7 @@
         <a href="javascript:" id="custom-topPage-btn"> <i class="fa fa-angle-up"></i></a>
       </div>
     </div>
-          <%= render "create_new" %>
   </div>
-
 </div>
 
 <div id="bannerUploadModal" class="modal fade" role="dialog">
