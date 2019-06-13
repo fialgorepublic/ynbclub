@@ -2454,8 +2454,8 @@ label.error {
   .share_with_friends_style .box-shadow .social_btn .share_link_div{
   display:none;}
 
-////////    Responsive
 
+  ////////    Responsive
 
 @media only screen and (max-width: 375px) {
   .user-image{
@@ -2514,7 +2514,8 @@ label.error {
   }
 
   .share_with_friends_style .box-shadow .social_btn .share_link_div{
-    display:block !important;}
+    display:block !important;
+  }
 
   .share_with_friends_style .box-shadow .social_btn a.share_btn_link{
     background-color: #444;
