@@ -211,6 +211,7 @@ Rails.application.routes.draw do
       get  :feed
       post :banner
       post :create_or_update_cateogry
+      get  :new_wizard, as: 'wizard'
     end
     get :shared
   end

@@ -2451,6 +2451,8 @@ label.error {
   border-radius: 50%;
 }
 
+  .share_with_friends_style .box-shadow .social_btn .share_link_div{
+  display:none;}
 
 ////////    Responsive
 
@@ -2480,7 +2482,7 @@ label.error {
   }
 
   .blog_starter .box .step_box{
-    margin-bottom:80px;
+    margin-bottom:50px;
   }
 
   .blog_starter .box .step_box h3{
@@ -2508,7 +2510,18 @@ label.error {
   .share_with_friends_style .box-shadow p{
     padding:20px 0px;
     font-size:16px;
-    
+
+  }
+
+  .share_with_friends_style .box-shadow .social_btn .share_link_div{
+    display:block !important;}
+
+  .share_with_friends_style .box-shadow .social_btn a.share_btn_link{
+    background-color: #444;
+    color: #fff;
+    margin: 0px 0px 15px;
+    width: 100%;
+    border: 0px;
   }
 
 }

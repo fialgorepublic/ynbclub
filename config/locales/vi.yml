@@ -87,6 +87,7 @@ vi:
       new_blog_label:         Bài blog mới 
       show_more_label:        Show More
       add_new_blog_post:      Add New Blog Post
+      go_to_blogs:            Go To Blogs
     new:
       create_blog_title:       Tạo bài blog mới 
       edit_blog_title:         Chỉnh sửa bài viêys 

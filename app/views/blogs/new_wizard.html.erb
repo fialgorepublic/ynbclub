@@ -1,0 +1,34 @@
+<div class="col-md-9">
+  <div class="share_with_friends_style">
+    <div class="blog_starter">
+      <div class="box">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="step_box">
+              <div class="step_icon"><span> 1</span> </div>
+              <h3 class="text-center"><%= t('blogs.new.creat_first_blog_label') %></h3>
+              <p><%= t('blogs.new.assign_product_label') %></p>
+            </div>
+        </div>
+          <div class="col-md-4">
+            <div class="step_box">
+              <div class="step_icon"><span> 2</span> </div>
+              <h3 class="text-center"><%= t('blogs.new.publish_blog_label') %></h3>
+              <p><%= t('blogs.new.published_blog_label') %></p>
+          </div>
+        </div>
+          <div class="col-md-4">
+            <div class="step_box">
+              <div class="step_icon"><span> 3</span> </div>
+              <h3 class="text-center"><%= t('blogs.new.promote_product_label') %></h3>
+              <p><%= t('blogs.new.blog_view_label') %></p>
+          </div>
+        </div>
+          <div class="blog_starter_btn">
+            <%= link_to t('blogs.index.go_to_blogs'), blogs_path, class: "btn btn-primary new_blog_btn" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

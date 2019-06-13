@@ -85,7 +85,7 @@
       <% end %>
 
       <li  data-toggle="" data-target="#" class="collapsed">
-        <a href="/blogs" class="<%= active_class(blogs_path) %>">
+        <a href="/blogs/new_wizard" class="<%= 'active' if blog_related_action? %>">
         <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
         <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
       </li>

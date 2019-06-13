@@ -35,14 +35,21 @@
 <!--             <span class="text-center" data-target="#coinModal" data-toggle="modal"><a href="javascript:void(0);"><%= html_safe_content @share_with_friends.earn_coins_text %></a></span> -->
             <div class="col-md-12">
               <div class="form-box" style="overflow: hidden">
-                <input type="text" style="width: 68%;
-                  float: left;
+                <input type="text" style="width: 68%; float: left;
                   font-size: 16px; word-wrap: break-word; padding-top: 5px; color: #9e9e9e; border: 0px;" id="clipboardShareFriend" value=" https://ambassador.saintlbeau.com?invite=<%= current_user.email %>">
                 <a href="javascript:void(0);" onclick="clipboardShareFriend()"  class="btn btn-default share_link_btn pull-right"><%= t('page_design.copy_share_link_label') %></a>
               </div>
 
+
+
+
   <% url = "https://ambassador.saintlbeau.com?invite=#{current_user.email}" %>
     <div class="row text-center social_btn">
+      
+  <div class="col-md-4 share_link_div">
+        <a href="javascript:void(0);" onclick="clipboardShareFriend()"  class="btn btn-primary share_btn_link"><%= t('page_design.copy_share_link_label') %></a>
+      </div>
+
       <div class="col-md-4 ">
         <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary facebook btn-block"> <i class="fa fa-facebook-square"></i> <%= @share_with_friends.fb_btn_text %></a>
       </div>
