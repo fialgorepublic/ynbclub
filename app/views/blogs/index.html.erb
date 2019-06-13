@@ -54,7 +54,7 @@
         <% unless @blogs.current_page == @blogs.total_pages %>
           <div class="custom-showMore-btn pull-right">
             <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
-              <i class="fa fa-plus"></i> <%= t('blogs.index.new_blog_label') %>
+              <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
             <% end %>
           </div>
         <% end %>
