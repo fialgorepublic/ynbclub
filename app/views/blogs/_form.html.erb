@@ -62,6 +62,7 @@
                         <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
                         <span id="display_count"><%= t('blogs.new.total_words') %>: 0</span>
                         <span class="float-right"><%= t('blogs.new.minimum_required_words') %>: 150</span>
+                        <span style="float:right;" id='max_limit'><%= t('blogs.new.maximum_words_allowed') %>: 700</span>
                       </div>
                     </div>
                   </div>
@@ -303,6 +304,14 @@
         words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
         if (words) {
           $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
+          if(words.length >= 659){
+            $('#max_limit').text('<%= t('blogs.new.limit_reach_label') %>');
+            $('#max_limit').css('color', 'red');
+          }
+          else{
+            $('#max_limit').text(`<%= t('blogs.new.maximum_words_allowed') %>: 700`);
+            $('#max_limit').css('color', 'black');
+          }
         }
       });
 
@@ -314,7 +323,10 @@
           if (description.length < 150) {
             alert("<%= t('blogs.new.descriptn_length_errr') %>")
             return false
-          } else { return true }
+          } else if (description.length > 700) {
+            alert("<%= t('blogs.new.max_words_label') %>");
+            return false;
+          }
         }
         else {
           alert("<%= t('blogs.new.blog_description_empty') %>");

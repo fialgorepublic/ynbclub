@@ -101,6 +101,9 @@ en:
       default_image_error:    please change the default image before publishing.
       publish_btn_label:      Publish
       description:            Enter Text
+      maximum_words_allowed:   Maximum Words Allowed
+      max_words_label:         Max 700 words are allowed for blog description
+      limit_reach_label:       Limit reached
     show:
       buyer_view_label:       Show as buyers see it
       comment_modal:
