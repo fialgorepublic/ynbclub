@@ -2450,3 +2450,65 @@ label.error {
   height: 38px;
   border-radius: 50%;
 }
+
+
+////////    Responsive
+
+
+@media only screen and (max-width: 375px) {
+  .user-image{
+    float:left;
+    margin: 0px 20px 0px 0px;
+  }
+
+  .sidebar-style h3.sidebar_name-heading{
+    padding: 10px 0px 0px;
+    margin-bottom: 0px;
+  }
+
+  .brand  h2.m-profile-holder{
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .sidebar-style{
+    border:0px;
+  }
+
+  .account-side-menu-style .menu-list #menu-content{
+      width: 1100%;
+  }
+
+  .blog_starter .box .step_box{
+    margin-bottom:80px;
+  }
+
+  .blog_starter .box .step_box h3{
+    font-size:17px;
+  }
+
+  .post-sorting{
+    margin:10px;
+  }
+
+  .add_blog_btn{
+    float:none !important;
+    margin:20px 0px;
+  }
+
+  #blogs .blog-box span.box_bottom_icon{
+    float:left;
+    padding:10px;
+  }
+
+  .share_with_friends_style .box-shadow{
+    padding:50px 10px;
+  }
+
+  .share_with_friends_style .box-shadow p{
+    padding:20px 0px;
+    font-size:16px;
+    
+  }
+
+}

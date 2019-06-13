@@ -1,12 +1,12 @@
 <div class="<%= render_row_class(blog_type) %>">
   <div class="col-md-3 <%= render_padding_class(blog_type) %> pr-0">
-    <span ><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
+    <span  class="box_bottom_icon"><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
   </div>
 
   <% if blog.is_published? %>
     <div class="col-md-3 <%= render_padding_class(blog_type) %> pr-0">
       <div class="dropdown expended-blog-style-icon">
-        <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span  class="dropdown-toggle box_bottom_icon" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fa fa-comment"></i>
         </span>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -22,7 +22,7 @@
     <% if current_user.users_blog?(blog.id) || current_user.is_admin? %>
       <div class="col-md-3 <%= render_padding_class(blog_type) %> pr-0 expended-blog-style-icon ">
         <div class="dropdown">
-          <span class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="dropdown-toggle box_bottom_icon" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-bars"></i>
           </span>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -41,7 +41,7 @@
   <% end %>
 
   <div class="col-md-3 pull-right">
-    <span><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
+    <span class="box_bottom_icon"><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
   </div>
 </div>
 

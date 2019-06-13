@@ -104,8 +104,11 @@
           <%= link_to permissions_path, class: active_class(permissions_path) do %>
             <i class="custom-icon fa fa-universal-access" style="padding-right: 2px;"></i>
             <span class="side-nav-style"><%= t('sidebar.permissions_label') %></span>
+        
           <% end %>
+          </li> 
 
+         <li>
        <%= link_to shared_urls_path, class: active_class(shared_urls_path) do %>
             <i class="custom-icon fa fa-share-alt" style="padding-right: 2px;"></i> <span class="side-nav-style"><%= t('sidebar.shared_urls_label') %></span>
           <% end %>
@@ -206,7 +209,8 @@
           <%= link_to update_status_orders_path, remote: :true, class: active_class(update_status_orders_path) do %>
             <i class="fa fa-job" style="padding-right: 2px;"></i> <span class="side-nav-style"><%= t('sidebar.ghtk_status_label') %></span>
           <% end %>
-
+        </li>
+        <li>
           <%= link_to share_link_count_users_path, class: active_class(share_link_count_users_path) do %>
             <i class="fa fa-history" style="padding-right: 2px;"></i> <span class="side-nav-style"><%= t('sidebar.invite_history_label') %></span>
           <% end %>
