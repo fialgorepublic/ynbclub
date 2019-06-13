@@ -2451,13 +2451,11 @@ label.error {
   border-radius: 50%;
 }
 
-  .share_with_friends_style .box-shadow .social_btn .share_link_div{
-  display:none;}
+.share_with_friends_style .box-shadow .social_btn .share_link_div{
+  display:none;
+}
 
-
-  ////////    Responsive
-
-@media only screen and (max-width: 375px) {
+@media only screen and (min-width: 375px) {
   .user-image{
     float:left;
     margin: 0px 20px 0px 0px;
