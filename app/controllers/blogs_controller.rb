@@ -174,6 +174,9 @@ class BlogsController < ApplicationController
     render json: { shared: current_user.already_shared_blog?(params[:blog_id], 'facebook') }
   end
 
+  def new_wizard
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def load_user_blog

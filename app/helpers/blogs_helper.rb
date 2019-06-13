@@ -87,4 +87,8 @@ module BlogsHelper
   def product_image_size
     current_user.present? ? '180x130^' :  '270x200^'
   end
+
+  def blog_related_action?
+    controller_name == 'blogs' && (action_name == 'new_wizard' || action_name == 'index')
+  end  
 end
