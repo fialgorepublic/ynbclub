@@ -2069,8 +2069,11 @@ label.error {
         .ml-4{
           margin-left:0;
         }
-         width:700%;
+//      width:700%;
         overflow:auto;
+        white-space: nowrap;
+
+
          &:after{
         clear: both;
         display: block;
@@ -2477,7 +2480,8 @@ label.error {
   }
 
   .account-side-menu-style .menu-list #menu-content{
-      width: 1100%;
+    //  width: 1100%;
+   // white-space: nowrap;
   }
 
   .blog_starter .box .step_box{
@@ -2523,4 +2527,33 @@ label.error {
     width: 100%;
     border: 0px;
   }
+
+.account-side-menu-style .menu-list::-webkit-scrollbar {
+    display:none;
 }
+
+.account-side-menu-style .menu-list #menu-content::-webkit-scrollbar {
+    display:none;
+}
+
+.account_side_btn_reponsive{
+  display: block !important;
+}
+
+.account_side_btn_web{
+    display: none;}
+
+.sidebar-style .custom-side-menu{
+  padding:0px;
+}
+
+
+}
+
+
+
+.account_side_btn_reponsive{
+  display:none;
+}
+
+

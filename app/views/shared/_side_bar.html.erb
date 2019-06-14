@@ -26,6 +26,11 @@
     <ul>
     </ul>
   </div>
+  <div class="account-side-btn  account_side_btn_reponsive">
+  <% if current_user.is_ambassador? %>
+    <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-lg btn-block acc-btn-style btn-primary" style="margin-bottom: 20px; margin-left: 7px; margin-top: 10px"><%= t('sidebar.referral_link_label') %></a>
+  <% end %>
+</div>
   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   <div class="menu-list custom-side-menu">
     <ul id="menu-content" class="menu-content collapse out">
@@ -226,7 +231,7 @@
   </div>
 </div>
 
-<div class="account-side-btn">
+<div class="account-side-btn account_side_btn_web">
   <% if current_user.is_ambassador? %>
     <a href="javascript:void(0);" onclick="copyToClipboard('text_element');" class="btn btn-lg btn-block acc-btn-style btn-primary" style="margin-bottom: 20px; margin-left: 7px; margin-top: 10px"><%= t('sidebar.referral_link_label') %></a>
   <% end %>
