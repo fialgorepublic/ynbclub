@@ -265,7 +265,7 @@ Rails.application.routes.draw do
       get :update_status
     end
   end
-
+  resources :gropus
   resources :shared_urls,   only: [:index]
   resources :notifications, only: [:index]
 
