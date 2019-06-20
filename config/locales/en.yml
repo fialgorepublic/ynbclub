@@ -99,7 +99,7 @@ en:
       products_label:         Products
       assign_products:        Assign Product
       blog_description_empty: Please add Blog description
-      descriptn_length_errr:  Description must be atleast 150 words long.
+      descriptn_length_errr:  Description must be atleast 500 words long.
       default_image_error:    please change the default image before publishing.
       publish_btn_label:      Publish
       description:            Enter Text
@@ -109,6 +109,9 @@ en:
       published_blog_label:   Published blog post to start promotion.
       promote_product_label:  Your product is promoted!
       blog_view_label:        Published blog post with your product  will be viewed by all of our member
+      maximum_words_allowed:   Maximum Words Allowed
+      max_words_label:         Max 700 words are allowed for blog description
+      limit_reach_label:       Limit reached
     show:
       buyer_view_label:       Show as buyers see it
       comment_modal:
