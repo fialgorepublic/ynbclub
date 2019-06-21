@@ -31,3 +31,8 @@
 a.disabled {
   pointer-events: none;
 }
+
+.turbolinks-progress-bar {
+  height: 3px;
+  background-color: #54b2b2;
+}
