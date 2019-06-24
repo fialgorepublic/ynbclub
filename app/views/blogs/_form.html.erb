@@ -4,7 +4,7 @@
       <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
       <ul>
         <% blog.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -61,6 +61,7 @@
                       <div class="form-group">
                         <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: t('blogs.new.title_placeholder'),  :required => true %>
                       </div>
+
                        <div class="blog_on_click_btn">
                         <div class="fab btn-group dropup">
                          <button type="button" class="btn btn-danger btn-io dropdown-toggle" data-toggle="dropdown">
@@ -77,12 +78,14 @@
                            <input class="text-field video-field" type="text" id="" name="name" placeholder="Enter your text">
                            <input class="video-link-field d-none video-field" type="text" id="" name="name" placeholder="Enter video url">
                         </div>
-                     <!-- <div class="form-group">
-                        <label><%#=t('blogs.new.description') %></label>
-                        <%#= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
-                        <span id="display_count"><%#= t('blogs.new.total_words') %>: 0</span>
-                        <span class="float-right"><%#= t('blogs.new.minimum_required_words') %>: 150</span>
-                      </div> -->
+
+                      <div class="form-group">
+                        <label><%=t('blogs.new.description') %></label>
+                        <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
+                        <span id="display_count"><%= t('blogs.new.total_words') %>: 0</span>
+                        <span class="float-right"><%= t('blogs.new.minimum_required_words') %>: 500 </span>
+                        <!--                        <span style="float:right;" id='max_limit'><%#= t('blogs.new.maximum_words_allowed') %>: 700</span>-->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -103,8 +106,13 @@
       </div>
     </div>
 
-   
-
+    <div class="create-blog-img">
+      <div id="selectedProducts">
+        <% if @selected_products.present? %>
+          <%= render partial: 'blogs/selected_products' %>
+        <% end %>
+      </div>
+    </div>
     
   </div>
 <% end %>
@@ -252,34 +260,34 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
 <script>
-  $('#create-or-edit-category').click(function() {
-    $('#create-or-edit-category-modal').modal('show');
-    $('#update-category-name').attr('disabled', true);
-  });
+    $('#create-or-edit-category').click(function() {
+        $('#create-or-edit-category-modal').modal('show');
+        $('#update-category-name').attr('disabled', true);
+    });
 
-  $('#search-form').submit(function(){
-    if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }
-    searchText = $('#product-title').val();
-    if(searchText == '') { return false; }
-    if(searchText.length < 3) { $('#search-form').append('<p>Please enter three or more letters</p>'); return false; }
-    $("p").hide('slow');
-  })
+    $('#search-form').submit(function(){
+        if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }
+        searchText = $('#product-title').val();
+        if(searchText == '') { return false; }
+        if(searchText.length < 3) { $('#search-form').append('<p>Please enter three or more letters</p>'); return false; }
+        $("p").hide('slow');
+    })
 
-  $('#clear-btn-search').click(function(e){
-    if ($('#product-title').val() == '') { return false; };
-    $('#product-title').data('type', 'clear');
-  });
+    $('#clear-btn-search').click(function(e){
+        if ($('#product-title').val() == '') { return false; };
+        $('#product-title').data('type', 'clear');
+    });
 
-  $('#search-btn').click(function(e){
-    $('#product-title').data('type', 'search');
-  });
+    $('#search-btn').click(function(e){
+        $('#product-title').data('type', 'search');
+    });
 
-  $('#category_id').change(function(){
-    $('#update-category-name').attr('disabled', false);
-    $('#update-category-name').val($('#category_id option:selected').text());
-  });
+    $('#category_id').change(function(){
+        $('#update-category-name').attr('disabled', false);
+        $('#update-category-name').val($('#category_id option:selected').text());
+    });
 
-  $(":file").filestyle({input: false});
+    $(":file").filestyle({input: false});
 
     // $('textarea.editor').ckeditor();
 
@@ -301,142 +309,150 @@
     });
 
     $(document).on('turbolinks:load', function(){
-      $('#blog-form').submit(validateDescriptionLength)
-      $('#blog-form').submit(validateDefaultImage)
-      var v = CKEDITOR.instances.blog_description
-      words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
-      if (words) { $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`); }
-      v.on('key', function(event) {
+        $('#blog-form').submit(validateDescriptionLength)
+        $('#blog-form').submit(validateDefaultImage)
+        var v = CKEDITOR.instances.blog_description
         words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
-        if (words) {
-          $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
-        }
-      });
+        if (words) { $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`); }
+        v.on('key', function(event) {
+            words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
+            if (words) {
+                $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
+                if(words.length >= 659){
+                    $('#max_limit').text('<%= t('blogs.new.limit_reach_label') %>');
+                    $('#max_limit').css('color', 'red');
+                }
+                else{
+                    $('#max_limit').text(`<%= t('blogs.new.maximum_words_allowed') %>: 700`);
+                    $('#max_limit').css('color', 'black');
+                }
+            }
+        });
 
-      function validateDescriptionLength(){
-        var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
-        if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
-        if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
-        if (description) {
-          if (description.length < 150) {
-            alert("<%= t('blogs.new.descriptn_length_errr') %>")
-            return false
-          } else { return true }
-        }
-        else {
-          alert("<%= t('blogs.new.blog_description_empty') %>");
-          return false;
+        function validateDescriptionLength(){
+            var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
+            if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
+            if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
+            if (description) {
+                if (description.length < 500) {
+                    alert("<%= t('blogs.new.descriptn_length_errr') %>")
+                    return false
+                }
+            }
+            else {
+                alert("<%= t('blogs.new.blog_description_empty') %>");
+                return false;
+            }
+
         }
 
-      }
-
-      function validateDefaultImage(){
-        file = $('#fileupload').val();
-        if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
-          toastr.error('<%= t('blogs.new.default_image_error') %>');
-          return false;
+        function validateDefaultImage(){
+            file = $('#fileupload').val();
+            if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
+                toastr.error('<%= t('blogs.new.default_image_error') %>');
+                return false;
+            }
         }
-      }
     });
 
     $("#fileupload").change(function () {
-      readURL(this);
+        readURL(this);
     });
 
     function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        var name = input.files[0].name
-        var fileType = input.files[0].type
-        var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            var name = input.files[0].name
+            var fileType = input.files[0].type
+            var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-        if ($.inArray(fileType, ValidImageTypes) < 0) {
-          return alert("File type not allowed.")
+            if ($.inArray(fileType, ValidImageTypes) < 0) {
+                return alert("File type not allowed.")
+            }
+
+            reader.onload = function (e) {
+                var st = e.target.result;
+                $('#blah').attr('src', e.target.result);
+                $('#fileUpload').attr('src', e.target.result);
+            };
+            $('#file-name').text(name);
+            reader.readAsDataURL(input.files[0]);
         }
-
-        reader.onload = function (e) {
-          var st = e.target.result;
-          $('#blah').attr('src', e.target.result);
-          $('#fileUpload').attr('src', e.target.result);
-        };
-        $('#file-name').text(name);
-        reader.readAsDataURL(input.files[0]);
-      }
     }
     function get_products(){
-      $('#assignProduct').modal('show');
-      $.ajax({
-          url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
-          type: 'get',
-          dataType: 'html',
-          processData: false,
-          success: function (data) {
-              $('#products').html(data);
-          },
-          error: function (data) {
-              alert('Error');
-              //    window.location.reload();
-          }
-      });
+        $('#assignProduct').modal('show');
+        $.ajax({
+            url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $('#products').html(data);
+            },
+            error: function (data) {
+                alert('Error');
+                //    window.location.reload();
+            }
+        });
     }
 
     function add_products(){
-      var ids = [];
-      $(".selected").each(function(index, v) {
-          console.log($(v).attr('class').split(' ')[0]);
-          ids.push($(v).attr('class').split(' ')[0]);
-      });
-      if (ids != ""){
-          $.ajax({
-              url: '/get_selected_products?ids='+ids,
-              type: 'get',
-              dataType: 'html',
-              processData: false,
-              success: function (data) {
-                  $('#selectedProducts').html(data);
-                  $('#assignProduct').modal('hide');
-              },
-              error: function (data) {
-                  alert('Error');
-                  //    window.location.reload();
-              }
-          });
-      }
+        var ids = [];
+        $(".selected").each(function(index, v) {
+            console.log($(v).attr('class').split(' ')[0]);
+            ids.push($(v).attr('class').split(' ')[0]);
+        });
+        if (ids != ""){
+            $.ajax({
+                url: '/get_selected_products?ids='+ids,
+                type: 'get',
+                dataType: 'html',
+                processData: false,
+                success: function (data) {
+                    $('#selectedProducts').html(data);
+                    $('#assignProduct').modal('hide');
+                },
+                error: function (data) {
+                    alert('Error');
+                    //    window.location.reload();
+                }
+            });
+        }
     }
 
 
 
 
 
-$.fn.extend({
-    popoverClosable: function (options) {
-        var defaults = {
-            template:
-                '<div class="popover">\
-<div class="arrow"></div>\
-<div class="popover-header">\
-<button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>\
-<h3 class="popover-title"></h3>\
-</div>\
-<div class="popover-content"></div>\
-</div>'
-        };
-        options = $.extend({}, defaults, options);
-        var $popover_togglers = this;
-        $popover_togglers.popover(options);
-        $popover_togglers.on('click', function (e) {
-            e.preventDefault();
-            $popover_togglers.not(this).popover('hide');
-        });
-        $('html').on('click', '[data-dismiss="popover"]', function (e) {
-            $popover_togglers.popover('hide');
-        });
-    }
-});
+    $.fn.extend({
+        popoverClosable: function (options) {
+            var defaults = {
+                template:
+                    '<div class="popover">\
+    <div class="arrow"></div>\
+    <div class="popover-header">\
+    <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>\
+    <h3 class="popover-title"></h3>\
+    </div>\
+    <div class="popover-content"></div>\
+    </div>'
+            };
+            options = $.extend({}, defaults, options);
+            var $popover_togglers = this;
+            $popover_togglers.popover(options);
+            $popover_togglers.on('click', function (e) {
+                e.preventDefault();
+                $popover_togglers.not(this).popover('hide');
+            });
+            $('html').on('click', '[data-dismiss="popover"]', function (e) {
+                $popover_togglers.popover('hide');
+            });
+        }
+    });
 
-$(function () {
-    $('[data-toggle="popover"]').popoverClosable();
-});
+    $(function () {
+        $('[data-toggle="popover"]').popoverClosable();
+    });
 
 
 //////
