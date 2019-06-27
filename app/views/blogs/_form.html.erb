@@ -16,46 +16,68 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-9">
-              <h2><a href="/blogs"><i class="fa fa-angle-left"></i></a><%= blog_page_title %></h2>
+              <h2 class="main_blog_heading"><a href="/blogs"><i class="fa fa-angle-left"></i></a><%= blog_page_title %></h2>
+            </div>
+            <div class="col-md-4">
+              <div class="actions">
+                <div class="blog-submt-btn">
+              <%= form.submit t('blogs.new.publish_btn_label'), data: { toggle:"tooltip", placement:"bottom" }, title: "Enter text and title to publish", class: 'btn btn_publish btn-success'%>
+                </div>
+              </div>
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-md-8">
-              <div class="field m-image-frame form-group">
-                <%= image_tag(@blog.avatar.attached? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : "placeholder.png", alt: "Add  icon", id: 'blah', size: '100x100') %>
+            <!--  <div class="field m-image-frame form-group">
+                <%#= image_tag(@blog.avatar.attached? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : "placeholder.png", alt: "Add  icon", id: 'blah', size: '100x100') %>
                 <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
                 <div class="field form-group" id="image-upload-button-div">
                   <div class="fileUpload form-control start blog-imgUpload">
-                    <%= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false %>
+                    <%#= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false %>
                   </div>
                 </div>
-              </div>
-              <div class="row m-t-20">
+              </div> -->
+              <!-- <div class="row m-t-20">
                 <div class="Newblog-category">
                   <div class="col-md-12">
                     <div class="category-option" type="button" data-toggle="popover" id="tooltip-stlye-category" data-placement="top" data-content="Please Select Category First" title="">
-                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => t('blogs.new.category_placeholder')}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
+                      <%#= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => t('blogs.new.category_placeholder')}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <% if current_user.is_admin? %>
-                <div class="row m-t-20">
+              </div> -->
+             <%# if current_user.is_admin? %>
+                <!-- <div class="row m-t-20">
                   <div class="col-md-8">
-                    <%= link_to t('blogs.new.category_label'), "javascript:void(0)", id: 'create-or-edit-category'%>
+                    <%#= link_to t('blogs.new.category_label'), "javascript:void(0)", id: 'create-or-edit-category'%>
                   </div>
-                </div>
-              <% end %>
-
-              <div class="row m-t-30">
+                </div> -->
+              <%# end %>
+             <div class="row">
                 <div class="col-md-12">
                   <div class="blogBox-style">
                     <div class="box-shadow-am">
                       <div class="form-group">
                         <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: t('blogs.new.title_placeholder'),  :required => true %>
                       </div>
+
+                       <div class="blog_on_click_btn">
+                        <div class="fab btn-group dropup">
+                         <button type="button" class="btn btn-danger btn-io dropdown-toggle" data-toggle="dropdown">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-times fa-stack-1x fa-inverse fab-secondary"></i>
+                                <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
+                            </span>
+                          </button>
+                            <ul class="dropdown-menu dropdown-menu-right" id="listTab" role="menu">
+                              <li><a href="#" id='add-video'><i class="fa fa-play"></i></a></li>
+                              <li><a href="#"><i class="fa fa-camera"></i></a></li>
+                            </ul>
+                         </div>
+                           <input class="text-field video-field" type="text" id="" name="name" placeholder="Enter your text">
+                           <input class="video-link-field d-none video-field" type="text" id="" name="name" placeholder="Enter video url">
+                        </div>
 
                       <div class="form-group">
                         <label><%=t('blogs.new.description') %></label>
@@ -68,14 +90,12 @@
                   </div>
                 </div>
               </div>
-            </div>
-
+           </div>
             <div class="col-md-4">
               <div class="product-heading">
                 <h2><%= t('blogs.new.products_label') %></h2>
               </div>
-
-              <div class="product-toolTips">
+             <div class="product-toolTips">
                 <div class="box-shadow-am sm-pd-am m-t-20 assign-Heading" type="button" data-toggle="popover" data-placement="bottom" data-content="Please Select Product" title="">
                   <h4><a href="javascript:void(0);" onclick="get_products();" style="text-decoration: none;">+ <%= t('blogs.new.assign_products') %></a></h4>
                 </div>
@@ -93,12 +113,7 @@
         <% end %>
       </div>
     </div>
-
-    <div class="actions">
-      <div class="blog-submt-btn">
-        <%= form.submit t('blogs.new.publish_btn_label'), class: 'btn btn-success' %>
-      </div>
-    </div>
+    
   </div>
 <% end %>
 
@@ -127,7 +142,6 @@
 
   </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="publishPost" role="dialog">
@@ -441,7 +455,21 @@
     });
 
 
+//////
+  $('#listTab').hide();
+  $('.fab').click(function () {
 
+      $(this).toggleClass('active');
+      $('#listTab').toggle();
+  });
 
+  $('#add-video').click(function(e){
+    e.preventDefault();
+    $('.text-field').addClass('d-none');
+    $('.video-link-field').removeClass('d-none');
+    $('.fab-secondary').removeClass('fa-times')
+    $('.fab-secondary').addClass('fa-angle-left')
+    $('.fab').toggleClass('active');
+  });
 
 </script>
