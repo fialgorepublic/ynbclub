@@ -163,7 +163,14 @@
         <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:cancel_label) %></button>
+        <div class="row">
+          <div class="checkbox text-left col-md-6">
+            <label><input type="checkbox" value="" id='user-share-perference'>Don't show this again.</label>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:cancel_label) %></button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -173,13 +180,30 @@
 <script>
   user_signed_in = <%= signed_in? %>;
   user_has_shared = <%= signed_in? ? current_user.already_shared_blog?(@blog.id, 'facebook') : false %>;
+  setShareModelCookie();
+  function setShareModelCookie(){
+    showModal = localStorage.getItem('show_share_modal')
+    if(showModal == null || showModal == undefined) { localStorage.setItem('show_share_modal', true) }
+  }
+
   if (user_has_shared) {
   } else {
-    setTimeout(showShareModal, 10000);
+    setTimeout(showShareModal, 0);
     function showShareModal() {
-      $('#shareBlogModal').modal('show');
+      showModal = localStorage.getItem('show_share_modal')
+      if (showModal == 'true') { $('#shareBlogModal').modal('show'); }
     }
   }
+
+  $('#shareBlogModal').on('hidden.bs.modal', function () {
+    if($('#user-share-perference').prop('checked')) {
+      localStorage.setItem('show_share_modal', false)
+    }
+    else
+    {
+      localStorage.setItem('show_share_modal', true)
+    }
+  })
 
   function showSignInModal() {
     $('#signIn').modal('show');

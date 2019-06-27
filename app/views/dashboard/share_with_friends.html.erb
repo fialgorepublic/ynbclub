@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <% if true %> <%#current_user.is_ambassador? %>
+    <% if current_user.is_ambassador? %>
       <h2><%= t('page_design.share_referral_label') %></h2>
       <hr>
 
