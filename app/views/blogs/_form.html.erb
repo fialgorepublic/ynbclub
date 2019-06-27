@@ -1,3 +1,4 @@
+
 <%= form_with(model: blog, local: true, multipart: true, id: "blog-form") do |form| %>
   <% if blog.errors.any? %>
     <div id="error_explanation">
@@ -78,7 +79,11 @@
                            <input class="text-field video-field" type="text" id="" name="name" placeholder="Enter your text">
                            <input class="video-link-field d-none video-field" type="text" id="" name="name" placeholder="Enter video url">
                         </div>
-
+                        <div id="editor">
+                          <p>Hello World!</p>
+                          <p>Some initial <strong>bold</strong> text</p>
+                          <p><br></p>
+                        </div>
                       <div class="form-group">
                         <label><%=t('blogs.new.description') %></label>
                         <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
@@ -472,4 +477,9 @@
     $('.fab').toggleClass('active');
   });
 
+</script>
+<script>
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
 </script>

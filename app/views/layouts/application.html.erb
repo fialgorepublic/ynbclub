@@ -9,7 +9,8 @@
   <%= tag :meta, property: "og:title", content: content_for?(:og_title) ? yield(:og_title) : "Saint L Beau" %>
   <%= tag :meta, property: "og:type", content: content_for?(:og_type) ? yield(:og_type) : "website" %>
   <%= tag :meta, property: 'og:url', content: content_for?(:og_url) ? yield(:og_url) : request.fullpath.include?("invite") ? "#{request.host}?invite=#{params[:invite]}" : request.host %>
-  <%= tag :meta, property: 'og:image', content: content_for?(:og_image) ? yield(:og_image) : request.fullpath.include?("invite") ? rails_blob_url(@share_with_friends.image) : rails_blob_url(@page.image) %>
+  <%#= tag :meta, property: 'og:image', content: content_for?(:og_image) ? yield(:og_image) : request.fullpath.include?("invite") ? rails_blob_url(@share_with_friends.image) : rails_blob_url(@page.image) %>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <%= tag :meta, property: "og:description", content: content_for?(:og_description) ? yield(:og_description) : "SaintLBeau" %>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -28,6 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.filestyle/1.1.0/js/bootstrap-filestyle.min.js"> </script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 
