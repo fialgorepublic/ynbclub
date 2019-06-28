@@ -79,11 +79,17 @@
                            <input class="text-field video-field" type="text" id="" name="name" placeholder="Enter your text">
                            <input class="video-link-field d-none video-field" type="text" id="" name="name" placeholder="Enter video url">
                         </div>
+                         <div class="form-group">
+                          <iframe class="iframe-holder" width="420" height="315"
+                          src="">
+                          </iframe>
+                        </div>
                         <div id="editor">
                           <p>Hello World!</p>
                           <p>Some initial <strong>bold</strong> text</p>
                           <p><br></p>
                         </div>
+                       
                       <div class="form-group">
                         <label><%=t('blogs.new.description') %></label>
                         <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
@@ -482,4 +488,17 @@
   var quill = new Quill('#editor', {
     theme: 'snow'
   });
+
+  $(document).ready(function(){
+    $('.video-link-field').change(function(){
+      var value = $(this).val();
+      $('.iframe-holder').show();
+      console.log(value);
+      $('.iframe-holder').attr("src", value);
+    })
+  });
+      // $("img").click(function(){
+    //     // Change src attribute of image
+    //     $(this).attr("src", "images/card-front.jpg");
+    // });    
 </script>
