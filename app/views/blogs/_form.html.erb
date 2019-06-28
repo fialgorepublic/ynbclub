@@ -79,6 +79,7 @@
                            <input class="text-field video-field" type="text" id="" name="name" placeholder="Enter your text">
                            <input class="video-link-field d-none video-field" type="text" id="" name="name" placeholder="Enter video url">
                         </div>
+
                          <div class="form-group">
                           <iframe class="iframe-holder" width="420" height="315"
                           src="">
@@ -492,13 +493,12 @@
   $(document).ready(function(){
     $('.video-link-field').change(function(){
       var value = $(this).val();
+      var updateUrl = value.replace('watch?v=' , 'embed/');
+      console.log(updateUrl);
       $('.iframe-holder').show();
       console.log(value);
-      $('.iframe-holder').attr("src", value);
+      $('.iframe-holder').attr("src", updateUrl);
     })
   });
-      // $("img").click(function(){
-    //     // Change src attribute of image
-    //     $(this).attr("src", "images/card-front.jpg");
-    // });    
+      
 </script>
