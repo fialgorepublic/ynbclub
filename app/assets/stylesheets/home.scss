@@ -2847,3 +2847,124 @@ label.error {
   width:100%;
   display:none
 }
+.assignProduct  #products .box-shadow-am {
+    border: 1px solid #ccc;
+    box-shadow:none;
+    position:relative;
+}
+.assignProduct  #products .product-box{
+      border: 1px solid #ccc;
+}
+.assignProduct  .modal-title{
+  text-align:center
+}
+.assignProduct  .modal-header .close{
+    margin-top: 1px;
+    position: absolute;
+    right: -51px;
+    left: auto;
+    color: #fff;
+    z-index: 99999;
+    opacity: 1;
+    font-size: 50px;
+    font-weight: 300;
+    top: -20px;
+}
+#products .select-box{
+  position: absolute;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  top: 15px;
+  z-index: 9999;
+  background: #fff;
+}
+#products .select-box i{
+  display:none
+}
+#products  .selected .select-box{
+    font-size: 12px;
+    text-align: center;
+    display: block;
+    line-height: 18px;
+    vertical-align: middle;
+    background: #000e23;
+    color: #fff;
+    i {
+        display:block;
+        line-height: 20px;
+        vertical-align: middle;
+    }
+  }
+
+#products .box-shadow-am .product-detail{
+  margin-top: 20px;
+    font-size: 15px;
+//    height: 49px;
+    p{
+      margin-bottom:0;
+    }
+
+}
+.modal-content .btn.btn-primary{
+     background: #54b2b2;
+    border: 1px solid #54b2b2;
+}
+#assignProduct .modal-footer .btn-primary{
+    background: #54b2b2;
+    border: 1px solid #54b2b2;
+    border-radius: 25px;
+}
+#assignProduct .modal-footer .btn{
+    border-radius: 25px;
+}
+ #products .box-shadow-am .product-price{
+        margin-top: 0;
+        color:#54b2b2;    
+  }
+.uploadImage {
+  .modal-header,
+  .modal-footer {
+    border:none;
+      .close{
+      margin-top: 0px;
+      position: absolute;
+      right: -29px;
+      top: -9px;
+      color: #fff;
+      z-index: 9999;
+      opacity: 1;
+      font-weight: 300;
+      font-size: 34px;
+    }
+    .btn{
+      border-radius:25px;
+    }
+  }
+  .image-box{
+    border:1px solid #ccc;
+    min-height:180px;
+  }
+  .upload-right-holder{
+    .form-group{
+      margin-bottom:10px;;
+      border-bottom:1px solid #ccc
+    }
+    margin-top:20px;
+    p{
+      font-size:15px;
+      padding-bottom:12px;
+      margin-bottom:0;
+    }
+    .form-control{
+      border: none;
+      box-shadow: none;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      text-align: left;
+      font-size:12px;
+    }
+  }
+}
