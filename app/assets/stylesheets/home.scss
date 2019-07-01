@@ -2852,6 +2852,9 @@ label.error {
     box-shadow:none;
     position:relative;
 }
+.product-toolTips{
+  position:relative
+}
 .assignProduct  #products .product-box{
       border: 1px solid #ccc;
 }
@@ -2902,7 +2905,7 @@ label.error {
 #products .box-shadow-am .product-detail{
   margin-top: 20px;
     font-size: 15px;
-//    height: 49px;
+    height: auto;
     p{
       margin-bottom:0;
     }
@@ -2921,8 +2924,10 @@ label.error {
     border-radius: 25px;
 }
  #products .box-shadow-am .product-price{
-        margin-top: 0;
+    h5{
         color:#54b2b2;    
+    }
+        margin-top: 0;
   }
   .uploadImage#uploadImage img{
     object-fit: contain;
@@ -3027,6 +3032,21 @@ label.error {
       border-radius: 0 !important;
       text-align: left;
       font-size:12px;
+    }
+  }
+}
+.product-right-holder{
+  padding:15px 0;
+  .product-detail{
+    p{
+      font-size:15px;
+    }
+  }
+  .product-price{
+    h5{
+      color:#54b2b2;
+      font-size:25px;
+
     }
   }
 }
