@@ -2274,6 +2274,7 @@ label.error {
   .fa{
     font-size:20px;
     color:#256664;
+    vertical-align:middle;
   }
   .fa-heart{
     color:#f34747;
@@ -2290,7 +2291,8 @@ label.error {
         span{
           color:#b6b6b6;
           border-right:1px solid #ccc;
-          padding:0 5px;
+          padding:0 4px;
+          font-size:12px;
           font-family:'Montserrat', sans-serif;
           font-weight:400;
           text-transform: uppercase;
@@ -2315,7 +2317,11 @@ label.error {
 }
 
 .blog-box.blog-box-sm{
-  height: min-content;
+  height: 320px;
+  img{
+    height:202px;
+        object-fit: cover;
+  }
     .h-150{
       height:146px;
           object-fit: cover;
@@ -2325,23 +2331,35 @@ label.error {
    // height: 84px;
     }
      h3{
-          font-size:18px;
+          font-size:17px;
           font-family:'Montserrat', sans-serif;
           margin:0;
+          overflow: hidden;
+          display: inline-block;
+          width: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 }
 .blog-box.blog-box-long{
   padding-bottom:0;
-  height: min-content;
+      height: 320px;
 //  max-height: 265px;
+  img{
+      width: 100%;
+    height: 320px;
+    object-fit: cover !important;
+    display: block;
+  }
   .h-50vh {
     height:265px;
   }
 
   .description {
-    max-height: 100px;
+    height: 107px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 50px;
   }
 
   p {
