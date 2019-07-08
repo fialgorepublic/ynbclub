@@ -2,16 +2,18 @@
   <% @products.each do |product| %>
       <div class="col-md-4">
         <div class="<%= product.id %> box-shadow-am sm-pd-am <%= (@blog.present? && @blog.products.where(product_id: product.id).count > 0) ? 'selected' : '' %>" onclick="showActive(this)">
+          <div class="select-box">
+            <i class="fa fa-check"></i>
+          </div>
           <div class="product-box">
             <img width="100%" src="<%= product.images.present? ? product.images[0].src : '/placeholder.png' %>">
           </div>
 
-          <div class="product-price">
-            <h5><%= number_with_delimiter(product.variants.first.price, delimiter: '.') %>₫</h5>
-          </div>
-
           <div class="product-detail">
             <p><%= product.title %></p>
+          </div>
+          <div class="product-price">
+            <h5><%= number_with_delimiter(product.variants.first.price, delimiter: '.') %>₫</h5>
           </div>
         </div>
       </div>
