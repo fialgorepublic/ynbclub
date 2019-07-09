@@ -107,8 +107,8 @@ class MediumBlogsService
       break if children.first.name == 'ul' && (children.first.classes.any? { |class_name| class_name.in? ['bl', 'bm', 'bk'] } || children.last.inner_text.include?('responses'))
       content << section.inner_text
     end
-    title     = doc.css("meta[property='og:title']").attr('content').value.split(' - ')[0]
-    image_url = doc.css("meta[property='og:image']").attr('content').value
+    title     = doc.css("meta[property='og:title']").attr('content')&.value.split(' - ')[0]
+    image_url = doc.css("meta[property='og:image']").attr('content')&.value
     { title: title, content: content, image_url: image_url }
   end
 
