@@ -3,10 +3,11 @@ class MediumBlogsService
 
   attr_reader :doc, :next_page, :tag, :blogs_urls, :blogs_slugs, :blogs
 
-  BASE_URL            = 'https://medium.com/search'
-  JSON_BASE_URL       = 'https://medium.com/search/posts?format=json'
-  BLOGS_XPATH         = "//div[contains(@class, 'js-postListHandle')]/div[contains(@class, 'js-block')]"
-  BLOGS_CONTENT_XPATH = "//div[contains(@class, 'postArticle-content')]//div[contains(@class, 'section-content')]"
+  BASE_URL             = 'https://medium.com/search'
+  JSON_BASE_URL        = 'https://medium.com/search/posts?format=json'
+  BLOGS_XPATH          = "//div[contains(@class, 'js-postListHandle')]/div[contains(@class, 'js-block')]"
+  BLOGS_CONTENT_XPATH  = "//div[contains(@class, 'postArticle-content')]//div[contains(@class, 'section-content')]"
+  SECOND_CONTECT_XPATH = "//section[contains(@class, 'li')]//div[contains(@class, 'lk')]"
 
   def initialize(tag, page)
     @tag = tag
@@ -80,25 +81,46 @@ class MediumBlogsService
     blogs_urls.each do |blog_page_url|
       begin
         doc = Nokogiri::HTML(open("#{blog_page_url}"))
-        content_div    = doc.xpath(BLOGS_CONTENT_XPATH)
-        blog_image_div = content_div.css('.graf--figure').first
-        image_url      = blog_image_div.css('img')[0]['src'] if blog_image_div.present? && blog_image_div.css('img').present?
-        blog_title     = content_div.css('.graf--title')&.text()
-        content_div.search('h1').remove
-        content_div.search('.js-postMetaLockup').remove
-        content_div.search('.graf-after--h3').remove
-        create_blog({title: blog_title, image_url: image_url, content: content_div.to_html})
+        create_blog(medium_own_format_scrape(doc))
       rescue OpenURI::HTTPError => ex
         puts "URL not found"
       end
     end
   end
 
-  def create_blog(blogs_params)
-    blogs << Blog.find_or_create_by(title: blogs_params[:title]) do |blog|
-      blog.description = blogs_params[:content]
-      blog.save
-      blog.attach_default_image
+  # def other_format_scrape(content_div)
+  #   blog_title  = content_div.css('.graf--title')&.text()
+  #   content_div.search('img').remove
+  #   content_div.search('h1').remove
+  #   content_div.search('.js-postMetaLockup').remove
+  #   content_div.search('.graf-after--h3').remove
+  #   [blog_title, content_div.to_html]
+  # end
+
+  def medium_own_format_scrape(doc)
+    sections = doc.css('#root').css('section')
+    content = ''
+    sections.shift
+    sections.each do |section|
+      next if section.inner_text.blank?
+      children = section.children
+      break if children.first.name == 'ul' && (children.first.classes.any? { |class_name| class_name.in? ['bl', 'bm', 'bk'] } || children.last.inner_text.include?('responses'))
+      content << section.inner_text
     end
+    title     = doc.css("meta[property='og:title']").attr('content').value.split(' - ')[0]
+    image_url = doc.css("meta[property='og:image']").attr('content').value
+    { title: title, content: content, image_url: image_url }
+  end
+
+  def create_blog(blog_params)
+    blogs << Blog.find_or_create_by(title: blog_params[:title]) do |blog|
+      blog.description = blog_params[:content]
+      blog_params[:image_url].present? ? download_and_attach_image(blog, blog_params[:image_url]) : blog.attach_default_image
+    end
+  end
+
+  def download_and_attach_image(blog, image_url)
+    downloaded_image = open(image_url)
+    blog.avatar.attach(io: downloaded_image, filename: image_url.split('/').last, content_type: downloaded_image.content_type)
   end
 end
