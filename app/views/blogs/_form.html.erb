@@ -35,7 +35,7 @@
                 <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
                 <div class="field form-group" id="image-upload-button-div">
                   <div class="fileUpload form-control start blog-imgUpload">
-                    <%#= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false %>
+                    <%= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false, accept: "image/png,image/jpeg" %>
                   </div>
                 </div>
               </div> -->

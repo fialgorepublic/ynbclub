@@ -69,8 +69,7 @@ class User < ApplicationRecord
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
   scope :sort_by_banned, -> { order(banned: :desc) }
 
-  after_save   :set_default_permissions
-  after_create :update_accepted_status
+  after_save :set_default_permissions
 
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
@@ -169,10 +168,6 @@ class User < ApplicationRecord
         self.permissions.find_or_create_by(action_name: action, controller_name: permission[:controller_name])
       end
     end
-  end
-
-  def update_accepted_status
-    self.update_attributes(is_activated: true, commission: 8.0) if is_ambassador?
   end
 
   def is_admin?

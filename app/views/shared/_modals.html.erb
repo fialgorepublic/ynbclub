@@ -8,10 +8,10 @@
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
-                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block"> <i class="fa fa-facebook-square"></i> <%= t('login.facebook_signin_label') %></a>
+                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary button-fonts btn-block"> <i class="fa fa-facebook-square"></i> <%= t('login.facebook_signin_label') %></a>
                 </div>
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-6 col-xs-6">
-                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block"> <i class="fa fa-google-plus-square "></i> <%= t('login.google_signin_label') %></a>
+                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger button-fonts btn-block"> <i class="fa fa-google-plus-square "></i> <%= t('login.google_signin_label') %></a>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
               <button class="btn btn-primary btn-lg btn-bottom btn-block" onclick="login_user();"><%= t('unauthorized_header.login_label') %></button>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6 create-account-div">
                 <a href="javascript:void(0);" onclick="register_form();" class="text-center"><%= t('login.create_account_label') %></a>
               </div>
               <div class="col-md-6 text-right">
@@ -70,11 +70,11 @@
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="col-md-6 col-sm-6 pd-l-0 pd-r-0 col-xs-6">
-                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block">
-                    <i class="fa fa-facebook-square"></i><%= t('register.facebook_signup_label') %></a>
+                  <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary btn-block button-fonts">
+                    <i class="fa fa-facebook-square"></i> <%= t('register.facebook_signup_label') %></a>
                 </div>
                 <div class="col-md-6 col-sm-6 pd-r-0 pd-l-0 col-xs-6">
-                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block">
+                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block button-fonts">
                     <i class="fa fa-google-plus-square "></i> <%= t('register.google_signup_label') %></a>
                 </div>
               </div>
