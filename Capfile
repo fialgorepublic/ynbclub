@@ -9,7 +9,7 @@ require 'capistrano/puma'
 require "capistrano/scm/git"
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.6.3'
+set :rbenv_ruby, '2.4.0'
 
 install_plugin Capistrano::Puma
 install_plugin Capistrano::SCM::Git
