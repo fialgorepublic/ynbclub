@@ -2,10 +2,10 @@
 lock "~> 3.11.0"
 
 # Change these
-server '142.93.83.74', roles: [:web, :app, :db], primary: true
+server '174.138.24.161', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:AlgoRepublic/SaintlBeau.Affiliate.git'
-set :user,            'root'
+set :user,            'deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
@@ -14,7 +14,7 @@ set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/var/www/#{fetch(:application)}"
+set :deploy_to,       "/home/deploy/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
@@ -34,7 +34,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 ## Linked Files & Directories (Default None):
 set :bundle_binstubs, nil
-set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
