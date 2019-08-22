@@ -4,9 +4,12 @@ require 'capistrano/deploy'
 
 require 'capistrano/rails'
 require 'capistrano/bundler'
-require 'capistrano/rvm'
+require 'capistrano/rbenv'
 require 'capistrano/puma'
 require "capistrano/scm/git"
+
+set :rbenv_type, :user
+set :rbenv_ruby, '2.6.3'
 
 install_plugin Capistrano::Puma
 install_plugin Capistrano::SCM::Git
