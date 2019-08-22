@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 # Change these
-server '174.138.24.161', roles: [:web, :app, :db], primary: true
+server '167.71.193.192', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:AlgoRepublic/SaintlBeau.Affiliate.git'
 set :user,            'deploy'
@@ -77,7 +77,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
+      invoke! 'puma:restart'
     end
   end
 
