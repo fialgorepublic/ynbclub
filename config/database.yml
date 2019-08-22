@@ -1,21 +1,21 @@
 default: &default
   adapter: postgresql
-  username: postgres
+  username: deploy
   password: 12345
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: saintLBeau-app
+  database: saintlbeau-development
 
 test:
   <<: *default
-  database: saintLBeau-app
+  database: saintlbeau-test
 
 production:
   <<: *default
-  database: saintLBeau-app
+  database: saintlbeau-production
 
 staging:
   <<: *default
