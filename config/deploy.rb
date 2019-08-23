@@ -82,7 +82,7 @@ namespace :deploy do
   task :seed do
     on roles(:all) do
       within current_path do
-        execute :bundle, :exec, 'rails', 'db:seed', "RAILS_ENV=#{rails_env}"
+        execute :bundle, :exec, 'rails', 'db:seed', "RAILS_ENV=#{fetch(:rails_env)}"
       end
     end
   end
