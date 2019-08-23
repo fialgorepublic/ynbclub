@@ -33,7 +33,7 @@ set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
 set :bundle_binstubs, nil
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'config/puma.rb'
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
