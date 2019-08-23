@@ -21,7 +21,6 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_threads, [0, 16]
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
-set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
 
 ## Defaults:
 # set :scm,           :git
