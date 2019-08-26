@@ -22,9 +22,6 @@ set :puma_worker_timeout, nil
 set :puma_threads, [0, 16]
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
-#Whenver settings
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
-
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
