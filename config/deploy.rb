@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 # Change these
-server '167.71.193.192', roles: [:web, :app, :db], primary: true
+server '165.22.61.95', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:AlgoRepublic/SaintlBeau.Affiliate.git'
 set :user,            'deploy'
