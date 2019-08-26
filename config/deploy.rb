@@ -22,6 +22,9 @@ set :puma_worker_timeout, nil
 set :puma_threads, [0, 16]
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
+#Whenver settings
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
@@ -87,9 +90,19 @@ namespace :deploy do
     end
   end
 
+  desc "Update crontab with whenever"
+  task :update_cron do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+      end
+    end
+  end
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
+  after :finishing,     :update_cron
   # after  :finishing,    :restart
 end
 
