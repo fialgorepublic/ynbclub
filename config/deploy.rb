@@ -102,6 +102,23 @@ namespace :deploy do
   after  :finishing,    :update_cron
 end
 
+namespace :sidekiq do
+  task :quiet do
+    on roles([:web, :app, :db]) do
+      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+    end
+  end
+  task :restart do
+    on roles([:web, :app, :db]) do
+      execute :sudo, :initctl, :restart, :workers
+    end
+  end
+end
+
+after 'deploy:starting', 'sidekiq:quiet'
+after 'deploy:reverted', 'sidekiq:restart'
+after 'deploy:published', 'sidekiq:restart'
+
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
 # kill -s SIGTERM pid   # Stop puma
