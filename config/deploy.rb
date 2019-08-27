@@ -78,7 +78,7 @@ namespace :deploy do
     end
   end
 
-  desc "reload the database with seed data"
+  desc "Load the database with seed data"
   task :seed do
     on roles(:all) do
       within current_path do
@@ -100,6 +100,7 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :update_cron
+  after  :initial,      :seed
 end
 
 namespace :sidekiq do
