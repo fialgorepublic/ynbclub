@@ -2,11 +2,16 @@
 require 'capistrano/setup'
 require 'capistrano/deploy'
 
+require 'sshkit/sudo'
 require 'capistrano/rails'
 require 'capistrano/bundler'
 require 'capistrano/rbenv'
 require 'capistrano/puma'
 require "capistrano/scm/git"
+require "whenever/capistrano"
+
+set :rbenv_type, :user
+set :rbenv_ruby, '2.5.1'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1'

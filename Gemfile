@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.1'
+ruby '2.4.1'
 
 gem 'rails', '~> 5.2.0'
 gem 'pg'
@@ -82,6 +82,7 @@ group :development do
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
+  gem 'sshkit-sudo' #used to make the terminal interactive i.e to get the sudo passwords
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

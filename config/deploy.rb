@@ -78,7 +78,7 @@ namespace :deploy do
     end
   end
 
-  desc "reload the database with seed data"
+  desc "Load the database with seed data"
   task :seed do
     on roles(:all) do
       within current_path do
@@ -87,11 +87,38 @@ namespace :deploy do
     end
   end
 
+  desc "Update crontab with whenever"
+  task :update_cron do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+      end
+    end
+  end
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
-  # after  :finishing,    :restart
+  after  :finishing,    :update_cron
+  after  :initial,      :seed
 end
+
+namespace :sidekiq do
+  task :quiet do
+    on roles([:web, :app, :db]) do
+      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+    end
+  end
+  task :restart do
+    on roles([:web, :app, :db]) do
+      sudo :service, :sidekiq, :restart
+    end
+  end
+end
+
+after 'deploy:starting', 'sidekiq:quiet'
+after 'deploy:reverted', 'sidekiq:restart'
+after 'deploy:published', 'sidekiq:restart'
 
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
