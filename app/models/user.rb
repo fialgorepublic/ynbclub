@@ -224,4 +224,10 @@ class User < ApplicationRecord
   def already_shared_blog?(blog_id, url_type)
     share_urls.find_by(blog_id: blog_id, url_type: url_type).present?
   end
+
+  def product_url
+    product = blogs.collect(&:products).first.first
+    return (product.present? and product.url.present?) ? product.url : 'https://www.saintlbeau.com/'
+  end
+
 end
