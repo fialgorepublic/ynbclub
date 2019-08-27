@@ -82,6 +82,7 @@ group :development do
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
+  gem 'sshkit-sudo' #used to make the terminal interactive i.e to get the sudo passwords
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
