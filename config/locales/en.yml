@@ -44,6 +44,7 @@ en:
     my_orders_label:          My Orders
     referral_sales_label:     Referral Sales
     blogs_label:              Blogs
+    blogs_list_label:         Blogs List
     all_orders_label:         All Orders
     permissions_label:        Permission Manager
     shared_urls_label:        Shared URL's
@@ -80,6 +81,10 @@ en:
       payment_status:         Payment Status
 
   blogs:
+    title_label:              Title
+    category_label:           Category
+    user_label:               User
+    publish_status_label:     Publish Status
     index:
       page_title:             Blogs
       blog_libray_label:      Blog Library
