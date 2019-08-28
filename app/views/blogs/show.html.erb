@@ -23,10 +23,24 @@
                   <div id="myDropdown" class="dropdown-content">
                     <%= link_to t(:edit_label), edit_blog_path(@blog) %>
                     <%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %>
+                    <% if @blog.is_published %>
+                      <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')">
+                        <%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
+                      </a>
+                    <% end %>
+                    <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %></a>
+                  </div>
+                <% elsif current_user.is_admin? %>
+                  <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <!-- menu -->
+                  <div id="myDropdown" class="dropdown-content">
                     <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')">
                       <%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
                     </a>
-                    <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %></a>
                   </div>
                 <% end %>
               <% end %>
@@ -68,8 +82,8 @@
                 <% end %></strong></h5>
               <% end %>
             <% end %>
-          <hr>
-        </div>
+            <hr>
+            </div>
 
       </div>
     </div>
@@ -231,9 +245,9 @@
       processData:false,
       async: false,
       success:function (data) {
-          $('#addComment').modal('hide');
-          $('#blogComment').html(data);
-          $('#comment_id').val('');
+        $('#addComment').modal('hide');
+        $('#blogComment').html(data);
+        $('#comment_id').val('');
       },
       error:function (data) {
 //                alert ('Error');
@@ -244,32 +258,32 @@
     if(!user_signed_in) {
       showSignInModal();
       return;
-      }
+    }
     var obj_cls = $(obj).attr('class');
     var text_val = $('#blogText').val();
     var obj_cls_status = obj_cls.split(' ')[2];
     var status = '';
     if (obj_cls_status == "liked"){
-        status = true;
-        $(obj).removeClass('liked');
-        $('#blogText').val(parseInt(text_val) - 1);
+      status = true;
+      $(obj).removeClass('liked');
+      $('#blogText').val(parseInt(text_val) - 1);
     }else{
-        status = false;
-        $(obj).addClass('liked');
-        $('#blogText').val(parseInt(text_val) + 1);
+      status = false;
+      $(obj).addClass('liked');
+      $('#blogText').val(parseInt(text_val) + 1);
     }
     $.ajax({
-        url: '/blog_like_unlike?id='+ id + '&value=' + status,
-        type: 'get',
-        dataType: 'html',
-        processData: false,
-        success: function (data) {
+      url: '/blog_like_unlike?id='+ id + '&value=' + status,
+      type: 'get',
+      dataType: 'html',
+      processData: false,
+      success: function (data) {
 
-        },
-        error: function (data) {
-            alert('Error');
-            //    window.location.reload();
-        }
+      },
+      error: function (data) {
+        alert('Error');
+        //    window.location.reload();
+      }
     });
   }
 
@@ -284,53 +298,53 @@
     document.getElementById("myDropdown").classList.toggle("show");
   }
 
-    // Close the dropdown if the user clicks outside of it
+  // Close the dropdown if the user clicks outside of it
   window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
       var dropdowns = document.getElementsByClassName("dropdown-content");
       var i;
       for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-          }
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
       }
     }
   }
   function set_featured_blog(obj, id){
-      {
-          apprise('<%= t('blogs.feautre_blog_text') %>', {'verify': true}, function (r) {
-              if (r) {
-                  var obj_cls = $(obj).attr('class');
-                  var status = ''
-                  if (obj_cls === 'fa fa-star ') {
-                      $(obj).addClass('featureBlog');
-                      status = true
-                  } else {
-                      $(obj).removeClass('featureBlog');
-                      status = false
-                  }
-                  $.ajax({
-                      url: '/change_featured_state?id=' + id + '&value=' + status,
-                      type: 'get',
-                      dataType: 'json',
-                      processData: false,
-                      success: function (data) {
-                          window.location.reload();
-                      },
-                      error: function (data) {
-                          alert('Error');
-                          //    window.location.reload();
-                      }
-                  });
-              }
-              else {
-              }
+    {
+      apprise('<%= t('blogs.feautre_blog_text') %>', {'verify': true}, function (r) {
+        if (r) {
+          var obj_cls = $(obj).attr('class');
+          var status = ''
+          if (obj_cls === 'fa fa-star ') {
+            $(obj).addClass('featureBlog');
+            status = true
+          } else {
+            $(obj).removeClass('featureBlog');
+            status = false
+          }
+          $.ajax({
+            url: '/change_featured_state?id=' + id + '&value=' + status,
+            type: 'get',
+            dataType: 'json',
+            processData: false,
+            success: function (data) {
+              window.location.reload();
+            },
+            error: function (data) {
+              alert('Error');
+              //    window.location.reload();
+            }
           });
-      }
+        }
+        else {
+        }
+      });
+    }
   }
   function showBuyerView(id){
-      window.location.href = '/buyer_show?id='+id;
+    window.location.href = '/buyer_show?id='+id;
   }
 
   function blog_share(id, type, url){
