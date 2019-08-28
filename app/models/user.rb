@@ -225,9 +225,4 @@ class User < ApplicationRecord
     share_urls.find_by(blog_id: blog_id, url_type: url_type).present?
   end
 
-  def product_url
-    product = Product.where(blog_id: blogs.pluck(:id)).where.not(url: nil).first
-    return product.present? ? product.url : 'https://www.saintlbeau.com/'
-  end
-
 end
