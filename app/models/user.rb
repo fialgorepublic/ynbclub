@@ -226,8 +226,8 @@ class User < ApplicationRecord
   end
 
   def product_url
-    product = blogs.collect(&:products).first.first
-    return (product.present? and product.url.present?) ? product.url : 'https://www.saintlbeau.com/'
+    product = Product.where(blog_id: blogs.pluck(:id)).where.not(url: nil).first
+    return product.present? ? product.url : 'https://www.saintlbeau.com/'
   end
 
 end
