@@ -27,7 +27,7 @@ en:
     close_label:              Close
 
   login:
-    login_label:              Log in to Saint L' Beau
+    login_label:              Login to Saint L' Beau
     facebook_signin_label:    Login with Facebook
     google_signin_label:      Login with Google +
     create_account_label:     Create Account
@@ -277,7 +277,7 @@ en:
     index:
       title:                  Rewards
       new_btn_label:          New Reward
-      reward_label:           abcdef
+      reward_label:           Submit
     table_headers:
       name_label:             Name
       points_label:           Points
@@ -427,7 +427,7 @@ en:
   invalid_points:             Invalid points value
   admin_update_points:        Admin points updated successfully.
   enough_coins_message:       You don't have enough coins.
-  exchange_sucess:            Exchange is successfully completed.
+  exchange_success:           Exchange is successfully completed.
   exchange_error:             Something went wrong, unable to exchange at this moment!
   language:                   Language
   earned_coins:               Earned Coins
