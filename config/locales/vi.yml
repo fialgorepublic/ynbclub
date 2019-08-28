@@ -44,7 +44,8 @@ vi:
     my_orders_label:          Đơn hàng của tôi 
     referral_sales_label:     Giới thiệu bán hang
     blogs_label:              Blogs
-    all_orders_label:         Tất cả các đơn đặt hàng 
+    blogs_list_label:         danh sách blog
+    all_orders_label:         Tất cả các đơn đặt hàng
     permissions_label:        Quản lý cấp phép 
     shared_urls_label:        Chia sẻ link URL
     commission_label:         Commission
@@ -80,6 +81,10 @@ vi:
       payment_status:         Tình trạng thanh toán 
 
   blogs:
+    title_label:              Chức vụ
+    category_label:           thể loại
+    user_label:               Người dùng
+    publish_status_label:     Xuất bản trạng thái
     index:
       page_title:             Blogs
       blog_libray_label:      Thư viện Blog 

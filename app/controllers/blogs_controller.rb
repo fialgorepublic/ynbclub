@@ -25,6 +25,10 @@ class BlogsController < ApplicationController
     end
   end
 
+  def list
+    @blogs = Blog.all_users_blogs.paginate(page: params[:page], per_page: 20)
+  end
+
   # GET /blogs/1
   # GET /blogs/1.json
   def show
@@ -54,7 +58,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = current_user.blogs.new(blog_params.merge({is_published: true}))
+    @blog = current_user.blogs.new(blog_params)
 
     respond_to do |format|
       if @blog.save
@@ -73,7 +77,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1.json
   def update
     respond_to do |format|
-      if @blog.update(blog_params.merge({is_published: true, user: current_user}))
+      if @blog.update(blog_params.merge({user: current_user}))
         @blog.update_products(params[:product])
         format.html { redirect_to @blog, notice: I18n.t('blogs.controller.updated_blog') }
         format.json { render :show, status: :ok, location: @blog }
@@ -112,13 +116,27 @@ class BlogsController < ApplicationController
   end
 
   def change_publish_status
+    respond_to do |format|
 
-    unless @blog.is_published?
-      return redirect_to @blog, alert: "You need to change default picture before publishing your blog." if @blog.default_image?
+      format.html{
+        unless @blog.is_published?
+          return redirect_to @blog, alert: "You need to change default picture before publishing your blog." if @blog.default_image?
+        end
+
+        @blog.update_attributes(is_published: params[:status])
+        redirect_to @blog
+      }
+
+      format.json{
+        unless @blog.is_published?
+          render json: { success: false, message: 'You can not publish a blog with default image.' } if @blog.default_image?
+        end
+
+        @blog.update_attributes(is_published: params[:status])
+        render json: { success: true }
+      }
+
     end
-
-    @blog.update_attributes(is_published: params[:status])
-    redirect_to @blog
   end
 
   def change_buyer_show_statusgs

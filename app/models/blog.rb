@@ -43,6 +43,8 @@ class Blog < ApplicationRecord
 
   scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}
 
+  scope :all_users_blogs, -> { where.not(user_id: nil).order(is_published: :asc) }
+
   scope :sort_blogs, -> (sort_type) {
     case sort_type
       when 0, "0"

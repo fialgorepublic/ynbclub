@@ -102,4 +102,13 @@ $(document).on('turbolinks:load', function () {
       &display=popup`;
     return url;
   }
+
+  $('#blogs-list').dataTable({
+    "pagingType": "full_numbers",
+    "paging": false,
+    "info": false,
+    "scrollY": 600,
+    'scrollX': true
+  });
+
 });

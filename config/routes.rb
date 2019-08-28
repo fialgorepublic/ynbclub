@@ -208,6 +208,7 @@ Rails.application.routes.draw do
 
   resources :blogs do
     collection do
+      get :list
       get  :feed
       post :banner
       post :create_or_update_cateogry
