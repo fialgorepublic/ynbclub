@@ -30,7 +30,7 @@ border: solid 1px lightgrey;
 
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
-    <div class="row">
+    <div class="">
       <div class="flex-sb " style="margin-bottom: 15px;">
         
         <div class=" ">
@@ -41,14 +41,39 @@ border: solid 1px lightgrey;
           </div>
         </div>
          <div class="  ">
-          <div class="dropdown pull-right">
+          <%# <div class="dropdown pull-right">
   <button class="test dropdown-toggle" type="button" data-toggle="dropdown"></button>
   <ul class="dropdown-menu">
     <li><a href="#">HTML</a></li>
     <li><a href="#">CSS</a></li>
     <li><a href="#">JavaScript</a></li>
   </ul>
-</div>
+</div> %>
+<div class="three-dots ">
+            <div class="dropdown">
+              <!-- three dots -->
+              <% if current_user.present? %>
+                <% if belongs_to_user %>
+                  <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <!-- menu -->
+                  <div id="myDropdown" class="dropdown-content">
+                    <%= link_to t(:edit_label), edit_blog_path(@blog) %>
+                    <%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %>
+                    <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')">
+                      <%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
+                    </a>
+                    <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %></a>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+
       </div>
      
         </div>

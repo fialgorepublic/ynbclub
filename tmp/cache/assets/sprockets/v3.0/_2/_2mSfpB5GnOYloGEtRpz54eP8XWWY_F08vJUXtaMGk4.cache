@@ -1,0 +1,46 @@
+I"Ý(function() {
+  $(document).on('turbolinks:load', function() {
+    $('#user_commission').focusout(function() {
+      var value;
+      value = parseInt($(this).val());
+      if (value < 0 || value > 100) {
+        return $('#user_commission').parent().append("<span id=commission style=color:red;>Value must be between 0 and 100</span>");
+      } else {
+        return $('#commission').remove();
+      }
+    });
+    $('.deduct_modal').click(function() {
+      $('#user_id').val($(this).data('id'));
+      return $('#deduct_points_modal').modal('show');
+    });
+    return $('#deduct_points').click(function() {
+      var id, url, value;
+      value = $('#point_value').val();
+      id = $('#user_id').val();
+      url = $(this).data('url') + '?id=' + id + '&point_value=' + value;
+      if (value === '') {
+        return $('#value_error').text('Please provide the values');
+      } else if (value.includes('-')) {
+        return $('#value_error').text('Number is not valid, Please give positive number');
+      }
+      return $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        success: function(data) {
+          if (data.success) {
+            toastr.success(data.message);
+            return window.location.href = '/users/users/ban?deduct_points=true';
+          } else {
+            return toastr.error(data.message);
+          }
+        },
+        error: function() {
+          return alert("Something wentwrong");
+        }
+      });
+    });
+  });
+
+}).call(this);
+:ET
