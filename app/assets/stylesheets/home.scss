@@ -2257,7 +2257,7 @@ label.error {
   box-shadow: 0 2px 9px 0px #ccc;
   padding-bottom:15px;
   margin-bottom:25px;
-  height:320px;
+  min-height:320px !important;
   .fa{
     font-size:20px;
     color:#256664;

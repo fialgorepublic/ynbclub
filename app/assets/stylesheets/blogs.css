@@ -10,3 +10,10 @@
 .banner {
   margin-top: 2%;
 }
+
+.dashboard-holder .main span {
+  border: 1px solid;
+  padding: 12px !important; 
+  font-size: 16px;
+  margin-left: 0px !important;
+}

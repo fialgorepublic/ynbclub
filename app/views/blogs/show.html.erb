@@ -1,3 +1,27 @@
+<style>
+.p-0{
+  padding: 0px;
+}
+.test:after {
+  content: '\2807';
+  font-size: 30px;
+
+}
+.test{
+background-color: transparent;
+    border: navajowhite;
+}
+.bt--blog{
+border: solid 1px lightgrey;
+    padding: 12px;
+    font-size: 12px;
+    width: 190px;
+}
+.flex-sb{
+      display: flex;
+    justify-content: space-between;
+}
+</style>
 <%= render 'blogs/og_tags_content' %>
 <% belongs_to_user = false %>
 <% if current_user.present? %>
@@ -7,55 +31,37 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="row">
-      <div class="col-md-12">
-        <div class="main">
-          <div class="three-dots pull-right">
-            <div class="dropdown">
-              <!-- three dots -->
-              <% if current_user.present? %>
-                <% if belongs_to_user %>
-                  <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                  </ul>
-                  <!-- menu -->
-                  <div id="myDropdown" class="dropdown-content">
-                    <%= link_to t(:edit_label), edit_blog_path(@blog) %>
-                    <%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %>
-                    <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')">
-                      <%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
-                    </a>
-                    <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %></a>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
+      <div class="flex-sb " style="margin-bottom: 15px;">
+        
+        <div class=" ">
+        
+          <div class="bt--blog">
+          <span> <a href="/blogs" style="text-decoration: none;"><i class="fa fa-angle-left"></i> <%= t('blogs.goto_list_label') %> </a></span> <!-- three dot menu -->
+
           </div>
-          <h2><span> <a href="/blogs" style="text-decoration: none;"><i class="fa fa-angle-left"></i> <%= t('blogs.goto_list_label') %> </a></span> <!-- three dot menu -->
-          </h2>
-          <hr>
         </div>
+         <div class="  ">
+          <div class="dropdown pull-right">
+  <button class="test dropdown-toggle" type="button" data-toggle="dropdown"></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+  </ul>
+</div>
       </div>
+     
+        </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="detail-img">
-          <div class="img-block"><h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %></h4></div>
-          <%= image_tag render_image(@blog), width: '100%' %>
-        </div>
-      </div>
-    </div>
+    
 
     <div class="row">
       <div class="col-md-12">
         <div class="detail-img detail-icon">
           <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
           <i class="fa fa-share"></i><span style="display:inline-block;"><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
-          <% if @blog.is_published? %>
-            <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
-          <% end %>
+          
           <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
           <h5 class="pull-right"> <span class="category-style"><%= @blog.category_name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
@@ -73,7 +79,23 @@
 
       </div>
     </div>
+<div class="">
+<% if @blog.is_published? %>
+            <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
+          <% end %>
+</div>
 
+<div class="row">
+      <div class="col-md-12">
+        <div class="">
+          <div class="img-block"><h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %></h4></div>
+    <div class="">
+         <%= image_tag render_image(@blog), width: '100%' %>
+    
+    </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12 title-style">
         <div class="detail-img">
