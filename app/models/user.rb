@@ -224,4 +224,5 @@ class User < ApplicationRecord
   def already_shared_blog?(blog_id, url_type)
     share_urls.find_by(blog_id: blog_id, url_type: url_type).present?
   end
+
 end
