@@ -1,4 +1,5 @@
-<div class="<%= render_row_class(blog_type) %>">
+<div class="" style="margin-top:10px; margin-left:10px;">
+<div class="<%= render_row_class(blog_type) %> row">
   <div class="col-md-3 <%= render_padding_class(blog_type) %> pr-0">
     <span  class="box_bottom_icon"><i class="fa fa-heart"></i> <%= blog.likes.count %></span>
   </div>
@@ -40,11 +41,12 @@
     <% end %>
   <% end %>
 
-  <div class="col-md-3 pull-right">
+  <div class="col-md-3 pl-0 pr-0">
     <span class="box_bottom_icon"><i class="fa fa-eye"></i> <%= blog.blog_views.count %></span>
   </div>
 </div>
 
+</div>
 <script>
   $(document).ready(function () {
     user_has_shared = <%= signed_in? ? current_user.already_shared_blog?(blog.id, 'facebook') : false %>;

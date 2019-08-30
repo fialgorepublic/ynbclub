@@ -1,3 +1,9 @@
+<style>
+div#s2id_user_id {
+    border: none;
+    padding: 0;
+}
+</style>
 <div class="col-md-9">
   <div class="row">
     <div class="col-md-12">
@@ -26,7 +32,7 @@
     </div>
     <div class="col-md-4">
       <h5><%= t('payments.partner_label') %></h5>
-      <%= collection_select(:user, :id, User.brand_ambassadors, :id, :name, { selected: selected_partner(params) }, html_options = {:class=>"form-control", :multiple=>"multiple", placeholder: t('payments.selct_partnr_placeholder') }) %>
+      <%= collection_select(:user, :id, User.brand_ambassadors, :id, :name, { selected: selected_partner(params) }, html_options = {:class=>  'form-control', :multiple=>"multiple", placeholder: t('payments.selct_partnr_placeholder') }) %>
     </div>
   </div>
   <div class="col-md-12 m-t-30">

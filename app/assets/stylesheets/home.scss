@@ -2257,7 +2257,7 @@ label.error {
   box-shadow: 0 2px 9px 0px #ccc;
   padding-bottom:15px;
   margin-bottom:25px;
-  height:320px;
+  min-height:320px !important;
   .fa{
     font-size:20px;
     color:#256664;
@@ -2267,7 +2267,7 @@ label.error {
 
   }
   .blog-box-content{
-        padding: 20px 12px;
+        padding: 20px 12px 0px;
         img{
           width:25px;
           height:25px;
@@ -2326,7 +2326,7 @@ label.error {
   }
 
   .description {
-    max-height: 100px;
+    max-height: 157px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -2396,6 +2396,9 @@ label.error {
 }
 
 @media only screen and (max-width:768px){
+  .account-side-menu-style .account-brand-icon {
+ display: none;
+}
   .home-banner{
     height: 700px !important;
     width: 100%;
@@ -2500,10 +2503,15 @@ label.error {
     float:none !important;
     margin:20px 0px;
   }
+  .bottom_icon {
+    padding-top: 10px !important;
+}
 
   #blogs .blog-box span.box_bottom_icon{
     float:left;
     padding:10px;
+    padding-top: 100px;
+
   }
 
   .share_with_friends_style .box-shadow{
