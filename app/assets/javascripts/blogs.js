@@ -102,4 +102,34 @@ $(document).on('turbolinks:load', function () {
       &display=popup`;
     return url;
   }
+
+  $('#blogs-list').dataTable({
+    "pagingType": "full_numbers",
+    "paging": false,
+    "info": false,
+    "scrollY": 600,
+    'scrollX': true
+  });
+
+  $(".publish-switch").change(function(event){
+    status = $(this).prop("checked");
+    id = event.target.id;
+    if (confirm(`Are you sure?`)) {
+      $.ajax({
+        url: "/change_publish_status.json?id=" + id + "&status=" + status,
+        method: "get",
+        contentType: "application/json",
+        success: function(data){
+          if(data.success){
+            $("#" + id).prop('checked', status == 'true');
+            $("#blog-status-" + id).text(status == 'true' ? 'Published' : 'Unpublished');
+          }else{
+            toastr.error(data.message);
+          }
+        }
+      })
+    }else
+      $("#" + id).prop('checked', !(status == 'true'));
+  })
+
 });

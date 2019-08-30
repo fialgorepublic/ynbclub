@@ -216,6 +216,8 @@
       <div class="modal-body ">
         <div id="product-search-form">
           <%= form_tag(search_products_path, method: "get", remote: true, id: 'search-form') do %>
+            <%= hidden_field_tag :blog_id, blog.id %>
+            <%= hidden_field_tag :selected_products_ids, nil, id: 'selected_products_ids' %>
             <div class="row">
               <div class="col-md-9">
                 <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title', data: { type: 'search' } ) %>
@@ -295,6 +297,9 @@
     });
 
     $(document).on('turbolinks:load', function(){
+
+        selected_products_ids = [];
+
         $('#blog-form').submit(validateDescriptionLength)
         $('#blog-form').submit(validateDefaultImage)
         var v = CKEDITOR.instances.blog_description
@@ -374,6 +379,11 @@
             processData: false,
             success: function (data) {
                 $('#products').html(data);
+              $(".selected").each(function(index, v) {
+                id = $(v).attr('class').split(' ')[0];
+                if(selected_products_ids.indexOf(id) === -1)
+                  selected_products_ids.push(id);
+              });
             },
             error: function (data) {
                 alert('Error');
@@ -381,6 +391,14 @@
             }
         });
     }
+
+    $("#search-form").submit(function(){
+      // $(".selected").each(function(index, v) {
+      //   selected_products_ids.push($(v).attr('class').split(' ')[0]);
+      // });
+      $('#selected_products_ids').val(selected_products_ids.join(','));
+      return true;
+    });
 
     function add_products(){
         var ids = [];
