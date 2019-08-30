@@ -1900,7 +1900,11 @@ label.error {
   padding-right:15px;
 }
  @media  only screen and (min-width:980px) {
-
+  .title-style .detail-img p img {
+    padding-top: 0px;
+    height: 100px;
+    width: 100% !important;
+}
    .m-profile-holder{
     display:none
    }
@@ -2267,6 +2271,15 @@ label.error {
 
   }
   .blog-box-content{
+    h3{
+      max-height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+    }
+  }
+  .blog-box-content{
         padding: 20px 12px 0px;
         img{
           width:25px;
@@ -2326,7 +2339,7 @@ label.error {
   }
 
   .description {
-    max-height: 157px;
+    max-height: 132px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
