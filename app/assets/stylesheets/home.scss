@@ -1899,8 +1899,37 @@ label.error {
   padding-left:15px;
   padding-right:15px;
 }
- @media  only screen and (min-width:980px) {
+.bottom_icon {
+  margin-top: 38px;
+}
+@media  only screen and (max-width:980px) {
+  .title-style .detail-img p img {
+    padding-top: 0px;
+    padding-right: 10px;
+    // height: 100px;
+    width: 100% !important;
+}
+.detail-img img {
+  padding-top: 0px;
+  padding-right: 10px;
+  // height: 100px;
+  width: 100% !important;
+}
 
+.mob-p-t-20{
+  padding-top: 20px;
+}
+
+}
+ @media  only screen and (min-width:980px) {
+  .title-style .detail-img p img {
+    padding-top: 0px;
+    height: 100px;
+    width: 100% !important;
+}
+.mob-p-t-20{
+  padding-top: 20px;
+}
    .m-profile-holder{
     display:none
    }
@@ -2267,6 +2296,24 @@ label.error {
 
   }
   .blog-box-content{
+    h3{
+      max-height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+    }
+  }
+  .blog-sm-p{
+
+    
+      height: 65px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      // white-space: nowrap;
+    
+  }
+  .blog-box-content{
         padding: 20px 12px 0px;
         img{
           width:25px;
@@ -2310,6 +2357,8 @@ label.error {
     .blog-box-content{
     padding: 10px 12px 10px;
    // height: 84px;
+   max-height: 119px;
+   min-height: 119px;
     }
      h3{
           font-size:18px;
@@ -2326,8 +2375,9 @@ label.error {
   }
 
   .description {
-    max-height: 157px;
+    max-height: 132px;
     overflow: hidden;
+    min-height: 132px;
     text-overflow: ellipsis;
   }
 
@@ -2510,7 +2560,7 @@ label.error {
   #blogs .blog-box span.box_bottom_icon{
     float:left;
     padding:10px;
-    padding-top: 100px;
+    // padding-top: 100px;
 
   }
 

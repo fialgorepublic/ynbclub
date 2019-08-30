@@ -92,15 +92,28 @@ border: solid 1px lightgrey;
      
         </div>
     </div>
-
+<div class="row">
+      <div class="col-md-12">
+        <div class="detail-img">
+          <div class="img-block"><h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %></h4></div>
+    <div class="">
+         <%= image_tag render_image(@blog), width: '100%' %>
+    
+    </div>
+        </div>
+      </div>
+    </div>
+    
     
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 mob-p-t-20">
         <div class="detail-img detail-icon">
           <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
           <i class="fa fa-share"></i><span style="display:inline-block;"><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
-          
+          <% if @blog.is_published? %>
+            <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
+          <% end %>
           <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
           <h5 class="pull-right"> <span class="category-style"><%= @blog.category_name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
@@ -118,23 +131,13 @@ border: solid 1px lightgrey;
 
       </div>
     </div>
-<div class="">
+<%# <div class="">
 <% if @blog.is_published? %>
-            <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
-          <% end %>
-</div>
+            <%# <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
+      <%# <% end %> 
+<%# </div> ÷ %> 
 
-<div class="row">
-      <div class="col-md-12">
-        <div class="">
-          <div class="img-block"><h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %></h4></div>
-    <div class="">
-         <%= image_tag render_image(@blog), width: '100%' %>
-    
-    </div>
-        </div>
-      </div>
-    </div>
+
     <div class="row">
       <div class="col-md-12 title-style">
         <div class="detail-img">
