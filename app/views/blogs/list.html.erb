@@ -25,7 +25,7 @@
             <tbody>
             <% @blogs.each do |blog| %>
               <tr>
-                <td><a href="/blogs/<%= blog.id %>"><%= blog.title %></a></td>
+                <td><%= link_to blog.title, blog %></td>
                 <td><%= blog.user_name %></td>
                 <td><%= blog.category_name %></td>
                 <td id="blog-status-<%= blog.id %>"><%= blog.is_published? ? t(:ubpublish_label) : t(:publish_label) %></td>
