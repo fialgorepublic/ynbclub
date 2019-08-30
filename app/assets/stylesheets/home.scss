@@ -2304,6 +2304,15 @@ label.error {
 
     }
   }
+  .blog-sm-p{
+
+    
+      height: 65px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      // white-space: nowrap;
+    
+  }
   .blog-box-content{
         padding: 20px 12px 0px;
         img{
