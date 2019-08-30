@@ -2368,6 +2368,7 @@ label.error {
   .description {
     max-height: 132px;
     overflow: hidden;
+    min-height: 132px;
     text-overflow: ellipsis;
   }
 
