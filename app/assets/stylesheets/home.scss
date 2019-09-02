@@ -2561,6 +2561,7 @@ label.error {
 //     padding-top: 10px !important;
 // }
 
+
   #blogs .blog-box span.box_bottom_icon{
     float:left;
     padding:10px;
@@ -2645,4 +2646,11 @@ label.error {
 }
 .height-long{
   height: 248px;
+}
+a.btn.btn-primary.new_blog_btn {
+  padding: 10px 40px;
+  border-radius: 20px;
+  background-color: #54b2b2;
+  border: 0px;
+  font-size: 16px;
 }
