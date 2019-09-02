@@ -1899,9 +1899,9 @@ label.error {
   padding-left:15px;
   padding-right:15px;
 }
-.bottom_icon {
-  margin-top: 38px;
-}
+// .bottom_icon {
+//   margin-top: 38px;
+// }
 @media  only screen and (max-width:980px) {
   .title-style .detail-img p img {
     padding-top: 0px;
@@ -2557,9 +2557,9 @@ label.error {
     float:none !important;
     margin:20px 0px;
   }
-  .bottom_icon {
-    padding-top: 10px !important;
-}
+//   .bottom_icon {
+//     padding-top: 10px !important;
+// }
 
   #blogs .blog-box span.box_bottom_icon{
     float:left;
@@ -2639,4 +2639,10 @@ label.error {
 
 #clipboardShareReferral:focus, #clipboardShareFriend:focus {
   outline: none;
+}
+.height-sm{
+  height: 270px;
+}
+.height-long{
+  height: 248px;
 }
