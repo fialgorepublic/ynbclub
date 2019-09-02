@@ -1903,6 +1903,14 @@ label.error {
 //   margin-top: 38px;
 // }
 @media  only screen and (max-width:980px) {
+  .blog-box{
+    background:#fff;
+    box-shadow: 0 2px 9px 0px #ccc;
+    padding-bottom:15px;
+    margin-bottom:25px;
+    min-height:320px !important;
+    max-height: 100% !important;
+  }
   .title-style .detail-img p img {
     padding-top: 0px;
     padding-right: 10px;
