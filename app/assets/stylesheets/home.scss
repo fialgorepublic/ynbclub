@@ -1913,16 +1913,11 @@ label.error {
   }
   .title-style .detail-img p img {
     padding-top: 0px;
-    padding-right: 10px;
-    // height: 100px;
+    padding-right: 0px;
+    height: 100%;
     width: 100% !important;
 }
-.detail-img img {
-  padding-top: 0px;
-  padding-right: 10px;
-  // height: 100px;
-  width: 100% !important;
-}
+
 
 .mob-p-t-20{
   padding-top: 20px;
@@ -1932,8 +1927,6 @@ label.error {
  @media  only screen and (min-width:980px) {
   .title-style .detail-img p img {
     padding-top: 0px;
-    height: 100px;
-    width: 100% !important;
 }
 .mob-p-t-20{
   padding-top: 20px;
