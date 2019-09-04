@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
+  before_action :check_limit, only: [:new]
 
   require 'time_ago_in_words'
   require 'will_paginate'
@@ -217,4 +218,13 @@ class BlogsController < ApplicationController
     def category_params
       params.require(:category).permit(:id, :name)
     end
+
+    def check_limit
+      unless current_user.is_admin?
+        if current_user.exceed_blogs_limit?
+          return redirect_to blogs_path, alert: t('blogs.controller.create_limit_alert')
+        end
+      end
+    end
+
 end
