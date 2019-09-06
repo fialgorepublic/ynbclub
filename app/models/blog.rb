@@ -71,6 +71,7 @@ class Blog < ApplicationRecord
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
   after_save :add_coins_to_user_account
+  before_destroy :valid_for_destroy?
 
   def add_products(product)
     return if product.blank?
@@ -124,6 +125,15 @@ class Blog < ApplicationRecord
 
     def should_generate_new_friendly_id?
       title_changed?
+    end
+
+    def valid_for_destroy?
+      unless ( ( DateTime.now.to_time.utc - self.created_at.to_time.utc ) / 1.hours ) > 42
+        point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
+        return if point_type.blank?
+        point = user.points.where(point_type: point_type).last
+        point.destroy if point.present?
+      end
     end
 
 end

@@ -170,6 +170,10 @@ class User < ApplicationRecord
     end
   end
 
+  def exceed_blogs_limit? ## Limit set to 10
+    self.blogs.where('CAST(created_at AS DATE) = ?', DateTime.now.strftime("%Y-%m-%d")).count >= 10
+  end
+
   def is_admin?
     return true if(self.role.name.eql?("Admin") unless self.role.nil?)
   end

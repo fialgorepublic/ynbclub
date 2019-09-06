@@ -134,7 +134,8 @@ vi:
     controller:
       create_blog_success:     Bài Blog đã được tạo thành công.
       updated_blog:            Bài Blog đã được cập nhập thành công 
-      destroy_blog_success:    Bài Blog đã được huỷ thành công 
+      destroy_blog_success:    Bài Blog đã được huỷ thành công
+      create_limit_alert:      Bạn đã vượt quá giới hạn của mình để xuất bản blog cho ngày hôm nay.
  
   orders:
     index:
