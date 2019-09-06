@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   scope :user_orders, -> (email) { where(email: email) }
 
   enum picked_phone: {
-    'N/A' => 0
+    'N/A' => 0,
     'Yes' => 1,
     'Call Day 1'  => 2,
     'Call Day 2'  => 3,
