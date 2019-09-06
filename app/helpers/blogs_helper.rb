@@ -92,6 +92,10 @@ module BlogsHelper
     controller_name == 'blogs' && (action_name == 'new_wizard' || action_name == 'index')
   end
 
+  def blog_list_action?
+    controller_name == 'blogs' && (action_name == 'list')
+  end
+
   def product_url_referral_code product
     user = product.blog.user
     user.is_ambassador? ? (product.url + '?referral_code=' + user.referral) : product.url

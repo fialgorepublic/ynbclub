@@ -27,18 +27,18 @@
 
         <% if @blogs.count > 0 %>
           <div class="col-md-2 post-sorting  ">
-            <p>CATEGORY</p>
+            <p>SORTING</p>
             <select class="sorting-fltr" id="sort-blogs">
               <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-              <option value="0"><%= t(:All_Categories) %></option>
+              <option value="0"><%= t(:A_Z) %></option>
               <option value="1">A-Z </option>
               <option value="2">Z-A </option>
             </select>
           </div>
 
           <div class="col-md-2 post-sorting">
-            <p>SORTING</p>
-            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:A_Z), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+            <p>CATEGORY</p>
+            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
           </div>
         <% end %>
 

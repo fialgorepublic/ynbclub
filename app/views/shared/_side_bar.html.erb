@@ -97,7 +97,7 @@
 
       <% if current_user.is_admin? %>
         <li  data-toggle="" data-target="#" class="collapsed">
-          <a href="/blogs/list" class="<%= 'active' if blog_related_action? %>">
+          <a href="/blogs/list" class="<%= 'active' if blog_list_action? %>">
             <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
             <span class="side-nav-style"><%= t('sidebar.blogs_list_label') %></span></a>
         </li>

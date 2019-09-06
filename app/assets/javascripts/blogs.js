@@ -21,7 +21,20 @@ $(document).on('turbolinks:load', function () {
         alert('Something Wentwrong!')
       }
     })
-  })
+  });
+
+  $('#sort-blogs-list, #category-dropdown-blog-list, #per-page-blogs-list').on('change', function(){
+    $('.loader').show();
+    sort_type = $('#sort-blogs-list').val();
+    category_type = $('#category-dropdown-blog-list').val();
+    per_page = $('#per-page-blogs-list').val();
+    // window.location.href = `/blogs/list?sort=${sort_type}&category=${category_type}`;
+    $.ajax({
+      url: `/blogs/list?sort=${sort_type}&category=${category_type}&per_page=${per_page}`,
+      type: 'GET',
+      dataType: 'script'
+    })
+  });
 
   $("#load-more").click(function() {
     page = $('#page').val();

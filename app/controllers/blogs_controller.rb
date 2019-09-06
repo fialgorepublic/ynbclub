@@ -27,7 +27,13 @@ class BlogsController < ApplicationController
   end
 
   def list
-    @blogs = Blog.all_users_blogs.paginate(page: params[:page], per_page: 20)
+    per_page = params[:per_page].present? ? params[:per_page] : 25
+    blogs = current_user.filtered_blogs(params[:sort], params[:category])
+    @blogs = blogs.paginate(page: params[:page], per_page: per_page)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /blogs/1
