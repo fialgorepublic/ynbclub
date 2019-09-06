@@ -11,19 +11,19 @@ $(document).on('turbolinks:load', function() {
     rowCallback: function(row, data, index){
             string_index = data[6].indexOf('"selected"');
       value = JSON.parse(data[6].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
-            if(value == '0'){
+            if(value == '1'){
               $('td', row).css('background-color', '#e8f4e7');
             }
-            else if(value == '1'){
+            else if(value == '2'){
               $('td', row).css('background-color', '#fff5c7');
             }
-            else if(value == '2'){
+            else if(value == '3'){
               $('td', row).css('background-color', '#f9dcbe');
             }
-            else if(value == '3'){
+            else if(value == '4'){
               $('td', row).css('background-color', '#f0b9a2');
             }
-            else if(value == '4'){
+            else if(value == '5'){
               $('td', row).css('background-color', '#fa9b9b');
             }
         }
