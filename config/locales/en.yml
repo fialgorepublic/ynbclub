@@ -117,6 +117,7 @@ en:
       maximum_words_allowed:   Maximum Words Allowed
       max_words_label:         Max 700 words are allowed for blog description
       limit_reach_label:       Limit reached
+      products_limit_label:    You can not link more than 5 products to a blog
     show:
       buyer_view_label:       Show as buyers see it
       comment_modal:
