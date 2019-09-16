@@ -98,6 +98,7 @@
 <script type="text/javascript">
 
   function showActive (obj){
+    if(!($(obj).hasClass('selected')) && (selected_products_ids.length >= 5)) { toastr.error('You can not link more than 5 products to a blog'); return false; }
     $(obj).toggleClass('selected');
     if($(obj).hasClass('selected')){
       id = $(obj).attr('class').split(' ')[0];
