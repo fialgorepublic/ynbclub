@@ -229,4 +229,8 @@ class User < ApplicationRecord
     share_urls.find_by(blog_id: blog_id, url_type: url_type).present?
   end
 
+  def blog_sharing_limit_exceed?(url_type)
+    share_urls.where(url_type: url_type, created_at: DateTime.now.all_day).count >= 10
+  end
+
 end

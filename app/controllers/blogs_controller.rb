@@ -199,6 +199,10 @@ class BlogsController < ApplicationController
     render json: { shared: current_user.already_shared_blog?(params[:blog_id], 'facebook') }
   end
 
+  def exceed_limit
+    render json: { limit_exceeded: current_user.blog_sharing_limit_exceed?('facebook') }
+  end
+
   def new_wizard
   end
 

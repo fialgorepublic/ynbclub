@@ -213,6 +213,7 @@ Rails.application.routes.draw do
       post :banner
       post :create_or_update_cateogry
       get  :new_wizard, as: 'wizard'
+      get :exceed_limit
     end
     get :shared
   end

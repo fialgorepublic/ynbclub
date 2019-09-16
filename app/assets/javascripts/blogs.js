@@ -78,10 +78,13 @@ $(document).on('turbolinks:load', function () {
     blog_id = $(this).data('id');
     type    = $(this).data('type');
     blog    = $(this).data('attributes');
-    url     = $(this).data('share-url')
-    already_shared_blog(blog_id, url)
+    url     = $(this).data('share-url');
+    limit_url = $(this).data('limit-url');
+    already_shared_blog(blog_id, url);
+    sharing_limit_exceed(limit_url);
     if (user_signed_in) {
       if (user_has_shared) { toastr.error('You already have shared this blog'); return false; }
+      if (limit_exceeded) { toastr.error('You have exceeded your limit to share blogs on facebook for today'); return false; }
       var url = createFBShareLink(blog_id, type, blog, '164286157812635');
 
       window.open(url);
@@ -99,6 +102,18 @@ $(document).on('turbolinks:load', function () {
       async: false,
       success: function (data) {
         user_has_shared = data.shared
+      }
+    })
+  }
+
+  function sharing_limit_exceed(url){
+    $.ajax({
+      url: url,
+      method: 'get',
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+        limit_exceeded = data.limit_exceeded
       }
     })
   }
