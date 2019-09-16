@@ -117,6 +117,7 @@ vi:
       maximum_words_allowed:   Từ tối đa được phép
       max_words_label:         Tối đa 700 từ được phép cho mô tả blog
       limit_reach_label:       Đạt tới giới hạn
+      products_limit_label:    Bạn không thể liên kết hơn 5 sản phẩm với một blog
     show:
       buyer_view_label:        Hiển thị khi người mua thấy 
       comment_modal:
