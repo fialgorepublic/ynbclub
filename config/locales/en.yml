@@ -100,7 +100,7 @@ en:
       category_placeholder:   Select Category
       title_placeholder:      Add Title
       total_words:            Total Words
-      minimum_required_words: Minimum Reuqired Words
+      minimum_required_words: Minimum Required Words
       products_label:         Products
       assign_products:        Assign Product
       blog_description_empty: Please add Blog description
@@ -221,7 +221,7 @@ en:
       shared_by_label:        Shared By
       platform_label:         Platform
       url_label:              URL
-      shared_at_label:        Shared at
+      shared_at_label:        Shared at time
 
   approve_sales:
     title:                    Order Management

@@ -100,7 +100,7 @@ vi:
       category_placeholder:    Lựa chọn danh mục 
       title_placeholder:       Thêm tiêu đề 
       total_words:             Tổng ký tự 
-      minimum_required_words:  Từ yêu cầu tối thiểu 
+      minimum_required_words:  Từ bắt buộc tối thiểu
       products_label:          Các sản phẩm 
       assign_products:         Chỉ định sản phẩm 
       blog_description_empty:  Vui lòng điền thêm mô tả Blog 
@@ -224,7 +224,7 @@ vi:
       shared_by_label:          Được chia sẻ bởi 
       platform_label:           Platform
       url_label:                URL
-      shared_at_label:          Chia sẻ tại
+      shared_at_label:          Chia sẻ tại thời điểm
 
   approve_sales:  
     title:                    Quản lý đơn hàng  
