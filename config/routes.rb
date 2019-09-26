@@ -182,6 +182,7 @@
 #  attachment_file DELETE /attachment_files/:id(.:format) ckeditor/attachment_files#destroy
 
 Rails.application.routes.draw do
+  resources :groups
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'
@@ -267,7 +268,6 @@ Rails.application.routes.draw do
       get :update_status
     end
   end
-  resources :groups
   resources :shared_urls,   only: [:index]
   resources :notifications, only: [:index]
 
