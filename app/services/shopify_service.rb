@@ -12,23 +12,6 @@ class ShopifyService
     create_discount_code
   end
 
-  def self.create_session
-    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8a6f6c3187c79cd975c9bde50c12756', api_version: '2019-04')
-    ShopifyAPI::Base.activate_session(shopify_session)
-  end
-
-  # def self.get_all_products
-  #   ShopifyAPI::Product.all.map{|product| [product.title, product.id]}
-  # end
-
-  # def self.get_products(ids)
-  #   ShopifyAPI::Product.find(:all, params: { ids: ids })
-  # end
-
-  # def delete_offer_price_rule
-  #   delete_price_rule
-  # end
-
   private
 
     def create_discount_code
