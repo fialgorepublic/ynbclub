@@ -66,7 +66,7 @@ class ShopifyService
       #get admin decided excange_rate
       defined_coins = EarnCoin.first.coins
       eqivalent_to  = filter_the_amount(EarnCoin.first.price)
-      exhange_rate = eqivalent_to.to_f / defined_coins.to_f
+      exhange_rate = eqivalent_to.gsub(',', '').to_f / defined_coins.to_f
       exhange_rate * coins_to_exchange
     end
 
