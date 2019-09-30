@@ -18,6 +18,7 @@ $(document).on('turbolinks:load', function(){
 
   $("#exchanged-coins").dataTable({
     searching: true,
+    "order": [],
     "pagingType": "full_numbers",
     "paging": false,
     "info": false,
