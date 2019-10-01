@@ -2238,11 +2238,14 @@ label.error {
   background-color:#54b2b2;
   border:0px;
   border-radius: 20px;
+  color: white !important;
 }
 
 .blog_banner_btn a.blog_library:active{
   background-color:#54b2b2;
   border:0px;
+
+  color: white !important;
 }
 
 .blog_banner_btn a.edit_banner_btn:active{
@@ -2649,10 +2652,11 @@ label.error {
   height: 248px;
 }
 a.btn.btn-primary.new_blog_btn {
-  padding: 10px 40px;
+  padding: 10px 24px;
   border-radius: 20px;
   background-color: #54b2b2;
   border: 0px;
+  color: white;
   font-size: 16px;
 }
 .d-none {
@@ -3157,6 +3161,148 @@ button#cropImageBtn{
 }
 
 ///// SHOW GROUP CSS
+.pos-rel-banner{
+  position: relative;
+}
+.pos-abs-banner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.pos-abs-banner h1 {
+  color: white;
+  font-size: 25px;
+  margin-top: 0px;
+}
+
+.pos-abs-banner h3 {
+  color: white;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+// bar start
+
+select{
+  margin:40px;
+  background: rgba(0,0,0,0.3);
+  color:#FFF;
+  text-shadow:0 1px 0 rgba(0,0,0,0.4);
+}
+option:not(:checked) { 
+  background-color: white; 
+  color:#000;
+}
+
+button.btn.btn-default.btn-sm.dropdown-toggle {
+  border: none;
+  padding: 0px !important;
+  width: 100%; 
+
+}
+.btnb:hover{
+  background-color: transparent !important;
+}
+.post-sort{
+
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right;
+  cursor: pointer;
+  appearance: none;       /* remove default arrow */
+  background-image: url('/assets/select-arrow.png');   /* add custom arrow */
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #fff;
+  border-right: none;
+  padding: 15px 5px;;
+  height: 20px;
+  border-radius: 0px 0 0 0px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #fff;
+  background: #fff;
+  text-align: center;
+  color: #bfbfbf;
+  border-radius: 0 0px 0px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+// .wrap{
+//   // width: 30%;
+//   // position: absolute;
+//   // top: 50%;
+//   // left: 50%;
+//   // transform: translate(-50%, -50%);
+// }
+
+// bar end
+
+
+
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+
 
 .show-group-card{
 
@@ -3286,4 +3432,51 @@ button#cropImageBtn{
 }
 
 }
+.bbbr{
+  border-bottom: solid 1px #afafaf;
+}
+input[type=checkbox] {
+  width: 16px;
+  height: 16px;
+  font-size: 13px;
+}
+input[type=checkbox]:after {
+  content: " ";
+  color: white;
+  background-color: #54b2b2;
+  display: inline-block;
+  visibility: visible;
+  margin-left: 0px;
+  width: 15px;
+  border-radius: 3px;
+}
+input[type=checkbox]:checked:after {
+  content: "\2714";
+  /* this is a checkmark symbol */
+}
+
+.bbbht:hover , .bbbht:active {
+  background-color: transparent !important;
+}
+.bbbht:active {
+  background-color: transparent !important;
+}
+.bbbht {
+  ackground-color: transparent;
+    width: 100%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+}
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
+  color: #333;
+  background-color: transparent;
+  border-color: #adadad;
+}
+
+
+
+
+
+
 

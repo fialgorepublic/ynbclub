@@ -1,16 +1,201 @@
-<h1>Groups</h1>
 
-<table class="responsive nowrap table table-hover" id="dttb-groups" data-sort="true" data-source="<%= url_for(format: :json)%>">
-  <thead>
-    <tr>
-      <th data-data="name">Name</th>
-      <th data-data="description">Description</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
-    </tr>
-  </thead>
+<div class="<%= add_container %>">
+  <div class="<%= blog_screen_size %>">
+    <div class="banner pos-rel-banner text-center">
+      <%=  image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %> 
+<div class="pos-abs-banner">
+<h1 class="">You're in good company now.</h1>
+<h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
+<div class="wrap">
+   <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+</div>
+</div>
+    </div>
+    
+    <%# <div class="row">
+      <div class="col-md-12 blog_banner_btn">
+        <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
+          <%# <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' 
+        <% end %> 
 
-</table>
+        <%# <% if current_user&.is_admin? %>
+          <%# <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %> 
+        <%# <% end %>
+      <%# </div>
+    </div>  %> 
 
-<br>
+    <div class="row" style="margin-top: 10px;">
+      <div class="post-heading blog-redesign-style">
+        <div class="col-md-4">
+          <div class="heading-featured">
+            <h1><%= t('blogs.index.page_title') %></h1>
+          </div>
+        </div>
 
-<%= link_to 'New Group', new_group_path %>
+        <% if @blogs.count > 0 %>
+          <div class="col-md-2 post-sorting  ">
+            <p>SORTING</p>
+            <select class="sorting-fltr" id="sort-blogs">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <option value="0"><%= t(:A_Z) %></option>
+              <option value="1">A-Z </option>
+              <option value="2">Z-A </option>
+            </select>
+          </div>
+
+          <div class="col-md-2 post-sorting">
+            <p>CATEGORY</p>
+             <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %> 
+
+             <div class="button-group">
+        <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
+    color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down" style="color: #838181;"></span></button>
+<ul class="dropdown-menu">
+  <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
+  <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
+  <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+  <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+  <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+  <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+</ul>
+  </div>
+
+
+          </div>
+        <% end %>
+
+        <div class="col-md-3 add_blog_btn pull-right">
+          <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
+        </div>
+
+        <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
+      </div>
+    </div>
+
+    <div class="row" id="blogs">
+        <% @blogs.each_with_index do |blog, index| %>
+    <% puts "Blog......", blog.inspect %>
+    <% if index == 3 || index == 9 %>
+      <div class="col-md-8">
+        <style>
+img.image-height {
+min-height:320px;
+max-height:320px;
+}
+</style>
+<div class="blog-box blog-box-long">
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to blog do %>
+        <%= image_tag blog.avatar.attached? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: '100%', class: 'image-height' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <div class="blog-box-content">
+        <div class="row">
+        <div class="height-long">
+          <div class="col-md-12">
+            <p>
+              <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+              <span class=""><%= blog_user_name(blog) %></span>
+              <span><%= blog_date blog %></span>
+              <span><%= blog.category_name %></span>
+            </p>
+            <h3><%= blog_title blog %></h3>
+            <div class="description"><%= blog_description blog %></div>
+          </div>
+          </div>
+        </div>
+        <div class="bottom_icon">
+        <%#= render partial: 'common_options', locals: { blog: blog, blog_type: 'expanded' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    <% else %>
+      <div class="col-md-4">
+        <div class="blog-box blog-box-sm">
+  <div class="row">
+    <div class="height-sm">
+    <div class="col-md-12">
+      <div class="blog-box-small-img">
+      <%= link_to blog do %>
+        <%= image_tag blog.avatar.attached? ? blog.avatar.variant(combine_options: { resize: '330x180^', gravity: 'Center', extent: '330x180^', background: "grey", quality: 95 }) : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
+      <% end %>
+      </div>
+      <div class="blog-box-content">
+        <p class="blog-sm-p">
+          <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+          <span class=""><%= blog_user_name(blog) %></span>
+          <span><%= blog_date blog %></span>
+          <span><%= blog.category_name %></span>
+        </p>
+        <h3><%= blog_title blog %></h3>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <%#= render partial: 'common_options', locals: { blog: blog, blog_type: 'brief' } %>
+</div>
+
+      </div>
+    <% end %>
+  <% end %>
+    </div>
+    <br/>
+
+    <%= hidden_field_tag :page, @next_page %>
+
+    <div class="row show-more-button">
+      <div class="col-md-8">
+        <% unless @blogs.current_page == @blogs.total_pages %>
+          <div class="custom-showMore-btn pull-right">
+            <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
+              <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-4">
+        <a href="javascript:" id="custom-topPage-btn"> <i class="fa fa-angle-up"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+var options = [];
+
+$( '.dropdown-menu a' ).on( 'click', function( event ) {
+
+   var $target = $( event.currentTarget ),
+       val = $target.attr( 'data-value' ),
+       $inp = $target.find( 'input' ),
+       idx;
+
+   if ( ( idx = options.indexOf( val ) ) > -1 ) {
+      options.splice( idx, 1 );
+      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+   } else {
+      options.push( val );
+      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+   }
+
+   $( event.target ).blur();
+
+   console.log( options );
+   return false;
+});
+</script>
