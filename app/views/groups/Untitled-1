@@ -1,0 +1,75 @@
+ <div class="row" id="blogs">
+        <% @blogs.each_with_index do |blog, index| %>
+    <% puts "Blog......", blog.inspect %>
+    <% if index == 3 || index == 9 %>
+      <div class="col-md-8">
+        <style>
+img.image-height {
+min-height:320px;
+max-height:320px;
+}
+</style>
+<div class="blog-box blog-box-long">
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to blog do %>
+        <%= image_tag blog.avatar.attached? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: '100%', class: 'image-height' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <div class="blog-box-content">
+        <div class="row">
+        <div class="height-long">
+          <div class="col-md-12">
+            <p>
+              <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+              <span class=""><%= blog_user_name(blog) %></span>
+              <span><%= blog_date blog %></span>
+              <span><%= blog.category_name %></span>
+            </p>
+            <h3><%= blog_title blog %></h3>
+            <div class="description"><%= blog_description blog %></div>
+          </div>
+          </div>
+        </div>
+        <div class="bottom_icon">
+        <%#= render partial: 'common_options', locals: { blog: blog, blog_type: 'expanded' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    <% else %>
+      <div class="col-md-4">
+        <div class="blog-box blog-box-sm">
+  <div class="row">
+    <div class="height-sm">
+    <div class="col-md-12">
+      <div class="blog-box-small-img">
+      <%= link_to blog do %>
+        <%= image_tag blog.avatar.attached? ? blog.avatar.variant(combine_options: { resize: '330x180^', gravity: 'Center', extent: '330x180^', background: "grey", quality: 95 }) : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
+      <% end %>
+      </div>
+      <div class="blog-box-content">
+        <p class="blog-sm-p">
+          <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+          <span class=""><%= blog_user_name(blog) %></span>
+          <span><%= blog_date blog %></span>
+          <span><%= blog.category_name %></span>
+        </p>
+        <h3><%= blog_title blog %></h3>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <%#= render partial: 'common_options', locals: { blog: blog, blog_type: 'brief' } %>
+</div>
+
+      </div>
+    <% end %>
+  <% end %>
+    </div>

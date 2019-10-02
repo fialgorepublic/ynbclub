@@ -3462,7 +3462,7 @@ input[type=checkbox]:checked:after {
   background-color: transparent !important;
 }
 .bbbht {
-  ackground-color: transparent;
+  background-color: transparent;
     width: 100%;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -3474,8 +3474,228 @@ input[type=checkbox]:checked:after {
   border-color: #adadad;
 }
 
+// groups css start
+ .groups-cards{
+   width: 90%;
+  .box-shadow {    
+    box-shadow: none;
+    padding: 0px 0px 20px 0px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    font-size: 22px;
+    text-align: center;
+    background: #fff;
+    margin-bottom: 20px;
+
+   max-height: 390px;
+   min-height: 390px;
+
+  }
+  .lib-img-show{
+    width: 100%;
+    position: relative;
+
+    max-height: 215px;
+    
+  }
+  .lib-panel .lib-row.lib-header .grp-edit-delete-icon {
+    top: 10px;
+    right: 65px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    display: inline-flex;
+}
+.lib-row.lib-desc {
+  padding: 0px 10px;
+  text-align: left;
+}
+p{
+  font-size: 10px;
+  font-weight: 100;
+
+}
+p{
+  font-size: 10px;
+  font-weight: 100;
+
+}
+h2{
+  font-size: 14px;
+}
+ .grp-card-icon {
+  height: 25px;
+  width: 25px;
+  /* position: absolute; */
+  display: flex;
+  /* left: 0px; */
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+.grp-card-icon p {
+  font-size: 18px;
+  padding: 0px 10px;
+  color: #323232;
+}
+.box-shadow {
+  // padding: 30px !important;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+ }
+
+ .groups-cards-2{
+  
+  .lib-panel {
+    margin-bottom: 20Px;
+}
+.lib-panel img {
+    width: 100%;
+    background-color: transparent;
+}
+
+.lib-panel .row,
+.lib-panel .col-md-6 {
+    padding: 0;
+    background-color: #FFFFFF;
+    min-height: 185px;
+    max-height: 185px;
+}
 
 
+.lib-panel .lib-row {
+    padding: 0 20px 0 20px;
+}
+
+.lib-panel .lib-row.lib-header {
+    background-color: #FFFFFF;
+    font-size: 20px;
+    text-align: right;
+  //  padding: 0px;
+}
+
+.lib-panel .lib-row.lib-header .grp-edit-delete-icon{
+    height:25px;
+    width:25px;
+    position: absolute;
+    display: inline-flex;}
+
+
+
+.lib-panel .lib-row.lib-header .lib-header-seperator {
+    height: 2px;
+    width: 26px;
+    background-color: #d9d9d9;
+    margin: 7px 0 7px 0;
+}
+
+.lib-panel .lib-row.lib-desc h2{
+  color: #323232;
+  font-size: 14px;
+  /* font-weight: normal; */
+  margin-top: 0px;
+}
+
+.lib-panel .lib-row.lib-desc {
+    position: relative;
+    height: 100%;
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-size: 12px;
+}
+.lib-panel .lib-row.lib-desc a{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    left: 20px;
+}
+
+.row-margin-bottom {
+    margin-bottom: 20px;
+}
+
+.box-shadow {
+    padding:0px !important;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.grp-card-icon{
+    height: 25px;
+    width: 25px;
+    // position: absolute;
+    display: inline-flex;
+}
+
+.grp-card-icon p{
+  font-size:18px;
+  padding: 0px 10px;
+  color:#323232;
+}  
+
+.middle-row-grp .box-shadow{
+  padding: 20px !important;
+}
+
+.middle-row-grp .lib-row.lib-desc{
+  text-align:center;
+  height: 200px;
+  }
+ 
+.middle-row-grp .lib-row.lib-desc h3{
+  color: #323232;
+  font-weight: normal;
+  margin-top:30px;
+}
+
+.middle-row-grp .lib-row.lib-desc button.conversation-btn{
+    color: #54b2b2;
+    border-color: #01b8aa;
+    text-transform: uppercase;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 20px;
+}
+
+.middle-row-grp .lib-row.lib-desc button.conversation-btn:hover{
+  background-color:transparent;
+}
+p{
+  font-size: 10px; 
+}
+
+@media (min-width: 992px){
+.middle-row-grp .col-md-3 {
+    width: 23%;
+    margin-left: 25px;
+  }
+}
+ }
+
+
+.flex-sb{
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 992px){
+  .pos-rel-banner img {
+    position: relative;
+    height: 50vh;
+  }
+}
+
+
+ .m-p-0{
+   margin: 0px;
+   padding: 0px;
+ }
+// groups css end
 
 
 
