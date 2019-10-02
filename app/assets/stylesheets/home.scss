@@ -3337,7 +3337,7 @@ body{
     width:25px;
     position: absolute;
     display: inline-flex;}
-
+    cursor: pointer;
 
 
 .lib-panel .lib-row.lib-header .lib-header-seperator {
@@ -3385,7 +3385,7 @@ body{
 .grp-card-icon{
     height: 25px;
     width: 25px;
-    position: absolute;
+    // position: absolute;
     display: inline-flex;
 }
 
@@ -3426,8 +3426,8 @@ body{
 
 @media (min-width: 992px){
 .middle-row-grp .col-md-3 {
-    width: 23%;
-    margin-left: 25px;
+    width: 22%;
+    margin-left: 10px;
   }
 }
 
@@ -3505,6 +3505,7 @@ input[type=checkbox]:checked:after {
     width: 25px;
     position: absolute;
     display: inline-flex;
+    cursor: pointer;
 }
 .lib-row.lib-desc {
   padding: 0px 10px;
@@ -3672,7 +3673,7 @@ p{
 
 @media (min-width: 992px){
 .middle-row-grp .col-md-3 {
-    width: 23%;
+    width: 22%;
     margin-left: 25px;
   }
 }
@@ -3683,20 +3684,159 @@ p{
   display: flex;
   justify-content: space-between;
 }
-@media (max-width: 992px){
-  .pos-rel-banner img {
-    position: relative;
-    height: 50vh;
-  }
-}
 
 
  .m-p-0{
    margin: 0px;
    padding: 0px;
  }
+ .groups-modal {
+  .modal-header .close {
+    margin-top: -2px;
+    position: absolute;
+    right: -35px;
+    top: 0px;
+    font-size: 30px;
+    color: white;
+    opacity: 1;
+    font-weight: 300;
+}
+.modall-title{
+font-size: 20px;
+font-weight: 600;
+
+
+}
+.modal-content .modal-body {
+  padding: 15px 16px 30px;
+}
+.modal-header {
+  padding: 0px;
+  border-bottom: 1px solid #e5e5e5;
+}
+p{
+  font-size: 15px;
+  font-weight: 100;
+}
+.new_group-modal_btn {
+  padding: 8px 25px;
+  border-radius: 20px;
+  background-color: #54b2b2;
+  border: 0px;
+  color: white;
+  font-size: 16px;
+}
+.new_group-modal_b_btn {
+  padding: 8px 25px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: solid 1px #54b2b2 !important;
+  // border: 0px;
+  color: #54b2b2;
+  // color: white;
+  font-size: 16px;
+}
+ }
 // groups css end
+.flex-l{
+display: flex;
+justify-content: flex-start;
+flex-wrap: wrap;
+}
 
 
 
+.new_tag_btn{
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #54b2b2;
+  border: 0px;
+  font-size: 12px;
+  color: white !important;
+}
+.new_tag_btn:hover{
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #54b2b2;
+  border: 0px;
+  font-size: 12px;
+  color: white !important;
+}
+.m-tag{
+  margin-right: 5px;
+}
+.max-height-tag {
+  height: 222px;
+}
+.p-tag {
+  padding: 0px 10px;
+}
+.conversation-tag-btn {
+  color: #54b2b2;
+  border-color: #01b8aa;
+  text-transform: uppercase;
+  // margin: 10px;
+  padding: 10px 20px;
+  font-size: 12px;
+  border-radius: 20px;
+  float: left;
+  margin-left: 10px;
+}
 
+.conversation-tag-btn:hover {
+  color: #54b2b2;
+  border-color: #01b8aa;
+  text-transform: uppercase;
+  // margin: 10px;
+  padding: 10px 20px;
+  font-size: 12px;
+  border-radius: 20px;
+  float: left;
+  margin-left: 10px;
+}
+.lib-img-tag-show img{
+  height: 250px !important;
+}
+.pp-k{
+  padding-left: 16px;
+  padding-top: 10px;
+}
+
+.lib-img-tag-show img {
+  height: 222px !important;
+}
+@media (max-width: 992px){
+  .pos-rel-banner img {
+    position: relative;
+    height: 50vh;
+  }
+  .groups-cards-2 .lib-panel .row, .groups-cards-2 .lib-panel .col-md-6 {
+    padding: 0;
+    background-color: #FFFFFF;
+     min-height: 100%; 
+     
+     max-height: 100%; 
+}
+.groups-cards {
+  width: 100%;
+}
+.groups-cards .lib-panel .lib-row.lib-header .grp-edit-delete-icon {
+    top: 10px;
+    right: 20px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    display: inline-flex;
+    cursor: pointer;
+    cursor: pointer;
+}
+
+.max-height-tag {
+  height: 222px;
+}
+.lib-img-tag-show img {
+  height: 100% !important;
+}
+}
