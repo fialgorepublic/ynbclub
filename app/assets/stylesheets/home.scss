@@ -3390,9 +3390,10 @@ body{
 }
 
 .grp-card-icon p{
-  font-size:18px;
-  padding: 0px 10px;
-  color:#323232;
+  font-size: 13px;
+  padding: 5px 10px;
+  color: #323232;
+
 }  
 
 .middle-row-grp .box-shadow{
@@ -3539,9 +3540,10 @@ h2{
   margin-left: 10px;
 }
 .grp-card-icon p {
-  font-size: 18px;
-  padding: 0px 10px;
+  font-size: 13px;
+  padding: 5px 10px;
   color: #323232;
+
 }
 .box-shadow {
   // padding: 30px !important;
@@ -3639,9 +3641,10 @@ h2{
 }
 
 .grp-card-icon p{
-  font-size:18px;
-  padding: 0px 10px;
-  color:#323232;
+  font-size: 13px;
+  padding: 5px 10px;
+  color: #323232;
+
 }  
 
 .middle-row-grp .box-shadow{
@@ -3918,10 +3921,48 @@ h2{
 }
 }
 }
+.user_list{
+   .box-shadow {
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1) !important; 
+}
+ .box-shadow {
+    box-shadow: none;
+    padding: 20px ;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    font-size: 22px;
+    text-align: center;
+    background: #fff;
+    margin-bottom: 20px;
+    height: 265px;
+    // min-height: 390px;
+}
+h2{
+  font-size: 16px;
+}
+.user-pp{
+  font-weight: 300;
+    font-size: 14px;
+    margin-top: 10px;
+}
+span.user-font-list {
+  font-size: 13px;
+  padding: 5px 10px;
+  color: #323232;
+  font-weight: 500;
+}
+}
 
 
 
 
+
+
+.flex-c{
+  display: flex;
+  justify-content: center;
+}
 
 
 .comment {
@@ -3953,4 +3994,59 @@ a.morelink:hover {
   color: #2a6496;
   background-color: transparent
 }
+img.lib-img-show {
+  max-height: 177px;
+}
 // join-grp-dscptn end
+
+
+.user-list1 {
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1) !important;
+  //: ;
+  box-shadow: none;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  font-size: 22px;
+  text-align: center;
+  background: #fff;
+  margin-bottom: 20px;
+  height: 265px;
+  //: ;
+  // min-height: 390px;
+  h2{
+    font-size: 16px;
+   }
+   .user-pp{
+    font-weight: 300;
+      font-size: 14px;
+      margin-top: 10px;
+   }
+   span.user-font-list {
+    font-size: 13px;
+    padding: 5px 10px;
+    color: #323232;
+    font-weight: 500;
+   }
+}
+
+.new_userlist_btn {
+  padding: 7px 23px;
+  border-radius: 20px;
+  background-color: #266565;
+  border: 0px;
+  color: white !important;
+  font-size: 16px;
+  font-size: 12px;
+}
+
+.uherlist-h2{
+  margin: 0px;
+    margin-right: 20px;
+    margin-left: 15px;
+    font-size: 28px;
+}
+.m-b-30{
+  margin-bottom: 35px;
+}
