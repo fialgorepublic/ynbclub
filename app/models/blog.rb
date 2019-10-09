@@ -59,13 +59,15 @@ class Blog < ApplicationRecord
   }
 
   scope :filter_by_category,  -> (category) { where(category_id: category) }
-  scope :all_published_blogs, -> (sort_type, category) {
+  scope :all_published_blogs, -> (sort_type, category, title) {
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    where(is_published: true).filter_by_category(category).sort_blogs(sort_by)
+    where(is_published: true).filter_by_category(category).search_by_title(title).sort_blogs(sort_by)
   }
   scope :first_three_latest_blogs, -> { where(is_published: true).order(updated_at: :desc).first(3) }
   scope :eager_load_objects , -> { includes(:category, :user, :comments, :likes, :products, :blog_views, :share_urls).with_attached_avatar }
+  scope :search_by_title, -> (title) { where('lower(title) like ?', "%#{title&.downcase}%")  }
+
   # Ex:- scope :active, -> {where(:active => true)}
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true

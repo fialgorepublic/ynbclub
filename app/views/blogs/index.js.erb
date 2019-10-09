@@ -1,0 +1,9 @@
+$('.loader').hide();
+$('#blogs').html('<%= j render 'all_blogs' %>');
+$('#page').val('<%= @next_page %>')
+$('#load-more').show();
+currentPage = '<%= @blogs.current_page %>';
+totalPages  = '<%= @blogs.total_pages %>';
+if (currentPage == totalPages) {
+  $('#load-more').hide();
+}

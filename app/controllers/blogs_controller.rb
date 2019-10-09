@@ -4,25 +4,23 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
   before_action :check_limit, only: [:new]
 
-  require 'time_ago_in_words'
-  require 'will_paginate'
   include ApplicationHelper
+
   # GET /blogs
   # GET /blogs.json
   def index
     blogs = \
         if current_user.present?
-          current_user.filtered_blogs(params[:sort], params[:category])
+          current_user.filtered_blogs(params[:sort], params[:category], params[:title])
         else
-          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category])
+          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
         end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
-    if request.xhr?
-      with_format :html do
-        @html_content = render_to_string partial: 'all_blogs'
-      end
-      render json: { attachmentPartial: @html_content, success: true, next_page: @next_page, total_pages: @blogs.total_pages, current_page: @blogs.current_page }
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
