@@ -56,7 +56,7 @@ module BlogsHelper
   end
 
   def add_container
-    current_user.present? ? '' : 'container-fluid'
+    current_user.present? ? '' : 'container'
   end
 
   def render_image(blog)
