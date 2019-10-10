@@ -20,7 +20,7 @@ SitemapGenerator::Sitemap.create do
   add blogs_path, :priority => 1, :changefreq => 'daily'
   #
   # Add Blogs:
-  # Blog.where(is_published: true).find_each do |blog|
-  #   add blog_path(blog), lastmod: blog.updated_at
-  # end
+  Blog.where(is_published: true).find_each do |blog|
+    add blog_path(blog), lastmod: blog.updated_at
+  end
 end
