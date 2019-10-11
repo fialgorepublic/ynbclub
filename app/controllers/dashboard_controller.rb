@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_user!, except: [:index ,:update_user_role]
+  before_action :authenticate_user!, except: [:videos]
+  before_action :authorize_user!, except: [:index ,:update_user_role,:videos]
 
   require 'link_thumbnailer'
   include ApplicationHelper
@@ -104,6 +104,9 @@ class DashboardController < ApplicationController
 
   def cities
     @cities = State.find_by_name(params[:state])&.cities.pluck(:name, :name)
+  end
+
+  def videos
   end
 
   private
