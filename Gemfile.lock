@@ -636,6 +636,8 @@ GEM
     xml-simple (1.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yt (0.29.1)
+      activesupport
     zonefile (1.06)
 
 PLATFORMS
@@ -703,6 +705,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   whenever
   will_paginate-bootstrap
+  yt (~> 0.29.1)
 
 RUBY VERSION
    ruby 2.4.1p111

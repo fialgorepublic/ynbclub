@@ -54,6 +54,7 @@ gem 'paperclip'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'friendly_id', '~> 5.2.4'
 gem 'sitemap_generator'
+gem 'yt', '~> 0.29.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
