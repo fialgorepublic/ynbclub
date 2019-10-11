@@ -107,6 +107,7 @@ class DashboardController < ApplicationController
   end
 
   def videos
+    @videos = YoutubeService.get_channel_videos
   end
 
   private
