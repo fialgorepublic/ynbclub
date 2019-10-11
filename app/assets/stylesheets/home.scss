@@ -2738,3 +2738,18 @@ button.close.btn-round.btn-primary.bb{
     opacity: 1;
 
 }
+
+.holder{
+  margin:20px 0px 0px;
+}
+
+p.video-title{
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 40px;
+}

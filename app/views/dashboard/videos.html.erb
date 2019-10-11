@@ -1,95 +1,60 @@
-<div class="col-md9">
-<h1>Videos</h1>
-<hr>
-	<div class="flex-c">
-        <div class="p-10" data-toggle="modal" data-target="#myModal">                  
-            <div class="holder">
-            <iframe src="https://www.youtube.com/embed/VF1Yz05iQM0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="overlay trigger" src="https://www.youtube.com/embed/VF1Yz05iQM0" data-target="#videoModal" data-toggle="modal"></div>
-            </div>
-            <section class="entry-body">
-        <div class="entry-meta flex-sb">
-            <div class="cat-links"><a href="" rel="category tag" style="color:#fb6540">Documentary</a>
-            </div>            
-            <div class="meta_views">3503 views</div>         </div>
+<div class="<%= add_container %>">
+  <div class="<%= blog_screen_size %>">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="main">
+          <h2> <i class="fa fa-youtube" aria-hidden="true"></i> Videos</h2>
+        </div>
+        <hr>
+      </div>
+    </div>
 
-        <h3 class="entry-title"><a href="" rel="bookmark">Self-hosted Video Example</a></h3>
-        <div class="entry-meta flex-l">
-            <span class="entry-date"><time class="entry-date" datetime="2017-11-21T10:24:45+00:00">November 21, 2017</time></span>            <span class="entry-author">by <a href="" title="Posts by Pavel Ciorici" rel="author">Pavel Ciorici</a></span>            <span class="comments-link"><a href="">0 comments</a></span>                    </div>
-    </section>
-    	</div>
+    <div class="row">
+      <% @videos.each do |video| %>
+        <div class="col-md-4" data-toggle="modal" data-target="#myModal">
+          <div class="holder">
+            <%= thumbnail_image(video) %>
+            <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.id %>" data-target="#videoModal" data-toggle="modal"></div>
+          </div>
+          <section class="entry-body">
+            <p class="video-title"><%= video.snippet.data['title'] %></p>
+          </section>
+        </div>
+      <% end %>
+    </div>
 
-        <div class="p-10" data-toggle="modal" data-target="#myModal">                  
-            <div class="holder">
-            <iframe src="https://www.youtube.com/embed/VF1Yz05iQM0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="overlay trigger" src="https://www.youtube.com/embed/VF1Yz05iQM0" data-target="#videoModal" data-toggle="modal"></div>
-            </div>
-            <section class="entry-body">
-        <div class="entry-meta flex-sb">
-            <div class="cat-links"><a href="" rel="category tag" style="color:#fb6540">Documentary</a>
-            </div>            
-            <div class="meta_views">3503 views</div>         </div>
-
-        <h3 class="entry-title"><a href="" rel="bookmark">Self-hosted Video Example</a></h3>
-        <div class="entry-meta flex-l">
-            <span class="entry-date"><time class="entry-date" datetime="2017-11-21T10:24:45+00:00">November 21, 2017</time></span>            <span class="entry-author">by <a href="" title="Posts by Pavel Ciorici" rel="author">Pavel Ciorici</a></span>            <span class="comments-link"><a href="">0 comments</a></span>                    </div>
-    </section>
-    	</div>
-
-        <div class="p-10" data-toggle="modal" data-target="#myModal">                  
-            <div class="holder">
-            <iframe src="https://www.youtube.com/embed/VF1Yz05iQM0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="overlay trigger" src="https://www.youtube.com/embed/VF1Yz05iQM0" data-target="#videoModal" data-toggle="modal"></div>
-            </div>
-            <section class="entry-body">
-        <div class="entry-meta flex-sb">
-            <div class="cat-links"><a href="" rel="category tag" style="color:#fb6540">Documentary</a>
-            </div>            
-            <div class="meta_views">3503 views</div>         </div>
-
-        <h3 class="entry-title"><a href="" rel="bookmark">Self-hosted Video Example</a></h3>
-        <div class="entry-meta flex-l">
-            <span class="entry-date"><time class="entry-date" datetime="2017-11-21T10:24:45+00:00">November 21, 2017</time></span>            <span class="entry-author">by <a href="" title="Posts by Pavel Ciorici" rel="author">Pavel Ciorici</a></span>            <span class="comments-link"><a href="">0 comments</a></span>                    </div>
-    </section>
-    	</div>
-	</div>
-
-</div>
     <%# modal start %>
-
     <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content video-modal">
-      <button type="button" class="close btn-round btn-primary bb" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+      <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content video-modal">
+            <button type="button" class="close btn-round btn-primary bb" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+            </div>
+          </div>
       </div>
     </div>
   </div>
 </div>
-
 <%# modal end %>
-
-
 <script>
-$(document).ready(function() {
-  autoPlayYouTubeModal();
-});
-
-function autoPlayYouTubeModal() {
-  var trigger = $('.trigger');
-  trigger.click(function(e) {
-    e.preventDefault();
-    var theModal = $(this).data("target");
-    var videoSRC = $(this).attr("src");
-    var videoSRCauto = videoSRC + "?autoplay=1";
-    $(theModal + ' iframe').attr('src', videoSRCauto);
-    $(theModal).on('hidden.bs.modal', function(e) {
-      $(theModal + ' iframe').attr('src', '');
-    });
+  $(document).ready(function() {
+    autoPlayYouTubeModal();
   });
-};
 
+  function autoPlayYouTubeModal() {
+    var trigger = $('.trigger');
+    trigger.click(function(e) {
+      e.preventDefault();
+      var theModal = $(this).data("target");
+      var videoSRC = $(this).attr("src");
+      var videoSRCauto = videoSRC + "?autoplay=1";
+      $(theModal + ' iframe').attr('src', videoSRCauto);
+      $(theModal).on('hidden.bs.modal', function(e) {
+        $(theModal + ' iframe').attr('src', '');
+      });
+    });
+  };
 </script>
