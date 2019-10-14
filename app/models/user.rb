@@ -195,7 +195,7 @@ class User < ApplicationRecord
     blogs.find_by(id: blog_id).present?
   end
 
-  def filtered_blogs(sort_type, category, title)
+  def filtered_blogs(sort_type, category, title="")
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
     blogs = self.is_admin? ? filter_by_category(category) : filter_by_category(category).published_and_drafted_blogs(self.id)
