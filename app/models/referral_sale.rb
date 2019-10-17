@@ -19,7 +19,7 @@
 
 class ReferralSale < ApplicationRecord
   self.per_page = 100
-  default_scope { order(order_no: :desc) }
+  default_scope { order(id: :desc) }
 
   belongs_to :user
   #after_save :set_ambassador_value

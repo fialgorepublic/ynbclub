@@ -100,7 +100,7 @@ en:
       category_placeholder:   Select Category
       title_placeholder:      Add Title
       total_words:            Total Words
-      minimum_required_words: Minimum Reuqired Words
+      minimum_required_words: Minimum Required Words
       products_label:         Products
       assign_products:        Assign Product
       blog_description_empty: Please add Blog description
@@ -109,14 +109,15 @@ en:
       publish_btn_label:      Publish
       description:            Enter Text
       creat_first_blog_label: Create your first blog post.
-      assign_product_label:   Assign your product to promote it.
-      publish_blog_label:     Publish blog post on Saint Lbeau
-      published_blog_label:   Published blog post to start promotion.
-      promote_product_label:  Your product is promoted!
-      blog_view_label:        Published blog post with your product  will be viewed by all of our member
+      assign_product_label:   Assign your product to promote it. NOTE content is not copied, the system will ban itself.
+      publish_blog_label:     Publish a blog post on the Saint L 'beau
+      published_blog_label:   Do not forget to tag the relevant products, promote the product you will receive 8%
+      promote_product_label:  Your product is posted
+      blog_view_label:        Share them! and when the product ships to consumers 8% will be sent to the account.
       maximum_words_allowed:   Maximum Words Allowed
       max_words_label:         Max 700 words are allowed for blog description
       limit_reach_label:       Limit reached
+      products_limit_label:    You can not link more than 5 products to a blog
     show:
       buyer_view_label:       Show as buyers see it
       comment_modal:
@@ -134,6 +135,8 @@ en:
       create_blog_success:    Blog was successfully created.
       updated_blog:           Blog was successfully updated.
       destroy_blog_success:   Blog was successfully destroyed.
+      create_limit_alert:     You have exceeded your limit to publish blogs for today.
+
   orders:
     index:
       title:                  All Orders
@@ -142,6 +145,7 @@ en:
       table_headers:
         date_label:           Date
         order_label:          Order#(Shop)
+        payment_label:        Payment Status
         tracking_label:       Tracking#(GHTK)
         customer_name_label:  Customer Name
         number_label:         Phone Number
@@ -218,7 +222,7 @@ en:
       shared_by_label:        Shared By
       platform_label:         Platform
       url_label:              URL
-      shared_at_label:        Shared at
+      shared_at_label:        Shared at time
 
   approve_sales:
     title:                    Order Management

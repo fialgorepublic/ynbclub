@@ -2,31 +2,36 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
+  before_action :check_limit, only: [:new]
 
-  require 'time_ago_in_words'
-  require 'will_paginate'
   include ApplicationHelper
+
   # GET /blogs
   # GET /blogs.json
   def index
     blogs = \
         if current_user.present?
-          current_user.filtered_blogs(params[:sort], params[:category])
+          current_user.filtered_blogs(params[:sort], params[:category], params[:title])
         else
-          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category])
+          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
         end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
-    if request.xhr?
-      with_format :html do
-        @html_content = render_to_string partial: 'all_blogs'
-      end
-      render json: { attachmentPartial: @html_content, success: true, next_page: @next_page, total_pages: @blogs.total_pages, current_page: @blogs.current_page }
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
   def list
-    @blogs = Blog.all_users_blogs.paginate(page: params[:page], per_page: 20)
+    per_page = params[:per_page].present? ? params[:per_page] : 25
+    blogs = current_user.filtered_blogs(params[:sort], params[:category])
+    @blogs = blogs.paginate(page: params[:page], per_page: per_page)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /blogs/1
@@ -192,6 +197,10 @@ class BlogsController < ApplicationController
     render json: { shared: current_user.already_shared_blog?(params[:blog_id], 'facebook') }
   end
 
+  def exceed_limit
+    render json: { limit_exceeded: current_user.blog_sharing_limit_exceed?('facebook') }
+  end
+
   def new_wizard
   end
 
@@ -217,4 +226,13 @@ class BlogsController < ApplicationController
     def category_params
       params.require(:category).permit(:id, :name)
     end
+
+    def check_limit
+      unless current_user.is_admin?
+        if current_user.exceed_blogs_limit?
+          return redirect_to blogs_path, alert: t('blogs.controller.create_limit_alert')
+        end
+      end
+    end
+
 end

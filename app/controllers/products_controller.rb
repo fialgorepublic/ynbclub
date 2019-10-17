@@ -19,6 +19,8 @@ class ProductsController < ApplicationController
   end
 
   def search_products
+    @blog = Blog.find_by_id(params[:blog_id])
+    @selected_products_ids = params[:selected_products_ids].split(',')
     initiate_shopify_session
     @products = params[:q].present? ? ShopifyAPI::Product.find(:all, params: { title: params[:q] }) : ShopifyAPI::Product.all
     clear_shopify_session

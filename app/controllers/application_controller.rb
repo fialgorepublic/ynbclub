@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initiate_shopify_session
-    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8a6f6c3187c79cd975c9bde50c12756', api_version: '2019-04')
+    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8e01204fb033f77c3eb5966c1720811', api_version: '2019-04')
     ShopifyAPI::Base.activate_session(shopify_session)
   end
 

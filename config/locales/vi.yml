@@ -100,7 +100,7 @@ vi:
       category_placeholder:    Lựa chọn danh mục 
       title_placeholder:       Thêm tiêu đề 
       total_words:             Tổng ký tự 
-      minimum_required_words:  Từ yêu cầu tối thiểu 
+      minimum_required_words:  Từ bắt buộc tối thiểu
       products_label:          Các sản phẩm 
       assign_products:         Chỉ định sản phẩm 
       blog_description_empty:  Vui lòng điền thêm mô tả Blog 
@@ -109,14 +109,15 @@ vi:
       publish_btn_label:       Đăng bài 
       description:             Nhập văn bản
       creat_first_blog_label:  Tạo bài đăng blog đầu tiên của bạn.
-      assign_product_label:    Chỉ định sản phẩm của bạn để quảng bá nó.
-      publish_blog_label:      Xuất bản bài đăng trên blog trên Saint Lbeau
-      published_blog_label:    Đăng bài viết trên blog để bắt đầu quảng bá.
-      promote_product_label:   Sản phẩm của bạn được quảng bá!
-      blog_view_label:         Bài đăng trên blog được xuất bản với sản phẩm của bạn sẽ được xem bởi tất cả các thành viên của chúng tôi
+      assign_product_label:    Chỉ định sản phẩm của bạn để quảng bá nó. LƯU Ý nội dung không được sao chép, hệ thống sẽ tự ban.
+      publish_blog_label:      Xuất bản bài đăng trên blog trên Saint L’ beau
+      published_blog_label:    Đừng quên tag sản phẩm liên quang, mồi sản phẩm bá được bạn sẽ nhận 8%
+      promote_product_label:   Sản phẩm của bạn được đăng
+      blog_view_label:         Hảy share chúng ! và khi sản phẩm ship đến người tiêu dùng 8% sẻ được gửi đến tài khoản.
       maximum_words_allowed:   Từ tối đa được phép
       max_words_label:         Tối đa 700 từ được phép cho mô tả blog
       limit_reach_label:       Đạt tới giới hạn
+      products_limit_label:    Bạn không thể liên kết hơn 5 sản phẩm với một blog
     show:
       buyer_view_label:        Hiển thị khi người mua thấy 
       comment_modal:
@@ -134,7 +135,8 @@ vi:
     controller:
       create_blog_success:     Bài Blog đã được tạo thành công.
       updated_blog:            Bài Blog đã được cập nhập thành công 
-      destroy_blog_success:    Bài Blog đã được huỷ thành công 
+      destroy_blog_success:    Bài Blog đã được huỷ thành công
+      create_limit_alert:      Bạn đã vượt quá giới hạn của mình để xuất bản blog cho ngày hôm nay.
  
   orders:
     index:
@@ -144,6 +146,7 @@ vi:
       table_headers:
         date_label:           Ngày
         order_label:          Mã đơn hàng#(Shop)
+        payment_label:        Tình trạng thanh toán
         tracking_label:       Mã theo dõi đơn#(GHTK)
         customer_name_label:  Tên khách hàng 
         number_label:         Số điện thoại 
@@ -222,7 +225,7 @@ vi:
       shared_by_label:          Được chia sẻ bởi 
       platform_label:           Platform
       url_label:                URL
-      shared_at_label:          Chia sẻ tại
+      shared_at_label:          Chia sẻ tại thời điểm
 
   approve_sales:  
     title:                    Quản lý đơn hàng  

@@ -2,6 +2,8 @@
 
   <h1><%= t('point_types.index.title') %></h1>
   <hr>
+  <div class="table-responsive">
+
   <table class="table">
     <thead>
     <tr>
@@ -24,6 +26,7 @@
     </tbody>
   </table>
 
+  </div>
   <br>
 
   <%= link_to t('point_types.index.new_btn_label'), new_point_type_path, class: 'btn btn-primary' %>

@@ -1,3 +1,9 @@
+<style>
+.flex-c{
+  display: flex;
+  justify-content:center;
+}
+</style>
 <div class="col-md-9">
   <div class="share_with_friends_style">
     <div class="blog_starter">
@@ -24,11 +30,13 @@
               <p><%= t('blogs.new.blog_view_label') %></p>
           </div>
         </div>
-          <div class="blog_starter_btn">
-            <%= link_to t('blogs.index.go_to_blogs'), blogs_path, class: "btn btn-primary new_blog_btn" %>
-          </div>
         </div>
       </div>
     </div>
   </div>
+    <div class="flex-c">
+          <div class="blog_starter_btn step_box-btn">
+            <%= link_to t('blogs.index.go_to_blogs'), blogs_path, class: "btn btn-primary new_blog_btn" %>
+          </div>
+        </div>
 </div>

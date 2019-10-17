@@ -84,7 +84,7 @@ class OrderService
     end
 
     def find_city city_name
-      city = City.find_by(name: 'name')
+      city = City.find_by(name: city_name)
       city.present? ? city : nil
     end
 

@@ -10,35 +10,40 @@
   <div class="row m-t-30">
     <div class="col-md-12">
       <div class="card-body">
-        <div class="affiliate_table_responsive">
-          <table id="blogs-list" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-            <tr>
-              <th><%= t('blogs.title_label') %></th>
-              <th><%= t('blogs.user_label') %></th>
-              <th><%= t('blogs.category_label') %></th>
-              <th><%= t('blogs.publish_status_label') %></th>
-              <th><%= t('actions_lable') %></th>
-            </tr>
-            </thead>
+        <% if @blogs.count > 0 %>
 
-            <tbody>
-            <% @blogs.each do |blog| %>
-              <tr>
-                <td><a href="/blogs/<%= blog.id %>"><%= blog.title %></a></td>
-                <td><%= blog.user_name %></td>
-                <td><%= blog.category_name %></td>
-                <td id="blog-status-<%= blog.id %>"><%= blog.is_published? ? 'Published' : 'Unpublished' %></td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox" class="publish-switch" id="<%= blog.id %>" <%= 'checked' if blog.is_published? %>>
-                    <span class="slider round"></span>
-                  </label>
-                </td>
-              </tr>
-            <% end %>
-            </tbody>
-          </table>
+          <div class="col-md-2 post-sorting  ">
+            <p>SORTING</p>
+            <select class="sorting-fltr" id="sort-blogs-list">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <option value="0"><%= t(:A_Z) %></option>
+              <option value="1">A-Z </option>
+              <option value="2">Z-A </option>
+            </select>
+          </div>
+
+          <div class="col-md-2 post-sorting">
+            <p>CATEGORY</p>
+            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown-blog-list' } %>
+          </div>
+
+          <div class="col-md-1 post-sorting  ">
+            <p>SORTING</p>
+            <select class="sorting-fltr" id="per-page-blogs-list">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+            </select>
+          </div>
+
+        <% end %>
+        <div class="affiliate_table_responsive">
+          <%= render partial: 'blogs/blogs_table', locals: { blogs: @blogs } %>
         </div>
       </div>
     </div>
@@ -46,7 +51,7 @@
 
   <div class="featured-pagination">
     <div>
-      <ul class="pagination pagination-md">
+      <ul id="pagination-div" class="pagination pagination-md">
         <%= will_paginate @blogs,renderer: BootstrapPagination::Rails %>
       </ul>
     </div>
@@ -54,45 +59,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(function(){
-
-    $(".publish-switch").change(function(event){
-      status = $(this).prop("checked");
-      id = event.target.id;
-      if(status == "false"){
-        $.ajax({
-          url: "/change_publish_status.json?id=" + id + "&status=" + status,
-          method: "get",
-          contentType: "application/json",
-          success: function(data){
-            if(data.success){
-              $("#" + id).prop('checked', false);
-              $("#blog-status-" + id).text("Unpublised");
-            }else{
-              toastr.error(data.message);
-            }
-          }
-        })
-      }
-      else{
-
-        $.ajax({
-          url: "/change_publish_status.json?id=" + id + "&status=" + status,
-          method: "get",
-          contentType: "application/json",
-          success: function(data){
-            if(data.success){
-              $("#" + id).prop('checked', true);
-              $("#blog-status-" + id).text("Publised");
-            }else{
-              toastr.error(data.message);
-            }
-          }
-        })
-      }
-    })
-
-  })
-</script>
