@@ -1,10 +1,7 @@
 <div class="row  m-t-30">
   <% @products.each do |product| %>
       <div class="col-md-4">
-        <div class="<%= product.id %> box-shadow-am sm-pd-am <%= (@blog.present? && @blog.products.where(product_id: product.id).count > 0) ? 'selected' : '' %>" onclick="showActive(this)">
-          <div class="select-box">
-            <i class="fa fa-check"></i>
-          </div>
+        <div class="<%= product.id %> box-shadow-am sm-pd-am <%= ((@blog.present? && @blog.products.where(product_id: product.id).count > 0) || (@selected_products_ids.present? && @selected_products_ids.include?(product.id.to_s))) ? 'selected' : '' %>" onclick="showActive(this)">
           <div class="product-box">
             <img width="100%" src="<%= product.images.present? ? product.images[0].src : '/placeholder.png' %>">
           </div>
@@ -34,8 +31,4 @@
       selected_products_ids.splice( selected_products_ids.indexOf($(obj).attr('class').split(" ")[0]), 1 );
     }
   }
-
-
-
-
 </script>
