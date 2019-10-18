@@ -2,27 +2,24 @@
 lock "~> 3.11.0"
 
 # Change these
-server '142.93.83.74', roles: [:web, :app, :db], primary: true
+server '165.22.61.95', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:AlgoRepublic/SaintlBeau.Affiliate.git'
-set :user,            'root'
+set :user,            'deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
 # Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
-set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/var/www/#{fetch(:application)}"
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
-set :puma_access_log, "#{release_path}/log/puma.error.log"
-set :puma_error_log,  "#{release_path}/log/puma.access.log"
+
+#Puma settings
+set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
+set :puma_threads, [0, 16]
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
 ## Defaults:
@@ -30,11 +27,11 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :branch,        :master
 # set :format,        :pretty
 # set :log_level,     :debug
-# set :keep_releases, 5
+set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
 set :bundle_binstubs, nil
-set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'config/puma.rb'
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -77,15 +74,51 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
+      invoke!('puma:restart')
+    end
+  end
+
+  desc "Load the database with seed data"
+  task :seed do
+    on roles(:all) do
+      within current_path do
+        execute :bundle, :exec, 'rails', 'db:seed', "RAILS_ENV=#{fetch(:rails_env)}"
+      end
+    end
+  end
+
+  desc "Update crontab with whenever"
+  task :update_cron do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+      end
     end
   end
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
-  after  :finishing,    :restart
+  after  :finishing,    :update_cron
+  after  :initial,      :seed
 end
+
+namespace :sidekiq do
+  task :quiet do
+    on roles([:web, :app, :db]) do
+      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+    end
+  end
+  task :restart do
+    on roles([:web, :app, :db]) do
+      sudo :service, :sidekiq, :restart
+    end
+  end
+end
+
+after 'deploy:starting', 'sidekiq:quiet'
+after 'deploy:reverted', 'sidekiq:restart'
+after 'deploy:published', 'sidekiq:restart'
 
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma

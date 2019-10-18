@@ -10,7 +10,7 @@
   </div> -->
     <div class="row">
       <div class="col-md-12">
-        <div class="box-shadow" style="background-image: url('<%= @share_with_friends.image.attached? ? rails_blob_url(@share_with_friends.image) : "" %>')">
+        <div class="box-shadow" style="background-image: url('<%= @share_with_friends.image.attached? ? rails_blob_url(@share_with_friends.image) : "" %>');background-size: cover;">
           <% if current_user.is_admin? %>
             <div class="row">
               <div class="col-md-12 text-right cu-btn-holder">
@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <% if true %> <%#current_user.is_ambassador? %>
+    <% if current_user.is_ambassador? %>
       <h2><%= t('page_design.share_referral_label') %></h2>
       <hr>
 

@@ -43,6 +43,8 @@ class Blog < ApplicationRecord
 
   scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}
 
+  scope :all_users_blogs, -> { where.not(user_id: nil).order(is_published: :asc) }
+
   scope :sort_blogs, -> (sort_type) {
     case sort_type
       when 0, "0"
@@ -57,18 +59,21 @@ class Blog < ApplicationRecord
   }
 
   scope :filter_by_category,  -> (category) { where(category_id: category) }
-  scope :all_published_blogs, -> (sort_type, category) {
+  scope :all_published_blogs, -> (sort_type, category, title) {
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    where(is_published: true).filter_by_category(category).sort_blogs(sort_by)
+    where(is_published: true).filter_by_category(category).search_by_title(title).sort_blogs(sort_by)
   }
   scope :first_three_latest_blogs, -> { where(is_published: true).order(updated_at: :desc).first(3) }
   scope :eager_load_objects , -> { includes(:category, :user, :comments, :likes, :products, :blog_views, :share_urls).with_attached_avatar }
+  scope :search_by_title, -> (title) { where('lower(title) like ?', "%#{title&.downcase}%")  }
+
   # Ex:- scope :active, -> {where(:active => true)}
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
   after_save :add_coins_to_user_account
+  before_destroy :valid_for_destroy?
 
   def add_products(product)
     return if product.blank?
@@ -122,6 +127,15 @@ class Blog < ApplicationRecord
 
     def should_generate_new_friendly_id?
       title_changed?
+    end
+
+    def valid_for_destroy?
+      unless ( ( DateTime.now.to_time.utc - self.created_at.to_time.utc ) / 1.hours ) > 42
+        point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
+        return if point_type.blank?
+        point = user.points.where(point_type: point_type).last
+        point.destroy if point.present?
+      end
     end
 
 end

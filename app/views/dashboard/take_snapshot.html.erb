@@ -1,3 +1,8 @@
+<style>
+/* .box-shadow.sm-pd {
+    min-height: 481px;
+} */
+</style>
 <div class="col-md-9 m-b-50">
   <% if @page.snapshot_banner.attached? %>
     <%= render 'take_snapshots/banner' %>
@@ -43,7 +48,7 @@
             <div class="col-md-12">
               <div class="image-content-snap">
                           <div class="stepone">1</div>
-          <div class="snap_text"> <span><%= @snapshot.step1_text.html_safe %></span> </div>
+          <div class="snap_text"> <p><%= @snapshot.step1_text.html_safe %></p> </div>
               </div>
             </div>
           </div>
@@ -70,7 +75,7 @@
             <div class="col-md-12">
               <div class="image-content-snap">
                           <div class="stepone">2</div>
-            <div class="snap_text"> <span><%= @snapshot.step2_text.html_safe %></span> </div>
+            <div class="snap_text"> <p><%= @snapshot.step2_text.html_safe %></p> </div>
               </div>
             </div>
           </div>
@@ -99,7 +104,7 @@
             <div class="col-md-12">
               <div class="image-content-snap">
                           <div class="stepone">3</div>
-            <div class="snap_text"> <span><%= @snapshot.step3_text.html_safe %></span> </div>
+            <div class="snap_text"> <p><%= @snapshot.step3_text.html_safe %></p> </div>
               </div>
             </div>
           </div>
@@ -126,7 +131,7 @@
             <div class="col-md-12">
               <div class="image-content-snap">
                           <div class="stepone">4</div>
-            <div class="snap_text"> <span><%= @snapshot.step4_text.html_safe %></span> </div>
+            <div class="snap_text"> <p><%= @snapshot.step4_text.html_safe %></p> </div>
               </div>
             </div>
           </div>

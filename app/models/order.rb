@@ -22,7 +22,10 @@ class Order < ApplicationRecord
   enum picked_phone: {
     'N/A' => 0,
     'Yes' => 1,
-    'No'  => 2
+    'Call Day 1'  => 2,
+    'Call Day 2'  => 3,
+    'Đã nhắn tin'  => 4,
+    'No'  => 5
   }
 
   enum transport_type: {

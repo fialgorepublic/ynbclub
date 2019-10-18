@@ -56,7 +56,7 @@ module BlogsHelper
   end
 
   def add_container
-    current_user.present? ? '' : 'container-fluid'
+    current_user.present? ? '' : 'container'
   end
 
   def render_image(blog)
@@ -90,5 +90,15 @@ module BlogsHelper
 
   def blog_related_action?
     controller_name == 'blogs' && (action_name == 'new_wizard' || action_name == 'index')
-  end  
+  end
+
+  def blog_list_action?
+    controller_name == 'blogs' && (action_name == 'list')
+  end
+
+  def product_url_referral_code product
+    user = product.blog.user
+    user.is_ambassador? ? (product.url + '?referral_code=' + user.referral) : product.url
+  end
+
 end

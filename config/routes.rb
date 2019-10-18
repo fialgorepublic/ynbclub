@@ -208,10 +208,12 @@ Rails.application.routes.draw do
 
   resources :blogs do
     collection do
+      get :list
       get  :feed
       post :banner
       post :create_or_update_cateogry
       get  :new_wizard, as: 'wizard'
+      get :exceed_limit
     end
     get :shared
   end
@@ -253,6 +255,7 @@ Rails.application.routes.draw do
   # get 'my_orders', to: 'orders#my_orders'
   get 'home_page', to: 'dashboard#home_page'
   get 'set_language', to: 'home#set_default_language'
+  get 'videos', to: 'dashboard#videos'
 
   resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk

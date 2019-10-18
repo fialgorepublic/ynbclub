@@ -2,6 +2,7 @@
 
   <h1><%= t('categories.index.title') %></h1>
   <hr>
+<div class="table-responsive">
   <table class="table">
     <thead>
     <tr>
@@ -22,6 +23,7 @@
     </tbody>
   </table>
 
+</div>
   <br>
 
   <%= link_to t('categories.index.new_btn_label'), new_category_path, class: 'btn btn-primary' %>

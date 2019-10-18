@@ -20,4 +20,9 @@ module DashboardHelper
   def current_user_points user
     user.points.count
   end
+
+  def thumbnail_image(video)
+    data = video.snippet.data['thumbnails']['high']
+    "<image src=#{data['url']} width=100%></image>".html_safe
+  end
 end

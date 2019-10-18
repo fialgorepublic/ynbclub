@@ -69,8 +69,7 @@ class User < ApplicationRecord
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
   scope :sort_by_banned, -> { order(banned: :desc) }
 
-  after_save   :set_default_permissions
-  after_create :update_accepted_status
+  after_save :set_default_permissions
 
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
@@ -171,8 +170,8 @@ class User < ApplicationRecord
     end
   end
 
-  def update_accepted_status
-    self.update_attributes(is_activated: true, commission: 8.0) if is_ambassador?
+  def exceed_blogs_limit? ## Limit set to 10
+    self.blogs.where('CAST(created_at AS DATE) = ?', DateTime.now.strftime("%Y-%m-%d")).count >= 10
   end
 
   def is_admin?
@@ -196,10 +195,15 @@ class User < ApplicationRecord
     blogs.find_by(id: blog_id).present?
   end
 
-  def filtered_blogs(sort_type, category)
+  def filtered_blogs(sort_type, category, title="")
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    self.is_admin? ? Blog.eager_load_objects.filter_by_category(category).sort_blogs(sort_by) : Blog.eager_load_objects.filter_by_category(category).published_and_drafted_blogs(self.id).sort_blogs(sort_by)
+    blogs = self.is_admin? ? filter_by_category(category) : filter_by_category(category).published_and_drafted_blogs(self.id)
+    title.present? ? blogs.search_by_title(title).sort_blogs(sort_by) : blogs.sort_blogs(sort_by)
+  end
+
+  def filter_by_category(category)
+    Blog.eager_load_objects.filter_by_category(category)
   end
 
   def full_name
@@ -229,4 +233,9 @@ class User < ApplicationRecord
   def already_shared_blog?(blog_id, url_type)
     share_urls.find_by(blog_id: blog_id, url_type: url_type).present?
   end
+
+  def blog_sharing_limit_exceed?(url_type)
+    share_urls.where(url_type: url_type, created_at: DateTime.now.all_day).count >= 10
+  end
+
 end

@@ -44,7 +44,8 @@ vi:
     my_orders_label:          Đơn hàng của tôi 
     referral_sales_label:     Giới thiệu bán hang
     blogs_label:              Blogs
-    all_orders_label:         Tất cả các đơn đặt hàng 
+    blogs_list_label:         danh sách blog
+    all_orders_label:         Tất cả các đơn đặt hàng
     permissions_label:        Quản lý cấp phép 
     shared_urls_label:        Chia sẻ link URL
     commission_label:         Commission
@@ -80,6 +81,10 @@ vi:
       payment_status:         Tình trạng thanh toán 
 
   blogs:
+    title_label:              Chức vụ
+    category_label:           thể loại
+    user_label:               Người dùng
+    publish_status_label:     Xuất bản trạng thái
     index:
       page_title:             Blogs
       blog_libray_label:      Thư viện Blog 
@@ -95,7 +100,7 @@ vi:
       category_placeholder:    Lựa chọn danh mục 
       title_placeholder:       Thêm tiêu đề 
       total_words:             Tổng ký tự 
-      minimum_required_words:  Từ yêu cầu tối thiểu 
+      minimum_required_words:  Từ bắt buộc tối thiểu
       products_label:          Các sản phẩm 
       assign_products:         Chỉ định sản phẩm 
       blog_description_empty:  Vui lòng điền thêm mô tả Blog 
@@ -103,15 +108,16 @@ vi:
       default_image_error:     Vui lòng thay đổi hình ảnh mặc định trước khi đăng bài 
       publish_btn_label:       Đăng bài 
       description:             Nhập văn bản
-      creat_first_blog_label:  Create your first blog post.
-      assign_product_label:    Assign your product to promote it.
-      publish_blog_label:      Publish blog post on Saint Lbeau
-      published_blog_label:    Published blog post to start promotion.
-      promote_product_label:   Your product is promoted!
-      blog_view_label:         Published blog post with your product  will be viewed by all of our member
-      maximum_words_allowed:   Maximum Words Allowed
-      max_words_label:         Max 700 words are allowed for blog description
-      limit_reach_label:       Limit reached
+      creat_first_blog_label:  Tạo bài đăng blog đầu tiên của bạn.
+      assign_product_label:    Chỉ định sản phẩm của bạn để quảng bá nó. LƯU Ý nội dung không được sao chép, hệ thống sẽ tự ban.
+      publish_blog_label:      Xuất bản bài đăng trên blog trên Saint L’ beau
+      published_blog_label:    Đừng quên tag sản phẩm liên quang, mồi sản phẩm bá được bạn sẽ nhận 8%
+      promote_product_label:   Sản phẩm của bạn được đăng
+      blog_view_label:         Hảy share chúng ! và khi sản phẩm ship đến người tiêu dùng 8% sẻ được gửi đến tài khoản.
+      maximum_words_allowed:   Từ tối đa được phép
+      max_words_label:         Tối đa 700 từ được phép cho mô tả blog
+      limit_reach_label:       Đạt tới giới hạn
+      products_limit_label:    Bạn không thể liên kết hơn 5 sản phẩm với một blog
     show:
       buyer_view_label:        Hiển thị khi người mua thấy 
       comment_modal:
@@ -129,7 +135,8 @@ vi:
     controller:
       create_blog_success:     Bài Blog đã được tạo thành công.
       updated_blog:            Bài Blog đã được cập nhập thành công 
-      destroy_blog_success:    Bài Blog đã được huỷ thành công 
+      destroy_blog_success:    Bài Blog đã được huỷ thành công
+      create_limit_alert:      Bạn đã vượt quá giới hạn của mình để xuất bản blog cho ngày hôm nay.
  
   orders:
     index:
@@ -139,6 +146,7 @@ vi:
       table_headers:
         date_label:           Ngày
         order_label:          Mã đơn hàng#(Shop)
+        payment_label:        Tình trạng thanh toán
         tracking_label:       Mã theo dõi đơn#(GHTK)
         customer_name_label:  Tên khách hàng 
         number_label:         Số điện thoại 
@@ -217,7 +225,7 @@ vi:
       shared_by_label:          Được chia sẻ bởi 
       platform_label:           Platform
       url_label:                URL
-      shared_at_label:          Chia sẻ tại
+      shared_at_label:          Chia sẻ tại thời điểm
 
   approve_sales:  
     title:                    Quản lý đơn hàng  
@@ -281,7 +289,7 @@ vi:
     index:
       title:                  Phần thưởng 
       new_btn_label:          Phần thưởng mới
-      reward_label:           Phần thưởng
+      reward_label:           Gửi đi
     table_headers:
       name_label:             Tên 
       points_label:           Số điểm thưởng 
@@ -435,7 +443,7 @@ vi:
   invalid_points:             Giá trị điểm không hợp lệ 
   admin_update_points:        Điểm quản trị viên cập nhật thành công. 
   enough_coins_message:       Bạn không có đủ xu.
-  exchange_sucess:            Trao đổi đã được hoàn thành
+  exchange_success:           Trao đổi đã được hoàn thành
   exchange_error:             Đã xảy ra lỗi, không thể trao đổi tại thời điểm này!
   language:                   ngôn ngữ
   earned_coins:               Xu đã nhận

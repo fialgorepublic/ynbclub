@@ -2,26 +2,35 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
+  before_action :check_limit, only: [:new]
 
-  require 'time_ago_in_words'
-  require 'will_paginate'
   include ApplicationHelper
+
   # GET /blogs
   # GET /blogs.json
   def index
     blogs = \
         if current_user.present?
-          current_user.filtered_blogs(params[:sort], params[:category])
+          current_user.filtered_blogs(params[:sort], params[:category], params[:title])
         else
-          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category])
+          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
         end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
-    if request.xhr?
-      with_format :html do
-        @html_content = render_to_string partial: 'all_blogs'
-      end
-      render json: { attachmentPartial: @html_content, success: true, next_page: @next_page, total_pages: @blogs.total_pages, current_page: @blogs.current_page }
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def list
+    per_page = params[:per_page].present? ? params[:per_page] : 25
+    blogs = current_user.filtered_blogs(params[:sort], params[:category])
+    @blogs = blogs.paginate(page: params[:page], per_page: per_page)
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -54,7 +63,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = current_user.blogs.new(blog_params.merge({is_published: true}))
+    @blog = current_user.blogs.new(blog_params)
 
     respond_to do |format|
       if @blog.save
@@ -73,7 +82,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1.json
   def update
     respond_to do |format|
-      if @blog.update(blog_params.merge({is_published: true, user: current_user}))
+      if @blog.update(blog_params.merge({user: current_user}))
         @blog.update_products(params[:product])
         format.html { redirect_to @blog, notice: I18n.t('blogs.controller.updated_blog') }
         format.json { render :show, status: :ok, location: @blog }
@@ -112,13 +121,27 @@ class BlogsController < ApplicationController
   end
 
   def change_publish_status
+    respond_to do |format|
 
-    unless @blog.is_published?
-      return redirect_to @blog, alert: "You need to change default picture before publishing your blog." if @blog.default_image?
+      format.html{
+        unless @blog.is_published?
+          return redirect_to @blog, alert: "You need to change default picture before publishing your blog." if @blog.default_image?
+        end
+
+        @blog.update_attributes(is_published: params[:status])
+        redirect_to @blog
+      }
+
+      format.json{
+        unless @blog.is_published?
+          render json: { success: false, message: 'You can not publish a blog with default image.' } if @blog.default_image?
+        end
+
+        @blog.update_attributes(is_published: params[:status])
+        render json: { success: true }
+      }
+
     end
-
-    @blog.update_attributes(is_published: params[:status])
-    redirect_to @blog
   end
 
   def change_buyer_show_statusgs
@@ -174,6 +197,10 @@ class BlogsController < ApplicationController
     render json: { shared: current_user.already_shared_blog?(params[:blog_id], 'facebook') }
   end
 
+  def exceed_limit
+    render json: { limit_exceeded: current_user.blog_sharing_limit_exceed?('facebook') }
+  end
+
   def new_wizard
   end
 
@@ -199,4 +226,13 @@ class BlogsController < ApplicationController
     def category_params
       params.require(:category).permit(:id, :name)
     end
+
+    def check_limit
+      unless current_user.is_admin?
+        if current_user.exceed_blogs_limit?
+          return redirect_to blogs_path, alert: t('blogs.controller.create_limit_alert')
+        end
+      end
+    end
+
 end
