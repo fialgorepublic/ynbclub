@@ -1,0 +1,61 @@
+<div class="col-md-9">
+  <div class="row">
+    <div class="col-md-12">
+
+      <h1 class="card-header"><i class="fa fa-universal-access"></i> <%= t('blogs.index.page_title') %></h1>
+
+    </div>
+  </div>
+
+  <div class="row m-t-30">
+    <div class="col-md-12">
+      <div class="card-body">
+        <% if @blogs.count > 0 %>
+
+          <div class="col-md-2 post-sorting  ">
+            <p>SORTING</p>
+            <select class="sorting-fltr" id="sort-blogs-list">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <option value="0"><%= t(:A_Z) %></option>
+              <option value="1">A-Z </option>
+              <option value="2">Z-A </option>
+            </select>
+          </div>
+
+          <div class="col-md-2 post-sorting">
+            <p>CATEGORY</p>
+            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown-blog-list' } %>
+          </div>
+
+          <div class="col-md-1 post-sorting  ">
+            <p>SORTING</p>
+            <select class="sorting-fltr" id="per-page-blogs-list">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+            </select>
+          </div>
+
+        <% end %>
+        <div class="affiliate_table_responsive">
+          <%= render partial: 'blogs/blogs_table', locals: { blogs: @blogs } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-pagination">
+    <div>
+      <ul id="pagination-div" class="pagination pagination-md">
+        <%= will_paginate @blogs,renderer: BootstrapPagination::Rails %>
+      </ul>
+    </div>
+    <div>
+    </div>
+  </div>
+</div>
