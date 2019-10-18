@@ -6,12 +6,11 @@
             <img width="100%" src="<%= product.images.present? ? product.images[0].src : '/placeholder.png' %>">
           </div>
 
-          <div class="product-price">
-            <h5><%= number_with_delimiter(product.variants.first.price, delimiter: '.') %>₫</h5>
-          </div>
-
           <div class="product-detail">
             <p><%= product.title %></p>
+          </div>
+          <div class="product-price">
+            <h5><%= number_with_delimiter(product.variants.first.price, delimiter: '.') %>₫</h5>
           </div>
         </div>
       </div>

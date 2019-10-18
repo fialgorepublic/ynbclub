@@ -203,7 +203,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="assignProduct" role="dialog">
+<div class="modal fade assignProduct" id="assignProduct" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
@@ -238,8 +238,102 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="add_products();"><%= t(:save_label) %></button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t(:cancel_label) %></button>
+        <div class="row">
+          <div class="col-md-6">
+             <button type="button" class="btn btn-block btn-default " data-dismiss="modal"><%= t(:cancel_label) %></button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary" onclick="add_products();"><%= t(:save_label) %></button>
+          </div>
+          
+        </div>
+       
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade uploadImage" id="uploadImage" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:15px 25px;">
+          
+        <div class="row">
+          <div class="col-md-4">
+            <p>Preview</p>
+            <div class="image-box">
+              <form>
+                <img id="myImg" src="/assets/camera-icon.png" alt="your image" />
+                <input type='file' />
+            </form>
+            </div>
+          </div>
+          <div class="col-md-8 mt-5">
+            <div class="upload-right-holder">
+              <div class="form-group">
+                <select class="form-control" style="margin-left:-7px;">
+                  <option>Select Category</option>
+                </select>
+              </div>
+              <div class="form-group">
+               <p>Lorem Ipsum</p>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Write Preview">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:15px 25px;">
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade uploadImage" id="uploadedImage" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h4 class="modal-title text-center">Uploaded Photo</h4>
+      </div>
+      <div class="modal-body" style="padding:15px 25px;">
+        <div class="row" style="margin:0;">
+          <div class="col-md-12">
+            <img width="100%" src="http://localhost:3000/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1790c95b5824fb6e9aad14001a1a8e426dca51e5/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9VWTI5dFltbHVaVjl2Y0hScGIyNXpld282QzNKbGMybDZaVWtpRGpFd01EQjRNelV3WGdZNkJrVlVPZ3huY21GMmFYUjVTU0lMUTJWdWRHVnlCanNIVkRvTFpYaDBaVzUwU1NJT01UQXdNSGd6TlRCZUJqc0hWRG9QWW1GamEyZHliM1Z1WkVraUNXZHlaWGtHT3dkVU9neHhkV0ZzYVhSNWFXUT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--182073b62d1a41110db6c835d502a9e1c281a10e/Consulting-black.png">
+          </div>
+        </div>       
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Uploaded New Photo</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Save Photo</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -457,9 +551,5 @@
     $(function () {
         $('[data-toggle="popover"]').popoverClosable();
     });
-
-
-
-
 
 </script>

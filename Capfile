@@ -13,6 +13,9 @@ require "whenever/capistrano"
 set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1'
 
+set :rbenv_type, :user
+set :rbenv_ruby, '2.5.1'
+
 install_plugin Capistrano::Puma
 install_plugin Capistrano::SCM::Git
 
