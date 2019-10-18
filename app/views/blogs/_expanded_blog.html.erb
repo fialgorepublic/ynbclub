@@ -1,3 +1,9 @@
+<style>
+img.image-height {
+min-height:320px;
+max-height:320px;
+}
+</style>
 <div class="blog-box blog-box-long">
   <div class="row">
     <div class="col-md-6">
@@ -9,6 +15,7 @@
     <div class="col-md-6">
       <div class="blog-box-content">
         <div class="row">
+        <div class="height-long">
           <div class="col-md-12">
             <p>
               <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
@@ -18,6 +25,7 @@
             </p>
             <h3><%= blog_title blog %></h3>
             <div class="description"><%= blog_description blog %></div>
+          </div>
           </div>
         </div>
         <div class="bottom_icon">
