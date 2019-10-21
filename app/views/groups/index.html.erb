@@ -3,41 +3,29 @@
   <div class="<%= blog_screen_size %>">
     <div class="banner pos-rel-banner text-center">
       <%=  image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %> 
-<div class="pos-abs-banner">
-<h1 class="">You're in good company now.</h1>
-<h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
-<div class="wrap">
-   <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?">
-      <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-     </button>
-   </div>
-</div>
-</div>
+      <div class="pos-abs-banner">
+        <h1 class="">You're in good company now.</h1>
+        <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
+        <div class="wrap">
+          <div class="search">
+            <input type="text" class="searchTerm" placeholder="What are you looking for?">
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <%# <div class="row">
-      <div class="col-md-12 blog_banner_btn">
-        <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
-          <%# <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' 
-        <% end %> 
-
-        <%# <% if current_user&.is_admin? %>
-          <%# <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %> 
-        <%# <% end %>
-      <%# </div>
-    </div>  %> 
 
     <div class="row" style="margin-top: 10px;">
       <div class="post-heading blog-redesign-style">
         <div class="col-md-4">
           <div class="heading-featured">
-            <h1><%= t('blogs.index.page_title') %></h1>
+            <h1><%= t('groups.index.title') %></h1>
           </div>
         </div>
 
-        <% if @blogs.count > 0 %>
+        <% if @groups.count > 0 %>
           <div class="col-md-2 post-sorting  ">
             <p>SORTING</p>
             <select class="sorting-fltr" id="sort-blogs">
@@ -53,30 +41,29 @@
              <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %> 
 
              <div class="button-group">
-        <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
-    color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down" style="color: #838181;"></span></button>
-<ul class="dropdown-menu">
-  <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
-  <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
-  <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
-  <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
-  <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
-  <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
-</ul>
-  </div>
-
-
+              <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
+                color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down" style="color: #838181;"></span></button>
+              <ul class="dropdown-menu">
+                <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
+                <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
+                <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+                <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+                <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+                <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+              </ul>
+            </div>
           </div>
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
-          <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
+          <%= link_to "+ #{t('groups.index.add_new_group')}", new_group_path, class: "btn btn-primary new_blog_btn" if current_user && current_user.is_admin? %>
         </div>
 
         <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
       </div>
     </div>
-<div class="col-md-12 col-lg-12 ">
+
+    <div class="col-md-12 col-lg-12 ">
                <div class="row m-p-0">
                 <div class="col-md-5 col-lg-5 m-p-0 ">
                 <div class="groups-cards">
@@ -176,7 +163,7 @@
 
     <div class="row show-more-button">
       <div class="col-md-8">
-        <% unless @blogs.current_page == @blogs.total_pages %>
+        <% unless false %>
           <div class="custom-showMore-btn pull-right">
             <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
               <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
