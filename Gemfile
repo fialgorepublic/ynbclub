@@ -53,6 +53,8 @@ gem "mini_magick"
 gem 'paperclip'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'friendly_id', '~> 5.2.4'
+gem 'active_storage_validations'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
