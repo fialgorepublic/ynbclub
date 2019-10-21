@@ -1,268 +1,199 @@
-<p id="notice"><%= notice %></p>
 <div class="show-group-card">
-    <div class="container-fluid">
-        <div class="row">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="lib-panel">
+          <div class="row box-shadow">
+            <div class="col-md-3 lib-img-tag-show">
+              <%=  image_tag @group.logo, width: '100%' %> 
+            </div>
             <div class="col-md-9">
-                <div class="lib-panel">
-                    <div class="row box-shadow">
-                        <div class="col-md-3 lib-img-tag-show">
-                            <img class="lib-img-show " src="/assets/blog-img-2.jpg">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="lib-row lib-header">
-                                    <div class="grp-edit-delete-icon">
-                                        <img class="" src="/assets/edit-icon.png" width="100%">
-                                        <img class="" src="/assets/delete-icon.png" width="100%">
-                                    </div>
-                                </div>
-                            <div class="lib-row lib-desc">
-                                <h2>Everything Eyes</h2>
-                                   <p class="hhkt"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p>
-                           <div class="grp-card-icon">
-                                <img class="" src="/assets/followers-icon.png" width="100%"> <p>0</p>
-                                    <img class="" src="/assets/comment-icon.png" width="100%"> <p>0</p>
-                                </div>
-                            </div>
-                            
-                      <div class="flex-l pp-k">
-                            <div class="m-tag">
-                            <a class="btn btn-primary new_tag_btn" >Join group</a>
-                            </div>
-                            <div class="">
-                            
-                                   <button type="button"  class="btn conversation-tag-btn btn-default">start new conversation</button>
-                            </div>
-                            </div>
-                            
-                      
-                      
-                        
-                        </div>
+              <div class="lib-row lib-header">
+                <div class="grp-edit-delete-icon">
+                  <%= link_to edit_group_path(@group), class: 'content-display' do %>
+                    <img src="/assets/edit-icon.png" width="100%">
+                  <% end %>
 
-<br>
-                    </div>
-
+                  <%= link_to @group, class: 'content-display', method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <img class="" src="/assets/delete-icon.png" width="100%">
+                  <% end %>
                 </div>
-            </div>
-
-<div class="middle-row-grp">
-
-    <div class="col-md-6">
-                <div class="lib-panel">
-                    <div class="row box-shadow">
-                        
-                        <div class="col-md-12">
-                            <div class="lib-row lib-desc">
-                                <h3>Create your first conversation to finish group launch!</h3>
-
-                                   <button type="button"  class="btn conversation-btn btn-default">start new conversation</button>
-                            </div>
-                            
-                        </div>
-                    </div>
+              </div>
+              <div class="lib-row lib-desc">
+                <h2><%= @group.name %></h2>
+                <p class="hhkt"><%= @group.description %> </p>
+                <div class="grp-card-icon">
+                  <img class="" src="/assets/followers-icon.png" width="100%"> 
+                  <p>0</p>
+                  <img class="" src="/assets/comment-icon.png" width="100%"> 
+                  <p>0</p>
                 </div>
+              </div>
+              <div class="flex-l pp-k">
+                <div class="m-tag">
+                  <a class="btn btn-primary new_tag_btn" ><%= t('groups.show.join_group')%></a>
+                </div>
+                <div class="">
+                  <button type="button"  class="btn conversation-tag-btn btn-default"><%= t('groups.show.start_conversation') %></button>
+                </div>
+              </div>
             </div>
-
-
-
-    <div class="col-md-3">
-                <div class="lib-panel">
-                <%# box-shadow max-height-tag %>
-                    <div class="row ">
-                        <div class="p-tag">
-                           <div class="l">
-                           <div class="post-sorting  m-p-0">
-            <p>SORTING</p>
-            <select class="sorting-fltr" id="sort-blogs" style="font-size: 12px;">
-              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-              <option value="0">A Z</option>
-              <option value="1">A-Z </option>
-              <option value="2">Z-A </option>
-            </select>
+            <br>
           </div>
-          <br>
-                        <div class="flex-l">
-                            <div class="m-tag">
-                            <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name</a>
-                            </div>  
-                             <div class="m-tag">
-                            <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name is here</a>
-                            </div>                            
-                        </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-</div>
-<div class="middle-row-grp">
-
-    <div class="col-md-6">
-                <div class="lib-panel">
-                    <div class="row box-shadow">
-                        
-                        <div class="">
-                            
-                            <div class="flex-l">
-                            <div class="">
-                            <div class="flex-l">
-                            <div class="">
-                            
-                                <img class="" src="/assets/user-icon.png" width="100%"> 
-                            </div>
-                            <div class="m-l-10">
-                            <p class="p-l">Admin</p>
-                            <p class="p-b">Saint L beau</p>
-                            </div>
-                            </div>
-                            </div>
-
-                                <div class="m-l-10">
-                                
-
-                                <div class="flex-l">
-                            <div class="">
-                            
-                                <img class="" src="/assets/calender.png" width="100%"> 
-                            </div>
-                            <div class="m-l-10">
-                            <p class="p-b m-t-8">Posted: 12.01.19</p>
-                            </div>
-                            </div>
-                            
-                                </div>
-
-
-
-                                <div class="m-l-10">
-                                
-
-                            <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <div class="join-grp-dscptn">
-                                <h2>Everything Eyes</h2>
-                                   <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
-
-                                   
-<div class="comment more">
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-	Vestibulum laoreet, nunc eget laoreet sagittis,
-	quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-	Duis eget nisl orci. Aliquam mattis purus non mauris
-	blandit id luctus felis convallis.
-	Integer varius egestas vestibulum.
-	Nullam a dolor arcu, ac tempor elit. Donec.
-</div>
-                                   <div class="jn-grp-img-show">
-                            <img  src="/assets/blog-img-2.jpg">
-                        </div>
-      
-                        </div>
-
-                        <div class="flex-sb">
-                        
-                        <div class="flex-l  m-t-8">
-                            <div class="">
-                            <i class="fa fa-comment" style="    color: #256664;"></i>
-                            </div>
-                            <div class="m-l-10 m-t-8">
-                            <p class="">0</p>
-                            </div>
-                            <div class="m-l-10">
-                            <i class="fa fa-heart" style="color: red;"></i>
-                            </div>
-                            <div class="m-l-10 m-t-8">
-                            <p class="">0</p>
-                            </div>
-                        </div>
-
-                        <div class="m-t-8">
-                        <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-</div>
-
         </div>
-     </div>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+      <div class="middle-row-grp">
+        <div class="col-md-6">
+          <div class="lib-panel">
+            <div class="row box-shadow">
+              <div class="col-md-12">
+                <div class="lib-row lib-desc">
+                  <h3><%= t('groups.show.no_conversation') %></h3>
+                  <button type="button"  class="btn conversation-btn btn-default"><%= t('groups.show.start_conversation') %></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @group.description %>
-</p>
-
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
-
+        <!-- <div class="col-md-3">
+          <div class="lib-panel">
+            <%# box-shadow max-height-tag %>
+            <div class="row ">
+              <div class="p-tag">
+                <div class="l">
+                  <div class="post-sorting  m-p-0">
+                    <p>SORTING</p>
+                    <select class="sorting-fltr" id="sort-blogs" style="font-size: 12px;">
+                      <option value="0">A Z</option>
+                      <option value="1">A-Z </option>
+                      <option value="2">Z-A </option>
+                    </select>
+                  </div>
+                  <br>
+                  <div class="flex-l">
+                    <div class="m-tag">
+                      <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name</a>
+                    </div>
+                    <div class="m-tag">
+                      <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name is here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> !-->
+      </div>
+      <!-- <div class="middle-row-grp">
+        <div class="col-md-6">
+          <div class="lib-panel">
+            <div class="row box-shadow">
+              <div class="">
+                <div class="flex-l">
+                  <div class="">
+                    <div class="flex-l">
+                      <div class="">
+                        <img class="" src="/assets/user-icon.png" width="100%"> 
+                      </div>
+                      <div class="m-l-10">
+                        <p class="p-l">Admin</p>
+                        <p class="p-b">Saint L beau</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-l-10">
+                    <div class="flex-l">
+                      <div class="">
+                        <img class="" src="/assets/calender.png" width="100%"> 
+                      </div>
+                      <div class="m-l-10">
+                        <p class="p-b m-t-8">Posted: 12.01.19</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-l-10">
+                    <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                  </div>
+                </div>
+              </div>
+              <div class="join-grp-dscptn">
+                <h2>Everything Eyes</h2>
+                <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
+                <div class="comment more">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Vestibulum laoreet, nunc eget laoreet sagittis,
+                  quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                  Duis eget nisl orci. Aliquam mattis purus non mauris
+                  blandit id luctus felis convallis.
+                  Integer varius egestas vestibulum.
+                  Nullam a dolor arcu, ac tempor elit. Donec.
+                </div>
+                <div class="jn-grp-img-show">
+                  <img  src="/assets/blog-img-2.jpg">
+                </div>
+              </div>
+              <div class="flex-sb">
+                <div class="flex-l  m-t-8">
+                  <div class="">
+                    <i class="fa fa-comment" style="    color: #256664;"></i>
+                  </div>
+                  <div class="m-l-10 m-t-8">
+                    <p class="">0</p>
+                  </div>
+                  <div class="m-l-10">
+                    <i class="fa fa-heart" style="color: red;"></i>
+                  </div>
+                  <div class="m-l-10 m-t-8">
+                    <p class="">0</p>
+                  </div>
+                </div>
+                <div class="m-t-8">
+                  <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> !-->
+    </div>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script>
 $(document).ready(function() {
-	var showChar = 100;
-	var ellipsestext = "...";
-	var moretext = "more";
-	var lesstext = "less";
-	$('.more').each(function() {
-		var content = $(this).html();
+    var showChar = 100;
+    var ellipsestext = "...";
+    var moretext = "more";
+    var lesstext = "less";
+    $('.more').each(function() {
+        var content = $(this).html();
 
-		if(content.length > showChar) {
+        if(content.length > showChar) {
 
-			var c = content.substr(0, showChar);
-			var h = content.substr(showChar-1, content.length - showChar);
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar-1, content.length - showChar);
 
-			var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+            var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
 
-			$(this).html(html);
-		}
+            $(this).html(html);
+        }
 
-	});
+    });
 
-	$(".morelink").click(function(){
-		if($(this).hasClass("less")) {
-			$(this).removeClass("less");
-			$(this).html(moretext);
-		} else {
-			$(this).addClass("less");
-			$(this).html(lesstext);
-		}
-		$(this).parent().prev().toggle();
-		$(this).prev().toggle();
-		return false;
-	});
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
 });
 </script>
