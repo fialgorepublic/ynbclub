@@ -3,7 +3,7 @@
     <div class="row box-shadow ">
       <div class="col-md-5 m-p-0">
         <%= link_to group do %>
-          <%= image_tag group.logo , class: "lib-img-show" %>
+          <%= image_tag group.logo.variant(combine_options: { resize: '200x150^', gravity: 'Center', extent: '200x150^', background: "grey", quality: 95 }), width: '100%' , class: "lib-img-show" %>
         <% end %>
       </div>
       <div class="col-md-7">

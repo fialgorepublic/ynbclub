@@ -4,7 +4,7 @@
       <div class="row box-shadow">
         <div class="">
           <%= link_to group do %>
-            <%= image_tag group.logo , class: "lib-img-show" %>
+            <%= image_tag group.logo.variant(combine_options: { resize: '400x200^', gravity: 'Center', extent: '400x200^', background: "grey", quality: 95 }), width: '100%' , class: "lib-img-show" %>
           <% end %>
         </div>
         <div class="">
