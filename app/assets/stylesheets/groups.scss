@@ -596,3 +596,32 @@ img.lib-img-show {
   border: solid 1px #868383;
   color: #000;
 }
+@media only screen and (max-width: 980px)
+{
+//   .box-shadow a {
+//     font-size: px;
+// }
+.bg-groups-circle {
+  display: inline-block;
+  border-radius: 100px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 6px;
+  background-color: white;
+  font-size: 10px !important;
+  border: solid 2px #868383;
+  color: #000;
+  position: relative;
+}
+.bg-groups-circle1 {
+  display: inline-block;
+  border-radius: 100px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 6px;
+  background-color: white;
+  font-size: 10px !important;
+  border: solid 1px #868383;
+  color: #000;
+  position: relative;
+  margin: 1px;
+}
+}
