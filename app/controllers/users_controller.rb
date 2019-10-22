@@ -217,7 +217,7 @@ class UsersController < ApplicationController
 
   def generate_discount_code
     return redirect_to exchange_coins_users_path(coins: params[:coins]), alert: I18n.t(:enough_coins_message)  if current_user.total_points < params[:coins].to_i
-    ShopifyService.create_session
+    initiate_shopify_session
     success, message = ShopifyService.new(current_user, params[:coins]).call
     if success
       flash[:notice] = I18n.t(:exchange_success)

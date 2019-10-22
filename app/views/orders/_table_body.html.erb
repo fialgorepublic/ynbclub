@@ -1,5 +1,6 @@
 <td><%= order_date(order) %></td>
 <td><%= order.order_name %></td>
+<td><%= order.financial_status&.titleize %></td>
 <td><%= order.store %></th>
 <!-- <#% if current_user.is_admin? %> -->
 <td><%= order.ghtk_label %></td>

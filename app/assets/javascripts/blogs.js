@@ -1,27 +1,50 @@
 $(document).on('turbolinks:load', function () {
+  var blogSearchtimerId = null;
+
   $('#sort-blogs, #category-dropdown').on('change', function(){
-    sort_type = $('#sort-blogs').val();
+    searchBlogs();
+  });
+
+  // $('#search-by-title').click(function(){
+  //   if ($('#blog-title-textbox').val() == '') { return false; }
+  //   searchBlogs();
+  // })
+
+  $('#blog-title-textbox').keyup(function (e) {
+    if (e.keyCode == 13) { return; }
+    clearTimeout(blogSearchtimerId);
+    blogSearchtimerId = setTimeout(searchBlogs.bind(undefined), 500);
+  });
+
+  // $('#clear-blog-filters').click(function(){
+  //   if ($('#sort-blogs').val() == '0' && $('#blog-title-textbox').val() == '' && $('#category-dropdown').val() == '') { return; }
+  //   $('#sort-blogs').val(0);
+  //   $('#blog-title-textbox').val('');
+  //   $('#category-dropdown').val('')
+  //   fetchBlogs('', '', '');
+  // })
+
+  function searchBlogs(){
+    sort_type     = $('#sort-blogs').val();
     category_type = $('#category-dropdown').val();
+    title         = $('#blog-title-textbox').val();
+    fetchBlogs(category_type, sort_type, title);
+  }
+
+  function fetchBlogs(category_type, sort_type, title) {
     $('.loader').show()
     $.ajax({
-      url: `/blogs?sort=${sort_type}&category=${category_type}`,
+      url: `/blogs?sort=${sort_type}&category=${category_type}&title=${title}`,
       type: 'GET',
-      dataType: 'json',
-      success: function(data) {
-        $('.loader').hide();
-        $('#blogs').html(data.attachmentPartial);
-        $('#page').val(data.next_page)
-        $('#load-more').show();
-        if(data.current_page == data.total_pages) {
-          $('#load-more').hide();
-        }
+      dataType: 'script',
+      success: function (data) {
       },
-      error: function(data) {
+      error: function (data) {
         $('.loader').hide()
         alert('Something Wentwrong!')
       }
     })
-  });
+  }
 
   $('#sort-blogs-list, #category-dropdown-blog-list, #per-page-blogs-list').on('change', function(){
     $('.loader').show();
@@ -38,20 +61,12 @@ $(document).on('turbolinks:load', function () {
 
   $("#load-more").click(function() {
     page = $('#page').val();
-
     $('.loader').show();
-
     $.ajax({
       url: `/blogs?page=${page}`,
       type: 'GET',
-      dataType: 'json',
+      dataType: 'script',
       success: function(data) {
-        $('.loader').hide();
-        $('#blogs').append(data.attachmentPartial);
-        $('#page').val(data.next_page)
-        if(data.current_page == data.total_pages) {
-          $('#load-more').hide();
-        }
       },
       error: function(data) {
         $('.loader').hide()

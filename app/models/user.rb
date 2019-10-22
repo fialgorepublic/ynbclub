@@ -195,10 +195,15 @@ class User < ApplicationRecord
     blogs.find_by(id: blog_id).present?
   end
 
-  def filtered_blogs(sort_type, category)
+  def filtered_blogs(sort_type, category, title="")
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    self.is_admin? ? Blog.eager_load_objects.filter_by_category(category).sort_blogs(sort_by) : Blog.eager_load_objects.filter_by_category(category).published_and_drafted_blogs(self.id).sort_blogs(sort_by)
+    blogs = self.is_admin? ? filter_by_category(category) : filter_by_category(category).published_and_drafted_blogs(self.id)
+    title.present? ? blogs.search_by_title(title).sort_blogs(sort_by) : blogs.sort_blogs(sort_by)
+  end
+
+  def filter_by_category(category)
+    Blog.eager_load_objects.filter_by_category(category)
   end
 
   def full_name

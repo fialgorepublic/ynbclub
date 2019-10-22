@@ -17,6 +17,14 @@
       </div>
     </div>
 
+    <div class="col-md-12 blog_banner_btn">
+      <div class="col-lg-12 padding-lr-20">
+        <%= text_field_tag :title, params[:title], class: "form-control", placeholder: 'Search by title', id: 'blog-title-textbox' %>
+      </div><!-- /input-group -->
+    </div>
+    <br>
+    <br>
+
     <div class="row">
       <div class="post-heading blog-redesign-style">
         <div class="col-md-4">
@@ -149,4 +157,5 @@
       }
     });
   }
+
 </script>

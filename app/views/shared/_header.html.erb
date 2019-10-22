@@ -10,7 +10,8 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/dashboard">
-            <img src="https://cdn.shopify.com/s/files/1/1197/6404/files/saint_lbeau_logo_2-01_192x.png?v=1544811147">
+            <!-- <img src="https://cdn.shopify.com/s/files/1/1197/6404/files/saint_lbeau_logo_2-01_192x.png?v=1544811147"> -->
+            <img src="/assets/logo.jpg">
           </a>
         </div>
 
@@ -20,6 +21,7 @@
             <li><%= link_to t('header.catalog_label'), "https://shop.saintlbeau.com/collections/all" %></li>
             <li><%= link_to t('header.groups'), groups_path %></li>
             <li><%= link_to t('unauthorized_header.conversations'), " " %></li>
+            <li><%= link_to "Vidoes", videos_path %></li>
 
             <!-- <li> -->
               <%# if current_user.is_admin? %>

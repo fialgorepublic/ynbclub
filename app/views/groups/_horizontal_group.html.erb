@@ -2,7 +2,9 @@
   <div class="lib-panel">
     <div class="row box-shadow ">
       <div class="col-md-5 m-p-0">
-        <%= image_tag group.logo, class: "lib-img-show" %>
+        <%= link_to group do %>
+          <%= image_tag group.logo , class: "lib-img-show" %>
+        <% end %>
       </div>
       <div class="col-md-7">
         <div class="lib-row lib-desc">

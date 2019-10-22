@@ -146,6 +146,7 @@ vi:
       table_headers:
         date_label:           Ngày
         order_label:          Mã đơn hàng#(Shop)
+        payment_label:        Tình trạng thanh toán
         tracking_label:       Mã theo dõi đơn#(GHTK)
         customer_name_label:  Tên khách hàng 
         number_label:         Số điện thoại 

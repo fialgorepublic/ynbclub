@@ -3,7 +3,9 @@
     <div class="lib-panel">
       <div class="row box-shadow">
         <div class="">
-          <%= image_tag group.logo , class: "lib-img-show" %>
+          <%= link_to group do %>
+            <%= image_tag group.logo , class: "lib-img-show" %>
+          <% end %>
         </div>
         <div class="">
           <% if current_user&.is_admin? %>

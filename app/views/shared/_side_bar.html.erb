@@ -192,6 +192,13 @@
         </li>
       <% end %>
 
+      <li>
+        <%= link_to videos_path,  class: active_class(videos_path) do %>
+          <i class="fa fa-youtube custom-icon" aria-hidden="true" style="padding-right: 4px;"></i>
+          <span class="side-nav-style">Videos</span> </a>
+        <% end %>
+      </li>
+
       <% if current_user.is_admin? || current_user.has_permission?('categories', 'categories') %>
         <li>
           <a href="/categories" class="<%= active_class(categories_path) %>">

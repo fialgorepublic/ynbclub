@@ -145,6 +145,7 @@ en:
       table_headers:
         date_label:           Date
         order_label:          Order#(Shop)
+        payment_label:        Payment Status
         tracking_label:       Tracking#(GHTK)
         customer_name_label:  Customer Name
         number_label:         Phone Number
