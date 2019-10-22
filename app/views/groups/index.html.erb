@@ -1,8 +1,8 @@
-
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner pos-rel-banner text-center">
-      #  <%#=  image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %> 
+      
+      <%#=  image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
       <div class="pos-abs-banner">
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
@@ -26,33 +26,38 @@
         </div>
 
         <% if @groups.count > 0 %>
-          <div class="col-md-2 post-sorting  ">
-            <p>SORTING</p>
-            <select class="sorting-fltr" id="sort-blogs">
-              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-              <option value="0"><%= t(:A_Z) %></option>
-              <option value="1">A-Z </option>
-              <option value="2">Z-A </option>
-            </select>
-          </div>
+        <div class="col-md-2 post-sorting  ">
+          <p>SORTING</p>
+          <select class="sorting-fltr" id="sort-blogs">
+            <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+            <option value="0"><%= t(:A_Z) %></option>
+            <option value="1">A-Z </option>
+            <option value="2">Z-A </option>
+          </select>
+        </div>
 
-          <div class="col-md-2 post-sorting">
-            <p>CATEGORY</p>
-             <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %> 
-
-             <div class="button-group">
-              <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
-                color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down" style="color: #838181;"></span></button>
-              <ul class="dropdown-menu">
-                <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
-                <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
-                <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
-                <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
-                <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
-                <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
-              </ul>
-            </div>
+        <div class="col-md-2 post-sorting">
+          <p>CATEGORY</p>
+          <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+          <div class="button-group">
+            <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
+                color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down"
+                style="color: #838181;"></span></button>
+            <ul class="dropdown-menu">
+              <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
+              <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                  2</a></li>
+              <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                  3</a></li>
+              <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                  4</a></li>
+              <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                  5</a></li>
+              <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                  6</a></li>
+            </ul>
           </div>
+        </div>
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
@@ -64,165 +69,179 @@
     </div>
 
     <div class="col-md-12 col-lg-12 ">
-               <div class="row m-p-0">
-                <div class="col-md-5 col-lg-5 m-p-0 ">
-                <div class="groups-cards">
-                <div class="lib-panel">
-                    <div class="row box-shadow">
-                        <div class="">
-                            <img class="lib-img-show" src="/assets/blog-img-2.jpg">
-                            
-                        </div>
-                        <div class="">
-                            <div class="lib-row lib-header">
-                                    <div class="grp-edit-delete-icon">
-                                        <a href="" class="bg-groups-circle" ><i class="fa fa-pencil inneer" aria-hidden="true"></i></a>
-                                        <a data-toggle="modal" href="#myModal" class="bg-groups-circle"><i class="fa fa-trash inneer" aria-hidden="true"></i></a>
-                                        
-                                    </div>
-                                </div>
-                             <div class="lib-row lib-desc">
-                                <h2>Everything Eyes</h2>
-                                   <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p>
-                                   </div>
-                            <div class="grp-card-icon"> 
-                                <i class="fa fa-users color-for-icon" width="100%"></i> <p>0</p>
-                                <i class="fa fa-comment color-for-icon" width="100%"></i> <p>0</p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+      <div class="row m-p-0">
+        <div class="col-md-5 col-lg-5 m-p-0 ">
+          <div class="groups-cards">
+            <div class="lib-panel">
+              <div class="row box-shadow">
+                <div class="">
+                  <img class="lib-img-show" src="/assets/blog-img-2.jpg">
+
                 </div>
+                <div class="">
+                  <div class="lib-row lib-header">
+                    <div class="grp-edit-delete-icon">
+                      <a href="" class="bg-groups-circle"><i class="fa fa-pencil inneer" aria-hidden="true"></i></a>
+                      <a data-toggle="modal" href="#myModal" class="bg-groups-circle"><i class="fa fa-trash inneer"
+                          aria-hidden="true"></i></a>
+
+                    </div>
+                  </div>
+                  <div class="lib-row lib-desc">
+                    <h2>Everything Eyes</h2>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                      tota rem aperiam, eaque ipsa explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p>
+                  </div>
+                  <div class="grp-card-icon">
+                    <i class="fa fa-users color-for-icon" width="100%"></i>
+                    <p>0</p>
+                    <i class="fa fa-comment color-for-icon" width="100%"></i>
+                    <p>0</p>
+                  </div>
                 </div>
 
-
-                <div class="col-md-7 col-lg-7 m-p-0 ">
-                <div class="groups-cards-2">
-                <div class="lib-panel">
-                    <div class="row box-shadow ">
-                        <div class="col-md-5 m-p-0">
-                            <img class="lib-img-show" src="/assets/blog-img-2.jpg">
-                        </div>
-                         <div class="col-md-7">
-                            
-                            <div class="lib-row lib-desc">
-                            <div class="flex-sb">
-                            
-                                <h2>Everything Eyes</h2>
-                                <div class="lib-row lib-header">
-                                    <div class="grp-edit-delete-icon">
-                                    <a href="" class="bg-groups-circle1"><i class="fa fa-pencil inneer" aria-hidden="true"></i></a><a href="" class="bg-groups-circle1"><i class="fa fa-trash inneer" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                                   <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p>
-                           <div class="grp-card-icon">
-                           <i class="fa fa-users color-for-icon"  width="100%" style="font-size: 22px;"></i> <p>0</p>            <i class="fa fa-comment color-for-icon"  width="100%" style="font-size: 22px;"></i> <p>0</p>
-                                </div>
-                            </div>
-                            
-                        </div> 
-                    </div>
-                </div>
-                </div>
-                <div class="groups-cards-2">
-                <div class="lib-panel">
-                    <div class="row box-shadow ">
-                        <div class="col-md-5 m-p-0">
-                            <img class="lib-img-show" src="/assets/blog-img-2.jpg">
-                        </div>
-                         <div class="col-md-7">
-                            
-                            <div class="lib-row lib-desc">
-                            <div class="flex-sb">
-                            
-                                <h2>Everything Eyes</h2>
-                                <div class="lib-row lib-header">
-                                    <div class="grp-edit-delete-icon">
-                                    <a href="" class="bg-groups-circle1"><i class="fa fa-pencil inneer" aria-hidden="true"></i></a><a href="" class="bg-groups-circle1"><i class="fa fa-trash inneer" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                                   <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p>
-                           <div class="grp-card-icon">
-                           <i class="fa fa-users color-for-icon"  width="100%" style="font-size: 22px;"></i> <p>0</p>            <i class="fa fa-comment color-for-icon"  width="100%" style="font-size: 22px;"></i> <p>0</p>
-                                </div>
-                            </div>
-                            
-                        </div> 
-                    </div>
-                </div>
-                </div>
+              </div>
             </div>
-    <br/>
+          </div>
+        </div>
 
-    <%= hidden_field_tag :page, @next_page %>
 
-    <div class="row show-more-button">
-      <div class="col-md-8">
-        <% unless false %>
-          <div class="custom-showMore-btn pull-right">
-            <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
+        <div class="col-md-7 col-lg-7 m-p-0 ">
+          <div class="groups-cards-2">
+            <div class="lib-panel">
+              <div class="row box-shadow ">
+                <div class="col-md-5 m-p-0">
+                  <img class="lib-img-show" src="/assets/blog-img-2.jpg">
+                </div>
+                <div class="col-md-7">
+
+                  <div class="lib-row lib-desc">
+                    <div class="flex-sb">
+
+                      <h2>Everything Eyes</h2>
+                      <div class="lib-row lib-header">
+                        <div class="grp-edit-delete-icon">
+                          <a href="" class="bg-groups-circle1"><i class="fa fa-pencil inneer"
+                              aria-hidden="true"></i></a><a href="" class="bg-groups-circle1"><i
+                              class="fa fa-trash inneer" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                      tota rem aperiam, eaque ipsa explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p>
+                    <div class="grp-card-icon">
+                      <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
+                      <p>0</p> <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
+                      <p>0</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="groups-cards-2">
+            <div class="lib-panel">
+              <div class="row box-shadow ">
+                <div class="col-md-5 m-p-0">
+                  <img class="lib-img-show" src="/assets/blog-img-2.jpg">
+                </div>
+                <div class="col-md-7">
+
+                  <div class="lib-row lib-desc">
+                    <div class="flex-sb">
+
+                      <h2>Everything Eyes</h2>
+                      <div class="lib-row lib-header">
+                        <div class="grp-edit-delete-icon">
+                          <a href="" class="bg-groups-circle1"><i class="fa fa-pencil inneer"
+                              aria-hidden="true"></i></a><a href="" class="bg-groups-circle1"><i
+                              class="fa fa-trash inneer" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                      tota rem aperiam, eaque ipsa explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p>
+                    <div class="grp-card-icon">
+                      <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
+                      <p>0</p> <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
+                      <p>0</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <%= hidden_field_tag :page, @next_page %>
+
+        <div class="row show-more-button">
+          <div class="col-md-8">
+            <% unless false %>
+            <div class="custom-showMore-btn pull-right">
+              <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
               <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
+              <% end %>
+            </div>
             <% end %>
           </div>
-        <% end %>
-      </div>
 
-      <div class="col-md-4">
-        <a href="javascript:" id="custom-topPage-btn"> <i class="fa fa-angle-up"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade groups-modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-       
-      </div>
-      <div class="modal-body">
-      <div class="text-center">
-       <h1 class="modall-title">Are you sure you want to delete group name </h1>
-       <p>you will not be able to restore it then</p>
-      </div>
-      <div class="text-center">
-
-      <a class="btn btn-primary new_group-modal_b_btn" >yes</a>
-      <a class="btn btn-primary new_group-modal_btn" >No</a>
-      </div>
+          <div class="col-md-4">
+            <a href="javascript:" id="custom-topPage-btn"> <i class="fa fa-angle-up"></i></a>
+          </div>
+        </div>
       </div>
     </div>
 
-  </div>
-</div>
-<script>
-var options = [];
+    <!-- Modal -->
+    <div id="myModal" class="modal fade groups-modal" role="dialog">
+      <div class="modal-dialog">
 
-$( '.dropdown-menu a' ).on( 'click', function( event ) {
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-   var $target = $( event.currentTarget ),
-       val = $target.attr( 'data-value' ),
-       $inp = $target.find( 'input' ),
-       idx;
+          </div>
+          <div class="modal-body">
+            <div class="text-center">
+              <h1 class="modall-title">Are you sure you want to delete group name </h1>
+              <p>you will not be able to restore it then</p>
+            </div>
+            <div class="text-center">
 
-   if ( ( idx = options.indexOf( val ) ) > -1 ) {
-      options.splice( idx, 1 );
-      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
-   } else {
-      options.push( val );
-      setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
-   }
+              <a class="btn btn-primary new_group-modal_b_btn">yes</a>
+              <a class="btn btn-primary new_group-modal_btn">No</a>
+            </div>
+          </div>
+        </div>
 
-   $( event.target ).blur();
+      </div>
+    </div>
+    <script>
+      var options = [];
 
-   console.log( options );
-   return false;
-});
-</script>
+      $('.dropdown-menu a').on('click', function (event) {
+
+        var $target = $(event.currentTarget),
+          val = $target.attr('data-value'),
+          $inp = $target.find('input'),
+          idx;
+
+        if ((idx = options.indexOf(val)) > -1) {
+          options.splice(idx, 1);
+          setTimeout(function () { $inp.prop('checked', false) }, 0);
+        } else {
+          options.push(val);
+          setTimeout(function () { $inp.prop('checked', true) }, 0);
+        }
+
+        $(event.target).blur();
+
+        console.log(options);
+        return false;
+      });
+    </script>
