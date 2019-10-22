@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function () {
     return $('#group-from').submit();
   });
 
-  $('.delete-group-link').click(function(){
+  $(document).on('click', '#groups .delete-group-link', function(){
     $('#group-delete-modal').modal('show');
     $('.group-title').text(`Are you sure you want to delete group "${$(this).data('name')}"?`);
     $('#delete-modal-group-link').attr('href', $(this).data('url'));

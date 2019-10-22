@@ -2,7 +2,13 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = Group.all
+    @groups = Group.all.with_attached_logo.paginate(page: params[:page], per_page: 9)
+    @next_page = @groups.next_page
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /groups/1
