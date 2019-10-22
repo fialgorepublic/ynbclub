@@ -2786,7 +2786,10 @@ form .form-group input{
     color: #fff;
     border-radius: 40px;
 }
+.group-create-btn button:hover, .group-create-btn button:focus{
+  outline: none;
 
+}
 .grp-header h1{
     margin: 5px 20px;
 }
