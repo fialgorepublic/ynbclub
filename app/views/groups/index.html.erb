@@ -88,7 +88,7 @@
                 <% next_group = group_slice[sub_index + 1] %>
                 <div class="col-md-7 col-lg-7 m-p-0 ">
                   <%= render partial: 'horizontal_group', locals: { group: group } %>
-                  <%= render partial: 'horizontal_group', locals: { group: next_group } %>
+                  <%= render partial: 'horizontal_group', locals: { group: next_group }  if next_group.present? %>
                 </div>
               <% end %>
             <% end %>
@@ -98,72 +98,70 @@
     </div>
     <br/>
 
-        <%= hidden_field_tag :page, @next_page %>
+    <%= hidden_field_tag :page, @next_page %>
 
-        <div class="row show-more-button">
-          <div class="col-md-8">
-            <% unless false %>
-            <div class="custom-showMore-btn pull-right">
-              <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
-              <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
-              <% end %>
-            </div>
-            <% end %>
-          </div>
+    <div class="row show-more-button">
+      <div class="col-md-8">
+        <% unless false %>
+        <div class="custom-showMore-btn pull-right">
+          <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
+          <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
 
-          <div class="col-md-4">
-            <a href="javascript:" id="custom-topPage-btn"> <i class="fa fa-angle-up"></i></a>
-          </div>
+      <div class="col-md-4">
+        <a href="javascript:" id="custom-topPage-btn"> <i class="fa fa-angle-up"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade groups-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="text-center">
+          <h1 class="modall-title group-title"> </h1>
+          <p>you will not be able to restore it then</p>
+        </div>
+
+        <div class="text-center">
+          <%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
+          <a class="btn btn-primary new_group-modal_btn">No</a>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade groups-modal" role="dialog">
-      <div class="modal-dialog">
+<script>
+  var options = [];
+  $('.dropdown-menu a').on('click', function (event) {
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+    var $target = $(event.currentTarget),
+      val = $target.attr('data-value'),
+      $inp = $target.find('input'),
+      idx;
 
-          </div>
-          <div class="modal-body">
-            <div class="text-center">
-              <h1 class="modall-title">Are you sure you want to delete group name </h1>
-              <p>you will not be able to restore it then</p>
-            </div>
-            <div class="text-center">
+    if ((idx = options.indexOf(val)) > -1) {
+      options.splice(idx, 1);
+      setTimeout(function () { $inp.prop('checked', false) }, 0);
+    } else {
+      options.push(val);
+      setTimeout(function () { $inp.prop('checked', true) }, 0);
+    }
 
-              <a class="btn btn-primary new_group-modal_b_btn">yes</a>
-              <a class="btn btn-primary new_group-modal_btn">No</a>
-            </div>
-          </div>
-        </div>
+    $(event.target).blur();
 
-      </div>
-    </div>
-    <script>
-      var options = [];
-
-      $('.dropdown-menu a').on('click', function (event) {
-
-        var $target = $(event.currentTarget),
-          val = $target.attr('data-value'),
-          $inp = $target.find('input'),
-          idx;
-
-        if ((idx = options.indexOf(val)) > -1) {
-          options.splice(idx, 1);
-          setTimeout(function () { $inp.prop('checked', false) }, 0);
-        } else {
-          options.push(val);
-          setTimeout(function () { $inp.prop('checked', true) }, 0);
-        }
-
-        $(event.target).blur();
-
-        console.log(options);
-        return false;
-      });
-    </script>
+    console.log(options);
+    return false;
+  });
+</script>
