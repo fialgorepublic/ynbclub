@@ -119,7 +119,7 @@
 </div>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade groups-modal" role="dialog">
+<div id="group-delete-modal" class="modal fade groups-modal" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -135,7 +135,7 @@
 
         <div class="text-center">
           <%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
-          <a class="btn btn-primary new_group-modal_btn">No</a>
+          <a class="btn btn-primary new_group-modal_btn", id='cancel-delete'>No</a>
         </div>
       </div>
     </div>

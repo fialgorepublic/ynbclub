@@ -3,28 +3,17 @@ $(document).on('turbolinks:load', function () {
     console.log('Inside butotn submit');
     return $('#group-from').submit();
   });
-  
-  function gropuFormValidations(nameError, descriptionError) {
-    $('#group-from').validate({
-      rules: {
-        'resource[name]': {
-          required: true
-        },
-        'resource[description]': {
-          required: true
-        }
-      },
-      messages: {
-        'resource[name]': {
-          required: nameError,
-        },
-        'resource[description]': {
-          required: descriptionError
-        }
-      }
-    });
-  }
 
+  $('.delete-group-link').click(function(){
+    $('#group-delete-modal').modal('show');
+    $('.group-title').text(`Are you sure you want to delete group "${$(this).data('name')}"?`);
+    $('#delete-modal-group-link').attr('href', $(this).data('url'));
+  })
+
+  $('#cancel-delete').click(function(){
+    $('#group-delete-modal').modal('hide');
+  });
+  
   if ($(".gambar").attr("src") == '') {
     $(".gambar").attr("src", "/assets/upload-img.jpg");
   }
