@@ -119,7 +119,7 @@ class Blog < ApplicationRecord
       return if user.blank?
 
       point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
-      return if point_type.blank?
+      return if point_type.blank? || point_type.zero_points?
 
       user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
       self.update(coins_awarded: true)

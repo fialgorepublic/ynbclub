@@ -21,4 +21,8 @@ class PointType < ApplicationRecord
     max_id = PointType.maximum(:id)
     self.id = max_id.present? ? max_id + 1 : 1
   end
+
+  def zero_points?
+    point.zero?
+  end
 end

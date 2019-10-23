@@ -54,7 +54,7 @@ class Order < ApplicationRecord
 
     def add_product_coins
       point_type = PointType.find_by(name: 'Order product in the blog post (Mua từ blog)')
-      return if point_type.blank? || point_type.point == 0
+      return if point_type.blank? || point_type.zero_points?
       product_titles = items.pluck(:name)
       already_visited = nil
       Product.where(title: product_titles).collect(&:blog).compact.each do |blog|

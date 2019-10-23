@@ -57,6 +57,7 @@ module ApplicationHelper
 
   def insert_points(user_id, point_id, invitee="", share_url_id=nil, order_id="")
     point_type = PointType.find_by_id(point_id)
+    return if point_type.blank? && point_type.zero_points?
     Point.create(user_id: user_id, point_type_id: point_type.id, point_value: point_type.point, invitee: invitee, share_url_id: share_url_id, order_id: order_id)
   end
 
