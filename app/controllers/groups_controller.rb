@@ -67,6 +67,11 @@ class GroupsController < ApplicationController
     end
   end
 
+  def banner
+    @page.update(group_banner: params[:page][:group_banner])
+    redirect_to groups_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group

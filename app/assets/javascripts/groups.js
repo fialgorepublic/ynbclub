@@ -75,4 +75,8 @@ $(document).on('turbolinks:load', function () {
 
     });
   });
+
+  $('#group-banner-upload').click(function(){
+    $('#groupBannerUploadModal').modal('show');
+  })
 });

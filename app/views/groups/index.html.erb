@@ -1,7 +1,7 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner pos-rel-banner text-center">
-      <%=  image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+      <%#=  image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
       <div class="pos-abs-banner">
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
@@ -13,6 +13,14 @@
             </button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 blog_banner_btn">
+        <% if current_user&.is_admin? %>
+          <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'group-banner-upload' %>
+        <% end %>
       </div>
     </div>
 
@@ -105,12 +113,24 @@
           <p>you will not be able to restore it then</p>
         </div>
         <div class="text-center">
-
-        <div class="text-center">
-          <%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
-          <a class="btn btn-primary new_group-modal_btn", id='cancel-delete'>No</a>
+          <div class="text-center">
+            <%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
+            <a class="btn btn-primary new_group-modal_btn", id='cancel-delete'>No</a>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="groupBannerUploadModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <%= render 'upload_banner' %>
     </div>
   </div>
 </div>
