@@ -182,11 +182,6 @@
 #  attachment_file DELETE /attachment_files/:id(.:format) ckeditor/attachment_files#destroy
 
 Rails.application.routes.draw do
-  resources :groups do
-    collection do
-      get :users_list
-    end
-  end
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'
@@ -334,6 +329,8 @@ Rails.application.routes.draw do
     post :banner, on: :collection
   end
   resources :permissions, only: [:index, :show, :create]
-
+  resources :groups do
+    post :banner, on: :collection
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
