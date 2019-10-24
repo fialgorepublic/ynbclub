@@ -376,6 +376,20 @@ vi:
     email:                    Vui lòng nhập email
     valid_email:              Vui lòng nhập một địa chỉ email hợp lệ          
 
+  groups:
+    index: 
+      title:                  Groups
+      edit_banner_text:       Edit Banner
+      add_new_group:          Add New Group
+
+    new:
+      name_missing:           Name is required
+      description_missing:    Description required
+    show:
+      join_group:             Join group
+      start_conversation:     Start New Conversation
+      no_conversation:        There is no Covnersationt yet in this group.
+
   actions_lable:              Các hoạt động 
   cancel_label:               Huỷ 
   save_label:                  Lưu
