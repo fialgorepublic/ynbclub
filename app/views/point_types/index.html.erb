@@ -20,7 +20,6 @@
           <td><%= point_type.point %></td>
           <td><%= link_to t(:show_label), point_type %></td>
           <td><%= link_to t(:edit_label), edit_point_type_path(point_type) %></td>
-          <td><%= link_to t(:destroy_label), point_type, method: :delete, data: { confirm: t(:delete_confirmation) } %></td>
         </tr>
     <% end %>
     </tbody>
