@@ -9,6 +9,9 @@ class Group < ApplicationRecord
       end
     }
   end
+
+  default_scope { order(updated_at: :desc) }
+
   has_one_attached :logo
 
   validates :name, :description, presence: true
