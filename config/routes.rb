@@ -332,5 +332,7 @@ Rails.application.routes.draw do
   resources :groups do
     post :banner, on: :collection
   end
+  resources :group_categories
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
