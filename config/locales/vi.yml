@@ -61,7 +61,8 @@ vi:
     ghtk_status_label:        Cập nhập trạng thái GHTK
     invite_history_label:     Lịch sử mời bạn bè 
     acc_setting_label:        Cài đặt tài khoản 
-    referral_link_label:      Copy link giới thiệu 
+    referral_link_label:      Copy link giới thiệu
+    group_categories:         Group Categories
 
   referral_sales:
     index:
