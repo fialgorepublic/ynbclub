@@ -5,14 +5,16 @@
       <div class="pos-abs-banner">
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
-        <div class="wrap">
-          <div class="search">
-            <input type="text" class="searchTerm" placeholder="What are you looking for?">
-            <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
-            </button>
+        <%= search_form_for @q do |f| %>
+          <div class="wrap">
+            <div class="search">
+                <%= f.search_field :name_cont, { class: "searchTerm", placeholder: "What are you looking for?" } %>
+                <button type="submit" class="searchButton">
+                  <i class="fa fa-search"></i>
+                </button>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
 

@@ -629,3 +629,37 @@ img.lib-img-show {
   position: relative;
   left: 40px;
 }
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #fff;
+  border-right: none;
+  padding: 15px 5px;;
+  height: 0px;
+  border-radius: 0px 0 0 0px;
+  outline: none;
+  color: black;
+  border-right: 1px solid lightgray;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #fff;
+  background: #fff;
+  text-align: center;
+  color: #bfbfbf;
+  border-radius: 0 0px 0px 0;
+  cursor: pointer;
+  font-size: 20px;
+}

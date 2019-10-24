@@ -2,9 +2,10 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = Group.sort_by_latest
-    @groups = @groups.sort_by_title(params[:sort_type]) if params[:sort_type].present?
-    @groups = @groups.with_attached_logo.paginate(page: params[:page], per_page: 9)
+    @q = Group.ransack(params[:q])
+    groups = @q.result(distinct: true)
+    groups = groups.sort_by_title(params[:sort_type]) if params[:sort_type].present?
+    @groups = groups.with_attached_logo.paginate(page: params[:page], per_page: 9)
     @next_page = @groups.next_page
 
     respond_to do |format|
