@@ -369,6 +369,20 @@ en:
     email:                    Please enter email
     valid_email:              Please Enter a valid email address.             
 
+  groups:
+    index: 
+      title:                  Groups
+      edit_banner_text:       Edit Banner
+      add_new_group:          Add New Group
+
+    new:
+      name_missing:           Name is required
+      description_missing:    Description required
+    show:
+      join_group:             Join group
+      start_conversation:     Start New Conversation
+      no_conversation:        There is no Covnersationt yet in this group.
+
   actions_lable:              Actions
   cancel_label:               Cancel
   save_label:                 Save

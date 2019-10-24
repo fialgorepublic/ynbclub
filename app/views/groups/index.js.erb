@@ -1,0 +1,13 @@
+$('.loader').hide();
+<% if params[:page].present? %>
+  $('#groups').append('<%= j render 'all_groups' %>');
+<% else %>
+  $('#groups').html('<%= j render 'all_groups' %>');
+<% end %>
+$('#page').val('<%= @next_page %>')
+$('#load-more').show();
+currentPage = '<%= @groups.current_page %>';
+totalPages  = '<%= @groups.total_pages %>';
+if (currentPage == totalPages) {
+  $('#load-more').hide();
+}

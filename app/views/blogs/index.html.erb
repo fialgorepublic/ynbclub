@@ -69,7 +69,7 @@
       <div class="col-md-8">
         <% unless @blogs.current_page == @blogs.total_pages %>
           <div class="custom-showMore-btn pull-right">
-            <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more" do %>
+            <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more", data: { url: blogs_path } do %>
               <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
             <% end %>
           </div>

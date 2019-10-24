@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function () {
     page = $('#page').val();
     $('.loader').show();
     $.ajax({
-      url: `/blogs?page=${page}`,
+      url: `${$(this).data('url')}?page=${page}`,
       type: 'GET',
       dataType: 'script',
       success: function(data) {

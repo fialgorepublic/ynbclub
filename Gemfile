@@ -53,6 +53,7 @@ gem "mini_magick"
 gem 'paperclip'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'friendly_id', '~> 5.2.4'
+gem 'active_storage_validations'
 gem 'sitemap_generator'
 gem 'yt', '~> 0.29.1'
 

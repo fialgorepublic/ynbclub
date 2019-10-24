@@ -1,0 +1,58 @@
+<%= form_with(model: group, local: true, id: 'group-from') do |form| %>
+  <div class="col-md-9">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 lib-item">
+          <div class="lib-panel">
+            <div class="row box-shadow">
+              <div class="col-md-4">
+                <div class="group-icon">
+                  <div class="img-caption">
+                    <label class="cabinet center-block">
+                      <figure>
+                        <%= image_tag @group.logo.attached? ? @group.logo : '', class: "gambar img-responsive img-thumbnail", id: "item-img-output", width: "100%" %>
+                        <figcaption>
+                          <p>Upload preview image</p>
+                        </figcaption>
+                      </figure>
+                      <%= form.file_field :logo, class: "item-img file center-block", required: true %>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-8">
+                <div class="lib-row lib-header">
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <div class="group-dropDown">
+                        <select>
+                          <option value="" selected>SELECT CATEGORY</option>
+                          <option value="">testing 2</option>
+                          <option value="">testing 3</option>
+                          <option value="">testing 4</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <%= form.text_field :name, class: "form-control", placeholder: 'Title', required: true %>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <%= form.text_field :description, class: "form-control", placeholder: "Description", required: true %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

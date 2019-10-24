@@ -268,7 +268,6 @@ Rails.application.routes.draw do
       get :update_status
     end
   end
-  resources :groups
   resources :shared_urls,   only: [:index]
   resources :notifications, only: [:index]
 
@@ -330,6 +329,8 @@ Rails.application.routes.draw do
     post :banner, on: :collection
   end
   resources :permissions, only: [:index, :show, :create]
-
+  resources :groups do
+    post :banner, on: :collection
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
