@@ -15,7 +15,7 @@ class Group < ApplicationRecord
   belongs_to :group_category
   has_one_attached :logo
 
-  validates :name, :description, presence: true
+  validates :name, :description, :group_category_id, presence: true
   validates :logo, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg']
 
   scope :sort_by_title, -> (sort_type)  do

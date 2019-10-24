@@ -510,6 +510,9 @@ vi:
               blank: Description is Required
             logo:
               blank: Please attach logo
+            group_category:
+              blank: Please choose a category.
+
         group_category:
           attributes:
             name:
