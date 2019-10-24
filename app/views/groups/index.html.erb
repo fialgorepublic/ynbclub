@@ -33,38 +33,38 @@
         </div>
 
         <% if @groups.count > 0 %>
-        <div class="col-md-2 post-sorting  ">
-          <p>SORTING</p>
-          <select class="sorting-fltr" id="sort-blogs">
-            <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-            <option value="0"><%= t(:A_Z) %></option>
-            <option value="1">A-Z </option>
-            <option value="2">Z-A </option>
-          </select>
-        </div>
-
-        <div class="col-md-2 post-sorting">
-          <p>CATEGORY</p>
-          <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
-          <div class="button-group">
-            <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
-                color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down"
-                style="color: #838181;"></span></button>
-            <ul class="dropdown-menu ">
-              <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
-              <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                  2</a></li>
-              <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                  3</a></li>
-              <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                  4</a></li>
-              <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                  5</a></li>
-              <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                  6</a></li>
-            </ul>
+          <div class="col-md-2 post-sorting  ">
+            <p>SORTING</p>
+            <select class="sorting-fltr" id="sort-blogs">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <option value="0"><%= t(:A_Z) %></option>
+              <option value="1">A-Z </option>
+              <option value="2">Z-A </option>
+            </select>
           </div>
-        </div>
+
+          <div class="col-md-2 post-sorting">
+            <p>CATEGORY</p>
+            <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+            <div class="button-group">
+              <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
+                  color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down"
+                  style="color: #838181;"></span></button>
+              <ul class="dropdown-menu group-categories">
+                <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
+                <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                    2</a></li>
+                <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                    3</a></li>
+                <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                    4</a></li>
+                <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                    5</a></li>
+                <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox" />&nbsp;Option
+                    6</a></li>
+              </ul>
+            </div>
+          </div>
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
@@ -137,7 +137,7 @@
 
 <script>
   var options = [];
-  $('.dropdown-menu a').on('click', function (event) {
+  $('.group-categories a').on('click', function (event) {
 
     var $target = $(event.currentTarget),
       val = $target.attr('data-value'),
