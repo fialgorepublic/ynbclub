@@ -26,12 +26,7 @@
                   <div class="form-group">
                     <div class="col-md-12">
                       <div class="group-dropDown">
-                        <select>
-                          <option value="" selected>SELECT CATEGORY</option>
-                          <option value="">testing 2</option>
-                          <option value="">testing 3</option>
-                          <option value="">testing 4</option>
-                        </select>
+                        <%= form.select :group_category_id, options_for_select(group_categories, form.object.group_category_id), class: 'form-control', required: true %>
                       </div>
                     </div>
                   </div>
