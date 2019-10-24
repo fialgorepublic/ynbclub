@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_123527) do
+ActiveRecord::Schema.define(version: 2019_10_24_134234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,8 @@ ActiveRecord::Schema.define(version: 2019_10_24_123527) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "group_category_id"
+    t.index ["group_category_id"], name: "index_groups_on_group_category_id"
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
 
@@ -479,6 +481,7 @@ ActiveRecord::Schema.define(version: 2019_10_24_123527) do
   add_foreign_key "commission_histories", "users", on_delete: :cascade
   add_foreign_key "districts", "cities", on_delete: :cascade
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
+  add_foreign_key "groups", "group_categories", on_delete: :cascade
   add_foreign_key "items", "orders", on_delete: :cascade
   add_foreign_key "permissions", "users", on_delete: :cascade
   add_foreign_key "point_types", "earn_coins", on_delete: :cascade
