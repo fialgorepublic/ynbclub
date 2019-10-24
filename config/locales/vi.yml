@@ -391,6 +391,20 @@ vi:
       start_conversation:     Start New Conversation
       no_conversation:        There is no Covnersationt yet in this group.
 
+  group_categories:
+    index:
+      title:                  Nhóm danh mục
+      new_btn_label:          nhóm Danh mục mới 
+    name_label:               Tên 
+    edit:
+      title:                  Chỉnh sửa nhóm danh mục 
+    new:
+      create_category_label:  Tạo nhóm danh mục
+    controller:
+      create_success:         Nhóm Danh mục đã được tạo thành công 
+      update_success:         Nhóm Danh mục đã được cập nhập thành công 
+      destroy_success:        Nhóm Huỷ danh mục thành công
+
   actions_lable:              Các hoạt động 
   cancel_label:               Huỷ 
   save_label:                  Lưu
@@ -494,6 +508,9 @@ vi:
               blank: Name is Required
             description:
               blank: Description is Required
-            log:
+            logo:
               blank: Please attach logo
-            
+        group_category:
+          attributes:
+            name:
+              blank: Name is Required

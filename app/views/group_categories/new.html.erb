@@ -1,0 +1,7 @@
+<div class="col-md-9">
+  <h1 class="card-header"><%= t('group_categories.index.new_btn_label') %></h1>
+
+  <%= render 'form', group_category: @group_category %>
+  <br/>
+  <%= link_to t(:back_label), group_categories_path, class: 'btn btn-default' %>
+</div>

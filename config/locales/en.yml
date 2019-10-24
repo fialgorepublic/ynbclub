@@ -383,6 +383,20 @@ en:
       join_group:             Join group
       start_conversation:     Start New Conversation
       no_conversation:        There is no Covnersationt yet in this group.
+  
+  group_categories:
+    index:
+      title:                  Group Categories
+      new_btn_label:          New Group Category
+    name_label:               Name
+    edit:
+      title:                  Edit Group Category
+    new:
+      create_category_label:  Create Group Category
+    controller:
+      create_success:         Group Category was successfully created.
+      update_success:         Group Category was successfully updated.
+      destroy_success:        Group Category was successfully destroyed.
 
   actions_lable:              Actions
   cancel_label:               Cancel
