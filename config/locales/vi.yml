@@ -487,3 +487,12 @@ vi:
           attributes:
             email:
               taken: này đã được sử dụng.
+        group:
+          attributes:
+            name:
+              blank: Name is Required
+            description:
+              blank: Description is Required
+            log:
+              blank: Please attach logo
+            
