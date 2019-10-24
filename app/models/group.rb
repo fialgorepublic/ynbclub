@@ -12,6 +12,7 @@ class Group < ApplicationRecord
 
   default_scope { order(updated_at: :desc) }
 
+  belongs_to :group_category
   has_one_attached :logo
 
   validates :name, :description, presence: true
