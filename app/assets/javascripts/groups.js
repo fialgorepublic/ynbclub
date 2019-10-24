@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function () {
+  imageCropper();
+  sortByTitle();
   $('.group-create-btn').click(function (e) {
-    console.log('Inside butotn submit');
     return $('#group-from').submit();
   });
 
@@ -21,60 +22,79 @@ $(document).on('turbolinks:load', function () {
     $(".gambar").attr("src", $(".gambar").attr("src"));
   }
 
-  var $uploadCrop,
-    tempFilename,
-    rawImg,
-    imageId;
-  function readFile(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('.upload-demo').addClass('ready');
-        $('#cropImagePop').modal('show');
-        rawImg = e.target.result;
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
-    else {
-      swal("Sorry - you're browser doesn't support the FileReader API");
-    }
+  function sortByTitle(){
+    $('#title-sort').on('change', function(){
+      sortType = $(this).val();
+      params = `sort_type=${sortType}`;
+      fetchGroups(params);
+    });
   }
 
-  $uploadCrop = $('#upload-demo').croppie({
-    viewport: {
-      width: 400,
-      height: 400,
-    },
-    enforceBoundary: false,
-    enableExif: true
-  });
+  function fetchGroups(params){
+    $('.loader').show()
+    $.ajax({
+      url: `/groups?${params}`,
+      method: 'get',
+      dataType: 'script'
+    })
+  }
 
-  $('#cropImagePop').on('shown.bs.modal', function () {
-    // alert('Shown pop');
-    $uploadCrop.croppie('bind', {
-      url: rawImg
-    }).then(function () {
-      console.log('jQuery bind complete');
+  function imageCropper(){
+    var $uploadCrop,
+      tempFilename,
+      rawImg,
+      imageId;
+    function readFile(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('.upload-demo').addClass('ready');
+          $('#cropImagePop').modal('show');
+          rawImg = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+      else {
+        swal("Sorry - you're browser doesn't support the FileReader API");
+      }
+    }
+
+    $uploadCrop = $('#upload-demo').croppie({
+      viewport: {
+        width: 400,
+        height: 400,
+      },
+      enforceBoundary: false,
+      enableExif: true
     });
-  });
 
-  $('.item-img').on('change', function () {
-    imageId = $(this).data('id'); tempFilename = $(this).val();
-    $('#cancelCropBtn').data('id', imageId); readFile(this);
-  });
-
-  $('#cropImageBtn').on('click', function (ev) {
-    $uploadCrop.croppie('result', {
-      type: 'base64',
-      format: 'jpeg',
-      size: { width: 200, height: 200 }
-    }).then(function (resp) {
-      $('#item-img-output').attr('src', resp);
-      $('#item-img').val(resp);
-      $('#cropImagePop').modal('hide');
-
+    $('#cropImagePop').on('shown.bs.modal', function () {
+      // alert('Shown pop');
+      $uploadCrop.croppie('bind', {
+        url: rawImg
+      }).then(function () {
+        console.log('jQuery bind complete');
+      });
     });
-  });
+
+    $('.item-img').on('change', function () {
+      imageId = $(this).data('id'); tempFilename = $(this).val();
+      $('#cancelCropBtn').data('id', imageId); readFile(this);
+    });
+
+    $('#cropImageBtn').on('click', function (ev) {
+      $uploadCrop.croppie('result', {
+        type: 'base64',
+        format: 'jpeg',
+        size: { width: 200, height: 200 }
+      }).then(function (resp) {
+        $('#item-img-output').attr('src', resp);
+        $('#item-img').val(resp);
+        $('#cropImagePop').modal('hide');
+
+      });
+    });
+  }
 
   $('#group-banner-upload').click(function(){
     $('#groupBannerUploadModal').modal('show');

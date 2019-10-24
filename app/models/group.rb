@@ -10,10 +10,14 @@ class Group < ApplicationRecord
     }
   end
 
-  default_scope { order(updated_at: :desc) }
-
   has_one_attached :logo
 
   validates :name, :description, presence: true
   validates :logo, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+
+  scope :sort_by_latest, -> { order(updated_at: :desc ) }
+  scope :sort_by_title, -> (sort_type)  do
+    sort_type = sort_type.present? ? sort_type : 0
+    sort_type == 0 ? sort_by_latest : reorder(name: sort_type.to_sym)
+  end
 end
