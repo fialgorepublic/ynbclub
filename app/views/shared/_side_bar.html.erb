@@ -207,6 +207,15 @@
         </li>
       <% end %>
 
+      <% if current_user.is_admin? || current_user.has_permission?('group_categories', 'all')%>
+        <li>
+          <a href="/group_categories" class="<%= active_class(group_categories_path) %>">
+            <i class="custom-icon"><img src="/assets/categories-sidebar.png"> </i>
+            <span class="side-nav-style"><%= t('sidebar.group_categories') %></span>
+          </a>
+        </li>
+      <% end %>
+
       <% if current_user.is_admin? || current_user.has_permission?('manage_rewards', 'point_types') %>
         <li>
           <a href="/point_types" class="<%= active_class(point_types_path) %>">
