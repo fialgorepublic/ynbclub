@@ -93,6 +93,7 @@ class DashboardController < ApplicationController
   end
 
   def acc_settings
+    current_user.create_profile if current_user.profile.blank?
     city_name = current_user&.profile&.city
     state = City.find_by(name: city_name)&.state
     if state.present?
