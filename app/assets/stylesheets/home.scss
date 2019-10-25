@@ -595,7 +595,7 @@ body {
     li.active {
       position: relative;
       a {
-        background: #eef7ff;
+        background: #e1f4f3;
         margin: 0;
         padding: 10px 30px;
         display: inline-block;
@@ -605,7 +605,7 @@ body {
     li.active:after {
       position: absolute;
       left: 0;
-      border-left: 5px solid #1e63ec;
+      border-left: 3px solid #54b2b2;
       clear: both;
       display: block;
       content: '';
@@ -1507,8 +1507,8 @@ label.error {
     border-radius: 0px;
     box-shadow: unset;
     .btn {
-      background: #323232;
-      border-radius: 0px;
+      background: #54b2b2;
+      border-radius: 20px;
     }
   }
   .account-heading-style {
