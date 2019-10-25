@@ -1,6 +1,8 @@
 $(document).on('turbolinks:load', function () {
   imageCropper();
   sortByTitle();
+  filterByCategory();
+
   $('.group-create-btn').click(function (e) {
     return $('#group-from').submit();
   });
@@ -26,6 +28,34 @@ $(document).on('turbolinks:load', function () {
     $('#title-sort').on('change', function(){
       sortType = $(this).val();
       params = `sort_type=${sortType}`;
+      fetchGroups(params);
+    });
+  }
+
+  function filterByCategory(){
+    var options = [];
+    $('.group-categories a').on('click', function (event) {
+      event.preventDefault();
+      var $target = $(event.currentTarget),
+      val = $target.attr('data-value'),
+      $inp = $target.find('input'),
+      idx;
+
+      if ((idx = options.indexOf(val)) > -1) {
+        options.splice(idx, 1);
+        setTimeout(function () { $inp.prop('checked', false) }, 0);
+      } else {
+        if ($target.attr('data-type') == 'all' ) {
+          options = val.split(',')
+          $('input:checkbox').prop('checked', true)
+        }
+        else {
+          options.push(val);
+          setTimeout(function () { $inp.prop('checked', true) }, 0);
+        }
+      }
+
+      params = `category_ids=${options.join(',')}`
       fetchGroups(params);
     });
   }

@@ -48,17 +48,10 @@
                   color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down"
                   style="color: #838181;"></span></button>
               <ul class="dropdown-menu group-categories">
-                <li class="bbbr"><a href="#" data-value="option1" tabIndex="-1"><span>&nbsp;All categories</a></li>
-                <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                    2</a></li>
-                <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                    3</a></li>
-                <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                    4</a></li>
-                <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                    5</a></li>
-                <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox" />&nbsp;Option
-                    6</a></li>
+                <li class="bbbr"><a href="#" data-value=<%= @group_categories.ids.join(',') %> data-type='all' tabIndex="-1"><span>&nbsp;All categories</a></li>
+                <% @group_categories.each do |category| %>
+                  <li><a href="#" class="small" data-value="<%= category.id %>"><input type="checkbox" data-category-id="<%= category.id %>"/>&nbsp;<%= category.name %> </a></li>
+                <% end %>
               </ul>
             </div>
           </div>
@@ -131,27 +124,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  var options = [];
-  $('.group-categories a').on('click', function (event) {
-
-    var $target = $(event.currentTarget),
-      val = $target.attr('data-value'),
-      $inp = $target.find('input'),
-      idx;
-
-    if ((idx = options.indexOf(val)) > -1) {
-      options.splice(idx, 1);
-      setTimeout(function () { $inp.prop('checked', false) }, 0);
-    } else {
-      options.push(val);
-      setTimeout(function () { $inp.prop('checked', true) }, 0);
-    }
-
-    $(event.target).blur();
-
-    console.log(options);
-    return false;
-  });
-</script>

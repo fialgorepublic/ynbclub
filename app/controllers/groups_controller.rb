@@ -5,8 +5,10 @@ class GroupsController < ApplicationController
     @q = Group.ransack(params[:q])
     groups = @q.result(distinct: true)
     groups = groups.sort_by_title(params[:sort_type]) if params[:sort_type].present?
+    groups = groups.filter_by_categories(params[:category_ids]) if params[:category_ids].present?
     @groups = groups.with_attached_logo.paginate(page: params[:page], per_page: 9)
     @next_page = @groups.next_page
+    set_group_categories
 
     respond_to do |format|
       format.html
@@ -84,5 +86,9 @@ class GroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:name, :description, :logo, :group_category_id)
+    end
+
+    def set_group_categories
+      @group_categories ||= GroupCategory.all
     end
 end
