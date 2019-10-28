@@ -53,9 +53,11 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
+        flash[:success] =  'Group was successfully updated.'
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
+        flash[:alert] = @group.errors.full_messages.to_sentence
         format.html { render :edit }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
