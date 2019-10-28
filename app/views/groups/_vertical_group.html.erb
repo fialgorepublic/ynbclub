@@ -1,6 +1,6 @@
 <div class="col-md-5 col-lg-5 m-p-0 ">
-  <div class="groups-cards">
-    <div class="lib-panel">
+  <div class="groups-cards <%= custom_classes ? 'width-100pr' : '' %>">
+    <div class="lib-panel <%= custom_classes ? 'left-10pr' : '' %>">
       <div class="row box-shadow">
         <div class="">
           <%= link_to group do %>
@@ -10,7 +10,7 @@
         <div class="">
           <% if current_user&.is_admin? %>
             <div class="lib-row lib-header">
-              <div class="grp-edit-delete-icon">
+              <div class="grp-edit-delete-icon <%= custom_classes ? 'right-icon-16px' : '' %>">
                 <%= link_to edit_group_path(group), class: "bg-groups-circle" do %>
                   <i class="fa fa-pencil inneer" aria-hidden="true"></i>
                 <% end %>

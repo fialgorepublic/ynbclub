@@ -3,7 +3,7 @@
     <% group_slice.each_with_index do |group, sub_index| %>
       <% if index % 2 == 0 %>
         <% if sub_index == 0 %>
-          <%= render partial: 'vertical_group', locals: { group: group } %>
+          <%= render partial: 'vertical_group', locals: { group: group, custom_classes: false } %>
         <% else %>
           <div class="col-md-7 col-lg-7 m-p-0 ">
             <%= render partial: 'horizontal_group', locals: { group: group } %>
@@ -11,7 +11,7 @@
         <% end %>
       <% else %>
         <% if sub_index == 2 %>
-          <%= render partial: 'vertical_group', locals: { group: group } %>
+          <%= render partial: 'vertical_group', locals: { group: group, custom_classes: true } %>
         <% else %>
           <% next if already_added %>
           <% already_added  = true %>
