@@ -7,6 +7,11 @@ $(document).on('turbolinks:load', function () {
     return $('#group-from').submit();
   });
 
+  $('#upload-btn').click(function(){
+    $('#cropImagePop').modal('hide');
+    $('.item-img').click();
+  })
+
   $(document).on('click', '#groups .delete-group-link', function(){
     $('#group-delete-modal').modal('show');
     $('.group-title').text(`Are you sure you want to delete group "${$(this).data('name')}"?`);
@@ -108,8 +113,10 @@ $(document).on('turbolinks:load', function () {
     });
 
     $('.item-img').on('change', function () {
-      imageId = $(this).data('id'); tempFilename = $(this).val();
-      $('#cancelCropBtn').data('id', imageId); readFile(this);
+      imageId = $(this).data('id');
+      tempFilename = $(this).val();
+      $('#cancelCropBtn').data('id', imageId);
+      readFile(this);
     });
 
     $('#cropImageBtn').on('click', function (ev) {
