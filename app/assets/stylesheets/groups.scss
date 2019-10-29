@@ -686,6 +686,9 @@ img.lib-img-show {
 .boder-focus-search:focus {
   border-color: #ccc !important;
 }
+.boder-focus-search:active {
+  background-color: #fff !important;
+}
 .padding-left-result {
   padding-left: 10px;
 }
@@ -715,11 +718,22 @@ img.lib-img-show {
 .flex-lll.br-b {
   padding-top: 10px;
 }
-
+.remove-border:focus {
+  background-color: white;
+  border-left: none;
+  border-right: none;
+}
+.searc {
+  position: relative;
+}
+.result--data {
+  position: absolute;
+  width: 100%;
+}
 @media (max-width: 576px) {
   .pos-rel-banner img {
     position: relative;
-    height: 100vh;
+    height: 50vh;
   }
   .groups-cards-2 .lib-panel .row,
   .groups-cards-2 .lib-panel .col-md-6 {
@@ -752,7 +766,7 @@ img.lib-img-show {
 @media (max-width: 824px) {
   .pos-rel-banner img {
     position: relative;
-    height: 100vh;
+    height: 50vh;
   }
   .groups-cards-2 .lib-panel .row,
   .groups-cards-2 .lib-panel .col-md-6 {
@@ -789,4 +803,19 @@ img.lib-img-show {
   .left-10pr {
     margin-left: 15% !important;
   }
+}
+
+.btn-default.active.focus,
+.btn-default.active:focus,
+.btn-default.active:hover,
+.btn-default:active.focus,
+.btn-default:active:focus,
+.btn-default:active:hover,
+.open > .dropdown-toggle.btn-default.focus,
+.open > .dropdown-toggle.btn-default:focus,
+.open > .dropdown-toggle.btn-default:hover {
+  color: #333;
+  background-color: #d4d4d4;
+  border-color: #8c8c8c;
+  outline: none;
 }

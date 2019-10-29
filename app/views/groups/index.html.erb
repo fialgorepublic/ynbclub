@@ -27,7 +27,7 @@
             </div> -->
             <div class="input-group">
               <input id="email" type="text" class="form-control input-srch email-border 
-              boder-focus-search" name="email" placeholder="Email">
+              boder-focus-search" name="email" placeholder="Search...">
               <span class="input-group-addon remove-border"><i
                   class="glyphicon glyphicon-remove color-srch-icon cross-icon"></i></span>
               <span class="input-group-addon search-border"><i
@@ -223,28 +223,28 @@
   $('.cross-icon').hide();
   $(".input-srch").on('keyup', function (e) {
     if (e.keyCode === 13) {
-      $('.cross-icon').show();
-      $('.result--data').show();
+      e.preventDefault();
+      $('.cross-icon').fadeIn();
+      $('.result--data').fadeIn();
     }
   });
   $('.cross-icon').click(function () {
+    $('.cross-icon').fadeOut();
+    $('.result--data').fadeOut();
+    $(".input-srch").val('');
 
-    $('.cross-icon').hide();
-    $('.result--data').hide();
   });
 
 
   $(".input-srch").on("input", function () {
-
-
     $('.cross-icon').fadeIn();
     $('.result--data').fadeIn();
     // clear the timer if it's already set:
     clearTimeout(timer);
     timer = setTimeout(function () {
-
       $('.cross-icon').fadeOut();
       $('.result--data').fadeOut();
+      $(".input-srch").val('');
     }, 3000);
   });
 
