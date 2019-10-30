@@ -5,104 +5,17 @@
       <div class="pos-abs-banner">
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
-        <%= search_form_for @q do |f| %>
+        <%= form_tag search_groups_path, method: :get, remote: true, id: 'search-group-form' do |f| %>
         <div class="wrap">
           <div class="searc">
-            <%#= f.search_field :name_cont, { class: "searchTerm", placeholder: "What are you looking for?" } %>
-            <!-- <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
-            </button> -->
-            <!-- <div class="input-group mb-3 pos-rel">
-
-              <input type="text" class="form-control input-srch" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1">
-
-              <div class="input-group-prepend pos-ad">
-                <span class="input-group-text cross-icon" id="basic-addon1">sss</span>
-              </div>
-              <div class="input-group-prepend pos-ad1">
-                <span class="input-group-text" id="basic-addon1">@</span>
-              </div>
-
-            </div> -->
             <div class="input-group">
-              <input id="email" type="text" class="form-control input-srch email-border 
-              boder-focus-search" name="email" placeholder="Search...">
-              <span class="input-group-addon remove-border"><i
-                  class="glyphicon glyphicon-remove color-srch-icon cross-icon"></i></span>
-              <span class="input-group-addon search-border"><i
-                  class="glyphicon glyphicon-search color-srch-icon"></i></span>
+              <%= text_field_tag :group_title, nil, class: "form-control input-srch email-border 
+              boder-focus-search", placeholder: "Search...", required: true %>
+              <span class="input-group-addon remove-border"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon"></i></span>
+              <span class="input-group-addon search-border"><i class="glyphicon glyphicon-search color-srch-icon"></i></span>
             </div>
-
-            <div class="result--data">
-
-              <div class="flex-lll br-b">
-                <div class=" hidden-sm hidden-xs">
-                  <img src="/assets/screen-shot" />
-                </div>
-                <div class="pl-3 padding-left-result">
-                  <h4 class="banner-h4">Lorem ipsum</h4>
-                  <p class="text-left banner-p hidden-sm hidden-xs">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo animi natus consequatur? Tempore quia
-                    cumque
-                    officiis eos, quae possimus non deserunt consequatur ex impedit aut, rerum cupiditate aspernatur
-                    dignissimos
-                    suscipit!
-                  </p>
-                  <div class="grp-card-icon hidden-sm hidden-xs">
-                    <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
-                    <p class="m-para-srch">0</p>
-                    <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
-                    <p class="m-para-srch">0</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex-lll br-b">
-                <div class=" hidden-sm hidden-xs">
-                  <img src="/assets/screen-shot" />
-                </div>
-                <div class="pl-3 padding-left-result">
-                  <h4 class="banner-h4">Lorem ipsum</h4>
-                  <p class="text-left banner-p hidden-sm hidden-xs">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo animi natus consequatur? Tempore quia
-                    cumque
-                    officiis eos, quae possimus non deserunt consequatur ex impedit aut, rerum cupiditate aspernatur
-                    dignissimos
-                    suscipit!
-                  </p>
-                  <div class="grp-card-icon hidden-sm hidden-xs">
-                    <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
-                    <p class="m-para-srch">0</p>
-                    <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
-                    <p class="m-para-srch">0</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex-lll br-b">
-                <div class=" hidden-sm hidden-xs">
-                  <img src="/assets/screen-shot" />
-                </div>
-                <div class="pl-3 padding-left-result">
-                  <h4 class="banner-h4">Lorem ipsum</h4>
-                  <p class="text-left banner-p hidden-sm hidden-xs">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo animi natus consequatur? Tempore quia
-                    cumque
-                    officiis eos, quae possimus non deserunt consequatur ex impedit aut, rerum cupiditate aspernatur
-                    dignissimos
-                    suscipit!
-                  </p>
-                  <div class="grp-card-icon hidden-sm hidden-xs">
-                    <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
-                    <p class="m-para-srch">0</p>
-                    <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
-                    <p class="m-para-srch">0</p>
-                  </div>
-                </div>
-              </div>
+            <div class="groups-search-result">
             </div>
-
           </div>
         </div>
         <% end %>
@@ -217,35 +130,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $('.result--data').hide();
-  $('.cross-icon').hide();
-  $(".input-srch").on('keyup', function (e) {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      $('.cross-icon').fadeIn();
-      $('.result--data').fadeIn();
-    }
-  });
-  $('.cross-icon').click(function () {
-    $('.cross-icon').fadeOut();
-    $('.result--data').fadeOut();
-    $(".input-srch").val('');
-
-  });
-
-
-  $(".input-srch").on("input", function () {
-    $('.cross-icon').fadeIn();
-    $('.result--data').fadeIn();
-    // clear the timer if it's already set:
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      $('.cross-icon').fadeOut();
-      $('.result--data').fadeOut();
-      $(".input-srch").val('');
-    }, 3000);
-  });
-
-</script>

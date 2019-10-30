@@ -330,7 +330,10 @@ Rails.application.routes.draw do
   end
   resources :permissions, only: [:index, :show, :create]
   resources :groups do
-    post :banner, on: :collection
+    collection do
+      post :banner
+      get  :search
+    end
   end
   resources :group_categories
 

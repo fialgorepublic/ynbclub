@@ -2,8 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Group.ransack(params[:q])
-    groups = @q.result(distinct: true)
+    groups = Group.all
     groups = groups.sort_by_title(params[:sort_type]) if params[:sort_type].present?
     groups = groups.filter_by_categories(params[:category_ids]) if params[:category_ids].present?
     @groups = groups.with_attached_logo.paginate(page: params[:page], per_page: 9)
@@ -72,6 +71,10 @@ class GroupsController < ApplicationController
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @groups = Group.filter_by_name(params[:group_title])
   end
 
   def banner

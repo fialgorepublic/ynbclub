@@ -2,6 +2,7 @@ $(document).on('turbolinks:load', function () {
   imageCropper();
   sortByTitle();
   filterByCategory();
+  filterByName();
 
   $('.group-create-btn').click(function (e) {
     return $('#group-from').submit();
@@ -136,4 +137,46 @@ $(document).on('turbolinks:load', function () {
   $('#group-banner-upload').click(function(){
     $('#groupBannerUploadModal').modal('show');
   })
+
+  function filterByName(){
+    $('.groups-search-result').hide();
+    $('.remove-border').hide();
+    var timer;
+    $("#group_title").on('keyup', function (e) {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        if ($("#group_title").val() == '') { return; }
+        $('.remove-border').fadeIn();
+        submitSearchForm();
+      }
+    });
+
+    $('.remove-border').click(function () {
+      fadeOutContent();
+    });
+
+    $("#group_title").on("input", function () {
+      if ($("#group_title").val() == '') { 
+        fadeOutContent();
+        return;
+      }
+      $('.remove-border').fadeIn();
+      // clear the timer if it's already set:
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        submitSearchForm()
+      }, 500);
+    });
+  }
+
+  function submitSearchForm() {
+    var elem = document.getElementById('search-group-form');
+    Rails.fire(elem, 'submit');
+  }
+
+  function fadeOutContent(){
+    $('.remove-border').fadeOut();
+    $('.groups-search-result').fadeOut();
+    $("#group_title").val('');
+  }
 });

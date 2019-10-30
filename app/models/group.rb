@@ -23,4 +23,5 @@ class Group < ApplicationRecord
     sort_type == 0 ? all : reorder(name: sort_type.to_sym)
   end
   scope :filter_by_categories, -> (categroy_ids) { where(group_category_id: categroy_ids.split(',')) }
+  scope :filter_by_name, -> (name) { where('lower(name) like ?', "%#{name&.downcase}%") }
 end

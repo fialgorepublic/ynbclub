@@ -1,0 +1,22 @@
+<div class="flex-lll br-b">
+  <div class=" hidden-sm hidden-xs">
+    <%= link_to group do %>
+      <%= image_tag group.logo.variant(thumbnail: '100X70^',
+        extent: '100X70',
+        gravity: 'center',
+        auto_orient: true,
+        quality: '100%')
+      %>
+    <% end %>
+  </div>
+  <div class="pl-3 padding-left-result">
+    <h4 class="banner-h4"><%= group.name %></h4>
+    <p class="text-left banner-p hidden-sm hidden-xs"><%= group.description %></p>
+    <div class="grp-card-icon hidden-sm hidden-xs">
+      <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
+      <p class="m-para-srch">0</p>
+      <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
+      <p class="m-para-srch">0</p>
+    </div>
+  </div>
+</div>
