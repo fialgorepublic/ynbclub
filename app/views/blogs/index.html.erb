@@ -1,18 +1,17 @@
-
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner text-center">
-      <%= image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %> 
+      <%#= image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
     </div>
-    
+
     <div class="row">
       <div class="col-md-12 blog_banner_btn">
         <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
-          <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
+        <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
         <% end %>
 
         <% if current_user&.is_admin? %>
-          <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
+        <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
         <% end %>
       </div>
     </div>
@@ -34,20 +33,20 @@
         </div>
 
         <% if @blogs.count > 0 %>
-          <div class="col-md-2 post-sorting  ">
-            <p>SORTING</p>
-            <select class="sorting-fltr" id="sort-blogs">
-              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-              <option value="0"><%= t(:A_Z) %></option>
-              <option value="1">A-Z </option>
-              <option value="2">Z-A </option>
-            </select>
-          </div>
+        <div class="col-md-2 post-sorting  ">
+          <p>SORTING</p>
+          <select class="sorting-fltr" id="sort-blogs">
+            <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+            <option value="0"><%= t(:A_Z) %></option>
+            <option value="1">A-Z </option>
+            <option value="2">Z-A </option>
+          </select>
+        </div>
 
-          <div class="col-md-2 post-sorting">
-            <p>CATEGORY</p>
-            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
-          </div>
+        <div class="col-md-2 post-sorting">
+          <p>CATEGORY</p>
+          <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+        </div>
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
@@ -61,18 +60,18 @@
     <div class="row" id="blogs">
       <%= render "all_blogs" %>
     </div>
-    <br/>
+    <br />
 
     <%= hidden_field_tag :page, @next_page %>
 
     <div class="row show-more-button">
       <div class="col-md-8">
         <% unless @blogs.current_page == @blogs.total_pages %>
-          <div class="custom-showMore-btn pull-right">
-            <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more", data: { url: blogs_path } do %>
-              <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
-            <% end %>
-          </div>
+        <div class="custom-showMore-btn pull-right">
+          <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more", data: { url: blogs_path } do %>
+          <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
+          <% end %>
+        </div>
         <% end %>
       </div>
 
@@ -95,20 +94,19 @@
   </div>
 </div>
 
- 
-<script>
-  user_signed_in = <%= signed_in? %>;
 
-  $('#uploaderBanner').click(function(){
+<script>
+
+  $('#uploaderBanner').click(function () {
     $('#bannerUploadModal').modal('show');
   });
 
-  $("div.descriptionBlog").text(function(index, currentText) {
+  $("div.descriptionBlog").text(function (index, currentText) {
     return currentText.substr(0, 300);
   });
-  function set_featured_blog(obj, id){
+  function set_featured_blog(obj, id) {
     {
-      apprise('Are You Sure You Want To change Featured status?', {'verify': true}, function (r) {
+      apprise('Are You Sure You Want To change Featured status?', { 'verify': true }, function (r) {
         if (r) {
           var obj_cls = $(obj).attr('class');
           var status = ''
@@ -125,11 +123,11 @@
             dataType: 'json',
             processData: false,
             success: function (data) {
-                window.location.reload();
+              window.location.reload();
             },
             error: function (data) {
-                alert('Error');
-                //    window.location.reload();
+              alert('Error');
+              //    window.location.reload();
             }
           });
         }
@@ -139,21 +137,21 @@
     }
   }
 
-  function blog_share(id, type, url){
+  function blog_share(id, type, url) {
     var blogUrl = $('#blogUrl').val();
 
     $.ajax({
-      url: '/share_blog?id='+ id + '&value=' + type,
+      url: '/share_blog?id=' + id + '&value=' + type,
       type: 'get',
       dataType: 'json',
       processData: false,
       success: function (data) {
-          $('#blogUrl').val(parseInt(blogUrl) + 1);
-          window.open(url);
+        $('#blogUrl').val(parseInt(blogUrl) + 1);
+        window.open(url);
       },
       error: function (data) {
-          alert('Error');
-          //    window.location.reload();
+        alert('Error');
+        //    window.location.reload();
       }
     });
   }
