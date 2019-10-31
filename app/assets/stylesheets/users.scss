@@ -317,3 +317,40 @@ a.btn.btn-primary.new_reply_btn-profile:hover {
   font-size: 12px;
   color: white !important;
 }
+
+
+
+// css for create con
+
+.b-con{
+border: solid 1px #ccc;
+}
+ .pd {
+padding: 6em 0em;
+}
+.con-drop select {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: unset;
+  color: #3c3c3c;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.btn-border{
+  border-radius: 20px;
+  padding: 10px;
+  border-color: #323232;
+}
+
+.btn-bg-con{
+  background-color: #54b2b2;
+  border: 0px;
+  border-radius: 20px;
+  color: white !important;
+  /* height: 35px; */
+  margin-top: 25px;
+  padding: 8px 39px;
+}

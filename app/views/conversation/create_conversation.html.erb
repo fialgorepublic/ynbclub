@@ -1,0 +1,192 @@
+<style>
+  #cke_editor1 {
+    display: none !important;
+  }
+
+  .con-c {
+    border: 1px solid #444;
+    color: #444;
+    padding: 10px 17px;
+    font-size: 18px;
+    border-radius: 100%;
+  }
+
+  .con-c .fa {
+    color: #444;
+  }
+
+  .p-l-20 {
+    padding-left: 20px;
+  }
+
+  .con_banner_btn {
+    background-color: #54b2b2;
+    border: 0px;
+    border-radius: 20px;
+    color: white !important;
+    /* height: 35px; */
+    margin-top: 25px;
+    padding: 8px 39px;
+  }
+
+  .con_banner_btn:hover {
+    background-color: #54b2b2;
+    border: 0px;
+    border-radius: 20px;
+    color: white !important;
+    /* height: 35px; */
+    margin-top: 25px;
+    padding: 8px 39px;
+  }
+
+  blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #54b2b2 !important;
+  }
+
+  .medium-editor-insert-plugin .medium-insert-buttons button {
+    display: block;
+    cursor: pointer;
+    color: #54b2b2 !important;
+    background: #fff;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px solid #54b2b2 !important;
+    line-height: 30px;
+    text-align: center;
+    padding: 0;
+  }
+</style>
+
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/css/medium-editor-insert-plugin-frontend.min.css" />
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/css/medium-editor-insert-plugin.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" />
+<%# <link rel="stylesheet" href="./dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="./dist/css/themes/default.css" type="text/css" media="screen" charset="utf-8"> %>
+
+<div class="col-md-9">
+  <div class="ambassdor-box newBlog-style conversation-c">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="flex-sb">
+            <h3><a href="/blogs" class="con-c"><i class="fa fa-angle-left"></i></a><span class="p-l-20">Create new blog
+                post</span></h2>
+              <a class="btn blog_library btn-primary con_banner_btn " data-toggle="modal"
+                data-target="#pModal">Publish</a>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+  <div class="editablXXXXXXe">
+
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="pModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <p>preview</p>
+          <div class="col-md-4 b-con">
+
+            <div class="text-center pd">
+
+              <img src="/assets/con-modal.png">
+
+            </div>
+          </div>
+          <div class="group-create-custom">
+
+            <div class="col-md-8">
+              <div class="lib-row lib-header">
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <div class="group-dropDown con-drop">
+                      <select name="group[group_category_id]">
+                        <option value="1">lorem ipsum</option>
+                        <option value="2">Dummy text</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <input class="form-control minput" placeholder="Title" required="required" type="text"
+                      value="lorem ipsum" name="group[name]">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <input class="form-control minput" placeholder="Description" required="required" type="text"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="text-center">
+              <button type="button" id="upload-btn" class="btn  btn-border">Upload New Photo</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="text-center">
+              <button type="button" id="cropImageBtn" class="btn  btn-bg-con">Save Photo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.runtime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.ui.widget@1.10.3/jquery.ui.widget.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframe-transport/1.0.1/jquery.iframe-transport.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.28.0/js/jquery.fileupload.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/js/medium-editor-insert-plugin.min.js"></script>
+<%# <script src="./dist/js/medium-editor.js"></script> %>
+
+<script>
+  var editor = new MediumEditor('.editablXXXXXXe');
+
+
+  $(function () {
+    $('.editablXXXXXXe').mediumInsert({
+      editor: editor
+    });
+  });
+</script>
