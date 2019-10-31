@@ -307,7 +307,12 @@ Rails.application.routes.draw do
       get :share_link_count, path: '/invite_count'
     end
 
-    resources :groups, only: [:index]
+    resources :groups, only: [:index], controller: 'users/groups' do
+      member do
+        get :join
+        get :leave
+      end
+    end
   end
 
   put 'set_commission', to: 'settings#set_commission'
