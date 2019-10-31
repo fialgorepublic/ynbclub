@@ -1,3 +1,138 @@
 // Place all the styles related to the conversation controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// css for create con
+
+.b-con{
+  border: solid 1px #ccc;
+  }
+   .pd {
+  padding: 6em 0em;
+  }
+  .con-drop select {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: unset;
+    color: #3c3c3c;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  .btn-border{
+    border-radius: 20px !important;
+    padding: 10px 50px;
+    border-color: #5555;
+    width: 100%;
+    background-color: transparent !important;
+  }
+  
+
+
+
+.modal-footer-con {
+    padding: 15px 30px;
+}
+.modal-footer {
+    padding: 15px 30px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+  .btn-bg-con{
+    background-color: #54b2b2;
+    border-radius: 20px !important;
+    padding: 10px 50px;
+    color: white;
+    width: 100%;
+    // border-color: #323232;
+  }
+  #cke_editor1 {
+    display: none !important;
+  }
+
+  .con-c {
+    border: 1px solid #444;
+    color: #444;
+    padding: 10px 17px;
+    font-size: 18px;
+    border-radius: 100%;
+  }
+
+  .con-c .fa {
+    color: #444;
+  }
+
+  .p-l-20 {
+    padding-left: 20px;
+  }
+
+  .con_banner_btn {
+    background-color: #54b2b2;
+    border: 0px;
+    border-radius: 20px;
+    color: white !important;
+    /* height: 35px; */
+    margin-top: 25px;
+    padding: 8px 39px;
+  }
+
+  .con_banner_btn:hover {
+    background-color: #54b2b2;
+    border: 0px;
+    border-radius: 20px;
+    color: white !important;
+    /* height: 35px; */
+    margin-top: 25px;
+    padding: 8px 39px;
+  }
+
+  blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #54b2b2 !important;
+  }
+
+  .medium-editor-insert-plugin .medium-insert-buttons button {
+    display: block;
+    cursor: pointer;
+    color: #54b2b2 !important;
+    background: #fff;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px solid #54b2b2 !important;
+    line-height: 30px;
+    text-align: center;
+    padding: 0;
+  }
+
+  .con-pos-rel{
+    position: relative;
+  }
+.btn-close-con{
+  margin-top: -2px;
+  position: absolute;
+  right: -35px;
+  top: 0px;
+  font-size: 30px;
+  color: white;
+  opacity: 1;
+  font-weight: 300;
+}
+.color-555{
+  color: #ccc;
+}
+.btn-close-con:hover {
+  margin-top: -2px;
+  position: absolute;
+  right: -35px;
+  top: 0px;
+  font-size: 30px;
+  color: white !important;
+  opacity: 1;
+  font-weight: 300;
+}
