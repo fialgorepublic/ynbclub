@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_24_134234) do
+ActiveRecord::Schema.define(version: 2019_10_31_124812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,15 @@ ActiveRecord::Schema.define(version: 2019_10_24_134234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_items_on_order_id"
+  end
+
+  create_table "joined_groups", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_joined_groups_on_group_id"
+    t.index ["user_id"], name: "index_joined_groups_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -483,6 +492,8 @@ ActiveRecord::Schema.define(version: 2019_10_24_134234) do
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
   add_foreign_key "groups", "group_categories", on_delete: :cascade
   add_foreign_key "items", "orders", on_delete: :cascade
+  add_foreign_key "joined_groups", "groups", on_delete: :cascade
+  add_foreign_key "joined_groups", "users", on_delete: :cascade
   add_foreign_key "permissions", "users", on_delete: :cascade
   add_foreign_key "point_types", "earn_coins", on_delete: :cascade
   add_foreign_key "profiles", "users"
