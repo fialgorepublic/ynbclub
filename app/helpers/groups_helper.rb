@@ -16,4 +16,12 @@ module GroupsHelper
   def group_banner_name page
     page.group_banner.attached? ? page.group_banner.filename : "No file Chosen"
   end
+
+  def join_button_text(group_id)
+    current_user.joined_group?(group_id) ? 'Leave Group' : 'Join Group'
+  end
+
+  def join_link_path(group_id)
+    current_user.joined_group?(group_id) ? leave_user_group_path(current_user, group_id) : join_user_group_path(current_user, group_id)
+  end
 end

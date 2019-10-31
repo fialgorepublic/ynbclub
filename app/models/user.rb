@@ -240,4 +240,7 @@ class User < ApplicationRecord
     share_urls.where(url_type: url_type, created_at: DateTime.now.all_day).count >= 10
   end
 
+  def joined_group?(group_id)
+    joined_groups.find_by(group_id: group_id).present?
+  end
 end

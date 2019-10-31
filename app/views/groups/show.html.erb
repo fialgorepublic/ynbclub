@@ -31,7 +31,7 @@
               </div>
               <div class="flex-l pp-k">
                 <div class="m-tag">
-                  <a class="btn btn-primary new_tag_btn"><%= t('groups.show.join_group')%></a>
+                  <%= link_to join_button_text(@group.id), join_link_path(@group.id), remote: true, class: "btn btn-primary new_tag_btn", id: 'join-group-link' %>
                 </div>
                 <div class="">
                   <button type="button"
