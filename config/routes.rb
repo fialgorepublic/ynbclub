@@ -256,6 +256,7 @@ Rails.application.routes.draw do
   get 'home_page', to: 'dashboard#home_page'
   get 'set_language', to: 'home#set_default_language'
   get 'videos', to: 'dashboard#videos'
+  get 'profile_admin', to: 'dashboard#profile'
 
   resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk

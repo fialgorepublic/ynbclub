@@ -3,7 +3,7 @@
     <div class="row box-shadow ">
       <div class="col-md-5 m-p-0">
         <%= link_to group do %>
-          <%= image_tag group.logo.variant(combine_options: { resize: '200x150^', gravity: 'Center', extent: '200x150^', background: "grey", quality: 95 }), width: '100%' , class: "lib-img-show" %>
+        <%= image_tag group.logo.variant(combine_options: { resize: '200x150^', gravity: 'Center', extent: '200x150^', background: "grey", quality: 95 }), width: '100%' , class: "lib-img-show" %>
         <% end %>
       </div>
       <div class="col-md-7">
@@ -11,23 +11,23 @@
           <div class="flex-sb">
             <h2><%= group.name %></h2>
             <% if current_user&.is_admin? %>
-              <div class="lib-row lib-header">
-                <div class="grp-edit-delete-icon">
-                  <%= link_to edit_group_path(group), class: "bg-groups-circle1" do %>
-                    <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                  <% end %>
-                  <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle1 delete-group-link" do %>
-                    <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                  <% end %>
-                </div>
+            <div class="lib-row lib-header">
+              <div class="grp-edit-delete-icon">
+                <%= link_to edit_group_path(group), class: "bg-groups-circle1" do %>
+                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                <% end %>
+                <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle1 delete-group-link" do %>
+                <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                <% end %>
               </div>
+            </div>
             <% end %>
           </div>
-          <p><%= group.description %></p>
+          <p class="groups-cards-p"><%= group.description %></p>
           <div class="grp-card-icon">
-            <i class="fa fa-users color-for-icon"  width="100%" style="font-size: 22px;"></i> 
+            <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
             <p>0</p>
-            <i class="fa fa-comment color-for-icon"  width="100%" style="font-size: 22px;"></i> 
+            <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
             <p>0</p>
           </div>
         </div>
@@ -35,5 +35,3 @@
     </div>
   </div>
 </div>
-
-

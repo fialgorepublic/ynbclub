@@ -5,17 +5,17 @@
         <div class="lib-panel">
           <div class="row box-shadow">
             <div class="col-md-3 lib-img-tag-show">
-              <%=  image_tag @group.logo, width: '100%' %> 
+              <%=  image_tag @group.logo, width: '100%' %>
             </div>
             <div class="col-md-9">
               <div class="lib-row lib-header">
                 <div class="grp-edit-delete-icon">
                   <%= link_to edit_group_path(@group), class: 'content-display' do %>
-                    <img src="/assets/edit-icon.png" width="100%">
+                  <img src="/assets/edit-icon.png" width="100%">
                   <% end %>
 
                   <%= link_to @group, class: 'content-display', method: :delete, data: { confirm: "Are you sure?" } do %>
-                    <img class="" src="/assets/delete-icon.png" width="100%">
+                  <img class="" src="/assets/delete-icon.png" width="100%">
                   <% end %>
                 </div>
               </div>
@@ -23,18 +23,19 @@
                 <h2><%= @group.name %></h2>
                 <p class="hhkt"><%= @group.description %> </p>
                 <div class="grp-card-icon">
-                  <img class="" src="/assets/followers-icon.png" width="100%"> 
+                  <img class="" src="/assets/followers-icon.png" width="100%">
                   <p>0</p>
-                  <img class="" src="/assets/comment-icon.png" width="100%"> 
+                  <img class="" src="/assets/comment-icon.png" width="100%">
                   <p>0</p>
                 </div>
               </div>
               <div class="flex-l pp-k">
                 <div class="m-tag">
-                  <a class="btn btn-primary new_tag_btn" ><%= t('groups.show.join_group')%></a>
+                  <a class="btn btn-primary new_tag_btn"><%= t('groups.show.join_group')%></a>
                 </div>
                 <div class="">
-                  <button type="button"  class="btn conversation-tag-btn btn-default"><%= t('groups.show.start_conversation') %></button>
+                  <button type="button"
+                    class="btn conversation-tag-btn btn-default"><%= t('groups.show.start_conversation') %></button>
                 </div>
               </div>
             </div>
@@ -50,7 +51,8 @@
               <div class="col-md-12">
                 <div class="lib-row lib-desc">
                   <h3><%= t('groups.show.no_conversation') %></h3>
-                  <button type="button"  class="btn conversation-btn btn-default"><%= t('groups.show.start_conversation') %></button>
+                  <button type="button"
+                    class="btn conversation-btn btn-default"><%= t('groups.show.start_conversation') %></button>
                 </div>
               </div>
             </div>
@@ -95,7 +97,7 @@
                   <div class="">
                     <div class="flex-l">
                       <div class="">
-                        <img class="" src="/assets/user-icon.png" width="100%"> 
+                        <img class="" src="/assets/user-icon.png" width="100%">
                       </div>
                       <div class="m-l-10">
                         <p class="p-l">Admin</p>
@@ -106,7 +108,7 @@
                   <div class="m-l-10">
                     <div class="flex-l">
                       <div class="">
-                        <img class="" src="/assets/calender.png" width="100%"> 
+                        <img class="" src="/assets/calender.png" width="100%">
                       </div>
                       <div class="m-l-10">
                         <p class="p-b m-t-8">Posted: 12.01.19</p>
@@ -131,7 +133,7 @@
                   Nullam a dolor arcu, ac tempor elit. Donec.
                 </div>
                 <div class="jn-grp-img-show">
-                  <img  src="/assets/blog-img-2.jpg">
+                  <img src="/assets/blog-img-2.jpg">
                 </div>
               </div>
               <div class="flex-sb">
@@ -156,44 +158,44 @@
             </div>
           </div>
         </div>
-      </div> !-->
+      </div> ! -->
     </div>
   </div>
 </div>
 
 
 <script>
-$(document).ready(function() {
+  $(document).ready(function () {
     var showChar = 100;
     var ellipsestext = "...";
     var moretext = "more";
     var lesstext = "less";
-    $('.more').each(function() {
-        var content = $(this).html();
+    $('.more').each(function () {
+      var content = $(this).html();
 
-        if(content.length > showChar) {
+      if (content.length > showChar) {
 
-            var c = content.substr(0, showChar);
-            var h = content.substr(showChar-1, content.length - showChar);
+        var c = content.substr(0, showChar);
+        var h = content.substr(showChar - 1, content.length - showChar);
 
-            var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+        var html = c + '<span class="moreelipses">' + ellipsestext + '</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
 
-            $(this).html(html);
-        }
+        $(this).html(html);
+      }
 
     });
 
-    $(".morelink").click(function(){
-        if($(this).hasClass("less")) {
-            $(this).removeClass("less");
-            $(this).html(moretext);
-        } else {
-            $(this).addClass("less");
-            $(this).html(lesstext);
-        }
-        $(this).parent().prev().toggle();
-        $(this).prev().toggle();
-        return false;
+    $(".morelink").click(function () {
+      if ($(this).hasClass("less")) {
+        $(this).removeClass("less");
+        $(this).html(moretext);
+      } else {
+        $(this).addClass("less");
+        $(this).html(lesstext);
+      }
+      $(this).parent().prev().toggle();
+      $(this).prev().toggle();
+      return false;
     });
-});
+  });
 </script>

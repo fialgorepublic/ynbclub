@@ -4,33 +4,33 @@
       <div class="row box-shadow">
         <div class="">
           <%= link_to group do %>
-            <%= image_tag group.logo.variant(combine_options: { resize: '400x200^', gravity: 'Center', extent: '400x200^', background: "grey", quality: 95 }), width: '100%' , class: "lib-img-show" %>
+          <%= image_tag group.logo.variant(combine_options: { resize: '400x200^', gravity: 'Center', extent: '400x200^', background: "grey", quality: 95 }), width: '100%' , class: "lib-img-show" %>
           <% end %>
         </div>
         <div class="">
           <% if current_user&.is_admin? %>
-            <div class="lib-row lib-header">
-              <div class="grp-edit-delete-icon <%= custom_classes ? 'right-icon-16px' : '' %>">
-                <%= link_to edit_group_path(group), class: "bg-groups-circle" do %>
-                  <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                <% end %>
-                <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle delete-group-link" do %>
-                  <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                <% end %>
-              </div>
+          <div class="lib-row lib-header">
+            <div class="grp-edit-delete-icon <%= custom_classes ? 'right-icon-16px' : '' %>">
+              <%= link_to edit_group_path(group), class: "bg-groups-circle" do %>
+              <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+              <% end %>
+              <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle delete-group-link" do %>
+              <i class="fa fa-trash inneer" aria-hidden="true"></i>
+              <% end %>
             </div>
+          </div>
           <% end %>
           <div class="lib-row lib-desc">
             <h2><%= group.name %></h2>
             <span>
-              <p><%= group.description %></p>
+              <p class="groups-cards-p"><%= group.description %></p>
             </span>
           </div>
-          <div class="grp-card-icon">
-            <i class="fa fa-users color-for-icon" width="100%"></i>
-            <p>0</p>
-            <i class="fa fa-comment color-for-icon" width="100%"></i>
-            <p>0</p>
+          <div class="grp-card-icon hidden-sm hidden-xs">
+            <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
+            <p class="m-para-srch">0</p>
+            <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
+            <p class="m-para-srch">0</p>
           </div>
         </div>
       </div>
