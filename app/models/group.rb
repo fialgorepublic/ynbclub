@@ -13,6 +13,10 @@ class Group < ApplicationRecord
   default_scope { order(updated_at: :desc) }
 
   belongs_to :group_category
+
+  has_many :joined_groups
+  has_many :users, through: :joined_groups
+
   has_one_attached :logo
 
   validates :name, :description, :group_category_id, presence: true
