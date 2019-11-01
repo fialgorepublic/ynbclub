@@ -200,11 +200,14 @@ span.cirle-profile {
   box-shadow: none;
   padding: 20px 30px;
   border-radius: 5px;
-  border: 1px solid #eee;
+  // border: 1px solid #eee;
   font-size: 22px;
   text-align: center;
   background: #fff;
   margin-bottom: 20px;
+  -webkit-box-shadow: -1px 0px 13px -1px rgba(201,201,201,1);
+-moz-box-shadow: -1px 0px 13px -1px rgba(201,201,201,1);
+box-shadow: -1px 0px 13px -1px rgba(201,201,201,1);
 }
 
 .morecontent span {
