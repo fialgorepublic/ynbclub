@@ -258,6 +258,7 @@ Rails.application.routes.draw do
   get 'videos', to: 'dashboard#videos'
   get 'profile_admin', to: 'dashboard#profile'
   get 'create_conversation', to: 'conversation#create_conversation'
+  get 'user_conversation', to: 'conversation#conversation_regular_user'
 
   resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk

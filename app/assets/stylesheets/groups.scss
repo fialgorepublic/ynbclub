@@ -469,6 +469,20 @@ a.morelink {
 a.morelink:hover {
   color: #2a6496;
   background-color: transparent;
+  text-decoration: none;
+}
+
+a.morelink:focus {
+  color: #2a6496;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+
+a.morelink:visited {
+  color: #2a6496;
+  background-color: transparent;
+  text-decoration: none;
 }
 
 img.lib-img-show {

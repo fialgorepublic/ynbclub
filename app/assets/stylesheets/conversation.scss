@@ -105,7 +105,7 @@
     box-sizing: border-box;
     border-radius: 20px;
     border: 1px solid #54b2b2 !important;
-    line-height: 30px;
+    line-height: 32px;
     text-align: center;
     padding: 0;
   }
@@ -135,4 +135,160 @@
   color: white !important;
   opacity: 1;
   font-weight: 300;
+}
+.btn-bg-con:focus {
+  background-color: #54b2b2;
+  border-radius: 20px !important;
+  padding: 10px 50px;
+  color: white !important;
+  width: 100%;
+}
+
+.btn-bg-con:hover  {
+  background-color: #54b2b2;
+  border-radius: 20px !important;
+  padding: 10px 50px;
+  color: white !important;
+  width: 100%;
+}
+.con-pos-ab-modal{
+  position: absolute;
+  bottom: 7px;
+  left: 0px;
+    background-color: #54b2b2;
+    border-radius: 20px !important;
+    padding: 10px 50px;
+    color: white;
+    width: 90%;
+    margin-left: 6px;
+
+}
+
+#secModal{
+  img{
+    width: 100%;
+  }
+}
+
+// conversation single user start
+i.fa.fa-location-arrow.color-fa-conchat {
+  transform: rotate(47deg);
+  font-size: 40px;
+  margin-top: 16px;
+  margin-left: 14px;
+}
+.input-con-chat{
+  width: 100% !important;
+  border: none;
+  height: 80px;
+  font-size: 12px;
+  padding: 0px 10px;
+}
+.flex-container {
+  display: flex;
+  align-items: stretch;
+  // background-color: #f1f1f1;
+}
+.bg-con-chat{
+  background-color: #f1f1f1;
+  max-height: 200px
+
+}
+.field {
+  margin-top: 10px;
+}
+.flex-container > div {
+  // background-color: DodgerBlue;
+  color: white;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 50px;
+  // font-size: 30px;
+}
+.camera{
+  background-color: DodgerBlue;
+
+}
+.send-icon{
+  background-color: DodgerBlue;
+
+}
+.fs-input{
+  width: 100%;
+    font-size: 12px;
+}
+// conversation single user end
+
+// imageupload and renmove start
+input[type="file"] {
+  display: block;
+}
+.imageThumb {
+  max-height: 75px;
+  border: 2px solid;
+  padding: 1px;
+  cursor: pointer;
+} 
+  .pip {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    position: relative;
+    margin-bottom: 12px;
+}
+.maaaag-0{
+  margin: 12px 0px!important
+}
+.remove {
+  display: block;
+    background: white;
+    border: 1px solid #d0cccc;
+    color: #444;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 100%;
+    width: 18px;
+    font-size: 12px;
+    position: absolute;
+    top: 6px;
+    right: 5px;
+}
+.remove:hover {
+  background: white;
+  color: black;
+}
+
+// camera icon 
+.element {
+  display: inline-flex;
+  align-items: center;
+}
+i.fa-camera {
+  margin: 10px;
+  cursor: pointer;
+  font-size: 30px;
+}
+i:hover {
+  opacity: 0.6;
+}
+.input-camera {
+  display: none !important;
+}
+
+span.name {
+  display: none !important;
+}
+.color-fa-conchat{
+  color: #54b2b2;
+}
+// imageupload and renmove 
+.sidebar-h-con-in{    
+  font-size: 19px;
+  text-align: left;
+  margin-top: 10px;
+}
+.sidebar-h-con{    
+  font-size: 19px;
+  text-align: left;
+  margin-top: 10px;
 }
