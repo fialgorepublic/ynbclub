@@ -1,0 +1,4 @@
+$('#join-group-link').text('Join Group');
+$('#group-users-count').text(parseInt($('#group-users-count').text()) - 1);
+$('#join-group-link').attr('href', '<%= join_user_group_path(current_user, params[:id]) %>');
+toastr.success('Left the group.');

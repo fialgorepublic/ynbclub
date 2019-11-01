@@ -290,6 +290,7 @@ Rails.application.routes.draw do
 
   end
   get 'change_activeStatus', to: 'users#change_activeStatus'
+
   resources :users do
     collection do
       post :update_email
@@ -306,6 +307,13 @@ Rails.application.routes.draw do
       post :generate_discount_code
       get :update_share_link_count
       get :share_link_count, path: '/invite_count'
+    end
+
+    resources :groups, only: [:index], controller: 'users/groups' do
+      member do
+        get :join
+        get :leave
+      end
     end
   end
 
