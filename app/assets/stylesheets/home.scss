@@ -1319,7 +1319,7 @@ button.comnt-btn-style {
     border: none;
     font-size: 11px;
     color: #838181;
-    font-weight: 400;
+    font-weight: 500;
     background-color: #fff;
   }
   select {
@@ -2713,6 +2713,11 @@ a.btn.btn-primary.new_blog_btn {
 
 //// Group Custom CSS ////
 
+
+
+
+//// Group Custom CSS ////
+
 .group-create-custom {
   .lib-panel {
     margin-bottom: 20px;
@@ -3473,4 +3478,11 @@ input[type="checkbox"]:checked:after {
   color: #333;
   background-color: transparent;
   border-color: #adadad;
+}
+.minput {
+  border: none;
+  padding: 25px 0px;
+  box-shadow: none;
+  border-radius: unset;
+  border-bottom: 1px solid #ccc;
 }

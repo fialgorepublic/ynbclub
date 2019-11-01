@@ -6,18 +6,20 @@
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
         <%= form_tag search_groups_path, method: :get, remote: true, id: 'search-group-form' do |f| %>
-          <div class="wrap">
-            <div class="searc">
-              <div class="input-group">
-                <%= text_field_tag :group_title, nil, class: "form-control input-srch email-border 
+        <div class="wrap">
+          <div class="searc">
+            <div class="input-group">
+              <%= text_field_tag :group_title, nil, class: "form-control input-srch email-border 
                 boder-focus-search", placeholder: "Search...", required: true %>
-                <span class="input-group-addon remove-border"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon"></i></span>
-                <span class="input-group-addon search-border"><i class="glyphicon glyphicon-search color-srch-icon"></i></span>
-              </div>
-              <div class="groups-search-result">
-              </div>
+              <span class="input-group-addon remove-border"><i
+                  class="glyphicon glyphicon-remove color-srch-icon cross-icon"></i></span>
+              <span class="input-group-addon search-border"><i
+                  class="glyphicon glyphicon-search color-srch-icon"></i></span>
+            </div>
+            <div class="groups-search-result">
             </div>
           </div>
+        </div>
         <% end %>
       </div>
     </div>
@@ -48,7 +50,7 @@
           <p>CATEGORY</p>
           <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
           <div class="button-group">
-            <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 500;
+            <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 700;
                   color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down"
                 style="color: #838181;"></span></button>
             <ul class="dropdown-menu group-categories">

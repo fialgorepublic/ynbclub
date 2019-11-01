@@ -317,7 +317,7 @@
   text-decoration: none;
   outline: none !important;
 
-  background-color: transparent !important;
+  // background-color: transparent !important;
 }
 
 .lib-img-tag-show img {
@@ -535,12 +535,13 @@ img.lib-img-show {
   display: inline-block;
   border-radius: 100px;
   box-shadow: 0px 0px 2px #888;
-  padding: 6px;
+  padding: 7px;
   background-color: white;
   font-size: 10px;
-  border: solid 2px #868383;
+  border: solid 1px #868383;
   color: #000;
   position: relative;
+  margin-right: 2px;
 }
 .bg-groups-circle1 {
   display: inline-block;
