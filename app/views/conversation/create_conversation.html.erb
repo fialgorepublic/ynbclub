@@ -32,7 +32,7 @@
 
 
 <!-- Modal -->
-<div id="pModal" class="modal fade bd-example-modal-lg" role="dialog">
+<div id="pModal" class="modal fade bd-example-modal-lg dialog" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
@@ -90,7 +90,76 @@
           </div>
           <div class="col-md-6">
             <div class="text-center">
-              <button type="button" id="cropImageBtn" class="btn  btn-bg-con">Save Photo</button>
+              <button type="button" id="cropImageBtn" class="btn  btn-bg-con Closer" data-toggle="modal"
+                data-target="#secModal" data-dismiss="modal">Save Photo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="secModal" class="modal fade bd-example-modal-lg" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content con-pos-rel">
+      <button type="button" class="close btn-close-con" data-dismiss="modal">&times;</button>
+
+      <div class="modal-body">
+        <div class="row">
+          <p class="color-555">preview</p>
+          <div class="col-md-4 pd-l-0">
+            <div class="text-center con-pos-re">
+              <img src="/assets/blog-img-2.jpg">
+              <button type="button" id="cropImageBtn" class="btn  btn-bg-con con-pos-ab-modal">upload preview
+                image</button>
+            </div>
+          </div>
+          <div class="group-create-custom">
+
+            <div class="col-md-8">
+              <div class="lib-row lib-header">
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <div class="group-dropDown con-drop">
+                      <select name="group[group_category_id]">
+                        <option value="1">lorem ipsum</option>
+                        <option value="2">Dummy text</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <input class="form-control minput" placeholder="Title" required="required" type="text"
+                      value="lorem ipsum" name="group[name]">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <input class="form-control minput" placeholder="Description" required="required" type="text"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" modal-footer-con">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="text-center">
+              <button type="button" id="upload-btn" class="btn  btn-border">Upload New Photo</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="text-center">
+              <button type="button" id="cropImageBtn" class="btn  btn-bg-con" onclick="CheckChecked();">Save
+                Photo</button>
             </div>
           </div>
         </div>
@@ -101,6 +170,16 @@
 </div>
 
 
+<script>
+
+  jQuery(document).ready(function ($) {
+    console.log('hhhlooo')
+    $(".Closer").click(function () {
+      $(".dialog").dialog("close");
+    });
+  });
+
+</script>
 <!-- JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.runtime.min.js"></script>
