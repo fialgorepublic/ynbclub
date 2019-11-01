@@ -389,7 +389,7 @@ vi:
     show:
       join_group:             Join group
       start_conversation:     Start New Conversation
-      no_conversation:        There is no Covnersationt yet in this group.
+      no_conversation:        There is no conversation yet in this group.
 
   group_categories:
     index:
