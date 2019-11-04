@@ -1,4 +1,4 @@
-<div class="show-group-card">
+<div class="show-group-carddd">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-9">
@@ -11,7 +11,7 @@
               <div class="lib-row lib-header">
                 <div class="grp-edit-delete-icon">
                   <%= link_to edit_group_path(@group), class: 'content-display' do %>
-                  <img src="/assets/edit-icon.png" width="100%">
+                    <img src="/assets/edit-icon.png" width="100%">
                   <% end %>
 
                   <%= link_to @group, class: 'content-display', method: :delete, data: { confirm: "Are you sure?" } do %>
@@ -24,7 +24,7 @@
                 <p class="hhkt"><%= @group.description %> </p>
                 <div class="grp-card-icon">
                   <img class="" src="/assets/followers-icon.png" width="100%">
-                  <p id="group-users-count"><%= @group.users_count %></p>
+                  <%= link_to @group.users_count, users_group_path(@group), class: "padding-a", id: "group-users-count" %>
                   <img class="" src="/assets/comment-icon.png" width="100%">
                   <p>0</p>
                 </div>

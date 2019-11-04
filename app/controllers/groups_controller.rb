@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :search, :users]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :users]
 
   def index
     groups = Group.all
@@ -80,6 +81,10 @@ class GroupsController < ApplicationController
   def banner
     @page.update(group_banner: params[:page][:group_banner])
     redirect_to groups_path
+  end
+
+  def users
+    @users = @group.users
   end
 
   private

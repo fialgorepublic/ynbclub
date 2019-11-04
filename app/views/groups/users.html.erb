@@ -1,0 +1,19 @@
+<div class="col-md-9">
+  <div class="row">
+    <div class="flex-l m-b-30 ambassdor-box newBlog-style">
+      <h2 class="uherlist-h2">
+        <%= link_to :back do %>
+          <i class="fa fa-angle-left fa-1x"></i>
+        <% end %>
+        <%=  @group.name %> Members
+      </h2>
+      <div class="">
+        <a class="btn btn-primary new_userlist_btn" href="javascript:void(0);"><%= @group.users_count %></a>
+      </div>
+    </div>
+
+    <div id='users'>
+      <%= render partial: 'groups/user', collection: @users %>
+    </div>
+  </div>
+</div>
