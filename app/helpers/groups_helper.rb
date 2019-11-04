@@ -26,7 +26,7 @@ module GroupsHelper
   end
 
   def group_user_name(user)
-    user.full_name || user.name || "SainLBeau User"
+    user.full_name.presence || user.name.presence || "SainLBeau User"
   end
 
   def user_joined_date(user)
