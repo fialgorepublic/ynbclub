@@ -197,10 +197,17 @@ i.fa.fa-location-arrow.color-fa-conchat {
   // border-bottom: solid 1px grey;
 
 }
+a:hover, a:focus {
+  color: none;
+  text-decoration: none;
+}
+select:focus {
+  outline: none;
+}
 .bb-con-chat{
 
   padding-bottom: 10px;
-  border-bottom: solid 1px grey;
+  border-bottom: solid 1px #eee;
 }
 .field {
   margin-top: 10px;
@@ -396,3 +403,6 @@ blockquote {
 
 .medium-editor-placeholder:after {
   color: #b3b3b1; }
+
+
+  
