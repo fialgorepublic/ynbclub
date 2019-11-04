@@ -648,6 +648,19 @@ img.lib-img-show {
   //   .box-shadow a {
   //     font-size: px;
   // }
+    .modal-header .close {
+      margin-top: -2px;
+      position: absolute !important;
+      right: 0px !important;
+      top: -35px !important ;
+      font-size: 30px;
+      color: white;
+      opacity: 1;
+      font-weight: 300;
+    }
+.modal-dialog{
+  padding-top: 50px;
+}
   .left-10pr {
     margin-left: 0% !important;
   }
