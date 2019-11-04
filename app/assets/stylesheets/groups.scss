@@ -12,6 +12,10 @@
     margin-bottom: 20px;
     max-height: 390px;
     min-height: 390px;
+
+  -webkit-box-shadow: -1px 0px 13px -1px rgba(201,201,201,1);
+  -moz-box-shadow: -1px 0px 13px -1px rgba(201,201,201,1);
+  box-shadow: -1px 0px 13px -1px rgba(201,201,201,1);
   }
   .lib-img-show {
     width: 100%;
@@ -488,7 +492,7 @@ a.morelink:visited {
 }
 
 img.lib-img-show {
-  max-height: 177px;
+  max-height: 182px;
 }
 
 // join-grp-dscptn end
@@ -650,6 +654,12 @@ img.lib-img-show {
   //   .box-shadow a {
   //     font-size: px;
   // }
+  .pos-abs-banner {
+    position: absolute;
+    top: 50%;
+    left: 9% !important;
+    transform: translate(-5%, -50%) !important;
+  }
     .modal-header .close {
       margin-top: -2px;
       position: absolute !important;
@@ -719,7 +729,7 @@ img.lib-img-show {
 .groups-search-result {
   background-color: white;
   padding: 0px 15px 15px;
-  max-height: 193px;
+  max-height: 280px;
   overflow: scroll;
 }
 .remove-border {
@@ -787,6 +797,7 @@ img.lib-img-show {
 .groups-search-result {
   position: absolute;
   width: 100%;
+  border: solid 1px #cccccc;
 }
 @media (max-width: 576px) {
   .pos-rel-banner img {
@@ -879,3 +890,6 @@ img.lib-img-show {
 }
 
 
+.add-z-minus{
+z-index: -100;
+}
