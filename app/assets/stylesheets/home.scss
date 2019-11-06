@@ -3435,6 +3435,134 @@ body {
     }
   }
 }
+.show-group-carddd {
+  .lib-panel {
+    margin-bottom: 20px;
+  }
+  .lib-panel img {
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .lib-panel .row,
+  .lib-panel .col-md-6 {
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  .lib-panel .lib-row {
+    padding: 0 20px 0 20px;
+  }
+
+  .lib-panel .lib-row.lib-header {
+    background-color: #ffffff;
+    font-size: 20px;
+    text-align: right;
+    //  padding: 0px;
+  }
+
+  .lib-panel .lib-row.lib-header .grp-edit-delete-icon {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    display: inline-flex;
+  }
+  cursor: pointer;
+
+  .lib-panel .lib-row.lib-header .lib-header-seperator {
+    height: 2px;
+    width: 26px;
+    background-color: #d9d9d9;
+    margin: 7px 0 7px 0;
+  }
+
+  .lib-panel .lib-row.lib-desc h2 {
+    color: #323232;
+    font-size: 36px;
+    font-weight: normal;
+  }
+
+  .lib-panel .lib-row.lib-desc {
+    position: relative;
+    height: 100%;
+    display: block;
+    text-align: left;
+    margin-top: 30px;
+    font-size: 12px;
+  }
+  .lib-panel .lib-row.lib-desc a {
+    // position: absolute;
+    // width: 100%;
+    // bottom: 10px;
+    // left: 20px;
+  }
+.padding-a{
+  padding: 5px 10px;
+  color: black;
+}
+  .row-margin-bottom {
+    margin-bottom: 20px;
+  }
+
+  .box-shadow {
+    padding: 30px !important;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .no-padding {
+    padding: 0;
+  }
+
+  .grp-card-icon {
+    height: 25px;
+    width: 25px;
+    // position: absolute;
+    display: inline-flex;
+  }
+
+  .grp-card-icon p {
+    font-size: 13px;
+    padding: 5px 10px;
+    color: #323232;
+  }
+
+  .middle-row-grp .box-shadow {
+    padding: 20px !important;
+  }
+
+  .middle-row-grp .lib-row.lib-desc {
+    text-align: center;
+    height: 200px;
+  }
+
+  .middle-row-grp .lib-row.lib-desc h3 {
+    color: #323232;
+    font-weight: normal;
+    margin-top: 30px;
+  }
+
+  .middle-row-grp .lib-row.lib-desc button.conversation-btn {
+    color: #54b2b2;
+    border-color: #01b8aa;
+    text-transform: uppercase;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 20px;
+  }
+
+  .middle-row-grp .lib-row.lib-desc button.conversation-btn:hover {
+    background-color: transparent;
+  }
+
+  @media (min-width: 992px) {
+    .middle-row-grp .col-md-3 {
+      width: 22%;
+      margin-left: 10px;
+    }
+  }
+}
 .bbbr {
   border-bottom: solid 1px #afafaf;
 }

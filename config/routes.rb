@@ -345,6 +345,7 @@ Rails.application.routes.draw do
       post :banner
       get  :search
     end
+    get :users, on: :member
   end
   resources :group_categories
 

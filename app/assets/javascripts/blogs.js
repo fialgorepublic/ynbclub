@@ -100,7 +100,7 @@ $(document).on('turbolinks:load', function () {
     if (user_signed_in) {
       if (user_has_shared) { toastr.error('You already have shared this blog'); return false; }
       if (limit_exceeded) { toastr.error('You have exceeded your limit to share blogs on facebook for today'); return false; }
-      var url = createFBShareLink(blog_id, type, blog, '164286157812635');
+      var url = createFBShareLink(blog_id, type, blog, '1660844573983661');
 
       window.open(url);
     } else {
