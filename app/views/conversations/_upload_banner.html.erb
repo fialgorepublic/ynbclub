@@ -1,0 +1,48 @@
+<%= form_for @page, url: banner_conversations_path, method: :post,  html: { id: "conversation-banner", multipart: true }    do |f| %>
+  <div class="modal-body">
+    <div class="modal-holder text-center">
+      <%= image_tag conversation_banner_url(@page), size: "80x80", alt: "Add icon", id: 'blah' %>
+      <lable for="file_name" id="file-name"><%= conversation_banner_name(@page) %></lable> </br>
+      <div class="field form-group" id="image-upload-button-div">
+        <div class="fileUpload start blog-imgUpload">
+          <%= f.file_field :conversation_banner, id: 'bannerUpload', class: "filestyle upload", "data-input" => false, accept: "image/png,image/gif,image/jpeg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:cancel_label) %></button>
+    <%= f.submit t(:save_label), :class=>'btn btn-primary', id: "save-pic-button" %>
+  </div>
+<% end %>
+
+<script>
+  $(":file").filestyle({input: false});
+  $('#save-pic-button').attr("disabled", true)
+  $("#bannerUpload").change(function () {
+    readURL(this);
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      var name = input.files[0].name
+      var fileType = input.files[0].type
+      var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+      if ($.inArray(fileType, ValidImageTypes) < 0) {
+        return alert("File type not allowed.")
+      }
+
+      reader.onload = function (e) {
+        var st = e.target.result;
+        $('#blah').attr('src', e.target.result);
+      };
+
+      $('#file-name').text(name);
+      $('#save-pic-button').attr("disabled", false)
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

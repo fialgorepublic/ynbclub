@@ -1,10 +1,19 @@
 class ConversationsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
 
   # GET /conversations
   # GET /conversations.json
   def index
-    @conversations = Conversation.all
+    conversations  = Conversation.all
+    conversations  = conversations.sort_by_title(params[:sort_type]) if params[:sort_type].present?
+    @conversations = conversations.paginate(page: params[:page], per_page: 9)
+    @next_page     = @conversations.next_page
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /conversations/1
@@ -59,6 +68,15 @@ class ConversationsController < ApplicationController
       format.html { redirect_to conversations_url, notice: 'Conversation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @groups = Group.filter_by_name(params[:conversation_subject])
+  end
+
+  def banner
+    @page.update(conversation_banner: params[:page][:conversation_banner])
+    redirect_to conversations_path
   end
 
   private
