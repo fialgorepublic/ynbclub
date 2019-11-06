@@ -61,6 +61,7 @@ class User < ApplicationRecord
   has_many :commission_histories
   has_many :joined_groups
   has_many :groups, through: :joined_groups
+  has_many :conversations
 
   has_one_attached :avatar
 

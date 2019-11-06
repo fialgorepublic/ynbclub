@@ -16,6 +16,7 @@ class Group < ApplicationRecord
 
   has_many :joined_groups
   has_many :users, through: :joined_groups
+  has_many :conversations
 
   has_one_attached :logo
 
