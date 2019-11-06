@@ -204,7 +204,7 @@
 
 .m-p-0 {
   margin: 0px;
-  padding: 0px;
+  padding: 0px !important;
 }
 
 .groups-modal {
@@ -862,7 +862,15 @@ img.lib-img-show {
   }
   .lib-img-tag-show img {
     height: 100% !important;
+
   }
+  .groups-search-result {
+    background-color: white;
+    padding: 0px 15px 15px;
+    max-height: 90px;
+    overflow: scroll;
+  }
+
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 980px) {
@@ -872,6 +880,8 @@ img.lib-img-show {
   .left-10pr {
     margin-left: 15% !important;
   }
+
+
 }
 
 .btn-default.active.focus,
@@ -906,4 +916,31 @@ z-index: -100;
   border-radius: 20px !important;
   padding: 10px !important;
   color: white !important;
+}
+
+.profile-tag-btn-ad-un {
+  color: white;
+  background-color: #58b9ab;
+  text-transform: uppercase;
+  padding: 7px 20px;
+  font-size: 12px;
+  border-radius: 20px;
+  float: left;
+  font-weight: bold;
+  /* margin-left: 10px; */
+  margin-top: 10px;
+  width: 200px;
+}
+.profile-tag-btn-ad-un:hover {
+  color: white;
+  background-color: #58b9ab;
+  text-transform: uppercase;
+  padding: 7px 20px;
+  font-size: 12px;
+  border-radius: 20px;
+  float: left;
+  font-weight: bold;
+  /* margin-left: 10px; */
+  margin-top: 10px;
+  width: 200px;
 }
