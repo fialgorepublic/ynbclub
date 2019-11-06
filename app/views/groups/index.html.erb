@@ -6,20 +6,20 @@
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
         <%= form_tag search_groups_path, method: :get, remote: true, id: 'search-group-form' do |f| %>
-        <div class="wrap">
-          <div class="searc">
-            <div class="input-group">
-              <%= text_field_tag :group_title, nil, class: "form-control input-srch email-border 
-                boder-focus-search", placeholder: "Search...", required: true %>
-              <span class="input-group-addon remove-border 
-              group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i></span>
-              <span class="input-group-addon search-border"><i
-                  class="glyphicon glyphicon-search color-srch-icon"></i></span>
-            </div>
-            <div class="groups-search-result">
+          <div class="wrap">
+            <div class="searc">
+              <div class="input-group">
+                <%= text_field_tag :group_title, nil, class: "form-control input-srch search-by-title email-border
+                  boder-focus-search", placeholder: "Search...", required: true %>
+                <span class="input-group-addon remove-border
+                group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i></span>
+                <span class="input-group-addon search-border"><i
+                    class="glyphicon glyphicon-search color-srch-icon"></i></span>
+              </div>
+              <div class="groups-search-result">
+              </div>
             </div>
           </div>
-        </div>
         <% end %>
       </div>
     </div>

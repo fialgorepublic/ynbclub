@@ -144,12 +144,12 @@ $(document).on('turbolinks:load', function () {
     $('.groups-search-result').hide();
     $('.cross-icon').hide();
     var timer;
-    $("#group_title").on('keyup', function (e) {
+    $(".search-by-title").on('keyup', function (e) {
       if (e.keyCode === 13) {
         e.preventDefault();
         $(".post-sorting").addClass("add-z-minus");
         $(".class-z").addClass("add-z-minus");
-        if ($("#group_title").val() == '') { return; }
+        if ($(this).val() == '') { return; }
         $('.cross-icon').fadeIn();
         submitSearchForm();
       }
@@ -159,9 +159,9 @@ $(document).on('turbolinks:load', function () {
       fadeOutContent();
     });
 
-    $("#group_title").on("input", function () {
-      if ($("#group_title").val() == '') {
-        fadeOutContent();
+    $(".search-by-title").on("input", function () {
+      if ($(this).val() == '') {
+        fadeOutContent(this);
 
         return;
       }
@@ -182,10 +182,10 @@ $(document).on('turbolinks:load', function () {
     Rails.fire(elem, 'submit');
   }
 
-  function fadeOutContent() {
+  function fadeOutContent(ele) {
     $('.cross-icon').fadeOut();
     $('.groups-search-result').fadeOut();
-    $("#group_title").val('');
+    $(ele).val('');
     $(".post-sorting").removeClass("add-z-minus");
     $(".class-z").removeClass("add-z-minus");
   }
