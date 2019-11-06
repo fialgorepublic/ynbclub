@@ -18,4 +18,5 @@ class Page < ApplicationRecord
   has_one_attached :blog_banner
   has_one_attached :snapshot_banner
   has_one_attached :group_banner
+  has_one_attached :conversation_banner
 end
