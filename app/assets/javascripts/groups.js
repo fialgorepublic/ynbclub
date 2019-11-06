@@ -190,3 +190,18 @@ $(document).on('turbolinks:load', function () {
     $(".class-z").removeClass("add-z-minus");
   }
 });
+$(document).mouseup(function (e) {
+  var container = $(".groups-search-result");
+
+  // if the target of the click isn't the container nor a descendant of the container
+  if (!container.is(e.target) && container.has(e.target).length === 0) {
+    container.hide();
+
+    $('.cross-icon').fadeOut();
+    $('.groups-search-result').fadeOut();
+    $("#group_title").val('');
+    $(".post-sorting").removeClass("add-z-minus");
+    $(".class-z").removeClass("add-z-minus");
+
+  }
+});
