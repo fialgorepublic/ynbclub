@@ -182,7 +182,6 @@
 #  attachment_file DELETE /attachment_files/:id(.:format) ckeditor/attachment_files#destroy
 
 Rails.application.routes.draw do
-  resources :conversations
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'
@@ -349,6 +348,13 @@ Rails.application.routes.draw do
     get :users, on: :member
   end
   resources :group_categories
+
+  resources :conversations do
+    collection do
+      post :banner
+      get  :search
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
