@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_133051) do
+ActiveRecord::Schema.define(version: 2019_11_06_134405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,6 +187,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_133051) do
     t.string "slug"
     t.bigint "group_category_id"
     t.integer "users_count", default: 0
+    t.integer "conversations_count", default: 0
     t.index ["group_category_id"], name: "index_groups_on_group_category_id"
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
