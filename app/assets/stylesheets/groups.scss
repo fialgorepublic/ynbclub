@@ -71,7 +71,7 @@
   }
 }
 .group-srch-p-0{
-  padding: 0px !important;
+  // padding: 0px !important;
 }
 .groups-cards-2 {
   .lib-panel {
@@ -959,4 +959,48 @@ z-index: -100;
   position: absolute;
   top: 2px;
   right: 0px;
+}
+.new_reply_btn-con-all{
+  padding: 6px 20px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #295f5f;
+    border: 0px;
+    font-size: 12px;
+    color: white !important;
+    margin-left: 22px;
+    margin-bottom: 10px;
+}
+
+.new_reply_btn-con-all:hover{
+  padding: 6px 20px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #295f5f;
+    border: 0px;
+    font-size: 12px;
+    color: white !important;
+    margin-left: 22px;
+    margin-bottom: 10px;
+}
+.new_tag_btn-con1 {
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #54b2b2;
+  border: 0px;
+  font-size: 12px;
+  color: white !important;
+  width: 80px;
+}
+
+.new_tag_btn-con2 {
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #54b2b2;
+  border: 0px;
+  font-size: 12px;
+  color: white !important;
+  width: 145px;
 }
