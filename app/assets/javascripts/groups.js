@@ -139,12 +139,16 @@ $(document).on('turbolinks:load', function () {
   })
 
   function filterByName() {
+    $(".post-sorting").removeClass("add-z-minus");
+    $(".class-z").removeClass("add-z-minus");
     $('.groups-search-result').hide();
     $('.cross-icon').hide();
     var timer;
     $("#group_title").on('keyup', function (e) {
       if (e.keyCode === 13) {
         e.preventDefault();
+        $(".post-sorting").addClass("add-z-minus");
+        $(".class-z").addClass("add-z-minus");
         if ($("#group_title").val() == '') { return; }
         $('.cross-icon').fadeIn();
         submitSearchForm();
@@ -158,8 +162,12 @@ $(document).on('turbolinks:load', function () {
     $("#group_title").on("input", function () {
       if ($("#group_title").val() == '') {
         fadeOutContent();
+
         return;
       }
+      $(".post-sorting").addClass("add-z-minus");
+      $(".class-z").addClass("add-z-minus");
+
       $('.cross-icon').fadeIn();
       // clear the timer if it's already set:
       clearTimeout(timer);
@@ -178,5 +186,7 @@ $(document).on('turbolinks:load', function () {
     $('.cross-icon').fadeOut();
     $('.groups-search-result').fadeOut();
     $("#group_title").val('');
+    $(".post-sorting").removeClass("add-z-minus");
+    $(".class-z").removeClass("add-z-minus");
   }
 });
