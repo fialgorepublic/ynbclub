@@ -182,6 +182,7 @@
 #  attachment_file DELETE /attachment_files/:id(.:format) ckeditor/attachment_files#destroy
 
 Rails.application.routes.draw do
+  resources :conversations
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'

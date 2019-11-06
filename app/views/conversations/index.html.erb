@@ -1,0 +1,19 @@
+<h1>Conversations</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-conversations" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="subject">Subject</th>
+      <th data-data="body">Body</th>
+      <th data-data="references">References</th>
+      <th data-data="references">References</th>
+      <th data-data="tags">Tags</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Conversation', new_conversation_path %>
