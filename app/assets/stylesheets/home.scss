@@ -3423,7 +3423,12 @@ body {
     font-size: 12px;
     border-radius: 20px;
   }
-
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
   .middle-row-grp .lib-row.lib-desc button.conversation-btn:hover {
     background-color: transparent;
   }
@@ -3467,7 +3472,7 @@ body {
     position: absolute;
     display: inline-flex;
   }
-  cursor: pointer;
+  // cursor: pointer;
 
   .lib-panel .lib-row.lib-header .lib-header-seperator {
     height: 2px;
