@@ -1023,3 +1023,27 @@ z-index: -100;
   color: white !important;
   width: 145px;
 }
+.new_reply_btn-grp {
+  padding: 6px 20px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #295f5f;
+  border: 0px;
+  font-size: 12px;
+  color: white !important;
+  margin-left: 22px;
+  margin-bottom: 10px;
+}
+.button.btn.conversation-tag-btn.btn-default {
+
+}
+.conversation-tag-btn:hover {
+  color: #54b2b2;
+  border-color: #01b8aa;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  font-size: 12px;
+  border-radius: 20px;
+  float: left;
+  margin-left: 10px;
+}

@@ -7,11 +7,12 @@
             <div class="col-md-3 lib-img-tag-show">
               <%=  image_tag @group.logo, width: '100%' %>
             </div>
+
             <div class="col-md-9">
               <div class="lib-row lib-header">
                 <div class="grp-edit-delete-icon">
                   <%= link_to edit_group_path(@group), class: 'content-display' do %>
-                    <img src="/assets/edit-icon.png" width="100%">
+                  <img src="/assets/edit-icon.png" width="100%">
                   <% end %>
 
                   <%= link_to @group, class: 'content-display', method: :delete, data: { confirm: "Are you sure?" } do %>
@@ -19,6 +20,7 @@
                   <% end %>
                 </div>
               </div>
+
               <div class="lib-row lib-desc">
                 <h2><%= @group.name %></h2>
                 <p class="hhkt"><%= @group.description %> </p>
@@ -29,6 +31,7 @@
                   <p><%= @group.conversations_count %></p>
                 </div>
               </div>
+
               <div class="flex-l pp-k">
                 <div class="m-tag">
                   <%= link_to join_button_text(@group.id), join_link_path(@group.id), remote: true, class: "btn btn-primary new_tag_btn", id: 'join-group-link' %>
@@ -37,27 +40,28 @@
                   <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-tag-btn btn-default", type: "button" %>
                 </div>
               </div>
+
             </div>
             <br>
           </div>
         </div>
       </div>
 
-        <div class="middle-row-grp">
-          <% if @conversations.count.zero? %>
-            <div class="col-md-6">
-              <div class="lib-panel">
-                <div class="row box-shadow">
-                  <div class="col-md-12">
-                    <div class="lib-row lib-desc">
-                      <h3><%= t('groups.show.no_conversation') %></h3>
-                      <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
-                    </div>
+      <div class="middle-row-grp">
+        <% if @conversations.count.zero? %>
+          <div class="col-md-6">
+            <div class="lib-panel">
+              <div class="row box-shadow">
+                <div class="col-md-12">
+                  <div class="lib-row lib-desc">
+                    <h3><%= t('groups.show.no_conversation') %></h3>
+                    <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
                   </div>
                 </div>
               </div>
             </div>
-          <% end %>
+          </div>
+        <% end %>
 
           <%# <div class="col-md-3">
             <div class="lib-panel">
@@ -86,45 +90,8 @@
               </div>
             </div>
           <%#</div> %>
-        </div>
+      </div>
       <%= render partial: 'conversations/conversation', collection: @conversations, as: :conversation %>
     </div>
   </div>
 </div>
-
-
-<script>
-  // $(document).ready(function () {
-  //   var showChar = 100;
-  //   var ellipsestext = "...";
-  //   var moretext = "more";
-  //   var lesstext = "less";
-  //   $('.more').each(function () {
-  //     var content = $(this).html();
-
-  //     if (content.length > showChar) {
-
-  //       var c = content.substr(0, showChar);
-  //       var h = content.substr(showChar - 1, content.length - showChar);
-
-  //       var html = c + '<span class="moreelipses">' + ellipsestext + '</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-
-  //       $(this).html(html);
-  //     }
-
-  //   });
-
-  //   $(".morelink").click(function () {
-  //     if ($(this).hasClass("less")) {
-  //       $(this).removeClass("less");
-  //       $(this).html(moretext);
-  //     } else {
-  //       $(this).addClass("less");
-  //       $(this).html(lesstext);
-  //     }
-  //     $(this).parent().prev().toggle();
-  //     $(this).prev().toggle();
-  //     return false;
-  //   });
-  // });
-</script>
