@@ -7,18 +7,9 @@
 
 <p>
   <strong>Body:</strong>
-  <%= @conversation.body %>
+  <%= @conversation.body.html_safe %>
 </p>
 
-<p>
-  <strong>References:</strong>
-  <%= @conversation.references %>
-</p>
-
-<p>
-  <strong>References:</strong>
-  <%= @conversation.references %>
-</p>
 
 <p>
   <strong>Tags:</strong>

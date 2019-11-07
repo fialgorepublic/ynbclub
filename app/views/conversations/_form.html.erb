@@ -1,5 +1,27 @@
 <%= form_with(model: conversation, local: true) do |form| %>
-  <div class="abc">
-    <%= form.text_area :body, class: 'medium-editor' %>
+  <div class="ambassador-dashboard-con">
+    <div class="form-group">
+      <%= form.text_field :subject, class: 'form-control con-title-', placeholder: 'Add Title', required: true  %>
+    </div>
+  </div>
+
+  <% if params[:group_id].blank? %>
+    <div class="ambassador-dashboard-con">
+      <div class="form-group">
+        <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control' %>
+      </div>
+    </div>
+  <% else %>
+    <%= form.hidden_field :group_id, value: params[:group_id] %>
+  <% end %>
+
+  <div class="ambassador-dashboard-con">
+    <div class="form-group">
+      <%= form.text_area :body, class: 'medium-editor', required: true %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
   </div>
 <% end %>

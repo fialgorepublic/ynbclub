@@ -33,7 +33,7 @@ class ConversationsController < ApplicationController
   # POST /conversations
   # POST /conversations.json
   def create
-    @conversation = Conversation.new(conversation_params)
+    @conversation = current_user.conversations.new(conversation_params)
 
     respond_to do |format|
       if @conversation.save
@@ -87,6 +87,6 @@ class ConversationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params.require(:conversation).permit(:subject, :body, :references, :references, :tags)
+      params.require(:conversation).permit(:subject, :body, :group_id, :tags)
     end
 end
