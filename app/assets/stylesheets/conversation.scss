@@ -403,6 +403,11 @@ blockquote {
 
 .medium-editor-placeholder:after {
   color: #b3b3b1; }
-
-
-  
+  .con-title-{
+    border: unset;
+    padding: 30px 10px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    font-size: 20px;
+    color: #000;
+  }
