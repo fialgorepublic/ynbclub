@@ -1,17 +1,17 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner pos-rel-banner text-center">
-      <%= image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+      <%= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
       <div class="pos-abs-banner">
-        <h1 class="">You're in good company now.</h1>
+        <h1 class="">Conversations about everything.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
-        <%= form_tag search_groups_path, method: :get, remote: true, id: 'search-group-form' do |f| %>
+        <%= form_tag search_conversations_path, method: :get, remote: true, id: 'search-group-form' do |f| %>
           <div class="wrap">
             <div class="searc">
               <div class="input-group">
-                <%= text_field_tag :group_title, nil, class: "form-control input-srch search-by-title email-border
-                  boder-focus-search", placeholder: "Search...", required: true %>
-                <span class="input-group-addon remove-border
+                <%= text_field_tag :conversation_subject, nil, class: "form-control search-by-title input-srch email-border 
+                  boder-focus-search", placeholder: "Search Conversations", required: true %>
+                <span class="input-group-addon remove-border 
                 group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i></span>
                 <span class="input-group-addon search-border"><i
                     class="glyphicon glyphicon-search color-srch-icon"></i></span>
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md-12 blog_banner_btn">
         <% if current_user&.is_admin? %>
-        <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'group-banner-upload' %>
+        <%= link_to t('blogs.index.edit_banner_label'), "#conversationBannerUploadModal", data: { toggle: 'modal', target: '#conversationBannerUploadModal' }, class: 'btn edit_banner_btn btn-primary', id: 'conversation-banner-upload' %>
         <% end %>
       </div>
     </div>
@@ -36,43 +36,25 @@
       <div class="post-heading blog-redesign-style">
         <div class="col-md-4">
           <div class="heading-featured">
-            <h1><%= t('groups.index.title') %></h1>
+            <h1>Conversations</h1>
           </div>
         </div>
 
-        <% if @groups.count > 0 %>
-        <div class="col-md-2 post-sorting">
-          <p>SORTING</p>
-          <%= select_tag :sort_type, options_for_select([['A-Z', 'asc'], ['Z-A', 'desc']]), prompt: "Choose Type", class: 'sorting-fltr', id: 'title-sort' %>
-        </div>
-
-        <div class="col-md-2 post-sorting">
-          <p>CATEGORY</p>
-          <%# <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
-          <div class="button-group">
-            <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class="" style="float: left;font-weight: 700;
-                  color: #838181;">Category</span> <span style="float: right;font-size: 17px;" class="fa fa-angle-down"
-                style="color: #838181;"></span></button>
-            <ul class="dropdown-menu group-categories">
-              <li class="bbbr"><a href="#" data-value=<%= @group_categories.ids.join(',') %> data-type='all'
-                  tabIndex="-1"><span>&nbsp;All categories</a></li>
-              <% @group_categories.each do |category| %>
-              <li><a href="#" class="small" data-value="<%= category.id %>"><input type="checkbox"
-                    data-category-id="<%= category.id %>" />&nbsp;<%= category.name %> </a></li>
-              <% end %>
-            </ul>
+        <% if @conversations.count > 0 %>
+          <div class="col-md-2 post-sorting">
+            <p>SORTING</p>
+            <%= select_tag :sort_type, options_for_select([['A-Z', 'asc'], ['Z-A', 'desc']]), prompt: "Choose Type", class: 'sorting-fltr', id: 'title-sort' %>
           </div>
-        </div>
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
-          <%= link_to "+ #{t('groups.index.add_new_group')}", new_group_path, class: "btn btn-primary new_blog_btn" if current_user && current_user.is_admin? %>
+          <%= link_to "+ Start New Conversation", new_conversation_path, class: "btn btn-primary new_blog_btn" if current_user && current_user.is_admin? %>
         </div>
       </div>
     </div>
 
     <div class="col-md-12 col-lg-12 class-z" id="groups">
-      <%= render 'all_groups' %>
+      <%#= render 'all_groups' %>
     </div>
     <br />
 
@@ -80,9 +62,9 @@
 
     <div class="row show-more-button">
       <div class="col-md-8">
-        <% unless @groups.current_page == @groups.total_pages %>
+        <% unless @conversations.current_page == @conversations.total_pages %>
         <div class="custom-showMore-btn pull-right">
-          <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more", data: { url: groups_path } do %>
+          <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more", data: { url: conversations_path } do %>
           <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
           <% end %>
         </div>
@@ -121,7 +103,7 @@
   </div>
 </div>
 
-<div id="groupBannerUploadModal" class="modal fade" role="dialog">
+<div id="conversationBannerUploadModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">

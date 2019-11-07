@@ -1,0 +1,65 @@
+<div class="middle-row-grp">
+  <div class="col-md-6">
+    <div class="lib-panel">
+      <div class="row box-shadow">
+        <div class="">
+          <div class="flex-l">
+            <div class="">
+              <div class="flex-l">
+                <div class="">
+                  <img class="" src="/assets/user-icon.png" width="100%">
+                </div>
+                <div class="m-l-10">
+                  <p class="p-l"><%= group_user_name(conversation.user) %></p>
+                  <p class="p-b">Saint L beau</p>
+                </div>
+              </div>
+            </div>
+            <div class="m-l-10">
+              <div class="flex-l">
+                <div class="">
+                  <img class="" src="/assets/calender.png" width="100%">
+                </div>
+                <div class="m-l-10">
+                  <p class="p-b m-t-8">Posted: <%= posted_date(conversation) %></p>
+                </div>
+              </div>
+            </div>
+            <div class="m-l-10">
+              <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+            </div>
+          </div>
+        </div>
+        <div class="join-grp-dscptn">
+          <%= link_to conversation do %>
+            <h2><%= conversation.subject %></h2>
+          <% end %>
+          <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
+          <div class="comment more">
+            <%= conversation.body.html_safe %>
+          </div>
+        </div>
+
+        <div class="flex-sb">
+          <div class="flex-l  m-t-8">
+            <div class="">
+              <i class="fa fa-comment" style="color: #256664;"></i>
+            </div>
+            <div class="m-l-10 m-t-8">
+              <p class=""><%= conversation.replies_count %></p>
+            </div>
+            <div class="m-l-10">
+              <i class="fa fa-heart" style="color:red;"></i>
+            </div>
+            <div class="m-l-10 m-t-8">
+              <p class=""><%= conversation.likes_count %></p>
+            </div>
+          </div>
+          <div class="m-t-8">
+            <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

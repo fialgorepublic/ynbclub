@@ -1,0 +1,21 @@
+<div class="col-md-9">
+  <div class="ambassdor-box newBlog-style conversation-c">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="flex-sb">
+            <h3>
+              <%= link_to :back, class: 'con-c' do %>
+                <i class="fa fa-angle-left"></i>
+              <% end %> <span class="p-l-20">Create new conversation
+              </span></h2>
+              <a class="btn blog_library btn-primary con_banner_btn submit-conversatioin-form">Publish</a>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'form', conversation: @conversation %>
+</div>

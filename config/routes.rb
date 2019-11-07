@@ -350,5 +350,12 @@ Rails.application.routes.draw do
   end
   resources :group_categories
 
+  resources :conversations do
+    collection do
+      post :banner
+      get  :search
+    end
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

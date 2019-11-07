@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_01_095759) do
+ActiveRecord::Schema.define(version: 2019_11_06_134745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,21 @@ ActiveRecord::Schema.define(version: 2019_11_01_095759) do
     t.index ["user_id"], name: "index_commission_histories_on_user_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.text "tags", default: [], array: true
+    t.integer "parent_id"
+    t.integer "replies_count", default: 0
+    t.integer "likes_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_conversations_on_group_id"
+    t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "email", default: ""
@@ -172,6 +187,7 @@ ActiveRecord::Schema.define(version: 2019_11_01_095759) do
     t.string "slug"
     t.bigint "group_category_id"
     t.integer "users_count", default: 0
+    t.integer "conversations_count", default: 0
     t.index ["group_category_id"], name: "index_groups_on_group_category_id"
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
@@ -470,6 +486,7 @@ ActiveRecord::Schema.define(version: 2019_11_01_095759) do
     t.integer "share_link_count", default: 0
     t.boolean "moderator"
     t.integer "groups_count", default: 0
+    t.integer "conversations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -490,6 +507,8 @@ ActiveRecord::Schema.define(version: 2019_11_01_095759) do
   add_foreign_key "comment_actions", "comments"
   add_foreign_key "comment_actions", "users"
   add_foreign_key "commission_histories", "users", on_delete: :cascade
+  add_foreign_key "conversations", "groups", on_delete: :cascade
+  add_foreign_key "conversations", "users", on_delete: :cascade
   add_foreign_key "districts", "cities", on_delete: :cascade
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
   add_foreign_key "groups", "group_categories", on_delete: :cascade

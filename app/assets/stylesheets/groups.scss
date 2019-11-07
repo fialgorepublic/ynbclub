@@ -175,6 +175,17 @@
   .middle-row-grp .lib-row.lib-desc button.conversation-btn:hover {
     background-color: transparent;
   }
+
+  // .conversation-btn {
+  //   color: #54b2b2;
+  //   border-color: #01b8aa;
+  //   text-transform: uppercase;
+  //   margin: 10px;
+  //   padding: 10px 20px;
+  //   font-size: 12px;
+  //   border-radius: 20px;
+  // }
+
   .groups-cards-p {
     font-size: 13px;
     height: 90px;
@@ -292,7 +303,7 @@
   padding: 0px 10px;
 }
 
-.conversation-tag-btn {
+.conversation-tag-btn, .conversation-btn {
   color: #54b2b2;
   border-color: #01b8aa;
   text-transform: uppercase;
@@ -304,7 +315,15 @@
   margin-left: 10px;
 }
 
-.conversation-tag-btn:hover {
+.conversation-btn {
+  float: none;
+}
+
+.conversation-btn:hover {
+  float: none !important;
+}
+
+.conversation-tag-btn:hover, .conversation-btn:hover {
   color: #54b2b2;
   border-color: #01b8aa;
   text-transform: uppercase;

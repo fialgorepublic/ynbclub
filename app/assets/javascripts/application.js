@@ -22,4 +22,6 @@
 //= require apprise.min.js
 //= require select2.js
 //= require cocoon
+//= require medium-editor
+//= require medium-editor-insert-plugin
 //= require_tree .
