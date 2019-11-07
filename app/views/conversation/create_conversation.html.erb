@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" />
 <%# <link rel="stylesheet" href="./dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
 <link rel="stylesheet" href="./dist/css/themes/default.css" type="text/css" media="screen" charset="utf-8"> %>
+<script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
 <div class="col-md-9">
   <div class="ambassdor-box newBlog-style conversation-c">
@@ -23,11 +24,15 @@
       </div>
     </div>
   </div>
+
   <div class="ambassador-dashboard-con">
     <div class="form-group">
       <input id="blog_title" class="form-control con-title-" placeholder="Add Title" required="required" type="text"
         name="blog[title]">
     </div>
+  </div>
+  <div class="tags-field">
+    <input type="text" value="" data-role="tagsinput" class="tags-field" placeholder="Add tags" />
   </div>
   <div>
     <textarea class="editablXXXXXXe">
@@ -182,7 +187,7 @@
 
 </script>
 <!-- JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.runtime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery.ui.widget@1.10.3/jquery.ui.widget.js"></script>
@@ -204,3 +209,21 @@
     });
   });
 </script>
+
+<script>
+  $(document).ready(function () {
+
+    $('input-tag').tagsinput({
+      typeahead: {
+        source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo'],
+        afterSelect: function () {
+          this.$element[0].value = '';
+        }
+      }
+    });
+  });
+</script>
+
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<!--<script src="bootstrap-tagsinput.min.js"></script>-->
