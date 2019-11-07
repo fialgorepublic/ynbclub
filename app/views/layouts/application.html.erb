@@ -32,7 +32,7 @@
     <script src='https://foliotek.github.io/Croppie/croppie.js'></script>
 
     <%= favicon_link_tag "/assets/favico.ico" %>
-    <%= javascript_include_tag Ckeditor.cdn_url unless controller_name = 'conversations' && ['edit', 'new'].include?(action_name)  %>
+    <%= javascript_include_tag Ckeditor.cdn_url if controller_name == 'blogs' || action_name == 'share_with_friends'  %>
 
 </head>
 
