@@ -10,4 +10,8 @@ module ConversationsHelper
   def groups
     Group.pluck(:name, :id)
   end
+
+  def posted_date(conversation)
+    conversation.updated_at.strftime('%d.%m.%y')
+  end
 end
