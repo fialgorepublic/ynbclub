@@ -11,6 +11,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="row">
+
           <div class="flex-sb">
             <h3><a href="/blogs" class="con-c"><i class="fa fa-angle-left"></i></a><span class="p-l-20">Create new blog
                 post</span></h2>
@@ -22,9 +23,15 @@
       </div>
     </div>
   </div>
-
-  <div class="editablXXXXXXe">
-
+  <div class="ambassador-dashboard-con">
+    <div class="form-group">
+      <input id="blog_title" class="form-control con-title-" placeholder="Add Title" required="required" type="text"
+        name="blog[title]">
+    </div>
+  </div>
+  <div>
+    <textarea class="editablXXXXXXe">
+    </textarea>
   </div>
 </div>
 
@@ -34,24 +41,18 @@
 <!-- Modal -->
 <div id="pModal" class="modal fade bd-example-modal-lg dialog" role="dialog">
   <div class="modal-dialog modal-lg">
-
     <!-- Modal content-->
     <div class="modal-content con-pos-rel">
       <button type="button" class="close btn-close-con" data-dismiss="modal">&times;</button>
-
       <div class="modal-body">
         <div class="row">
           <p class="color-555">preview</p>
           <div class="col-md-4 b-con">
-
             <div class="text-center pd">
-
               <img src="/assets/con-modal.png">
-
             </div>
           </div>
           <div class="group-create-custom">
-
             <div class="col-md-8">
               <div class="lib-row lib-header">
                 <div class="form-group">
@@ -199,7 +200,7 @@
 
   $(function () {
     $('.editablXXXXXXe').mediumInsert({
-      editor: editor
+      // editor: editor
     });
   });
 </script>
