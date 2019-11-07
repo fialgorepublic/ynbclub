@@ -19,6 +19,9 @@
   *= require apprise.min.css
   *= require select2.css
   *= require pages.scss
+  *= require medium-editor/medium-editor
+  *= require medium-editor/themes/flat
+  *= require medium-editor-insert-plugin
  */
 
 /*#referral-div {*/
