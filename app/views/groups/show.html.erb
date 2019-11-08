@@ -45,53 +45,58 @@
             <br>
           </div>
         </div>
-      </div>
+        <div class="row">
 
-      <div class="middle-row-grp">
-        <% if @conversations.count.zero? %>
-          <div class="col-md-6">
-            <div class="lib-panel">
-              <div class="row box-shadow">
-                <div class="col-md-12">
-                  <div class="lib-row lib-desc">
-                    <h3><%= t('groups.show.no_conversation') %></h3>
-                    <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+          <div class="middle-row-grp">
+            <% if @conversations.count.zero? %>
+            <div class="col-md-6">
+              <div class="lib-panel">
+                <div class="row box-shadow">
+                  <div class="col-md-12">
+                    <div class="lib-row lib-desc">
+                      <h3><%= t('groups.show.no_conversation') %></h3>
+                      <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <% end %>
+
+            <%# <div class="col-md-3">
+                      <div class="lib-panel">
+                        <div class="row ">
+                          <div class="p-tag">
+                            <div class="l">
+                              <div class="post-sorting  m-p-0">
+                                <p>SORTING</p>
+                                <select class="sorting-fltr" id="sort-blogs" style="font-size: 12px;">
+                                  <option value="0">A Z</option>
+                                  <option value="1">A-Z </option>
+                                  <option value="2">Z-A </option>
+                                </select>
+                              </div>
+                              <br>
+                              <div class="flex-l">
+                                <div class="m-tag">
+                                  <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name</a>
+                                </div>
+                                <div class="m-tag">
+                                  <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name is here</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> %>
+
           </div>
-        <% end %>
-
-          <%# <div class="col-md-3">
-            <div class="lib-panel">
-              <div class="row ">
-                <div class="p-tag">
-                  <div class="l">
-                    <div class="post-sorting  m-p-0">
-                      <p>SORTING</p>
-                      <select class="sorting-fltr" id="sort-blogs" style="font-size: 12px;">
-                        <option value="0">A Z</option>
-                        <option value="1">A-Z </option>
-                        <option value="2">Z-A </option>
-                      </select>
-                    </div>
-                    <br>
-                    <div class="flex-l">
-                      <div class="m-tag">
-                        <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name</a>
-                      </div>
-                      <div class="m-tag">
-                        <a class="btn btn-primary new_tag_btn" href="/blogs/new">Tag name is here</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <%#</div> %>
+        </div>
+        <div class="row">
+          <%= render partial: 'conversations/conversation', collection: @conversations, as: :conversation %>
+        </div>
       </div>
-      <%= render partial: 'conversations/conversation', collection: @conversations, as: :conversation %>
     </div>
   </div>
 </div>

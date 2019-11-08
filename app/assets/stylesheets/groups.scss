@@ -405,8 +405,15 @@ p.p-b {
   text-align: left;
   padding-bottom: 10px;
   border-bottom: solid 1px #eee;
+  max-height: 400px;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   h2 {
     font-size: 22px;
+    color: #000;
   }
   .jn-grp-img-show {
     img {
@@ -1010,7 +1017,8 @@ z-index: -100;
   border: 0px;
   font-size: 12px;
   color: white !important;
-  width: 80px;
+  width: 95px;
+  margin-top: 10px;
 }
 
 .new_tag_btn-con2 {
@@ -1021,7 +1029,8 @@ z-index: -100;
   border: 0px;
   font-size: 12px;
   color: white !important;
-  width: 145px;
+  width: 135px;
+  margin-top: 10px;
 }
 .new_reply_btn-grp {
   padding: 6px 20px;
@@ -1054,3 +1063,34 @@ z-index: -100;
 .fa-heart{
   cursor: pointer;
 }
+input.form-control.con-title-:focus {
+  border-color: #cccccc;
+}
+.ambassador-dashboard-con.form-group.form-control:focus{
+  border-color: #cccccc;
+
+}
+
+.new_tag_btn-con1:hover {
+  padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #54b2b2;
+    border: 0px;
+    font-size: 12px;
+    color: white !important;
+    width: 95px;
+    margin-top: 10px;
+}
+.new_tag_btn-con2:hover {
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #54b2b2;
+  border: 0px;
+  font-size: 12px;
+  color: white !important;
+  width: 135px;
+  margin-top: 10px;
+}
+
