@@ -1,5 +1,5 @@
 <div class="middle-row-grp">
-  <div class="col-md-6">
+  <div class="col-md-9">
     <div class="lib-panel">
       <div class="row box-shadow">
         <div class="">
@@ -32,7 +32,7 @@
         </div>
         <div class="join-grp-dscptn">
           <%= link_to conversation do %>
-            <h2><%= conversation.subject %></h2>
+          <h2><%= conversation.subject %></h2>
           <% end %>
           <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
           <div class="comment more">
@@ -46,13 +46,13 @@
               <i class="fa fa-comment" style="color: #256664;"></i>
             </div>
             <div class="m-l-10 m-t-8">
-              <p class=""><%= conversation.replies_count %></p>
+              <p class="fs-12"><%= conversation.replies_count %></p>
             </div>
             <div class="m-l-10">
               <i class="fa fa-heart" style="color:red;"></i>
             </div>
             <div class="m-l-10 m-t-8">
-              <p class=""><%= conversation.likes_count %></p>
+              <p class="fs-12"><%= conversation.likes_count %></p>
             </div>
           </div>
           <div class="m-t-8">

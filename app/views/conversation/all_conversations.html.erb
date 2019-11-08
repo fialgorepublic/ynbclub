@@ -469,10 +469,37 @@
               <br>
               <div class="flex-l">
                 <div class="m-tag">
-                  <a class="btn btn-primary new_tag_btn-con1" href="/blogs/new">Tag name</a>
+                  <a class="btn  new_tag_btn-con1 cross-icon-con-tags" onclick="changeColorOnClick()" href="">Tag
+                    name <i class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
                 </div>
                 <div class="m-tag">
-                  <a class="btn btn-primary new_tag_btn-con2" href="/blogs/new">Tag name is here</a>
+                  <a class="btn  new_tag_btn-con2 cross-icon-con-tags " href="">Tag name is here<i
+                      class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
+                </div>
+                <div class="m-tag">
+                  <a class="btn  new_tag_btn-con1 cross-icon-con-tags" onclick="changeColorOnClick()" href="">Tag
+                    name <i class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
+                </div>
+                <div class="m-tag">
+                  <a class="btn  new_tag_btn-con2 cross-icon-con-tags " href="">Tag name is here<i
+                      class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
+                </div>
+                <div class="m-tag">
+                  <a class="btn  new_tag_btn-con1 cross-icon-con-tags" onclick="changeColorOnClick()" href="">Tag
+                    name <i class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
+                </div>
+                <div class="m-tag">
+                  <a class="btn  new_tag_btn-con2 cross-icon-con-tags " href="">Tag name is here<i
+                      class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
+                </div>
+
+                <div class="m-tag">
+                  <a class="btn  new_tag_btn-con1 cross-icon-con-tags" onclick="changeColorOnClick()" href="">Tag
+                    name <i class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
+                </div>
+                <div class="m-tag">
+                  <a class="btn  new_tag_btn-con2 cross-icon-con-tags " href="">Tag name is here<i
+                      class="glyphicon glyphicon-remove ds-none con-tags"></i></a>
                 </div>
               </div>
             </div>
@@ -520,4 +547,36 @@
       return false;
     });
   });
+  // cross-icon-con-tags
+  // function changeColorOnClick() {
+  //   console.log('jjjj');
+  //           $(this).addClass("less");
+
+  // }
+  $(".cross-icon-con-tags").click(function (e) {
+    e.preventDefault()
+    $(this).addClass("btn-color-tags");
+    $(this).find(".con-tags").removeClass("ds-none");
+  });
+
+
+  // $(function () {
+  //   $(".close").on('click', function () {
+  //     $(this).closest(".imageholder").remove(); // or .hide()
+  //   });
+  // });
+  // function closeOnClick() {
+  //   closeBtn.on('click', function () {
+  //     $(this).parent().remove();// Close the div that contains the button clicked.
+  //   });
+  // }
+
+  // btn - color - tags
+  // $(".cross-icon-con-tags").click(function (e) {
+  //   e.preventDefault();
+  //   $(".con-tags").removeClass("ds-none");
+  //   $(".con-tags").addClass("ds-block");
+  //   $(".cross-icon-con-tags").addClass("btn-color-tags");
+  // });
+
 </script>
