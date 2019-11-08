@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_conversation, only: [:show, :edit, :update, :destroy]
+  before_action :set_conversation, only: [:show, :edit, :update, :destroy, :reply, :conversation_reply]
 
   # GET /conversations
   # GET /conversations.json
@@ -77,6 +77,19 @@ class ConversationsController < ApplicationController
   def banner
     @page.update(conversation_banner: params[:page][:conversation_banner])
     redirect_to conversations_path
+  end
+
+  def reply
+    @reply = @conversation.replies.new
+  end
+
+  def conversation_reply
+    reply = @conversation.replies.create(conversation_params.merge(user: current_user))
+    if reply
+      redirect_to @conversation, notice: 'Posted your reply successfully.'
+    else
+      render :reply
+    end
   end
 
   private

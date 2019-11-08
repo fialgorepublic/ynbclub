@@ -6,7 +6,7 @@ class Conversation < ApplicationRecord
 
   has_many   :replies, class_name: 'Conversation',  foreign_key: 'parent_id'
 
-  validates :subject, :body, :tags, presence: true
+  validates :body, presence: true
 
   scope :post_conversations, -> { where(parent_id: nil) }
 

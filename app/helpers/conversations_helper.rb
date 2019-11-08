@@ -14,4 +14,8 @@ module ConversationsHelper
   def posted_date(conversation)
     conversation.created_at.strftime('%d.%m.%y')
   end
+
+  def reply?
+    controller_name == 'conversations' && action_name == 'reply'
+  end
 end

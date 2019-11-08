@@ -7,7 +7,7 @@
             <h3>
               <%= link_to :back, class: 'con-c' do %>
                 <i class="fa fa-angle-left"></i>
-              <% end %> <span class="p-l-20">Create new Post
+              <% end %> <span class="p-l-20">Reply to Post
               </span></h2>
               <a class="btn blog_library btn-primary con_banner_btn submit-conversatioin-form">Publish</a>
           </div>
@@ -16,6 +16,6 @@
       </div>
     </div>
   </div>
-  <%= render partial: 'form', locals: { conversation: @conversation , url: conversations_path } %>
 
+  <%= render partial: 'form', locals: { conversation: @reply , url: conversation_reply_conversations_path } %>
 </div>
