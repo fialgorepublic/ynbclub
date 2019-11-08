@@ -69,7 +69,6 @@ gem 'time_ago_in_words'
 gem 'cancancan', '~> 2.0'
 gem 'will_paginate-bootstrap'
 gem 'sprockets', '~>3.7.2'
-gem 'rack-mini-profiler'
 gem 'babosa'
 
 group :development do
