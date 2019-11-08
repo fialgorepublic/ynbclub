@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function () {
   initMediumEditor();
   submitForm();
+  initTagsInput();
 
   function initMediumEditor(){
     if ($('.medium-editor').length == 0) { return; }
@@ -15,6 +16,12 @@ $(document).on('turbolinks:load', function () {
   function submitForm(){
     $('.submit-conversatioin-form').click(function(){
       $('#submit-button').click();
+    });
+  }
+
+  function initTagsInput() {
+    $('input[data-role="tagsinput"]').tagsinput({
+      allowDuplicates: false
     });
   }
 });

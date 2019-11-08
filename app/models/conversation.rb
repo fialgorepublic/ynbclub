@@ -6,5 +6,14 @@ class Conversation < ApplicationRecord
 
   has_many   :replies, class_name: 'Conversation',  foreign_key: 'parent_id'
 
+  validates :subject, :body, :tags, presence: true
+
   scope :post_conversations, -> { where(parent_id: nil) }
+
+  before_save :format_tags
+
+  private
+    def format_tags
+      self.tags = self.tags.map!{|tag| tag.split(',')}.flatten
+    end
 end

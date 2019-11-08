@@ -1,9 +1,14 @@
 <%= form_with(model: conversation, local: true) do |form| %>
   <div class="ambassador-dashboard-con">
     <div class="form-group">
-      <%= form.text_field :subject, class: 'form-control con-title-', placeholder: 'Add Title', required: true  %>
+      <%= form.text_field :subject, class: 'form-control con-title-', placeholder: 'Enter Title', required: true  %>
     </div>
   </div>
+
+  <div class="tags-div">
+    <%= text_field_tag 'conversation[tags][]', nil, class: "tags-field form-group", data: { role: "tagsinput" }, placeholder: "Add tags" %>
+  </div>
+  <br>
 
   <% if params[:group_id].blank? %>
     <div class="ambassador-dashboard-con">
