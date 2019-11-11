@@ -143,8 +143,7 @@ $(document).on('turbolinks:load', function () {
     $(".class-z").removeClass("add-z-minus");
     $('.groups-search-result').hide();
     $('.cross-icon').hide();
-    var timer;
-    $(".search-by-title").on('keyup', function (e) {
+    $(".search-by-title").on('z', function (e) {
       if (e.keyCode === 13) {
         e.preventDefault();
         $(".post-sorting").addClass("add-z-minus");

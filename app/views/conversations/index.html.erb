@@ -1,7 +1,7 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner pos-rel-banner text-center">
-      <%#= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+      <%= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
       <div class="pos-abs-banner">
         <h1 class="">Conversations about everything.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
@@ -9,18 +9,160 @@
         <div class="wrap">
           <div class="searc">
             <div class="input-group">
-              <%= text_field_tag :conversation_subject, nil, class: "form-control search-by-title input-srch email-border 
+              <%= text_field_tag :conversation_subject, nil, class: "form-control con-search-by-title input-srch email-border 
                   boder-focus-search", placeholder: "Search Conversations", required: true %>
               <span class="input-group-addon remove-border 
-                group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i></span>
+                group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon crosss-icon "></i></span>
               <span class="input-group-addon search-border"><i
                   class="glyphicon glyphicon-search color-srch-icon"></i></span>
             </div>
-            <div class="groups-search-result">
+            <div class="con-search-result">
+              <div class="flex-lll p-con-srch">
+                <div class=" hidden-sm hidden-xs">
+                  <a href="/groups/6">
+                    <img
+                      src="http://localhost:3000/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4fa0c45314db3e91d0b8368e47eb90e61795ac60/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDam9PZEdoMWJXSnVZV2xzU1NJTU1UQXdXRGN3WGdZNkJrVlVPZ3RsZUhSbGJuUkpJZ3N4TURCWU56QUdPd1pVT2d4bmNtRjJhWFI1U1NJTFkyVnVkR1Z5QmpzR1ZEb1FZWFYwYjE5dmNtbGxiblJVT2d4eGRXRnNhWFI1U1NJSk1UQXdKUVk3QmxRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--716c409f2294a7548bc26afad51e5e0fcedaf2fa/plush-design-studio-l3N9Q27zULw-unsplash.jpg">
+                  </a> </div>
+                <div class="pl-3 padding-left-result">
+                  <div class="flex-l">
+                    <div class="">
+                      <div class="flex-l">
+                        <div class="">
+                          <img width="100%" class="author-image-con" src="/assets/user-icon.png">
+                        </div>
+
+                        <div class="m-l-10">
+                          <!-- <p class="p-l con-srch">Admin</p> -->
+                          <p class="p-b con-srch">Saint L beau</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="m-l-10">
+                      <div class="flex-l">
+                        <div class="">
+                          <img class="claender-con" src="/assets/calender.png" width="100%">
+                        </div>
+
+                        <div class="m-l-10">
+                          <p class="p-b con-srch">Today 08:03 am</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="banner-h4-con">lorem ipsum</h4>
+                  <p class="text-left banner-p hidden-sm hidden-xs">
+                    <div class="grp-card-icon hidden-sm hidden-xs">
+                      <i class="fa fa-heart color-for-icon-heart fs-15" width="100%"></i>
+                      <p class="m-para-srch-con">0</p>
+                      <i class="fa fa-comment color-for-icon fs-15" width="100%"></i>
+                      <p class="m-para-srch-con">0</p>
+                    </div>
+                </div>
+              </div>
+
+              <div class="br-b-con">
+
+              </div>
+              <div class="flex-lll p-con-srch">
+                <div class=" hidden-sm hidden-xs">
+                  <a href="/groups/6">
+                    <img
+                      src="http://localhost:3000/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4fa0c45314db3e91d0b8368e47eb90e61795ac60/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDam9PZEdoMWJXSnVZV2xzU1NJTU1UQXdXRGN3WGdZNkJrVlVPZ3RsZUhSbGJuUkpJZ3N4TURCWU56QUdPd1pVT2d4bmNtRjJhWFI1U1NJTFkyVnVkR1Z5QmpzR1ZEb1FZWFYwYjE5dmNtbGxiblJVT2d4eGRXRnNhWFI1U1NJSk1UQXdKUVk3QmxRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--716c409f2294a7548bc26afad51e5e0fcedaf2fa/plush-design-studio-l3N9Q27zULw-unsplash.jpg">
+                  </a> </div>
+                <div class="pl-3 padding-left-result">
+                  <div class="flex-l">
+                    <div class="">
+                      <div class="flex-l">
+                        <div class="">
+                          <img width="100%" class="author-image-con" src="/assets/user-icon.png">
+                        </div>
+
+                        <div class="m-l-10">
+                          <!-- <p class="p-l con-srch">Admin</p> -->
+                          <p class="p-b con-srch">Saint L beau</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="m-l-10">
+                      <div class="flex-l">
+                        <div class="">
+                          <img class="claender-con" src="/assets/calender.png" width="100%">
+                        </div>
+
+                        <div class="m-l-10">
+                          <p class="p-b con-srch">Today 08:03 am</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="banner-h4-con">lorem ipsum</h4>
+                  <p class="text-left banner-p hidden-sm hidden-xs">
+                    <div class="grp-card-icon hidden-sm hidden-xs">
+                      <i class="fa fa-heart color-for-icon-heart fs-15" width="100%"></i>
+                      <p class="m-para-srch-con">0</p>
+                      <i class="fa fa-comment color-for-icon fs-15" width="100%"></i>
+                      <p class="m-para-srch-con">0</p>
+                    </div>
+                </div>
+              </div>
+
+              <div class="br-b-con">
+
+              </div>
+              <div class="flex-lll p-con-srch">
+                <div class=" hidden-sm hidden-xs">
+                  <a href="/groups/6">
+                    <img
+                      src="http://localhost:3000/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4fa0c45314db3e91d0b8368e47eb90e61795ac60/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDam9PZEdoMWJXSnVZV2xzU1NJTU1UQXdXRGN3WGdZNkJrVlVPZ3RsZUhSbGJuUkpJZ3N4TURCWU56QUdPd1pVT2d4bmNtRjJhWFI1U1NJTFkyVnVkR1Z5QmpzR1ZEb1FZWFYwYjE5dmNtbGxiblJVT2d4eGRXRnNhWFI1U1NJSk1UQXdKUVk3QmxRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--716c409f2294a7548bc26afad51e5e0fcedaf2fa/plush-design-studio-l3N9Q27zULw-unsplash.jpg">
+                  </a> </div>
+                <div class="pl-3 padding-left-result">
+                  <div class="flex-l">
+                    <div class="">
+                      <div class="flex-l">
+                        <div class="">
+                          <img width="100%" class="author-image-con" src="/assets/user-icon.png">
+                        </div>
+
+                        <div class="m-l-10">
+                          <!-- <p class="p-l con-srch">Admin</p> -->
+                          <p class="p-b con-srch">Saint L beau</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="m-l-10">
+                      <div class="flex-l">
+                        <div class="">
+                          <img class="claender-con" src="/assets/calender.png" width="100%">
+                        </div>
+
+                        <div class="m-l-10">
+                          <p class="p-b con-srch">Today 08:03 am</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="banner-h4-con">lorem ipsum</h4>
+                  <p class="text-left banner-p hidden-sm hidden-xs">
+                    <div class="grp-card-icon hidden-sm hidden-xs">
+                      <i class="fa fa-heart color-for-icon-heart fs-15" width="100%"></i>
+                      <p class="m-para-srch-con">0</p>
+                      <i class="fa fa-comment color-for-icon fs-15" width="100%"></i>
+                      <p class="m-para-srch-con">0</p>
+                    </div>
+                </div>
+              </div>
+
+              <div class="br-b-con">
+
+              </div>
             </div>
           </div>
         </div>
         <% end %>
+
       </div>
     </div>
 
@@ -114,3 +256,48 @@
     </div>
   </div>
 </div>
+
+
+<script>
+
+
+  $(".post-sorting").removeClass("add-z-minus");
+  $(".class-z").removeClass("add-z-minus");
+  $('.con-search-result').hide();
+  $('.crosss-icon').hide();
+  $(".con-search-by-title").on('keyup', function (e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      $(".post-sorting").addClass("add-z-minus");
+      $(".class-z").addClass("add-z-minus");
+      $('.crosss-icon').fadeIn();
+      $('.con-search-result').show();
+
+    }
+  });
+
+  $('.crosss-icon').click(function () {
+    fadeOutContent();
+  });
+
+
+
+  function fadeOutContent() {
+
+    $('.crosss-icon').fadeOut();
+    $('.con-search-result').fadeOut();
+    // $(ele).val('');
+    $(".post-sorting").removeClass("add-z-minus");
+    $(".class-z").removeClass("add-z-minus");
+  }
+  $(".con-search-by-title").keyup(function (e) {
+
+    e.preventDefault();
+    $(".post-sorting").addClass("add-z-minus");
+    $(".class-z").addClass("add-z-minus");
+    if ($(this).val() == '') { return; }
+    $('.crosss-icon').fadeIn();
+    $('.con-search-result').show();
+  });
+
+</script>

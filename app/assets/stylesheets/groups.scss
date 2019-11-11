@@ -758,6 +758,14 @@ img.lib-img-show {
   max-height: 280px;
   overflow: scroll;
 }
+
+.con-search-result {
+  background-color: white;
+  padding: 0px 15px 15px;
+  max-height: 280px;
+  overflow: scroll;
+}
+
 .remove-border {
   background-color: white;
   border-left: none;
@@ -821,6 +829,11 @@ img.lib-img-show {
   position: relative;
 }
 .groups-search-result {
+  position: absolute;
+  width: 100%;
+  border: solid 1px #cccccc;
+}
+.con-search-result {
   position: absolute;
   width: 100%;
   border: solid 1px #cccccc;
@@ -891,6 +904,12 @@ img.lib-img-show {
 
   }
   .groups-search-result {
+    background-color: white;
+    padding: 0px 15px 15px;
+    max-height: 90px;
+    overflow: scroll;
+  }
+  .con-search-result {
     background-color: white;
     padding: 0px 15px 15px;
     max-height: 90px;
