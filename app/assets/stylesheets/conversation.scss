@@ -523,3 +523,29 @@ blockquote {
 .btn-color-tags{
   background-color: #295f5f !important;
 } 
+.grp-edit-delete-icon a:hover{
+  text-decoration: none;
+}
+.input-con-chat:focus {
+  width: 100% !important;
+  border: none;
+  height: 80px;
+  font-size: 12px;
+  padding: 0px 10px;
+  outline: none;
+  color: #808080;
+}
+
+.user_conversation .join-grp-dscptn{
+  max-height: 100%;
+}
+a.delete-group-link.modal-con-aa {
+  cursor: pointer;
+}
+.m-t-20 {
+  margin-top: 20px !important;
+}
+span.tag.label.label-info {
+  background-color: #54b2b2;
+  /* margin-top: 19px; */
+}
