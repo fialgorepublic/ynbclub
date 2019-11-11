@@ -40,7 +40,7 @@
           <div class="join-grp-dscptn">
             <h2><%= @conversation.subject %></h2>
             <div class="comment more">
-              <%= @conversation.body.html_safe %>
+              <%= @conversation.body&.html_safe %>
             </div>
 
             <div class="flex-sb">

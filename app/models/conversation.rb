@@ -8,8 +8,22 @@ class Conversation < ApplicationRecord
 
   validates :body, presence: true
 
-  scope :post_conversations, ->           { where(parent_id: nil) }
-  scope :search_by_subject,  -> (subject) { where('lower(subject) like ?', "%#{subject&.downcase}%") }
+  scope :post_conversations, ->             { where(parent_id: nil) }
+  scope :filter_by_subject,  -> (subject)   { where('lower(subject) like ?', "%#{subject&.downcase}%") }
+  scope :popular_first,      ->             { reorder(likes_count: :desc, replies_count: :desc) }
+  scope :unanswered,         ->             { reorder(replies_count: :asc) }
+  scope :a_z,                ->             { reorder(subject: :asc) }
+  scope :sort_by_type,      -> (sort_type) do
+    sort_type = sort_type.to_i
+    case sort_type
+    when 2
+      popular_first
+    when 3
+      a_z
+    when 4
+      unanswered
+    end
+  end
 
   before_save  :format_tags
   after_create :update_replies_count
@@ -21,7 +35,7 @@ class Conversation < ApplicationRecord
   end
 
   def three_related_posts
-    Conversation.post_conversations.search_by_subject(self.subject).first(3)
+    Conversation.post_conversations.filter_by_subject(self.subject).first(3)
   end
 
   private

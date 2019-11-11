@@ -6,7 +6,7 @@ class ConversationsController < ApplicationController
   # GET /conversations.json
   def index
     conversations  = Conversation.includes(:replies).post_conversations
-    conversations  = conversations.sort_by_title(params[:sort_type]) if params[:sort_type].present?
+    conversations  = conversations.sort_by_type(params[:sort_type]) if params[:sort_type].present?
     @conversations = conversations.paginate(page: params[:page], per_page: 10)
     @next_page     = @conversations.next_page
 
@@ -72,7 +72,7 @@ class ConversationsController < ApplicationController
   end
 
   def search
-    @groups = Group.filter_by_name(params[:conversation_subject])
+    @conversations = Conversation.filter_by_subject(params[:conversation_subject])
   end
 
   def banner

@@ -2,7 +2,7 @@ $('.loader').hide();
 <% if params[:page].present? %>
   $('#conversations').append('<%= j render @conversations %>');
 <% else %>
-  $('#groups').html('<%= j render @conversations %>');
+  $('#conversations').html('<%= j render @conversations %>');
 <% end %>
 $('#page').val('<%= @next_page %>')
 $('#load-more').show();

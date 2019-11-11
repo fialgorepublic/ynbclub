@@ -6,20 +6,20 @@
         <h1 class="">Conversations about everything.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
         <%= form_tag search_conversations_path, method: :get, remote: true, id: 'search-group-form' do |f| %>
-        <div class="wrap">
-          <div class="searc">
-            <div class="input-group">
-              <%= text_field_tag :conversation_subject, nil, class: "form-control search-by-title input-srch email-border 
-                  boder-focus-search", placeholder: "Search Conversations", required: true %>
-              <span class="input-group-addon remove-border 
-                group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i></span>
-              <span class="input-group-addon search-border"><i
-                  class="glyphicon glyphicon-search color-srch-icon"></i></span>
-            </div>
-            <div class="groups-search-result">
+          <div class="wrap">
+            <div class="searc">
+              <div class="input-group">
+                <%= text_field_tag :conversation_subject, nil, class: "form-control search-by-title input-srch email-border 
+                    boder-focus-search", placeholder: "Search Conversations", required: true %>
+                <span class="input-group-addon remove-border 
+                  group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i></span>
+                <span class="input-group-addon search-border"><i
+                    class="glyphicon glyphicon-search color-srch-icon"></i></span>
+              </div>
+              <div class="groups-search-result">
+              </div>
             </div>
           </div>
-        </div>
         <% end %>
       </div>
     </div>
@@ -41,9 +41,9 @@
         </div>
 
         <% if @conversations.count > 0 %>
-        <div class="col-md-2 post-sorting">
+        <div class="col-md-4 post-sorting">
           <p>SORTING</p>
-          <%= select_tag :sort_type, options_for_select([['A-Z', 'asc'], ['Z-A', 'desc']]), prompt: "Choose Type", class: 'sorting-fltr', id: 'title-sort' %>
+          <%= select_tag :sort_type, options_for_select(conversation_sort_types, selected: params[:sort_type]), class: 'sorting-fltr', id: 'subject-sort' %>
         </div>
         <% end %>
 

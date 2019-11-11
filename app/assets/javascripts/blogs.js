@@ -60,10 +60,15 @@ $(document).on('turbolinks:load', function () {
   });
 
   $("#load-more").click(function() {
-    page = $('#page').val();
+    params = '';
+    page   = $('#page').val();
+    params = `page=${page}`;
+    if ($('#subject-sort').length > 0) {
+      params += `&sort_type=${$('#subject-sort').val()}`;
+    }
     $('.loader').show();
     $.ajax({
-      url: `${$(this).data('url')}?page=${page}`,
+      url: `${$(this).data('url')}?${params}`,
       type: 'GET',
       dataType: 'script',
       success: function(data) {

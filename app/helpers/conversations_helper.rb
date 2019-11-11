@@ -32,4 +32,8 @@ module ConversationsHelper
   def new_reply_link(conversation)
     link_to 'New Reply', reply_conversation_path(conversation), class: 'btn btn-primary new_reply_btn'
   end
+
+  def conversation_sort_types
+    [['Newest first', 1], ['Popular First', 2], ['A-Z', 3], ['Unanswered', 4]]
+  end
 end
