@@ -12,7 +12,7 @@
               <div class="lib-row lib-header">
                 <div class="grp-edit-delete-icon">
                   <%= link_to edit_group_path(@group), class: 'content-display' do %>
-                  <img src="/assets/edit-icon.png" width="100%">
+                    <img src="/assets/edit-icon.png" width="100%">
                   <% end %>
 
                   <%= link_to @group, class: 'content-display', method: :delete, data: { confirm: "Are you sure?" } do %>
@@ -45,22 +45,23 @@
             <br>
           </div>
         </div>
+
         <div class="row">
 
           <div class="middle-row-grp">
             <% if @conversations.count.zero? %>
-            <div class="col-md-6">
-              <div class="lib-panel">
-                <div class="row box-shadow">
-                  <div class="col-md-12">
-                    <div class="lib-row lib-desc">
-                      <h3><%= t('groups.show.no_conversation') %></h3>
-                      <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+              <div class="col-md-6">
+                <div class="lib-panel">
+                  <div class="row box-shadow">
+                    <div class="col-md-12">
+                      <div class="lib-row lib-desc">
+                        <h3><%= t('groups.show.no_conversation') %></h3>
+                        <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             <% end %>
 
             <%# <div class="col-md-3">
@@ -93,6 +94,7 @@
 
           </div>
         </div>
+
         <div class="row">
           <%= render partial: 'conversations/conversation', collection: @conversations, as: :conversation %>
         </div>

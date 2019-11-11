@@ -8,13 +8,20 @@ class Conversation < ApplicationRecord
 
   validates :body, presence: true
 
-  scope :post_conversations, -> { where(parent_id: nil) }
+  scope :post_conversations, ->           { where(parent_id: nil) }
+  scope :search_by_subject,  -> (subject) { where('lower(subject) like ?', "%#{subject&.downcase}%") }
 
   before_save  :format_tags
   after_create :update_replies_count
 
+  delegate :avatar, to: :user, prefix: true
+
   def parent
     Conversation.find_by(id: self.parent_id)
+  end
+
+  def three_related_posts
+    Conversation.post_conversations.search_by_subject(self.subject).first(3)
   end
 
   private
@@ -23,6 +30,6 @@ class Conversation < ApplicationRecord
     end
 
     def update_replies_count
-      self.parent.update(replies_count: replies_count + 1) if self.parent_id.present?
+      self.parent.increment!(:replies_count) if self.parent_id.present?
     end
 end

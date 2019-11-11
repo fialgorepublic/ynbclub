@@ -7,32 +7,35 @@
             <div class="">
               <div class="flex-l">
                 <div class="">
-                  <img class="" src="/assets/user-icon.png" width="100%">
+                  <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image' %>
                 </div>
+
                 <div class="m-l-10">
                   <p class="p-l"><%= group_user_name(conversation.user) %></p>
                   <p class="p-b">Saint L beau</p>
                 </div>
               </div>
             </div>
+
             <div class="m-l-10">
               <div class="flex-l">
                 <div class="">
                   <img class="" src="/assets/calender.png" width="100%">
                 </div>
+
                 <div class="m-l-10">
-                  <p class="p-b m-t-8">Posted: <%= posted_date(conversation) %></p>
+                  <p class="p-b m-t-8"><%= posted_date(conversation) %></p>
                 </div>
               </div>
             </div>
             <div class="m-l-10">
-              <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+              <%= new_reply_link(conversation) %>
             </div>
           </div>
         </div>
         <div class="join-grp-dscptn">
           <%= link_to conversation do %>
-          <h2><%= conversation.subject %></h2>
+            <h2><%= conversation.subject %></h2>
           <% end %>
           <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
           <div class="comment more">
@@ -56,7 +59,7 @@
             </div>
           </div>
           <div class="m-t-8">
-            <%= link_to 'New Reply', reply_conversation_path(conversation), class: "btn btn-primary new_reply_btn" %>
+            <%= new_reply_link(conversation) %>
           </div>
         </div>
       </div>
