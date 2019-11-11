@@ -1,7 +1,7 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner pos-rel-banner text-center">
-      <%#= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+      <%= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
       <div class="pos-abs-banner">
         <h1 class="">Conversations about everything.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md-12 blog_banner_btn">
         <% if current_user&.is_admin? %>
-        <%= link_to t('blogs.index.edit_banner_label'), "#conversationBannerUploadModal", data: { toggle: 'modal', target: '#conversationBannerUploadModal' }, class: 'btn edit_banner_btn btn-primary', id: 'conversation-banner-upload' %>
+          <%= link_to t('blogs.index.edit_banner_label'), "#conversationBannerUploadModal", data: { toggle: 'modal', target: '#conversationBannerUploadModal' }, class: 'btn edit_banner_btn btn-primary', id: 'conversation-banner-upload' %>
         <% end %>
       </div>
     </div>
@@ -53,8 +53,8 @@
       </div>
     </div>
 
-    <div class="col-md-12 col-lg-12 class-z" id="groups">
-      <%#= render 'all_groups' %>
+    <div class="row" id="conversations">
+      <%= render @conversations %>
     </div>
     <br />
 

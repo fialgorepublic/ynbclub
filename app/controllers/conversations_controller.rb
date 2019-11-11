@@ -5,9 +5,9 @@ class ConversationsController < ApplicationController
   # GET /conversations
   # GET /conversations.json
   def index
-    conversations  = Conversation.all
+    conversations  = Conversation.includes(:replies).post_conversations
     conversations  = conversations.sort_by_title(params[:sort_type]) if params[:sort_type].present?
-    @conversations = conversations.paginate(page: params[:page], per_page: 9)
+    @conversations = conversations.paginate(page: params[:page], per_page: 10)
     @next_page     = @conversations.next_page
 
     respond_to do |format|
