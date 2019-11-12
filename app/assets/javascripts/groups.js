@@ -2,7 +2,6 @@ $(document).on('turbolinks:load', function () {
   imageCropper();
   sortByTitle();
   filterByCategory();
-  filterByName();
 
   $('.group-create-btn').click(function (e) {
     return $('#group-from').submit();
@@ -137,67 +136,5 @@ $(document).on('turbolinks:load', function () {
   $('#group-banner-upload').click(function () {
     $('#groupBannerUploadModal').modal('show');
   })
-
-  function filterByName() {
-    $(".post-sorting").removeClass("add-z-minus");
-    $(".class-z").removeClass("add-z-minus");
-    $('.groups-search-result').hide();
-    $('.cross-icon').hide();
-    var timer;
-    $(".search-by-title").on('keyup', function (e) {
-      if (e.keyCode === 13) {
-        e.preventDefault();
-        $(".post-sorting").addClass("add-z-minus");
-        $(".class-z").addClass("add-z-minus");
-        if ($(this).val() == '') { return; }
-        $('.cross-icon').fadeIn();
-        submitSearchForm();
-      }
-    });
-
-    $('.cross-icon').click(function () {
-      fadeOutContent();
-    });
-
-    $(".search-by-title").on("input", function () {
-      if ($(this).val() == '') {
-        fadeOutContent(this);
-
-        return;
-      }
-      $(".post-sorting").addClass("add-z-minus");
-      $(".class-z").addClass("add-z-minus");
-
-      $('.cross-icon').fadeIn();
-      // clear the timer if it's already set:
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        submitSearchForm()
-      }, 500);
-    });
-  }
-
-  function submitSearchForm() {
-    var elem = document.getElementById('search-group-form');
-    Rails.fire(elem, 'submit');
-  }
-
-  function fadeOutContent(ele) {
-    $('.cross-icon').fadeOut();
-    $('.groups-search-result').fadeOut();
-    $(ele).val('');
-    $(".post-sorting").removeClass("add-z-minus");
-    $(".class-z").removeClass("add-z-minus");
-  }
 });
-$(document).mouseup(function (e) {
-  var container = $(".groups-search-result");
-  if (!container.is(e.target) && container.has(e.target).length === 0) {
-    container.hide();
-    $('.cross-icon').fadeOut();
-    $('.groups-search-result').fadeOut();
-    $("#group_title").val('');
-    $(".post-sorting").removeClass("add-z-minus");
-    $(".class-z").removeClass("add-z-minus");
-  }
-});
+

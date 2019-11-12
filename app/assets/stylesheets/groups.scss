@@ -752,12 +752,6 @@ img.lib-img-show {
   margin-bottom: 5px;
 }
 
-.groups-search-result {
-  background-color: white;
-  padding: 0px 15px 15px;
-  max-height: 280px;
-  overflow: scroll;
-}
 .remove-border {
   background-color: white;
   border-left: none;
@@ -820,11 +814,17 @@ img.lib-img-show {
 .searc {
   position: relative;
 }
-.groups-search-result {
+
+.search-result {
   position: absolute;
   width: 100%;
   border: solid 1px #cccccc;
+  background-color: white;
+  padding: 0px 15px 15px;
+  max-height: 280px;
+  overflow: scroll;
 }
+
 @media (max-width: 576px) {
   .pos-rel-banner img {
     position: relative;
@@ -890,13 +890,6 @@ img.lib-img-show {
     height: 100% !important;
 
   }
-  .groups-search-result {
-    background-color: white;
-    padding: 0px 15px 15px;
-    max-height: 90px;
-    overflow: scroll;
-  }
-
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 980px) {

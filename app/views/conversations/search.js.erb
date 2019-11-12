@@ -1,2 +1,2 @@
-$('.groups-search-result').fadeIn();
-$('.groups-search-result').html('<%= j render(partial: 'search_group', collection: @groups, as: :group) || "Not Found" %>');
+$('.search-result').fadeIn();
+$('.search-result').html('<%= j render(partial: 'search_conversation', collection: @conversations, as: :conversation) || "Not Found" %>');

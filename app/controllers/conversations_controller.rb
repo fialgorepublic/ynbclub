@@ -72,7 +72,7 @@ class ConversationsController < ApplicationController
   end
 
   def search
-    @conversations = Conversation.filter_by_subject(params[:conversation_subject])
+    @conversations = Conversation.post_conversations.filter_by_subject(params[:conversation_subject])
   end
 
   def banner
