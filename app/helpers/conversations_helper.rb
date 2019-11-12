@@ -36,4 +36,12 @@ module ConversationsHelper
   def conversation_sort_types
     [['Newest first', 1], ['Popular First', 2], ['A-Z', 3], ['Unanswered', 4]]
   end
+
+  def add_main_div_column
+    current_user.present? ? 'col-md-6' : 'col-md-8'
+  end
+
+  def add_stats_column
+    current_user.present? ? 'col-md-3' : 'col-md-4'
+  end
 end

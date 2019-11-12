@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :replies]
   before_action :set_conversation, only: [:show, :edit, :update, :destroy, :reply, :conversation_reply, :replies]
 
   # GET /conversations
