@@ -4,7 +4,7 @@
   </div>
 
   <div class="pl-3 padding-left-result">
-    <div class="flex-l">
+    <div class="flex-l hidden-sm hidden-xs">
       <div class="">
         <div class="flex-l">
           <div class="">
@@ -31,15 +31,16 @@
       </div>
     </div>
     <%= link_to conversation do %>
-      <h2 class="banner-h4-con"><%= conversation.subject %></h2>
+    <h2 class="banner-h4-con 
+      color-srch-con-h"><%= conversation.subject %></h2>
     <% end %>
     <p class="text-left banner-p hidden-sm hidden-xs">
-    <div class="grp-card-icon hidden-sm hidden-xs">
-      <i class="fa fa-heart color-for-icon-heart fs-15" width="100%"></i>
-      <p class="m-para-srch-con"><%= conversation.likes_count %></p>
-      <i class="fa fa-comment color-for-icon fs-15" width="100%"></i>
-      <p class="m-para-srch-con"><%= conversation.replies_count %></p>
-    </div>
+      <div class="grp-card-icon hidden-sm hidden-xs">
+        <i class="fa fa-heart color-for-icon-heart fs-15" width="100%"></i>
+        <p class="m-para-srch-con"><%= conversation.likes_count %></p>
+        <i class="fa fa-comment color-for-icon fs-15" width="100%"></i>
+        <p class="m-para-srch-con"><%= conversation.replies_count %></p>
+      </div>
   </div>
 </div>
 

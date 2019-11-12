@@ -338,6 +338,7 @@ span.name {
   font-size: 16px;
   text-align: left;
   margin-top: 10px;
+  color: #000 !important;
 }
 .sidebar-h-con{    
   font-size: 18px;
@@ -458,7 +459,7 @@ blockquote {
 }
 .p-b-side-con{
   font-weight: bolder;
-  font-size: 9px;
+  font-size: 10px;
 }
 .box-shadow-conversation-profile-admin-middle{
   box-shadow: none;
@@ -487,4 +488,21 @@ blockquote {
   height: 32px;
   width: 32px !important;
   border-radius: 40px;
+}
+.con-sorting-m-0{
+  margin: 0px !important;
+}
+.color-srch-con-h{
+  color: #000 !important;
+}
+
+.color-srch-con-h:hover{
+  color: #000 !important;
+}
+button.medium-insert-buttons-show {
+  display: none;
+}
+.color-comment{
+  font-size: 13px;
+    color: #818181;
 }

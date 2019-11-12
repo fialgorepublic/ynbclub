@@ -11,6 +11,8 @@ $(document).on('turbolinks:load', function () {
         e.preventDefault();
         $(".post-sorting").addClass("add-z-minus");
         $(".class-z").addClass("add-z-minus");
+        $(".con-z").addClass("add-z-minus");
+        $(".blog_banner_btn").addClass("add-z-minus");
         if ($(this).val() == '') { return; }
         $('.cross-icon').fadeIn();
         submitSearchForm();
@@ -30,6 +32,9 @@ $(document).on('turbolinks:load', function () {
       $(".post-sorting").addClass("add-z-minus");
       $(".class-z").addClass("add-z-minus");
       $('#conversations').addClass("add-z-minus");
+      $(".con-z").addClass("add-z-minus");
+      $(".blog_banner_btn").addClass("add-z-minus");
+
 
       $('.cross-icon').fadeIn();
       // clear the timer if it's already set:
@@ -52,6 +57,9 @@ $(document).on('turbolinks:load', function () {
     $(".post-sorting").removeClass("add-z-minus");
     $(".class-z").removeClass("add-z-minus");
     $('#conversations').removeClass("add-z-minus");
+    $(".con-z").removeClass("add-z-minus");
+    $(".blog_banner_btn").removeClass("add-z-minus");
+
   }
 
   $(document).mouseup(function (e) {
@@ -64,6 +72,9 @@ $(document).on('turbolinks:load', function () {
       $("#conversation_subject").val('');
       $(".post-sorting").removeClass("add-z-minus");
       $(".class-z").removeClass("add-z-minus");
+      $(".con-z").removeClass("add-z-minus");
+      $(".blog_banner_btn").removeClass("add-z-minus");
+
     }
   });
 });
