@@ -45,6 +45,7 @@
             <br>
           </div>
         </div>
+
         <div class="row">
 
           <div class="middle-row-grp">
@@ -93,9 +94,9 @@
 
           </div>
         </div>
-        <div class="row">
 
-          <%= render partial: 'conversations/conversation', collection: @conversations, as: :conversation %>
+        <div class="row">
+          <%= render partial: 'groups/conversation', collection: @conversations, as: :conversation %>
         </div>
       </div>
     </div>

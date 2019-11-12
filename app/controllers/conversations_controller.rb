@@ -1,13 +1,13 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_conversation, only: [:show, :edit, :update, :destroy]
+  before_action :set_conversation, only: [:show, :edit, :update, :destroy, :reply, :conversation_reply]
 
   # GET /conversations
   # GET /conversations.json
   def index
-    conversations  = Conversation.all
-    conversations  = conversations.sort_by_title(params[:sort_type]) if params[:sort_type].present?
-    @conversations = conversations.paginate(page: params[:page], per_page: 9)
+    conversations  = Conversation.includes(:replies).post_conversations
+    conversations  = conversations.sort_by_type(params[:sort_type]) if params[:sort_type].present?
+    @conversations = conversations.paginate(page: params[:page], per_page: 10)
     @next_page     = @conversations.next_page
 
     respond_to do |format|
@@ -19,6 +19,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
+    @related_posts = @conversation.three_related_posts
   end
 
   # GET /conversations/new
@@ -71,7 +72,7 @@ class ConversationsController < ApplicationController
   end
 
   def search
-    @groups = Group.filter_by_name(params[:conversation_subject])
+    @conversations = Conversation.post_conversations.filter_by_subject(params[:conversation_subject])
   end
 
   def banner
@@ -79,14 +80,27 @@ class ConversationsController < ApplicationController
     redirect_to conversations_path
   end
 
+  def reply
+    @reply = @conversation.replies.new
+  end
+
+  def conversation_reply
+    reply = @conversation.replies.create(conversation_params.merge(user: current_user))
+    if reply
+      redirect_to @conversation, notice: 'Posted your reply successfully.'
+    else
+      render :reply
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
-      @conversation = Conversation.find(params[:id])
+      @conversation = Conversation.includes(:user, :group, :replies).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params.require(:conversation).permit(:subject, :body, :group_id, :tags)
+      params.require(:conversation).permit(:subject, :body, :group_id, tags: [])
     end
 end

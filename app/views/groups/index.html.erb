@@ -5,7 +5,7 @@
       <div class="pos-abs-banner">
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
-        <%= form_tag search_groups_path, method: :get, remote: true, id: 'search-group-form' do |f| %>
+        <%= form_tag search_groups_path, method: :get, remote: true, id: 'search-form' do |f| %>
           <div class="wrap">
             <div class="searc">
               <div class="input-group">
@@ -16,7 +16,7 @@
                 <span class="input-group-addon search-border"><i
                     class="glyphicon glyphicon-search color-srch-icon"></i></span>
               </div>
-              <div class="groups-search-result">
+              <div class="search-result">
               </div>
             </div>
           </div>

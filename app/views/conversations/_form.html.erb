@@ -1,18 +1,28 @@
-<%= form_with(model: conversation, local: true) do |form| %>
-  <div class="ambassador-dashboard-con">
-    <div class="form-group">
-      <%= form.text_field :subject, class: 'form-control con-title-', placeholder: 'Add Title', required: true  %>
-    </div>
-  </div>
-
-  <% if params[:group_id].blank? %>
+<%= form_for(conversation, url: url, local: true) do |form| %>
+  <% unless reply? %>
     <div class="ambassador-dashboard-con">
       <div class="form-group">
-        <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control con-catagories' %>
+        <%= form.text_field :subject, class: 'form-control con-title-', placeholder: 'Enter Title', required: true  %>
       </div>
     </div>
+
+    <div class="tags-div">
+      <%= text_field_tag 'conversation[tags][]', nil, class: "tags-field form-group", data: { role: "tagsinput" }, placeholder: "Add comma separated tags." %>
+    </div>
+    <br>
+
+    <% if params[:group_id].blank? %>
+      <div class="ambassador-dashboard-con">
+        <div class="form-group">
+          <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control' %>
+        </div>
+      </div>
+    <% else %>
+      <%= form.hidden_field :group_id, value: params[:group_id] %>
+    <% end %>
   <% else %>
-    <%= form.hidden_field :group_id, value: params[:group_id] %>
+    <%= form.hidden_field :group_id, value: @conversation.group_id %>
+    <%= hidden_field_tag  :id, @conversation.id %>
   <% end %>
 
   <div class="ambassador-dashboard-con">
