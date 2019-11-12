@@ -29,4 +29,8 @@ class Group < ApplicationRecord
   end
   scope :filter_by_categories, -> (categroy_ids) { where(group_category_id: categroy_ids.split(',')) }
   scope :filter_by_name, -> (name) { where('lower(name) like ?', "%#{name&.downcase}%") }
+
+  def post_conversations
+    conversations.post_conversations
+  end
 end

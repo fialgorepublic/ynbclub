@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @conversations = @group.conversations.post_conversations
+    @conversations = @group.post_conversations.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /groups/new

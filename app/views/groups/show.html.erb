@@ -47,21 +47,20 @@
         </div>
 
         <div class="row">
-
           <div class="middle-row-grp">
             <% if @conversations.count.zero? %>
-            <div class="col-md-6">
-              <div class="lib-panel">
-                <div class="row box-shadow">
-                  <div class="col-md-12">
-                    <div class="lib-row lib-desc">
-                      <h3><%= t('groups.show.no_conversation') %></h3>
-                      <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+              <div class="col-md-6">
+                <div class="lib-panel">
+                  <div class="row box-shadow">
+                    <div class="col-md-12">
+                      <div class="lib-row lib-desc">
+                        <h3><%= t('groups.show.no_conversation') %></h3>
+                        <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             <% end %>
 
             <%# <div class="col-md-3">
@@ -95,9 +94,12 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="group-conversations">
           <%= render partial: 'groups/conversation', collection: @conversations, as: :conversation %>
         </div>
+
+        <%= hidden_field_tag :page, @conversations.next_page %>
+        <%= render partial: 'shared/show_more', locals: { objects_collection: @conversations, url: group_conversations_path(@group.id) } %>
       </div>
     </div>
   </div>

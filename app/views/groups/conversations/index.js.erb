@@ -1,0 +1,13 @@
+$('.loader').hide();
+<% if params[:page].present? %>
+  $('#group-conversations').append('<%= j render partial: 'groups/conversation', collection: @conversations %>');
+<% else %>
+  $('#group-conversations').html('<%= j render partial: 'groups/conversation', collection: @conversations %> %>');
+<% end %>
+$('#page').val('<%= @next_page %>')
+$('#load-more').show();
+currentPage = '<%= @conversations.current_page %>';
+totalPages  = '<%= @conversations.total_pages %>';
+if (currentPage == totalPages) {
+  $('#load-more').hide();
+}
