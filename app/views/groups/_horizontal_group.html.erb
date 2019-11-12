@@ -11,16 +11,16 @@
           <div class="flex-sb">
             <h2><%= group.name %></h2>
             <% if current_user&.is_admin? %>
-            <div class="lib-row lib-header">
-              <div class="grp-edit-delete-icon">
-                <%= link_to edit_group_path(group), class: "bg-groups-circle1" do %>
-                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                <% end %>
-                <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle1 delete-group-link" do %>
-                <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                <% end %>
+              <div class="lib-row lib-header">
+                <div class="grp-edit-delete-icon">
+                  <%= link_to edit_group_path(group), class: "bg-groups-circle1" do %>
+                  <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                  <% end %>
+                  <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle1 delete-group-link" do %>
+                  <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                  <% end %>
+                </div>
               </div>
-            </div>
             <% end %>
           </div>
           <p class="groups-cards-p"><%= group.description %></p>

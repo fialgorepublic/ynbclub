@@ -9,17 +9,19 @@
             </div>
 
             <div class="col-md-9">
-              <div class="lib-row lib-header">
-                <div class="grp-edit-delete-icon">
-                  <%= link_to edit_group_path(@group), class: 'content-display' do %>
-                  <img src="/assets/edit-icon.png" width="100%">
-                  <% end %>
+              <% if current_user&.is_admin? %>
+                <div class="lib-row lib-header">
+                  <div class="grp-edit-delete-icon">
+                    <%= link_to edit_group_path(@group), class: 'content-display' do %>
+                      <img src="/assets/edit-icon.png" width="100%">
+                    <% end %>
 
-                  <%= link_to @group, class: 'content-display', method: :delete, data: { confirm: "Are you sure?" } do %>
-                  <img class="" src="/assets/delete-icon.png" width="100%">
-                  <% end %>
+                    <%= link_to @group, class: 'content-display', method: :delete, data: { confirm: "Are you sure?" } do %>
+                      <img class="" src="/assets/delete-icon.png" width="100%">
+                    <% end %>
+                  </div>
                 </div>
-              </div>
+              <% end %>
 
               <div class="lib-row lib-desc">
                 <h2><%= @group.name %></h2>
