@@ -357,7 +357,10 @@ Rails.application.routes.draw do
       get  :search
       post :conversation_reply
     end
-    get :reply, on: :member
+    member do
+      get :reply
+      get :replies
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
