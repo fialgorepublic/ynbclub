@@ -506,3 +506,19 @@ button.medium-insert-buttons-show {
   font-size: 13px;
     color: #818181;
 }
+.medium-insert-images.medium-insert-images-left, .medium-insert-images-left.mediumInsert, .mediumInsert.small {
+  max-width: 33.33%;
+  float: left;
+  margin: 0 30px 0px 0 !important;
+}
+.medium-insert-images figure figcaption, .mediumInsert figure figcaption, .medium-insert-embeds figure figcaption, .mediumInsert-embeds figure figcaption {
+  position: relative;
+  z-index: 1;
+  display: block;
+  text-align: center;
+  margin: 10px 0 0px !important;
+  color: #ccc;
+  font-size: .8em;
+  font-style: italic;
+  outline: 0 solid transparent;
+}

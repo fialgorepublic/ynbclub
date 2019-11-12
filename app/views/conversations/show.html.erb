@@ -39,8 +39,15 @@
 
           <div class="join-grp-dscptn">
             <h2><%= @conversation.subject %></h2>
-            <div class="comment more">
-              <%= @conversation.body&.html_safe %>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class=" text-left pl-40 color-comment">
+                  <div class="comment more">
+                    <%= @conversation.body&.html_safe %>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="flex-sb">
@@ -77,7 +84,7 @@
             <li><a href="#">1</a></li>
             <li class="active"><a href="#">2</a></li>
             <li><a href="#">3</a></li>
-            <li><a href="#">.</a></li>
+            <li><a href="#">4</a></li>
             <li><a href="#">.</a></li>
             <li><a href="#">.</a></li>
             <li><a href="#">Next&gt;</a></li>
