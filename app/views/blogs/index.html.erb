@@ -1,7 +1,7 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner text-center">
-      <%#= image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+      <%= image_tag @page.blog_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
     </div>
 
     <div class="row">
@@ -63,22 +63,7 @@
     <br />
 
     <%= hidden_field_tag :page, @next_page %>
-
-    <div class="row show-more-button">
-      <div class="col-md-8">
-        <% unless @blogs.current_page == @blogs.total_pages %>
-        <div class="custom-showMore-btn pull-right">
-          <%= link_to "javascript:void(0);", class: "btn btn-primary showMore-btn-style", id: "load-more", data: { url: blogs_path } do %>
-          <i class="fa fa-plus"></i> <%= t('blogs.index.show_more_label') %>
-          <% end %>
-        </div>
-        <% end %>
-      </div>
-
-      <div class="col-md-4">
-        <a href="javascript:" id="custom-topPage-btn"> <i class="fa fa-angle-up"></i></a>
-      </div>
-    </div>
+    <%= render partial: 'shared/show_more', locals: { objects_collection: @blogs, url: blogs_path } %>
   </div>
 </div>
 
