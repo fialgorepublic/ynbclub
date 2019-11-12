@@ -65,12 +65,12 @@
           </div>
 
           <% unless @conversation.replies_count.zero? %>
-            <h3><%= @conversation.replies_count %> Replies</h3>
-            <hr>
+          <h3><%= @conversation.replies_count %> Replies</h3>
+          <hr>
 
-            <div id='replies'>
-              <%= render partial: 'reply', collection: @conversation.replies, as: :reply %>
-            </div>
+          <div id='replies'>
+            <%= render partial: 'reply', collection: @conversation.replies, as: :reply %>
+          </div>
           <% end %>
 
           <ul class="pagination f-l">
@@ -116,8 +116,8 @@
   </div>
 
   <% if @related_posts.present? %>
-    <h2 class="sidebar-h-con">Related Posts</h2>
-    <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
+  <h2 class="sidebar-h-con">Related Posts</h2>
+  <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
   <% end %>
 
   <h2 class="sidebar-h-con">Share on social network</h2>

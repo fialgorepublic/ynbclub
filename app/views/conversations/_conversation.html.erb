@@ -1,6 +1,6 @@
 <div class="col-md-9">
   <div class="middle-row-grp">
-    <div class="col-md-12">
+    <div class="col-md-12 class-z">
       <div class="lib-panel">
         <div class="row box-shadow-conversation-profile-admin">
           <div class="flex-sb">
@@ -44,7 +44,7 @@
 
           <div class="join-grp-dscptn">
             <%= link_to conversation do %>
-              <h2><%= conversation.subject %></h2>
+            <h2><%= conversation.subject %></h2>
             <% end %>
 
             <div class="comment more">
@@ -54,22 +54,22 @@
           </div>
 
           <% if conversation.replies.present? %>
-            <% reply = conversation.replies.first %>
-            <h5>Latest reply</h5>
-            <div class="flex-l pt-10">
-              <div class="">
-                <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
-              </div>
-
-              <div class="m-l-10 ">
-                <p class="p-b m-p-0 text-left"><%= group_user_name(reply.user) %></p>
-                <p class="p-l"><%= posted_date(reply) %></p>
-              </div>
+          <% reply = conversation.replies.first %>
+          <h5>Latest reply</h5>
+          <div class="flex-l pt-10">
+            <div class="">
+              <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
             </div>
 
-            <div class="comment more text-left pl-40 bbbb">
-              <%= reply.body&.html_safe %>
+            <div class="m-l-10 ">
+              <p class="p-b m-p-0 text-left"><%= group_user_name(reply.user) %></p>
+              <p class="p-l"><%= posted_date(reply) %></p>
             </div>
+          </div>
+
+          <div class="comment more text-left pl-40 bbbb">
+            <%= reply.body&.html_safe %>
+          </div>
           <% end %>
 
 
