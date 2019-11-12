@@ -18,10 +18,12 @@ module GroupsHelper
   end
 
   def join_button_text(group_id)
+    return 'Join Group' if current_user.blank?
     current_user.joined_group?(group_id) ? 'Leave Group' : 'Join Group'
   end
 
   def join_link_path(group_id)
+    return join_user_group_path(1, group_id) if current_user.blank?
     current_user.joined_group?(group_id) ? leave_user_group_path(current_user, group_id) : join_user_group_path(current_user, group_id)
   end
 
