@@ -65,29 +65,22 @@
           </div>
 
           <% unless @conversation.replies_count.zero? %>
-          <h3><%= @conversation.replies_count %> Replies</h3>
-          <hr>
+            <h3><%= @conversation.replies_count %> Replies</h3>
+            <hr>
 
-          <div id='replies'>
-            <%= render partial: 'reply', collection: @conversation.replies, as: :reply %>
-          </div>
+            <div id='replies'>
+              <%= render partial: 'reply', collection: @replies, as: :reply %>
+            </div>
           <% end %>
 
-          <ul class="pagination f-l">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">Next&gt;</a></li>
-            <li><a href="#">Last&gt;&gt;</a></li>
-          </ul>
+
         </div>
+
+        <%= hidden_field_tag :page, @replies.next_page %>
+        <%= render partial: 'shared/show_more', locals: { objects_collection: @replies, url: replies_conversation_path(@conversation) } %>
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="col-md-3">

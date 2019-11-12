@@ -1,4 +1,5 @@
 class Conversation < ApplicationRecord
+  self.per_page = 10
   default_scope { order(updated_at: :desc) }
 
   belongs_to :group, counter_cache: true

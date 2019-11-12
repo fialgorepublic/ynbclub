@@ -1,0 +1,13 @@
+$('.loader').hide();
+<% if params[:page].present? %>
+  $('#replies').append('<%= j render partial: 'reply', collection: @replies, as: :reply %>');
+<% else %>
+  $('#replies').html('<%= j render partial: 'reply', collection: @replies, as: :reply %>');
+<% end %>
+$('#page').val('<%= @next_page %>')
+$('#load-more').show();
+currentPage = '<%= @replies.current_page %>';
+totalPages  = '<%= @replies.total_pages %>';
+if (currentPage == totalPages) {
+  $('#load-more').hide();
+}
