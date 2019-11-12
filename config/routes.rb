@@ -347,6 +347,7 @@ Rails.application.routes.draw do
       get  :search
     end
     get :users, on: :member
+    resources :conversations, only: [:index], module: 'groups'
   end
   resources :group_categories
 
