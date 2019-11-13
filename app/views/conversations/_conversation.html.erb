@@ -29,7 +29,7 @@
                 </div>
               </div>
 
-              <div class="m-l-10">
+              <div class="m-l-10 mb-l-0">
                 <%= new_reply_link(conversation) %>
               </div>
             </div>
@@ -67,8 +67,12 @@
             </div>
           </div>
 
-          <div class="comment more text-left pl-40 bbbb">
-            <%= reply.body&.html_safe %>
+          <div class="row bbbb">
+            <div class="col-md-12">
+              <div class="comment more text-left pl-40 ">
+                <%= reply.body&.html_safe %>
+              </div>
+            </div>
           </div>
           <% end %>
 
