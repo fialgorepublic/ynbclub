@@ -67,7 +67,9 @@
             </div>
 
             <div class="m-l-10 m-t-12">
-              <p class="fs-12"><%= reply.replies_count %></p>
+              <%= link_to reply do %>
+                <p class="fs-12"><%= reply.replies_count %></p>
+              <% end %>
             </div>
 
             <div class="m-l-10">
@@ -75,9 +77,7 @@
             </div>
 
             <div class="m-l-10 m-t-8">
-              <%= link_to reply do %>
-                <p class="fs-12 m-t-3"><%= reply.likes_count %></p>
-              <% end %>
+              <p class="fs-12 m-t-3"><%= reply.likes_count %></p>
             </div>
           </div>
 
