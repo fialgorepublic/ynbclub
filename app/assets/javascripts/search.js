@@ -56,6 +56,7 @@ $(document).on('turbolinks:load', function () {
 
   $(document).mouseup(function (e) {
     var container = $(".search-result");
+    if(container.length == 0) { return; }
     if (!container.is(e.target) && container.has(e.target).length === 0) {
       container.hide();
       $('.cross-icon').fadeOut();
