@@ -37,10 +37,6 @@ module BlogsHelper
     'fa fa-heart'
   end
 
-  def blog_screen_size
-    current_user.present? ? 'col-md-9' : 'col-md-12'
-  end
-
   def render_row_class(blog_type)
     return 'pl-4' if blog_type == 'expanded'
     'row pl-5'
@@ -53,10 +49,6 @@ module BlogsHelper
   def render_blog_count_class(blog_type)
     return 'col-md-3' if blog_type == 'expanded'
     'col-md-2 text-right'
-  end
-
-  def add_container
-    current_user.present? ? '' : 'container'
   end
 
   def render_image(blog)

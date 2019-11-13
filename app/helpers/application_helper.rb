@@ -155,4 +155,12 @@ module ApplicationHelper
   def blog_resource?
     (action_name == "edit" || action_name == "new") && controller_name == "blogs"
   end
+
+  def blog_screen_size
+    current_user.present? ? 'col-md-9' : 'col-md-12'
+  end
+
+  def add_container
+    current_user.present? ? 'container-fluid' : 'container'
+  end
 end
