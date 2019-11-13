@@ -27,23 +27,25 @@
     <div class="row">
       <div class="col-md-12 blog_banner_btn">
         <% if current_user&.is_admin? %>
-          <%= link_to t('blogs.index.edit_banner_label'), "#conversationBannerUploadModal", data: { toggle: 'modal', target: '#conversationBannerUploadModal' }, class: 'btn edit_banner_btn btn-primary', id: 'conversation-banner-upload' %>
+        <%= link_to t('blogs.index.edit_banner_label'), "#conversationBannerUploadModal", data: { toggle: 'modal', target: '#conversationBannerUploadModal' }, class: 'btn edit_banner_btn btn-primary', id: 'conversation-banner-upload' %>
         <% end %>
       </div>
     </div>
 
     <div class="row" style="margin-top: 10px;">
       <div class="post-heading blog-redesign-style">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="heading-featured">
             <h1>Conversations</h1>
           </div>
         </div>
 
         <% if @conversations.count > 0 %>
-        <div class="col-md-4 post-sorting">
-          <p>SORTING</p>
-          <%= select_tag :sort_type, options_for_select(conversation_sort_types, selected: params[:sort_type]), class: 'sorting-fltr', id: 'subject-sort' %>
+        <div class="col-md-3 ">
+          <div class="post-sorting">
+            <p>SORTING</p>
+            <%= select_tag :sort_type, options_for_select(conversation_sort_types, selected: params[:sort_type]), class: 'sorting-fltr', id: 'subject-sort' %>
+          </div>
         </div>
         <% end %>
 
