@@ -1050,6 +1050,17 @@ input.form-control.con-title-:focus {
   //   .box-shadow a {
   //     font-size: px;
   // }
+  .pp-k {
+    padding-left: 16px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center !important;
+    flex-wrap: wrap;
+}
+  p.p-b {
+    font-weight: bolder;
+    font-size: 11px !important;
+}
   .mb-l-0{
     margin-left: 0px !important;
   }
@@ -1213,4 +1224,7 @@ input.form-control.con-title-:focus {
   float: left;
   background: transparent;
   margin-left: 10px;
+}
+button.medium-insert-buttons-show {
+  display: none;
 }
