@@ -28,4 +28,8 @@ module UsersHelper
     return 0 if not_paid <= 0
     not_paid
   end
+
+  def user_avatar(user)
+    user.avatar.attached? ? user.avatar : '/assets/1user-icon.png'
+  end
 end

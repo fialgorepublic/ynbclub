@@ -393,3 +393,11 @@ margin-right: 20px;
     margin-bottom: 0px;
     margin-top: 10px;
 }
+
+.user-list1 {
+  .user-image {
+    object-fit: cover;
+    margin: 0;
+    border-radius: 100%;
+  }
+}
