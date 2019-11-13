@@ -112,11 +112,14 @@ img{
 .newBlog-style{
   box-shadow: unset !important;
   h2{
-    i{
-    border: 1px solid #444;
-    color: #444;
-    padding: 10px 17px;
-    font-size: 18px;}
+    i
+    {
+      border: 1px solid #444;
+      color: #444;
+      padding: 10px 17px;
+      font-size: 18px;
+      border-radius: 100%;
+    }
   }
 
   h2{
