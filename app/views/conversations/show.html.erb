@@ -50,16 +50,20 @@
                   <div class="">
                     <i class="fa fa-comment fs-20" style="color: #256664;"></i>
                   </div>
+
                   <div class="m-l-10 m-t-12">
                     <p class="fs-12"><%= @conversation.replies_count %></p>
                   </div>
+
                   <div class="m-l-10">
                     <%= like_dislike_link(@conversation) %>
                   </div>
+
                   <div class="m-l-10 m-t-8">
-                    <p class="fs-12 m-t-3"><%= @conversation.likes_count %></p>
+                    <p class="fs-12 m-t-3" id="likes-count-<%= @conversation.id %>"><%= @conversation.likes_count %></p>
                   </div>
                 </div>
+
                 <div class="m-t-8">
                   <%= link_to 'New Reply', reply_conversation_path(@conversation), class: "btn btn-primary new_reply_btn" %>
                 </div>
@@ -93,7 +97,7 @@
           <div class="flex-c social-con-padding">
             <div class="">
               <%= like_dislike_link(@conversation) %>
-              <p class="m-0"><%= @conversation.likes_count %></p>
+              <p class="m-0" id="likes-count-<%= @conversation.id %>"><%= @conversation.likes_count %></p>
             </div>
 
             <div class="">
