@@ -1312,7 +1312,7 @@ button.comnt-btn-style {
 
 .post-sorting {
   border-bottom: 1px solid #444;
-  margin: 0px 0px;
+  margin: 0px 10px;
   padding: 0px 0px 5px;
   .sorting-fltr {
     width: 100%;
@@ -2493,6 +2493,7 @@ label.error {
   border-radius: 100px;
   display: none;
   box-shadow: 0px 0px 15px #eee;
+  z-index: 100;
 }
 
 #custom-topPage-btn i {

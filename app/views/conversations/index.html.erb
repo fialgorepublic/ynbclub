@@ -42,7 +42,7 @@
 
         <% if @conversations.count > 0 %>
         <div class="col-md-3 ">
-          <div class="post-sorting">
+          <div class="post-sorting m-0">
             <p>SORTING</p>
             <%= select_tag :sort_type, options_for_select(conversation_sort_types, selected: params[:sort_type]), class: 'sorting-fltr', id: 'subject-sort' %>
           </div>

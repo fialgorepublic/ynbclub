@@ -1,5 +1,5 @@
 <div class="<%= add_container %>">
-  <div class="user_conversation <%= add_main_div_column %>">
+  <div class="user_conversation mb-p-0 <%= add_main_div_column %>">
     <div class="middle-row-grp">
       <div class="col-md-12">
         <div class="lib-panel">
@@ -67,12 +67,12 @@
             </div>
 
             <% unless @conversation.replies_count.zero? %>
-              <h3><%= @conversation.replies_count %> Replies</h3>
-              <hr>
+            <h3><%= @conversation.replies_count %> Replies</h3>
+            <hr>
 
-              <div id='replies'>
-                <%= render partial: 'reply', collection: @replies, as: :reply %>
-              </div>
+            <div id='replies'>
+              <%= render partial: 'reply', collection: @replies, as: :reply %>
+            </div>
             <% end %>
 
 
@@ -111,15 +111,15 @@
     </div>
 
     <% if @related_posts.present? %>
-      <h2 class="sidebar-h-con">Related Posts</h2>
-      <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
+    <h2 class="sidebar-h-con">Related Posts</h2>
+    <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
     <% end %>
 
     <h2 class="sidebar-h-con">Share on social network</h2>
     <div class="">
       <div class="lib-panel">
         <div class="row box-shadow-conversation-profile-admin-middle">
-          <div class="flex-l social-con-padding">
+          <div class="flex-c social-con-padding">
             <div class="">
               <img src="/assets/fb.png">
             </div>
