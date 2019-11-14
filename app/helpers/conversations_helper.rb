@@ -50,9 +50,15 @@ module ConversationsHelper
   end
 
   def like_dislike_link(conversation)
-    conversation_like_exists = conversation.conversation_like_exists?(current_user.id)
-    link_to like_dislike_path(conversation_like_exists, conversation.id), remote: true, class: 'like-dislike-convo', data: { conversation_id: conversation.id } do
-      "<i class='fa fa-heart fs-20 #{conversation_like_exists ? 'red-color' : 'green-color'}'></i>".html_safe
+    if current_user.blank?
+      link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' } do
+        "<i class='fa fa-heart fs-20 green-color'></i>".html_safe
+      end
+    else
+      conversation_like_exists = conversation.conversation_like_exists?(current_user.id)
+      link_to like_dislike_path(conversation_like_exists, conversation.id), remote: true, class: 'like-dislike-convo', data: { conversation_id: conversation.id } do
+        "<i class='fa fa-heart fs-20 #{conversation_like_exists ? 'red-color' : 'green-color'}'></i>".html_safe
+      end
     end
   end
 end
