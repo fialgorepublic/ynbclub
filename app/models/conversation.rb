@@ -6,6 +6,7 @@ class Conversation < ApplicationRecord
   belongs_to :user,  counter_cache: true
 
   has_many   :replies, class_name: 'Conversation', foreign_key: 'parent_id'
+  has_many   :conversation_likes
 
   validates :body, presence: true
 

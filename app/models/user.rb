@@ -62,6 +62,7 @@ class User < ApplicationRecord
   has_many :joined_groups
   has_many :groups, through: :joined_groups
   has_many :conversations
+  has_many :conversation_likes
 
   has_one_attached :avatar
 
