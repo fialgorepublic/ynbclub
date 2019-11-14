@@ -5,7 +5,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12 blog_banner_btn">
+      <div class="col-md-12 blog_banner_btn class-z">
         <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
         <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
         <% end %>
