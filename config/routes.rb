@@ -360,6 +360,8 @@ Rails.application.routes.draw do
     member do
       get :reply
       get :replies
+      get :like
+      get :dislike
     end
   end
 
