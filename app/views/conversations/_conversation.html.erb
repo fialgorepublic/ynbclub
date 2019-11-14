@@ -81,19 +81,19 @@
           <div class="flex-sb">
             <div class="flex-l  m-t-8">
               <div class="">
-                <i class="fa fa-comment fs-20" style="color: #256664;"></i>
-              </div>
-
-              <div class="m-l-10 m-t-12">
-                <p class="fs-12"><%= conversation.replies_count %></p>
-              </div>
-
-              <div class="m-l-10">
                 <%= like_dislike_link(conversation) %>
               </div>
 
               <div class="m-l-10 m-t-8">
                 <p class="fs-12 m-t-3 likes-count-<%= conversation.id %>"><%= conversation.likes_count %></p>
+              </div>
+
+              <div class="m-l-10">
+                <i class="fa fa-comment fs-20" style="color: #256664;"></i>
+              </div>
+
+              <div class="m-l-10 m-t-12">
+                <p class="fs-12"><%= conversation.replies_count %></p>
               </div>
             </div>
 
