@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   # GET /conversations
   # GET /conversations.json
   def index
-    conversations  = Conversation.includes(:replies).post_conversations
+    conversations  = Conversation.includes(:replies, :conversation_likes).post_conversations
     conversations  = conversations.sort_by_type(params[:sort_type]) if params[:sort_type].present?
     @conversations = conversations.paginate(page: params[:page])
     @next_page     = @conversations.next_page
@@ -20,7 +20,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1.json
   def show
     @related_posts = @conversation.three_related_posts
-    @replies = @conversation.replies.paginate(page: params[:page])
+    @replies = @conversation.replies.includes(:conversation_likes).paginate(page: params[:page])
   end
 
   # GET /conversations/new
@@ -95,14 +95,22 @@ class ConversationsController < ApplicationController
   end
 
   def replies
-    @replies   = @conversation.replies.paginate(page: params[:page])
+    @replies   = @conversation.replies.includes(:conversation_likes).paginate(page: params[:page])
     @next_page = @replies.next_page
+  end
+
+  def like
+    ConversationLike.find_or_create_by(conversation_id: params[:id], user_id: current_user.id)
+  end
+
+  def dislike
+    ConversationLike.find_by(conversation_id: params[:id], user_id: current_user.id)&.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
-      @conversation = Conversation.includes(:user, :group, :replies).find(params[:id])
+      @conversation = Conversation.includes(:user, :group, :replies, :conversation_likes).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

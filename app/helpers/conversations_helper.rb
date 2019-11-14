@@ -44,4 +44,15 @@ module ConversationsHelper
   def add_stats_column
     current_user.present? ? 'col-md-3' : 'col-md-4'
   end
+
+  def like_dislike_path(conversation_like_exists, conversation_id)
+    conversation_like_exists ? dislike_conversation_path(id: conversation_id, user_id: current_user.id) : like_conversation_path(id: conversation_id, user_id: current_user.id)
+  end
+
+  def like_dislike_link(conversation)
+    conversation_like_exists = conversation.conversation_like_exists?(current_user.id)
+    link_to like_dislike_path(conversation_like_exists, conversation.id), remote: true, class: 'like-dislike-convo', data: { conversation_id: conversation.id} do
+      "<i class='fa fa-heart fs-20 #{conversation_like_exists ? 'red-color' : 'green-color'}'></i>".html_safe
+    end
+  end
 end

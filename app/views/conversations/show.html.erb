@@ -54,7 +54,7 @@
                     <p class="fs-12"><%= @conversation.replies_count %></p>
                   </div>
                   <div class="m-l-10">
-                    <i class="fa fa-heart fs-20" style="color: red;"></i>
+                    <%= like_dislike_link(@conversation) %>
                   </div>
                   <div class="m-l-10 m-t-8">
                     <p class="fs-12 m-t-3"><%= @conversation.likes_count %></p>
@@ -92,7 +92,7 @@
         <div class="row box-shadow-conversation-profile-admin">
           <div class="flex-c social-con-padding">
             <div class="">
-              <i class="fa fa-heart color-for-icon fs-20" style="color: red;" width="100%"></i>
+              <%= like_dislike_link(@conversation) %>
               <p class="m-0"><%= @conversation.likes_count %></p>
             </div>
 
@@ -111,8 +111,8 @@
     </div>
 
     <% if @related_posts.present? %>
-    <h2 class="sidebar-h-con">Related Posts</h2>
-    <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
+      <h2 class="sidebar-h-con">Related Posts</h2>
+      <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
     <% end %>
 
     <h2 class="sidebar-h-con">Share on social network</h2>

@@ -40,6 +40,10 @@ class Conversation < ApplicationRecord
     Conversation.post_conversations.filter_by_subject(self.subject).first(3)
   end
 
+  def conversation_like_exists?(user_id)
+    conversation_likes.find_by(user_id: user_id).present?
+  end
+
   private
     def format_tags
       self.tags = self.tags.map!{|tag| tag.split(',')}.flatten

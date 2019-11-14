@@ -32,7 +32,7 @@
       </div>
 
       <div class="m-l-10">
-        <i class="fa fa-heart fs-20" style="color: red;"></i>
+        <%= like_dislike_link(reply) %>
       </div>
 
       <div class="m-l-10 m-t-8">
@@ -75,12 +75,12 @@
 
           <div class="m-l-10 m-t-12">
             <%= link_to reply do %>
-            <p class="fs-12"><%= reply.replies_count %></p>
+              <p class="fs-12"><%= reply.replies_count %></p>
             <% end %>
           </div>
 
           <div class="m-l-10">
-            <i class="fa fa-heart fs-20" style="color: red;"></i>
+            <%= like_dislike_link(reply) %>
           </div>
 
           <div class="m-l-10 m-t-8">
