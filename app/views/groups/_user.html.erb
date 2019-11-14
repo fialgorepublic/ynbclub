@@ -3,19 +3,22 @@
     <div class="text-center">
       <%= image_tag user_avatar(user), size: '120x120', class: 'user-image' %>
     </div>
+
     <div class="text-center">
       <h2><%= group_user_name(user) %></h2>
       <h3 class="user-pp">Member Since: <%= user_joined_date(user) %> </h3>
     </div>
+
     <div class="flex-c">
       <div class="">
         <div class="flex-l">
           <div class="">
             <span class="box_bottom_icon"><i class="fa fa-heart" style="color:red"></i> <span
-              class="user-font-list">0</span></span>
+              class="user-font-list"><%= user.likes_count %></span></span>
           </div>
         </div>
       </div>
+
       <div class="m-l-10">
         <div class="flex-l">
           <div class="">
