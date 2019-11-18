@@ -1,22 +1,22 @@
 <div class="blog-box blog-box-sm">
   <div class="row">
     <div class="height-sm">
-    <div class="col-md-12">
-      <div class="blog-box-small-img">
-      <%= link_to blog do %>
-        <%= image_tag blog.avatar.attached? ? blog.avatar.variant(combine_options: { resize: '330x180^', gravity: 'Center', extent: '330x180^', background: "grey", quality: 95 }) : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
-      <% end %>
+      <div class="col-md-12">
+        <div class="blog-box-small-img">
+          <%= link_to blog do %>
+          <%= image_tag blog.avatar.attached? ? blog.avatar.variant(combine_options: { resize: '330x180^', gravity: 'Center', extent: '330x180^', background: "grey", quality: 95 }) : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
+          <% end %>
+        </div>
+        <div class="blog-box-content">
+          <p class="blog-sm-p">
+            <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+            <span class="with-un-blog"><%= blog_user_name(blog) %></span>
+            <span><%= blog_date blog %></span>
+            <span><%= blog.category_name %></span>
+          </p>
+          <h3><%= blog_title blog %></h3>
+        </div>
       </div>
-      <div class="blog-box-content">
-        <p class="blog-sm-p">
-          <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
-          <span class=""><%= blog_user_name(blog) %></span>
-          <span><%= blog_date blog %></span>
-          <span><%= blog.category_name %></span>
-        </p>
-        <h3><%= blog_title blog %></h3>
-      </div>
-    </div>
     </div>
   </div>
 
