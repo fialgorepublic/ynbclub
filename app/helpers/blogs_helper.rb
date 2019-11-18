@@ -52,7 +52,8 @@ module BlogsHelper
   end
 
   def render_image(blog)
-    return 'https://beta.saintlbeau.com/blogPlaceholder.jpeg' unless blog.avatar.attached?
+    return blog.avatar unless blog.avatar.variable?
+    return 'placeholder.png' unless blog.avatar.attached?
     blog.avatar.variant(combine_options: { resize: '800x400^', gravity: 'Center', extent: '1050x400^', background: "grey", quality: 95 })
   end
 
