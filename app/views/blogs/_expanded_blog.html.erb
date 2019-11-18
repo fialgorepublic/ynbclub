@@ -8,7 +8,7 @@ max-height:320px;
   <div class="row">
     <div class="col-md-6">
       <%= link_to blog do %>
-        <%= image_tag blog.avatar.attached? && blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : 'placeholder.png', width: '100%', class: 'image-height' %>
+        <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : blog.avatar, width: '100%', class: 'image-height' %>
       <% end %>
     </div>
 
