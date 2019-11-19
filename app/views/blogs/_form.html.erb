@@ -23,7 +23,7 @@
           <div class="row">
             <div class="col-md-8">
               <div class="field m-image-frame form-group">
-                <%= image_tag blog.avatar.variable? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : @blog.avatar, alt: "Add  icon", id: 'blah', size: '100x100') %>
+                <%= image_tag blog.avatar.variable? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : @blog.avatar, alt: "Add  icon", id: 'blah', size: '100x100' %>
                 <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
                 <div class="field form-group" id="image-upload-button-div">
                   <div class="fileUpload form-control start blog-imgUpload">

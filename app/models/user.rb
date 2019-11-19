@@ -68,6 +68,7 @@ class User < ApplicationRecord
 
   delegate :first_name, :surname, :address_line_1, :address_line_2, :city, :state, :zip_code, to: :profile, allow_nil: true
   delegate :phone_number, to: :profile, prefix: true, allow_nil: true
+  delegate :bank_name, :acc_holder_name, :account_number, to: :profile, allow_nil: true
 
   scope :avtive_ambassadors, -> (status) { where(role_id: ambassador_role_id, is_activated: status) }
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
@@ -145,6 +146,10 @@ class User < ApplicationRecord
       end
       User.where(id: users_with_points)
     end
+  end
+
+  def incomplete_profile?
+    phone_number.blank? || bank_name.blank? || acc_holder_name.blank? || account_number.blank?
   end
 
   def add_new_permissions permissions

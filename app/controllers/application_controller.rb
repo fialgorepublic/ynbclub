@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
+
+  before_action :set_locale
+  before_action :check_role
   before_action :allow_iframe_requests
   before_action :allow_user_request
   before_action :blog_not_found
@@ -11,10 +14,15 @@ class ApplicationController < ActionController::Base
   before_action :get_share_with_friend
   before_action :set_snapshot
   before_action :redirect_to_blogs, if: :shopify_redirected?
-  before_action :set_locale
 
   def set_locale
     I18n.locale = Rails.env.development? ? :en : params[:locale] || I18n.default_locale
+  end
+
+  def check_role
+    return if current_user.blank?
+    return if controller_name == 'dashboard'
+    return redirect_to dashboard_path if current_user&.role.blank? || current_user.is_ambassador? && current_user.incomplete_profile?
   end
 
   def after_sign_up_path(resource)

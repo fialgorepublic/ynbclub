@@ -53,7 +53,6 @@
         </div>
       </li>
 
-      <% unless current_user.is_admin? %>
       <li>
         <%= link_to dashboard_path, class: active_class(dashboard_path) do %>
         <i class="custom-icon" style="padding-right: 20px;"><img
@@ -61,34 +60,35 @@
         <% end %>
       </li>
 
-      <li>
-        <%= link_to share_with_friends_path, class: active_class(share_with_friends_path) do %>
-        <i style="padding-right: 20px;"><img src="/assets/icon-2.png"></i><%= t('sidebar.share_with_friends_label') %>
-        <% end %>
-      </li>
+      <% unless current_user.is_admin? %>
+        <li>
+          <%= link_to share_with_friends_path, class: active_class(share_with_friends_path) do %>
+          <i style="padding-right: 20px;"><img src="/assets/icon-2.png"></i><%= t('sidebar.share_with_friends_label') %>
+          <% end %>
+        </li>
 
-      <li>
-        <%= link_to take_snapshot_path, class: active_class(take_snapshot_path) do %>
-        <i style="padding-right: 17px;"><img src="/assets/icon-3.png"> </i>
-        <span><%= t('sidebar.take_and_share_label') %></span>
-        <% end %>
-      </li>
+        <li>
+          <%= link_to take_snapshot_path, class: active_class(take_snapshot_path) do %>
+          <i style="padding-right: 17px;"><img src="/assets/icon-3.png"> </i>
+          <span><%= t('sidebar.take_and_share_label') %></span>
+          <% end %>
+        </li>
 
-      <li data-toggle="" data-target="#" class="collapsed">
-        <%= link_to exchange_coins_users_path, class: "#{active_class(exchange_coins_users_path)}" do %>
-        <i class="fa fa-exchange" style="padding-right: 20px;"></i>
-        <span class=""><%= t('sidebar.exchange_coins_label') %></span>
-        <% end %>
-      </li>
+        <li data-toggle="" data-target="#" class="collapsed">
+          <%= link_to exchange_coins_users_path, class: "#{active_class(exchange_coins_users_path)}" do %>
+          <i class="fa fa-exchange" style="padding-right: 20px;"></i>
+          <span class=""><%= t('sidebar.exchange_coins_label') %></span>
+          <% end %>
+        </li>
 
-      <li data-toggle="" data-target="#" class="collapsed">
-        <a href="/orders/my" class="<%= active_class(my_orders_path) %>">
-          <i class="custom-icon" style="padding-right: 20px;">
-            <img src="/assets/icon-8.png">
-          </i>
-          <span style="display:inline-block;margin-left:6px;"><%= t('sidebar.my_orders_label') %></span>
-        </a>
-      </li>
+        <li data-toggle="" data-target="#" class="collapsed">
+          <a href="/orders/my" class="<%= active_class(my_orders_path) %>">
+            <i class="custom-icon" style="padding-right: 20px;">
+              <img src="/assets/icon-8.png">
+            </i>
+            <span style="display:inline-block;margin-left:6px;"><%= t('sidebar.my_orders_label') %></span>
+          </a>
+        </li>
       <% end %>
 
       <% unless current_user.is_buyer? %>
