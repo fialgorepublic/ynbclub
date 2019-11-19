@@ -106,11 +106,20 @@
       </li>
 
       <% if current_user.is_admin? %>
-      <li data-toggle="" data-target="#" class="collapsed">
-        <a href="/blogs/list" class="<%= 'active' if blog_list_action? %>">
-          <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
-          <span class="side-nav-style"><%= t('sidebar.blogs_list_label') %></span></a>
-      </li>
+        <li data-toggle="" data-target="#" class="collapsed">
+          <a href="/blogs/list" class="<%= 'active' if blog_list_action? %>">
+            <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
+            <span class="side-nav-style"><%= t('sidebar.blogs_list_label') %></span></a>
+        </li>
+      <% end %>
+
+      <% unless current_user.is_admin? %>
+        <li data-toggle="" data-target="#" class="collapsed">
+          <%= link_to earnings_users_path, class: active_class(earnings_users_path) do %>
+            <i class="custom-icon fa fa-money" style="padding-right: 2px;"></i>
+            <span class="side-nav-style"><%= t('sidebar.earnings_label') %></span>
+          <% end %>
+        </li>
       <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('all_orders', 'orders') %>

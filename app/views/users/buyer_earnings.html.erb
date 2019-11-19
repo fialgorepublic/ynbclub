@@ -1,0 +1,44 @@
+<div class="col-md-9">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-money"></i> <%= t('sidebar.earnings_label') %></h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3><%= t(:last_earned_coins_label) %></h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= render partial: 'dashboard/point', collection: @points %>
+  </div>
+
+  <% if current_user_points(current_user) > 4 %>
+    <div class="row">
+      <div class="col-md-offset-10 col-md-2">
+        <a href="/users/points"><%= t(:show_more_label) %>...</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  <% if params[:blog_not_found] %>
+    apprise("The blog no longer exist, Please contact support team for more information")
+  <% end %>
+
+  $(document).ready(function(){
+    function setCookies(){
+      if (Cookies.get('saintlbeau_user_email')) { return; }
+      email = '<%= current_user.email %>'
+      Cookies.set('saintlbeau_user_email', email, { expires: 365, domain: 'saintlbeau.com' })
+    }
+
+    setCookies();
+  })
+</script>
