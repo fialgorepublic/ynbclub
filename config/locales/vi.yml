@@ -63,6 +63,7 @@ vi:
     acc_setting_label:        Cài đặt tài khoản 
     referral_link_label:      Copy link giới thiệu
     group_categories:         Group Categories
+    earnings_label:           thu nhập
 
   referral_sales:
     index:

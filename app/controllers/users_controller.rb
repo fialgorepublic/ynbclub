@@ -234,6 +234,12 @@ class UsersController < ApplicationController
     @users = @q.result(distinct: true).paginate(page: params[:page])
   end
 
+  def earnings
+    @points = current_user.last_four_points
+    user_role = current_user.is_ambassador? ? 'ambassador' : 'buyer'
+    render "#{user_role}_earnings"
+  end
+
   private
   def set_user
     @user = User.find(params[:id])
