@@ -55,7 +55,7 @@
 
       <% unless current_user.is_admin? %>
       <li>
-        <%= link_to dashboard_path, class: active_class(dashboard_path) || active_class(buyerDashboard_path) do %>
+        <%= link_to dashboard_path, class: active_class(dashboard_path) do %>
         <i class="custom-icon" style="padding-right: 20px;"><img
             src="/assets/icon-1.png"></i><%= t('sidebar.dashboard_label_text') %>
         <% end %>

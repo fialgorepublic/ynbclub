@@ -82,7 +82,7 @@ class User < ApplicationRecord
                         { action_names: ['get_products_from_shopify', 'get_selected_products'], controller_name: 'products' },
                         { action_names: ['add_partner_information'], controller_name: 'partner_informations' },
                         { action_names: ['my_orders'], controller_name: 'orders' },
-                        { action_names: ['index', 'update_user_role', 'change_profile_picture', 'get_user_object', 'step_one', 'step_two', 'step_three', 'buyerDashboard', 'share_with_friends', 'acc_settings', 'take_snapshot'],
+                        { action_names: ['index', 'update_user_role', 'change_profile_picture', 'get_user_object', 'step_one', 'step_two', 'step_three', 'share_with_friends', 'acc_settings', 'take_snapshot'],
                           controller_name: 'dashboard' },
                         { action_names: ['add_comment', 'comment_like_unlike'], controller_name: 'comments' }
                       ]

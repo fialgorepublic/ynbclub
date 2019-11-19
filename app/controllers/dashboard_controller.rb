@@ -6,15 +6,8 @@ class DashboardController < ApplicationController
   include ApplicationHelper
 
   def index
-    return redirect_to referral_sales_path if current_user.is_admin?
-
-    return redirect_to buyerDashboard_path if current_user.is_buyer?
-
-    @user = current_user
     @role_selection = true if current_user.role.blank?
-
-    @profile = true if current_user.role.present? && !current_user.is_admin? && current_user.phone_number.blank?
-    @points = current_user.last_four_points
+    @profile = true if current_user.is_ambassador? && current_user.phone_number.blank?
   end
 
   def update_user_role
@@ -77,11 +70,6 @@ class DashboardController < ApplicationController
 
     share_url = user_shared_urls.create(url: url)
     insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
-  end
-
-  def buyerDashboard
-    @points = current_user.last_four_points
-    @user = current_user
   end
 
   def share_with_friends
