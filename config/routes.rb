@@ -305,6 +305,7 @@ Rails.application.routes.draw do
       post :generate_discount_code
       get :update_share_link_count
       get :share_link_count, path: '/invite_count'
+      get :earnings
     end
 
     resources :groups, only: [:index], controller: 'users/groups' do
