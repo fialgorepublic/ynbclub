@@ -108,9 +108,10 @@ class ApplicationController < ActionController::Base
   end
 
   def user_has_permission?
-    return true if current_user.is_admin? #for admin user
+    return true  if current_user.is_admin? #for admin user
     return false if controller_name == "permissions"
     return false if controller_name == "shared_urls"
+    return true  if action_name == 'acc_settings'
     user_has_permissions?
   end
 

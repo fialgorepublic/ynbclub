@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!, except: [:videos]
   before_action :authorize_user!, except: [:index ,:update_user_role,:videos]
+  skip_before_action :check_role, only: [:index, :update_user_role]
 
   require 'link_thumbnailer'
   include ApplicationHelper
