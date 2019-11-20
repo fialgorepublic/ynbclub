@@ -6,7 +6,7 @@
     </div>
 
     <div class="m-l-10 ">
-      <p class="p-b m-p-0 text-left"><%= group_user_name(reply.user) %></p>
+      <p class="p-b m-p-0 text-left"><%= user_name(reply.user) %></p>
       <p class="p-l"><%= posted_date(reply) %></p>
     </div>
   </div>
@@ -55,7 +55,7 @@
           <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
         </div>
         <div class="m-l-10 ">
-          <p class="p-b m-p-0 text-left"><%= group_user_name(reply.user) %></p>
+          <p class="p-b m-p-0 text-left"><%= user_name(reply.user) %></p>
           <p class="p-l"><%= posted_date(reply) %></p>
         </div>
       </div>

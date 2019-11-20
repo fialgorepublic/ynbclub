@@ -27,7 +27,7 @@ module GroupsHelper
     current_user.joined_group?(group_id) ? leave_user_group_path(current_user, group_id) : join_user_group_path(current_user, group_id)
   end
 
-  def group_user_name(user)
+  def user_name(user)
     user.full_name.presence || user.name.presence || "SainLBeau User"
   end
 
