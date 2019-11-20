@@ -111,7 +111,7 @@ class ApplicationController < ActionController::Base
     return true  if current_user.is_admin? #for admin user
     return false if controller_name == "permissions"
     return false if controller_name == "shared_urls"
-    return true  if action_name == 'acc_settings'
+    return true  if dashboard_default_option?(action_name)
     user_has_permissions?
   end
 
@@ -133,5 +133,9 @@ class ApplicationController < ActionController::Base
 
   def permission_exists?(action, controller)
     current_user.permissions.where(action_name: action, controller_name: controller).present?
+  end
+
+  def dashboard_default_option?(action_name)
+    ['dashboard', 'change_profile_picture', 'take_snapshot', 'get_user_object', 'step_one', 'step_two', 'step_three', 'share_with_friends', 'acc_settings', 'cities'].include?(action_name)
   end
 end
