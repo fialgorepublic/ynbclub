@@ -130,6 +130,8 @@ Rails.application.routes.draw do
         get :leave
       end
     end
+
+    resources :follows, only: [:index], controller: 'users/follows'
   end
 
   put 'set_commission', to: 'settings#set_commission'
