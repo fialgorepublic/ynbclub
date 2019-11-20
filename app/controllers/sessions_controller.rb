@@ -28,7 +28,6 @@ class SessionsController < ApplicationController
     else
       user = User.create(:name => name, :email => email, :password => provider_id, social_login: true,
                          referral: Devise.friendly_token)
-      user.create_profile
       if invite.present?
         user_invited = User.find_by_email(invite)
         if user_invited

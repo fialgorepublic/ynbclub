@@ -126,9 +126,6 @@ class UsersController < ApplicationController
   def update_profile
     user = User.find(params[:user_id])
     params[:user][:password].present? ? user.update(user_params) : user.update(edit_user_params)
-
-    user.create_profile if user.profile.blank?
-
     user.profile.update(profile_params)
     redirect_to users_path, success: I18n.t(:profile_update)
   end

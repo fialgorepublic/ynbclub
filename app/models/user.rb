@@ -79,6 +79,7 @@ class User < ApplicationRecord
   scope :sort_by_banned, -> { order(banned: :desc) }
 
   after_save :set_default_permissions
+  after_save :set_profile
 
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
@@ -150,6 +151,10 @@ class User < ApplicationRecord
       end
       User.where(id: users_with_points)
     end
+  end
+
+  def setup_profile
+    profile.presence || create_profile
   end
 
   def incomplete_profile?
