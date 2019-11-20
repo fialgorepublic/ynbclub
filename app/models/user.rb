@@ -153,7 +153,7 @@ class User < ApplicationRecord
     end
   end
 
-  def setup_profile
+  def set_profile
     profile.presence || create_profile
   end
 
