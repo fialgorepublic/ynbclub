@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
 
   def index
     @role_selection = true if current_user.role.blank?
+    current_user.set_profile
     @profile = true if current_user.is_ambassador? && current_user.incomplete_profile?
   end
 
