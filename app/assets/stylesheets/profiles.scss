@@ -1,3 +1,10 @@
-// Place all the styles related to the Profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#profile {
+  .follow-users {
+    img {
+      height: 120px;
+      width: 120px;
+      object-fit: fill;
+      border-radius: 68px;
+    }
+  }
+}

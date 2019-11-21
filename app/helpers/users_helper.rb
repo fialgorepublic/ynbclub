@@ -32,4 +32,15 @@ module UsersHelper
   def user_avatar(user)
     user.avatar.attached? ? user.avatar : '/assets/1user-icon.png'
   end
+
+  def follow_button_text(user)
+    return ['Unfollow', unfollow_follows_path(id: user.id)]  if current_user.following?(user)
+    return ['Follow Back', follow_follows_path(id: user.id)] if user.following?(current_user)
+    ['Follow', follow_follows_path(id: user.id)]
+  end
+
+  def follow_unfollow_link(user)
+    text, url = follow_button_text(user)
+    link_to text, url, class: 'btn profile-tag-btn-ad btn-default', remote: true, type: 'button'
+  end
 end

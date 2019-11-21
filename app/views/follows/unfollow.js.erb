@@ -1,0 +1,19 @@
+activeTabEle = $('.tabbable-line').find('li.active')[0]
+activeAnchorTag = $(activeTabEle).find('a')
+if(activeAnchorTag.attr('id') == 'following-tab') {
+  $(`#user-${<%= params[:id]%>}`).remove();
+}
+
+if (activeAnchorTag.attr('id') == 'follower-tab'){
+  $(`#user-${<%= params[:id]%>}`).find('a').text('Follow Back');
+}
+
+if($(`#user-${<%= params[:id]%>}`).hasClass('user-list1')) {
+  $(`#user-${<%= params[:id]%>}`).find('a').text('Follow');
+}
+
+ele = $(`#following-tab`).find('span.cirle-profile');
+ele.text(parseInt(ele.text()) - 1);
+
+anchorTag = $(`#user-${<%= params[:id]%>}`).find('a')
+anchorTag.attr('href', '<%= follow_follows_path(id: params[:id]) %>')

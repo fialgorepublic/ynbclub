@@ -1,0 +1,5 @@
+ele = $(`#following-tab`).find('span.cirle-profile');
+if (ele.length > 0 ) { ele.text(parseInt(ele.text()) + 1); }
+anchorTag = $(`#user-${<%= params[:id]%>}`).find('a')
+anchorTag.text('Unfollow');
+anchorTag.attr('href', '<%= unfollow_follows_path(id: params[:id]) %>')
