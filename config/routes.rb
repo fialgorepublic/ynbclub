@@ -130,8 +130,6 @@ Rails.application.routes.draw do
         get :leave
       end
     end
-
-    resources :follows, only: [:index], controller: 'users/follows'
   end
 
   put 'set_commission', to: 'settings#set_commission'
@@ -181,5 +179,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :follows, only: [:index] do
+    collection do
+      get :follow
+      get :unfollow
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
