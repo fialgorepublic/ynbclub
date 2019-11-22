@@ -13,6 +13,7 @@ class Group < ApplicationRecord
   default_scope { order(updated_at: :desc) }
 
   belongs_to :group_category
+  belongs_to :admin_group, class_name: "User ", foreign_key: "user_id"
 
   has_many :joined_groups
   has_many :users, through: :joined_groups
