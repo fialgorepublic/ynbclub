@@ -10,6 +10,8 @@ class DashboardController < ApplicationController
     @role_selection = true if current_user.role.blank?
     current_user.set_profile
     @profile = true if current_user.is_ambassador? && current_user.incomplete_profile?
+    @your_groups   = current_user.admin_groups.paginate(page: params[:your_page], per_page: 6)
+    @joined_groups = current_user.groups.paginate(page: params[:joined_page], per_page: 6)
   end
 
   def update_user_role

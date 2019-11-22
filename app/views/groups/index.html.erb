@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md-12 blog_banner_btn class-z">
         <% if current_user&.is_admin? %>
-        <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'group-banner-upload' %>
+          <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'group-banner-upload' %>
         <% end %>
       </div>
     </div>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="col-md-12 col-lg-12 class-z" id="groups">
-      <%= render 'all_groups' %>
+      <%= render partial: 'all_groups', locals: { groups: @groups } %>
     </div>
     <br />
 

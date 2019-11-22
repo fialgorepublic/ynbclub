@@ -1,24 +1,24 @@
-<% @groups.each_slice(3).each_with_index do |group_slice, index| %>
+<% groups.each_slice(3).each_with_index do |group_slice, index| %>
     <% already_added = false %>
     <% group_slice.each_with_index do |group, sub_index| %>
       <% if index % 2 == 0 %>
         <% if sub_index == 0 %>
-          <%= render partial: 'vertical_group', locals: { group: group, custom_classes: false } %>
+          <%= render partial: 'groups/vertical_group', locals: { group: group, custom_classes: false } %>
         <% else %>
           <div class="col-md-7 col-lg-7 m-p-0 ">
-            <%= render partial: 'horizontal_group', locals: { group: group } %>
+            <%= render partial: 'groups/horizontal_group', locals: { group: group } %>
           </div>
         <% end %>
       <% else %>
         <% if sub_index == 2 %>
-          <%= render partial: 'vertical_group', locals: { group: group, custom_classes: true } %>
+          <%= render partial: 'groups/vertical_group', locals: { group: group, custom_classes: true } %>
         <% else %>
           <% next if already_added %>
           <% already_added  = true %>
           <% next_group = group_slice[sub_index + 1] %>
           <div class="col-md-7 col-lg-7 m-p-0 ">
-            <%= render partial: 'horizontal_group', locals: { group: group } %>
-            <%= render partial: 'horizontal_group', locals: { group: next_group }  if next_group.present? %>
+            <%= render partial: 'groups/horizontal_group', locals: { group: group } %>
+            <%= render partial: 'groups/horizontal_group', locals: { group: next_group }  if next_group.present? %>
           </div>
         <% end %>
       <% end %>

@@ -1,0 +1,28 @@
+<div class="col-md-2 post-sorting">
+  <p>SORTING</p>
+  <select name="sort_type" class="sorting-fltr group-title-sort" data-type='<%= type %>' data-user-id="<%= user.id %>">
+    <option value="">Choose Type</option>
+    <option value="asc">A-Z</option>
+    <option value="desc">Z-A</option>
+  </select>
+</div>
+
+<div class="col-md-2 post-sorting">
+  <p>CATEGORY</p>
+  <div class="button-group">
+    <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown">
+    <span class="" style="float: left;font-weight: 700;color: #838181;">Category</span> <span style="float: right;font-size: 17px;"
+        class="fa fa-angle-down"></span></button>
+    <ul class="dropdown-menu group-categories-dashboard" data-type='<%= type %>' data-user-id="<%= user.id %>">
+      <li class="bbbr">
+        <a href="#" data-value=<%= GroupCategory.all.ids.join(',') %> data-type='all'
+          tabIndex="-1"><span>&nbsp;All categories</a>
+      </li>
+      <% GroupCategory.all.each do |category| %>
+        <li><a href="#" class="small" data-value="<%= category.id %>"><input type="checkbox"
+            data-category-id="<%= category.id %>" />&nbsp;<%= category.name %> </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

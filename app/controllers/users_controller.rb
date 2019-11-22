@@ -19,6 +19,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @your_groups   = @user.admin_groups.paginate(page: params[:your_page], per_page: 6)
+    @joined_groups = @user.groups.paginate(page: params[:joined_page], per_page: 6)
   end
 
   def new
