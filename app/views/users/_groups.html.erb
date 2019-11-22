@@ -28,7 +28,7 @@
       <% end %>
 
       <div class="text-left">
-        <%= link_to 'Previous Page →', user_groups_path(user_id: user.id, your_group_page: @your_groups.previous_page, type: 'your-groups'), remote: true, id: 'your-groups-previous', class: @your_groups.previous_page ? '' : 'hidden'  %>
+        <%= link_to '← Previous Page', user_groups_path(user_id: user.id, your_group_page: @your_groups.previous_page, type: 'your-groups'), remote: true, id: 'your-groups-previous', class: @your_groups.previous_page ? '' : 'hidden'  %>
       </div>
     </div>
   <% end %>
@@ -60,7 +60,7 @@
       <% end %>
 
       <div class="text-left">
-        <%= link_to 'Previous Page →', user_groups_path(user_id: user.id, joined_group_page: @joined_groups.previous_page, type: 'joined-groups'), remote: true, id: 'joined-groups-previous', class: @joined_groups.previous_page ? '' : 'hidden'  %>
+        <%= link_to '← Previous Page', user_groups_path(user_id: user.id, joined_group_page: @joined_groups.previous_page, type: 'joined-groups'), remote: true, id: 'joined-groups-previous', class: @joined_groups.previous_page ? '' : 'hidden'  %>
       </div>
     </div>
   </div>
