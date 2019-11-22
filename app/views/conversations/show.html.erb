@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="m-l-10">
-                      <p class="p-l"><%= user_name(@conversation.user) %></p>
+                      <p class="p-l"><%= user_profile_link(@conversation.user) %></p>
                       <p class="p-b">Saint L beau</p>
                     </div>
                   </div>
@@ -77,15 +77,13 @@
             </div>
 
             <% unless @conversation.replies_count.zero? %>
-            <h3><%= @conversation.replies_count %> Replies</h3>
-            <hr>
+              <h3><%= @conversation.replies_count %> Replies</h3>
+              <hr>
 
-            <div id='replies'>
-              <%= render partial: 'reply', collection: @replies, as: :reply %>
-            </div>
+              <div id='replies'>
+                <%= render partial: 'reply', collection: @replies, as: :reply %>
+              </div>
             <% end %>
-
-
           </div>
 
           <%= hidden_field_tag :page, @replies.next_page %>

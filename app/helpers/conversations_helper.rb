@@ -61,4 +61,8 @@ module ConversationsHelper
       end
     end
   end
+
+  def user_profile_link(user)
+    link_to user_name(user), user, class: 'user-profile-link'
+  end
 end
