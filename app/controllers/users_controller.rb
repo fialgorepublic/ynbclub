@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  before_action :authenticate_user!, except: [:find_user_by_email, :find_user]
-  before_action :authorize_user!, except: [:find_user_by_email, :find_user]
+  before_action :authenticate_user!, except: [:find_user_by_email, :find_user, :show]
+  before_action :authorize_user!, except: [:find_user_by_email, :find_user, :show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :check_role, only: [:find_user_by_email, :find_user, :add_user_info]
+  skip_before_action :check_role, only: [:find_user_by_email, :find_user, :add_user_info, :show]
 
   require 'csv'
   require 'roo'

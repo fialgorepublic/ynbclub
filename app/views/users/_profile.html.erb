@@ -1,409 +1,82 @@
-<div class="col-md-9" id='profile'>
-  <div class="lib-panel">
-    <div class="box-shadow-profile ">
-      <div class="flex-sb">
-        <div class="flex-l">
-          <div class="user-image">
-            <%= image_tag user_avatar(user) %>
-          </div>
+<div class="<%= add_container %>">
+  <div class="<%= blog_screen_size %>" id='profile'>
+    <div class="lib-panel">
+      <div class="box-shadow-profile ">
+        <div class="flex-sb">
+          <div class="flex-l">
+            <div class="user-image">
+              <%= image_tag user_avatar(user) %>
+            </div>
 
-          <div class="p-profile">
-            <h3><%= user_name(user) %></h3>
-            <div class="flex-l">
-              <div class="">
-                <img src="/assets/1.png">
-              </div>
-              <div class="">
-                <img src="/assets/2.png">
-              </div>
-              <div class="">
-                <img src="/assets/3.png">
+            <div class="p-profile">
+              <h3><%= user_name(user) %></h3>
+              <div class="flex-l">
+                <div class="">
+                  <img src="/assets/1.png">
+                </div>
+                <div class="">
+                  <img src="/assets/2.png">
+                </div>
+                <div class="">
+                  <img src="/assets/3.png">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="">
-          <%= link_to t('groups.show.start_conversation'), new_conversation_path, class: "btn profile-tag-btn btn-default", type: "button" %>
+          <% unless user == current_user %>
+            <div id="user-<%= user.id %>">
+              <%= follow_unfollow_link(user) %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="tabbable-panel m-p-0">
-    <div class="tabbable-line">
-      <ul class="nav nav-tabs ">
-        <li class="active">
-          <a href="#groups_tab" data-toggle="tab" id="groups-tab">
-            <span class="tab-profile-hreading">Groups</span> <span class="cirle-profile"><%= user.groups_count %></span>
-          </a>
-        </li>
+    <div class="tabbable-panel m-p-0">
+      <div class="tabbable-line">
+        <ul class="nav nav-tabs ">
+          <li class="active">
+            <a href="#groups_tab" data-toggle="tab" id="groups-tab">
+              <span class="tab-profile-hreading">Groups</span> <span class="cirle-profile"><%= user.groups_count %></span>
+            </a>
+          </li>
 
-        <li>
-          <a href="#blogs_tab" data-toggle="tab" id="blogs-tab">
-            <span class="tab-profile-hreading">Blog Posts</span> <span class="cirle-profile"><%= user.blogs.count %></span>
-          </a>
-        </li>
+          <li>
+            <a href="#blogs_tab" data-toggle="tab" id="blogs-tab">
+              <span class="tab-profile-hreading">Blog Posts</span> <span class="cirle-profile"><%= user.blogs.count %></span>
+            </a>
+          </li>
 
-        <li>
-          <a href="#conversations_tab" data-toggle="tab" id="conversations-tab">
-            <span class="tab-profile-hreading">Converstaion</span> <span class="cirle-profile"><%= user.conversations_count %></span>
-          </a>
-        </li>
+          <li>
+            <a href="#conversations_tab" data-toggle="tab" id="conversations-tab">
+              <span class="tab-profile-hreading">Converstaion</span> <span class="cirle-profile"><%= user.conversations_count %></span>
+            </a>
+          </li>
 
-        <li>
-          <a href="#following_tab" data-toggle="tab" id="following-tab" data-type='following' data-url="<%= follows_path(id: user.id) %>">
-            <span class="tab-profile-hreading">Following</span> <span class="cirle-profile"><%= user.following_count %></span>
-          </a>
-        </li>
+          <li>
+            <a href="#following_tab" data-toggle="tab" id="following-tab" data-type='following' data-url="<%= follows_path(id: user.id) %>">
+              <span class="tab-profile-hreading">Following</span> <span class="cirle-profile" id="user-<%= user.id %>-following-count"><%= user.following_count %></span>
+            </a>
+          </li>
 
-        <li>
-          <a href="#followers_tab" data-toggle="tab" id="follower-tab" data-type='followers' data-url="<%= follows_path(id: user.id) %>">
-            <span class="tab-profile-hreading">Followers</span> <span class="cirle-profile"><%= user.followers_count %></span>
-          </a>
-        </li>
-      </ul>
+          <li>
+            <a href="#followers_tab" data-toggle="tab" id="follower-tab" data-type='followers' data-url="<%= follows_path(id: user.id) %>">
+              <span class="tab-profile-hreading">Followers</span> <span class="cirle-profile" id="user-<%= user.id %>-followers-count"><%= user.followers_count %></span>
+            </a>
+          </li>
+        </ul>
 
-      <div class="tab-content">
-        <div class="tab-pane active" id="groups_tab">
-          <div class="row" style="margin-top: 10px;">
-            <div class="post-heading blog-redesign-style">
-              <div class="col-md-4">
-                <div class="heading-featured">
-                  <h1>Groups</h1>
-                </div>
-              </div>
-
-              <div class="col-md-2 post-sorting">
-                <p>SORTING</p>
-                <select name="sort_type" id="title-sort" class="sorting-fltr">
-                  <option value="">Choose Type</option>
-                  <option value="asc">A-Z</option>
-                  <option value="desc">Z-A</option>
-                </select>
-              </div>
-
-              <div class="col-md-2 post-sorting">
-                <p>CATEGORY</p>
-                <div class="button-group">
-                  <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class=""
-                      style="float: left;font-weight: 700;
-                            color: #838181;">Category</span> <span style="float: right;font-size: 17px;"
-                      class="fa fa-angle-down"></span></button>
-                  <ul class="dropdown-menu group-categories">
-                    <li class="bbbr"><a href="#" data-value="1,2" data-type="all" tabindex="-1"><span>&nbsp;All
-                          categories</span></a></li>
-                    <li><a href="#" class="small" data-value="1"><input type="checkbox" data-category-id="1">&nbsp;lorem
-                        ipsum </a></li>
-                    <li><a href="#" class="small" data-value="2"><input type="checkbox" data-category-id="2">&nbsp;Dummy
-                        text </a></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-md-3 add_blog_btn pull-right">
-                <a class="btn btn-primary new_blog_btn" href="/groups/new">+ Add New Group</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 col-lg-12 class-z" id="groups">
-            <div class="col-md-5 col-lg-5 m-p-0 ">
-              <div class="groups-cards ">
-                <div class="lib-panel ">
-                  <div class="row box-shadow">
-                    <div class="">
-                      <a href="/groups/6">
-                        <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
-                      </a> </div>
-                    <div class="">
-                      <div class="lib-row lib-header">
-                        <div class="grp-edit-delete-icon ">
-                          <a class="bg-groups-circle" href="/groups/6/edit">
-                            <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                          </a> <a data-url="/groups/6" data-name="lorem ipsum"
-                            class="bg-groups-circle delete-group-link" href="javascript:void(0)">
-                            <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                          </a> </div>
-                      </div>
-                      <div class="lib-row lib-desc">
-                        <h2>lorem ipsum</h2>
-                        <span>
-                          <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a
-                            long established fact that a reader will be distracted by the readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal distribution of letters, as opposed to using 'Content here, content here', making it
-                            look like readable English. Many desktop publishing packages and web page editors now use
-                            Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
-                            web sites still in their infancy. Various versions have evolved over the years, sometimes by
-                            accident, sometimes on purpose (injected humour and the like).</p>
-                        </span>
-                      </div>
-                      <div class="grp-card-icon hidden-sm hidden-xs">
-                        <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
-                        <p class="m-para-srch">0</p>
-                        <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
-                        <p class="m-para-srch">0</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-7 col-lg-7 m-p-0 ">
-              <div class="groups-cards-2">
-                <div class="lib-panel">
-                  <div class="row box-shadow ">
-                    <div class="col-md-5 m-p-0">
-                      <a href="/groups/5">
-                        <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
-                      </a> </div>
-                    <div class="col-md-7">
-                      <div class="lib-row lib-desc">
-                        <div class="flex-sb">
-                          <h2>New Group</h2>
-                          <div class="lib-row lib-header">
-                            <div class="grp-edit-delete-icon">
-                              <a class="bg-groups-circle1" href="/groups/5/edit">
-                                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                              </a> <a data-url="/groups/5" data-name="New Group"
-                                class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
-                                <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                              </a> </div>
-                          </div>
-                        </div>
-                        <p class="groups-cards-p">atest dfdsfdf</p>
-                        <div class="grp-card-icon">
-                          <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                          <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-7 col-lg-7 m-p-0 ">
-              <div class="groups-cards-2">
-                <div class="lib-panel">
-                  <div class="row box-shadow ">
-                    <div class="col-md-5 m-p-0">
-                      <a href="/groups/4">
-                        <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
-                      </a> </div>
-                    <div class="col-md-7">
-                      <div class="lib-row lib-desc">
-                        <div class="flex-sb">
-                          <h2>loream ipsum</h2>
-                          <div class="lib-row lib-header">
-                            <div class="grp-edit-delete-icon">
-                              <a class="bg-groups-circle1" href="/groups/4/edit">
-                                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                              </a> <a data-url="/groups/4" data-name="loream ipsum"
-                                class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
-                                <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                              </a> </div>
-                          </div>
-                        </div>
-                        <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
-                          industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                          an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                          survived not only five centuries, but also the leap into electronic typesetting, remaining
-                          essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-                          PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
-                          that a reader will be distracted by the readable content of a page when looking at its layout.
-                          The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                          as opposed to using 'Content here, content here', making it look like readable English. Many
-                          desktop publishing packages and web page editors now use Lorem Ipsum as their default model
-                          text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                          Various versions have evolved over the years, sometimes by accident, sometimes on purpose
-                          (injected humour and the like).</p>
-                        <div class="grp-card-icon">
-                          <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                          <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-7 col-lg-7 m-p-0 ">
-              <div class="groups-cards-2">
-                <div class="lib-panel">
-                  <div class="row box-shadow ">
-                    <div class="col-md-5 m-p-0">
-                      <a href="/groups/3">
-                        <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
-                      </a> </div>
-                    <div class="col-md-7">
-                      <div class="lib-row lib-desc">
-                        <div class="flex-sb">
-                          <h2>loream ipsum</h2>
-                          <div class="lib-row lib-header">
-                            <div class="grp-edit-delete-icon">
-                              <a class="bg-groups-circle1" href="/groups/3/edit">
-                                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                              </a> <a data-url="/groups/3" data-name="loream ipsum"
-                                class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
-                                <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                              </a> </div>
-                          </div>
-                        </div>
-                        <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
-                          industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                          an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                          survived not only five centuries, but also the leap into electronic typesetting, remaining
-                          essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-                          PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
-                          that a reader will be distracted by the readable content of a page when looking at its layout.
-                          The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                          as opposed to using 'Content here, content here', making it look like readable English. Many
-                          desktop publishing packages and web page editors now use Lorem Ipsum as their default model
-                          text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                          Various versions have evolved over the years, sometimes by accident, sometimes on purpose
-                          (injected humour and the like).</p>
-                        <div class="grp-card-icon">
-                          <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                          <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="groups-cards-2">
-                <div class="lib-panel">
-                  <div class="row box-shadow ">
-                    <div class="col-md-5 m-p-0">
-                      <a href="/groups/2">
-                        <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
-                      </a> </div>
-                    <div class="col-md-7">
-                      <div class="lib-row lib-desc">
-                        <div class="flex-sb">
-                          <h2>ipsum</h2>
-                          <div class="lib-row lib-header">
-                            <div class="grp-edit-delete-icon">
-                              <a class="bg-groups-circle1" href="/groups/2/edit">
-                                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                              </a> <a data-url="/groups/2" data-name="ipsum" class="bg-groups-circle1 delete-group-link"
-                                href="javascript:void(0)">
-                                <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                              </a> </div>
-                          </div>
-                        </div>
-                        <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
-                          industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                          an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                          survived not only five centuries, but also the leap into electronic typesetting, remaining
-                          essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-                          PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
-                          that a reader will be distracted by the readable content of a page when looking at its layout.
-                          The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                          as opposed to using 'Content here, content here', making it look like readable English. Many
-                          desktop publishing packages and web page editors now use Lorem Ipsum as their default model
-                          text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                          Various versions have evolved over the years, sometimes by accident, sometimes on purpose
-                          (injected humour and the like).</p>
-                        <div class="grp-card-icon">
-                          <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                          <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
-                          <p>0</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5 col-lg-5 m-p-0 ">
-              <div class="groups-cards width-100pr">
-                <div class="lib-panel left-10pr">
-                  <div class="row box-shadow">
-                    <div class="">
-                      <a href="/groups/1">
-                        <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
-                      </a> </div>
-                    <div class="">
-                      <div class="lib-row lib-header">
-                        <div class="grp-edit-delete-icon right-icon-16px">
-                          <a class="bg-groups-circle" href="/groups/1/edit">
-                            <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                          </a> <a data-url="/groups/1" data-name="ipsum" class="bg-groups-circle delete-group-link"
-                            href="javascript:void(0)">
-                            <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                          </a> </div>
-                      </div>
-                      <div class="lib-row lib-desc">
-                        <h2>ipsum</h2>
-                        <span>
-                          <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. It was popularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a
-                            long established fact that a reader will be distracted by the readable content of a page
-                            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                            normal distribution of letters, as opposed to using 'Content here, content here', making it
-                            look like readable English. Many desktop publishing packages and web page editors now use
-                            Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
-                            web sites still in their infancy. Various versions have evolved over the years, sometimes by
-                            accident, sometimes on purpose (injected humour and the like).</p>
-                        </span>
-                      </div>
-                      <div class="grp-card-icon hidden-sm hidden-xs">
-                        <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
-                        <p class="m-para-srch">0</p>
-                        <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
-                        <p class="m-para-srch">0</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">Next></a></li>
-            <li><a href="#">Last>></a></li>
-          </ul>
-          <div class="">
+        <div class="tab-content">
+          <div class="tab-pane active" id="groups_tab">
             <div class="row" style="margin-top: 10px;">
               <div class="post-heading blog-redesign-style">
                 <div class="col-md-4">
                   <div class="heading-featured">
-                    <h1>Following Groups</h1>
+                    <h1>Groups</h1>
                   </div>
                 </div>
-                <div class="col-md-3 add_blog_btn hidden-xs hidden-sm">
-                  <!-- <a class="btn btn-primary new_blog_btn" href="/groups/new">+ Add New Group</a> -->
-                </div>
+
                 <div class="col-md-2 post-sorting">
                   <p>SORTING</p>
                   <select name="sort_type" id="title-sort" class="sorting-fltr">
@@ -412,7 +85,8 @@
                     <option value="desc">Z-A</option>
                   </select>
                 </div>
-                <div class="col-md-2 post-sorting m-right-20 pull-right">
+
+                <div class="col-md-2 post-sorting">
                   <p>CATEGORY</p>
                   <div class="button-group">
                     <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class=""
@@ -422,14 +96,16 @@
                     <ul class="dropdown-menu group-categories">
                       <li class="bbbr"><a href="#" data-value="1,2" data-type="all" tabindex="-1"><span>&nbsp;All
                             categories</span></a></li>
-                      <li><a href="#" class="small" data-value="1"><input type="checkbox"
-                            data-category-id="1">&nbsp;lorem
+                      <li><a href="#" class="small" data-value="1"><input type="checkbox" data-category-id="1">&nbsp;lorem
                           ipsum </a></li>
-                      <li><a href="#" class="small" data-value="2"><input type="checkbox"
-                            data-category-id="2">&nbsp;Dummy
+                      <li><a href="#" class="small" data-value="2"><input type="checkbox" data-category-id="2">&nbsp;Dummy
                           text </a></li>
                     </ul>
                   </div>
+                </div>
+
+                <div class="col-md-3 add_blog_btn pull-right">
+                  <a class="btn btn-primary new_blog_btn" href="/groups/new">+ Add New Group</a>
                 </div>
               </div>
             </div>
@@ -456,8 +132,7 @@
                           <h2>lorem ipsum</h2>
                           <span>
                             <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
-                              industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                              when
+                              industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
                               an unknown printer took a galley of type and scrambled it to make a type specimen book. It
                               has survived not only five centuries, but also the leap into electronic typesetting,
                               remaining essentially unchanged. It was popularised in the 1960s with the release of
@@ -465,12 +140,10 @@
                               software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a
                               long established fact that a reader will be distracted by the readable content of a page
                               when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                              normal distribution of letters, as opposed to using 'Content here, content here', making
-                              it
+                              normal distribution of letters, as opposed to using 'Content here, content here', making it
                               look like readable English. Many desktop publishing packages and web page editors now use
                               Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
-                              web sites still in their infancy. Various versions have evolved over the years, sometimes
-                              by
+                              web sites still in their infancy. Various versions have evolved over the years, sometimes by
                               accident, sometimes on purpose (injected humour and the like).</p>
                           </span>
                         </div>
@@ -520,6 +193,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-md-7 col-lg-7 m-p-0 ">
                 <div class="groups-cards-2">
                   <div class="lib-panel">
@@ -544,15 +218,12 @@
                           </div>
                           <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has
+                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
                             survived not only five centuries, but also the leap into electronic typesetting, remaining
                             essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                            containing Lorem Ipsum passages, and more recently with desktop publishing software like
-                            Aldus
+                            containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
                             PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
-                            that a reader will be distracted by the readable content of a page when looking at its
-                            layout.
+                            that a reader will be distracted by the readable content of a page when looking at its layout.
                             The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
                             as opposed to using 'Content here, content here', making it look like readable English. Many
                             desktop publishing packages and web page editors now use Lorem Ipsum as their default model
@@ -595,15 +266,12 @@
                           </div>
                           <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has
+                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
                             survived not only five centuries, but also the leap into electronic typesetting, remaining
                             essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                            containing Lorem Ipsum passages, and more recently with desktop publishing software like
-                            Aldus
+                            containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
                             PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
-                            that a reader will be distracted by the readable content of a page when looking at its
-                            layout.
+                            that a reader will be distracted by the readable content of a page when looking at its layout.
                             The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
                             as opposed to using 'Content here, content here', making it look like readable English. Many
                             desktop publishing packages and web page editors now use Lorem Ipsum as their default model
@@ -636,23 +304,20 @@
                               <div class="grp-edit-delete-icon">
                                 <a class="bg-groups-circle1" href="/groups/2/edit">
                                   <i class="fa fa-pencil inneer" aria-hidden="true"></i>
-                                </a> <a data-url="/groups/2" data-name="ipsum"
-                                  class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
+                                </a> <a data-url="/groups/2" data-name="ipsum" class="bg-groups-circle1 delete-group-link"
+                                  href="javascript:void(0)">
                                   <i class="fa fa-trash inneer" aria-hidden="true"></i>
                                 </a> </div>
                             </div>
                           </div>
                           <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                            has
+                            an unknown printer took a galley of type and scrambled it to make a type specimen book. It has
                             survived not only five centuries, but also the leap into electronic typesetting, remaining
                             essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                            containing Lorem Ipsum passages, and more recently with desktop publishing software like
-                            Aldus
+                            containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
                             PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
-                            that a reader will be distracted by the readable content of a page when looking at its
-                            layout.
+                            that a reader will be distracted by the readable content of a page when looking at its layout.
                             The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
                             as opposed to using 'Content here, content here', making it look like readable English. Many
                             desktop publishing packages and web page editors now use Lorem Ipsum as their default model
@@ -693,8 +358,7 @@
                           <h2>ipsum</h2>
                           <span>
                             <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
-                              industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                              when
+                              industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
                               an unknown printer took a galley of type and scrambled it to make a type specimen book. It
                               has survived not only five centuries, but also the leap into electronic typesetting,
                               remaining essentially unchanged. It was popularised in the 1960s with the release of
@@ -702,12 +366,10 @@
                               software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a
                               long established fact that a reader will be distracted by the readable content of a page
                               when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                              normal distribution of letters, as opposed to using 'Content here, content here', making
-                              it
+                              normal distribution of letters, as opposed to using 'Content here, content here', making it
                               look like readable English. Many desktop publishing packages and web page editors now use
                               Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
-                              web sites still in their infancy. Various versions have evolved over the years, sometimes
-                              by
+                              web sites still in their infancy. Various versions have evolved over the years, sometimes by
                               accident, sometimes on purpose (injected humour and the like).</p>
                           </span>
                         </div>
@@ -724,8 +386,6 @@
               </div>
 
             </div>
-
-
             <ul class="pagination">
               <li><a href="#">1</a></li>
               <li class="active"><a href="#">2</a></li>
@@ -736,418 +396,413 @@
               <li><a href="#">Next></a></li>
               <li><a href="#">Last>></a></li>
             </ul>
-          </div>
-        </div>
-        <div class="tab-pane" id="blogs_tab">
-          <div class="">
-            <div class="heading-featured">
-              <h1>Your Blogs</h1>
-            </div>
-            <p>
-              Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim
-              veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel
-              eum
-              iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-            </p>
-            <ul class="pagination">
-              <li><a href="#">1</a></li>
-              <li class="active"><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">.</a></li>
-              <li><a href="#">.</a></li>
-              <li><a href="#">.</a></li>
-              <li><a href="#">Next></a></li>
-              <li><a href="#">Last>></a></li>
-            </ul>
-          </div>
-          <div class="">
-            <div class="heading-featured">
-              <h1>Liked Blogs</h1>
-            </div>
-            <p>
-              Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim
-              veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel
-              eum
-              iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-            </p>
-
-            <ul class="pagination">
-              <li><a href="#">1</a></li>
-              <li class="active"><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">.</a></li>
-              <li><a href="#">.</a></li>
-              <li><a href="#">.</a></li>
-              <li><a href="#">Next></a></li>
-              <li><a href="#">Last>></a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="tab-pane" id="conversations_tab">
-          <div class="row" style="margin-top: 10px;">
-            <div class="post-heading blog-redesign-style">
-              <div class="col-md-4">
-                <div class="heading-featured">
-                  <h1>Groups</h1>
+            <div class="">
+              <div class="row" style="margin-top: 10px;">
+                <div class="post-heading blog-redesign-style">
+                  <div class="col-md-4">
+                    <div class="heading-featured">
+                      <h1>Following Groups</h1>
+                    </div>
+                  </div>
+                  <div class="col-md-3 add_blog_btn hidden-xs hidden-sm">
+                    <!-- <a class="btn btn-primary new_blog_btn" href="/groups/new">+ Add New Group</a> -->
+                  </div>
+                  <div class="col-md-2 post-sorting">
+                    <p>SORTING</p>
+                    <select name="sort_type" id="title-sort" class="sorting-fltr">
+                      <option value="">Choose Type</option>
+                      <option value="asc">A-Z</option>
+                      <option value="desc">Z-A</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2 post-sorting m-right-20 pull-right">
+                    <p>CATEGORY</p>
+                    <div class="button-group">
+                      <button type="button" class="btn bbbht btn-sm dropdown-toggle" data-toggle="dropdown"><span class=""
+                          style="float: left;font-weight: 700;
+                                color: #838181;">Category</span> <span style="float: right;font-size: 17px;"
+                          class="fa fa-angle-down"></span></button>
+                      <ul class="dropdown-menu group-categories">
+                        <li class="bbbr"><a href="#" data-value="1,2" data-type="all" tabindex="-1"><span>&nbsp;All
+                              categories</span></a></li>
+                        <li><a href="#" class="small" data-value="1"><input type="checkbox"
+                              data-category-id="1">&nbsp;lorem
+                            ipsum </a></li>
+                        <li><a href="#" class="small" data-value="2"><input type="checkbox"
+                              data-category-id="2">&nbsp;Dummy
+                            text </a></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div class="col-md-2 ">
-
-              </div>
-
-              <div class="col-md-2 post-sorting m-0">
-                <p>SORTING</p>
-                <select name="sort_type" id="title-sort" class="sorting-fltr">
-                  <option value="">Choose Type</option>
-                  <option value="asc">A-Z</option>
-                  <option value="desc">Z-A</option>
-                </select>
-              </div>
-
-
-              <div class="col-md-4 add_blog_btn pull-right">
-                <a class="btn btn-primary new_blog_btn" href="/groups/new">+ Start New Conversation </a>
-              </div>
-            </div>
-          </div>
-          <div class="middle-row-grp">
-            <div class="col-md-12">
-              <div class="lib-panel">
-                <div class="row box-shadow-conversation-profile-admin">
-                  <div class="flex-sb">
-                    <div class="flex-l">
-                      <div class="">
-                        <div class="flex-l">
-                          <div class="">
-                            <img class="" src="/assets/user-icon.png" width="100%">
+              <div class="col-md-12 col-lg-12 class-z" id="groups">
+                <div class="col-md-5 col-lg-5 m-p-0 ">
+                  <div class="groups-cards ">
+                    <div class="lib-panel ">
+                      <div class="row box-shadow">
+                        <div class="">
+                          <a href="/groups/6">
+                            <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
+                          </a> </div>
+                        <div class="">
+                          <div class="lib-row lib-header">
+                            <div class="grp-edit-delete-icon ">
+                              <a class="bg-groups-circle" href="/groups/6/edit">
+                                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                              </a> <a data-url="/groups/6" data-name="lorem ipsum"
+                                class="bg-groups-circle delete-group-link" href="javascript:void(0)">
+                                <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                              </a> </div>
                           </div>
-                          <div class="m-l-10">
-                            <p class="p-l">Admin</p>
-                            <p class="p-b">Saint L beau</p>
+                          <div class="lib-row lib-desc">
+                            <h2>lorem ipsum</h2>
+                            <span>
+                              <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when
+                                an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                                has survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged. It was popularised in the 1960s with the release of
+                                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a
+                                long established fact that a reader will be distracted by the readable content of a page
+                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                normal distribution of letters, as opposed to using 'Content here, content here', making
+                                it
+                                look like readable English. Many desktop publishing packages and web page editors now use
+                                Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
+                                web sites still in their infancy. Various versions have evolved over the years, sometimes
+                                by
+                                accident, sometimes on purpose (injected humour and the like).</p>
+                            </span>
+                          </div>
+                          <div class="grp-card-icon hidden-sm hidden-xs">
+                            <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
+                            <p class="m-para-srch">0</p>
+                            <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
+                            <p class="m-para-srch">0</p>
                           </div>
                         </div>
                       </div>
-                      <div class="m-l-10 mob-m-l-0">
-                        <div class="flex-l">
-                          <div class="">
-                            <img class="" src="/assets/calender.png" width="100%">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7 col-lg-7 m-p-0 ">
+                  <div class="groups-cards-2">
+                    <div class="lib-panel">
+                      <div class="row box-shadow ">
+                        <div class="col-md-5 m-p-0">
+                          <a href="/groups/5">
+                            <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
+                          </a> </div>
+                        <div class="col-md-7">
+                          <div class="lib-row lib-desc">
+                            <div class="flex-sb">
+                              <h2>New Group</h2>
+                              <div class="lib-row lib-header">
+                                <div class="grp-edit-delete-icon">
+                                  <a class="bg-groups-circle1" href="/groups/5/edit">
+                                    <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                                  </a> <a data-url="/groups/5" data-name="New Group"
+                                    class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
+                                    <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                                  </a> </div>
+                              </div>
+                            </div>
+                            <p class="groups-cards-p">atest dfdsfdf</p>
+                            <div class="grp-card-icon">
+                              <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                              <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                            </div>
                           </div>
-                          <div class="m-l-10">
-                            <p class="p-b m-t-8">Posted: 12.01.19</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7 col-lg-7 m-p-0 ">
+                  <div class="groups-cards-2">
+                    <div class="lib-panel">
+                      <div class="row box-shadow ">
+                        <div class="col-md-5 m-p-0">
+                          <a href="/groups/4">
+                            <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
+                          </a> </div>
+                        <div class="col-md-7">
+                          <div class="lib-row lib-desc">
+                            <div class="flex-sb">
+                              <h2>loream ipsum</h2>
+                              <div class="lib-row lib-header">
+                                <div class="grp-edit-delete-icon">
+                                  <a class="bg-groups-circle1" href="/groups/4/edit">
+                                    <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                                  </a> <a data-url="/groups/4" data-name="loream ipsum"
+                                    class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
+                                    <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                                  </a> </div>
+                              </div>
+                            </div>
+                            <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
+                              industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
+                              an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                              has
+                              survived not only five centuries, but also the leap into electronic typesetting, remaining
+                              essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                              containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                              Aldus
+                              PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
+                              that a reader will be distracted by the readable content of a page when looking at its
+                              layout.
+                              The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+                              as opposed to using 'Content here, content here', making it look like readable English. Many
+                              desktop publishing packages and web page editors now use Lorem Ipsum as their default model
+                              text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                              Various versions have evolved over the years, sometimes by accident, sometimes on purpose
+                              (injected humour and the like).</p>
+                            <div class="grp-card-icon">
+                              <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                              <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <div class="m-l-10 mob-m-l-0">
-                        <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
-                      </div>
-                    </div>
-
-                    <div class="grp-edit-delete-icon ">
-                      <a class="" href="#">
-                        <i class="fa fa-pencil inneer font-awesome-edit-profile" aria-hidden="true"></i>
-                      </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
-                        <i class="fa fa-trash inneer 
-                      font-awesome-edit-profile" aria-hidden="true"></i>
-                      </a> </div>
-                  </div>
-                  <div class="join-grp-dscptn">
-                    <h2>Everything Eyes</h2>
-                    <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
-                    <div class="comment more">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Vestibulum laoreet, nunc eget laoreet sagittis,
-                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                      Duis eget nisl orci. Aliquam mattis purus non mauris
-                      blandit id luctus felis convallis.
-                      Integer varius egestas vestibulum.
-                      Nullam a dolor arcu, ac tempor elit. Donec.
-                    </div>
-                    <!-- after border  -->
-                    <div class="jn-grp-img-show">
-                      <img src="/assets/blog-img-2.jpg">
-                    </div>
-                  </div>
-                  <div class="flex-l pt-10">
-                    <div class="">
-                      <img class="" src="/assets/user-icon.png" width="100%">
-                    </div>
-                    <div class="m-l-10 ">
-                      <p class="p-b m-p-0 text-left">Saint L beau</p>
-                      <p class="p-l">Today at 11:30 am</p>
-                    </div>
-                    <div class="comment more text-left pl-40">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Vestibulum laoreet, nunc eget laoreet sagittis,
-                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                          Aliquam mattis purus non mauris
-                          blandit id luctus felis convallis.
-                          Integer varius egestas vestibulum.
-                          Nullam a dolor arcu, ac tempor elit. Donec.
-                        </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
-                  </div>
-
-
-
-                  <div class="flex-sb">
-                    <div class="flex-l  m-t-8">
-                      <div class="">
-                        <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
-                      </div>
-                      <div class="m-l-10 m-t-12">
-                        <p class="fs-12">0</p>
-                      </div>
-                      <div class="m-l-10">
-                        <i class="fa fa-heart fs-20" style="color: red;"></i>
-                      </div>
-                      <div class="m-l-10 m-t-8">
-                        <p class="fs-12 m-t-3">0</p>
-                      </div>
-                    </div>
-                    <div class="m-t-8">
-                      <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
                     </div>
                   </div>
                 </div>
+                <div class="col-md-7 col-lg-7 m-p-0 ">
+                  <div class="groups-cards-2">
+                    <div class="lib-panel">
+                      <div class="row box-shadow ">
+                        <div class="col-md-5 m-p-0">
+                          <a href="/groups/3">
+                            <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
+                          </a> </div>
+                        <div class="col-md-7">
+                          <div class="lib-row lib-desc">
+                            <div class="flex-sb">
+                              <h2>loream ipsum</h2>
+                              <div class="lib-row lib-header">
+                                <div class="grp-edit-delete-icon">
+                                  <a class="bg-groups-circle1" href="/groups/3/edit">
+                                    <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                                  </a> <a data-url="/groups/3" data-name="loream ipsum"
+                                    class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
+                                    <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                                  </a> </div>
+                              </div>
+                            </div>
+                            <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
+                              industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
+                              an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                              has
+                              survived not only five centuries, but also the leap into electronic typesetting, remaining
+                              essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                              containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                              Aldus
+                              PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
+                              that a reader will be distracted by the readable content of a page when looking at its
+                              layout.
+                              The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+                              as opposed to using 'Content here, content here', making it look like readable English. Many
+                              desktop publishing packages and web page editors now use Lorem Ipsum as their default model
+                              text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                              Various versions have evolved over the years, sometimes by accident, sometimes on purpose
+                              (injected humour and the like).</p>
+                            <div class="grp-card-icon">
+                              <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                              <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="groups-cards-2">
+                    <div class="lib-panel">
+                      <div class="row box-shadow ">
+                        <div class="col-md-5 m-p-0">
+                          <a href="/groups/2">
+                            <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
+                          </a> </div>
+                        <div class="col-md-7">
+                          <div class="lib-row lib-desc">
+                            <div class="flex-sb">
+                              <h2>ipsum</h2>
+                              <div class="lib-row lib-header">
+                                <div class="grp-edit-delete-icon">
+                                  <a class="bg-groups-circle1" href="/groups/2/edit">
+                                    <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                                  </a> <a data-url="/groups/2" data-name="ipsum"
+                                    class="bg-groups-circle1 delete-group-link" href="javascript:void(0)">
+                                    <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                                  </a> </div>
+                              </div>
+                            </div>
+                            <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
+                              industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
+                              an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                              has
+                              survived not only five centuries, but also the leap into electronic typesetting, remaining
+                              essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                              containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                              Aldus
+                              PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact
+                              that a reader will be distracted by the readable content of a page when looking at its
+                              layout.
+                              The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+                              as opposed to using 'Content here, content here', making it look like readable English. Many
+                              desktop publishing packages and web page editors now use Lorem Ipsum as their default model
+                              text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                              Various versions have evolved over the years, sometimes by accident, sometimes on purpose
+                              (injected humour and the like).</p>
+                            <div class="grp-card-icon">
+                              <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                              <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
+                              <p>0</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 col-lg-5 m-p-0 ">
+                  <div class="groups-cards width-100pr">
+                    <div class="lib-panel left-10pr">
+                      <div class="row box-shadow">
+                        <div class="">
+                          <a href="/groups/1">
+                            <img width="100%" class="lib-img-show" src="/assets/blog-img-2.jpg ">
+                          </a> </div>
+                        <div class="">
+                          <div class="lib-row lib-header">
+                            <div class="grp-edit-delete-icon right-icon-16px">
+                              <a class="bg-groups-circle" href="/groups/1/edit">
+                                <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                              </a> <a data-url="/groups/1" data-name="ipsum" class="bg-groups-circle delete-group-link"
+                                href="javascript:void(0)">
+                                <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                              </a> </div>
+                          </div>
+                          <div class="lib-row lib-desc">
+                            <h2>ipsum</h2>
+                            <span>
+                              <p class="groups-cards-p">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when
+                                an unknown printer took a galley of type and scrambled it to make a type specimen book. It
+                                has survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged. It was popularised in the 1960s with the release of
+                                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                                software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a
+                                long established fact that a reader will be distracted by the readable content of a page
+                                when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                normal distribution of letters, as opposed to using 'Content here, content here', making
+                                it
+                                look like readable English. Many desktop publishing packages and web page editors now use
+                                Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
+                                web sites still in their infancy. Various versions have evolved over the years, sometimes
+                                by
+                                accident, sometimes on purpose (injected humour and the like).</p>
+                            </span>
+                          </div>
+                          <div class="grp-card-icon hidden-sm hidden-xs">
+                            <i class="fa fa-users color-for-icon fs-20" width="100%"></i>
+                            <p class="m-para-srch">0</p>
+                            <i class="fa fa-comment color-for-icon fs-20" width="100%"></i>
+                            <p class="m-para-srch">0</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+
+
+              <ul class="pagination">
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">Next></a></li>
+                <li><a href="#">Last>></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="tab-pane" id="blogs_tab">
+            <div class="">
+              <div class="heading-featured">
+                <h1>Your Blogs</h1>
+              </div>
+              <p>
+                Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim
+                veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel
+                eum
+                iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+              </p>
+              <ul class="pagination">
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">Next></a></li>
+                <li><a href="#">Last>></a></li>
+              </ul>
+            </div>
+            <div class="">
+              <div class="heading-featured">
+                <h1>Liked Blogs</h1>
+              </div>
+              <p>
+                Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim
+                veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel
+                eum
+                iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+              </p>
+
+              <ul class="pagination">
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">.</a></li>
+                <li><a href="#">Next></a></li>
+                <li><a href="#">Last>></a></li>
+              </ul>
             </div>
           </div>
 
-
-          <!-- new comment -->
-          <div class="col-md-12">
-            <div class="lib-panel">
-              <div class="row box-shadow-conversation-profile-admin">
-                <div class="flex-sb">
-                  <div class="flex-l">
-                    <div class="">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/user-icon.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-l">Admin</p>
-                          <p class="p-b">Saint L beau</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/calender.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-b m-t-8">Posted: 12.01.19</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
-                    </div>
-                  </div>
-                  <div class="grp-edit-delete-icon ">
-                    <a class="" href="#">
-                      <i class="fa fa-pencil inneer font-awesome-edit-profile" aria-hidden="true"></i>
-                    </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
-                      <i class="fa fa-trash inneer 
-                      font-awesome-edit-profile" aria-hidden="true"></i>
-                    </a> </div>
-                </div>
-                <div class="join-grp-dscptn">
-                  <h2>Everything Eyes</h2>
-                  <div class="comment more">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                        Aliquam mattis purus non mauris
-                        blandit id luctus felis convallis.
-                        Integer varius egestas vestibulum.
-                        Nullam a dolor arcu, ac tempor elit. Donec.
-                      </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
-                  <!-- after border  -->
-
-                </div>
-                <div class="flex-l pt-10">
-                  <div class="">
-                    <img class="" src="/assets/user-icon.png" width="100%">
-                  </div>
-                  <div class="m-l-10 ">
-                    <p class="p-b m-p-0 text-left">Saint L beau</p>
-                    <p class="p-l">Today at 11:30 am</p>
-                  </div>
-                  <div class="comment more text-left pl-40">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                          class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                            Aliquam mattis purus non mauris
-                            blandit id luctus felis convallis.
-                            Integer varius egestas vestibulum.
-                            Nullam a dolor arcu, ac tempor elit. Donec.
-                          </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
-                        href="" class="morelink">Show more</a></span></div>
-                </div>
-                <div class="flex-sb">
-                  <div class="flex-l  m-t-8">
-                    <div class="">
-                      <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
-                    </div>
-                    <div class="m-l-10 m-t-12">
-                      <p class="fs-12">0</p>
-                    </div>
-                    <div class="m-l-10">
-                      <i class="fa fa-heart fs-20" style="color: red;"></i>
-                    </div>
-                    <div class="m-l-10 m-t-8">
-                      <p class="fs-12 m-t-3">0</p>
-                    </div>
-                  </div>
-                  <div class="m-t-8">
-                    <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+          <div class="tab-pane" id="conversations_tab">
+            <div class="row" style="margin-top: 10px;">
+              <div class="post-heading blog-redesign-style">
+                <div class="col-md-4">
+                  <div class="heading-featured">
+                    <h1>Groups</h1>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- last section comment -->
-          <div class="col-md-12">
-            <div class="lib-panel">
-              <div class="row box-shadow-conversation-profile-admin">
-                <div class="flex-sb">
-                  <div class="flex-l">
-                    <div class="">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/user-icon.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-l">Admin</p>
-                          <p class="p-b">Saint L beau</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/calender.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-b m-t-8">Posted: 12.01.19</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
-                    </div>
-                  </div>
-                  <div class="grp-edit-delete-icon ">
-                    <a class="" href="#">
-                      <i class="fa fa-pencil inneer font-awesome-edit-profile" aria-hidden="true"></i>
-                    </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
-                      <i class="fa fa-trash inneer 
-                      font-awesome-edit-profile" aria-hidden="true"></i>
-                    </a> </div>
-                </div>
-                <div class="join-grp-dscptn">
-                  <h2>Everything Eyes</h2>
-                  <div class="comment more">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                          class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                            Aliquam mattis purus non mauris
-                            blandit id luctus felis convallis.
-                            Integer varius egestas vestibulum.
-                            Nullam a dolor arcu, ac tempor elit. Donec.
-                          </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
-                        href="" class="morelink">Show more</a></span></div>
-                  <!-- after border  -->
+
+                <div class="col-md-2 ">
 
                 </div>
-                <div class="flex-l pt-10 pb-10 bbbb">
-                  <div class="">
-                    <img class="" src="/assets/user-icon.png" width="100%">
-                  </div>
-                  <div class="m-l-10 ">
-                    <p class="p-b m-p-0 text-left">Saint L beau</p>
-                    <p class="p-l">Today at 11:30 am</p>
-                  </div>
-                  <div class="comment more text-left pl-40">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                          class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                              class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                                Aliquam mattis purus non mauris
-                                blandit id luctus felis convallis.
-                                Integer varius egestas vestibulum.
-                                Nullam a dolor arcu, ac tempor elit. Donec.
-                              </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
-                            href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a href=""
-                        class="morelink">Show more</a></span></div>
-                  <div class="grp-img-show-profile pl-40 ">
-                    <img src="/assets/blog-img-2.jpg">
-                  </div>
-                </div>
-                <div class="flex-sb">
-                  <div class="flex-l  m-t-8">
-                    <div class="">
-                      <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
-                    </div>
-                    <div class="m-l-10 m-t-12">
-                      <p class="fs-12">0</p>
-                    </div>
-                    <div class="m-l-10">
-                      <i class="fa fa-heart fs-20" style="color: red;"></i>
-                    </div>
-                    <div class="m-l-10 m-t-8">
-                      <p class="fs-12 m-t-3">0</p>
-                    </div>
-                  </div>
-                  <div class="m-t-8">
-                    <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">Next></a></li>
-            <li><a href="#">Last>></a></li>
-          </ul>
-
-          <!-- liked conversation start -->
-
-
-          <div class="row" style="margin-top: 10px;">
-            <div class="post-heading blog-redesign-style">
-              <div class="col-md-4">
-                <div class="heading-featured">
-                  <h1>Liked Conversation</h1>
-                </div>
-              </div>
-
-
-              <div class="col-md-5 ">
-
-              </div>
-              <div class="col-md-3  ">
-                <div class="post-sorting m-0">
+                <div class="col-md-2 post-sorting m-0">
                   <p>SORTING</p>
                   <select name="sort_type" id="title-sort" class="sorting-fltr">
                     <option value="">Choose Type</option>
@@ -1155,12 +810,118 @@
                     <option value="desc">Z-A</option>
                   </select>
                 </div>
+
+
+                <div class="col-md-4 add_blog_btn pull-right">
+                  <a class="btn btn-primary new_blog_btn" href="/groups/new">+ Start New Conversation </a>
+                </div>
               </div>
-
-
             </div>
-          </div>
-          <div class="middle-row-grp">
+            <div class="middle-row-grp">
+              <div class="col-md-12">
+                <div class="lib-panel">
+                  <div class="row box-shadow-conversation-profile-admin">
+                    <div class="flex-sb">
+                      <div class="flex-l">
+                        <div class="">
+                          <div class="flex-l">
+                            <div class="">
+                              <img class="" src="/assets/user-icon.png" width="100%">
+                            </div>
+                            <div class="m-l-10">
+                              <p class="p-l">Admin</p>
+                              <p class="p-b">Saint L beau</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-l-10 mob-m-l-0">
+                          <div class="flex-l">
+                            <div class="">
+                              <img class="" src="/assets/calender.png" width="100%">
+                            </div>
+                            <div class="m-l-10">
+                              <p class="p-b m-t-8">Posted: 12.01.19</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-l-10 mob-m-l-0">
+                          <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                        </div>
+                      </div>
+
+                      <div class="grp-edit-delete-icon ">
+                        <a class="" href="#">
+                          <i class="fa fa-pencil inneer font-awesome-edit-profile" aria-hidden="true"></i>
+                        </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
+                          <i class="fa fa-trash inneer 
+                        font-awesome-edit-profile" aria-hidden="true"></i>
+                        </a> </div>
+                    </div>
+                    <div class="join-grp-dscptn">
+                      <h2>Everything Eyes</h2>
+                      <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
+                      <div class="comment more">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vestibulum laoreet, nunc eget laoreet sagittis,
+                        quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                        Duis eget nisl orci. Aliquam mattis purus non mauris
+                        blandit id luctus felis convallis.
+                        Integer varius egestas vestibulum.
+                        Nullam a dolor arcu, ac tempor elit. Donec.
+                      </div>
+                      <!-- after border  -->
+                      <div class="jn-grp-img-show">
+                        <img src="/assets/blog-img-2.jpg">
+                      </div>
+                    </div>
+                    <div class="flex-l pt-10">
+                      <div class="">
+                        <img class="" src="/assets/user-icon.png" width="100%">
+                      </div>
+                      <div class="m-l-10 ">
+                        <p class="p-b m-p-0 text-left">Saint L beau</p>
+                        <p class="p-l">Today at 11:30 am</p>
+                      </div>
+                      <div class="comment more text-left pl-40">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vestibulum laoreet, nunc eget laoreet sagittis,
+                        quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                        <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                            Aliquam mattis purus non mauris
+                            blandit id luctus felis convallis.
+                            Integer varius egestas vestibulum.
+                            Nullam a dolor arcu, ac tempor elit. Donec.
+                          </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
+                    </div>
+
+
+
+                    <div class="flex-sb">
+                      <div class="flex-l  m-t-8">
+                        <div class="">
+                          <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
+                        </div>
+                        <div class="m-l-10 m-t-12">
+                          <p class="fs-12">0</p>
+                        </div>
+                        <div class="m-l-10">
+                          <i class="fa fa-heart fs-20" style="color: red;"></i>
+                        </div>
+                        <div class="m-l-10 m-t-8">
+                          <p class="fs-12 m-t-3">0</p>
+                        </div>
+                      </div>
+                      <div class="m-t-8">
+                        <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- new comment -->
             <div class="col-md-12">
               <div class="lib-panel">
                 <div class="row box-shadow-conversation-profile-admin">
@@ -1187,28 +948,32 @@
                           </div>
                         </div>
                       </div>
-                      <div class="m-l-10 m-l-10">
-                        <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                      <div class="m-l-10 mob-m-l-0">
+                        <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
                       </div>
                     </div>
-
+                    <div class="grp-edit-delete-icon ">
+                      <a class="" href="#">
+                        <i class="fa fa-pencil inneer font-awesome-edit-profile" aria-hidden="true"></i>
+                      </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
+                        <i class="fa fa-trash inneer 
+                        font-awesome-edit-profile" aria-hidden="true"></i>
+                      </a> </div>
                   </div>
                   <div class="join-grp-dscptn">
                     <h2>Everything Eyes</h2>
-                    <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
                     <div class="comment more">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Vestibulum laoreet, nunc eget laoreet sagittis,
                       quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                      Duis eget nisl orci. Aliquam mattis purus non mauris
-                      blandit id luctus felis convallis.
-                      Integer varius egestas vestibulum.
-                      Nullam a dolor arcu, ac tempor elit. Donec.
-                    </div>
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                          Aliquam mattis purus non mauris
+                          blandit id luctus felis convallis.
+                          Integer varius egestas vestibulum.
+                          Nullam a dolor arcu, ac tempor elit. Donec.
+                        </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
                     <!-- after border  -->
-                    <div class="jn-grp-img-show">
-                      <img src="/assets/blog-img-2.jpg">
-                    </div>
+
                   </div>
                   <div class="flex-l pt-10">
                     <div class="">
@@ -1222,16 +987,15 @@
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Vestibulum laoreet, nunc eget laoreet sagittis,
                       quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                          Aliquam mattis purus non mauris
-                          blandit id luctus felis convallis.
-                          Integer varius egestas vestibulum.
-                          Nullam a dolor arcu, ac tempor elit. Donec.
-                        </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                            class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                              Aliquam mattis purus non mauris
+                              blandit id luctus felis convallis.
+                              Integer varius egestas vestibulum.
+                              Nullam a dolor arcu, ac tempor elit. Donec.
+                            </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
+                          href="" class="morelink">Show more</a></span></div>
                   </div>
-
-
-
                   <div class="flex-sb">
                     <div class="flex-l  m-t-8">
                       <div class="">
@@ -1254,220 +1018,460 @@
                 </div>
               </div>
             </div>
-          </div>
+            <!-- last section comment -->
+            <div class="col-md-12">
+              <div class="lib-panel">
+                <div class="row box-shadow-conversation-profile-admin">
+                  <div class="flex-sb">
+                    <div class="flex-l">
+                      <div class="">
+                        <div class="flex-l">
+                          <div class="">
+                            <img class="" src="/assets/user-icon.png" width="100%">
+                          </div>
+                          <div class="m-l-10">
+                            <p class="p-l">Admin</p>
+                            <p class="p-b">Saint L beau</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="m-l-10 mob-m-l-0">
+                        <div class="flex-l">
+                          <div class="">
+                            <img class="" src="/assets/calender.png" width="100%">
+                          </div>
+                          <div class="m-l-10">
+                            <p class="p-b m-t-8">Posted: 12.01.19</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="m-l-10 mob-m-l-0">
+                        <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
+                      </div>
+                    </div>
+                    <div class="grp-edit-delete-icon ">
+                      <a class="" href="#">
+                        <i class="fa fa-pencil inneer font-awesome-edit-profile" aria-hidden="true"></i>
+                      </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
+                        <i class="fa fa-trash inneer 
+                        font-awesome-edit-profile" aria-hidden="true"></i>
+                      </a> </div>
+                  </div>
+                  <div class="join-grp-dscptn">
+                    <h2>Everything Eyes</h2>
+                    <div class="comment more">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum laoreet, nunc eget laoreet sagittis,
+                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                            class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                              Aliquam mattis purus non mauris
+                              blandit id luctus felis convallis.
+                              Integer varius egestas vestibulum.
+                              Nullam a dolor arcu, ac tempor elit. Donec.
+                            </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
+                          href="" class="morelink">Show more</a></span></div>
+                    <!-- after border  -->
 
-
-          <!-- new comment -->
-          <div class="col-md-12">
-            <div class="lib-panel">
-              <div class="row box-shadow-conversation-profile-admin">
-                <div class="flex-sb">
-                  <div class="flex-l">
+                  </div>
+                  <div class="flex-l pt-10 pb-10 bbbb">
                     <div class="">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/user-icon.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-l">Admin</p>
-                          <p class="p-b">Saint L beau</p>
-                        </div>
+                      <img class="" src="/assets/user-icon.png" width="100%">
+                    </div>
+                    <div class="m-l-10 ">
+                      <p class="p-b m-p-0 text-left">Saint L beau</p>
+                      <p class="p-l">Today at 11:30 am</p>
+                    </div>
+                    <div class="comment more text-left pl-40">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum laoreet, nunc eget laoreet sagittis,
+                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                            class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                                class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                                  Aliquam mattis purus non mauris
+                                  blandit id luctus felis convallis.
+                                  Integer varius egestas vestibulum.
+                                  Nullam a dolor arcu, ac tempor elit. Donec.
+                                </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
+                              href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a href=""
+                          class="morelink">Show more</a></span></div>
+                    <div class="grp-img-show-profile pl-40 ">
+                      <img src="/assets/blog-img-2.jpg">
+                    </div>
+                  </div>
+                  <div class="flex-sb">
+                    <div class="flex-l  m-t-8">
+                      <div class="">
+                        <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
+                      </div>
+                      <div class="m-l-10 m-t-12">
+                        <p class="fs-12">0</p>
+                      </div>
+                      <div class="m-l-10">
+                        <i class="fa fa-heart fs-20" style="color: red;"></i>
+                      </div>
+                      <div class="m-l-10 m-t-8">
+                        <p class="fs-12 m-t-3">0</p>
                       </div>
                     </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/calender.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-b m-t-8">Posted: 12.01.19</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
+                    <div class="m-t-8">
+                      <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
                     </div>
                   </div>
                 </div>
-                <div class="join-grp-dscptn">
-                  <h2>Everything Eyes</h2>
-                  <div class="comment more">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                        Aliquam mattis purus non mauris
+              </div>
+            </div>
+
+            <ul class="pagination">
+              <li><a href="#">1</a></li>
+              <li class="active"><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">.</a></li>
+              <li><a href="#">.</a></li>
+              <li><a href="#">.</a></li>
+              <li><a href="#">Next></a></li>
+              <li><a href="#">Last>></a></li>
+            </ul>
+
+            <!-- liked conversation start -->
+
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="post-heading blog-redesign-style">
+                <div class="col-md-4">
+                  <div class="heading-featured">
+                    <h1>Liked Conversation</h1>
+                  </div>
+                </div>
+
+
+                <div class="col-md-5 ">
+
+                </div>
+                <div class="col-md-3  ">
+                  <div class="post-sorting m-0">
+                    <p>SORTING</p>
+                    <select name="sort_type" id="title-sort" class="sorting-fltr">
+                      <option value="">Choose Type</option>
+                      <option value="asc">A-Z</option>
+                      <option value="desc">Z-A</option>
+                    </select>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="middle-row-grp">
+              <div class="col-md-12">
+                <div class="lib-panel">
+                  <div class="row box-shadow-conversation-profile-admin">
+                    <div class="flex-sb">
+                      <div class="flex-l">
+                        <div class="">
+                          <div class="flex-l">
+                            <div class="">
+                              <img class="" src="/assets/user-icon.png" width="100%">
+                            </div>
+                            <div class="m-l-10">
+                              <p class="p-l">Admin</p>
+                              <p class="p-b">Saint L beau</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-l-10 mob-m-l-0">
+                          <div class="flex-l">
+                            <div class="">
+                              <img class="" src="/assets/calender.png" width="100%">
+                            </div>
+                            <div class="m-l-10">
+                              <p class="p-b m-t-8">Posted: 12.01.19</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-l-10 m-l-10">
+                          <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="join-grp-dscptn">
+                      <h2>Everything Eyes</h2>
+                      <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
+                      <div class="comment more">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vestibulum laoreet, nunc eget laoreet sagittis,
+                        quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                        Duis eget nisl orci. Aliquam mattis purus non mauris
                         blandit id luctus felis convallis.
                         Integer varius egestas vestibulum.
                         Nullam a dolor arcu, ac tempor elit. Donec.
-                      </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
-                  <!-- after border  -->
-
-                </div>
-                <div class="flex-l pt-10">
-                  <div class="">
-                    <img class="" src="/assets/user-icon.png" width="100%">
-                  </div>
-                  <div class="m-l-10 ">
-                    <p class="p-b m-p-0 text-left">Saint L beau</p>
-                    <p class="p-l">Today at 11:30 am</p>
-                  </div>
-                  <div class="comment more text-left pl-40">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                          class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                      </div>
+                      <!-- after border  -->
+                      <div class="jn-grp-img-show">
+                        <img src="/assets/blog-img-2.jpg">
+                      </div>
+                    </div>
+                    <div class="flex-l pt-10">
+                      <div class="">
+                        <img class="" src="/assets/user-icon.png" width="100%">
+                      </div>
+                      <div class="m-l-10 ">
+                        <p class="p-b m-p-0 text-left">Saint L beau</p>
+                        <p class="p-l">Today at 11:30 am</p>
+                      </div>
+                      <div class="comment more text-left pl-40">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vestibulum laoreet, nunc eget laoreet sagittis,
+                        quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                        <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
                             Aliquam mattis purus non mauris
                             blandit id luctus felis convallis.
                             Integer varius egestas vestibulum.
                             Nullam a dolor arcu, ac tempor elit. Donec.
-                          </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
-                        href="" class="morelink">Show more</a></span></div>
-                </div>
-                <div class="flex-sb">
-                  <div class="flex-l  m-t-8">
-                    <div class="">
-                      <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
+                          </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
                     </div>
-                    <div class="m-l-10 m-t-12">
-                      <p class="fs-12">0</p>
+
+
+
+                    <div class="flex-sb">
+                      <div class="flex-l  m-t-8">
+                        <div class="">
+                          <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
+                        </div>
+                        <div class="m-l-10 m-t-12">
+                          <p class="fs-12">0</p>
+                        </div>
+                        <div class="m-l-10">
+                          <i class="fa fa-heart fs-20" style="color: red;"></i>
+                        </div>
+                        <div class="m-l-10 m-t-8">
+                          <p class="fs-12 m-t-3">0</p>
+                        </div>
+                      </div>
+                      <div class="m-t-8">
+                        <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                      </div>
                     </div>
-                    <div class="m-l-10">
-                      <i class="fa fa-heart fs-20" style="color: red;"></i>
-                    </div>
-                    <div class="m-l-10 m-t-8">
-                      <p class="fs-12 m-t-3">0</p>
-                    </div>
-                  </div>
-                  <div class="m-t-8">
-                    <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- last section comment -->
-          <div class="col-md-12">
-            <div class="lib-panel">
-              <div class="row box-shadow-conversation-profile-admin">
-                <div class="flex-sb">
-                  <div class="flex-l">
-                    <div class="">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/user-icon.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-l">Admin</p>
-                          <p class="p-b">Saint L beau</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <div class="flex-l">
-                        <div class="">
-                          <img class="" src="/assets/calender.png" width="100%">
-                        </div>
-                        <div class="m-l-10">
-                          <p class="p-b m-t-8">Posted: 12.01.19</p>
+
+
+            <!-- new comment -->
+            <div class="col-md-12">
+              <div class="lib-panel">
+                <div class="row box-shadow-conversation-profile-admin">
+                  <div class="flex-sb">
+                    <div class="flex-l">
+                      <div class="">
+                        <div class="flex-l">
+                          <div class="">
+                            <img class="" src="/assets/user-icon.png" width="100%">
+                          </div>
+                          <div class="m-l-10">
+                            <p class="p-l">Admin</p>
+                            <p class="p-b">Saint L beau</p>
+                          </div>
                         </div>
                       </div>
+                      <div class="m-l-10 mob-m-l-0">
+                        <div class="flex-l">
+                          <div class="">
+                            <img class="" src="/assets/calender.png" width="100%">
+                          </div>
+                          <div class="m-l-10">
+                            <p class="p-b m-t-8">Posted: 12.01.19</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="m-l-10 mob-m-l-0">
+                        <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
+                      </div>
                     </div>
-                    <div class="m-l-10 mob-m-l-0">
-                      <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
-                    </div>
                   </div>
-                </div>
-                <div class="join-grp-dscptn">
-                  <h2>Everything Eyes</h2>
-                  <div class="comment more">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                          class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                            Aliquam mattis purus non mauris
-                            blandit id luctus felis convallis.
-                            Integer varius egestas vestibulum.
-                            Nullam a dolor arcu, ac tempor elit. Donec.
-                          </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
-                        href="" class="morelink">Show more</a></span></div>
-                  <!-- after border  -->
-                </div>
-                <div class="flex-l pt-10 pb-10 bbbb">
-                  <div class="">
-                    <img class="" src="/assets/user-icon.png" width="100%">
+                  <div class="join-grp-dscptn">
+                    <h2>Everything Eyes</h2>
+                    <div class="comment more">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum laoreet, nunc eget laoreet sagittis,
+                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                          Aliquam mattis purus non mauris
+                          blandit id luctus felis convallis.
+                          Integer varius egestas vestibulum.
+                          Nullam a dolor arcu, ac tempor elit. Donec.
+                        </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></div>
+                    <!-- after border  -->
+
                   </div>
-                  <div class="m-l-10 ">
-                    <p class="p-b m-p-0 text-left">Saint L beau</p>
-                    <p class="p-l">Today at 11:30 am</p>
-                  </div>
-                  <div class="comment more text-left pl-40">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum laoreet, nunc eget laoreet sagittis,
-                    quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
-                    <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                          class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
-                              class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
-                                Aliquam mattis purus non mauris
-                                blandit id luctus felis convallis.
-                                Integer varius egestas vestibulum.
-                                Nullam a dolor arcu, ac tempor elit. Donec.
-                              </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
-                            href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a href=""
-                        class="morelink">Show more</a></span></div>
-                  <div class="grp-img-show-profile pl-40 ">
-                    <img src="/assets/blog-img-2.jpg">
-                  </div>
-                </div>
-                <div class="flex-sb">
-                  <div class="flex-l  m-t-8">
+                  <div class="flex-l pt-10">
                     <div class="">
-                      <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
+                      <img class="" src="/assets/user-icon.png" width="100%">
                     </div>
-                    <div class="m-l-10 m-t-12">
-                      <p class="fs-12">0</p>
+                    <div class="m-l-10 ">
+                      <p class="p-b m-p-0 text-left">Saint L beau</p>
+                      <p class="p-l">Today at 11:30 am</p>
                     </div>
-                    <div class="m-l-10">
-                      <i class="fa fa-heart fs-20" style="color: red;"></i>
-                    </div>
-                    <div class="m-l-10 m-t-8">
-                      <p class="fs-12 m-t-3">0</p>
-                    </div>
+                    <div class="comment more text-left pl-40">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum laoreet, nunc eget laoreet sagittis,
+                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                            class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                              Aliquam mattis purus non mauris
+                              blandit id luctus felis convallis.
+                              Integer varius egestas vestibulum.
+                              Nullam a dolor arcu, ac tempor elit. Donec.
+                            </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
+                          href="" class="morelink">Show more</a></span></div>
                   </div>
-                  <div class="m-t-8">
-                    <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                  <div class="flex-sb">
+                    <div class="flex-l  m-t-8">
+                      <div class="">
+                        <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
+                      </div>
+                      <div class="m-l-10 m-t-12">
+                        <p class="fs-12">0</p>
+                      </div>
+                      <div class="m-l-10">
+                        <i class="fa fa-heart fs-20" style="color: red;"></i>
+                      </div>
+                      <div class="m-l-10 m-t-8">
+                        <p class="fs-12 m-t-3">0</p>
+                      </div>
+                    </div>
+                    <div class="m-t-8">
+                      <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- last section comment -->
+            <div class="col-md-12">
+              <div class="lib-panel">
+                <div class="row box-shadow-conversation-profile-admin">
+                  <div class="flex-sb">
+                    <div class="flex-l">
+                      <div class="">
+                        <div class="flex-l">
+                          <div class="">
+                            <img class="" src="/assets/user-icon.png" width="100%">
+                          </div>
+                          <div class="m-l-10">
+                            <p class="p-l">Admin</p>
+                            <p class="p-b">Saint L beau</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="m-l-10 mob-m-l-0">
+                        <div class="flex-l">
+                          <div class="">
+                            <img class="" src="/assets/calender.png" width="100%">
+                          </div>
+                          <div class="m-l-10">
+                            <p class="p-b m-t-8">Posted: 12.01.19</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="m-l-10 mob-m-l-0">
+                        <a class="btn btn-primary new_reply_btn-profile" href="/blogs/new">New Reply </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="join-grp-dscptn">
+                    <h2>Everything Eyes</h2>
+                    <div class="comment more">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum laoreet, nunc eget laoreet sagittis,
+                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                            class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                              Aliquam mattis purus non mauris
+                              blandit id luctus felis convallis.
+                              Integer varius egestas vestibulum.
+                              Nullam a dolor arcu, ac tempor elit. Donec.
+                            </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
+                          href="" class="morelink">Show more</a></span></div>
+                    <!-- after border  -->
+                  </div>
+                  <div class="flex-l pt-10 pb-10 bbbb">
+                    <div class="">
+                      <img class="" src="/assets/user-icon.png" width="100%">
+                    </div>
+                    <div class="m-l-10 ">
+                      <p class="p-b m-p-0 text-left">Saint L beau</p>
+                      <p class="p-l">Today at 11:30 am</p>
+                    </div>
+                    <div class="comment more text-left pl-40">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum laoreet, nunc eget laoreet sagittis,
+                      quam ligula sodales orci, congue imperdiet eros tortor ac lectus.
+                      <span class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                            class="moreellipses">...&nbsp;</span><span class="morecontent"><span> <span
+                                class="moreellipses">...&nbsp;</span><span class="morecontent"><span> Duis eget nisl orci.
+                                  Aliquam mattis purus non mauris
+                                  blandit id luctus felis convallis.
+                                  Integer varius egestas vestibulum.
+                                  Nullam a dolor arcu, ac tempor elit. Donec.
+                                </span>&nbsp;&nbsp;<a href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a
+                              href="" class="morelink">Show more</a></span></span>&nbsp;&nbsp;<a href=""
+                          class="morelink">Show more</a></span></div>
+                    <div class="grp-img-show-profile pl-40 ">
+                      <img src="/assets/blog-img-2.jpg">
+                    </div>
+                  </div>
+                  <div class="flex-sb">
+                    <div class="flex-l  m-t-8">
+                      <div class="">
+                        <i class="fa fa-comment fs-20" style="    color: #256664;"></i>
+                      </div>
+                      <div class="m-l-10 m-t-12">
+                        <p class="fs-12">0</p>
+                      </div>
+                      <div class="m-l-10">
+                        <i class="fa fa-heart fs-20" style="color: red;"></i>
+                      </div>
+                      <div class="m-l-10 m-t-8">
+                        <p class="fs-12 m-t-3">0</p>
+                      </div>
+                    </div>
+                    <div class="m-t-8">
+                      <a class="btn btn-primary new_reply_btn" href="/blogs/new">New Reply </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <ul class="pagination">
+              <li><a href="#">1</a></li>
+              <li class="active"><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">.</a></li>
+              <li><a href="#">.</a></li>
+              <li><a href="#">.</a></li>
+              <li><a href="#">Next></a></li>
+              <li><a href="#">Last>></a></li>
+            </ul>
+
           </div>
 
-          <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">.</a></li>
-            <li><a href="#">Next></a></li>
-            <li><a href="#">Last>></a></li>
-          </ul>
-
-        </div>
-
-        <!-- 4th tab start -->
-        <div class="tab-pane" id="following_tab">
-          <div class="p-t-10">
-            <div class="row m-p-0" id="following-users">
+          <!-- 4th tab start -->
+          <div class="tab-pane" id="following_tab">
+            <div class="p-t-10">
+              <div class="row m-p-0" id="following-users">
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="tab-pane" id="followers_tab">
-          <div class="p-t-10">
-            <div class="row m-p-0" id="follower-users">
+          <div class="tab-pane" id="followers_tab">
+            <div class="p-t-10">
+              <div class="row m-p-0" id="follower-users">
+              </div>
             </div>
           </div>
         </div>

@@ -261,10 +261,10 @@ class User < ApplicationRecord
   end
 
   def following?(user)
-    followings.ids.include?(user.id)
+    followings.ids.include?(user&.id)
   end
 
   def follower?(user)
-    followers.ids.include?(user.id)
+    followers.ids.include?(user&.id)
   end
 end
