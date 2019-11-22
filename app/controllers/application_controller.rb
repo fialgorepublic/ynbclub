@@ -128,6 +128,8 @@ class ApplicationController < ActionController::Base
     return permission_exists?('page_design', 'dashboard') if ['pages', 'dashboard', 'take_snapshots', 'earn_coins', 'share_with_freinds'].include?(controller_name)
     return permission_exists?('all_orders', controller_name) if controller_name == "orders" && action_name == 'index'
     return permission_exists?('scrap_blogs', controller_name) if controller_name == "scrap_blogs"
+    #This is temporary permissions managment for group, need to be fixed and make it work as other permissions.
+    return false if controller_name == 'groups' && ['new', 'create', 'edit', 'destroy', 'update'].include?(action_name)
     true
   end
 
