@@ -67,7 +67,7 @@ class User < ApplicationRecord
   has_many :followers,  through: :follower_relationships, source: :follower
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :followings,  through: :following_relationships, source: :following
-  has_many :admin_groups, class_name: 'Group', foreign_key: 'user_id'
+  has_many :admin_groups, class_name: 'Group'
 
   has_one_attached :avatar
 
