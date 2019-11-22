@@ -5,6 +5,6 @@ else if($(`#user-${<%= params[:current_user_id]%>}-following-count`).length > 0)
   ele = $(`#user-${<%= params[:current_user_id]%>}-following-count`)
 }
 ele.text(parseInt(ele.text()) + 1);
-anchorTag = $(`#user-${<%= params[:id]%>}`).find('a')
+anchorTag = $(`#user-${<%= params[:id]%>}`).find('a.profile-tag-btn-ad')
 anchorTag.text('Unfollow');
 anchorTag.attr('href', '<%= unfollow_follows_path(id: params[:id], current_user_id: params[:current_user_id]) %>')

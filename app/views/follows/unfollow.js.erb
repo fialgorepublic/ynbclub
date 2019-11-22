@@ -1,7 +1,7 @@
 activeTabEle = $('.tabbable-line').find('li.active')[0]
 activeAnchorTag = $(activeTabEle).find('a')
 userDiv = $(`#user-${<%= params[:id]%>}`);
-followUnfollowButton = userDiv.find('a');
+followUnfollowButton = userDiv.find('a.profile-tag-btn-ad');
 if(activeAnchorTag.attr('id') == 'following-tab') {
   userDiv.remove();
 }
