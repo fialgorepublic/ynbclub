@@ -130,6 +130,8 @@ Rails.application.routes.draw do
         get :leave
       end
     end
+
+    resources :blogs, only: [:index], controller: 'users/blogs'
   end
 
   put 'set_commission', to: 'settings#set_commission'

@@ -268,4 +268,10 @@ class User < ApplicationRecord
   def follower?(user)
     followers.ids.include?(user&.id)
   end
+
+  def liked_blogs(sort_type, category)
+    sort_by = sort_type.present? ? sort_type : 0
+    category = category.present? ? category : Category.ids
+    Blog.joins(:likes).where(likes: { user_id: self.id }).filter_by_category(category).sort_blogs(sort_by)
+  end
 end

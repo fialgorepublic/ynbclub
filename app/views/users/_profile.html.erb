@@ -43,7 +43,7 @@
           </li>
 
           <li>
-            <a href="#blogs_tab" data-toggle="tab" id="blogs-tab">
+            <a href="#blogs_tab" data-toggle="tab" id="blogs-tab" data-url="<%= user_blogs_path(user, type: 'both') %>">
               <span class="tab-profile-hreading">Blogs</span> <span class="cirle-profile"><%= user.blogs.count %></span>
             </a>
           </li>
@@ -69,53 +69,7 @@
 
         <div class="tab-content">
           <%= render partial: 'users/groups', locals: { user: user } %>
-          <div class="tab-pane" id="blogs_tab">
-            <div class="">
-              <div class="heading-featured">
-                <h1>Your Blogs</h1>
-              </div>
-              <p>
-                Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim
-                veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel
-                eum
-                iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-              </p>
-              <ul class="pagination">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">.</a></li>
-                <li><a href="#">.</a></li>
-                <li><a href="#">.</a></li>
-                <li><a href="#">Next></a></li>
-                <li><a href="#">Last>></a></li>
-              </ul>
-            </div>
-            <div class="">
-              <div class="heading-featured">
-                <h1>Liked Blogs</h1>
-              </div>
-              <p>
-                Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim
-                veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel
-                eum
-                iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-              </p>
-
-              <ul class="pagination">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">.</a></li>
-                <li><a href="#">.</a></li>
-                <li><a href="#">.</a></li>
-                <li><a href="#">Next></a></li>
-                <li><a href="#">Last>></a></li>
-              </ul>
-            </div>
-          </div>
+          <%= render partial: 'users/blogs/blogs', locals: { user: user } %>
 
           <div class="tab-pane" id="conversations_tab">
             <div class="row" style="margin-top: 10px;">

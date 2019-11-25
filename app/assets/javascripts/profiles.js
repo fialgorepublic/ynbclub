@@ -1,8 +1,11 @@
 $(document).on('turbolinks:load', function(){
   initGetUsers();
-  initGroupsLoader();
+  initLoader();
   sortByTitle();
   filterByCategory();
+  initGetBlogs();
+  sortBlogsByTitle();
+  sortBlogsByTCategory();
 
   function initGetUsers() {
     $('#following-tab, #follower-tab').click(function() {
@@ -15,9 +18,21 @@ $(document).on('turbolinks:load', function(){
     })
   }
 
-  function initGroupsLoader(){
-    $('#your-groups-next, #your-groups-previosu').click(function(){
+  function initLoader(){
+    $('#your-groups-next, #your-groups-previous').click(function(){
       showLoader($('#your-groups'));
+    })
+
+    $('#joined-groups-next, #joined-groups-previous').click(function () {
+      showLoader($('#joined-groups'));
+    })
+
+    $('#your-blogs-next, #your-blogs-previous').click(function () {
+      showLoader($('#your-blogs'));
+    })
+
+    $('#liked-blogs-next, #liked-blogs-previous').click(function () {
+      showLoader($('#liked-blogs'));
     })
   }
 
@@ -71,7 +86,46 @@ $(document).on('turbolinks:load', function(){
     })
   }
 
-  function showLoader(contentDivId){
+  function initGetBlogs(){
+    $('#blogs-tab').click(function () {
+      showLoader($('#your-blogs'));
+      showLoader($('#liked-blogs'));
+      $("html, body").animate({ scrollTop: 300 }, 500);
+      $.ajax({
+        url: `${$(this).data('url')}`,
+        dataType: 'script'
+      })
+    })
+  }
+
+  function sortBlogsByTitle(){
+    $('.profile-blogs-sort').change(function() {
+      type  = $(this).data('type');
+      value = $(this).val();
+      showLoader($(`#${type}`));
+      url = `${$(this).data('url')}?type=${type}&sort=${value}`;
+      fetchBlogs(url);
+    });
+  }
+
+  function sortBlogsByTCategory() {
+    $('.profile-blogs-category').change(function () {
+      type = $(this).data('type');
+      value = $(this).val();
+      showLoader($(`#${type}`));
+      url = `${$(this).data('url')}?type=${type}&category=${value}`;
+      fetchBlogs(url);
+    });
+  }
+
+  function fetchBlogs(url) {
+    $.ajax({
+      url: url,
+      dataType: 'script'
+    })
+  }
+
+  function showLoader(contentDivId) {
     $(contentDivId).html('<div class="text-center" id="users-loader"><i class="fa fa-spin fa-circle-o-notch"></i></div>');
   }
 });

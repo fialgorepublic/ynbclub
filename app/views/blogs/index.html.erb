@@ -58,7 +58,7 @@
     </div>
 
     <div class="row" id="blogs">
-      <%= render "all_blogs" %>
+      <%= render partial: "all_blogs", locals: { blogs: @blogs } %>
     </div>
     <br />
 

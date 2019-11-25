@@ -1,0 +1,44 @@
+<% if params[:type] == 'both'  %>
+  $('#your-blogs').html('<%= j render partial: "blogs/all_blogs", locals: { blogs: @your_blogs } %>');
+  $('#liked-blogs').html('<%= j render partial: "blogs/all_blogs", locals: { blogs: @liked_blogs } %>');
+  yourGroupPaginationsLink();
+  likedGroupPaginationsLink();
+<% elsif params[:type] == 'your-blogs' %>
+  $('#your-blogs').html('<%= j render partial: "blogs/all_blogs", locals: { blogs: @your_blogs } %>');
+  yourGroupPaginationsLink();
+<% elsif params[:type] == 'liked-blogs' %>
+  $('#liked-blogs').html('<%= j render partial: "blogs/all_blogs", locals: { blogs: @liked_blogs } %>');
+  likedGroupPaginationsLink();
+<% end %>
+
+function yourGroupPaginationsLink() {
+  <% if @your_blogs.present? && @your_blogs&.next_page %>
+    $('#your-blogs-next').removeClass('hidden');
+    $('#your-blogs-next').attr('href', '<%= user_blogs_path(user_id: @user.id, your_blogs_page: @your_blogs&.next_page, type: 'your-blogs') %>')
+  <% else %>
+    $('#your-blogs-next').addClass('hidden');
+  <% end %>
+
+  <% if @your_blogs.present? && @your_blogs&.previous_page %>
+    $('#your-blogs-previous').removeClass('hidden');
+    $('#your-blogs-previous').attr('href', '<%= user_blogs_path(user_id: @user.id, your_blogs_page: @your_blogs&.previous_page, type: 'your-blogs') %>')
+  <% else %>
+    $('#your-blogs-previous').addClass('hidden');
+  <% end %>
+}
+
+function likedGroupPaginationsLink() {
+  <% if @liked_blogs.present? && @liked_blogs&.next_page %>
+    $('#liked-blogs-next').removeClass('hidden');
+    $('#liked-blogs-next').attr('href', '<%= user_blogs_path(user_id: @user.id, liked_blogs_page: @liked_blogs&.next_page, type: 'liked-blogs') %>')
+  <% else %>
+    $('#liked-blogs-next').addClass('hidden');
+  <% end %>
+
+  <% if @liked_blogs.present? && @liked_blogs&.previous_page %>
+    $('#liked-blogs-previous').removeClass('hidden');
+    $('#liked-blogs-previous').attr('href', '<%= user_blogs_path(user_id: @user.id, liked_blogs_page: @liked_blogs&.previous_page, type: 'liked-blogs') %>')
+  <% else %>
+    $('#liked-blogs-previous').addClass('hidden');
+  <% end %>
+}
