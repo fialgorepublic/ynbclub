@@ -16,19 +16,21 @@
       </div>
     </div>
 
-    <div class="col-md-12 col-lg-12 class-z" id="your-groups">
+    <div class="row col-md-12 col-lg-12 class-z" id="your-groups">
       <%= render partial: 'groups/all_groups', locals: { groups: @your_groups } %>
     </div>
-    <hr>
-    <div class="pagination-div">
-      <% if @your_groups.next_page %>
-        <div class="text-right">
-          <%= link_to 'Next Page →', user_groups_path(user_id: user.id, your_group_page: @your_groups.next_page, type: 'your-groups'), remote: true, id: 'your-groups-next' %>
-        </div>
-      <% end %>
 
-      <div class="text-left">
-        <%= link_to '← Previous Page', user_groups_path(user_id: user.id, your_group_page: @your_groups.previous_page, type: 'your-groups'), remote: true, id: 'your-groups-previous', class: @your_groups.previous_page ? '' : 'hidden'  %>
+    <div class="row">
+      <div class="col-md-12 pagination-div flex-sb">
+        <div class="text-left">
+          <%= link_to '← Previous Page', user_groups_path(user_id: user.id, your_group_page: @your_groups.previous_page, type: 'your-groups'), remote: true, id: 'your-groups-previous', class: @your_groups.previous_page ? '' : 'hidden'  %>
+        </div>
+
+        <% if @your_groups.next_page %>
+          <div class="text-right">
+            <%= link_to 'Next Page →', user_groups_path(user_id: user.id, your_group_page: @your_groups.next_page, type: 'your-groups'), remote: true, id: 'your-groups-next' %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -52,15 +54,17 @@
     </div>
 
     <hr>
-    <div class="pagination-div">
-      <% if @joined_groups.next_page %>
-        <div class="text-right">
-          <%= link_to 'Next Page →', user_groups_path(user_id: user.id, joined_group_page: @joined_groups.next_page, type: 'joined-groups'), remote: true, id: 'joined-groups-next' %>
+    <div class='row'>
+      <div class="col-md-12 pagination-div flex-sb">
+        <div class="text-left">
+          <%= link_to '← Previous Page', user_groups_path(user_id: user.id, joined_group_page: @joined_groups.previous_page, type: 'joined-groups'), remote: true, id: 'joined-groups-previous', class: @joined_groups.previous_page ? '' : 'hidden'  %>
         </div>
-      <% end %>
 
-      <div class="text-left">
-        <%= link_to '← Previous Page', user_groups_path(user_id: user.id, joined_group_page: @joined_groups.previous_page, type: 'joined-groups'), remote: true, id: 'joined-groups-previous', class: @joined_groups.previous_page ? '' : 'hidden'  %>
+        <% if @joined_groups.next_page %>
+          <div class="text-right">
+            <%= link_to 'Next Page →', user_groups_path(user_id: user.id, joined_group_page: @joined_groups.next_page, type: 'joined-groups'), remote: true, id: 'joined-groups-next' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
