@@ -10,6 +10,5 @@ class Users::BlogsController < ApplicationController
       elsif params[:type] == 'liked-blogs'
         [[], @user.liked_blogs(params[:sort], params[:category]).paginate(page: params[:liked_blogs_page], per_page: 5)]
       end
-    byebug
   end
 end
