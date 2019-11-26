@@ -132,6 +132,7 @@ Rails.application.routes.draw do
     end
 
     resources :blogs, only: [:index], controller: 'users/blogs'
+    resources :conversations, only: [:index], controller: 'users/conversations'
   end
 
   put 'set_commission', to: 'settings#set_commission'
