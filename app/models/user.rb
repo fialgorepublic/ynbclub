@@ -274,4 +274,12 @@ class User < ApplicationRecord
     category = category.present? ? category : Category.ids
     Blog.joins(:likes).where(likes: { user_id: self.id }).filter_by_category(category).sort_blogs(sort_by)
   end
+
+  def post_conversations(sort_type)
+    conversations.includes(:replies, :conversation_likes).post_conversations.sort_by_title(sort_type)
+  end
+
+  def liked_conversations(sort_type)
+    Conversation.includes(:replies, :conversation_likes).liked_conversations(self.id).sort_by_title(sort_type)
+  end
 end

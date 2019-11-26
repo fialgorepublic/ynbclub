@@ -6,6 +6,8 @@ $(document).on('turbolinks:load', function(){
   initGetBlogs();
   sortBlogsByTitle();
   sortBlogsByTCategory();
+  initGetConversations();
+  sortConversationsByTitle();
 
   function initGetUsers() {
     $('#following-tab, #follower-tab').click(function() {
@@ -33,6 +35,14 @@ $(document).on('turbolinks:load', function(){
 
     $('#liked-blogs-next, #liked-blogs-previous').click(function () {
       showLoader($('#liked-blogs'));
+    })
+
+    $('#your-conversations-next, #your-conversations-previous').click(function () {
+      showLoader($('#your-conversations'));
+    })
+
+    $('#liked-conversations-next, #liked-conversations-previous').click(function () {
+      showLoader($('#liked-conversations'));
     })
   }
 
@@ -119,6 +129,31 @@ $(document).on('turbolinks:load', function(){
   }
 
   function fetchBlogs(url) {
+    $.ajax({
+      url: url,
+      dataType: 'script'
+    })
+  }
+
+  function initGetConversations() {
+    $('#conversations-tab').click(function () {
+      showLoader($('#your-conversations'));
+      showLoader($('#liked-conversations'));
+      $("html, body").animate({ scrollTop: 300 }, 500);
+      fetchConversations($(this).data('url'));
+    })
+  }
+
+  function sortConversationsByTitle() {
+    $('.conversation-title-sort').change(function () {
+      type = $(this).data('type');
+      url = `${$(this).data('url')}&sort=${$(this).val()}`;
+      showLoader($(`#${type}`));
+      fetchConversations(url);
+    })
+  }
+
+  function fetchConversations(url){
     $.ajax({
       url: url,
       dataType: 'script'

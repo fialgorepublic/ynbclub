@@ -1,0 +1,44 @@
+<% if params[:type] == 'both'  %>
+  $('#your-conversations').html('<%= j render partial: "conversations/conversation", collection: @your_conversations, as: :conversation %>');
+  $('#liked-conversations').html('<%= j render partial: "conversations/conversation", collection: @liked_conversations, as: :conversation %>');
+  yourConversationsPaginationsLink();
+  likedConversationsPaginationsLink();
+<% elsif params[:type] == 'your-conversations' %>
+  $('#your-conversations').html('<%= j render partial: "conversations/conversation", collection: @your_conversations, as: :conversation %>');
+  yourConversationsPaginationsLink();
+<% elsif params[:type] == 'liked-conversations' %>
+  $('#liked-conversations').html('<%= j render partial: "conversations/conversation", collection: @liked_conversations, as: :conversation %>');
+  likedConversationsPaginationsLink();
+<% end %>
+
+function yourConversationsPaginationsLink() {
+  <% if @your_conversations.present? && @your_conversations&.next_page %>
+    $('#your-conversations-next').removeClass('hidden');
+    $('#your-conversations-next').attr('href', '<%= user_conversations_path(user_id: @user.id, your_conversations_page: @your_conversations&.next_page, type: 'your-conversations') %>')
+  <% else %>
+    $('#your-conversations-next').addClass('hidden');
+  <% end %>
+
+  <% if @your_conversations.present? && @your_conversations&.previous_page %>
+    $('#your-conversations-previous').removeClass('hidden');
+    $('#your-conversations-previous').attr('href', '<%= user_conversations_path(user_id: @user.id, your_conversations_page: @your_conversations&.previous_page, type: 'your-conversations') %>')
+  <% else %>
+    $('#your-conversations-previous').addClass('hidden');
+  <% end %>
+}
+
+function likedConversationsPaginationsLink() {
+  <% if @liked_conversations.present? && @liked_conversations&.next_page %>
+    $('#liked-conversations-next').removeClass('hidden');
+    $('#liked-conversations-next').attr('href', '<%= user_conversations_path(user_id: @user.id, liked_conversations_page: @liked_conversations&.next_page, type: 'liked-conversations') %>')
+  <% else %>
+    $('#liked-conversations-next').addClass('hidden');
+  <% end %>
+
+  <% if @liked_conversations.present? && @liked_conversations&.previous_page %>
+    $('#liked-conversations-previous').removeClass('hidden');
+    $('#liked-conversations-previous').attr('href', '<%= user_conversations_path(user_id: @user.id, liked_conversations_page: @liked_conversations&.previous_page, type: 'liked-conversations') %>')
+  <% else %>
+    $('#liked-conversations-previous').addClass('hidden');
+  <% end %>
+}
