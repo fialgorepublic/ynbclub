@@ -276,10 +276,14 @@ class User < ApplicationRecord
   end
 
   def post_conversations(sort_type)
-    conversations.includes(:replies, :conversation_likes).post_conversations.sort_by_title(sort_type)
+    all_converations = conversations.includes(:replies, :conversation_likes).post_conversations
+    all_converations.sort_by_title(sort_type) if sort_type.present?
+    all_converations
   end
 
   def liked_conversations(sort_type)
-    Conversation.includes(:replies, :conversation_likes).liked_conversations(self.id).sort_by_title(sort_type)
+    all_converations = Conversation.includes(:replies, :conversation_likes).liked_conversations(self.id)
+    all_converations.sort_by_title(sort_type) if sort_type.present?
+    all_converations
   end
 end
