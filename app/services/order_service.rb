@@ -33,7 +33,6 @@ class OrderService
         phone_number:       phone_number,
         total:              params['total_price'],
         order_created_at:   params['created_at'],
-        sent_to_ghtk:       sent_to_ghtk?,
         financial_status:   params['financial_status'],
         fulfilment_status:  fulfillment_status,
         items_attributes:   items_attributes,
@@ -58,9 +57,9 @@ class OrderService
                   quantity: line_item["quantity"], amount: line_item["price"]  } }
     end
 
-    def sent_to_ghtk?
-      params['email'].present? ? params['email'].include?('facebook.com') : false
-    end
+    # def sent_to_ghtk?
+    #   params['email'].present? ? params['email'].include?('facebook.com') : false
+    # end
 
     def address_params
       if params['billing_address'].present?
