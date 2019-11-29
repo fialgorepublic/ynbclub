@@ -2,7 +2,7 @@ class Conversation < ApplicationRecord
   self.per_page = 10
   default_scope { order(updated_at: :desc) }
 
-  belongs_to :group, counter_cache: true
+  belongs_to :group, counter_cache: true, touch: true
   belongs_to :user,  counter_cache: true
 
   has_many   :replies, class_name: 'Conversation', foreign_key: 'parent_id'
@@ -52,6 +52,8 @@ class Conversation < ApplicationRecord
     end
 
     def update_replies_count
-      self.parent.increment!(:replies_count) if self.parent_id.present?
+      return if self.parent_id.blank?
+      self.parent.increment!(:replies_count)
+      self.parent.touch
     end
 end
