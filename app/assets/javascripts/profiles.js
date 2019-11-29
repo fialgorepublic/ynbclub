@@ -11,7 +11,11 @@ $(document).on('turbolinks:load', function(){
 
   function initGetUsers() {
     $('#following-tab, #follower-tab').click(function() {
-      contentDivId = `#${$(this).attr('id').split('-')[0]}-users`
+      tabId = $(this).attr('id').split('-')[0];
+      if (tabId == 'follower') { $('#following-users').html(''); }
+      else { $('#follower-users').html(''); }
+      contentDivId = `#${tabId}-users`
+
       showLoader(contentDivId)
       $.ajax({
         url: `${$(this).data('url')}&type=${$(this).data('type')}`,
