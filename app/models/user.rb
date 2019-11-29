@@ -214,6 +214,12 @@ class User < ApplicationRecord
     blogs.find_by(id: blog_id).present?
   end
 
+  def user_blogs(sort_type, category)
+    sort_by = sort_type.present? ? sort_type : 0
+    category = category.present? ? category : Category.ids
+    blogs.filter_by_category(category).sort_blogs(sort_type)
+  end
+
   def filtered_blogs(sort_type, category, title="")
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
