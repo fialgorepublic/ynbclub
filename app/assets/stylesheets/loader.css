@@ -18,3 +18,17 @@
   font-size:100px;
   color:#25aae1 ;
 }
+
+#users-loader {
+  position: relative;
+  min-height: 400px;
+}
+
+#users-loader .fa{
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  z-index: 100;
+  font-size:20px;
+  color:#25aae1 ;
+}

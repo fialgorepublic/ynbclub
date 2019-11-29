@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_094307) do
+ActiveRecord::Schema.define(version: 2019_11_22_094855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,16 @@ ActiveRecord::Schema.define(version: 2019_11_14_094307) do
     t.index ["user_id"], name: "index_exchange_histories_on_user_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_id", "following_id"], name: "index_follows_on_follower_id_and_following_id"
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+    t.index ["following_id"], name: "index_follows_on_following_id"
+  end
+
   create_table "group_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -197,8 +207,10 @@ ActiveRecord::Schema.define(version: 2019_11_14_094307) do
     t.bigint "group_category_id"
     t.integer "users_count", default: 0
     t.integer "conversations_count", default: 0
+    t.bigint "user_id"
     t.index ["group_category_id"], name: "index_groups_on_group_category_id"
     t.index ["slug"], name: "index_groups_on_slug", unique: true
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -497,6 +509,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_094307) do
     t.integer "groups_count", default: 0
     t.integer "conversations_count", default: 0
     t.integer "likes_count", default: 0
+    t.integer "followers_count", default: 0
+    t.integer "following_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -524,6 +538,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_094307) do
   add_foreign_key "districts", "cities", on_delete: :cascade
   add_foreign_key "exchange_histories", "users", on_delete: :cascade
   add_foreign_key "groups", "group_categories", on_delete: :cascade
+  add_foreign_key "groups", "users", on_delete: :cascade
   add_foreign_key "items", "orders", on_delete: :cascade
   add_foreign_key "joined_groups", "groups", on_delete: :cascade
   add_foreign_key "joined_groups", "users", on_delete: :cascade

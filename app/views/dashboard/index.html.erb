@@ -1,111 +1,14 @@
-<div class="col-md-9">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="main">
-        <h2> <i><img src="/assets/icon-16.png"></i> Dashboard</h2>
-      </div>
-      <hr>
-    </div>
-  </div>
-
-  <div class="row">
-
-    <div class="col-md-12">
-      <h3>Last Incomes</h3>
-      <div class="box-shadow">
-        <img src="/assets/icon-12.png">
-        <p>You'll see the list of sold products here. </br> Add your products and design them to the blog posts</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-
-    <div class="col-md-12">
-      <h3>Last Earned Coins</h3>
-      <div class="box-points">
-        <% if @points.present? %>
-          <div class="row">
-            <div class="col-md-12 dashboard-points">
-              <%= render partial: 'dashboard/point', collection: @points %>
-
-              <% if current_user_points(current_user) > 4 %>
-                <div class="row">
-                  <div class="col-md-offset-10 col-md-2">
-                    <a href="/users/points">Show more...</a>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% else %>
-          <div class="box-shadow">
-            <img src="/assets/icon-13.png">
-            <p>Here you will see the log of your </br> earned coins.</p>
-            <!-- <button class="btn btn-default">How earn and pass coins?</button> -->
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-   <div class="row">
-    <div class="col-md-10">
-      <h3>My Earnings</h3>
-    </div>
-    <div class="col-md-2 text-right">
-      <div class="select-holder">
-        <select class="form-control">
-          <option>ALL products</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-12">
-      
-      <div class="box-shadow">
-        <img src="/assets/icon-14.png">
-        <p>You'll see the chart of your earnings here. </br> Add your products and assign them to the blogs posts.</p>
-        <!-- <button class="btn btn-default">Go to the my products page</button> -->
-      </div>
-    </div>
-  </div>
-
-   <div class="row">
-     <div class="col-md-10">
-       <h3>Buyers Attendance</h3>
-    </div>
-    <div class="col-md-2 text-right">
-      <div class="select-holder">
-        <select class="form-control">
-          <option>ALL Blogs</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-12">
-     
-      <div class="box-shadow">
-        <img src="/assets/icon-15.png">
-        <p>You'll see the chart of buyer's attendance here. </br> Create your first blog posts with assigned products.</p>
-        <!-- <button class="btn btn-default">Go to the my blogs page</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
+<%= render partial: 'users/profile', locals: { user: current_user } %>
 <div id="selectRole" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content select-role-holder">
       <div class="modal-body">
         <div class="modal-holder">
           <h3 class="text-center">Select your role</h3>
           <div class="row">
-
-            <!--<#% Role.all.each do |role| %>-->
             <div class="col-md-6 text-center">
               <div class="role-box"  id="<%= buyer.id %>" onclick="highlight_div(<%= buyer.id %>)">
-                <!--<i class="far fa-image"></i>-->
                 <div class="user-image">
                   <%= image_tag 'user-img-2.png' %>
                 </div>
@@ -113,6 +16,7 @@
                 <p>You will be able to see orders, use wishlist, see shipping status and receive coupons.</p>
               </div>
             </div>
+
             <div class="col-md-6 text-center" >
               <div class="role-box" id="<%= ambassador.id %>" onclick="highlight_div(<%= ambassador.id %>)">
                 <div class="user-image">
@@ -122,7 +26,7 @@
                 <p>You will be able to see your sales, add blogs and check statistics.</p>
               </div>
             </div>
-            <%# end %>
+
             <div class="col-md-12">
               <%= hidden_field_tag :role_id  %>
               <a href="javascript:void(0);" onclick="add_role();" class="btn btn-bottom btn-primary btn-block btn-lg" id="submit-role" disabled>continue</a>
@@ -130,186 +34,111 @@
           </div>
         </div>
       </div>
-      <!--<div class="modal-footer">-->
-      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-      <!--</div>-->
     </div>
-
-  </div>
-</div>
-
-<div id="afterSelectRole" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-holder">
-          <div id="current_user_role">
-            <h3 class="text-center">Hi <%= current_user.name %>! You're successfully registered as <%= current_user.role.present? ? current_user.role.name : "Buyer" %> </h3>
-          </div>
-          <!--<p>We have sent a confirmation link to your email. Please verify your account.</p>-->
-          <div style="text-align: center">
-            <!--<button class="btn btn-default">open catalog</button>-->
-            <!--<button class="btn btn-default">Go to brands</button>-->
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <%= render 'shared/partner_info' %>
 
 <script>
-    $(document).ready(function () {
-
-        $("#save_partner_information").validate({
-            rules: {
-                "user[phone_number]": {
-                    required: true
-                },
-                "user[identity_card]": {
-                    required: true
-                },
-                "user[profile][bank_name]": {
-                    required: true
-                },
-                "user[profile][acc_holder_name]": {
-                    required: true
-                },
-                "user[profile][account_number]": {
-                    required: true
-                }
-
-            },
-            messages: {
-                "user[phone_number]": {
-                    required: "Enter Phone number"
-                },
-                "user[identity_card]": {
-                    required: "Enter identity card number"
-                },
-                "user[profile][bank_name]": {
-                    required: "Enter bank name"
-                },
-                "user[profile][acc_holder_name]": {
-                    required: "Enter account title"
-                },
-                "user[profile][account_number]": {
-                    required: "Enter account number"
-                }
-            }
-        });
-    });
-
-    <% if @role_selection %>
+  <% if @role_selection %>
     $('#selectRole').modal('show');
-    <% end %>
-    <% if @profile %>
+  <% end %>
+
+  <% if @profile %>
     $('#add_partner_information').modal('show');
-    <% end %>
+  <% end %>
 
-
-    function highlight_div(id){
-        $(".role-box").attr("style", "border: 3px solid  #f4f8fb");
-        $('#role_id').val(id);
-        $('#submit-role').removeAttr('disabled');
-        $("#" + id).attr("style", "border:3px solid #337ab7");
-    }
-    $('body').addClass('modal-dark')
-
-    function add_role(){
-        var role_id = $('#role_id').val();
-        if (role_id == ""){
-            return false;
-        }
-        $.ajax({
-            url:'/update_user_role?role_id='+role_id,
-            type:'get',
-            dataType:'json',
-            processData:false,
-            success:function (data) {
-                $('body').removeClass('modal-dark')
-                $('#selectRole').modal('hide');
-                $('#current_user_role').load(' #current_user_role');
-                if(data.buyer == "true"){
-                    window.location.href = '/buyerDashboard'
-//                    $('#afterSelectRole').modal('show');
-
-                }else{
-                    $('#add_partner_information').modal('show');
-                }
+  $(document).ready(function () {
+    setCookies();
+    $('body').addClass('modal-dark');
+    $("#save_partner_information").validate({
+        rules: {
+            "user[phone_number]": {
+                required: true
             },
-            error:function (data) {
-                alert ('Error');
-                //    window.location.reload();
-            }
-        });
-    }
-
-
-    $(document).ready(function () {
-
-      function setCookies(){
-        if (Cookies.get('saintlbeau_user_email')) { return; }
-        email = '<%= current_user.email %>'
-        Cookies.set('saintlbeau_user_email', email, { expires: 365, domain: 'saintlbeau.com' })
-      }
-
-      setCookies();
-
-        var navListItems = $('div.setup-panel div a'),
-                allWells = $('.setup-content'),
-                allNextBtn = $('.nextBtn');
-
-        allWells.hide();
-
-        navListItems.click(function (e) {
-            e.preventDefault();
-            var $target = $($(this).attr('href')),
-                    $item = $(this);
-
-            if (!$item.hasClass('disabled')) {
-                navListItems.removeClass('btn-success').addClass('btn-default');
-                $item.addClass('btn-success');
-                allWells.hide();
-                $target.show();
-                $target.find('input:eq(0)').focus();
-            }
-        });
-
-        allNextBtn.click(function () {
-            var curStep = $(this).closest(".setup-content"),
-                    curStepBtn = curStep.attr("id"),
-                    nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                    curInputs = curStep.find("input[type='text'],input[type='url']"),
-                    isValid = true;
-
-            $(".form-group").removeClass("has-error");
-            for (var i = 0; i < curInputs.length; i++) {
-                if (!curInputs[i].validity.valid) {
-                    isValid = false;
-                    $(curInputs[i]).closest(".form-group").addClass("has-error");
-                }
+            "user[identity_card]": {
+                required: true
+            },
+            "user[profile][bank_name]": {
+                required: true
+            },
+            "user[profile][acc_holder_name]": {
+                required: true
+            },
+            "user[profile][account_number]": {
+                required: true
             }
 
-            if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
-        });
-
-        $('div.setup-panel div a.btn-success').trigger('click');
+        },
+        messages: {
+            "user[phone_number]": {
+                required: "Enter Phone number"
+            },
+            "user[identity_card]": {
+                required: "Enter identity card number"
+            },
+            "user[profile][bank_name]": {
+                required: "Enter bank name"
+            },
+            "user[profile][acc_holder_name]": {
+                required: "Enter account title"
+            },
+            "user[profile][account_number]": {
+                required: "Enter account number"
+            }
+        }
     });
 
-  <% if params[:blog_not_found] %>
-    apprise("The blog no longer exist, Please contact support team for more information")
-  <% end %>
+    function setCookies(){
+      if (Cookies.get('saintlbeau_user_email')) { return; }
+      email = '<%= current_user.email %>'
+      Cookies.set('saintlbeau_user_email', email, { expires: 365, domain: 'saintlbeau.com' })
+    }
+  });
+
+  function highlight_div(id){
+    $(".role-box").attr("style", "border: 3px solid  #f4f8fb");
+    $('#role_id').val(id);
+    $('#submit-role').removeAttr('disabled');
+    $("#" + id).attr("style", "border:3px solid #337ab7");
+  }
+
+  function add_role(){
+    var role_id = $('#role_id').val();
+    if (role_id == ""){
+      return false;
+    }
+    $.ajax({
+      url:'/update_user_role?role_id='+role_id,
+      type:'get',
+      dataType:'json',
+      processData:false,
+      success:function (data) {
+        $('body').removeClass('modal-dark')
+        $('#selectRole').modal('hide');
+        $('#current_user_role').load(' #current_user_role');
+        if(data.buyer == "true"){
+          window.location.href = '/dashboard'
+        }else{
+          $('#add_partner_information').modal('show');
+        }
+      },
+      error:function (data) {
+          alert ('Error');
+      }
+    });
+  }
+
+  $(document).ready(function () {
+    function setCookies(){
+      if (Cookies.get('saintlbeau_user_email')) { return; }
+      email = '<%= current_user.email %>'
+      Cookies.set('saintlbeau_user_email', email, { expires: 365, domain: 'saintlbeau.com' })
+    }
+
+    setCookies();
+  });
 </script>
 
 <style>

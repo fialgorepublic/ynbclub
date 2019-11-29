@@ -63,17 +63,24 @@ class User < ApplicationRecord
   has_many :groups, through: :joined_groups
   has_many :conversations
   has_many :conversation_likes
+  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
+  has_many :followers,  through: :follower_relationships, source: :follower
+  has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :followings,  through: :following_relationships, source: :following
+  has_many :admin_groups, class_name: 'Group'
 
   has_one_attached :avatar
 
   delegate :first_name, :surname, :address_line_1, :address_line_2, :city, :state, :zip_code, to: :profile, allow_nil: true
   delegate :phone_number, to: :profile, prefix: true, allow_nil: true
+  delegate :bank_name, :acc_holder_name, :account_number, to: :profile, allow_nil: true
 
   scope :avtive_ambassadors, -> (status) { where(role_id: ambassador_role_id, is_activated: status) }
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
   scope :sort_by_banned, -> { order(banned: :desc) }
 
   after_save :set_default_permissions
+  after_save :set_profile
 
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
@@ -82,7 +89,7 @@ class User < ApplicationRecord
                         { action_names: ['get_products_from_shopify', 'get_selected_products'], controller_name: 'products' },
                         { action_names: ['add_partner_information'], controller_name: 'partner_informations' },
                         { action_names: ['my_orders'], controller_name: 'orders' },
-                        { action_names: ['index', 'update_user_role', 'change_profile_picture', 'get_user_object', 'step_one', 'step_two', 'step_three', 'buyerDashboard', 'share_with_friends', 'acc_settings', 'take_snapshot'],
+                        { action_names: ['index', 'update_user_role', 'change_profile_picture', 'get_user_object', 'step_one', 'step_two', 'step_three', 'share_with_friends', 'acc_settings', 'take_snapshot'],
                           controller_name: 'dashboard' },
                         { action_names: ['add_comment', 'comment_like_unlike'], controller_name: 'comments' }
                       ]
@@ -145,6 +152,14 @@ class User < ApplicationRecord
       end
       User.where(id: users_with_points)
     end
+  end
+
+  def set_profile
+    profile.presence || create_profile
+  end
+
+  def incomplete_profile?
+    phone_number.blank? || bank_name.blank? || acc_holder_name.blank? || account_number.blank?
   end
 
   def add_new_permissions permissions
@@ -244,5 +259,29 @@ class User < ApplicationRecord
 
   def joined_group?(group_id)
     joined_groups.find_by(group_id: group_id).present?
+  end
+
+  def following?(user)
+    followings.ids.include?(user&.id)
+  end
+
+  def follower?(user)
+    followers.ids.include?(user&.id)
+  end
+
+  def liked_blogs(sort_type, category)
+    sort_by = sort_type.present? ? sort_type : 0
+    category = category.present? ? category : Category.ids
+    Blog.joins(:likes).where(likes: { user_id: self.id }).filter_by_category(category).sort_blogs(sort_by)
+  end
+
+  def post_conversations(sort_type)
+    all_converations = conversations.includes(:replies, :conversation_likes).post_conversations
+    sort_type.present? ? all_converations.sort_by_title(sort_type) : all_converations
+  end
+
+  def liked_conversations(sort_type)
+    all_converations = Conversation.includes(:replies, :conversation_likes).liked_conversations(self.id)
+    sort_type.present? ? all_converations.sort_by_title(sort_type) : all_converations
   end
 end

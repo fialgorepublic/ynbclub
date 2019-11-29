@@ -2,7 +2,7 @@ class Conversation < ApplicationRecord
   self.per_page = 10
   default_scope { order(updated_at: :desc) }
 
-  belongs_to :group, counter_cache: true
+  belongs_to :group, counter_cache: true, touch: true
   belongs_to :user,  counter_cache: true
 
   has_many   :replies, class_name: 'Conversation', foreign_key: 'parent_id'
@@ -10,12 +10,14 @@ class Conversation < ApplicationRecord
 
   validates :body, presence: true
 
-  scope :post_conversations, ->             { where(parent_id: nil) }
-  scope :filter_by_subject,  -> (subject)   { where('lower(subject) like ?', "%#{subject&.downcase}%") }
-  scope :popular_first,      ->             { reorder(likes_count: :desc, replies_count: :desc) }
-  scope :unanswered,         ->             { reorder(replies_count: :asc) }
-  scope :a_z,                ->             { reorder(subject: :asc) }
-  scope :sort_by_type,      -> (sort_type) do
+  scope :post_conversations,  ->             { where(parent_id: nil) }
+  scope :filter_by_subject,   -> (subject)   { where('lower(subject) like ?', "%#{subject&.downcase}%") }
+  scope :popular_first,       ->             { reorder(likes_count: :desc, replies_count: :desc) }
+  scope :unanswered,          ->             { reorder(replies_count: 0) }
+  scope :a_z,                 ->             { reorder('lower(subject) ASC') }
+  scope :liked_conversations, -> (user_id)   { joins(:conversation_likes).where(conversation_likes: { user_id: user_id }) }
+  scope :sort_by_title,       -> (type)      { reorder("lower(subject) #{type ? type : :asc}") }
+  scope :sort_by_type,        -> (sort_type) do
     sort_type = sort_type.to_i
     case sort_type
     when 2
@@ -50,6 +52,8 @@ class Conversation < ApplicationRecord
     end
 
     def update_replies_count
-      self.parent.increment!(:replies_count) if self.parent_id.present?
+      return if self.parent_id.blank?
+      self.parent.increment!(:replies_count)
+      self.parent.touch
     end
 end

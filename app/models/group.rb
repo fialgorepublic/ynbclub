@@ -13,6 +13,7 @@ class Group < ApplicationRecord
   default_scope { order(updated_at: :desc) }
 
   belongs_to :group_category
+  belongs_to :admin_group, class_name: "User", foreign_key: "user_id"
 
   has_many :joined_groups
   has_many :users, through: :joined_groups
@@ -25,7 +26,7 @@ class Group < ApplicationRecord
 
   scope :sort_by_title, -> (sort_type)  do
     sort_type = sort_type.present? ? sort_type : 0
-    sort_type == 0 ? all : reorder(name: sort_type.to_sym)
+    sort_type == 0 ? all : reorder("lower(name) #{sort_type}")
   end
   scope :filter_by_categories, -> (categroy_ids) { where(group_category_id: categroy_ids.split(',')) }
   scope :filter_by_name, -> (name) { where('lower(name) like ?', "%#{name&.downcase}%") }

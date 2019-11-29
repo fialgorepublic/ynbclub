@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  before_action :authenticate_user!, except: [:find_user_by_email, :find_user]
-  before_action :authorize_user!, except: [:find_user_by_email, :find_user]
+  before_action :authenticate_user!, except: [:find_user_by_email, :find_user, :show]
+  before_action :authorize_user!, except: [:find_user_by_email, :find_user, :show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :check_role, only: [:find_user_by_email, :find_user, :add_user_info, :show]
+
   require 'csv'
   require 'roo'
 
@@ -17,6 +19,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @your_groups   = @user.admin_groups.paginate(page: params[:your_page], per_page: 6)
+    @joined_groups = @user.groups.paginate(page: params[:joined_page], per_page: 6)
   end
 
   def new
@@ -124,9 +128,6 @@ class UsersController < ApplicationController
   def update_profile
     user = User.find(params[:user_id])
     params[:user][:password].present? ? user.update(user_params) : user.update(edit_user_params)
-
-    user.create_profile if user.profile.blank?
-
     user.profile.update(profile_params)
     redirect_to users_path, success: I18n.t(:profile_update)
   end
@@ -157,7 +158,7 @@ class UsersController < ApplicationController
   def add_user_info
     @user = User.find(params[:user][:id])
     if @user.update(user_update_params)
-      @user.profile.update(phone_number: @user.phone_number)
+      @user.profile.update(user_update_params[:profile_attributes])
       flash[:notice] = I18n.t(:partner_info_success)
       redirect_to dashboard_path
     else
@@ -234,6 +235,12 @@ class UsersController < ApplicationController
     @users = @q.result(distinct: true).paginate(page: params[:page])
   end
 
+  def earnings
+    @points = current_user.last_four_points
+    user_role = current_user.is_ambassador? ? 'ambassador' : 'buyer'
+    render "#{user_role}_earnings"
+  end
+
   private
   def set_user
     @user = User.find(params[:id])
@@ -254,7 +261,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
-    params.require(:user).permit(:phone_number, :email, profile_attributes: [:id, :bank_name, :acc_holder_name, :account_number, :_destroy])
+    params.require(:user).permit(:phone_number, profile_attributes: [:bank_name, :acc_holder_name, :account_number])
   end
 
   def find_user_from_shopify

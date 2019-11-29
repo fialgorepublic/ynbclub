@@ -3621,3 +3621,14 @@ input[type="checkbox"]:checked:after {
   border-radius: unset;
   border-bottom: 1px solid #ccc;
 }
+
+
+.with-un-blog{
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  max-width: 100px !important;
+  display: inline-block !important;
+  position: relative !important;
+  top: 5px !important;
+}

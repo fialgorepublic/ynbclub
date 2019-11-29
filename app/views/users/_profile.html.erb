@@ -1,0 +1,92 @@
+<div class="<%= add_container %>">
+  <div class="<%= blog_screen_size %>" id='profile'>
+    <div class="lib-panel">
+      <div class="box-shadow-profile ">
+        <div class="flex-sb">
+          <div class="flex-l">
+            <div class="user-image">
+              <%= image_tag user_avatar(user) %>
+            </div>
+
+            <div class="p-profile">
+              <h3><%= user_name(user) %></h3>
+              <div class="flex-l">
+                <div class="">
+                  <img src="/assets/1.png">
+                </div>
+                <div class="">
+                  <img src="/assets/2.png">
+                </div>
+                <div class="">
+                  <img src="/assets/3.png">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% unless user == current_user %>
+            <div id="user-<%= user.id %>">
+              <%= follow_unfollow_link(user) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabbable-panel m-p-0">
+      <div class="tabbable-line">
+        <ul class="nav nav-tabs ">
+          <li class="active">
+            <a href="#groups_tab" data-toggle="tab" id="groups-tab">
+              <span class="tab-profile-hreading">Groups</span> <span class="cirle-profile"><%= user.groups_count %></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#blogs_tab" data-toggle="tab" id="blogs-tab" data-url="<%= user_blogs_path(user, type: 'both') %>">
+              <span class="tab-profile-hreading">Blogs</span> <span class="cirle-profile"><%= user.blogs.count %></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#conversations_tab" data-toggle="tab" id="conversations-tab" data-url="<%= user_conversations_path(user, type: 'both') %>">
+              <span class="tab-profile-hreading">Converstaions</span> <span class="cirle-profile"><%= user.conversations_count %></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#following_tab" data-toggle="tab" id="following-tab" data-type='following' data-url="<%= follows_path(id: user.id) %>">
+              <span class="tab-profile-hreading">Followings</span> <span class="cirle-profile" id="user-<%= user.id %>-following-count"><%= user.following_count %></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#followers_tab" data-toggle="tab" id="follower-tab" data-type='followers' data-url="<%= follows_path(id: user.id) %>">
+              <span class="tab-profile-hreading">Followers</span> <span class="cirle-profile" id="user-<%= user.id %>-followers-count"><%= user.followers_count %></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <%= render partial: 'users/groups',        locals: { user: user } %>
+          <%= render partial: 'users/blogs/blogs',   locals: { user: user } %>
+          <%= render partial: 'users/conversations', locals: { user: user } %>
+          <!-- 4th tab start -->
+          <div class="tab-pane" id="following_tab">
+            <div class="p-t-10">
+              <div class="row m-p-0" id="following-users">
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="followers_tab">
+            <div class="p-t-10">
+              <div class="row m-p-0" id="follower-users">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

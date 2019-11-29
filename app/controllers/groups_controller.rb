@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search, :users]
+  before_action :authorize_user!, expect: [:index, :show, :search, :users]
   before_action :set_group, only: [:show, :edit, :update, :destroy, :users]
 
   def index
@@ -34,7 +35,7 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+    @group = current_user.admin_groups.new(group_params)
 
     respond_to do |format|
       if @group.save

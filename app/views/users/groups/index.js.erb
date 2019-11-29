@@ -1,0 +1,31 @@
+<% if params[:your_group_page] || params[:type] == 'your-groups' %>
+  $('#your-groups').html("<%= j render partial: 'groups/all_groups', locals: { groups: @your_groups }  %>")
+  <% if @your_groups.next_page %>
+    $('#your-groups-next').show();
+    $('#your-groups-next').attr('href', '<%= user_groups_path(user_id: @user.id, your_group_page: @your_groups.next_page, type: 'your-groups') %>')
+  <% else %>
+    $('#your-groups-next').hide();
+  <% end %>
+
+  <% if @your_groups.previous_page %>
+    $('#your-groups-previous').removeClass('hidden');
+    $('#your-groups-previous').attr('href', '<%= user_groups_path(user_id: @user.id, your_group_page: @your_groups.previous_page, type: 'your-groups') %>')
+  <% else %>
+    $('#your-groups-previous').addClass('hidden');
+  <% end %>
+<% elsif params[:joined_group_page] || params[:type] == 'joined-groups' %>
+  $('#joined-groups').html("<%= j render partial: 'groups/all_groups', locals: { groups: @joined_groups }  %>");
+  <% if @joined_groups.next_page %>
+    $('#joined-groups-next').show();
+    $('#joined-groups-next').attr('href', '<%= user_groups_path(user_id: @user.id, your_group_page: @joined_groups.next_page, type: 'joined-groups') %>')
+  <% else %>
+    $('#joined-groups-next').hide();
+  <% end %>
+
+  <% if @joined_groups.previous_page %>
+    $('#joined-groups-previous').removeClass('hidden');
+    $('#joined-groups-previous').attr('href', '<%= user_groups_path(user_id: @user.id, your_group_page: @joined_groups.previous_page, type: 'joined-groups') %>')
+  <% else %>
+    $('#joined-groups-previous').addClass('hidden');
+  <% end %>
+<% end %>

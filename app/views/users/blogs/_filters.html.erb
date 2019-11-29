@@ -1,0 +1,14 @@
+<div class="col-md-2 post-sorting">
+  <p>SORTING</p>
+  <select class="sorting-fltr profile-blogs-sort" data-type="<%= type %>" data-url="<%= user_blogs_path(user) %>">
+    <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+    <option value="0"><%= t(:A_Z) %></option>
+    <option value="1">A-Z </option>
+    <option value="2">Z-A </option>
+  </select>
+</div>
+
+<div class="col-md-2 post-sorting">
+  <p>CATEGORY</p>
+  <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr profile-blogs-category", required: true, data: { type: type, url: user_blogs_path(user) }  } %>
+</div>

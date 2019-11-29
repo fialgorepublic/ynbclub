@@ -1,8 +1,8 @@
 $('.loader').hide();
 <% if params[:page].present? %>
-  $('#blogs').append('<%= j render 'all_blogs' %>');
+  $('#blogs').append('<%= j render partial: "all_blogs", locals: { blogs: @blogs } %>');
 <% else %>
-  $('#blogs').html('<%= j render 'all_blogs' %>');
+  $('#blogs').html('<%= j render partial: "all_blogs", locals: { blogs: @blogs } %>');
 <% end %>
 $('#page').val('<%= @next_page %>')
 $('#load-more').show();

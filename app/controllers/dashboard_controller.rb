@@ -1,20 +1,17 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!, except: [:videos]
-  before_action :authorize_user!, except: [:index ,:update_user_role,:videos]
+  before_action :authorize_user!, except: [:index ,:update_user_role, :videos]
+  skip_before_action :check_role, only: [:index, :update_user_role]
 
   require 'link_thumbnailer'
   include ApplicationHelper
 
   def index
-    return redirect_to referral_sales_path if current_user.is_admin?
-
-    return redirect_to buyerDashboard_path if current_user.is_buyer?
-
-    @user = current_user
     @role_selection = true if current_user.role.blank?
-
-    @profile = true if current_user.role.present? && !current_user.is_admin? && current_user.phone_number.blank?
-    @points = current_user.last_four_points
+    current_user.set_profile
+    @profile = true if current_user.is_ambassador? && current_user.incomplete_profile?
+    @your_groups   = current_user.admin_groups.paginate(page: params[:your_page], per_page: 6)
+    @joined_groups = current_user.groups.paginate(page: params[:joined_page], per_page: 6)
   end
 
   def update_user_role
@@ -79,11 +76,6 @@ class DashboardController < ApplicationController
     insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
   end
 
-  def buyerDashboard
-    @points = current_user.last_four_points
-    @user = current_user
-  end
-
   def share_with_friends
     get_share_with_friend
   end
@@ -93,7 +85,6 @@ class DashboardController < ApplicationController
   end
 
   def acc_settings
-    current_user.create_profile if current_user.profile.blank?
     city_name = current_user&.profile&.city
     state = City.find_by(name: city_name)&.state
     if state.present?

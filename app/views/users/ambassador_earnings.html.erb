@@ -1,0 +1,91 @@
+<div class="col-md-9">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="main">
+        <h2> <i class="fa fa-money"></i> <%= t('sidebar.earnings_label') %></h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Last Incomes</h3>
+      <div class="box-shadow">
+        <img src="/assets/icon-12.png">
+        <p>You'll see the list of sold products here. </br> Add your products and design them to the blog posts</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Last Earned Coins</h3>
+      <div class="box-points">
+        <% if @points.present? %>
+          <div class="row">
+            <div class="col-md-12 dashboard-points">
+              <%= render partial: 'dashboard/point', collection: @points %>
+
+              <% if current_user_points(current_user) > 4 %>
+                <div class="row">
+                  <div class="col-md-offset-10 col-md-2">
+                    <a href="/users/points">Show more...</a>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <div class="box-shadow">
+            <img src="/assets/icon-13.png">
+            <p>Here you will see the log of your </br> earned coins.</p>
+            <!-- <button class="btn btn-default">How earn and pass coins?</button> -->
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+      <h3>My Earnings</h3>
+    </div>
+
+    <div class="col-md-2 text-right">
+      <div class="select-holder">
+        <select class="form-control">
+          <option>ALL products</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="box-shadow">
+        <img src="/assets/icon-14.png">
+        <p>You'll see the chart of your earnings here. </br> Add your products and assign them to the blogs posts.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+     <div class="col-md-10">
+       <h3>Buyers Attendance</h3>
+    </div>
+
+    <div class="col-md-2 text-right">
+      <div class="select-holder">
+        <select class="form-control">
+          <option>ALL Blogs</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="box-shadow">
+        <img src="/assets/icon-15.png">
+        <p>You'll see the chart of buyer's attendance here. </br> Create your first blog posts with assigned products.</p>
+      </div>
+    </div>
+  </div>
+</div>

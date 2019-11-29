@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
+
+  before_action :set_locale
+  before_action :check_role
   before_action :allow_iframe_requests
   before_action :allow_user_request
   before_action :blog_not_found
@@ -11,10 +14,15 @@ class ApplicationController < ActionController::Base
   before_action :get_share_with_friend
   before_action :set_snapshot
   before_action :redirect_to_blogs, if: :shopify_redirected?
-  before_action :set_locale
 
   def set_locale
     I18n.locale = Rails.env.development? ? :en : params[:locale] || I18n.default_locale
+  end
+
+  def check_role
+    return if current_user.blank?
+    return if controller_name == 'dashboard'
+    return redirect_to dashboard_path if current_user&.role.blank? || current_user.is_ambassador? && current_user.incomplete_profile?
   end
 
   def after_sign_up_path(resource)
@@ -58,8 +66,6 @@ class ApplicationController < ActionController::Base
   def blog_not_found
     return if current_user.blank?
     return if params[:blog_not_found].blank?
-
-    return redirect_to buyerDashboard_path(blog_not_found: true) if controller_name == "home" && current_user.is_buyer?
     redirect_to dashboard_path(blog_not_found: true) if controller_name == "home"
   end
 
@@ -102,9 +108,10 @@ class ApplicationController < ActionController::Base
   end
 
   def user_has_permission?
-    return true if current_user.is_admin? #for admin user
+    return true  if current_user.is_admin? #for admin user
     return false if controller_name == "permissions"
     return false if controller_name == "shared_urls"
+    return true  if dashboard_default_option?(action_name)
     user_has_permissions?
   end
 
@@ -118,13 +125,19 @@ class ApplicationController < ActionController::Base
     return permission_exists?('ambassadors', 'users') if action_name == "index" && controller_name == "users"
     return permission_exists?('index', controller_name) if controller_name == "payments"
     return permission_exists?('categories', controller_name) if controller_name == "categories"
-    return permission_exists?('page_design', 'dashboard') if ['pages', 'dashboard', 'take_snapshots', 'earn_coins', 'share_with_freinds'].include?(controller_name) && !action_name == 'buyerDashboard'
+    return permission_exists?('page_design', 'dashboard') if ['pages', 'dashboard', 'take_snapshots', 'earn_coins', 'share_with_freinds'].include?(controller_name)
     return permission_exists?('all_orders', controller_name) if controller_name == "orders" && action_name == 'index'
     return permission_exists?('scrap_blogs', controller_name) if controller_name == "scrap_blogs"
+    #This is temporary permissions managment for group, need to be fixed and make it work as other permissions.
+    return false if controller_name == 'groups' && ['new', 'create', 'edit', 'destroy', 'update'].include?(action_name)
     true
   end
 
   def permission_exists?(action, controller)
     current_user.permissions.where(action_name: action, controller_name: controller).present?
+  end
+
+  def dashboard_default_option?(action_name)
+    ['dashboard', 'change_profile_picture', 'take_snapshot', 'get_user_object', 'step_one', 'step_two', 'step_three', 'share_with_friends', 'acc_settings', 'cities'].include?(action_name)
   end
 end
