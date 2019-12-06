@@ -42,4 +42,15 @@ $(document).on('turbolinks:load', function () {
       dataType: 'script'
     })
   }
+
+  var enableSubmit = function(ele) {
+    $(ele).removeClass("disabled");
+}
+
+$("#click").click(function() {
+    var that = this;
+    $(this).addClass("disabled")
+    setTimeout(function() { enableSubmit(that) }, 5000);
+});
+
 });
