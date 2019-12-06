@@ -50,7 +50,7 @@ $(document).on('turbolinks:load', function () {
 $("#click").click(function() {
     var that = this;
     $(this).addClass("disabled")
-    setTimeout(function() { enableSubmit(that) }, 5000);
+    setTimeout(function() { enableSubmit(that) }, 3000);
 });
 
 });

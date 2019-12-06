@@ -19,7 +19,7 @@ module PermissionsHelper
       I18n.t('sidebar.categories_label')
     when 'dashboard'
       I18n.t('sidebar.pages_design_label')
-    when 'orders'
+    when 'all_orders'
       I18n.t('sidebar.all_orders_label')
     when 'scrap_blogs'
       I18n.t('blogs.index.blog_libray_label')
