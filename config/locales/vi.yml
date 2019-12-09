@@ -225,7 +225,7 @@ vi:
     table_headers:
       id_label:                 Số ID
       shared_by_label:          Được chia sẻ bởi 
-      platform_label:           Platform
+      platform_label:           Nền tảng
       url_label:                URL
       shared_at_label:          Chia sẻ tại thời điểm
 
@@ -489,8 +489,8 @@ vi:
   discount_code_label:        Mã khuyến mãi
   exchanged_coins_label:      Xu giao dịch
   rewarded_discount_label:    Mã thưởng khuyến mãi
-  enter_email:                Please enter email
-  valid_email:                Please enter a valid email address.
+  enter_email:                Vui lòng nhập email
+  valid_email:                Vui lòng nhập một địa chỉ email hợp lệ
   newest_first_label:         Mới nhất
   all_label:                  Tất cả
   remember_me:                Nhớ tôi

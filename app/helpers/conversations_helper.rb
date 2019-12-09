@@ -56,7 +56,7 @@ module ConversationsHelper
       end
     else
       conversation_like_exists = conversation.conversation_like_exists?(current_user.id)
-      link_to like_dislike_path(conversation_like_exists, conversation.id), remote: true, class: 'like-dislike-convo',  id: 'click', data: { conversation_id: conversation.id } do
+      link_to like_dislike_path(conversation_like_exists, conversation.id), remote: true, class: 'like-dislike-convo click', data: { conversation_id: conversation.id } do
         "<i class='fa fa-heart fs-20 #{conversation_like_exists ? 'red-color' : 'green-color'}'></i>".html_safe
       end
     end

@@ -62,6 +62,6 @@ class HomeController < ApplicationController
 
   def set_default_language
     I18n.default_locale = params[:locale]
-    redirect_to root_path
+    redirect_to request.referrer
   end
 end

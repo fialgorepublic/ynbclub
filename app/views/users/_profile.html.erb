@@ -38,7 +38,8 @@
         <ul class="nav nav-tabs ">
           <li class="active">
             <a href="#groups_tab" data-toggle="tab" id="groups-tab">
-              <span class="tab-profile-hreading">Groups</span> <span class="cirle-profile"><%= user.groups_count %></span>
+              <span class="tab-profile-hreading">Groups</span> <span class="cirle-profile">
+                <%= user.joined_groups.count %></span>
             </a>
           </li>
 

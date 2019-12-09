@@ -16,7 +16,7 @@ class Conversation < ApplicationRecord
   scope :unanswered,          ->             { reorder(replies_count: 0) }
   scope :a_z,                 ->             { reorder('lower(subject) ASC') }
   scope :liked_conversations, -> (user_id)   { joins(:conversation_likes).where(conversation_likes: { user_id: user_id }) }
-  scope :sort_by_title,       -> (type)      { reorder("lower(subject) #{type ? type : :asc}") }
+  scope :sort_by_title,       -> (type)      { reorder("lower(conversations.subject) #{type ? type : :asc}") }
   scope :sort_by_type,        -> (sort_type) do
     sort_type = sort_type.to_i
     case sort_type
