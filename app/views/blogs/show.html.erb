@@ -108,7 +108,7 @@ border: solid 1px lightgrey;
       <div class="row">
         <div class="col-md-12 mob-p-t-20">
           <div class="detail-img detail-icon">
-            <i class="<%= liked_class(@blog) %> click" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
+            <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
             <i class="fa fa-share"></i><span style="display:inline-block;"><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" ></span>
             <% if @blog.is_published? %>
               <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>

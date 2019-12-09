@@ -105,7 +105,13 @@ class BlogsController < ApplicationController
 
   def blog_like_unlike
     if params[:value].to_s == "false"
-      Like.create(user_id: current_user.id, blog_id: params[:id])
+      user_like = Like.where(user_id: current_user.id, blog_id: params[:id]).first
+      if user_like.present?
+        user_like.destroy
+        Like.create(user_id: current_user.id, blog_id: params[:id])
+      else
+        Like.create(user_id: current_user.id, blog_id: params[:id])
+      end
     else
       Like.where(user_id: current_user.id, blog_id: params[:id]).first.destroy
     end
