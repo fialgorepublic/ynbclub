@@ -14,7 +14,7 @@
                 <%= link_to edit_group_path(group), class: "bg-groups-circle" do %>
                 <i class="fa fa-pencil inneer" aria-hidden="true"></i>
                 <% end %>
-                <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle delete-group-link" do %>
+                <%= link_to "javascript:void(0)", data: { url: group_path(group), name: group.name }, class: "bg-groups-circle delete-group-link", id: "groups" do %>
                 <i class="fa fa-trash inneer" aria-hidden="true"></i>
                 <% end %>
               </div>

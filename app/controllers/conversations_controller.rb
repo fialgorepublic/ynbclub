@@ -86,11 +86,11 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_reply
-    reply = @conversation.replies.create(conversation_params.merge(user: current_user))
-    if reply
+    reply = @conversation.replies.new(conversation_params.merge(user: current_user))
+    if reply.save
       redirect_to @conversation, notice: 'Posted your reply successfully.'
     else
-      render :reply
+      redirect_to reply_conversation_path(@conversation.id) , alert: "#{reply.errors.full_messages.join(",")}"
     end
   end
 

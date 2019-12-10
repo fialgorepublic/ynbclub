@@ -31,12 +31,13 @@
                   </div>
                 </div>
               </div>
-
+              <% if @conversation.user == current_user %>
               <div class="grp-edit-delete-icon ">
                 <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
                   <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
                 </a>
               </div>
+              <% end %>
             </div>
 
             <div class="join-grp-dscptn">
@@ -140,6 +141,31 @@
             <div class="">
               <img src="/assets/p.png">
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="group-delete-modal" class="modal fade groups-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close mob-close-btn" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="text-center">
+          <h1 class="modall-title group-title"> </h1>
+          <p>you will not be able to restore it then</p>
+        </div>
+        <div class="text-center">
+          <div class="text-center">
+            <%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
+            <a class="btn btn-primary new_group-modal_btn" , id='cancel-delete'>No</a>
           </div>
         </div>
       </div>

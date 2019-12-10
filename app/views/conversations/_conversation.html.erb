@@ -27,6 +27,10 @@
                   <div class="m-l-10">
                     <p class="p-b m-t-8"><%= posted_date(conversation) %></p>
                   </div>
+                   <div class="m-l-10">
+                    <p class="p-b m-t-8">Group Name</p>
+                    <p class="p-b m-t-8"><%= conversation.group.name %></p>
+                  </div>
                 </div>
               </div>
 
@@ -34,13 +38,14 @@
                 <%= new_reply_link(conversation) %>
               </div>
             </div>
-
-            <div class="grp-edit-delete-icon ">
-              <a class="" href="#">
-              </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
-                <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
-              </a>
-            </div>
+            <% if conversation.user == current_user %>
+              <div class="grp-edit-delete-icon ">
+                <a class="" href="#">
+                </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
+                  <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
+                </a>
+              </div>
+            <% end %>
           </div>
 
           <div class="join-grp-dscptn">

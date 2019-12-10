@@ -12,7 +12,7 @@ $(document).on('turbolinks:load', function () {
     $('.item-img').click();
   })
 
-  $(document).on('click', '#groups .delete-group-link', function () {
+  $('#groups, .delete-group-link').on("click", function() {
     $('#group-delete-modal').modal('show');
     $('.group-title').text(`Are you sure you want to delete group "${$(this).data('name')}"?`);
     $('#delete-modal-group-link').attr('href', $(this).data('url'));

@@ -3,7 +3,8 @@ activeAnchorTag = $(activeTabEle).find('a')
 userDiv = $(`#user-${<%= params[:id]%>}`);
 followUnfollowButton = userDiv.find('a.profile-tag-btn-ad');
 if(activeAnchorTag.attr('id') == 'following-tab') {
-  userDiv.remove();
+  followUnfollowButton.text('Follow Back');
+  followUnfollowButton.attr('href', '<%= follow_follows_path(id: params[:id], current_user_id: params[:current_user_id]) %>')
 }
 else if (activeAnchorTag.attr('id') == 'follower-tab') {
     followUnfollowButton.text('Follow Back');

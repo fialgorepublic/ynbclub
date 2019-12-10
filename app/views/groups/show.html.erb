@@ -39,7 +39,9 @@
                   <%= link_to join_button_text(@group.id), join_link_path(@group.id), remote: true, class: "btn btn-primary new_tag_btn", id: 'join-group-link' %>
                 </div>
                 <div class="">
-                  <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-tag-btn btn-default", type: "button" %>
+                  <% if @group.users.include?(current_user)%>
+                    <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-tag-btn btn-default", type: "button" %>
+                  <% end %>
                 </div>
               </div>
 
