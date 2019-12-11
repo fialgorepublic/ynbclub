@@ -38,12 +38,11 @@
                 <%= new_reply_link(conversation) %>
               </div>
             </div>
-            <% if conversation.user == current_user %>
+            <% if conversation.user == current_user  || current_user.role.id == 6 %>
               <div class="grp-edit-delete-icon ">
-                <a class="" href="#">
-                </a> <a data-url="" data-name="lorem ipsum" class=" delete-group-link" href="#">
-                  <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
-                </a>
+                <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "groups" do %>
+                <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
+                <% end %>
               </div>
             <% end %>
           </div>

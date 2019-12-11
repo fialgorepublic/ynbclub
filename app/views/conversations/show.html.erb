@@ -31,7 +31,7 @@
                   </div>
                 </div>
               </div>
-              <% if @conversation.user == current_user %>
+              <% if @conversation.user == current_user || current_user.role.id == 6 %>
               <div class="grp-edit-delete-icon ">
                 <a data-url="" data-name="<%= @conversation.subject%>" class=" delete-group-link" href="#">
                   <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
@@ -86,7 +86,6 @@
               </div>
             <% end %>
           </div>
-
           <%= hidden_field_tag :page, @replies.next_page %>
           <%= render partial: 'shared/show_more', locals: { objects_collection: @replies, url: replies_conversation_path(@conversation) } %>
         </div>

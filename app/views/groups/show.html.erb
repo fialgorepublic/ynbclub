@@ -59,7 +59,9 @@
                     <div class="col-md-12">
                       <div class="lib-row lib-desc">
                         <h3><%= t('groups.show.no_conversation') %></h3>
-                        <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+                        <% if @group.users.include?(current_user)%>
+                          <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default", type: "button" %>
+                        <% end %>
                       </div>
                     </div>
                   </div>
