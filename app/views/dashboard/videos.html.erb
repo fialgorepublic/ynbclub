@@ -13,8 +13,7 @@
       <% @videos.each do |video| %>
         <div class="col-md-4" data-toggle="modal" data-target="#myModal">
           <div class="holder">
-            <%= thumbnail_image(video) %>
-            <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.id %>" data-target="#videoModal" data-toggle="modal"></div>
+            <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.id %>" data-target="#videoModal" data-toggle="modal"><%= thumbnail_image(video) %></div>
           </div>
           <section class="entry-body">
             <p class="video-title"><%= video.snippet.data['title'] %></p>
