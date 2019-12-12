@@ -35,7 +35,8 @@
               </div>
 
               <div class="m-l-10 mb-l-0">
-                <%= new_reply_link(conversation) %>
+                <%#= new_reply_link(conversation) %>
+                <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
               </div>
             </div>
             <% if conversation.user == current_user  || current_user.role.id == 6 %>
@@ -102,11 +103,23 @@
             </div>
 
             <div class="m-t-8">
-              <%= new_reply_link(conversation) %>
+              <%#= new_reply_link(conversation) %>
+              <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <%= render partial: 'shared/conversation_reply', locals: { reply: conversation.replies.new , url: conversation_reply_conversations_path} %>
   </div>
 </div>
+
+<!-- <script type="text/javascript">
+  $(".new_reply_btn").click(function(e){
+      e.preventDefault();
+      debugger
+    get_id = this.id.split("-")[1]
+    find_reply_form = document.getElementById("new-reply-"+get_id)
+    $(find_reply_form).show();
+  })
+</script> -->

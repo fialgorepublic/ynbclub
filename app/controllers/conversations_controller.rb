@@ -21,6 +21,8 @@ class ConversationsController < ApplicationController
   def show
     @related_posts = @conversation.three_related_posts
     @replies = @conversation.replies.includes(:conversation_likes).paginate(page: params[:page])
+    @conversation.update(views_count: @conversation.views_count + 1)
+    @reply = @conversation.replies.new
   end
 
   # GET /conversations/new
@@ -90,7 +92,7 @@ class ConversationsController < ApplicationController
     if reply.save
       redirect_to @conversation, notice: 'Posted your reply successfully.'
     else
-      redirect_to reply_conversation_path(@conversation.id) , alert: "#{reply.errors.full_messages.join(",")}"
+      redirect_to request.referer, alert: "#{reply.errors.full_messages.join(",")}"
     end
   end
 
