@@ -7,7 +7,7 @@ class GoogleTranslateService
 
   def initialize(text)
     project_id = ENV["CLOUD_PROJECT_ID"]
-    @translate = Google::Cloud::Translate.new project: project_id
+    @translate = Google::Cloud::Translate.new version: :v2, project_id: project_id
     @text      = text
   end
 

@@ -41,8 +41,9 @@
     </div>
 
     <div class="m-t-8">
-      <%= new_reply_link(reply) %>
+      <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{reply.id}" %>
     </div>
+  <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
   </div>
 </div>
 <% else %>
@@ -90,10 +91,11 @@
         </div>
 
         <div class="m-t-8">
-          <%= new_reply_link(reply) %>
+          <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{reply.id}" %>
         </div>
       </div>
     </blockquote>
   </div>
+  <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
 </div>
 <% end %>
