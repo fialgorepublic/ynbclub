@@ -72,20 +72,25 @@
 
                 <div class="m-t-8">
                   <div class="m-t-8">
-                  <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{@conversation.id}" %>
+                    <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{@conversation.id}" %>
+                  </div>
                 </div>
-                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="text-left">
                 <%= render partial: 'shared/conversation_reply', locals: { reply: @reply , url: conversation_reply_conversations_path} %>
               </div>
             </div>
 
             <% unless @conversation.replies_count.zero? %>
-              <h3><%= @conversation.replies_count %> Replies</h3>
-              <hr>
+            <h3><%= @conversation.replies_count %> Replies</h3>
+            <hr>
 
-              <div id='replies'>
-                <%= render partial: 'reply', collection: @replies, as: :reply %>
-              </div>
+            <div id='replies'>
+              <%= render partial: 'reply', collection: @replies, as: :reply %>
+            </div>
             <% end %>
           </div>
 
@@ -122,8 +127,8 @@
     </div>
 
     <% if @related_posts.present? %>
-      <h2 class="sidebar-h-con">Related Posts</h2>
-      <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
+    <h2 class="sidebar-h-con">Related Posts</h2>
+    <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
     <% end %>
 
     <h2 class="sidebar-h-con">Share on social network</h2>
@@ -137,7 +142,9 @@
               <%# end %>
             </div>
             <div class="">
-              <a href="mailto:<%= current_user.email%>?subject=<%= @conversation.subject%>&body=<%= @conversation.body%>"><img src="/assets/m.png"></a>
+              <a
+                href="mailto:<%= current_user.email%>?subject=<%= @conversation.subject%>&body=<%= @conversation.body%>"><img
+                  src="/assets/m.png"></a>
             </div>
           </div>
         </div>

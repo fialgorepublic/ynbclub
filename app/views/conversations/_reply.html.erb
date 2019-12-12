@@ -35,7 +35,7 @@
 
       <div class="m-l-10 m-t-12">
         <%= link_to reply do %>
-          <p class="fs-12"><%= reply.replies_count %></p>
+        <p class="fs-12"><%= reply.replies_count %></p>
         <% end %>
       </div>
     </div>
@@ -43,7 +43,12 @@
     <div class="m-t-8">
       <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{reply.id}" %>
     </div>
-  <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
+
+  </div>
+  <div class="row">
+    <div class="text-left">
+      <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
+    </div>
   </div>
 </div>
 <% else %>
@@ -85,7 +90,7 @@
 
           <div class="m-l-10 m-t-12">
             <%= link_to reply do %>
-              <p class="fs-12"><%= reply.replies_count %></p>
+            <p class="fs-12"><%= reply.replies_count %></p>
             <% end %>
           </div>
         </div>
@@ -96,6 +101,10 @@
       </div>
     </blockquote>
   </div>
-  <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
+  <div class="row">
+    <div class="text-left">
+      <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
+    </div>
+  </div>
 </div>
 <% end %>

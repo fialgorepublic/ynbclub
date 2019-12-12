@@ -27,7 +27,7 @@
                   <div class="m-l-10">
                     <p class="p-b m-t-8"><%= posted_date(conversation) %></p>
                   </div>
-                   <div class="m-l-10">
+                  <div class="m-l-10">
                     <p class="p-b m-t-8">Group Name</p>
                     <p class="p-b m-t-8"><%= conversation.group.name %></p>
                   </div>
@@ -40,17 +40,17 @@
               </div>
             </div>
             <% if conversation.user == current_user  || current_user.role.id == 6 %>
-              <div class="grp-edit-delete-icon ">
-                <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "groups" do %>
-                <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
-                <% end %>
-              </div>
+            <div class="grp-edit-delete-icon ">
+              <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "groups" do %>
+              <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
+              <% end %>
+            </div>
             <% end %>
           </div>
 
           <div class="join-grp-dscptn">
             <%= link_to conversation do %>
-              <h2><%= conversation.subject %></h2>
+            <h2><%= conversation.subject %></h2>
             <% end %>
 
             <div class="comment more">
@@ -107,10 +107,14 @@
               <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
             </div>
           </div>
+          <div class="flex-l">
+            <div class="">
+              <%= render partial: 'shared/conversation_reply', locals: { reply: conversation.replies.new , url: conversation_reply_conversations_path} %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <%= render partial: 'shared/conversation_reply', locals: { reply: conversation.replies.new , url: conversation_reply_conversations_path} %>
   </div>
 </div>
 
