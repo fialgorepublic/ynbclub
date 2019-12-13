@@ -1,7 +1,11 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
+    <div class="group-back-btn hidden-md hidden-lg ">
+      <a href="">
+        <img src="/assets/back-arrow-btn.png">
+      </a> </div>
     <div class="banner pos-rel-banner text-center">
-      <%= image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+      <%#= image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
       <div class="pos-abs-banner">
         <h1 class="">You're in good company now.</h1>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
@@ -27,7 +31,7 @@
     <div class="row">
       <div class="col-md-12 blog_banner_btn class-z">
         <% if current_user&.is_admin? %>
-          <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'group-banner-upload' %>
+        <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'group-banner-upload' %>
         <% end %>
       </div>
     </div>

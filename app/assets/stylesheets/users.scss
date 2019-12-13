@@ -410,3 +410,42 @@ margin-right: 20px;
 .new_reply_btn:focus{
   background-color: #54b2b2;
 }
+@media (max-width:500px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+.cp1{
+  position: relative;
+  left: 50px;
+}
+
+.cp2{
+  position: relative;
+  left: 60px;
+}
+.cp3{
+  position: relative;
+  left: 9px;
+}
+.cp4{
+  position: relative;
+  left: 30px;
+}
+.cp5{
+  position: relative;
+  left: 36px;
+}
+a.btn.conversation-btn.btn-default.converstaion-mob {
+  position: relative;
+  right: 15px;
+}
+}
+@media only screen and (min-width: 501px) and (max-width: 1281px) 
+{
+     .tabbable-line > .nav-tabs > li > a {
+    border: 0;
+    margin-right: 0;
+    color: #737373;
+    padding: 12px 0.8rem;
+      }
+  }
+  input#submit-button {
+    background-color: #54b2b2;
+}
