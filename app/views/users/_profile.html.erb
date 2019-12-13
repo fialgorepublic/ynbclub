@@ -25,9 +25,9 @@
           </div>
 
           <% unless user == current_user %>
-            <div id="user-<%= user.id %>">
-              <%= follow_unfollow_link(user) %>
-            </div>
+          <div id="user-<%= user.id %>">
+            <%= follow_unfollow_link(user) %>
+          </div>
           <% end %>
         </div>
       </div>
@@ -38,32 +38,39 @@
         <ul class="nav nav-tabs ">
           <li class="active">
             <a href="#groups_tab" data-toggle="tab" id="groups-tab">
-              <span class="tab-profile-hreading">Groups</span> <span class="cirle-profile">
+              <span class="tab-profile-hreading">Groups</span> <span class="cirle-profile cp1">
                 <%= user.joined_groups.count %></span>
             </a>
           </li>
 
           <li>
             <a href="#blogs_tab" data-toggle="tab" id="blogs-tab" data-url="<%= user_blogs_path(user, type: 'both') %>">
-              <span class="tab-profile-hreading">Blogs</span> <span class="cirle-profile"><%= user.blogs.count %></span>
+              <span class="tab-profile-hreading">Blogs</span> <span
+                class="cirle-profile cp2"><%= user.blogs.count %></span>
             </a>
           </li>
 
           <li>
-            <a href="#conversations_tab" data-toggle="tab" id="conversations-tab" data-url="<%= user_conversations_path(user, type: 'both') %>">
-              <span class="tab-profile-hreading">Converstaions</span> <span class="cirle-profile"><%= user.conversations.count %></span>
+            <a href="#conversations_tab" data-toggle="tab" id="conversations-tab"
+              data-url="<%= user_conversations_path(user, type: 'both') %>">
+              <span class="tab-profile-hreading">Converstaions</span> <span
+                class="cirle-profile cp3"><%= user.conversations.count %></span>
             </a>
           </li>
 
           <li>
-            <a href="#following_tab" data-toggle="tab" id="following-tab" data-type='following' data-url="<%= follows_path(id: user.id) %>">
-              <span class="tab-profile-hreading">Followings</span> <span class="cirle-profile" id="user-<%= user.id %>-following-count"><%= user.following_count %></span>
+            <a href="#following_tab" data-toggle="tab" id="following-tab" data-type='following'
+              data-url="<%= follows_path(id: user.id) %>">
+              <span class="tab-profile-hreading">Followings</span> <span class="cirle-profile cp4"
+                id="user-<%= user.id %>-following-count"><%= user.following_count %></span>
             </a>
           </li>
 
           <li>
-            <a href="#followers_tab" data-toggle="tab" id="follower-tab" data-type='followers' data-url="<%= follows_path(id: user.id) %>">
-              <span class="tab-profile-hreading">Followers</span> <span class="cirle-profile" id="user-<%= user.id %>-followers-count"><%= user.followers_count %></span>
+            <a href="#followers_tab" data-toggle="tab" id="follower-tab" data-type='followers'
+              data-url="<%= follows_path(id: user.id) %>">
+              <span class="tab-profile-hreading">Followers</span> <span class="cirle-profile cp5"
+                id="user-<%= user.id %>-followers-count"><%= user.followers_count %></span>
             </a>
           </li>
         </ul>

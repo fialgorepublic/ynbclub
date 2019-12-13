@@ -139,7 +139,7 @@
             <div class="">
               <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
               <img src="/assets/fb.png">
-                <% end %>
+              <% end %>
               <%# end %>
             </div>
             <div class="">
@@ -180,11 +180,11 @@
 </div>
 
 <script type="text/javascript">
-  user_signed_in = <%= signed_in? %>;
+  user_signed_in = <%= signed_in ? %>;
   $('.conversation-share-on-facebook').click(function () {
     conversation_id = $(this).data('id');
-    type    = $(this).data('type');
-    conversation    = $(this).data('attributes');
+    type = $(this).data('type');
+    conversation = $(this).data('attributes');
     // url     = $(this).data('share-url');
     // limit_url = $(this).data('limit-url');
     if (user_signed_in) {
