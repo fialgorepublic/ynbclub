@@ -13,7 +13,7 @@
             <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
             <span class="with-un-blog"><%= blog_user_name(blog) %></span>
             <span><%= blog_date blog %></span>
-            <span><%= blog.category_name %></span>
+            <span class="with-un-blog"><%= blog.category_name %></span>
           </p>
           <h3><%= blog_title blog %></h3>
         </div>
