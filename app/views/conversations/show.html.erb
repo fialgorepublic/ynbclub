@@ -197,7 +197,7 @@
   function createFBShareLink(id, type, conversation, fbAppId) {
     var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-      &link=${window.location.hostname}/conversations/${id}
+      &link=https://ambassador.saintlbeau.com/conversations/${id}
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
