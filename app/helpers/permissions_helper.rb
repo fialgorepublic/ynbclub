@@ -23,6 +23,8 @@ module PermissionsHelper
       I18n.t('sidebar.all_orders_label')
     when 'scrap_blogs'
       I18n.t('blogs.index.blog_libray_label')
+    when 'blogs'
+      I18n.t('blogs.index.share_blog_label')
     end
   end
 

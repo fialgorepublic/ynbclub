@@ -65,4 +65,9 @@ module ConversationsHelper
   def user_profile_link(user)
     link_to user_name(user), user, class: 'user-profile-link'
   end
+
+  def conversation_attributes conversation
+    { id: conversation.id, subject: conversation.subject, body: conversation.body }.to_json
+  end
+
 end
