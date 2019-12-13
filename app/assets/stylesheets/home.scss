@@ -3627,7 +3627,16 @@ input[type="checkbox"]:checked:after {
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  max-width: 100px !important;
+  max-width: 90px !important;
+  display: inline-block !important;
+  position: relative !important;
+  top: 5px !important;
+}
+.with-un-blog2{
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  max-width: 90px !important;
   display: inline-block !important;
   position: relative !important;
   top: 5px !important;
