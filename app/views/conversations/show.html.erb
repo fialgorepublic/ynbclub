@@ -14,7 +14,7 @@
 
                     <div class="m-l-10">
                       <p class="p-l"><%= user_profile_link(@conversation.user) %></p>
-                      <p class="p-b">Saint L beau</p>
+                      <p class="p-b text-left">Saint L beau</p>
                     </div>
                   </div>
                 </div>
@@ -188,10 +188,14 @@
     // url     = $(this).data('share-url');
     // limit_url = $(this).data('limit-url');
     if (user_signed_in) {
+<<<<<<< HEAD
       // if (user_has_shared) { toastr.error('You already have shared this blog'); return false; }
       // if (limit_exceeded) { toastr.error('You have exceeded your limit to share blogs on facebook for today'); return false; }
       var url = createFBShareLink(conversation_id, type, conversation, '436459923930724');
 
+=======
+      var url = createFBShareLink(conversation_id, type, conversation, '436459923930724');
+>>>>>>> 34af94bc0b83d25c805eaaf1caf5e51bb3fb6262
       window.open(url);
     } else {
       hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : '/?signin=true'
@@ -202,7 +206,11 @@
   function createFBShareLink(id, type, conversation, fbAppId) {
     var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+<<<<<<< HEAD
       &link=https://ambassador.saintlbeau.com/conversation_detail?id=${id}
+=======
+      &link=https://ambassador-staging.saintlbeau.com/conversations/${id}
+>>>>>>> 34af94bc0b83d25c805eaaf1caf5e51bb3fb6262
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
