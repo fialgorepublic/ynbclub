@@ -1,4 +1,9 @@
 <div class="<%= add_container %>">
+  <div class="group-back-btn hidden-md hidden-lg ">
+    <a href="">
+      <img src="/assets/back-arrow-btn.png">
+    </a> </div>
+    <br/>
   <div class="user_conversation mb-p-0 <%= add_main_div_column %>">
     <div class="middle-row-grp">
       <div class="col-md-12">
@@ -14,7 +19,7 @@
 
                     <div class="m-l-10">
                       <p class="p-l"><%= user_profile_link(@conversation.user) %></p>
-                      <p class="p-b text-left">Saint L beau</p>
+                      <p class="p-b">Saint L beau</p>
                     </div>
                   </div>
                 </div>
@@ -180,7 +185,6 @@
 </div>
 
 <script type="text/javascript">
-  user_signed_in = <%= signed_in ? %>;
   $('.conversation-share-on-facebook').click(function () {
     conversation_id = $(this).data('id');
     type = $(this).data('type');
@@ -188,14 +192,10 @@
     // url     = $(this).data('share-url');
     // limit_url = $(this).data('limit-url');
     if (user_signed_in) {
-<<<<<<< HEAD
       // if (user_has_shared) { toastr.error('You already have shared this blog'); return false; }
       // if (limit_exceeded) { toastr.error('You have exceeded your limit to share blogs on facebook for today'); return false; }
-      var url = createFBShareLink(conversation_id, type, conversation, '436459923930724');
+      var url = createFBShareLink(conversation_id, type, conversation, '1660844573983661');
 
-=======
-      var url = createFBShareLink(conversation_id, type, conversation, '436459923930724');
->>>>>>> 34af94bc0b83d25c805eaaf1caf5e51bb3fb6262
       window.open(url);
     } else {
       hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : '/?signin=true'
@@ -206,15 +206,11 @@
   function createFBShareLink(id, type, conversation, fbAppId) {
     var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-<<<<<<< HEAD
-      &link=https://ambassador.saintlbeau.com/conversation_detail?id=${id}
-=======
-      &link=https://ambassador-staging.saintlbeau.com/conversations/${id}
->>>>>>> 34af94bc0b83d25c805eaaf1caf5e51bb3fb6262
+      &link=https://ambassador-staging.saintlbeau.com/conversation_detail?id=${id}
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
+      &redirect_uri=${encodeURIComponent(`${link}/share_conversation?id=${id}&value=${type}`)}
       &display=popup`;
     return url;
   }
