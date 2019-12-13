@@ -180,7 +180,7 @@
 </div>
 
 <script type="text/javascript">
-  user_signed_in = <%= signed_in ? %>;
+  user_signed_in = <%= signed_in? %>;
   $('.conversation-share-on-facebook').click(function () {
     conversation_id = $(this).data('id');
     type = $(this).data('type');
