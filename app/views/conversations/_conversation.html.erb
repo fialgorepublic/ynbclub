@@ -11,12 +11,14 @@
                     <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image' %>
                   </div>
 
-                  <div class="m-l-10">
-                    <p class="p-l con-truncate">
-                      <%= user_profile_link(conversation.user) %> <i class="fa fa-angle-right" aria-hidden="true"></i>
-                      <%= conversation.group.name %>
+                  <div class="m-l-10 text-left">
+                    <p class="p-l ">
+                      <span class="admin-txt con-truncate"><%= user_profile_link(conversation.user) %></span> <i
+                        class="fa fa-angle-right pos-arrow-admin" aria-hidden="true"></i>
+                      <span class="con-truncate"> <%= conversation.group.name %>
+                      </span>
                     </p>
-                    <p class="p-b text-left">Saint L beau</p>
+                    <p class="p-b text-left ">Saint L beau</p>
                   </div>
                 </div>
               </div>
@@ -37,7 +39,12 @@
                 </div>
               </div>
 
-              <div class="m-l-10 mb-l-0">
+              <div class="m-l-10 mb-l-0 hidden-xs hidden-sm">
+                <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
+              </div>
+            </div>
+            <div class="row hidden-md hidden-lg p-l-10">
+              <div class="m-l-10 mb-l-0 ">
                 <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
               </div>
             </div>

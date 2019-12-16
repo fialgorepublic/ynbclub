@@ -506,6 +506,34 @@ blockquote {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  display:inline-block; 
+
+}
+.admin-txt{
+  font-weight: 300;
+  margin-bottom: 0px;
+  text-align: left;
+  font-size: 12px;
+}
+.pos-arrow-admin{
+  position: relative;
+    bottom: 4px;
+}
+
+@media (max-width:900px)  { 
+  .row.hidden-md.hidden-lg.p-l-10 {
+    position: relative;
+    left: 10px;
+    top: 10px;
+  }
+  .con-truncate {
+    max-width: 50px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+}
+  }
 }
 
 @media (max-width: 600px) {

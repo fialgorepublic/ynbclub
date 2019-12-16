@@ -1,33 +1,37 @@
 <div class="col-md-12" id="new-reply-<%= reply.parent_id%>" style="display: none">
   <div class="lib-panel">
     <%= form_for(reply, url: url, html: {id: "reply_#{reply.parent_id}", class: "reply"}) do |form| %>
-      <%= form.hidden_field :group_id, value: reply.parent.group_id %>
-      <%= hidden_field_tag  :id, reply.parent_id %>
-      <div class="ambassador-dashboard-con">
-        <div class="form-group">
-          <%= form.text_area :body, class: 'medium-editor' %>
-        </div>
-      </div>          
+    <%= form.hidden_field :group_id, value: reply.parent.group_id %>
+    <%= hidden_field_tag  :id, reply.parent_id %>
+    <div class="ambassador-dashboard-con">
+      <div class="form-group">
+        <%= form.text_area :body, class: 'medium-editor' %>
+      </div>
+    </div>
+    <div class="flex-l">
+
       <div class="actions">
-      <%= form.submit 'Publish', id: 'submit-reply', class: 'btn btn-primary con_banner_btn', style: 'float: left' %>
+        <%= form.submit 'Publish', id: 'submit-reply', class: 'btn btn-primary con_banner_btn', style: 'float: left' %>
       </div>
 
       <div class="actions">
-      
-      <button type="button" class="btn btn-danger con_banner_btn reply-cancel" id="reply-<%= reply.parent_id%>" style="margin-left: 10px;" >Cancel</button>
+
+        <button type="button" class="btn btn-danger con_banner_btn reply-cancel" id="reply-<%= reply.parent_id%>"
+          style="margin-left: 10px;">Cancel</button>
       </div>
+    </div>
 
     <% end %>
   </div>
 </div>
 
 <script type="text/javascript">
-  $("#submit-reply").click(function(){
+  $("#submit-reply").click(function () {
     get_parent_id = this.parentElement.parentElement.id.value
-    get_form = document.getElementById("reply_"+get_parent_id)
-    $(get_form).submit(function(event) {
+    get_form = document.getElementById("reply_" + get_parent_id)
+    $(get_form).submit(function (event) {
       if (this.elements[7].value.length == 0) {
-       alert(this.id.value)
+        alert(this.id.value)
       }
     })
   })
