@@ -53,11 +53,18 @@ $(".click").click(function() {
     setTimeout(function() { enableSubmit(that) }, 3000);
 });
 
- $(".new_reply_btn").click(function(e){
+  $(".new_reply_btn").click(function(e){
     e.preventDefault();
     get_id = this.id.split("-")[1]
     find_reply_form = document.getElementById("new-reply-"+get_id)
     $(find_reply_form).show();
+  })
+
+  $(".reply-cancel").click(function(e){
+    e.preventDefault();
+    get_id = this.id.split("-")[1]
+    find_reply_form = document.getElementById("new-reply-"+get_id)
+    $(find_reply_form).hide();
   })
 
 });
