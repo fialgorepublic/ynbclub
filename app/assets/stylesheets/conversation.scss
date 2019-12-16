@@ -499,3 +499,10 @@ blockquote {
 .user-profile-link:hover{
   color: black;
 }
+.con-truncate{
+  max-width: 90px;
+  // display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

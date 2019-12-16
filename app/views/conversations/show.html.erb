@@ -1,4 +1,8 @@
 <div class="<%= add_container %>">
+  <div class="group-back-btn hidden-md hidden-lg ">
+    <%= link_to image_tag("back-arrow-btn.png"), url_for(:back) %>
+  </div>
+    <br/>
   <div class="user_conversation mb-p-0 <%= add_main_div_column %>">
     <div class="middle-row-grp">
       <div class="col-md-12">
@@ -180,11 +184,12 @@
 </div>
 
 <script type="text/javascript">
-  user_signed_in = <%= signed_in? %>;
   $('.conversation-share-on-facebook').click(function () {
     conversation_id = $(this).data('id');
-    type    = $(this).data('type');
-    conversation    = $(this).data('attributes');
+    type = $(this).data('type');
+    conversation = $(this).data('attributes');
+    // url     = $(this).data('share-url');
+    // limit_url = $(this).data('limit-url');
     if (user_signed_in) {
       var url = createFBShareLink(conversation_id, type, conversation, '1660844573983661');
       window.open(url);
@@ -201,7 +206,7 @@
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/conversations/${id}`)}
+      &redirect_uri=${encodeURIComponent(`${link}/share_conversation?id=${id}&value=${type}`)}
       &display=popup`;
     return url;
   }
