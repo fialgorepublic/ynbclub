@@ -1,4 +1,9 @@
 <div class="<%= add_container %>">
+  <div class="group-back-btn hidden-md hidden-lg ">
+    <a href="">
+      <img src="/assets/back-arrow-btn.png">
+    </a> </div>
+    <br/>
   <div class="user_conversation mb-p-0 <%= add_main_div_column %>">
     <div class="middle-row-grp">
       <div class="col-md-12">
@@ -180,13 +185,21 @@
 </div>
 
 <script type="text/javascript">
-  user_signed_in = <%= signed_in? %>;
   $('.conversation-share-on-facebook').click(function () {
     conversation_id = $(this).data('id');
-    type    = $(this).data('type');
-    conversation    = $(this).data('attributes');
+    type = $(this).data('type');
+    conversation = $(this).data('attributes');
+    // url     = $(this).data('share-url');
+    // limit_url = $(this).data('limit-url');
     if (user_signed_in) {
+<<<<<<< HEAD
+      // if (user_has_shared) { toastr.error('You already have shared this blog'); return false; }
+      // if (limit_exceeded) { toastr.error('You have exceeded your limit to share blogs on facebook for today'); return false; }
       var url = createFBShareLink(conversation_id, type, conversation, '1660844573983661');
+
+=======
+      var url = createFBShareLink(conversation_id, type, conversation, '1660844573983661');
+>>>>>>> b63afd9c2ca35d857115f18ec53ab13a6c7565eb
       window.open(url);
     } else {
       hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : '/?signin=true'
@@ -197,11 +210,15 @@
   function createFBShareLink(id, type, conversation, fbAppId) {
     var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+<<<<<<< HEAD
+      &link=https://ambassador-staging.saintlbeau.com/conversation_detail?id=${id}
+=======
       &link=https://ambassador.saintlbeau.com/conversations/${id}
+>>>>>>> b63afd9c2ca35d857115f18ec53ab13a6c7565eb
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/conversations/${id}`)}
+      &redirect_uri=${encodeURIComponent(`${link}/share_conversation?id=${id}&value=${type}`)}
       &display=popup`;
     return url;
   }
