@@ -1,6 +1,8 @@
 <div class="show-group-carddd">
   <div class="<%= add_container %>">
-    <div class="group-back-btn hidden-md hidden-lg "> <a href=""> <img src="/assets/back-arrow-btn.png"> </a> </div>
+    <div class="group-back-btn hidden-md hidden-lg "> 
+      <%= link_to image_tag("back-arrow-btn.png"), url_for(:back) %>
+    </div>
     <br>
     <div class="row">
       <div class="<%= blog_screen_size %>">
