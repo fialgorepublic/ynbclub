@@ -499,10 +499,60 @@ blockquote {
 .user-profile-link:hover{
   color: black;
 }
+
 .con-truncate{
   max-width: 90px;
   // display: block;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .conversation-tag-btn, .conversation-btn {
+    margin-top: 10px !important;
+     margin-left: -25px !important;
+   }
+  span.cirle-profile.cp1 {
+    position: relative;
+    left: 50px;
+  }
+  span.cirle-profile.cp2 {
+    position: relative;
+    left: 60px;
+  }
+  span.cirle-profile.cp3 {
+    position: relative;
+    left: 6px;
+  }
+  span.cirle-profile.cp4 {
+    position: relative;
+    left: 28px;
+  }
+  span.cirle-profile.cp5 {
+    position: relative;
+    left: 35px;
+  }
+  
+}
+@media screen and (min-device-width: 601px) and (max-device-width: 900px) { 
+  .tabbable-line > .nav-tabs > li > a {
+    border: 0;
+    margin-right: 0;
+    color: #737373;
+    padding: 12px 0.8rem !important;
+}
+.conversation-tag-btn, .conversation-btn {
+  margin-top: 0px ;
+   margin-left: 0px ;
+ }
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1366px) { 
+  .tabbable-line > .nav-tabs > li > a {
+    border: 0;
+    margin-right: 0;
+    color: #737373;
+    padding: 12px 1.8rem !important;
+}
+
 }

@@ -1,152 +1,158 @@
 <%= render 'blogs/og_tags_content' %>
 
-<div class="detail-blog">
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="detail-img">
-          <%= image_tag @blog.avatar.attached? ? @blog.avatar : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
+<div class="col-md-9 sssss">
+  <div class="detail-blog">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="detail-img">
+            <%= image_tag @blog.avatar.attached? ? @blog.avatar : 'https://beta.saintlbeau.com/blogPlaceholder.jpeg', width: "100%" %>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="detail-img detail-icon">
-          <i class="fa fa-heart"></i><input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
-          <i class="fa fa-share"></i><span>12</span>
-          <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
-          <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="detail-img detail-icon">
+            <i class="fa fa-heart"></i><input
+              style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText"
+              value="<%= @blog.likes.count %>">
+            <i class="fa fa-share"></i><span>12</span>
+            <i class="fa fa-comment"></i><span><%= @blog.comments.count %></span>
+            <i class="fa fa-eye"></i><span><%= @blog.blog_views.count %></span>
 
-          <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span>  <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
-            <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i>
-            <% if @blog.is_featured %>Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
-          </strong></h5>
-          <hr>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12 title-style">
-        <div class="detail-img">
-          <h2><%= @blog.title %></h2>
-          <p><%= @blog.description.html_safe %></p>
-        </div>
-        <hr>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12 product-title">
-        <h2>Products</h2>
-      </div>
-    </div>
-
-    <div class="row product-shadow product-border-style">
-      <% @selected_products.each do |product| %>
-          <div class="col-md-2">
-            <div class="box-shadow-am sm-pd-am">
-              <div class="product-box">
-                <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width: "100%" %>
-              </div>
-              <div class="product-price">
-                <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
-              </div>
-
-              <div class="product-detail">
-                <p><%= product.title %></p>
-              </div>
-            </div>
+            <h5 class="pull-right"> <span class="category-style"><%= @blog.category.name %></span> <span>|
+                <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span> <strong>
+                <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>"></i>
+                <% if @blog.is_featured %>Featured on
+                <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %>
+              </strong></h5>
+            <hr>
           </div>
 
-      <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 title-style">
+          <div class="detail-img">
+            <h2><%= @blog.title %></h2>
+            <p><%= @blog.description.html_safe %></p>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 product-title">
+          <h2>Products</h2>
+        </div>
+      </div>
+
+      <div class="row product-shadow product-border-style">
+        <% @selected_products.each do |product| %>
+        <div class="col-md-2">
+          <div class="box-shadow-am sm-pd-am">
+            <div class="product-box">
+              <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width: "100%" %>
+            </div>
+            <div class="product-price">
+              <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
+            </div>
+
+            <div class="product-detail">
+              <p><%= product.title %></p>
+            </div>
+          </div>
+        </div>
+
+        <% end %>
+      </div>
     </div>
   </div>
+
 </div>
-
 <script>
-    function openCommentModal(){
+  function openCommentModal() {
+    $('#comment_id').val('');
+    $('#blog_comment').val('');
+    $('#addComment').modal('show');
+  }
+  function add_comment(id, user_id) {
+    var text = $('#blog_comment').val();
+    if (text == '') {
+      apprise("please enter comment first");
+      return false;
+    }
+    var parentId = $('#comment_id').val();
+    $.ajax({
+      url: '/add_comment?id=' + id + '&user_id=' + user_id + '&message=' + text + '&parent_id=' + parentId,
+      type: 'get',
+      dataType: 'html',
+      processData: false,
+      async: false,
+      success: function (data) {
+        $('#addComment').modal('hide');
+        $('#blogComment').html(data);
         $('#comment_id').val('');
-        $('#blog_comment').val('');
-        $('#addComment').modal('show');
+      },
+      error: function (data) {
+        //                alert ('Error');
+      }
+    });
+  }
+  function like_comment(obj, id) {
+    var obj_cls = $(obj).attr('class');
+    var text_val = $('#blogText').val();
+    var obj_cls_status = obj_cls.split(' ')[2];
+    var status = '';
+    if (obj_cls_status == "liked") {
+      status = true;
+      $(obj).removeClass('liked');
+      $('#blogText').val(parseInt(text_val) - 1);
+    } else {
+      status = false;
+      $(obj).addClass('liked');
+      $('#blogText').val(parseInt(text_val) + 1);
     }
-    function add_comment(id, user_id){
-        var text = $('#blog_comment').val();
-        if (text == ''){
-            apprise("please enter comment first");
-            return false;
+    $.ajax({
+      url: '/blog_like_unlike?id=' + id + '&value=' + status,
+      type: 'get',
+      dataType: 'html',
+      processData: false,
+      success: function (data) {
+
+      },
+      error: function (data) {
+        alert('Error');
+        //    window.location.reload();
+      }
+    });
+  }
+
+
+  function changeLanguage(language) {
+    var element = document.getElementById("url");
+    element.value = language;
+    element.innerHTML = language;
+  }
+
+  function showDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
         }
-        var parentId = $('#comment_id').val();
-        $.ajax({
-            url:'/add_comment?id='+id+'&user_id='+user_id+'&message='+text+'&parent_id='+parentId,
-            type:'get',
-            dataType:'html',
-            processData:false,
-            async: false,
-            success:function (data) {
-                $('#addComment').modal('hide');
-                $('#blogComment').html(data);
-                $('#comment_id').val('');
-            },
-            error:function (data) {
-//                alert ('Error');
-            }
-        });
+      }
     }
-    function like_comment(obj,id){
-        var obj_cls = $(obj).attr('class');
-        var text_val = $('#blogText').val();
-        var obj_cls_status = obj_cls.split(' ')[2];
-        var status = '';
-        if (obj_cls_status == "liked"){
-            status = true;
-            $(obj).removeClass('liked');
-            $('#blogText').val(parseInt(text_val) - 1);
-        }else{
-            status = false;
-            $(obj).addClass('liked');
-            $('#blogText').val(parseInt(text_val) + 1);
-        }
-        $.ajax({
-            url: '/blog_like_unlike?id='+ id + '&value=' + status,
-            type: 'get',
-            dataType: 'html',
-            processData: false,
-            success: function (data) {
-
-            },
-            error: function (data) {
-                alert('Error');
-                //    window.location.reload();
-            }
-        });
-    }
-
-
-    function changeLanguage(language) {
-        var element = document.getElementById("url");
-        element.value = language;
-        element.innerHTML = language;
-    }
-
-    function showDropdown() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
+  }
 
 </script>
