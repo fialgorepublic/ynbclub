@@ -12,7 +12,7 @@
         </span>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <li><%= render partial: 'blogs/facebook_share_button', locals: { blog: blog } %></li>
-          <li><a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a>
+          <!-- <li><a href="javascript:void(0);" onclick="blog_share('<%= blog.id %>','twitter', 'https://twitter.com/intent/tweet?url=<%#= root_url + "/blog_detail?id=#{blog.id}" %>')"> <i class="fa fa-twitter"></i></a> -->
           </li>
         </ul>
       </div>

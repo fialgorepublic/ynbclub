@@ -100,6 +100,7 @@ $(document).on('turbolinks:load', function () {
     blog    = $(this).data('attributes');
     url     = $(this).data('share-url');
     limit_url = $(this).data('limit-url');
+    user_signed_in = $(this).data("user-signed-in")
     already_shared_blog(blog_id, url);
     sharing_limit_exceed(limit_url);
     if (user_signed_in) {

@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
       buyer = "true"
     else
       referral = Devise.friendly_token
-      current_user.update_attributes(referral: referral, commission: 8.0, is_activated: true)
+      current_user.update_attributes(referral: referral, commission: 10.0, is_activated: true)
       buyer = "false"
     end
     render json: {success: true, :buyer => buyer}

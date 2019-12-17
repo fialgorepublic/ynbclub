@@ -53,6 +53,7 @@
       <% @shared_urls.each do |shared_url| %>
         <tr>
           <td><%= shared_url.id %></td>
+          <td><%= shared_url.user_name %>
           <td><%= platform(shared_url) %></td>
           <td><%= link_to shared_url.url, shared_url.url, target: :blank %></td>
           <td><%= shared_at(shared_url) %></td>

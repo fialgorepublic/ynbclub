@@ -19,11 +19,10 @@ class Conversation < ApplicationRecord
   has_many   :conversation_likes
 
   validates :body, presence: true
-
   scope :post_conversations,  ->             { where(parent_id: nil) }
   scope :filter_by_subject,   -> (subject)   { where('lower(subject) like ?', "%#{subject&.downcase}%") }
   scope :popular_first,       ->             { reorder(likes_count: :desc, replies_count: :desc) }
-  scope :unanswered,          ->             { reorder("conversations.replies_count = 0") }
+  scope :unanswered,          ->             { where(replies_count: 0, parent_id: nil) }
   scope :a_z,                 ->             { reorder('lower(subject) ASC') }
   scope :liked_conversations, -> (user_id)   { joins(:conversation_likes).where(conversation_likes: { user_id: user_id }) }
   scope :sort_by_title,       -> (type)      { reorder("lower(conversations.subject) #{type ? type : :asc}") }

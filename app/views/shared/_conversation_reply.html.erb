@@ -11,7 +11,7 @@
     <div class="flex-l">
 
       <div class="actions">
-        <%= form.submit 'Publish', id: 'submit-reply', class: 'btn btn-primary con_banner_btn', style: 'float: left' %>
+        <%= form.submit 'Publish', id: "submit-reply-#{reply.parent_id}", class: 'btn btn-primary con_banner_btn submit-reply', style: 'float: left' %>
       </div>
 
       <div class="actions">
@@ -26,12 +26,14 @@
 </div>
 
 <script type="text/javascript">
-  $("#submit-reply").click(function () {
-    get_parent_id = this.parentElement.parentElement.id.value
+  $(".submit-reply").click(function (event) {
+    get_parent_id = this.id.split("-")[2]
     get_form = document.getElementById("reply_" + get_parent_id)
     $(get_form).submit(function (event) {
       if (this.elements[7].value.length == 0) {
-        alert(this.id.value)
+        alert("Please enter reply first");
+        event.stopImmediatePropagation();
+        return false;
       }
     })
   })

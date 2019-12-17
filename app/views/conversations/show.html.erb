@@ -148,7 +148,7 @@
             </div>
             <div class="">
               <a
-                href="mailto:<%= current_user.email%>?subject=<%= @conversation.subject%>&body=<%= strip_tags(@conversation.body) %>"><img
+                href="mailto:<%= current_user.email%>?subject=<%= @conversation.subject%>&body=<%= @conversation.body %>"><img
                   src="/assets/m.png"></a>
             </div>
           </div>
@@ -184,6 +184,7 @@
 </div>
 
 <script type="text/javascript">
+  user_signed_in = <%= signed_in? %>;
   $('.conversation-share-on-facebook').click(function () {
     conversation_id = $(this).data('id');
     type = $(this).data('type');
@@ -206,7 +207,7 @@
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/share_conversation?id=${id}&value=${type}`)}
+      &redirect_uri=${encodeURIComponent(`${link}/conversations/${id}`)}
       &display=popup`;
     return url;
   }

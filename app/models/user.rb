@@ -248,7 +248,7 @@ class User < ApplicationRecord
   end
 
   def update_total_income(price, order_no)
-    user_commission  = commission.present? ? commission.to_f : 8.0
+    user_commission  = commission.present? ? commission.to_f : 10.0
     old_income = self.total_income
     self.update_attributes(total_income: total_income.to_f + (price.to_f * user_commission/100))
     commission_history = self.commission_histories.find_or_create_by(order_no: order_no, old_income: old_income, new_income: self.total_income)
