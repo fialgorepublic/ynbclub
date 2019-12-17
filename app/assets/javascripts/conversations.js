@@ -5,10 +5,7 @@ $(document).on('turbolinks:load', function () {
   initSort();
 
   function initMediumEditor(){
-    // if (location.protocol == 'https:')
-    // {
-    //  location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
-    // }
+    window.location.protocol === 'https:' && (location.href = location.href.replace(/^https:/, 'http:'));
     if ($('.medium-editor').length == 0) { return; }
     var editor = new MediumEditor('.medium-editor', {
     });
