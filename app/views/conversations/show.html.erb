@@ -207,7 +207,7 @@
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/share_conversation?id=${id}&value=${type}`)}
+      &redirect_uri=${encodeURIComponent(`${link}/conversations/${id}`)}
       &display=popup`;
     return url;
   }
