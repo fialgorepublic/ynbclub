@@ -5,7 +5,6 @@ $(document).on('turbolinks:load', function () {
   initSort();
 
   function initMediumEditor(){
-    window.location.protocol === 'https:' && (location.href = location.href.replace(/^https:/, 'http:'));
     if ($('.medium-editor').length == 0) { return; }
     var editor = new MediumEditor('.medium-editor', {
     });
