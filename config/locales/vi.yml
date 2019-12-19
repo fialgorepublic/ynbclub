@@ -4,12 +4,14 @@ vi:
     brand_ambassador_label:   Brand Ambassador
     store_label:              Cửa hàng
     login_label:              Đăng nhập
+    conversations:            cuộc hội thoại
     register_label:           Đăng ký
 
   header: 
     home_label:               Trang chủ
-    catalog_label:            Catalog
-    about_us_label:           About Us
+    catalog_label:            Mục lục
+    about_us_label:           Về chúng tôi
+    groups:                   các nhóm
     logout_lable:             Đăng xuất
 
   register:

@@ -4,12 +4,14 @@ en:
     brand_ambassador_label:   Brand Ambassador
     store_label:              Store
     login_label:              Login
+    conversations:            Conversation
     register_label:           Register
 
   header: 
     home_label:               Home
     catalog_label:            Catalog
     about_us_label:           About Us
+    groups:                   Groups
     logout_lable:             Logout
 
   register:

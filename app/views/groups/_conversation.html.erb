@@ -32,6 +32,13 @@
               <%#= new_reply_link(conversation) %>
               <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
             </div>
+            <% if conversation.user == current_user  ||  current_user && current_user.role.id == 6 %>
+            <div class="grp-edit-delete-icon ">
+              <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "groups" do %>
+              <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
+              <% end %>
+            </div>
+            <% end %>
           </div>
         </div>
 

@@ -55,7 +55,7 @@ class DashboardController < ApplicationController
 
   def step_two
     @url = params[:url].include?('www.facebook.com') ? params[:url].split('&').first : params[:url].split('?').first
-    return redirect_to step_one_path, alert: I18n.t(:post_duplicate_sare) if current_user.share_urls.find_by_url(@url).present?
+    return redirect_to step_one_path, alert: I18n.t(:post_duplicate_share) if current_user.share_urls.find_by_url(@url).present?
     return redirect_to step_one_path, alert: I18n.t(:post_shared_by_someone) if ShareUrl.find_by_url(@url).present?
 
     begin
