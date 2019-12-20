@@ -223,7 +223,7 @@ en:
   shared_urls:
     title:                    Shared Urls
     table_headers:
-      id_label:               Id#
+      id_label:               Id
       shared_by_label:        Shared By
       platform_label:         Platform
       url_label:              URL
