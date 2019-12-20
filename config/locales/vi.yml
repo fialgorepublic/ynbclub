@@ -438,6 +438,7 @@ vi:
   update_role_success_mesage: Cập nhập vai trò thành công 
   image_success_message:       Cập nhập thành công hình ảnh người sử dụng.
   post_duplicate_share:        Bạn đã thêm bài này 
+  group_update:                Nhóm đã được cập nhật thành công.
   post_shared_by_someone:    Ai đó đã thêm bài này 
   url_make_sure:              Hãy chắc chắn URL đã chính xác
   invalid_url:                     URL không hợp lệ 
