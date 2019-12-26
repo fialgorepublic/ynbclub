@@ -142,11 +142,10 @@
         <div class="row box-shadow-conversation-profile-admin-middle">
           <div class="flex-c social-con-padding">
             <div class="">
-              <%#= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
-              <!-- <img src="/assets/fb.png"> -->
+              <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
+              <img src="/assets/fb.png">
+              <% end %>
               <%# end %>
-              <%# end %>
-             <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=2363600470383068&amp;link=https://ambassador-staging.saintlbeau.com/conversations/<%= @conversation.id %>&amp;description=Blah&amp;name=<%= @conversation.subject%>&amp;redirect_uri=https://ambassador-staging.saintlbeau.com/conversations/<%= @conversation.id %>&amp/"/><img src="/assets/fb.png"></a>
             </div>
             <div class="">
               <a
@@ -205,7 +204,7 @@
   function createFBShareLink(id, type, conversation, fbAppId) {
     var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-      &link=https://ambassador-staging.saintlbeau.com/conversations/${id}
+      &link=https://ambassador-staging.saintlbeau.com/dashboard/conversations/${id}
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose
