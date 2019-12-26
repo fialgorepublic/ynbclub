@@ -453,3 +453,9 @@ p.video-title {
   height: 43px;
   overflow: hidden;
 }
+input#search-field:focus {
+  z-index: 0;
+}
+.btn-invite{
+  padding: 11px 16px !important;
+}
