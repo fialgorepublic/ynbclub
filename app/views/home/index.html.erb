@@ -23,6 +23,8 @@
     <% if params[:signin].present? %>
       login_form();
       toastr.info('You need to signin to continue.');
+      <% elsif params[:signup].present? %>
+      $('#signUp').modal('show');
     <% end %>
   });
 </script>
