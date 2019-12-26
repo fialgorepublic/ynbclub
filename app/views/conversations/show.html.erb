@@ -150,7 +150,7 @@
             </div>
             <div class="">
               <a
-                href="mailto:<%= current_user.email%>?subject=<%= @conversation.subject%>&body=<%= @conversation.body %>"><img
+                href="mailto:<%= current_user.present? ? current_user.email : User.first.email %>?subject=<%= @conversation.subject%>&body=<%= @conversation.body %>"><img
                   src="/assets/m.png"></a>
             </div>
           </div>
