@@ -1,3 +1,4 @@
+<%= render 'conversations/og_tags_content' %>
 <div class="<%= add_container %>">
   <div class="group-back-btn hidden-md hidden-lg "> 
     <%= link_to image_tag("back-arrow-btn.png"), 'javascript:history.back()' %>
@@ -141,10 +142,11 @@
         <div class="row box-shadow-conversation-profile-admin-middle">
           <div class="flex-c social-con-padding">
             <div class="">
-              <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
-              <img src="/assets/fb.png">
-              <% end %>
+              <%#= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
+              <!-- <img src="/assets/fb.png"> -->
               <%# end %>
+              <%# end %>
+             <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=2363600470383068&amp;link=https://ambassador-staging.saintlbeau.com/conversations/<%= @conversation.id %>&amp;description=Blah&amp;name=<%= @conversation.subject%>&amp;redirect_uri=https://ambassador-staging.saintlbeau.com/conversations/<%= @conversation.id %>&amp/"/><img src="/assets/fb.png"></a>
             </div>
             <div class="">
               <a
@@ -192,7 +194,7 @@
     // url     = $(this).data('share-url');
     // limit_url = $(this).data('limit-url');
     if (user_signed_in) {
-      var url = createFBShareLink(conversation_id, type, conversation, '1660844573983661');
+      var url = createFBShareLink(conversation_id, type, conversation, '2363600470383068');
       window.open(url);
     } else {
       hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : '/?signin=true'
@@ -203,7 +205,7 @@
   function createFBShareLink(id, type, conversation, fbAppId) {
     var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-      &link=https://ambassador.saintlbeau.com/conversations/${id}
+      &link=https://ambassador-staging.saintlbeau.com/conversations/${id}
       &name=${conversation.subject}
       &caption=SainLBeau blogs
       &description=This is just for testing purpose

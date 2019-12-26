@@ -153,7 +153,7 @@ Rails.application.routes.draw do
 
   resource  :share_with_friends, only: [:edit, :update]
   resources :earn_coins, only: [:edit, :update]
-  resource  :page, only: [:show, :edit, :update]
+  resource  :page, only: [:show, :edit, :update, :destroy]
   resource  :take_snapshots, only: [:edit, :update, :destroy] do
     post :banner, on: :collection
   end

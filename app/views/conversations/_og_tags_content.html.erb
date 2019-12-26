@@ -1,0 +1,4 @@
+<%= content_for :og_title,       @conversation.subject %>
+<%= content_for :og_type,        'conversation' %>
+<%= content_for :og_url,         request.host %>
+<%= content_for :og_description,  ActionView::Base.full_sanitizer.sanitize(@conversation.body) %>
