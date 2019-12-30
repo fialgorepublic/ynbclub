@@ -19935,7 +19935,18 @@ MediumEditor.extensions = {};
 
             if (MediumEditor.util.isKey(event, [MediumEditor.util.keyCode.DELETE, MediumEditor.util.keyCode.BACKSPACE])) {
                 return this.triggerCustomEvent('editableKeydownDelete', event, event.currentTarget);
-            }
+            } else if (MediumEditor.util.isKey(event, MediumEditor.util.keyCode.BACKSPACE) &&
+				        MediumEditor.util.isMediumEditorElement(node.parentElement) &&
+				        !node.previousElementSibling &&
+				        node.nextElementSibling &&
+				        isEmpty.test(node.innerHTML)) {
+
+						    // when cursor is in the first element, it's empty and user presses backspace,
+						    // do delete action instead to get rid of the first element and move caret to 2nd
+						    event.preventDefault();
+						    MediumEditor.selection.moveCursor(this.options.ownerDocument, node.nextSibling);
+						    node.parentElement.removeChild(node);
+							}
         }
     };
 
