@@ -14,7 +14,7 @@
 class PointType < ApplicationRecord
   belongs_to :earn_coin
   has_many :points
-
+  validates :name, :point, presence: true
   before_create :set_id
 
   def set_id

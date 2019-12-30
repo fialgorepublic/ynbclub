@@ -13,9 +13,12 @@
         <div class="row">
           <div class="col-md-12 text-right cu-btn-holder" >
             <%= link_to edit_page_path, class: "btn btn-default" do %>
-              <i class="fa fa-pencil"></i>  <%= t(:edit_label) %></button>
+              <i class="fa fa-pencil"></i>  <%= t(:edit_label) %>
             <% end %>
-            <button class="btn btn-default"><%= t(:delete_label) %></button>
+            <% if @page.image.attached? %>
+              <%= link_to page_path, method: :delete, class: "btn btn-default" do %><%= t(:delete_label) %>
+              <% end %>
+            <% end %>
           </div>
         </div>
 

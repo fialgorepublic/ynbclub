@@ -33,6 +33,7 @@ class PointTypesController < ApplicationController
         format.html { redirect_to @point_type, notice: I18n.t(:reward_success) }
         format.json { render :show, status: :created, location: @point_type }
       else
+        flash[:alert] = @point_type.errors.full_messages
         format.html { render :new }
         format.json { render json: @point_type.errors, status: :unprocessable_entity }
       end

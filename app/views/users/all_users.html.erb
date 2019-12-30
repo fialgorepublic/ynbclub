@@ -2,25 +2,28 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h1 class="card-header"><i class="fa <%=icon_class(params[:deduct_points])%>"></i> <%= page_title(params[:deduct_points]) %></h1>
+      <h1 class="card-header"><i class="fa <%=icon_class(params[:deduct_points])%>"></i>
+        <%= page_title(params[:deduct_points]) %></h1>
       <hr>
       <%= form_tag users_ban_users_path, method: :get, id: "search-form" do %>
-        <div class="input-group">
-          <input type="text" id="searchText" name="q" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="<%= t('affiliates.search_placeholder') %>" autofocus="" value="<%= params[:q] %>">
-          <%= hidden_field_tag :deduct_points, params[:deduct_points], id: 'deduct_points_hidden_field' %>
-          <%= hidden_field_tag :filter_type, nil, id: 'filter_type_hidden_field' %>
-          <span class="input-group-btn">
+      <div class="input-group">
+        <input type="text" id="searchText" name="q" style="height: 30px;"
+          class="input-sm form-control ng-pristine ng-valid ng-touched"
+          placeholder="<%= t('affiliates.search_placeholder') %>" autofocus="" value="<%= params[:q] %>">
+        <%= hidden_field_tag :deduct_points, params[:deduct_points], id: 'deduct_points_hidden_field' %>
+        <%= hidden_field_tag :filter_type, nil, id: 'filter_type_hidden_field' %>
+        <span class="input-group-btn">
           <button class="btn btn-sm btn-default" type="submit" id="search-btn"><i class="fa fa-search"></i></button>
           <%#= link_to users_ban_users_path,  id: "crossBtn", class: "btn btn-sm btn-default ng-scope #{show_if_already_searched(params[:q])}" do %>
-            <!-- <i class="fa fa-times"></i> -->
+          <!-- <i class="fa fa-times"></i> -->
           <%# end %>
-          </span>
-        </div>
+        </span>
+      </div>
       <% end %>
     </div>
   </div>
 
-  <br/>
+  <br />
   <div class="row">
     <div class="col-md-6">
       <%= select_tag :users, options_for_select([['User With Points', 'filter'], ['All Users', 'all']], selected: params[:filter_type]) , { include_blank: t('all_users.filter_type_label'), class: "form-control", id: "filter-users" } %>
@@ -38,10 +41,10 @@
                 <th><%= t('users.email_label') %></th>
                 <th><%= t('users.phone_no_label') %></th>
                 <% if params[:deduct_points].present? %>
-                  <th><%= t('all_users.points_label') %></th>
-                  <th><%= t('all_users.deduct_label') %></th>
+                <th><%= t('all_users.points_label') %></th>
+                <th><%= t('all_users.deduct_label') %></th>
                 <% else %>
-                  <th><%= t('all_users.banned_label') %></th>
+                <th><%= t('all_users.banned_label') %></th>
                 <% end %>
                 <th><%= t('all_users.points_history_label') %></th>
               </tr>
@@ -49,23 +52,25 @@
 
             <tbody>
               <% @users.each do |user| %>
-                <tr>
-                  <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
-                  <td><%= user.email %></td>
-                  <td><%= user.profile_phone_number %></td>
-                    <% if params[:deduct_points].present? %>
-                      <td><%= user.total_points %></td>
-                      <td><%= link_to t('all_users.deduct_label'), "javascript:void(0);", class: "deduct_modal btn btn-primary", data: { id: user.id } if user.total_points > 0 %></td>
-                    <% else %>
-                      <td>
-                        <%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%>
-                      </td>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to t('all_users.points_history_label'), points_users_path(user_id: user.id) %>
-                  </td>
-                </tr>
+              <tr>
+                <td><a href="/user_show?id=<%= user.id %>"><%= user.name %></a></td>
+                <td><%= user.email %></td>
+                <td><%= user.profile_phone_number %></td>
+                <% if params[:deduct_points].present? %>
+                <td><%= user.total_points %></td>
+                <td>
+                  <%= link_to t('all_users.deduct_label'), "javascript:void(0);", class: "deduct_modal btn btn-primary", data: { id: user.id } if user.total_points > 0 %>
+                </td>
+                <% else %>
+                <td>
+                  <%= check_box_tag user.id, user.id, user.banned?, { id: user.id, class: "ban-user", data: { url: change_ban_status_users_path(id: user.id)} }%>
+                </td>
+                <% end %>
+                </td>
+                <td>
+                  <%= link_to t('all_users.points_history_label'), points_users_path(user_id: user.id) %>
+                </td>
+              </tr>
               <% end %>
             </tbody>
           </table>
@@ -110,29 +115,29 @@
 </div>
 
 <script>
-  $(document).ready(function() {
-    $('#searchText').keyup(function() {
+  $(document).ready(function () {
+    $('#searchText').keyup(function () {
       var dInput = this.value;
-      if (dInput == ""){
+      if (dInput == "") {
         $('#searchText').val('')
         $('#search-form').submit();
       }
     });
 
-    $('#crossBtn').click(function(){
+    $('#crossBtn').click(function () {
       $('#searchText').val('');
       $(this).hide();
     });
 
-    $('#search-btn').click(function(event){
-      if($('#searchText').val() == '') { event.preventDefault(); return; }
+    $('#search-btn').click(function (event) {
+      if ($('#searchText').val() == '') { event.preventDefault(); return; }
     })
 
-    $('.ban-user').change(function() {
+    $('.ban-user').change(function () {
       var value = $(this).prop('checked');
       var string = value ? "Ban" : "Resume"
       var box = confirm(`Are you sure you want to ${string} this user account?`);
-      if(box) {
+      if (box) {
         $.ajax({
           url: $(this).data('url') + `&value=${value}`,
           type: 'get',
@@ -143,7 +148,7 @@
 
     });
 
-    $('#filter-users').change(function(){
+    $('#filter-users').change(function () {
       type = $(this).val();
       $('#filter_type_hidden_field').val(type);
       $('#search-form').submit();
