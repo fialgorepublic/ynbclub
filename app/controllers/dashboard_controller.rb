@@ -106,6 +106,14 @@ class DashboardController < ApplicationController
 
     def get_share_with_friend
       @share_with_friends = ShareWithFriend.first || create_new
+      if I18n.locale == :en
+        translate_to_eng = GoogleTranslateService.new(@share_with_friends.reward_text)
+        translated_text = translate_to_eng.translate.translate @share_with_friends.reward_text, to: "en"
+        @share_with_friends.update(reward_text: translated_text)
+      else
+        translate_to_vi = GoogleTranslateService.new(@share_with_friends.reward_text).translate_text
+        @share_with_friends.update(reward_text: translate_to_vi)
+      end
     end
 
     def create_new
