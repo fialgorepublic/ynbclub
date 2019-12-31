@@ -50,26 +50,26 @@
       </div>
     </div>
 
-    <div class="row product-shadow product-border-style">
-      <% @selected_products.each do |product| %>
-      <div class="col-md-3">
-        <div class="box-shadow-am sm-pd-am">
-          <div class="product-box">
-            <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width:"100%"  %>
-          </div>
+      <div class="row product-shadow product-border-style">
+        <% @selected_products.each do |product| %>
+            <div class="col-md-3">
+              <div class="box-shadow-am sm-pd-am">
+                <div class="product-box">
+                  <%= image_tag product.avatar.attached? ? product.avatar : '/placeholder.png', width:"100%"  %>
+                </div>
 
-          <div class="product-price">
-            <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
-          </div>
+                <div class="product-price">
+                  <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫</h5>
+                </div>
 
-          <div class="product-detail">
-            <p><%= product.title %></p>
-          </div>
-        </div>
+                <div class="product-detail">
+                  <p><%= product.title %></p>
+                </div>
+              </div>
+            </div>
+
+        <% end %>
       </div>
-
-      <% end %>
-    </div>
 
     <button class="btn comnt-btn-style btn-default pull-right" onclick="openCommentModal();">
       Post a comment
