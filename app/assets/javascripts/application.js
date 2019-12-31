@@ -24,4 +24,5 @@
 //= require cocoon
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
+//= require local-time
 //= require_tree .

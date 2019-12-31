@@ -17,9 +17,9 @@ module ConversationsHelper
 
   def posted_date(conversation)
     if conversation.created_at.to_date == Date.today
-      conversation.created_at.to_time.strftime("Today %I:%M %P")
+      local_date(conversation.created_at, 'Today %I:%M %P')
     elsif conversation.created_at.to_date == Date.yesterday
-      conversation.created_at.to_time.strftime("Yesterday %I:%M %P")
+      local_date(conversation.created_at, 'Yesterday %I:%M %P')
     else
       conversation.created_at.to_time.strftime('Posted at %d.%m.%y')
     end
