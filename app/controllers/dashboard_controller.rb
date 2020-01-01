@@ -16,12 +16,15 @@ class DashboardController < ApplicationController
 
   def update_user_role
     current_user.update_attributes(role_id: params[:role_id])
+    current_user.role_id = params[:role_id]
+    current_user.save(validate: false)
     flash[:notice] = I18n.t(:update_role_success_label)
     if current_user.role.name == "Buyer"
       buyer = "true"
     else
       referral = Devise.friendly_token
-      current_user.update_attributes(referral: referral, commission: 10.0, is_activated: true)
+      current_user.assign_attributes(referral: referral, commission: 10.0, is_activated: true)
+      current_user.save(validate: false)
       buyer = "false"
     end
     render json: {success: true, :buyer => buyer}
