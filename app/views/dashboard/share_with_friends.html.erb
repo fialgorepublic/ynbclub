@@ -41,17 +41,17 @@
                   </div>
 
                   <div class="col-md-4 ">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary facebook btn-block"> <i class="fa fa-facebook-square"></i> <%= @share_with_friends.fb_btn_text %></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= url %>" target="_blank" class="btn btn-primary facebook btn-block"> <i class="fa fa-facebook-square"></i> <%= t('page_design.share_on_facebook_label') %></a>
                   </div>
 
 
                   <div class="col-md-4">
                     <!--<a href="https://twitter.com/intent/tweet?text=“<%#= "testing here" %>”&url=<%#= url %>" target="_blank" class="btn btn-info btn-block"> <i class="fa fa-twitter"></i> Share on Twitter</a>-->
-                    <a href="https://twitter.com/intent/tweet?url=<%= url %>" target="_blank" class="btn btn-info twitter btn-block"> <i class="fa fa-twitter"></i><%= @share_with_friends.twitter_btn_text %></a>
+                    <a href="https://twitter.com/intent/tweet?url=<%= url %>" target="_blank" class="btn btn-info twitter btn-block"> <i class="fa fa-twitter"></i><%= t('page_design.share_on_twitter_label') %></a>
                   </div>
 
                   <div class="col-md-4">
-                    <a href="mailto:someone@example.com?Subject=Hello&Body=<%= url %>" target="_top" class="btn btn-warning mailing btn-block"> <i class="fa fa-envelope"></i><%= @share_with_friends.email_btn_text %></a>
+                    <a href="mailto:someone@example.com?Subject=Hello&Body=<%= url %>" target="_top" class="btn btn-warning mailing btn-block"> <i class="fa fa-envelope"></i><%= t('page_design.share_on_email_label') %></a>
                   </div>
                 </div>
               </div>

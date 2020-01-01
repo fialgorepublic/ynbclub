@@ -12,7 +12,7 @@ class ScrapBlogsController < ApplicationController
   end
 
   def translate_and_edit
-    translate_to_vi = GoogleTranslateService.new(@blog.description).translate_text
+    translate_to_vi = GoogleTranslateService.new(@blog.description, '', '', '').translate_text
     @blog.update(description: translate_to_vi)
     redirect_to edit_blog_path(id: @blog, translate_edit: true)
   end

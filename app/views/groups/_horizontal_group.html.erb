@@ -16,7 +16,7 @@
                   <%= link_to edit_group_path(group), class: "bg-groups-circle1" do %>
                   <i class="fa fa-pencil inneer" aria-hidden="true"></i>
                   <% end %>
-                  <%= link_to @group, class: 'bg-groups-circle1', method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <%= link_to group_path(group.id), class: 'bg-groups-circle1', method: :delete, data: { confirm: "Are you sure?" } do %>
                     <i class="fa fa-trash inneer" aria-hidden="true"></i>
                   <% end %>
                 </div>

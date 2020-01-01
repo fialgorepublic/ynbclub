@@ -70,6 +70,12 @@ en:
   referral_sales:
     index:
       page_title:             Referral Sales
+      post_blog:              Post the blog
+      share_snapshot:         Take and share a snapshot
+      order_product:          Order product in the blog post
+      invite_user:            Invite user to the Saint I' beau
+      invited_user_spent:     Invited user spent
+      product_order:          Your product was ordered
 
     table_headers:
       order_label:            Order

@@ -15,7 +15,7 @@
                     <p class="p-l ">
                       <span class="admin-txt con-truncate"><%= user_profile_link(conversation.user) %></span> <i
                         class="fa fa-angle-right pos-arrow-admin" aria-hidden="true"></i>
-                      <span class="con-truncate"> <%= conversation.group.name %>
+                      <span class="con-truncate"> <%= link_to conversation.group.name, group_path(conversation.group.id) %>
                       </span>
                     </p>
                     <p class="p-b text-left ">Saint L beau</p>

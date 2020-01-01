@@ -323,7 +323,7 @@
           <% end %>
 
           <div id="current_user_role">
-            <h3 class="text-center"><%= html_safe_content @earn_coin.main_text %></h3>
+            <h3 class="text-center"> <%= html_safe_content @earn_coin.main_text %></h3>
           </div>
 
           <div class="coin-body">
@@ -334,15 +334,21 @@
               </div>
 
               <div class="col-md-6">
-                <p> <span class="">+<%= get_points 3 %></span> <strong>Post the blog</strong></p>
-                <p> <span class="">+<%= get_points 1 %></span> <strong>Take and share a snapshot</strong></p>
-                <p> <span class="">+<%= get_points 5 %></span> <strong>Order product in the blog post</strong></p>
+                <p> <span class="">+<%= get_points 3 %></span> <strong>
+                <%= t('referral_sales.index.post_blog') %></strong></p>
+                <p> <span class="">+<%= get_points 1 %></span> <strong>
+                  <%= t('referral_sales.index.share_snapshot') %></strong></p>
+                <p> <span class="">+<%= get_points 5 %></span> <strong>
+                  <%= t('referral_sales.index.order_product') %></strong></p>
               </div>
 
               <div class="col-md-6">
-                <p> <span class="">+<%= get_points 6 %></span> <strong> Invite user to the Saint I' beau</strong></p>
-                <p> <span class="">+<%= get_points 4 %></span> <strong> Invited user spent $50</strong></p>
-                <p> <span class="">+<%= get_points 2 %></span> <strong> Your product was ordered </strong></p>
+                <p> <span class="">+<%= get_points 6 %></span> <strong>
+                  <%= t('referral_sales.index.invite_user') %></strong></p>
+                <p> <span class="">+<%= get_points 4 %></span> <strong>
+                  <%= t('referral_sales.index.invited_user_spent') %> $50</strong></p>
+                <p> <span class="">+<%= get_points 2 %></span> <strong>
+                <%= t('referral_sales.index.product_order') %></strong></p>
               </div>
             </div>
           </div>

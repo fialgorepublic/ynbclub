@@ -70,6 +70,12 @@ vi:
   referral_sales:
     index:
       page_title:             Giới thiệu bán hang 
+      post_blog:              Đăng blog
+      share_snapshot:         Chụp và chia sẻ ảnh chụp nhanh
+      order_product:          Đặt hàng sản phẩm trong bài viết trên blog
+      invite_user:            Mời người dùng đến Saint I 'beau
+      invited_user_spent:     Người dùng được mời chi
+      product_order:          Sản phẩm của bạn đã được đặt hàng
 
     table_headers:
       order_label:            Đơn đặt hàng 
