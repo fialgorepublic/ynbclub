@@ -166,7 +166,7 @@ class UsersController < ApplicationController
       @user.errors.full_messages.map { |msg|      # Show Error messages while sign_up user
         @error_messages << msg
       }
-      flash[:alert] = @error_messages[0]
+      flash[:alert] = @error_messages
       redirect_to dashboard_path
     end
   end

@@ -44,6 +44,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :referral, uniqueness: true, if: :is_ambassador?
+  validates :phone_number,:numericality => true,
+                 :length => { :minimum => 10, :maximum => 25 }, on: :update
   belongs_to :role, optional: true
   has_many :referral_sales
   has_many :payments

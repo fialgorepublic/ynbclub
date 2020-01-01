@@ -24,4 +24,9 @@
 
 class Profile < ApplicationRecord
   belongs_to :user
+  validates :bank_name, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/,
+    message: "only allows letters" }
+  validates :account_number, presence: true,  :numericality => { :greater_than_or_equal_to => 0 }, uniqueness: true
+  validates :acc_holder_name, presence: true, format: { with: /\A[a-zA-Z]+(?: [a-zA-Z]+)?\z/,
+    message: "only allows letters" } 
 end
