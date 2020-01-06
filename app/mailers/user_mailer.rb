@@ -13,6 +13,11 @@ class UserMailer < ApplicationMailer
     mail(to: user.email, subject: 'Welcome to SaintLBeau')
   end
 
+  def send_discount_code(user)
+    @user = user
+    mail(to: user.email, subject: 'Discount Code for Free Shipping')
+  end
+
   def referral_sign_up(user, referral)
     @user = user
     @referral = referral
