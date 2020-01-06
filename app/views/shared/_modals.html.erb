@@ -90,7 +90,7 @@
               <%= f.text_field :name, autofocus: true, autocomplete: "Name",placeholder: t('register.enter_name_placeholder'), class: 'form-control', id: "registration_user_name" %>
             </div>
             <% if params[:signup].present? %>
-              <%= f.hidden_field :reference_no, value: SecureRandom.hex(5)%>
+              <%= f.hidden_field :reference_no, value: true%>
             <% end %>
             <div class="form-group">
               <%= f.label t('register.email_label') %><br />
