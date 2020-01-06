@@ -14,9 +14,9 @@
               <div class="lib-row lib-header">
                 <div class="grp-edit-delete-icon">
                   <%= link_to edit_group_path(group), class: "bg-groups-circle1" do %>
-                  <i class="fa fa-pencil inneer" aria-hidden="true"></i>
+                    <i class="fa fa-pencil inneer" aria-hidden="true"></i>
                   <% end %>
-                  <%= link_to group_path(group.id), class: 'bg-groups-circle1', method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <%= link_to "javascript:void(0)", data: { url: group_path(group.id), name: group.name }, class: "bg-groups-circle1 delete-group-link", id: "delete-group" do %>
                     <i class="fa fa-trash inneer" aria-hidden="true"></i>
                   <% end %>
                 </div>
@@ -35,4 +35,3 @@
     </div>
   </div>
 </div>
-

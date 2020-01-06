@@ -45,7 +45,7 @@
             </div>
             <% if conversation.user == current_user  ||  current_user && current_user.role.id == 6 %>
             <div class="grp-edit-delete-icon ">
-              <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "groups" do %>
+              <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "delete-conversation" do %>
               <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
               <% end %>
             </div>
