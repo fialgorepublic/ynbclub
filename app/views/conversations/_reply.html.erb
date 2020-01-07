@@ -14,7 +14,13 @@
   <div class="row">
     <div class="col-md-12">
       <div class="comment more text-left pl-40">
-        <%= reply.body.html_safe %>
+        <% if reply.body.include?("http") && reply.body.include?("figure") %>
+          <%= reply.body&.html_safe %>
+        <% elsif reply.body.include?("http")%>
+          <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+        <% else%>
+          <%= reply.body&.html_safe %>
+        <% end %>
       </div>
 
     </div>
@@ -69,7 +75,14 @@
       <div class="row">
         <div class="col-md-12">
           <div class="comment more text-left pl-40">
-            <%= reply.body.html_safe %>
+            <% if reply.body.include?("http") && reply.body.include?("figure") %>
+              <%= reply.body&.html_safe %>
+            <% elsif reply.body.include?("http")%>
+              <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+            <% else%>
+              <%= reply.body&.html_safe %>
+            <% end %>
+            <%#= reply.body.html_safe %>
           </div>
         </div>
       </div>

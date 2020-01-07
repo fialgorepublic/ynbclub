@@ -58,7 +58,13 @@
             <% end %>
 
             <div class="comment more">
-              <%= conversation.body&.html_safe %>
+              <% if conversation.body.include?("http") && conversation.body.include?("figure") %>
+                <%= conversation.body&.html_safe %>
+              <% elsif conversation.body.include?("http")%>
+                <a href="<%= conversation.body%>" target="_blank"><%= conversation.body%></a>
+              <% else%>
+                <%= conversation.body&.html_safe %>
+              <% end %>
             </div>
 
           </div>
@@ -80,7 +86,13 @@
           <div class="row bbbb">
             <div class="col-md-12">
               <div class="comment more text-left pl-40 ">
-                <%= reply.body&.html_safe %>
+                <% if reply.body.include?("http") && reply.body.include?("figure") %>
+                  <%= reply.body&.html_safe %>
+                <% elsif reply.body.include?("http")%>
+                  <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+                <% else%>
+                  <%= reply.body&.html_safe %>
+                <% end %>
               </div>
             </div>
           </div>

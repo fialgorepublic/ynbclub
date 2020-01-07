@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :replies]
   before_action :set_conversation, only: [:show, :edit, :update, :destroy, :reply, :conversation_reply, :replies]
-
+  require "uri"
   # GET /conversations
   # GET /conversations.json
   def index
@@ -38,7 +38,11 @@ class ConversationsController < ApplicationController
   # POST /conversations.json
   def create
     @conversation = current_user.conversations.new(conversation_params)
-
+    if @conversation.body.include?("figure")
+      @conversation.body = @conversation.body
+    elsif @conversation.body.include?("<p>")
+      @conversation.body = URI.extract(@conversation.body)[0]
+    end
     respond_to do |format|
       if @conversation.save
         format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
@@ -89,6 +93,11 @@ class ConversationsController < ApplicationController
 
   def conversation_reply
     reply = @conversation.replies.new(conversation_params.merge(user: current_user))
+    if reply.body.include?("figure")
+      reply.body = reply.body
+    elsif reply.body.include?("<p>")
+      reply.body = URI.extract(reply.body)[0]
+    end
     if reply.save
       redirect_to @conversation, notice: 'Posted your reply successfully.'
     else
