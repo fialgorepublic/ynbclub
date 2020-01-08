@@ -129,7 +129,9 @@
               </div>
 
               <div class="m-l-10">
-                <i class="fa fa-comment fs-20" style="color: #256664;"></i>
+                <%= link_to conversation_path(conversation) do %>
+                  <i class="fa fa-comment fs-20" style="color: #256664;"></i>
+                <% end %>
               </div>
 
               <div class="m-l-10 m-t-12">
