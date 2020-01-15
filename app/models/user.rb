@@ -303,7 +303,7 @@ class User < ApplicationRecord
   end
 
   def initiate_shopify_session
-    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8e01204fb033f77c3eb5966c1720811', api_version: '2019-04')
+    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: '2e4b3484ea853b5577e587bcd7cfd75d', api_version: '2019-04')
     ShopifyAPI::Base.activate_session(shopify_session)
   end
 end
