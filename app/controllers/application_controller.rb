@@ -88,6 +88,7 @@ class ApplicationController < ActionController::Base
         translated_text = translate_to_main_text.translate.translate @earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way , to: "vi"
         @earn_coin.update(main_text: translated_text.first.text, how_spend_text: translated_text.second.text, how_earn_text: translated_text.third.text, earn_way: translated_text.fourth.text )
       end
+    end
     rescue
     end
     @earn_coin.point_types
