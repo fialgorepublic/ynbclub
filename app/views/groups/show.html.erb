@@ -19,10 +19,9 @@
                   <%= link_to edit_group_path(@group), class: 'content-display' do %>
                   <img src="/assets/edit-icon.png" width="100%">
                   <% end %>
-
-                  <%= link_to @group, class: 'bg-groups-circle1', method: :delete, data: { confirm: "Are you sure?" } do %>
-                  <i class="fa fa-trash inneer" aria-hidden="true"></i>
-                  <% end %>
+                  <a data-url="" data-name="<%= @group.name %>" class=" delete-group-link bg-groups-circle1" href="#">
+                    <i class="fa fa-trash inneer" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
               <% end %>
@@ -110,6 +109,31 @@
 
         <%= hidden_field_tag :page, @conversations.next_page %>
         <%= render partial: 'shared/show_more', locals: { objects_collection: @conversations, url: group_conversations_path(@group.id) } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="group-delete-modal" class="modal fade groups-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close mob-close-btn" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="text-center">
+          <h1 class="modall-title group-title"> </h1>
+          <p>you will not be able to restore it then</p>
+        </div>
+        <div class="text-center">
+          <div class="text-center">
+            <%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
+            <a class="btn btn-primary new_group-modal_btn" , id='cancel-delete'>No</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

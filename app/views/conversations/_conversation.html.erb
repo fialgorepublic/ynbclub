@@ -45,7 +45,7 @@
             </div>
             <% if conversation.user == current_user  ||  current_user && current_user.role.id == 6 %>
             <div class="grp-edit-delete-icon ">
-              <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "groups" do %>
+              <%= link_to "javascript:void(0)", data: { url: conversation_path(conversation), name: conversation.subject }, class: "delete-group-link", id: "delete-conversation" do %>
               <i class="fa fa-trash inneer font-awesome-edit-profile" aria-hidden="true"></i>
               <% end %>
             </div>
@@ -58,7 +58,13 @@
             <% end %>
 
             <div class="comment more">
-              <%= conversation.body&.html_safe %>
+              <% if conversation.body.include?("http") && conversation.body.include?("figure") %>
+                <%= conversation.body&.html_safe %>
+              <% elsif conversation.body.include?("http")%>
+                <a href="<%= conversation.body%>" target="_blank"><%= conversation.body%></a>
+              <% else%>
+                <%= conversation.body&.html_safe %>
+              <% end %>
             </div>
 
           </div>
@@ -80,7 +86,13 @@
           <div class="row bbbb">
             <div class="col-md-12">
               <div class="comment more text-left pl-40 ">
-                <%= reply.body&.html_safe %>
+                <% if reply.body.include?("http") && reply.body.include?("figure") %>
+                  <%= reply.body&.html_safe %>
+                <% elsif reply.body.include?("http")%>
+                  <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+                <% else%>
+                  <%= reply.body&.html_safe %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -117,7 +129,9 @@
               </div>
 
               <div class="m-l-10">
-                <i class="fa fa-comment fs-20" style="color: #256664;"></i>
+                <%= link_to conversation_path(conversation) do %>
+                  <i class="fa fa-comment fs-20" style="color: #256664;"></i>
+                <% end %>
               </div>
 
               <div class="m-l-10 m-t-12">

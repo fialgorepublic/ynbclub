@@ -177,6 +177,7 @@
         var email = $('#registration_email').val();
         var password = $('#registration_password').val();
         var invite = $('#invite').val();
+        var reference = $('#resource_reference_no').val();
         $('#register-btn').attr('disabled', true)
         if (!jQuery("#sign_up_user").valid()) {
           $('#register-btn').attr('disabled', false)
@@ -190,7 +191,8 @@
             resource: {
               email: email,
               password: password,
-              name: user_name
+              name: user_name,
+              reference_no: reference
             },
             invite: invite
           },

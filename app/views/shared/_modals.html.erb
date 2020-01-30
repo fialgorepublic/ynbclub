@@ -89,6 +89,9 @@
               <%= f.label t('register.username_label') %><br />
               <%= f.text_field :name, autofocus: true, autocomplete: "Name",placeholder: t('register.enter_name_placeholder'), class: 'form-control', id: "registration_user_name" %>
             </div>
+            <% if params[:signup].present? %>
+              <%= f.hidden_field :reference_no, value: true%>
+            <% end %>
             <div class="form-group">
               <%= f.label t('register.email_label') %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: t('register.email_placeholder'), class: 'form-control', id: "registration_email" %>

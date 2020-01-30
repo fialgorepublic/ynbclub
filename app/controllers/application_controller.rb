@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initiate_shopify_session
-    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8e01204fb033f77c3eb5966c1720811', api_version: '2019-04')
+    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: '2e4b3484ea853b5577e587bcd7cfd75d', api_version: '2019-04')
     ShopifyAPI::Base.activate_session(shopify_session)
   end
 
@@ -71,15 +71,26 @@ class ApplicationController < ActionController::Base
 
   def set_earn_coin
     @earn_coin = EarnCoin.first
+    begin
     if I18n.locale == :en
+      if @earn_coin.main_text == "<p> Get Saint money and redeem coupons </p>"
+        @earn_coin
+      else
         translate_to_main_text = GoogleTranslateService.new(@earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way )
         translated_text = translate_to_main_text.translate.translate @earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way, to: "en"
         @earn_coin.update(main_text: translated_text.first.text, how_spend_text: translated_text.second.text, how_earn_text: translated_text.third.text, earn_way: translated_text.fourth.text )
+      end
+    else
+      if @earn_coin.main_text == "<p> Nhận tiền Saint và đổi phiếu giảm giá </p>"
+        @earn_coin
       else
         translate_to_main_text = GoogleTranslateService.new(@earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way)
         translated_text = translate_to_main_text.translate.translate @earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way , to: "vi"
         @earn_coin.update(main_text: translated_text.first.text, how_spend_text: translated_text.second.text, how_earn_text: translated_text.third.text, earn_way: translated_text.fourth.text )
       end
+    end
+    rescue
+    end
     @earn_coin.point_types
   end
 

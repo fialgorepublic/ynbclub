@@ -39,3 +39,7 @@ a.disabled {
   height: 3px;
   background-color: #54b2b2;
 }
+
+.medium-editor-element {
+  max-width: 700px;
+}

@@ -13,6 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     resource = User.new(sign_up_params)
+    if params[:resource][:reference_no].present?
+      resource.reference_no = SecureRandom.hex(5)
+    end
     resource.referral = Devise.friendly_token
     if resource.save
       if params[:invite].present?
@@ -98,7 +101,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:resource).permit(:name, :email, :password)
+    params.require(:resource).permit(:name, :email, :password, :reference_no)
   end
 
 end
