@@ -85,7 +85,6 @@ class User < ApplicationRecord
   after_save :set_default_permissions
   after_save :set_profile
   after_commit :generate_coupon_code, on: :create
-  after_create :add_mailchimp_subscriber
 
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
@@ -308,16 +307,4 @@ class User < ApplicationRecord
     ShopifyAPI::Base.activate_session(shopify_session)
   end
 
-  def add_mailchimp_subscriber
-    @list_id = "7f6c83cb93"
-    gibbon = Gibbon::Request.new
-
-    gibbon.lists(@list_id).members.create(
-      body: {
-        email_address: self.email,
-        status: "subscribed",
-        merge_fields: {FNAME: self.name}
-      }
-    )
-  end
 end
