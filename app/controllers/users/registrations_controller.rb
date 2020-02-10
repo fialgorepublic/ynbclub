@@ -27,17 +27,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
       end
       UserMailer.user_sign_up(resource).deliver
-      initiate_shopify_session
-      customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
-      customer = customers.detect { |c| c.email == "#{resource.email}" }
-      if customer.nil?
-        customer = ShopifyAPI::Customer.new
-        customer.email = "#{resource.email}"
-        customer.first_name = resource.name
-        customer.last_name = ''
-        customer.save
+      SubscribeUserToMailchimp.perform_later(resource)
+      begin
+        initiate_shopify_session
+        customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})
+        customer = customers.detect { |c| c.email == "#{resource.email}" }
+        if customer.nil?
+          customer = ShopifyAPI::Customer.new
+          customer.email = "#{resource.email}"
+          customer.first_name = resource.name
+          customer.last_name = ''
+          customer.save
+        end
+        clear_shopify_session
+      rescue
       end
-      clear_shopify_session
       sign_in :user, resource
       flash[:notice] = "Successfully Signed Up"
       render json: { success: true }
