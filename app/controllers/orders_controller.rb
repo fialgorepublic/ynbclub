@@ -100,6 +100,17 @@ class OrdersController < ApplicationController
   def gthk_status
   end
 
+  def order_status
+    if params[:order_id].present?
+      order = Order.where("phone_number = ? OR order_id = ?", params[:order_id], params[:order_id] ).first
+      if order.present?
+        @order_status = CheckOrderService.new(order.id).check_status
+      else
+        @order_status = "Order is not available with this value."
+      end
+    end
+  end
+
   def update_status
     UpdateOrderStatusJob.perform_later
     respond_to do |format|

@@ -60,6 +60,13 @@
         <% end %>
       </li>
 
+      <li>
+        <%= link_to order_status_path, class: active_class(order_status_path) do %>
+        <i class="custom-icon" style="padding-right: 20px;"><img
+            src="/assets/icon-8.png"></i><%= t('sidebar.order_status_label_text') %>
+        <% end %>
+      </li>
+
       <% unless current_user.is_admin? %>
         <li>
           <%= link_to share_with_friends_path, class: active_class(share_with_friends_path) do %>

@@ -12,7 +12,6 @@ class SubscribeUserToMailchimp < ActiveJob::Base
         merge_fields: {FNAME: user.name}
       }
     )
-    puts "<<<<<<<<<<<<<<<=====================================>>>>>>>>>>>>>>>"
   rescue
   end
   end

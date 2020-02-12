@@ -40,6 +40,7 @@ vi:
 
   sidebar: 
     dashboard_label_text:     Bảng điều khiển
+    order_status_label_text:  Tình trạng đặt hàng
     share_with_friends_label: Chia sẻ với bạn bè 
     take_and_share_label:     Chụp nhanh và chia sẻ 
     exchange_coins_label:     Đổi xu 
