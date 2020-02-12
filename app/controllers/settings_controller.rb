@@ -43,6 +43,8 @@ class SettingsController < ApplicationController
   def update
     respond_to do |format|
       if @setting.update(setting_params)
+        @setting.username = current_user.name
+        @setting.save
         format.html { redirect_to '/settings/' + @setting.id.to_s + '/edit', notice: 'Setting was successfully updated.' }
         format.json { render :show, status: :ok, location: @setting }
       else
