@@ -142,4 +142,28 @@
     });
   }
 
+  $(window).scroll(function() {
+    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+    // alert('asdf')
+      params = '';
+      page   = $('#page').val();
+      params = `page=${page}`;
+      if ($('#subject-sort').length > 0) {
+        params += `&sort_type=${$('#subject-sort').val()}`;
+      }
+      $('.loader').show();
+      $.ajax({
+        url: `/blogs?${params}`,
+        type: 'GET',
+        dataType: 'script',
+        success: function(data) {
+        },
+        error: function(data) {
+          $('.loader').hide()
+          alert('Something Wentwrong!')
+        }
+      })
+    }
+  });
+
 </script>
