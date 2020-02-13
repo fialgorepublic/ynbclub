@@ -144,9 +144,9 @@
 
   $(window).scroll(function() {
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
-    // alert('asdf')
       params = '';
       page   = $('#page').val();
+      if (page != "") {
       params = `page=${page}`;
       if ($('#subject-sort').length > 0) {
         params += `&sort_type=${$('#subject-sort').val()}`;
@@ -163,6 +163,7 @@
           alert('Something Wentwrong!')
         }
       })
+    }
     }
   });
 
