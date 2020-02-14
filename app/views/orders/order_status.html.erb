@@ -5,7 +5,7 @@
     <%= form_tag order_status_path, method: "get" do %>
   <%= label_tag(:search, "Checking Order") %>
   <br>
-  <%= text_field_tag :order_id, params[:order_id], class: "form-control", placeholder: "phone number / order number", style: "width: 310px;" %>
+  <%= text_field_tag :order_id, params[:order_id], class: "form-control", placeholder: "order number", style: "width: 310px;" %>
   <br>
   <%= submit_tag("search", class: 'btn btn-primary') %>
 <% end %>
