@@ -143,7 +143,8 @@
   }
 
   $(window).scroll(function() {
-    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+    debugger
+    if (window.location.href.includes("blogs") && ($(window).scrollTop() == $(document).height() - $(window).height())) {
       params = '';
       page   = $('#page').val();
       if (page != "") {
