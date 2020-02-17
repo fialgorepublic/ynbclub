@@ -14,7 +14,7 @@
     <% if params[:group_id].blank? %>
       <div class="ambassador-dashboard-con">
         <div class="form-group">
-          <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control' %>
+          <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control set-border-radius' %>
         </div>
       </div>
     <% else %>
