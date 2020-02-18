@@ -170,11 +170,13 @@
     });
 
     $('#searchText').keyup(function() {
-      var dInput = this.value;
-      if (dInput == ""){
-        $.ajax({
-          url: '<%= clear_search_users_path %>'
-        })
+      if (event.keyCode != 16) {
+        var dInput = this.value;
+        if (dInput == ""){
+          $.ajax({
+            url: '<%= clear_search_users_path %>'
+          })
+        }
       }
     });
   });

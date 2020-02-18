@@ -20,9 +20,7 @@
         width: 100%;
         position: relative;
         max-height: 250px;
-        image-rendering: auto;
-        image-rendering: crisp-edges;
-        image-rendering: pixelated;
+        object-fit: cover;
     }
     .lib-panel .lib-row.lib-header .grp-edit-delete-icon {
         top: 10px;
@@ -524,6 +522,7 @@ a.morelink:visited {
 
 img.lib-img-show {
     max-height: 182px;
+    object-fit: cover;
 }
 
 // join-grp-dscptn end
