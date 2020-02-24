@@ -4,7 +4,7 @@
     .box-shadow {
         box-shadow: none;
         padding: 0px 0px 20px 0px;
-        border-radius: 5px;
+        border-radius: 15px;
         border: 1px solid #eee;
         font-size: 22px;
         text-align: center;
@@ -20,9 +20,7 @@
         width: 100%;
         position: relative;
         max-height: 250px;
-        image-rendering: auto;
-        image-rendering: crisp-edges;
-        image-rendering: pixelated;
+        object-fit: cover;
     }
     .lib-panel .lib-row.lib-header .grp-edit-delete-icon {
         top: 10px;
@@ -238,7 +236,7 @@
         padding: 15px 16px 30px;
     }
     .modal-header {
-        padding: 0px;
+        //padding: 0px;
         border-bottom: 1px solid #e5e5e5;
     }
     p {
@@ -715,11 +713,13 @@ img.lib-img-show {
 .search-border {
     background-color: white;
     border-left: none;
+    border-radius: 0px 20px 20px 0px;
     // border-right: none;
 }
 
 .email-border {
     border-right: none;
+    border-radius: 20px;
 }
 
 .form-control:focus {

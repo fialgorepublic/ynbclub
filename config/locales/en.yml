@@ -40,6 +40,7 @@ en:
 
   sidebar:
     dashboard_label_text:     Dashboard
+    order_status_label_text:  Order Status
     share_with_friends_label: Share With Friends
     take_and_share_label:     Take a snapshot and share
     exchange_coins_label:     Exchange Coins

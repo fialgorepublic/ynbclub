@@ -73,6 +73,11 @@ class GhtkService
     def order_params
       # province, district = set_location
       #phone_number = set_phone_number
+      if order.phone_number.present?
+        order_phone_number = order.phone_number.delete(" ")
+      else
+        order_phone_number = order.phone_number
+      end
       {
         id:             order.order_id,
         pick_name:      "Saint L Beau",
@@ -80,7 +85,7 @@ class GhtkService
         pick_province:  "Ho Chi Minh",
         pick_district:  "Phường 9, Quận Phú nhuận",
         pick_tel:       "0901318892",
-        tel:            order.phone_number,
+        tel:            order_phone_number,
         name:           order.customer_name,
         address:        order.address,
         province:       order.city_name,

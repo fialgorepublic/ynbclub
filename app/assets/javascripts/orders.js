@@ -85,7 +85,7 @@ $(document).on('turbolinks:load', function() {
       success: function (data) {
         if(data.result) {
           toastr.success('Phone Status updated successuflly.');
-          window.location.href = '/orders';
+          // window.location.href = '/orders?id='+order_id;
         }
         else
           toastr.error('Somethng Went wrong.')

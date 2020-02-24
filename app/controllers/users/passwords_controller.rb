@@ -13,7 +13,7 @@ class Users::PasswordsController < Devise::PasswordsController
       raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
       resource.reset_password_token = hashed_token
       resource.reset_password_sent_at = Time.now.utc
-      if resource.save
+      if resource.save(validate: false)
         resource.send_reset_password_instructions
         flash[:notice] = "Reset password instructions have been sent to #{resource.email}."
         render json: { success: true }
