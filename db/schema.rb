@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_094855) do
+ActiveRecord::Schema.define(version: 2020_01_01_123231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_094855) do
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"
     t.string "avatar_content_type"
-    t.bigint "avatar_file_size"
+    t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean "is_featured", default: false
     t.datetime "feature_date"
@@ -141,7 +141,10 @@ ActiveRecord::Schema.define(version: 2019_11_22_094855) do
     t.integer "likes_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "views_count", default: 0
+    t.string "slug"
     t.index ["group_id"], name: "index_conversations_on_group_id"
+    t.index ["slug"], name: "index_conversations_on_slug", unique: true
     t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
@@ -286,7 +289,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_094855) do
     t.string "sub_heading"
     t.string "image_file_name"
     t.string "image_content_type"
-    t.bigint "image_file_size"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -358,7 +361,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_094855) do
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"
     t.string "avatar_content_type"
-    t.bigint "avatar_file_size"
+    t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string "url"
   end
@@ -442,19 +445,19 @@ ActiveRecord::Schema.define(version: 2019_11_22_094855) do
   create_table "snapshots", force: :cascade do |t|
     t.string "step1_avatar_file_name"
     t.string "step1_avatar_content_type"
-    t.bigint "step1_avatar_file_size"
+    t.integer "step1_avatar_file_size"
     t.datetime "step1_avatar_updated_at"
     t.string "step2_avatar_file_name"
     t.string "step2_avatar_content_type"
-    t.bigint "step2_avatar_file_size"
+    t.integer "step2_avatar_file_size"
     t.datetime "step2_avatar_updated_at"
     t.string "step3_avatar_file_name"
     t.string "step3_avatar_content_type"
-    t.bigint "step3_avatar_file_size"
+    t.integer "step3_avatar_file_size"
     t.datetime "step3_avatar_updated_at"
     t.string "step4_avatar_file_name"
     t.string "step4_avatar_content_type"
-    t.bigint "step4_avatar_file_size"
+    t.integer "step4_avatar_file_size"
     t.datetime "step4_avatar_updated_at"
     t.string "step1_text"
     t.string "step2_text"
@@ -488,7 +491,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_094855) do
     t.string "referral"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
-    t.bigint "avatar_file_size"
+    t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean "social_login", default: false
     t.float "commission"
@@ -511,6 +514,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_094855) do
     t.integer "likes_count", default: 0
     t.integer "followers_count", default: 0
     t.integer "following_count", default: 0
+    t.string "reference_no"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
