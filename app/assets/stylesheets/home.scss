@@ -3668,3 +3668,15 @@ input[type="checkbox"]:checked:after {
 .group-create-custom .group-icon  {
   border: 1px solid #ffffff;
 }
+
+
+.post-heading {
+  margin-bottom: 5%;
+  margin-top: 50px !important;
+}
+.truncate-a {
+  width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

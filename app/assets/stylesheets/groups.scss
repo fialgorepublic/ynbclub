@@ -364,6 +364,10 @@ p.p-l {
     margin-bottom: 0px;
     text-align: left;
     font-size: 12px;
+    max-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 p.p-b {
