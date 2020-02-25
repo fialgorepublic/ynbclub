@@ -66,7 +66,7 @@ module BlogsHelper
   end
 
   def share_button_classes
-    action_name == 'index' ? 'share-on-facebook' :  'share-on-facebook btn btn-primary'
+    action_name == 'index' ? 'share-on-facebook' :  'share-on-facebook btn btn-primary set-border-radius'
   end
 
   def share_button_text
