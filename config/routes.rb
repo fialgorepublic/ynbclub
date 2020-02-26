@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'changed_sale_approved_status', to: 'referral_sales#changed_sale_approved_status'
   root :to => 'home#index'
   get 'dashboard', to: 'dashboard#index'
+  get 'order_status', to: 'orders#order_status'
   get 'cities', to: 'dashboard#cities'
   get 'dashboard_main', to: 'dashboard#dashboard_main'
   get 'update_user_role', to: 'dashboard#update_user_role'

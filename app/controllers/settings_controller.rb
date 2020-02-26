@@ -42,12 +42,18 @@ class SettingsController < ApplicationController
   # PATCH/PUT /settings/1.json
   def update
     respond_to do |format|
-      if @setting.update(setting_params)
-        format.html { redirect_to '/settings/' + @setting.id.to_s + '/edit', notice: 'Setting was successfully updated.' }
-        format.json { render :show, status: :ok, location: @setting }
+      if current_user.role.name.eql?("Admin")
+        if @setting.update(setting_params)
+          @setting.username = current_user.name
+          @setting.save
+          format.html { redirect_to '/settings/' + @setting.id.to_s + '/edit', notice: 'Setting was successfully updated.' }
+          format.json { render :show, status: :ok, location: @setting }
+        else
+          format.html { render :edit }
+          format.json { render json: @setting.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @setting.errors, status: :unprocessable_entity }
+        format.html { render :edit, notice: 'You cannot change Setting.' }
       end
     end
   end

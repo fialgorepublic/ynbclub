@@ -61,6 +61,7 @@ body {
 }
 
 .modal-content {
+  border-radius: 15px !important;
   .panel {
     border: none;
   }
@@ -86,7 +87,7 @@ body {
   box-shadow: none;
   border-radius: 0;
   .btn {
-    border-radius: 0;
+    border-radius: 20px;
     font-size: 13px;
   }
   .btn-bottom {
@@ -279,7 +280,7 @@ body {
 .box-shadow {
   box-shadow: none;
   padding: 80px 140px;
-  border-radius: 5px;
+  border-radius: 15px;
   border: 1px solid #eee;
   font-size: 22px;
   text-align: center;
@@ -408,6 +409,7 @@ body {
   border: 1px solid #cad5d9;
   padding: 10px 20px;
   margin-bottom: 20px;
+  border-radius: 15px;
 }
 
 .coin-body p {
@@ -1234,6 +1236,7 @@ button.comnt-btn-style {
 
 .post-heading {
   margin-bottom: 5%;
+  margin-top: 50px;
   i {
     color: #85cbff;
   }
@@ -1783,6 +1786,7 @@ label.error {
   position: relative;
   padding: 15px 15px;
   margin-bottom: 15px;
+  border-radius: 20px;
 }
 
 .page-de-tab-holder p {
@@ -1821,6 +1825,7 @@ label.error {
   border-radius: 0;
   color: #fff;
   margin-left: 10px;
+  border-radius: 20px;
 }
 
 .edit-share-box .input-holder a input {
@@ -1970,6 +1975,7 @@ label.error {
   color: #fff !important;
   padding-left: 15px;
   padding-right: 15px;
+  border-radius: 20px;
 }
 // .bottom_icon {
 //   margin-top: 38px;
@@ -2219,6 +2225,7 @@ label.error {
 .share_with_friends_style .box-shadow .form-box {
   margin: 0px;
   padding: 5px;
+  border-radius: 15px;
 }
 
 .share_with_friends_style .box-shadow .social_btn {
@@ -2254,7 +2261,7 @@ label.error {
 }
 
 .share_with_friends_style .box-shadow .share_link_btn {
-  border-radius: 0px;
+  border-radius: 20px;
   background-color: #323232;
   color: #fff;
 }
@@ -2357,6 +2364,7 @@ label.error {
   margin-bottom: 25px;
   min-height: 320px !important;
   max-height: 320px;
+  border-radius: 15px;
   .fa {
     font-size: 20px;
     color: #256664;
@@ -3642,4 +3650,33 @@ input[type="checkbox"]:checked:after {
   display: inline-block !important;
   position: relative !important;
   top: 5px !important;
+}
+
+.set-border-radius {
+  border-radius: 20px;
+}
+
+.form-control {
+  border-radius: 20px;
+}
+
+.table-border-radius {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.group-create-custom .group-icon  {
+  border: 1px solid #ffffff;
+}
+
+
+.post-heading {
+  margin-bottom: 5%;
+  margin-top: 50px !important;
+}
+.truncate-a {
+  width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

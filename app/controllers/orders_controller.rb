@@ -27,11 +27,17 @@ class OrdersController < ApplicationController
 
   def update
     if OrderService.new(order_params).update_address
-      flash[:success] = I18n.t(:order_address_success)
-      redirect_to orders_path
+      respond_to do |format|
+        format.html
+        format.js
+      end
+      # redirect_to orders_path
     else
-      flash[:alert] = I18n.t(:order_update_error)
-      redirect_to orders_path
+      respond_to do |format|
+        format.html
+        format.js
+      end
+      # redirect_to orders_path
     end
   end
 
@@ -88,10 +94,21 @@ class OrdersController < ApplicationController
     else
       result = false
     end
-    render json: { result: result }
+    render json: { result: result, order: order.id }
   end
 
   def gthk_status
+  end
+
+  def order_status
+    if params[:order_id].present?
+      order = Order.where("phone_number = ? OR order_name = ?", params[:order_id], params[:order_id] ).first
+      if order.present?
+        @order_status = CheckOrderService.new(order.id).check_status
+      else
+        @order_status = "Order is not available with this value."
+      end
+    end
   end
 
   def update_status
