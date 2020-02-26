@@ -14,6 +14,7 @@ class BlogsController < ApplicationController
       current_user.save(validate: false)
       redirect_to blogs_path
     end
+    @videos = YoutubeService.get_channel_videos
     blogs = \
         if current_user.present?
           current_user.filtered_blogs(params[:sort], params[:category], params[:title])

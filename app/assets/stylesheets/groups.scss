@@ -364,6 +364,10 @@ p.p-l {
     margin-bottom: 0px;
     text-align: left;
     font-size: 12px;
+    max-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 p.p-b {
@@ -523,6 +527,7 @@ a.morelink:visited {
 img.lib-img-show {
     max-height: 182px;
     object-fit: cover;
+    object-position: top;
 }
 
 // join-grp-dscptn end
@@ -827,6 +832,16 @@ img.lib-img-show {
 }
 
 @media (max-width: 824px) {
+    .blog_banner_btn {
+        margin: 10px 0px;
+        position: relative;
+        bottom: 20px;
+    }
+    img.lib-img-show {
+        max-height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
     .pos-rel-banner img {
         position: relative;
         height: 50vh;
@@ -857,6 +872,35 @@ img.lib-img-show {
     .lib-img-tag-show img {
         height: 100% !important;
     }
+
+
+
+
+
+    // auto heights  for saint blogs
+    .groups-cards .box-shadow {
+        box-shadow: none;
+        padding: 0px 0px 20px 0px;
+        border-radius: 15px;
+        border: 1px solid #eee;
+        font-size: 22px;
+        text-align: center;
+        background: #fff;
+        margin-bottom: 20px;
+         max-height: 100%; 
+         min-height: 100%;
+        -webkit-box-shadow: -1px 0px 13px -1px #c9c9c9;
+        -moz-box-shadow: -1px 0px 13px -1px #c9c9c9;
+        box-shadow: -1px 0px 13px -1px #c9c9c9;
+    }
+    .groups-cards .lib-img-show {
+        width: 100%;
+        position: relative;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    
+    
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 980px) {
@@ -1125,7 +1169,7 @@ input.form-control.con-title-:focus {
         font-size: 9px !important;
     }
     .mb-l-0 {
-        margin-left: 0px !important;
+        // margin-left: 0px !important;
     }
     .box-shadow-conversation-profile-admin {
         box-shadow: none;
@@ -1307,4 +1351,15 @@ button.medium-insert-buttons-show {
 .medium-insert-embeds figure figcaption,
 .mediumInsert-embeds figure figcaption {
     display: none !important;
+} 
+.slick-prev:before {
+    content: "" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 22px !important;
+     color: #83848a !important;
+}  .slick-next:before {
+    content: "" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 22px !important;
+    color: #83848a !important;
 }

@@ -1236,6 +1236,7 @@ button.comnt-btn-style {
 
 .post-heading {
   margin-bottom: 5%;
+  margin-top: 50px;
   i {
     color: #85cbff;
   }
@@ -3666,4 +3667,31 @@ input[type="checkbox"]:checked:after {
 
 .group-create-custom .group-icon  {
   border: 1px solid #ffffff;
+}
+
+
+.post-heading {
+  margin-bottom: 5%;
+  margin-top: 50px !important;
+}
+.truncate-a {
+  width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.close_video_modal:hover{
+  background-color: transparent;
+  border-color: transparent;
+}
+.close_video_modal{
+  color: #fff !important;
+ text-shadow: 0 1px 0 #fff; 
+  filter: alpha(opacity=20) !important;
+  opacity: 1 !important;
+  position: relative;
+  left: 10px;
+  bottom: 7px;
+
 }

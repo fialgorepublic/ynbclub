@@ -311,6 +311,16 @@ a.btn.btn-primary.new_blog_btn:hover {
     background: #fff;
     margin-bottom: 20px;
   }
+  .custom-showMore-btn .showMore-btn-style {
+    padding: 10px 100px;
+    color: #444;
+    background-color: #fff;
+    border-color: #ccc;
+    padding: 8px 90px;
+    border-radius: 0px;
+    font-weight: 400;
+    font-size: 18px;
+}
   .join-grp-dscptn .jn-grp-img-show img {
     max-width: 100%;
   }
@@ -446,6 +456,10 @@ a.btn.conversation-btn.btn-default.converstaion-mob {
     color: #737373;
     padding: 12px 0.8rem;
       }
+      .add_blog_btn {
+      
+        margin: 20px 0px;
+    }
   }
   input#submit-button {
     background-color: #54b2b2;
