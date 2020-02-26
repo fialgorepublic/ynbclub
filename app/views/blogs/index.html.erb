@@ -54,6 +54,16 @@ button.slick-prev.slick-arrow {
   color: red;
   font-size: 30px;
 } */
+#custom-topPage-btn i {
+  font-weight: bold;
+  color: #54b2b2;
+  margin: 0;
+  position: relative;
+  left: 0px;
+  top: 25px;
+  font-size: 48px;
+}
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -68,16 +78,10 @@ button.slick-prev.slick-arrow {
     <div class="banner text-center">
  <section id="features" class="blue">
 			<div class="content">
-				
-				
-				
-				
 				<div class="slider slider_video responsive_video_slider">
-					
 						<div class="m_slider_vid">
 						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
 					</div>
-
 						<div class="m_slider_vid">
 						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
 					</div>
@@ -198,7 +202,7 @@ button.slick-prev.slick-arrow {
 $(document).ready(function() {
 
     $('.responsive_video_slider').slick({
-        dots: true,
+        dots: false,
         arrows: true,
         centerMode: true,
      centerPadding: '10',
@@ -206,7 +210,6 @@ $(document).ready(function() {
         speed: 300,
         slidesToShow: 3,
         slidesToScroll: 1,
-              // adaptiveHeight: true,
         responsive: [{
             breakpoint: 1024,
             settings: {
