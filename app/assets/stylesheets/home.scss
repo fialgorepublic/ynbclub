@@ -2511,7 +2511,7 @@ label.error {
   color: #54b2b2;
   margin: 0;
   position: relative;
-  left: 34px;
+  left: 0px;
   top: 25px;
   font-size: 48px;
 }
@@ -3679,4 +3679,19 @@ input[type="checkbox"]:checked:after {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.close_video_modal:hover{
+  background-color: transparent;
+  border-color: transparent;
+}
+.close_video_modal{
+  color: #fff !important;
+ text-shadow: 0 1px 0 #fff; 
+  filter: alpha(opacity=20) !important;
+  opacity: 1 !important;
+  position: relative;
+  left: 10px;
+  bottom: 7px;
+
 }
