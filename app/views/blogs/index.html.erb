@@ -1,141 +1,44 @@
-<style>
-/* .video-wrapper {
-	position: relative;
-	padding-bottom: 56.25%;
-	padding-top: 25px;
-	height: 0;
-}
-
-.video-wrapper iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-} */
-
-/* button.slick-next.slick-arrow {
-    position: absolute;
-    right: -50px;
-    bottom: 38%;
-}
-button.slick-prev.slick-arrow {
-    position: absolute;
-    right: -50px;
-    bottom: 38%;
-}
-.slick-arrow {
-    color: red;
-    border-radius: 100px;
-    background-color: #cccccc;
-} */
-.m_slider_vid {
-    padding: 10px;
-}
-.slider_video {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: transparent !important;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-/* .slick-prev:before {
-  content: "<";
-  color: red;
-  font-size: 30px;
-}
-
-.slick-next:before {
-  content: ">";
-  color: red;
-  font-size: 30px;
-} */
-#custom-topPage-btn i {
-  font-weight: bold;
-  color: #54b2b2;
-  margin: 0;
-  position: relative;
-  left: 0px;
-  top: 25px;
-  font-size: 48px;
-}
-
-</style>
-
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"/> 
-
-
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"/> 
 
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
-
     <div class="banner ">
- <section id="features" class="blue">
-			<div class="content">
-				<div class="slider slider_video responsive_video_slider">
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-						<div class="m_slider_vid">
-						<iframe width="100%" src="//www.youtube.com/embed/ubGpDoyJvmI" frameborder="0" allowfullscreen></iframe>
-					</div>
-				</div>
-			</div>
-		</section>
-   
-    <div class="col-md-12 blog_banner_btn">
-      <div class="col-lg-12 padding-lr-20">
-        <%= text_field_tag :title, params[:title], class: "form-control set-border-radius", placeholder: 'Search by title', id: 'blog-title-textbox' %>
-      </div><!-- /input-group -->
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-md-12 blog_banner_btn class-z">
-        <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
-        <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
-        <% end %>
-
-        <% if current_user&.is_admin? %>
-        <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
-        <% end %>
+      <section id="features" class="blue">
+  			<div class="content">
+  				<div class="slider slider_video responsive_video_slider">
+            <% @videos.each do |video| %>
+              <div class="m_slider_vid">
+              <div class="holder">
+            <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.id %>" data-target="#videoModal"
+              data-toggle="modal"><%= thumbnail_image(video) %></div>
+          </div>
+          <section class="entry-body">
+            <p class="video-title"><%= video.snippet.data['title'] %></p>
+          </section>
+            </div>
+            <% end %> 
+          </div>
+  			</div>
+  		</section>
+      <div class="col-md-12 blog_banner_btn">
+        <div class="col-lg-12 padding-lr-20">
+          <%= text_field_tag :title, params[:title], class: "form-control set-border-radius", placeholder: 'Search by title', id: 'blog-title-textbox' %>
+        </div><!-- /input-group -->
       </div>
-    </div>
-   
-   
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-12 blog_banner_btn class-z">
+          <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
+          <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
+          <% end %>
+
+          <% if current_user&.is_admin? %>
+          <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
+          <% end %>
+        </div>
+      </div>
     <div class="row">
       <div class="post-heading blog-redesign-style">
         <div class="col-md-4">
@@ -176,11 +79,7 @@ button.slick-prev.slick-arrow {
 
     <%= hidden_field_tag :page, @next_page %>
     <%= render partial: 'shared/show_more', locals: { objects_collection: @blogs, url: blogs_path } %>
-  
     </div>
-
-
-   
   </div>
 </div>
 
@@ -194,6 +93,18 @@ button.slick-prev.slick-arrow {
       <%= render 'blogs/upload_banner' %>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <button type="button" class="close close_video_modal btn-round btn-primary bb" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    <div class="modal-content video-modal">
+      </button>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+      </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -341,5 +252,23 @@ $(document).ready(function() {
     }
     }
   });
+
+  $(document).ready(function () {
+    autoPlayYouTubeModal();
+  });
+
+  function autoPlayYouTubeModal() {
+    var trigger = $('.trigger');
+    trigger.click(function (e) {
+      e.preventDefault();
+      var theModal = $(this).data("target");
+      var videoSRC = $(this).attr("src");
+      var videoSRCauto = videoSRC + "?autoplay=1";
+      $(theModal + ' iframe').attr('src', videoSRCauto);
+      $(theModal).on('hidden.bs.modal', function (e) {
+        $(theModal + ' iframe').attr('src', '');
+      });
+    });
+  };
 
 </script>
