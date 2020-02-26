@@ -12,11 +12,22 @@
 	width: 100%;
 	height: 100%;
 } */
+
+/* button.slick-next.slick-arrow {
+    position: absolute;
+    right: -50px;
+    bottom: 38%;
+}
+button.slick-prev.slick-arrow {
+    position: absolute;
+    right: -50px;
+    bottom: 38%;
+}
 .slick-arrow {
     color: red;
     border-radius: 100px;
     background-color: #cccccc;
-}
+} */
 .m_slider_vid {
     padding: 10px;
 }
@@ -35,9 +46,11 @@
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"/>
-
-<link rel="stylesheet" type="text/css" href="http://vjs.zencdn.net/4.9.0/video-js.css"/>
+<%
+=begin%>
+ <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"/> 
+<%
+=end%>
 
 
 <div class="<%= add_container %>">
@@ -178,13 +191,13 @@
 $(document).ready(function() {
 
     $('.responsive_video_slider').slick({
-        dots: true,
+        dots: false,
         arrows: true,
         centerMode: true,
      centerPadding: '10',
         infinite: true,
         speed: 300,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
               // adaptiveHeight: true,
         responsive: [{
