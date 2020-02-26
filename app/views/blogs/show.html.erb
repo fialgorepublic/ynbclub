@@ -24,6 +24,7 @@ border: solid 1px lightgrey;
 }
 </style>
 <%= render 'blogs/og_tags_content' %>
+
 <% belongs_to_user = false %>
 <% if current_user.present? %>
   <% belongs_to_user = current_user.users_blog?(@blog.id) %>
