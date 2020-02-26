@@ -1351,4 +1351,14 @@ button.medium-insert-buttons-show {
 .medium-insert-embeds figure figcaption,
 .mediumInsert-embeds figure figcaption {
     display: none !important;
+} .slick-prev:before {
+    content: "" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 22px !important;
+     color: #83848a !important;
+} .slick-next:before {
+    content: "" !important;
+    font-family: 'FontAwesome' !important;
+    font-size: 22px !important;
+    color: #83848a !important;
 }
