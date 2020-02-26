@@ -107,9 +107,15 @@
       <% end %>
 
       <li data-toggle="" data-target="#" class="collapsed">
-        <a href="/blogs/new_wizard" class="<%= 'active' if blog_related_action? %>">
+        <% if current_user.blog_show? %>
+        <a href="/blogs" class="<%= 'active' if blog_related_action? %>">
           <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
           <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
+        <% else %>
+          <a href="/blogs/new_wizard" class="<%= 'active' if blog_related_action? %>">
+          <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
+          <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
+        <% end %>
       </li>
 
       <% if current_user.is_admin? %>

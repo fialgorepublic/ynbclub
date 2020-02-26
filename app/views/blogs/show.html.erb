@@ -98,7 +98,7 @@ border: solid 1px lightgrey;
         <div class="detail-img">
           <div class="img-block set-border-radius"><h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %></h4></div>
             <div class="">
-              <%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px' %>
+              <%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;' %>
             </div>
           </div>
         </div>

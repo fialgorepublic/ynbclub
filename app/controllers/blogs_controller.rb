@@ -9,6 +9,11 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
+    if params[:blog_show].present?
+      current_user.blog_show = params[:blog_show]
+      current_user.save(validate: false)
+      redirect_to blogs_path
+    end
     blogs = \
         if current_user.present?
           current_user.filtered_blogs(params[:sort], params[:category], params[:title])
