@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require rails-ujs
+//= require jquery.slick
 //= require best_in_place
 //= require best_in_place.jquery-ui
 //= require turbolinks
@@ -22,7 +23,6 @@
 //= require apprise.min.js
 //= require select2.js
 //= require cocoon
-//= require jquery.slick
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
 //= require local-time

@@ -194,7 +194,7 @@
   });
 
   $(document).ready(function () {
-    $('.responsive_video_slider').slick({
+    $('.responsive_video_slider').not('.slick-initialized').slick({
         dots: false,
         arrows: true,
         centerMode: true,
@@ -244,6 +244,7 @@
             }
         }]
     });
+    $(".responsive_video_slider").not('.slick-initialized').slick()
 
     autoPlayYouTubeModal();
   });
