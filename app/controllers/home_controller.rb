@@ -9,6 +9,7 @@ class HomeController < ApplicationController
 
   def get_referral
     initiate_shopify_session
+    Rails.logger.info "================================>#{params[:referral]}=================>"
     referral = params[:referral]
     order_id = params[:order_id]
     name = params[:first_name].to_s + " " + params[:last_name].to_s
