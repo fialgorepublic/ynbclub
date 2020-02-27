@@ -106,7 +106,7 @@ class OrdersController < ApplicationController
       if order.present?
         @order_status = CheckOrderService.new(order.id).check_status
       else
-        @order_status = "Order is not available with this value."
+        @order_status = "#{t('order_status.order_unavailable')}"
       end
     end
   end

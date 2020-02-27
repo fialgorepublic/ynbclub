@@ -184,7 +184,13 @@ en:
       title:                  Assign New Permissions
       change_btn_label:       Change Permissions
       choose_permision_label: Choose Permissions
-
+  order_status:
+    title:                    Check Order Status
+    checking_order:           Checking Order
+    placeholder:              order number
+    search:                   search
+    order_unavailable:        Order is not available with this value.
+    statsu:                   order status
   users:
     username_label:           Username
     firstname_label:          First Name
