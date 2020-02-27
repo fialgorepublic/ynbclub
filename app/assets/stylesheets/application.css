@@ -19,6 +19,8 @@
   *= require apprise.min.css
   *= require select2.css
   *= require pages.scss
+  *= require slick
+  *= require slick-theme
   *= require medium-editor/medium-editor
   *= require medium-editor/themes/flat
   *= require medium-editor-insert-plugin
