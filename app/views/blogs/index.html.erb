@@ -3,19 +3,21 @@
     <div class="banner ">
       <section id="features" class="blue">
   			<div class="content">
-  				<div class="slider slider_video responsive_video_slider">
-            <%# @videos.each do |video| %>
+  				<% if @videos.any? %>
+          <div class="slider slider_video responsive_video_slider">
+            <% @videos.each do |video| %>
               <div class="m_slider_vid">
               <div class="holder">
-            <div class="overlay trigger" src="https://www.youtube.com/embed/<%#= video.id %>" data-target="#videoModal"
-              data-toggle="modal"><%#= thumbnail_image(video) %></div>
+            <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.id %>" data-target="#videoModal"
+              data-toggle="modal"><%= thumbnail_image(video) %></div>
           </div>
           <section class="entry-body">
-            <p class="video-title"><%#= video.snippet.data['title'] %></p>
+            <p class="video-title"><%= video.snippet.data['title'] %></p>
           </section>
             </div>
-            <%# end %> 
+            <% end %> 
           </div>
+          <% end %>
   			</div>
   		</section>
       <div class="col-md-12 blog_banner_btn">
