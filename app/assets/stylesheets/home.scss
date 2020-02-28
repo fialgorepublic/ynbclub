@@ -2463,7 +2463,7 @@ label.error {
     overflow: hidden;
     min-height: 132px;
     text-overflow: ellipsis;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
   p {
     font-family: "Montserrat", sans-serif;
@@ -3694,4 +3694,12 @@ input[type="checkbox"]:checked:after {
   left: 10px;
   bottom: 7px;
 
+}
+img.join-grp-folw-icon {
+  width: 30px !important;
+  height: 30px !important;
+}
+img.join-grp-msg-icon {
+  width: 30px !important;
+  height: 30px !important;
 }
