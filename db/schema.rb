@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_01_123231) do
 
+ActiveRecord::Schema.define(version: 2020_01_01_123231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -421,6 +421,7 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
     t.integer "cookie_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
   end
 
   create_table "share_urls", force: :cascade do |t|
@@ -515,6 +516,7 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
     t.integer "followers_count", default: 0
     t.integer "following_count", default: 0
     t.string "reference_no"
+    t.boolean "blog_show", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -9,6 +9,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
+    @videos = YoutubeService.get_channel_videos
     blogs = \
         if current_user.present?
           current_user.filtered_blogs(params[:sort], params[:category], params[:title])

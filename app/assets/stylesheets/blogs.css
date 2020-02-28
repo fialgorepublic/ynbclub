@@ -84,3 +84,38 @@ input:checked + .slider:before {
   padding-left: 20% !important;
   padding-right: 20% !important;
 }
+
+.m_slider_vid {
+    padding: 10px;
+}
+.slider_video {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent !important;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+/* .slick-prev:before {
+  content: "<";
+  color: red;
+  font-size: 30px;
+}
+
+.slick-next:before {
+  content: ">";
+  color: red;
+  font-size: 30px;
+} */
+#custom-topPage-btn i {
+  font-weight: bold;
+  color: #54b2b2;
+  margin: 0;
+  position: relative;
+  left: 0px;
+  top: 25px;
+  font-size: 48px;
+}
