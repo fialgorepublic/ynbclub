@@ -102,7 +102,7 @@ class OrdersController < ApplicationController
 
   def order_status
     if params[:order_id].present?
-      order = Order.where("phone_number = ? OR order_name = ?", params[:order_id], params[:order_id] ).first
+      order = Order.where("phone_number = ? OR order_name = ?", params[:order_id], "##{params[:order_id]}").first
       if order.present?
         @order_status = CheckOrderService.new(order.id).check_status
       else

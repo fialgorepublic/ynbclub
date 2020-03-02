@@ -190,7 +190,7 @@ vi:
   order_status:
     title:                    Kiểm tra trạng thái đơn hàng
     checking_order:           Kiểm tra đơn hàng
-    placeholder:              số thứ tự
+    placeholder:              Số order/ Số điện thoại
     search:                   Tìm kiếm
     order_unavailable:        Đơn hàng không có sẵn với giá trị này.
     status:                   tình trạng đặt hàng

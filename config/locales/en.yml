@@ -187,7 +187,7 @@ en:
   order_status:
     title:                    Check Order Status
     checking_order:           Checking Order
-    placeholder:              order number
+    placeholder:              Order number / Phone number
     search:                   search
     order_unavailable:        Order is not available with this value.
     statsu:                   order status
