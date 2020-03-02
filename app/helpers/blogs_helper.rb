@@ -54,7 +54,7 @@ module BlogsHelper
   def render_image(blog)
     return blog.avatar unless blog.avatar.variable?
     return 'placeholder.png' unless blog.avatar.attached?
-    blog.avatar.variant(combine_options: { resize: '800x400^', gravity: 'Center', extent: '1050x400^', background: "grey", quality: 95 })
+    blog.avatar.variant(combine_options: { resize: '800x400^', gravity: 'Center', extent: '800x800^', quality: 95 })
   end
 
   def banner_url page
