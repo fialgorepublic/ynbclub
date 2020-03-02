@@ -4,7 +4,7 @@
 
       <div class="form-group">
         <%= form.label  t('payments.table_headers.email_label') %>
-        <%= form.collection_select :user_id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :email , {:include_blank => 'Select Email'}, html_options = {:class=>"set-with-for-field", required: true, id: "user-id-select"} %>
+        <%= form.collection_select :user_id, User.joins(:role).where("roles.name = 'Brand ambassador'"), :id, :email , {:include_blank => 'Select Email'}, html_options = {:class=>"set-width-for-field", required: true, id: "user-id-select"} %>
       </div>
 
       <div class="form-group">
