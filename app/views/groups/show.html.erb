@@ -30,9 +30,9 @@
                 <h2><%= @group.name %></h2>
                 <p class="hhkt"><%= @group.description %> </p>
                 <div class="grp-card-icon">
-                  <img class="join-grp-folw-icon" src="/assets/followers-icon.png" width="100%" style="object-fit: cover">
+                  <img  src="/assets/followers-icon.png" width="100%">
                   <%= link_to @group.users_count, users_group_path(@group), class: "padding-a", id: "group-users-count" %>
-                  <img class="join-grp-msg-icon" src="/assets/comment-icon.png" width="100%" style="object-fit: cover">
+                  <i class="fa fa-comment" style="color:#54b2b2; font-size: 25px;"></i>
                   <p><%= @group.conversations_count %></p>
                 </div>
               </div>
