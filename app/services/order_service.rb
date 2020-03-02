@@ -47,7 +47,7 @@ class OrderService
     end
 
     def phone_number
-      phone_number = params['billing_address'].present? ? params["billing_address"]["phone"] : '0911222333'
+      phone_number = params['billing_address'].present? ? params["billing_address"]["phone"].delete(" ") : '0911222333'
       phone_number = phone_number.to_s.gsub('+84', '0') if phone_number.to_s.include?('+84')
       phone_number
     end
