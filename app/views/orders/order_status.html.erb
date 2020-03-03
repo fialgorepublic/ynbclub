@@ -13,9 +13,9 @@
 
 <% if @order_status.present? %>
 	<% if I18n.default_locale.eql?(:en) %>
-  <h1>Order Status: Order is not available with this value.</h1>
+  <h1>Order Status: <%= @order_status%>.</h1>
   <% else %>
-  <h1>tình trạng đặt hàng: Đơn hàng không có sẵn với giá trị này.</h1>
+  <h1>tình trạng đặt hàng: <%= @order_status %></h1>
   <% end %>
 <% end %>
   </div>  

@@ -4,187 +4,121 @@
 
 </style>
 <%= form_for(conversation, url: url, local: true) do |form| %>
-    <% unless reply? %>
-        <%
-=begin%>
-            <div class="ambassador-dashboard-con">
-                <div class="form-group">
-                    <%= form.text_field :subject, class: 'form-control con-title-', placeholder: 'Enter Title', required: true  %>
-                </div>
+  <% unless reply? %>
+    <% if params[:group_id].blank? %>
+      <!-- <div class="ambassador-dashboard-con"> -->
+        <!-- <div class="form-group"> -->
+          <%#= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control set-border-radius' %>
+        <!-- </div> -->
+      <!-- </div> -->
+  <% else %>
+<%= form.hidden_field :group_id, value: params[:group_id] %>
+    <% end %>
+        <% else %>
+          <%= form.hidden_field :group_id, value: @conversation.group_id %>
+            <%= hidden_field_tag  :id, @conversation.id %>
+    <% end %>
+    <div class="ambassador-dashboard-con">
+      <div class="form-group">
+      <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?"%>
+      <!-- <textarea id="exampleee1"></textarea> -->
+      </div>
+    </div>
+      <hr class="mb-0">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="flex-c">
+            <div class="flex-l bgbtn_create_post">
+              <div class="image-upload">
+                <label for="file-input">
+                  <img src="/assets/upload.png" />
+                </label>
+                <%= form.file_field :avatar, id: "file-input"%>
+                <!-- <input id="file-input" type="file" /> -->
+              </div>
+              <div class="font_post">
+                <p>
+                  Photo/video
+                </p>
+              </div>
             </div>
-            <%
-=end%>
-                <%
-=begin%>
-
-                    <div class="tags-div">
-                        <%= text_field_tag 'conversation[tags][]', nil, class: "tags-field form-group", data: { role: "tagsinput" }, placeholder: "Add comma separated tags." %>
-                    </div>
-                    <%
-=end%>
-
-                        <% if params[:group_id].blank? %>
-                            <%
-=begin%>
-                                <div class="ambassador-dashboard-con">
-                                    <div class="form-group">
-                                        <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control set-border-radius' %>
-                                    </div>
-                                </div>
-                                <%
-=end%>
-                                    <% else %>
-                                        <%= form.hidden_field :group_id, value: params[:group_id] %>
-                                            <% end %>
-                                                <% else %>
-                                                    <%= form.hidden_field :group_id, value: @conversation.group_id %>
-                                                        <%= hidden_field_tag  :id, @conversation.id %>
-                                                            <% end %>
-                                                                <div class="ambassador-dashboard-con">
-                                                                    <div class="form-group">
-                                                                        <textarea id="exampleee1"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <hr class="mb-0">
-
-                                                                <div class="row">
-                                                                    <div class="col-md-4">
-                                                                        <div class="flex-c">
-                                                                            <div class="flex-l bgbtn_create_post">
-
-                                                                                <div class="image-upload">
-                                                                                    <label for="file-input">
-                                                                                        <img src="/assets/upload.png" />
-                                                                                    </label>
-
-                                                                                    <input id="file-input" type="file" />
-                                                                                </div>
-                                                                                <div class="font_post">
-                                                                                    <p>
-                                                                                        Photo/video
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="flex-c">
-                                                                            <div class="flex-l bgbtn_create_post">
-                                                                                <div class="post_icon_size padding-smile">
-                                                                                    <img src="/assets/smile.png">
-                                                                                </div>
-                                                                                <div class="font_post">
-                                                                                    <p>Feelings
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <Div class=" col-md-4">
-                                                                        <div class="flex-c">
-
-                                                                            <div class="flex-l bgbtn_create_post">
-                                                                                <div class="post_icon_size padding-tag">
-                                                                                    <img src="/assets/friend.png">
-                                                                                </div>
-                                                                                <div class="font_post">
-                                                                                    <p>
-                                                                                        Tag friend
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
-                                                                </div>
-
-                                                                <hr>
-
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="flex-l">
-                                                                            <div class="chk-p">
-                                                                                <div class="checkbox">
-                                                                                    <input type="checkbox" value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="img_news_feed">
-                                                                                <img src="/assets/news-feed.png">
-                                                                            </div>
-                                                                            <div class="feed-p">
-                                                                                <p>News Feed</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-
-                                                                        <select class="select_with_icon">
-                                                                            <option>Hi, &#xf0ac;</option>
-                                                                            <option>Hi, </option>
-                                                                            <option>Hi, </option>
-                                                                            <option>Hi, </option>
-                                                                            <option>Hi, </option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mt-feed">
-                                                                    <div class="col-md-6">
-                                                                        <div class="flex-l">
-                                                                            <div class="chk-p">
-                                                                                <div class="checkbox">
-                                                                                    <input type="checkbox" value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <%
-=begin%>
-                                                                                <div class="img_news_feed">
-                                                                                    <img src="/assets/user-profile.png">
-                                                                                </div>
-
-                                                                                <%
-=end%>
-
-                                                                                    <div id="updateUserImage_feed">
-                                                                                        <img src="/assets/user-profile.png" width="100" height="100">
-
-                                                                                        <div class="plus_icon">
-                                                                                            <button class="btn btn-primary dropdown-toggle plus_icon_in" type="button" data-toggle="dropdown">
-                                                                                                <i class="fa fa-camera"></i>
-                                                                                            </button>
-                                                                                            <ul class="dropdown-menu">
-                                                                                                <li> <a href="javascript:void(0);" onclick="uploadImage();">image</a></li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="feed-p">
-                                                                                        <p>Your story</p>
-                                                                                    </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-
-                                                                        <select class="select_with_icon">
-                                                                            <option>Hi, &#xf007;</option>
-                                                                            <option>Hi, </option>
-                                                                            <option>Hi, </option>
-                                                                            <option>Hi, </option>
-                                                                            <option>Hi, </option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="actions">
-                                                                    <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
-                                                                </div>
-                                                                <% end %>
-                                                                    <script type="text/javascript">
-                                                                        $(document).ready(function() {
-                                                                            $("#exampleee1").emojioneArea({
-                                                                                pickerPosition: "bottom",
-                                                                                filtersPosition: "bottom",
-                                                                                tones: false,
-                                                                                autocomplete: false,
-                                                                                inline: true,
-                                                                                hidePickerOnBlur: false
-                                                                            });
-                                                                        });
-                                                                    </script>
+          </div>
+        </div>
+          <div class="col-md-4">
+              <div class="flex-c">
+                  <div class="flex-l bgbtn_create_post">
+                      <div class="post_icon_size padding-smile">
+                          <img src="/assets/smile.png">
+                      </div>
+                      <div class="font_post">
+                          <p>Feelings
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class=" col-md-4">
+            <div class="flex-c">
+              <div class="flex-l bgbtn_create_post">
+                <div class="post_icon_size padding-tag">
+                  <img src="/assets/friend.png">
+                </div>
+                <div class="font_post">
+                  <p>
+                    Tag friend
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+      </div>
+      <hr>
+    <div class="row mt-feed">
+      <div class="col-md-6">
+        <div class="flex-l">
+          
+          <div id="updateUserImage_feed">
+             <img src="/assets/news-feed.png">
+              <div class="plus_icon">
+                <ul class="dropdown-menu">
+                    <li> <a href="javascript:void(0);" onclick="uploadImage();">image</a></li>
+                </ul>
+              </div>
+          </div>
+          <div class="feed-p">
+              <p>Choose Group </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+         <div class="ambassador-dashboard-con">
+        <div class="form-group">
+          <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'select_with_icon form-control set-border-radius' %>
+        </div>
+      </div>
+<!--         <select class="select_with_icon">
+            <option>Hi, &#xf007;</option>
+            <option>Hi, </option>
+            <option>Hi, </option>
+            <option>Hi, </option>
+            <option>Hi, </option>
+        </select> -->
+      </div>
+  </div>
+  <div class="actions">
+      <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
+  </div>
+  <% end %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#exampleee1").emojioneArea({
+      pickerPosition: "bottom",
+      filtersPosition: "bottom",
+      tones: false,
+      autocomplete: false,
+      inline: true,
+      hidePickerOnBlur: false
+    });
+  });
+</script>

@@ -194,6 +194,7 @@ vi:
     search:                   Tìm kiếm
     order_unavailable:        Đơn hàng không có sẵn với giá trị này.
     status:                   tình trạng đặt hàng
+    ghtk_label:               Đơn hàng chưa được gửi đến GHTK
   users:
     username_label:           Tên người dùng  
     firstname_label:          Tên 

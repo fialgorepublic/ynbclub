@@ -17,7 +17,7 @@ class Conversation < ApplicationRecord
 
   has_many   :replies, class_name: 'Conversation', foreign_key: 'parent_id'
   has_many   :conversation_likes
-
+  has_one_attached :avatar
   validates :body, presence: true
   scope :post_conversations,  ->             { where(parent_id: nil) }
   scope :filter_by_subject,   -> (subject)   { where('lower(subject) like ?', "%#{subject&.downcase}%") }

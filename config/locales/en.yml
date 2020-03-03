@@ -191,6 +191,7 @@ en:
     search:                   search
     order_unavailable:        Order is not available with this value.
     statsu:                   order status
+    ghtk_label:               Order is not sent to GHTK yet
   users:
     username_label:           Username
     firstname_label:          First Name
