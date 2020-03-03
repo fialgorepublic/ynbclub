@@ -6,11 +6,11 @@
 <%= form_for(conversation, url: url, local: true) do |form| %>
   <% unless reply? %>
     <% if params[:group_id].blank? %>
-      <!-- <div class="ambassador-dashboard-con"> -->
-        <!-- <div class="form-group"> -->
-          <%#= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control set-border-radius' %>
-        <!-- </div> -->
-      <!-- </div> -->
+       <div class="ambassador-dashboard-con con_tag">
+         <div class="form-group">
+          <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control set-border-radius' %>
+         </div> 
+      </div>
   <% else %>
 <%= form.hidden_field :group_id, value: params[:group_id] %>
     <% end %>
@@ -28,25 +28,30 @@
       <div class="row">
         <div class="col-md-4">
           <div class="flex-c">
-            <div class="flex-l bgbtn_create_post">
+            <div class="flex-l bgbtn_create_post c_pointer">
               <div class="image-upload">
                 <label for="file-input">
-                  <img src="/assets/upload.png" />
+                  <img src="/assets/upload.png" /> Photo/video
+
                 </label>
                 <%= form.file_field :avatar, id: "file-input"%>
                 <!-- <input id="file-input" type="file" /> -->
               </div>
-              <div class="font_post">
+              <%
+=begin%>
+ <div class="font_post">
                 <p>
                   Photo/video
                 </p>
-              </div>
+              </div> 
+<%
+=end%>
             </div>
           </div>
         </div>
           <div class="col-md-4">
-              <div class="flex-c">
-                  <div class="flex-l bgbtn_create_post">
+              <div class="flex-c ">
+                  <div class="flex-l bgbtn_create_post c_pointer" id="feeling_icon_tog">
                       <div class="post_icon_size padding-smile">
                           <img src="/assets/smile.png">
                       </div>
@@ -59,7 +64,7 @@
           </div>
           <div class=" col-md-4">
             <div class="flex-c">
-              <div class="flex-l bgbtn_create_post">
+              <div class="flex-l bgbtn_create_post c_pointer" id="tag_friend">
                 <div class="post_icon_size padding-tag">
                   <img src="/assets/friend.png">
                 </div>
@@ -110,6 +115,7 @@
       <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
   </div>
   <% end %>
+  
 <script type="text/javascript">
   $(document).ready(function() {
     $("#exampleee1").emojioneArea({
@@ -120,5 +126,33 @@
       inline: true,
       hidePickerOnBlur: false
     });
-  });
+
+
+
+
+$( "#feeling_icon_tog" ).click(function() {
+console.log('ssssss')
+  $( ".emojionearea-button" ).toggle();
+
+  $( ".emojionearea-picker" ).toggle();
+});
+
+  $( ".con_tag" ).hide();
+
+$( "#tag_friend" ).click(function() {
+console.log('tag_friend')
+  $( ".con_tag" ).toggle();
+    });
+});
+
+
 </script>
+
+<script type="text/javascript">
+
+
+
+
+
+
+<script/>
