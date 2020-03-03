@@ -1,6 +1,7 @@
 <div class="<%= add_container %>">
 	<div class="<%= blog_screen_size %>">
-		<div class="banner pos-rel-banner text-center"><%#= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+		<div class="banner pos-rel-banner text-center">
+    <%= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
 			<div class="pos-abs-banner">
 				<h1 class="">Conversations about everything.</h1>
 				<h3>Join groups to find interesting content 

@@ -128,11 +128,20 @@
 
 
 
+// $('.emojionearea-picker').css({
+//         'display': 'block',
+//     });
 $( "#feeling_icon_tog" ).click(function() {
 console.log('ssssss')
-  $( ".emojionearea-button" ).toggle();
 
-  $( ".emojionearea-picker" ).toggle();
+  $( ".emojionearea-button" ).toggleClass('active');
+$('.emojionearea-picker').css({
+        'display': 'block',
+    });
+$( ".emojionearea-picker" ).toggleClass("opa");
+
+$( ".emojionearea-picker" ).toggleClass("hidden");
+
 });
 
   $( ".con_tag" ).hide();
