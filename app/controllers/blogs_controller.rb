@@ -20,7 +20,7 @@ class BlogsController < ApplicationController
         else
           Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
         end
-    @videos = YoutubeService.get_channel_videos
+    # @videos = YoutubeService.get_channel_videos
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
 
