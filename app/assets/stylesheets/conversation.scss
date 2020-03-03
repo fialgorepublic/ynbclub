@@ -445,7 +445,7 @@ blockquote {
   color: #b3b3b1; }
   .con-title-{
     border: unset;
-    padding: 30px 10px;
+    padding: 0px 10px;
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
     font-size: 20px;
@@ -593,4 +593,30 @@ blockquote {
 
 .medium-insert-embeds {
   width: 80%;
+}
+.selectWrapper{
+  border-radius:36px;
+  display:inline-block;
+  overflow:hidden;
+  background:transparent;
+  border:1px solid #cccccc;
+}
+.selectBox{
+  width:140px;
+  height:20px;
+  border:0px;
+  outline:none;
+}
+.set-border-radius{
+border: none;
+}
+.mb-0{
+margin-bottom: 0px;
+}
+.set-border-radius{
+  color: #999;
+}
+.post_icon_size img {
+  width: 20px;
+  margin-right: 10px;
 }
