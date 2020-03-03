@@ -102,20 +102,18 @@
           <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'select_with_icon form-control set-border-radius' %>
         </div>
       </div>
-<!--         <select class="select_with_icon">
-            <option>Hi, &#xf007;</option>
-            <option>Hi, </option>
-            <option>Hi, </option>
-            <option>Hi, </option>
-            <option>Hi, </option>
-        </select> -->
       </div>
   </div>
   <div class="actions">
       <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
   </div>
   <% end %>
-  
+
+    <div class="">
+    <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form">Publish</a>
+    </div>
+
+
 <script type="text/javascript">
   $(document).ready(function() {
     $("#exampleee1").emojioneArea({

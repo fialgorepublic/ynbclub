@@ -1,152 +1,112 @@
 <div class="<%= add_container %>">
-  <div class="<%= blog_screen_size %>">
-
-    <div class="banner pos-rel-banner text-center">
-      <%#= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
-      <div class="pos-abs-banner">
-        <h1 class="">Conversations about everything.</h1>
-        <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
-        <%= form_tag search_conversations_path, method: :get, remote: true, id: 'search-form' do |f| %>
-        <div class="wrap">
-          <div class="searc">
-            <div class="input-group">
-              <%= text_field_tag :conversation_subject, nil, class: "form-control search-by-subject input-srch email-border
+	<div class="<%= blog_screen_size %>">
+		<div class="banner pos-rel-banner text-center"><%#= image_tag @page.conversation_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+			<div class="pos-abs-banner">
+				<h1 class="">Conversations about everything.</h1>
+				<h3>Join groups to find interesting content 
+					<br> and meet amazingf insider members.
+					</h3><%= form_tag search_conversations_path, method: :get, remote: true, id: 'search-form' do |f| %>
+					<div class="wrap">
+						<div class="searc">
+							<div class="input-group"><%= text_field_tag :conversation_subject, nil, class: "form-control search-by-subject input-srch email-border
                   boder-focus-search", placeholder: "Search Conversations", required: true %>
-              <span class="input-group-addon remove-border
-                group-srch-p-0"><i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i></span>
-              <span class="input-group-addon search-border"><i
-                  class="glyphicon glyphicon-search color-srch-icon"></i></span>
-            </div>
-            <div class="search-result">
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="row ">
-      <div class="col-md-12 blog_banner_btn class-z">
-        <% if current_user&.is_admin? %>
-        <%= link_to t('blogs.index.edit_banner_label'), "#conversationBannerUploadModal", data: { toggle: 'modal', target: '#conversationBannerUploadModal' }, class: 'btn edit_banner_btn btn-primary', id: 'conversation-banner-upload' %>
-        <% end %>
-      </div>
-    </div>
-
-
-    <div class="row" style="margin-top: 10px;">
-      <div class="post-heading blog-redesign-style">
-      
-        <div class="col-md-6">
-          <div class="heading-featured">
-            <h1>Conversations</h1>
-          </div>
-        </div>
-
-        <% if @conversations.count > 0 %>
-        <div class="col-md-3 class-z">
-          <div class="post-sorting m-0">
-            <p>SORTING</p>
-            <%= select_tag :sort_type, options_for_select(conversation_sort_types, selected: params[:sort_type]), class: 'sorting-fltr', id: 'subject-sort' %>
-          </div>
-        </div>
-        <% end %>
-
-        <div class="col-md-3 add_blog_btn pull-right">
-          <%
+								<span class="input-group-addon remove-border
+                group-srch-p-0">
+									<i class="glyphicon glyphicon-remove color-srch-icon cross-icon "></i>
+								</span>
+								<span class="input-group-addon search-border">
+									<i
+                  class="glyphicon glyphicon-search color-srch-icon"></i>
+								</span>
+							</div>
+							<div class="search-result"></div>
+						</div>
+					</div><% end %>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-12 blog_banner_btn class-z"><% if current_user&.is_admin? %><%= link_to t('blogs.index.edit_banner_label'), "#conversationBannerUploadModal", data: { toggle: 'modal', target: '#conversationBannerUploadModal' }, class: 'btn edit_banner_btn btn-primary', id: 'conversation-banner-upload' %><% end %>
+				</div>
+			</div>
+			<div class="row" style="margin-top: 10px;">
+				<div class="post-heading blog-redesign-style">
+					<div class="col-md-6">
+						<div class="heading-featured">
+							<h1>Conversations</h1>
+						</div>
+					</div><% if @conversations.count > 0 %>
+					<div class="col-md-3 class-z">
+						<div class="post-sorting m-0">
+							<p>SORTING</p><%= select_tag :sort_type, options_for_select(conversation_sort_types, selected: params[:sort_type]), class: 'sorting-fltr', id: 'subject-sort' %>
+						</div>
+					</div><% end %>
+					<div class="col-md-3 add_blog_btn pull-right">
+              <%
 =begin%>
  <%= link_to "+ Start New Conversation", new_conversation_path, class: "btn btn-primary new_blog_btn" if current_user && current_user.is_admin? %>
            
 <%
 =end%>
-
-
-        <a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a>
-
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="row" id="conversations">
-      <%= render @conversations %>
-    </div>
-    <br />
-
-    <%= hidden_field_tag :page, @next_page %>
-
-    <%= render partial: 'shared/show_more', locals: { objects_collection: @conversations, url: conversations_path } %>
-  </div>
-</div>
-
-<!-- Modal -->
-<div id="group-delete-modal" class="modal fade groups-modal" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close mob-close-btn" data-dismiss="modal">&times;</button>
-      </div>
-
-      <div class="modal-body">
-        <div class="text-center">
-          <h1 class="modall-title group-title"> </h1>
-          <p>you will not be able to restore it then</p>
-        </div>
-        <div class="text-center">
-          <div class="text-center">
-            <%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
-            <a class="btn btn-primary new_group-modal_btn" , id='cancel-delete'>No</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="conversationBannerUploadModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <%= render 'upload_banner' %>
-    </div>
-  </div>
-</div>
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">
-              <%
-=begin%>
- <%= link_to :back, class: 'con-c' do %>
-                <i class="fa fa-angle-left"></i>
-              <% end %>  
-<%
-=end%>
-              <span class="p-l-20">Create new Post
-              </span></h4>
-        </div>
-        <div class="modal-body con_modal-content">
-          <div class="">
-  <div class="ambassdor-box newBlog-style conversation-c">
-    
-  </div>
-  <%= render partial: 'form', locals: { conversation: @conversation , url: conversations_path } %>
-</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-              <a class="btn blog_library btn-primary modal_con_banner_btn submit-conversatioin-form">Publish</a>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
+						<a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="conversations"><%= render @conversations %>
+			</div>
+			<br /><%= hidden_field_tag :page, @next_page %><%= render partial: 'shared/show_more', locals: { objects_collection: @conversations, url: conversations_path } %>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div id="group-delete-modal" class="modal fade groups-modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close mob-close-btn" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="text-center">
+						<h1 class="modall-title group-title"></h1>
+						<p>you will not be able to restore it then</p>
+					</div>
+					<div class="text-center">
+						<div class="text-center"><%= link_to 'Yes', '', class: "btn btn-primary new_group-modal_b_btn", id: "delete-modal-group-link", method: :delete %>
+							<a class="btn btn-primary new_group-modal_btn" , id='cancel-delete'>No</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="conversationBannerUploadModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div><%= render 'upload_banner' %>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">
+						<span class="">Create new Post
+              </span>
+					</h4>
+				</div>
+				<div class="modal-body con_modal-content">
+					<div class="">
+						<div class="ambassdor-box newBlog-style conversation-c"></div><%= render partial: 'form', locals: { conversation: @conversation , url: conversations_path } %>
+            
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
