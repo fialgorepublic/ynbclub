@@ -5,6 +5,7 @@ class ConversationsController < ApplicationController
   # GET /conversations
   # GET /conversations.json
   def index
+    @conversation = Conversation.new
     conversations  = Conversation.includes(:replies, :conversation_likes).post_conversations
     conversations  = conversations.sort_by_type(params[:sort_type]) if params[:sort_type].present?
     @conversations = conversations.paginate(page: params[:page])
