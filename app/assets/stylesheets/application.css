@@ -12,6 +12,8 @@
  *
   *= require_tree .
   *= require datatables
+
+  *= require emojionearea.css
   *= require_self
   *= require bootstrap.min.css
   *= require toastr.css

@@ -23,6 +23,8 @@
 //= require apprise.min.js
 //= require select2.js
 //= require cocoon
+//= require emoji/dist/emojionearea.js
+
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
 //= require local-time
