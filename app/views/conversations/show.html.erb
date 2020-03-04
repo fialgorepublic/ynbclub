@@ -45,16 +45,14 @@
             </div>
 
             <div class="join-grp-dscptn">
-              <h2><%= @conversation.subject %></h2>
+              <h2><%= @conversation.body %></h2>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="comment more">
-                    <% if @conversation.body.include?("http") && @conversation.body.include?("figure") %>
-                      <%= @conversation.body&.html_safe %>
-                    <% elsif @conversation.body.include?("http")%>
-                      <a href="<%= @conversation.body%>" target="_blank"><%= @conversation.body%></a>
-                    <% else%>
-                      <%= @conversation.body&.html_safe %>
+                  <div class="comment more" style="text-align: center">
+                    <% if @conversation.avatar.content_type.include?("video") %>
+                      <%= video_tag url_for(@conversation.avatar), size: "300x320", controls: true %>
+                    <% else %>
+                    <%= image_tag @conversation.avatar, width: "50%", height: "50%" %>
                     <% end %>
                   </div>
                 </div>
