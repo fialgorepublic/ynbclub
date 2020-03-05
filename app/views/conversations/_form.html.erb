@@ -182,51 +182,62 @@ console.log('tag_friend')
 
 <script type="text/javascript">
 
-  $(".ImageMedias").change(function () {
-  if (typeof (FileReader) != "undefined") {
-    var dvPreview = $("#divImageMediaPreview");
-    var vidPreview = $("#divVideoMediaPreview");
-    dvPreview.html("")
-    vidPreview.html("");            
-    $($(this)[0].files).each(function () {
-      var file = $(this);
-        if (file[0].type.includes("video")){
-          var reader = new FileReader();
-        reader.onload = function (e) {
-          var video = $("<video />");
-          var btn = $(" <br/> <button class="+'rm_btn'+">Remove</button>");
-          video.attr("style", "width: 150px; height:100px; padding: 10px", 'controls',"true");
-          video.attr("src", e.target.result);
-          vidPreview.append(video,btn);
-            $( ".rm_btn" ).click(function() {
-            $(this).parent().remove();
-            $(".ImageMedias").val("")
-          })
-        }
-        reader.readAsDataURL(file[0]);
-        }
-        else{
-          var reader = new FileReader();
-        reader.onload = function (e) {
-          var img = $("<img /> ");
-          var btn = $(" <br/> <button class="+'rm_btn'+">Remove</button>");
-          img.attr("style", "width: 150px; height:100px; padding: 10px");
-          img.attr("src", e.target.result);
-          dvPreview.append(img,btn);
-            $( ".rm_btn" ).click(function() {
-            $(this).parent().hide();
-            $(".ImageMedias").val("")
-          })
-        }
-        reader.readAsDataURL(file[0]);
-        }
-                        
+if (window.File && window.FileList && window.FileReader) {
+    $(".ImageMedias").change(function (e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+          debugger
+        if (f.type.includes("image")){
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove\">Remove image</span>" +
+            "</span>").insertAfter("#divImageMediaPreview");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+          
+          // Old code here
+          /*$("<img></img>", {
+            class: "imageThumb",
+            src: e.target.result,
+            title: file.name + " | Click to remove"
+          }).insertAfter("#files").click(function(){$(this).remove();});*/
+          
+        });
+        fileReader.readAsDataURL(f);
+      }
+      else {
+          var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<video class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></video>" +
+            "<br/><span class=\"remove\">Remove image</span>" +
+            "</span>").insertAfter("#divImageMediaPreview");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+          
+          // Old code here
+          /*$("<img></img>", {
+            class: "imageThumb",
+            src: e.target.result,
+            title: file.name + " | Click to remove"
+          }).insertAfter("#files").click(function(){$(this).remove();});*/
+          
+        });
+        fileReader.readAsDataURL(f);
+      }
+      }
     });
-
   } else {
-    alert("This browser does not support HTML5 FileReader.");
+    alert("Your browser doesn't support to File API")
   }
-});
 
   // $(".rm_btn").click(function(){
 </script>
