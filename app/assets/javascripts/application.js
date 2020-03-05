@@ -23,6 +23,7 @@
 //= require apprise.min.js
 //= require select2.js
 //= require cocoon
+//= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
 
 //= require medium-editor.js
