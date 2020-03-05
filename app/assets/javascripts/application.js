@@ -25,6 +25,7 @@
 //= require cocoon
 //= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
+//= require emoji/Gruntfile.js
 
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
