@@ -105,10 +105,8 @@
           <%# debugger %>
           <% if params[:controller].eql?("groups") && group_id.present? %>
              <%#= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name) %>
-
-
-
           <%= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name),{}, :disabled => true, class: 'select_with_icon form-control set-border-radius' %>
+            <%= form.hidden_field :group_id, value: group_id %>
           <% else %>
             <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' },  class: 'select_with_icon form-control set-border-radius' %>
           <% end %>
