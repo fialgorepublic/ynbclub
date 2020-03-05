@@ -280,10 +280,11 @@ input[type="file"] {
   display: block;
 }
 .imageThumb {
-  max-height: 75px;
+  height: 75px;
   border: 2px solid;
   padding: 1px;
   cursor: pointer;
+  width: 95px;
 } 
   .pip {
     display: inline-block;
