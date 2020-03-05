@@ -62,6 +62,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.edit_address').click(function(){
+    debugger
     order_id = $(this).data('order-id');
     $('#edit_address_modal').modal('show');
     $.ajax({
