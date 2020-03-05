@@ -184,7 +184,6 @@ console.log('tag_friend')
 </script>
 
 <script type="text/javascript">
-
   $(".ImageMedias").change(function () {
   if (typeof (FileReader) != "undefined") {
     var dvPreview = $("#divImageMediaPreview");
@@ -212,7 +211,7 @@ console.log('tag_friend')
           var reader = new FileReader();
         reader.onload = function (e) {
           var img = $("<img /> ");
-          var btn = $(" <br/> <i class="+'fa fa-times-circle-o'+">Remove</i>");
+          var btn = $(" <br/>  <button class="+'rm_btn'+">Remove</button>");
           img.attr("style", "width: 150px; height:100px; padding: 10px");
           img.attr("src", e.target.result);
           dvPreview.append(img,btn);
