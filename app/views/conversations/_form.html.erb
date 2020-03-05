@@ -194,9 +194,14 @@ console.log('tag_friend')
           var reader = new FileReader();
         reader.onload = function (e) {
           var video = $("<video />");
+          var btn = $(" <br/> <button class="+'rm_btn'+">Remove</button>");
           video.attr("style", "width: 150px; height:100px; padding: 10px", 'controls',"true");
           video.attr("src", e.target.result);
-          vidPreview.append(video);
+          vidPreview.append(video,btn);
+            $( ".rm_btn" ).click(function() {
+            $(this).parent().remove();
+            $(".ImageMedias").val("")
+          })
         }
         reader.readAsDataURL(file[0]);
         }
@@ -208,15 +213,22 @@ console.log('tag_friend')
           img.attr("style", "width: 150px; height:100px; padding: 10px");
           img.attr("src", e.target.result);
           dvPreview.append(img,btn);
+            $( ".rm_btn" ).click(function() {
+            $(this).parent().hide();
+            $(".ImageMedias").val("")
+          })
         }
         reader.readAsDataURL(file[0]);
         }
                         
     });
+
   } else {
     alert("This browser does not support HTML5 FileReader.");
   }
 });
+
+  // $(".rm_btn").click(function(){
 </script>
 <script type="text/javascript">
 
