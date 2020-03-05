@@ -5,15 +5,10 @@
 </style>
 <%= form_for(conversation, url: url, local: true) do |form| %>
   <% unless reply? %>
-    <% if params[:group_id].blank? %>
-       <!-- <div class="ambassador-dashboard-con con_tag"> -->
-         <!-- <div class="form-group">
-          <%#= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control set-border-radius' %>
-         </div> 
-      </div> -->
-  <% else %>
-<%= form.hidden_field :group_id, value: params[:group_id] %>
-    <% end %>
+    <%# if params[:group_id].blank? %>
+    <%# else %>
+    <%#= form.hidden_field :group_id, value: params[:group_id] %>
+    <%# end %>
         <% else %>
           <%= form.hidden_field :group_id, value: @conversation.group_id %>
             <%= hidden_field_tag  :id, @conversation.id %>
@@ -78,7 +73,7 @@
                 </div>
                 <div class="font_post">
                   <p>
-                    Tag friend
+                    Add Tag
                   </p>
                 </div>
               </div>
@@ -107,7 +102,16 @@
       <div class="col-md-6">
          <div class="ambassador-dashboard-con">
         <div class="form-group">
-          <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'select_with_icon form-control set-border-radius' %>
+          <%# debugger %>
+          <% if params[:controller].eql?("groups") && group_id.present? %>
+             <%#= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name) %>
+
+
+
+          <%= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name),{}, :disabled => true, class: 'select_with_icon form-control set-border-radius' %>
+          <% else %>
+            <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' },  class: 'select_with_icon form-control set-border-radius' %>
+          <% end %>
         </div>
       </div>
       </div>
@@ -203,13 +207,6 @@ if (window.File && window.FileList && window.FileReader) {
             $(this).parent(".pip").remove();
           });
           
-          // Old code here
-          /*$("<img></img>", {
-            class: "imageThumb",
-            src: e.target.result,
-            title: file.name + " | Click to remove"
-          }).insertAfter("#files").click(function(){$(this).remove();});*/
-          
         });
         fileReader.readAsDataURL(f);
       }
@@ -225,13 +222,6 @@ if (window.File && window.FileList && window.FileReader) {
             $(this).parent(".pip").remove();
           });
           
-          // Old code here
-          /*$("<img></img>", {
-            class: "imageThumb",
-            src: e.target.result,
-            title: file.name + " | Click to remove"
-          }).insertAfter("#files").click(function(){$(this).remove();});*/
-          
         });
         fileReader.readAsDataURL(f);
       }
@@ -240,9 +230,4 @@ if (window.File && window.FileList && window.FileReader) {
   } else {
     alert("Your browser doesn't support to File API")
   }
-
-  // $(".rm_btn").click(function(){
-</script>
-<script type="text/javascript">
-
 </script>
