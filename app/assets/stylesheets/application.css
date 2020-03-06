@@ -22,7 +22,7 @@
   *= require pages.scss
   *= require slick
   *= require blogs
-  *= require groups
+  *= require groups.scss
   *= require slick-theme
   *= require medium-editor/medium-editor
   *= require medium-editor/themes/flat
