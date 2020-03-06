@@ -22,6 +22,8 @@
   *= require select2.css
   *= require pages.scss
   *= require slick
+  *= require blogs
+  *= require groups
   *= require slick-theme
   *= require medium-editor/medium-editor
   *= require medium-editor/themes/flat

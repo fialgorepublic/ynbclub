@@ -25,6 +25,8 @@
 //= require cocoon
 //= require orders
 //= require payments
+//= require blogs
+//= require groups
 //= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
 
