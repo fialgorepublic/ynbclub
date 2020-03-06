@@ -13,7 +13,7 @@
 
                   <div class="m-l-10 text-left">
                     <p class="p-l ">
-                      <span class="admin-txt con-truncate" title=""><%= user_profile_link(conversation.user) %></span> <i
+                      <span class="admin-txt con-truncate" title="<%= conversation.user.name %>"><%#= user_profile_link(conversation.user) %></span> <i
                         class="fa fa-angle-right pos-arrow-admin" aria-hidden="true"></i>
                       <span class="con-truncate"> <%= link_to conversation.group.name, group_path(conversation.group.id) %>
                       </span>
