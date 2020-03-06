@@ -29,6 +29,7 @@
 //= require groups
 //= require search 
 //= require js.cookies.min.js
+//= require emoji/dist/emojionearea.js
 
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
