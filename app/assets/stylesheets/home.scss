@@ -1169,11 +1169,12 @@ button.comnt-btn-style {
 }
 
 .three-dots {
-  .dropdown {
-    position: absolute;
+  .three-dots .dropdown {
+    position: relative;
     display: inline-block;
-    right: 0.4em;
-  }
+    left: 2.5em;
+    bottom: 2.4rem;
+}
 }
 
 .dropdown-content {
@@ -3799,7 +3800,7 @@ input[type="checkbox"]:checked:after {
 .modal_header_feed{
   background-color: #f5f6f7;
 }
-.image-upload>input {
+.emoji_img_upload>input {
   display: none;
 }
 
@@ -3867,7 +3868,7 @@ a.share-on-facebook.btn.btn-primary.set-border-radius {
   color: white;
 }
 .bootstrap-filestyle.input-group {
-  display: none;
+  // display: none;
 }
 span.remove.fa.fa-times {
   font-size: 15px;
