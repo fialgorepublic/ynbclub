@@ -32,7 +32,7 @@
         <div class="col-md-4">
           <div class="flex-c">
             <div class="flex-l bgbtn_create_post c_pointer">
-              <div class="image-upload">
+              <div class="image-upload emoji_img_upload">
                 <label for="file-input">
                   <img src="/assets/upload.png" /> Photo/video
                 <%= form.file_field :avatar, id: "file-input", class: "ImageMedias"%>
@@ -56,10 +56,10 @@
               <div class="flex-c ">
                   <div class="flex-l bgbtn_create_post c_pointer" id="feeling_icon_tog">
                       <div class="post_icon_size padding-smile">
-                          <img src="/assets/smile.png">
+                          <img class="img_emoji_start" src="/assets/smile.png">
                       </div>
                       <div class="font_post">
-                          <p>Feelings
+                          <p class="feell"> Feelings
                           </p>
                       </div>
                   </div>
@@ -119,6 +119,8 @@
   </div>
   <% end %>
 
+  <input type="button"
+class="bbutton"/>
     <div class="">
     <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form">Post</a>
     </div>
@@ -142,9 +144,9 @@
 
 
 
-
 $( "#feeling_icon_tog" ).click(function() {
 console.log('ssssss')
+
 
   $( ".emojionearea-button" ).toggleClass('active');
 $('.emojionearea-picker').css({
@@ -155,11 +157,10 @@ $( ".emojionearea-button-open" ).toggleClass("ds_none_block");
 $( ".emojionearea-picker" ).toggleClass("opa");
 $( ".emojionearea-picker" ).addClass("add_height");
 
-
 $( ".emojionearea-picker" ).toggleClass("hidden");
  
  $( ".emojionearea-filter" ).click(function() {
-console.log('emojionearea');
+console.log('removeClass("add_height")');
 
   $( ".emojionearea-picker" ).removeClass("add_height");
 
@@ -178,29 +179,8 @@ console.log('tag_friend')
   $( ".con_tag" ).toggle();
     });
 
-$( ".emojionearea-filter" ).click(function(caretPos)  {
-console.log('nnnnnnn')
-    // var elem = document.getElementById('exampleee1 ');
-
-    // if(elem != null) {
-    //     if(elem.createTextRange) {
-    //         var range = elem.createTextRange();
-    //         range.move('character', caretPos);
-    //         range.select();
-    //     }
-    //     else {
-    //         if(elem.selectionStart) {
-    //             elem.focus();
-    //             elem.setSelectionRange(caretPos, caretPos);
-    //         }
-    //         else
-    //             elem.focus();
-    //     }
-    // }
-});
 
  });
-
 
 </script>
 
@@ -247,4 +227,22 @@ if (window.File && window.FileList && window.FileReader) {
   } else {
     alert("Your browser doesn't support to File API")
   }
+<<<<<<< HEAD
+
+  // $(".rm_btn").click(function(){
+</script>
+<script type="text/javascript">
+
+$(".bbutton").on("click", function() {
+ var myEm = $(this).attr('role');
+    //alert(myEm);
+$( ".emojionearea" ).addClass("focused");
+
+});
+
+$("html").click(function(){
+   $("#emojionearea").focus();
+});
+=======
+>>>>>>> 3861e63f47c780e5ff5fbdaf89cef195ccf3550c
 </script>
