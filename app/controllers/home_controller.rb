@@ -9,6 +9,7 @@ class HomeController < ApplicationController
 
   def get_referral
     initiate_shopify_session
+    Rails.logger.info "================================>#{params[:referral]}=================>"
     referral = params[:referral]
     order_id = params[:order_id]
     name = params[:first_name].to_s + " " + params[:last_name].to_s
@@ -62,6 +63,10 @@ class HomeController < ApplicationController
 
   def set_default_language
     I18n.default_locale = params[:locale]
-    redirect_to request.referrer
+    if request.referrer.present?
+      redirect_to request.referrer
+    else
+      redirect_to dashboard_path
+    end
   end
 end

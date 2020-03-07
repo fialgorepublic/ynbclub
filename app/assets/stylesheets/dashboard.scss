@@ -247,9 +247,9 @@ margin-top:40px;
   input.btn.btn-success{
   border-radius: unset;
     padding: 10px 20px;
-    border-color: #323232;
-    background-color: unset;
-    color: #323232;
+    border-color: #323232 !important;
+    background-color: #323232 !important ;
+    color: #fff;
   }
   input.btn.btn-success:hover{
   background-color:#323232;
@@ -300,4 +300,13 @@ margin-top:40px;
 
 .green-color {
   color: #256664;
+}
+
+.close_btn_blg{
+position: relative;
+}
+.close_btn_blg_in{
+  position: absolute;
+  right: -16px;
+  bottom: -9px;
 }

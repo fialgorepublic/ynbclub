@@ -187,7 +187,14 @@ vi:
       title:                  Gán quyền mới 
       change_btn_label:       Thay đổi quyền 
       choose_permision_label: Lựa chọn quyền 
-
+  order_status:
+    title:                    Kiểm tra trạng thái đơn hàng
+    checking_order:           Kiểm tra đơn hàng
+    placeholder:              Số order/ Số điện thoại
+    search:                   Tìm kiếm
+    order_unavailable:        Đơn hàng không có sẵn với giá trị này.
+    status:                   tình trạng đặt hàng
+    ghtk_label:               Đơn hàng chưa được gửi đến GHTK
   users:
     username_label:           Tên người dùng  
     firstname_label:          Tên 
@@ -344,8 +351,8 @@ vi:
     share_label:              Chia sẻ với bạn bè 
     edit_snapshot_label:      Chỉnh sửa chụp nhanh và chia sẻ 
     copy_share_link_label:    Copy link chia sẻ
-    share_referral_label:     Chia sẻ URL giới thiệu 
-    share_description_label:  Chia sẻ URL giới thiệu của bạn với bạn bè của bạn.	
+    share_referral_label:     Link đại sứ.
+    share_description_label:  Chia sẻ link giới thiệu của bạn với bạn bè của bạn.	
     share_on_facebook_label:  Chia sẻ trên Facebook
     share_on_twitter_label:   Chia sẻ trên Twitter
     share_on_email_label:     Chia sẻ trên Email

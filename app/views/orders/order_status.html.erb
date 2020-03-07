@@ -1,18 +1,22 @@
-<h1 style="text-align: center;">Check Order Status</h1>
+<h1 style="text-align: center;"><%= t('order_status.title')%></h1>
 
 <div class="row">
   <div class="col-md-offset-1 col-md-3" style="top: 50px;">
     <%= form_tag order_status_path, method: "get" do %>
-  <%= label_tag(:search, "Checking Order") %>
+  <%= label_tag(:search, t('order_status.checking_order')) %>
   <br>
-  <%= text_field_tag :order_id, params[:order_id], class: "form-control set-border-radius", placeholder: "order number", style: "width: 310px;" %>
+  <%= text_field_tag :order_id, params[:order_id], class: "form-control set-border-radius", placeholder: t('order_status.placeholder'), style: "width: 310px;" %>
   <br>
-  <%= submit_tag("search", class: 'btn btn-primary') %>
+  <%= submit_tag(t('order_status.search'), class: 'btn btn-primary set-border-radius', style: "color: #fff;")%>
 <% end %>
 
 
 <% if @order_status.present? %>
-  <h1>order status: <%= @order_status %></h1>
+	<% if I18n.default_locale.eql?(:en) %>
+  <h1>Order Status: <%= @order_status%>.</h1>
+  <% else %>
+  <h1>tình trạng đặt hàng: <%= @order_status %></h1>
+  <% end %>
 <% end %>
   </div>  
 </div>

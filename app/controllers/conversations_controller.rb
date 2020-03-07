@@ -5,6 +5,7 @@ class ConversationsController < ApplicationController
   # GET /conversations
   # GET /conversations.json
   def index
+    @conversation = Conversation.new
     conversations  = Conversation.includes(:replies, :conversation_likes).post_conversations
     conversations  = conversations.sort_by_type(params[:sort_type]) if params[:sort_type].present?
     @conversations = conversations.paginate(page: params[:page])
@@ -126,6 +127,6 @@ class ConversationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversation_params
-      params.require(:conversation).permit(:subject, :body, :group_id, tags: [])
+      params.require(:conversation).permit(:subject, :body, :group_id, :avatar, tags: [])
     end
 end

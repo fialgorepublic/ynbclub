@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
-  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status]
+  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog]
   before_action :check_limit, only: [:new]
 
   include ApplicationHelper
@@ -9,13 +9,22 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @videos = YoutubeService.get_channel_videos
+    if params[:blog_show].present?
+      current_user.blog_show = params[:blog_show]
+      current_user.save(validate: false)
+      redirect_to blogs_path
+    end
     blogs = \
         if current_user.present?
           current_user.filtered_blogs(params[:sort], params[:category], params[:title])
         else
           Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
         end
+    begin
+      @videos = YoutubeService.get_channel_videos
+    rescue StandardError => e
+      @videos = []
+    end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
 
@@ -41,6 +50,13 @@ class BlogsController < ApplicationController
     @comments = @blog.comments if @blog.is_published?
     @selected_products = @blog.products
     @blog.blog_views.create
+  end
+
+  def show_blog
+    @comments = @blog.comments if @blog.is_published?
+    @selected_products = @blog.products
+    @blog.blog_views.create
+    render partial: 'blogs/show_blog'
   end
 
   # GET /blogs/new

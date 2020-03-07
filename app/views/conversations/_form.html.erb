@@ -1,37 +1,248 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"  />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" rel="stylesheet">
+<style>
+
+</style>
 <%= form_for(conversation, url: url, local: true) do |form| %>
   <% unless reply? %>
+    <%# if params[:group_id].blank? %>
+    <%# else %>
+    <%#= form.hidden_field :group_id, value: params[:group_id] %>
+    <%# end %>
+        <% else %>
+          <%= form.hidden_field :group_id, value: @conversation.group_id %>
+            <%= hidden_field_tag  :id, @conversation.id %>
+    <% end %>
     <div class="ambassador-dashboard-con">
       <div class="form-group">
-        <%= form.text_field :subject, class: 'form-control con-title-', placeholder: 'Enter Title', required: true  %>
+      <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?", class: "set-border-radius"%>
+      <!-- <textarea id="exampleee1"></textarea> -->
       </div>
     </div>
-
-    <div class="tags-div">
-      <%= text_field_tag 'conversation[tags][]', nil, class: "tags-field form-group", data: { role: "tagsinput" }, placeholder: "Add comma separated tags." %>
+    
+    <div class="form-group">
+      <div id="divImageMediaPreview"></div>
+      <div id="divVideoMediaPreview"></div>
     </div>
-    <br>
+    <div class="tags-div con_tag">
+        <%= text_field_tag 'conversation[tags][]', nil, class: "tags-field form-group", data: { role: "tagsinput" }, placeholder: "Add comma separated tags." %>
+    </div>
+      <hr class="mb-0">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="flex-c">
+            <div class="flex-l bgbtn_create_post c_pointer">
+              <div class="image-upload emoji_img_upload">
+                <label for="file-input">
+                  <img src="/assets/upload.png" /> Photo/video
+                <%= form.file_field :avatar, id: "file-input", class: "ImageMedias"%>
 
-    <% if params[:group_id].blank? %>
-      <div class="ambassador-dashboard-con">
-        <div class="form-group">
-          <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' }, required: true, class: 'form-control set-border-radius' %>
+                </label>
+                <!-- <input id="file-input" type="file" /> -->
+              </div>
+              <%
+=begin%>
+ <div class="font_post">
+                <p>
+                  Photo/video
+                </p>
+              </div> 
+<%
+=end%>
+            </div>
+          </div>
+        </div>
+          <div class="col-md-4">
+              <div class="flex-c ">
+                  <div class="flex-l bgbtn_create_post c_pointer" id="feeling_icon_tog">
+                      <div class="post_icon_size padding-smile">
+                          <img class="img_emoji_start" src="/assets/smile.png">
+                      </div>
+                      <div class="font_post">
+                          <p class="feell"> Feelings
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class=" col-md-4">
+            <div class="flex-c">
+              <div class="flex-l bgbtn_create_post c_pointer" id="tag_friend">
+                <div class="post_icon_size padding-tag">
+                  <img src="/assets/friend.png">
+                </div>
+                <div class="font_post">
+                  <p>
+                    Add Tag
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+      </div>
+      <hr>
+    <div class="row mt-feed">
+      <div class="col-md-6">
+        <div class="flex-l">
+          
+          <div id="updateUserImage_feed">
+             <img src="/assets/news-feed.png">
+              <div class="plus_icon">
+                <ul class="dropdown-menu">
+                    <li> <a href="javascript:void(0);" onclick="uploadImage();">image</a></li>
+                </ul>
+              </div>
+          </div>
+          <div class="feed-p">
+              <p>Choose Group </p>
+          </div>
         </div>
       </div>
-    <% else %>
-      <%= form.hidden_field :group_id, value: params[:group_id] %>
-    <% end %>
-  <% else %>
-    <%= form.hidden_field :group_id, value: @conversation.group_id %>
-    <%= hidden_field_tag  :id, @conversation.id %>
+      <div class="col-md-6">
+         <div class="ambassador-dashboard-con">
+        <div class="form-group">
+          <%# debugger %>
+          <% if params[:controller].eql?("groups") && group_id.present? %>
+             <%#= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name) %>
+          <%= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name),{}, :disabled => true, class: 'select_with_icon form-control set-border-radius' %>
+            <%= form.hidden_field :group_id, value: group_id %>
+          <% else %>
+            <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' },  class: 'select_with_icon form-control set-border-radius' %>
+          <% end %>
+        </div>
+      </div>
+      </div>
+  </div>
+  <div class="actions">
+      <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
+  </div>
   <% end %>
 
-  <div class="ambassador-dashboard-con">
-    <div class="form-group">
-      <%= form.text_area :body, class: 'medium-editor' %>
+  <input type="button"
+class="bbutton"/>
+    <div class="">
+    <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form">Post</a>
     </div>
-  </div>
 
-  <div class="actions">
-    <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
-  </div>
-<% end %>
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#exampleee1").emojioneArea({
+      pickerPosition: "bottom",
+      filtersPosition: "top",
+      tones: false,
+      autocomplete: false,
+      inline: false,
+      hidePickerOnBlur: false
+    });
+
+
+
+
+
+$( "#feeling_icon_tog" ).click(function() {
+console.log('ssssss')
+
+
+  $( ".emojionearea-button" ).toggleClass('active');
+$('.emojionearea-picker').css({
+        'display': 'block',
+    });
+
+$( ".emojionearea-button-open" ).toggleClass("ds_none_block");
+$( ".emojionearea-picker" ).toggleClass("opa");
+$( ".emojionearea-picker" ).addClass("add_height");
+
+$( ".emojionearea-picker" ).toggleClass("hidden");
+ 
+ $( ".emojionearea-filter" ).click(function() {
+console.log('removeClass("add_height")');
+
+  $( ".emojionearea-picker" ).removeClass("add_height");
+
+   });
+
+
+});
+
+
+
+
+  $( ".con_tag" ).hide();
+
+$( "#tag_friend" ).click(function() {
+console.log('tag_friend')
+  $( ".con_tag" ).toggle();
+    });
+
+
+ });
+
+</script>
+
+<script type="text/javascript">
+
+if (window.File && window.FileList && window.FileReader) {
+    $(".ImageMedias").change(function (e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+        if (f.type.includes("image")){
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove fa fa-times\"></span>" +
+            "</span>").insertAfter("#divImageMediaPreview");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+          
+        });
+        fileReader.readAsDataURL(f);
+      }
+      else {
+          var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<video class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></video>" +
+            "<br/><span class=\"remove fa fa-times\"></span>" +
+            "</span>").insertAfter("#divImageMediaPreview");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+          
+        });
+        fileReader.readAsDataURL(f);
+      }
+      }
+    });
+  } else {
+    alert("Your browser doesn't support to File API")
+  }
+<<<<<<< HEAD
+
+  // $(".rm_btn").click(function(){
+</script>
+<script type="text/javascript">
+
+$(".bbutton").on("click", function() {
+ var myEm = $(this).attr('role');
+    //alert(myEm);
+$( ".emojionearea" ).addClass("focused");
+
+});
+
+$("html").click(function(){
+   $("#emojionearea").focus();
+});
+=======
+>>>>>>> 3861e63f47c780e5ff5fbdaf89cef195ccf3550c
+</script>

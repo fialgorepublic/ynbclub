@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   get 'set_language', to: 'home#set_default_language'
   get 'videos', to: 'dashboard#videos'
   get 'profile_admin', to: 'dashboard#profile'
+  get 'show_blog/:id', to: 'blogs#show_blog'
 
   resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk

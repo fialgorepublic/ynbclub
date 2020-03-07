@@ -9,12 +9,12 @@ div#s2id_user_id {
     <div class="col-md-12">
       <h1 class="card-header"><%= t('payments.title') %></h1>
       <hr>
-      <%= link_to t('payments.make_payment_label'), 'javascript:void(0);', class: "btn btn-info btn-sm pull-right", id: 'make-new-payment' %>
+      <%= link_to t('payments.make_payment_label'), 'javascript:void(0);', class: "btn btn-info btn-sm pull-right pymt set-border-radius", id: 'make-new-payment' %>
       <br/><br/>
       <div class="input-group">
         <input type="text" id="searchText" style="height: 30px;" class="input-sm form-control ng-pristine ng-valid ng-touched" placeholder="<%= t('payments.search_placeholder') %>" autofocus="" value="<%= params[:text] %>">
       <span class="input-group-btn">
-      <%= link_to 'javascript:void(0);', class: "btn btn-sm btn-default", id: 'search-user' do %>
+      <%= link_to 'javascript:void(0);', class: "btn btn-sm  btn-default", id: 'search-user' do %>
         <i class="fa fa-search"></i>
       <% end %>
         <!-- ngIf: doSearch -->
@@ -36,8 +36,8 @@ div#s2id_user_id {
     </div>
   </div>
   <div class="col-md-12 m-t-30">
-    <a href="/payments" class="btn btn-info pull-right" style="margin-left: 5px;"><%= t(:clear_filter_label) %></a>
-    <%= link_to t(:apply_filter_label), 'javascript:void(0);', class: "btn btn-info pull-right", id: 'apply-filter' %>
+    <a href="/payments" class="btn btn-info pull-right pymt set-border-radius" style="margin-left: 5px;"><%= t(:clear_filter_label) %></a>
+    <%= link_to t(:apply_filter_label), 'javascript:void(0);', class: "btn btn-info pull-right pymt set-border-radius", id: 'apply-filter' %>
   </div>
   <br/>
   <br/>

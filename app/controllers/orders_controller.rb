@@ -102,11 +102,15 @@ class OrdersController < ApplicationController
 
   def order_status
     if params[:order_id].present?
-      order = Order.where("phone_number = ? OR order_name = ?", params[:order_id], params[:order_id] ).first
+      order = Order.where("phone_number = ? OR order_name = ?", params[:order_id].delete(" "), "##{params[:order_id]}").first
       if order.present?
+        if order.ghtk_label.present?
         @order_status = CheckOrderService.new(order.id).check_status
+        else
+          @order_status = I18n.t('order_status.ghtk_label')
+        end
       else
-        @order_status = "Order is not available with this value."
+        @order_status = I18n.t('order_status.order_unavailable')
       end
     end
   end

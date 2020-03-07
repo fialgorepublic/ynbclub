@@ -1,3 +1,10 @@
+<style>
+
+.grp-card-icon img {
+    height: 25px;
+    cursor: pointer;
+}
+</style>
 <div class="show-group-carddd">
   <div class="<%= add_container %>">
     <div class="group-back-btn hidden-md hidden-lg "> 
@@ -9,7 +16,7 @@
         <div class="lib-panel">
           <div class="row box-shadow">
             <div class="col-md-3 lib-img-tag-show">
-              <%=  image_tag @group.logo, width: '100%' %>
+              <%=  image_tag @group.logo, width: '100%',draggable: "false" %>
             </div>
 
             <div class="col-md-9">
@@ -30,9 +37,9 @@
                 <h2><%= @group.name %></h2>
                 <p class="hhkt"><%= @group.description %> </p>
                 <div class="grp-card-icon">
-                  <img class="" src="/assets/followers-icon.png" width="100%">
+                  <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
                   <%= link_to @group.users_count, users_group_path(@group), class: "padding-a", id: "group-users-count" %>
-                  <img class="" src="/assets/comment-icon.png" width="100%">
+                  <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
                   <p><%= @group.conversations_count %></p>
                 </div>
               </div>
@@ -43,7 +50,10 @@
                 </div>
                 <div class="">
                   <% if @group.users.include?(current_user)%>
-                  <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-tag-btn btn-default", type: "button" %>
+                  <%= link_to "+ Start New Conversation", "#myModal", :class => "btn btn-primary new_blog_btn", "data-toggle" => "modal", "group-id" => "#{@group.id}"%>
+
+                  <!-- <a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal" data: {group_id: <%= @group.id %>}}>+ Start New Conversation</a> -->
+                  <%#= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-tag-btn btn-default", type: "button" %>
                   <% end %>
                 </div>
               </div>
@@ -138,3 +148,26 @@
     </div>
   </div>
 </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">
+            <span class="p-l-20">Create new Post
+            </span>
+          </h4>
+        </div>
+        <div class="modal-body con_modal-content">
+          <div class="">
+            <div class="ambassdor-box newBlog-style conversation-c">
+            </div>
+            <%= render partial: 'conversations/form', locals: { conversation: @conversation , url: conversations_path, group_id: @group.id } %>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>

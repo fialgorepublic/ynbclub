@@ -2,13 +2,13 @@
   <div class="row">
     <div class="height-sm">
       <div class="col-md-12">
-        <div class="blog-box-small-img">
+        <div class="blog-box-small-img" >
           <%= link_to blog do %>
             <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '330x180^', gravity: 'Center', extent: '330x180^', background: "grey", quality: 95 }) : blog.avatar, width: "100%" %>
           <% end %>
         </div>
 
-        <div class="blog-box-content">
+        <div class="blog-box-content" data-toggle="modal" data-target="#myModal" id="<%= blog.id%>">
           <p class="blog-sm-p">
             <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
             <span class="with-un-blog"><%= blog_user_name(blog) %></span>
@@ -23,3 +23,44 @@
 
   <%= render partial: 'blogs/common_options', locals: { blog: blog, blog_type: 'brief' } %>
 </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+        <div  class="close_btn_blg">
+         <button type="button" class="close close_btn_blg_in" data-dismiss="modal">&times;</button>
+        </div>
+          <%#= render :template => "blogs/show" %>
+          <div id="test13">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script type="text/javascript">
+  $(".blog-box-content").click(function(){
+    id = this.id
+    $.ajax({
+        url: '/show_blog/'+id,
+        type: 'get',
+        data: {id: id},
+        success: function(data) {
+          $('#test13').html(data);
+        },
+        error: function(data) {
+          $('.loader').hide()
+          alert('Something Wentwrong!')
+        }
+      })
+  })
+</script>

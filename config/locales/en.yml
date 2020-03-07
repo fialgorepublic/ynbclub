@@ -184,7 +184,14 @@ en:
       title:                  Assign New Permissions
       change_btn_label:       Change Permissions
       choose_permision_label: Choose Permissions
-
+  order_status:
+    title:                    Check Order Status
+    checking_order:           Checking Order
+    placeholder:              Order number / Phone number
+    search:                   search
+    order_unavailable:        Order is not available with this value.
+    statsu:                   order status
+    ghtk_label:               Order is not sent to GHTK yet
   users:
     username_label:           Username
     firstname_label:          First Name
@@ -341,8 +348,8 @@ en:
     share_label:              Share with friends
     edit_snapshot_label:      Edit take a snapshot and share
     copy_share_link_label:    Copy Share link
-    share_referral_label:     Share Referral Url
-    share_description_label:  Share your referral url with your friends
+    share_referral_label:     Ambassador link.
+    share_description_label:  Share your referral link with your friends.
     share_on_facebook_label:  Share On Facebook
     share_on_twitter_label:   Share On Twitter
     share_on_email_label:     Share On Email
