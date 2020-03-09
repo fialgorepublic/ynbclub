@@ -15,6 +15,10 @@
     <% end %>
     <div class="ambassador-dashboard-con">
       <div class="form-group">
+      <%= form.text_field :subject, placeholder: "please enter subject", class: "form-control"%>
+      <!-- <textarea id="exampleee1"></textarea> -->
+      </div>
+      <div class="form-group">
       <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?", class: "set-border-radius"%>
       <!-- <textarea id="exampleee1"></textarea> -->
       </div>
@@ -118,9 +122,6 @@
       <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
   </div>
   <% end %>
-
-  <input type="button"
-class="bbutton"/>
     <div class="">
     <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form">Post</a>
     </div>
@@ -227,7 +228,6 @@ if (window.File && window.FileList && window.FileReader) {
   } else {
     alert("Your browser doesn't support to File API")
   }
-<<<<<<< HEAD
 
   // $(".rm_btn").click(function(){
 </script>
@@ -243,6 +243,4 @@ $( ".emojionearea" ).addClass("focused");
 $("html").click(function(){
    $("#emojionearea").focus();
 });
-=======
->>>>>>> 3861e63f47c780e5ff5fbdaf89cef195ccf3550c
 </script>

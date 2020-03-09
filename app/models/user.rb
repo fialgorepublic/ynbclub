@@ -85,6 +85,7 @@ class User < ApplicationRecord
   after_save :set_default_permissions
   after_save :set_profile
   after_commit :generate_coupon_code, on: :create
+  before_save :set_total_income
 
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
@@ -294,6 +295,10 @@ class User < ApplicationRecord
   def liked_conversations(sort_type)
     all_converations = Conversation.includes(:replies, :conversation_likes).liked_conversations(self.id)
     sort_type.present? ? all_converations.sort_by_title(sort_type) : all_converations
+  end
+
+  def set_total_income
+    self.total_income = 0.0
   end
 
   def generate_coupon_code
