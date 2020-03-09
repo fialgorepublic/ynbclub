@@ -24,6 +24,10 @@
 //= require select2.js
 //= require cocoon
 //= require orders
+//= require payments
+//= require blogs
+//= require groups
+//= require search 
 //= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
 
