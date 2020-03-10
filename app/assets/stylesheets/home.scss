@@ -3842,8 +3842,15 @@ width: 100% !important;
 }
 
 .emojionearea-button-open{
-  // display: none !important;
+ display: none !important;
 }
+
+  .get-emoji:after, .get-emoji:before {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
 .add_height{
   height: 40px !important;
   overflow: hidden !important;
@@ -3883,7 +3890,7 @@ span.remove.fa.fa-times {
   padding-left: 35px;
 }
 img.img_emoji_start {
-  display: none;
+  //display: none;
 }
 
 
