@@ -45,7 +45,7 @@ vi:
     take_and_share_label:     Chụp nhanh và chia sẻ 
     exchange_coins_label:     Đổi xu 
     my_orders_label:          Đơn hàng của tôi 
-    referral_sales_label:     Giới thiệu bán hang
+    referral_sales_label:     Đơn đại sứ
     blogs_label:              Blogs
     blogs_list_label:         danh sách blog
     all_orders_label:         Tất cả các đơn đặt hàng
@@ -64,7 +64,7 @@ vi:
     ghtk_status_label:        Cập nhập trạng thái GHTK
     invite_history_label:     Lịch sử mời bạn bè 
     acc_setting_label:        Cài đặt tài khoản 
-    referral_link_label:      Copy link giới thiệu
+    referral_link_label:      Copy link đại sứ
     group_categories:         Group Categories
     earnings_label:           thu nhập
 
