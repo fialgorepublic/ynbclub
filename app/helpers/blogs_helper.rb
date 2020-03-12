@@ -21,7 +21,7 @@ module BlogsHelper
   end
 
   def blog_title blog
-    blog.title.truncate(40)
+    blog.title.truncate(150)
   end
 
   def blog_author_avatar(blog)

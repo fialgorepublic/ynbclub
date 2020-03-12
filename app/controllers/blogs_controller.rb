@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed]
+  before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed, :show_blog]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog]
   before_action :check_limit, only: [:new]

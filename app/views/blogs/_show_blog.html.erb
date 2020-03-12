@@ -1,236 +1,204 @@
 <style>
-.p-0{
-  padding: 0px;
-}
-.test:after {
-  content: '\2807';
-  font-size: 30px;
-
-}
-.test{
-background-color: transparent;
-    border: navajowhite;
-}
-.bt--blog{
-border: solid 1px lightgrey;
-  border-radius: 20px;
+  .p-0{
+    padding: 0px;
+  }
+  .test:after {
+    content: '\2807';
+    font-size: 30px;
+  }
+  .test{
+  background-color: transparent;
+  border: navajowhite;
+  }
+  .bt--blog{
     padding: 12px;
     font-size: 12px;
     width: 190px;
-}
-.flex-sb{
-      display: flex;
+  }
+  .flex-sb{
+    display: flex;
     justify-content: space-between;
-}
+  }
 </style>
 <%= render 'blogs/og_tags_content' %><% belongs_to_user = false %><% if current_user.present? %><% belongs_to_user = current_user.users_blog?(@blog.id) %><% end %>
-<%
-=begin%>
- add_container 
-<%
-=end%>
-<div class="<%=  %>">
-	<div class="<%=  %>">
-<%
-=begin%>
- blog_screen_size 
-<%
-=end%>
-		<div class="">
-			<div class="flex-sb " style="margin-bottom: 15px;">
-				<%
-=begin%>
- <div class=" ">
-					<div class="bt--blog bt--blog-goback">
-						<span>
-							<a href="/blogs" style="text-decoration: none;">
-								<i class="fa fa-angle-left"></i><%= t('blogs.goto_list_label') %>
-							</a>
-						</span>
-						<!-- three dot menu -->
-					</div>
-				</div> 
-<%
-=end%>
-				<div class="  ">
-        <%# 
-					<div class="dropdown pull-right">
-						<button class="test dropdown-toggle" type="button" data-toggle="dropdown"></button>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">HTML</a>
-							</li>
-							<li>
-								<a href="#">CSS</a>
-							</li>
-							<li>
-								<a href="#">JavaScript</a>
-							</li>
-						</ul>
-					</div> %>
-					<div class="three-dots ">
-						<div class="dropdown">
-							<!-- three dots --><% if current_user.present? %><% if belongs_to_user %>
-							<ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-							<!-- menu -->
-							<div id="myDropdown" class="dropdown-content"><%= link_to t(:edit_label), edit_blog_path(@blog) %><%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %><% if @blog.is_published %>
-								<a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
-								</a><% end %>
-								<a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %>
-								</a>
-							</div><% elsif current_user.is_admin? %>
-							<ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-							<!-- menu -->
-							<div id="myDropdown" class="dropdown-content">
-								<a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
-								</a>
-							</div><% end %><% end %>
-						</div>
-					</div>
+<div class="<%= add_container %>">
+  <div class="<%= blog_screen_size %>">
+    <div class="">
+      <div class="flex-sb " style="margin-bottom: 15px;">
+        <div class=" ">
+          <div class="bt--blog">
+          </div>
+        </div>
+        <div class="  ">
+          <div class="three-dots ">
+            <div class="dropdown">
+              <!-- three dots -->
+              <% if current_user.present? %>
+                <% if belongs_to_user %>
+                  <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+              <!-- menu -->
+                <div id="myDropdown" class="dropdown-content"><%= link_to t(:edit_label), edit_blog_path(@blog) %><%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %><% if @blog.is_published %>
+                    <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
+                    </a>
+                  <% end %>
+                  <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %>
+                  </a>
+                </div>
+              <% elsif current_user.is_admin? %>
+                <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <!-- menu -->
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
+                  </a>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="detail-img">
+          <div class="img-block set-border-radius">
+            <h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %>
+            </h4>
+          </div>
+          <div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mob-p-t-20">
+        <div class="detail-img detail-icon">
+          <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');">
+          </i>
+          <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
+            <i class="fa fa-share"></i>
+            <span style="display:inline-block;">
+              <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" >
+            </span>
+            <% if @blog.is_published? %>
+              <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
+            <% end %>
+            <i class="fa fa-eye"></i>
+            <span><%= @blog.blog_views.count %>
+            </span>
+            <h5 class="pull-right">
+              <span class="category-style"><%= @blog.category_name %></span>
+              <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span>
+              <strong>
+                <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');">
+                </i><% if @blog.is_featured %>
+                Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %><% if signed_in? %><% if belongs_to_user %><%= link_to edit_blog_path(@blog) do %>
+                <i class="fa fa-pencil"></i><% end %><% end %><% end %>
+              </strong>
+            </h5>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 title-style">
+          <div class="detail-img">
+            <h2><%= @blog.title %>
+            </h2>
+            <p><%= @blog.description.html_safe %>
+            </p>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 product-title">
+          <h2><%= t('blogs.new.products_label') %>
+          </h2>
+        </div>
+      </div>
+      <div class="row product-shadow product-border-style">
+        <% @selected_products.each do |product| %>
+          <div class="col-md-3">
+            <div class="box-shadow-am sm-pd-am set-border-radius"><%= link_to product_url_referral_code(product), target: :blank do %>
+              <div class=""><%= image_tag product.avatar.attached? ? product.avatar.variant(combine_options: { resize: product_image_size, gravity: 'Center', extent: product_image_size, background: "grey", quality: 95 }) : '/placeholder.png', width: '100%' %>
+              </div><% end %>
+              <div class="product-price">
+                <h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫
+                </h5>
+              </div>
+              <div class="product-detail">
+                <p><%= product.title %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% if @blog.is_published? && signed_in? %>
+        <button class="btn comnt-btn-style btn-default pull-right set-border-radius" onclick="openCommentModal();"><%= t('blogs.post_comment_label') %></button>
+        <div id="blogComment"><%= render partial: 'comments' %></div>
+      <% end %>
+    </div>
+</div>
+<div class="modal fade" id="addComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button> -->
+			</div>
+			<div class="modal-body text-center">
+				<h4 class=""><%= t('blogs.show.comment_modal.title') %>
+				</h4>
+				<div class="form-group">
+					<label></label>
+					<input type="text" class="form-control" placeholder="<%= t('blogs.show.comment_modal.comment_placeholder') %>" id="blog_comment"><%= hidden_field_tag :comment_id %>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="detail-img">
-					<div class="img-block set-border-radius">
-						<h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %>
-						</h4>
-					</div>
-					<div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;' %>
-					</div>
-				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" onclick="add_comment('<%= @blog.id %>','<%= current_user&.id %>')"><%= t(:save_label) %>
+				</button>
+				<button type="button" class="btn btn-default" id="add-comment"><%= t(:cancel_label) %>
+				</button>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12 mob-p-t-20">
-				<div class="detail-img detail-icon">
-					<i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');">
-					</i>
-					<input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
-						<i class="fa fa-share"></i>
-						<span style="display:inline-block;">
-							<input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" >
-							</span><%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
-							<i class="fa fa-eye"></i>
-							<span><%= @blog.blog_views.count %>
-							</span>
-							<h5 class="pull-right">
-								<span class="category-style"><%= @blog.category_name %>
-								</span>
-								<span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %>
-								</span>
-								<strong>
-									<i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');">
-									</i><% if @blog.is_featured %>
-                  Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %><% if signed_in? %><% if belongs_to_user %><%= link_to edit_blog_path(@blog) do %>
-									<i class="fa fa-pencil"></i><% end %><% end %><% end %>
-								</strong>
-							</h5>
-							<hr>
-							</div>
-						</div>
-					</div><%# 
-					<div class=""><% if @blog.is_published? %><%# <%= render partial: 'facebook_share_button', locals: { blog: @blog } %><%# <% end %><%# 
-					</div> ÷ %>
-					<div class="row">
-						<div class="col-md-12 title-style">
-							<div class="detail-img">
-								<h2><%= @blog.title %>
-								</h2>
-								<p><%= @blog.description.html_safe %>
-								</p>
-							</div>
-							<hr>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 product-title">
-								<h2><%= t('blogs.new.products_label') %>
-								</h2>
-							</div>
-						</div>
-						<div class="row product-shadow product-border-style"><% @selected_products.each do |product| %>
-							<div class="col-md-3">
-								<div class="box-shadow-am sm-pd-am set-border-radius"><%= link_to product_url_referral_code(product), target: :blank do %>
-									<div class=""><%= image_tag product.avatar.attached? ? product.avatar.variant(combine_options: { resize: product_image_size, gravity: 'Center', extent: product_image_size, background: "grey", quality: 95 }) : '/placeholder.png', width: '100%' %>
-									</div><% end %>
-									<div class="product-price">
-										<h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫
-										</h5>
-									</div>
-									<div class="product-detail">
-										<p><%= product.title %>
-										</p>
-									</div>
-								</div>
-							</div><% end %>
-						</div><% if @blog.is_published? && signed_in? %>
-						<button class="btn comnt-btn-style btn-default pull-right set-border-radius" onclick="openCommentModal();"><%= t('blogs.post_comment_label') %>
+	</div>
+</div>
+<div class="modal fade" id="shareBlogModal" role="dialog" style="z-index: 1600;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!-- <button type="button" class="facebook-share" data-dismiss="modal">&times;</button> -->
+			</div>
+			<div class="modal-body text-center">
+				<h4 class=""><%= t('blogs.show.share_modal.title') %>
+				</h4><%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="checkbox text-left col-md-6">
+						<label>
+							<input type="checkbox" value="" id='user-share-perference'>Don't show this again.
+						</label>
+					</div>
+					<div class="col-md-6">
+						<button type="button" class="btn btn-default" id="facebook-share"><%= t(:cancel_label) %>
 						</button>
-						<div id="blogComment"><%= render partial: 'comments' %>
-						</div><% end %>
 					</div>
 				</div>
-				<div class="modal fade" id="addComment" role="dialog">
-					<div class="modal-dialog">
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-							</div>
-							<div class="modal-body text-center">
-								<h4 class=""><%= t('blogs.show.comment_modal.title') %>
-								</h4>
-								<div class="form-group">
-									<label></label>
-									<input type="text" class="form-control" placeholder="<%= t('blogs.show.comment_modal.comment_placeholder') %>" id="blog_comment"><%= hidden_field_tag :comment_id %>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-success" onclick="add_comment('<%= @blog.id %>','<%= current_user&.id %>')"><%= t(:save_label) %>
-									</button>
-									<button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:cancel_label) %>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="shareBlogModal" role="dialog">
-						<div class="modal-dialog">
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-								</div>
-								<div class="modal-body text-center">
-									<h4 class=""><%= t('blogs.show.share_modal.title') %>
-									</h4><%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
-								</div>
-								<div class="modal-footer">
-									<div class="row">
-										<div class="checkbox text-left col-md-6">
-											<label>
-												<input type="checkbox" value="" id='user-share-perference'>Don't show this again.
-												</label>
-											</div>
-											<div class="col-md-6">
-												<button type="button" class="btn btn-default" data-dismiss="modal"><%= t(:cancel_label) %>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
   user_signed_in = <%= signed_in? %>;
   user_has_shared = <%= signed_in? ? current_user.already_shared_blog?(@blog.id, 'facebook') : false %>;
@@ -245,7 +213,7 @@ border: solid 1px lightgrey;
     setTimeout(showShareModal, 0);
     function showShareModal() {
       showModal = localStorage.getItem('show_share_modal')
-      if (showModal == 'true') { $('#shareBlogModal').modal('hide'); }
+      if (showModal == 'true') { $('#shareBlogModal').modal('show'); }
     }
   }
 
@@ -270,6 +238,7 @@ border: solid 1px lightgrey;
     $('#comment_id').val('');
     $('#blog_comment').val('');
     $('#addComment').modal('show');
+    $('#myModal').animate({ scrollTop: 0 }, 'fast');
   }
   function add_comment(id, user_id){
     var text = $('#blog_comment').val();
@@ -285,9 +254,15 @@ border: solid 1px lightgrey;
       processData:false,
       async: false,
       success:function (data) {
-        $('#addComment').modal('hide');
-        $('#blogComment').html(data);
-        $('#comment_id').val('');
+        $('#addComment').modal('hide').on('hidden.bs.modal', function (e) {
+        $(this).off('hidden.bs.modal');
+        $('#myModal').modal('show');
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+        $('#myModal').animate({scrollTop: $(document).height() + $(window).height()}, 'fast');
+      });
+      $('#blogComment').html(data);
+      $('#comment_id').val('');
       },
       error:function (data) {
 //                alert ('Error');
@@ -389,7 +364,6 @@ border: solid 1px lightgrey;
 
   function blog_share(id, type, url){
     var blogUrl = $('#blogUrl').val();
-
     $.ajax({
       url: '/share_blog?id='+ id + '&value=' + type,
       type: 'get',
@@ -404,5 +378,87 @@ border: solid 1px lightgrey;
       }
     });
   }
+</script>
 
-						</script>
+
+
+<script type="text/javascript">
+ $('.share-on-facebook').click(function () {
+    blog_id = $(this).data('id');
+    type    = $(this).data('type');
+    blog    = $(this).data('attributes');
+    url     = $(this).data('share-url');
+    limit_url = $(this).data('limit-url');
+    user_signed_in = $(this).data("user-signed-in")
+    already_shared_blog(blog_id, url);
+    sharing_limit_exceed(limit_url);
+    if (user_signed_in) {
+      if (user_has_shared) { toastr.error('You already have shared this blog'); return false; }
+      if (limit_exceeded) { toastr.error('You have exceeded your limit to share blogs on facebook for today'); return false; }
+      var url = createFBShareLink(blog_id, type, blog, '1660844573983661');
+
+      window.open(url);
+    } else {
+      hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : '/?signin=true'
+      window.location.href = hostname
+    }
+  });
+    
+  function already_shared_blog(blog_id, url) {
+    $.ajax({
+      url: url,
+      method: 'get',
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+        user_has_shared = data.shared
+      }
+    })
+  }
+
+  function sharing_limit_exceed(url){
+    $.ajax({
+      url: url,
+      method: 'get',
+      dataType: 'json',
+      async: false,
+      success: function (data) {
+        limit_exceeded = data.limit_exceeded
+      }
+    })
+  }
+
+  function createFBShareLink(id, type, blog, fbAppId) {
+    var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
+    var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+      &link=https://ambassador.saintlbeau.com/blog_detail?id=${id}
+      &picture=${encodeURIComponent(`${blog.file_name}`)}
+      &name=${blog.title}
+      &caption=SainLBeau blogs
+      &description=This is just for testing purpose
+      &redirect_uri=${encodeURIComponent(`${link}/share_blog?id=${id}&value=${type}`)}
+      &display=popup`;
+    return url;
+  }
+  $('#facebook-share').click(function(e){
+    e.preventDefault();
+    $('#shareBlogModal').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#myModal').modal('show');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+    });
+  $('#add-comment').click(function(e){
+    e.preventDefault();
+    $('#addComment').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#myModal').modal('show');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+    });
+</script>
+
+
+
