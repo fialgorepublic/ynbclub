@@ -57,7 +57,7 @@
             <%= link_to conversation do %>
             <h2><%= conversation.subject %></h2>
             <% end %>
-            <h4><%= conversation.body&.html_safe %></h4>
+            <h4 class="set-body-paragraph"><%= conversation.body&.html_safe %></h4>
             <div class="comment more">
               <%# if conversation.body.include?("http") && conversation.body.include?("figure") %>
                 <%#= conversation.body&.html_safe %>

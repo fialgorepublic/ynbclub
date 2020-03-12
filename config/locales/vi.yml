@@ -40,7 +40,7 @@ vi:
 
   sidebar: 
     dashboard_label_text:     Bảng điều khiển
-    order_status_label_text:  Tình trạng đặt hàng
+    order_status_label_text:  Tình Trạng đặt hàng
     share_with_friends_label: Chia sẻ với bạn bè 
     take_and_share_label:     Chụp nhanh và chia sẻ 
     exchange_coins_label:     Đổi xu 
@@ -216,7 +216,7 @@ vi:
     billing_info:
       title:                  Thông tin thanh toán 
       sub_title:              Thông tin được sử dụng để thanh toán 
-      ncn_number_label:       Số an ninh quốc gia 
+      ncn_number_label:       Chứng minh nhân dân 
       bank_branch_name_label: Tên ngân hàng chi nhánh 
       account_name_label:     Tên tài khoản (ngân hàng)
       account_number_label:   Số tài khoản 

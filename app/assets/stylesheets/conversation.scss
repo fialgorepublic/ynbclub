@@ -616,7 +616,7 @@ border: none;
 margin-bottom: 0px;
 }
 .set-border-radius{
-  color: #999;
+  //color: #999;
 
 }
 .post_icon_size img {
@@ -625,4 +625,9 @@ margin-bottom: 0px;
 }
 .pymt{
   color: #fff !important;
+}
+
+.set-body-paragraph {
+  line-height: 27px;
+  letter-spacing: 1px;
 }
