@@ -119,6 +119,10 @@ color: red;
 
   .con_banner_btn:hover {
     background-color: #54b2b2;
+  .con_banner_btn:hover,
+  .con_banner_btn:focus,
+  .con_banner_btn:active {
+    background-color: #54b2b2;
     border: 0px;
     border-radius: 20px;
     color: white !important;
@@ -361,7 +365,7 @@ span.name {
   font-weight: 500;
 }
 .color-for-icon-con {
-  color: #386161;
+  color: #0d2a3f;
 }
 .flex-c.social-con-padding .fa {
   font-size: 24px !important;

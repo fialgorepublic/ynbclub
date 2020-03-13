@@ -394,7 +394,9 @@ p.p-b {
     // margin-left: 74px;
 }
 
-.new_reply_btn:hover {
+.new_reply_btn:hover ,
+.new_reply_btn:focus,
+.new_reply_btn:active {
     padding: 6px 20px;
     width: 100%;
     border-radius: 20px;
@@ -1185,7 +1187,7 @@ input.form-control.con-title-:focus {
     }
     #custom-topPage-btn i {
         font-weight: bold;
-        color: #54b2b2;
+        color: #0e2b40;
         margin: 0;
         position: relative;
         left: 14px !important;
@@ -1196,8 +1198,8 @@ input.form-control.con-title-:focus {
         position: fixed;
         bottom: 20px !important;
         right: 20px !important;
-        background-color: #cceceb;
-        width: 50px !important;
+        background-color: rgba(14, 44, 65, 0.74);
+                width: 50px !important;
         height: 50px !important;
         display: block;
         text-decoration: none;

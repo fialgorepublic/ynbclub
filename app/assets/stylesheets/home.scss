@@ -2444,6 +2444,8 @@ label.error {
   img {
     height: 140px;
     object-fit: cover;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
   }
   .h-150 {
     height: 140px;
@@ -2471,16 +2473,18 @@ label.error {
     height: 320px;
     object-fit: cover !important;
     // display: block;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
   }
   .h-50vh {
     height: 265px;
   }
   .description {
-    max-height: 132px;
+    height: 170px;
     overflow: hidden;
-    min-height: 132px;
+    // min-height: 132px;
     text-overflow: ellipsis;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
   }
   p {
     font-family: "Montserrat", sans-serif;
@@ -2512,6 +2516,7 @@ label.error {
   right: 20px;
   background-color: #cceceb;
   width: 100px;
+  background-color: rgba(14, 44, 65, 0.74);  width: 100px;
   height: 100px;
   display: block;
   text-decoration: none;
@@ -2525,7 +2530,7 @@ label.error {
 
 #custom-topPage-btn i {
   font-weight: bold;
-  color: #54b2b2;
+  color:#0e2b40;
   margin: 0;
   position: relative;
   left: 34px;
@@ -3883,7 +3888,7 @@ a.share-on-facebook.btn.btn-primary.set-border-radius {
   color: white;
 }
 .bootstrap-filestyle.input-group {
-  // display: none;
+  display: none;
 }
 span.remove.fa.fa-times {
   font-size: 15px;
@@ -3918,3 +3923,7 @@ span.remove.fa.fa-times {
 //   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 //   opacity: 0;
 // }
+
+.blue-color{
+  color: #0e2b40 !important;
+}
