@@ -273,7 +273,7 @@
       <% if current_user.is_admin? %>
       <li>
         <%= link_to update_status_orders_path, remote: :true, class: active_class(update_status_orders_path) do %>
-        <i class="fa fa-job" style="padding-right: 2px;"></i> <span
+        <i class="fa fa-tasks" style="padding-right: 2px;"></i> <span
           class="side-nav-style"><%= t('sidebar.ghtk_status_label') %></span>
         <% end %>
       </li>
