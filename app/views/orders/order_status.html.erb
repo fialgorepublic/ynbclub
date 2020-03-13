@@ -5,7 +5,7 @@
     <%= form_tag order_status_path, method: "get" do %>
   <%= label_tag(:search, t('order_status.checking_order')) %>
   <br>
-  <%= text_field_tag :order_id, params[:order_id], class: "form-control set-border-radius", placeholder: t('order_status.placeholder'), style: "width: 310px;" %>
+  <%= text_field_tag :order_id, params[:order_id], class: "form-control set-border-radius", placeholder: t('order_status.placeholder'), required: true, style: "width: 310px;" %>
   <br>
   <%= submit_tag(t('order_status.search'), class: 'btn btn-primary set-border-radius')%>
 <% end %>
