@@ -2510,8 +2510,7 @@ label.error {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #0e2c41;
-  width: 100px;
+  background-color: rgba(14, 44, 65, 0.74);  width: 100px;
   height: 100px;
   display: block;
   text-decoration: none;
@@ -2525,7 +2524,7 @@ label.error {
 
 #custom-topPage-btn i {
   font-weight: bold;
-  color: #54b2b2;
+  color:#0e2b40;
   margin: 0;
   position: relative;
   left: 34px;
@@ -3883,7 +3882,7 @@ a.share-on-facebook.btn.btn-primary.set-border-radius {
   color: white;
 }
 .bootstrap-filestyle.input-group {
-  // display: none;
+  display: none;
 }
 span.remove.fa.fa-times {
   font-size: 15px;
@@ -3918,3 +3917,7 @@ span.remove.fa.fa-times {
 //   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 //   opacity: 0;
 // }
+
+.blue-color{
+  color: #0e2b40 !important;
+}
