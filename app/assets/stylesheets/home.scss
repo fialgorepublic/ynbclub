@@ -2444,6 +2444,8 @@ label.error {
   img {
     height: 140px;
     object-fit: cover;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
   }
   .h-150 {
     height: 140px;
@@ -2471,16 +2473,18 @@ label.error {
     height: 320px;
     object-fit: cover !important;
     // display: block;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
   }
   .h-50vh {
     height: 265px;
   }
   .description {
-    max-height: 132px;
+    height: 170px;
     overflow: hidden;
-    min-height: 132px;
+    // min-height: 132px;
     text-overflow: ellipsis;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
   }
   p {
     font-family: "Montserrat", sans-serif;
