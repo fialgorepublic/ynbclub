@@ -217,8 +217,8 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 1px solid #0e2c41;
-  background: #0e2c41;
+  border: 1px solid #54b2b2;
+  background: #54b2b2;
   line-height: 120px;
   vertical-align: middle;
   margin: 0 auto;
@@ -1355,13 +1355,13 @@ margin-top: 7rem;
   padding: 10px;
   width: 100%;
   border-radius: 20px;
-  background-color: #0e2c41;
+  background-color: #54b2b2;
   border: 0px;
   font-size: 16px;
 }
 
 .blog-redesign-style a.new_blog_btn:active {
-  background-color: #0e2c41;
+  background-color: #54b2b2;
   border: 0px;
 }
 
@@ -1519,7 +1519,7 @@ label.error {
     border-radius: 0px;
     box-shadow: unset;
     .btn {
-      background: #0e2c41;
+      background: #54b2b2;
       border-radius: 20px;
     }
   }
@@ -1993,7 +1993,7 @@ label.error {
   a.btn.btn-primary.new_blog_btn {
     padding: 10px 24px;
     border-radius: 20px;
-    background-color: #0e2c41;
+    background-color: #54b2b2;
     border: 0px;
     color: white;
     font-size: 3vw !important;
@@ -2329,24 +2329,24 @@ label.error {
 }
 
 .blog_banner_btn a.blog_library {
-  background-color: #0e2c41;
+  background-color: #54b2b2;
   border: 0px;
   border-radius: 20px;
   color: white !important;
 }
 
 .blog_banner_btn a.blog_library:active {
-  background-color: #0e2c41;
+  background-color: #54b2b2;
   border: 0px;
 }
 
 .blog_banner_btn a.edit_banner_btn:active {
-  background-color: #0e2c41;
+  background-color: #54b2b2;
   border: 0px;
 }
 
 .blog_banner_btn a.edit_banner_btn {
-  background-color: #0e2c41;
+  background-color: #54b2b2;
   border: 0px;
   border-radius: 20px;
 }
@@ -2384,7 +2384,7 @@ label.error {
   border-radius: 15px;
   .fa {
     font-size: 20px;
-    color: #256664;
+    color: #3b6767;
   }
   .fa-heart {
     color: #f34747;
@@ -2514,7 +2514,7 @@ label.error {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: rgba(14, 44, 65, 0.74);  width: 100px;
+  background-color:rgba(69, 152, 152, 0.58);;  width: 100px;
   height: 100px;
   display: block;
   text-decoration: none;
@@ -2528,7 +2528,7 @@ label.error {
 
 #custom-topPage-btn i {
   font-weight: bold;
-  color:#0e2b40;
+  color:#54b2b2;
   margin: 0;
   position: relative;
   left: 34px;
@@ -2733,7 +2733,7 @@ label.error {
 a.btn.btn-primary.new_blog_btn {
   padding: 10px 24px;
   border-radius: 20px;
-  background-color: #0e2c41;
+  background-color: #54b2b2;
   border: 0px;
   color: white;
   font-size: 1vw;
@@ -3886,7 +3886,7 @@ a.share-on-facebook.btn.btn-primary.set-border-radius {
   color: white;
 }
 .bootstrap-filestyle.input-group {
-  display: none;
+  // display: none;
 }
 span.remove.fa.fa-times {
   font-size: 15px;
@@ -3921,7 +3921,3 @@ span.remove.fa.fa-times {
 //   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 //   opacity: 0;
 // }
-
-.blue-color{
-  color: #0e2b40 !important;
-}

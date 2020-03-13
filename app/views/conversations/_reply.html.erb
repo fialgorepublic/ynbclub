@@ -4,13 +4,11 @@
     <div class="">
       <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
     </div>
-
     <div class="m-l-10 ">
       <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
       <p class="p-l"><%= posted_date(reply) %></p>
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-12">
       <div class="comment more text-left pl-40">
@@ -22,7 +20,6 @@
           <%= reply.body&.html_safe %>
         <% end %>
       </div>
-
     </div>
   </div>
   <div class="flex-sb">
@@ -30,26 +27,21 @@
       <div class="">
         <%= like_dislike_link(reply) %>
       </div>
-
       <div class="m-l-10 m-t-8">
         <p class="fs-12 m-t-3 likes-count-<%= reply.id %>"><%= reply.likes_count %></p>
       </div>
-
       <div class="m-l-10">
-        <i class="fa fa-comment fs-20 blue-color"></i>
+        <i class="fa fa-comment fs-20 "></i>
       </div>
-
       <div class="m-l-10 m-t-12">
         <%= link_to reply do %>
         <p class="fs-12"><%= reply.replies_count %></p>
         <% end %>
       </div>
     </div>
-
     <div class="m-t-8">
       <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{reply.id}" %>
     </div>
-
   </div>
   <div class="row">
     <div class="text-left">
@@ -98,7 +90,7 @@
           </div>
 
           <div class="m-l-10">
-            <i class="fa fa-comment fs-20 blue-color"></i>
+            <i class="fa fa-comment fs-20 "></i>
           </div>
 
           <div class="m-l-10 m-t-12">

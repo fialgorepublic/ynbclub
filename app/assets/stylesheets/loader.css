@@ -16,7 +16,7 @@
   left: 45%;
   z-index: 100;
   font-size:100px;
-  color:#0e2c41 ;
+  color:#54b2b2 ;
 }
 
 #users-loader {
@@ -30,5 +30,5 @@
   left: 45%;
   z-index: 100;
   font-size:20px;
-  color:#0e2c41 ;
+  color:#54b2b2 ;
 }

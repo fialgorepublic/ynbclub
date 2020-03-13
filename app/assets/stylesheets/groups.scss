@@ -255,9 +255,9 @@
         padding: 8px 25px;
         border-radius: 20px;
         background-color: transparent;
-        border: solid 1px #0e2c41 !important;
+        border: solid 1px #54b2b2 !important;
         // border: 0px;
-        color: #0e2c41;
+        color: #54b2b2;
         // color: white;
         font-size: 16px;
     }
@@ -274,7 +274,7 @@
     padding: 10px;
     width: 100%;
     border-radius: 20px;
-    background-color: #0e2c41;
+    background-color: #54b2b2;
     border: 0px;
     font-size: 12px;
     color: white !important;
@@ -284,7 +284,7 @@
     padding: 10px;
     width: 100%;
     border-radius: 20px;
-    background-color: #0e2c41;
+    background-color: #54b2b2;
     border: 0px;
     font-size: 12px;
     color: white !important;
@@ -387,7 +387,7 @@ p.p-b {
     padding: 6px 20px;
     width: 100%;
     border-radius: 20px;
-    background-color: #0e2c41;
+    background-color: #54b2b2;
     border: 0px;
     font-size: 12px;
     color: white !important;
@@ -400,7 +400,7 @@ p.p-b {
     padding: 6px 20px;
     width: 100%;
     border-radius: 20px;
-    background-color: #0e2c41 !important;
+    background-color: #54b2b2 !important;
     border: 0px;
     font-size: 12px;
     color: white !important;
@@ -624,9 +624,11 @@ img.lib-img-show {
 }
 
 .color-for-icon {
-    color: #0e2c41;
+    color: #54b2b2;
 }
-
+i.fa.fa-comment.fs-20 {
+    color: #54b2b2;
+}
 .fs-icon-22 {
     font-size: 22px;
 }
@@ -1187,7 +1189,7 @@ input.form-control.con-title-:focus {
     }
     #custom-topPage-btn i {
         font-weight: bold;
-        color: #0e2b40;
+        color: #54b2b2;
         margin: 0;
         position: relative;
         left: 14px !important;
@@ -1198,7 +1200,7 @@ input.form-control.con-title-:focus {
         position: fixed;
         bottom: 20px !important;
         right: 20px !important;
-        background-color: rgba(14, 44, 65, 0.74);
+        background-color: rgba(69, 152, 152, 0.58);;
                 width: 50px !important;
         height: 50px !important;
         display: block;
@@ -1318,7 +1320,7 @@ input.form-control.con-title-:focus {
     padding: 10px;
     width: 100%;
     border-radius: 20px;
-    background-color: #0e2c41;
+    background-color: #54b2b2;
     border: 0px;
     font-size: 12px;
     color: white !important;
