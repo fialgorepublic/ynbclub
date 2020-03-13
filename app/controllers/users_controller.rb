@@ -190,10 +190,10 @@ class UsersController < ApplicationController
   end
 
   def all_users
+    I18n.default_locale = locale
     filter_type = params[:filter_type].present? ? params[:filter_type] : ''
     users = filter_type == "filter" ? User.users_with_points : User.all_users(params)
     @users = users.includes(:points, :profile).paginate(page: params[:page])
-    I18n.default_locale = locale
   end
 
   def ban
