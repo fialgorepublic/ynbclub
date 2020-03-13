@@ -21,94 +21,14 @@
   }
 </style>
 <%= render 'blogs/og_tags_content' %><% belongs_to_user = false %><% if current_user.present? %><% belongs_to_user = current_user.users_blog?(@blog.id) %><% end %>
-<<<<<<< HEAD
 <%
 =begin%>
- add_container 
+ add_container
+blog_screen_size 
 <%
 =end%>
 <div class="<%=  %>">
-	<div class="<%=  %>">
-<%
-=begin%>
- blog_screen_size 
-<%
-=end%>
-		<div class="">
-			<div class="flex-sb " style="margin-bottom: 15px;">
-				<div class=" ">
-					<%
-=begin%>
- <div class="bt--blog">
-						<span>
-							<a href="/blogs" style="text-decoration: none;">
-								<i class="fa fa-angle-left"></i><%= t('blogs.goto_list_label') %>
-							</a>
-						</span>
-						<!-- three dot menu -->
-					</div> 
-<%
-=end%>
-<%
-=begin%>
- <div class="dropdown">
-  <button class=" fa_dots dropdown-toggle" type="button" data-toggle="dropdown">
-  <span class=""></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">HTML</a></li>
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">JavaScript</a></li>
-  </ul>
-</div> 
-<%
-=end%>
-				</div>
-				<div class="  ">
-        <%# 
-					<div class="dropdown pull-right">
-						<button class="test dropdown-toggle" type="button" data-toggle="dropdown"></button>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">HTML</a>
-							</li>
-							<li>
-								<a href="#">CSS</a>
-							</li>
-							<li>
-								<a href="#">JavaScript</a>
-							</li>
-						</ul>
-					</div> %>
-					<div class="three-dots ">
-						<div class="dropdown">
-							<!-- three dots --><% if current_user.present? %><% if belongs_to_user %>
-							<ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-							<!-- menu -->
-							<div id="myDropdown" class="dropdown-content"><%= link_to t(:edit_label), edit_blog_path(@blog) %><%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %><% if @blog.is_published %>
-								<a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
-								</a><% end %>
-								<a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %>
-								</a>
-							</div><% elsif current_user.is_admin? %>
-							<ul class="dropbtn icons  showLeft" onclick="showDropdown()">
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-							<!-- menu -->
-							<div id="myDropdown" class="dropdown-content">
-								<a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
-								</a>
-							</div><% end %><% end %>
-						</div>
-					</div>
-=======
-<div class="<%= add_container %>">
-  <div class="<%= blog_screen_size %>">
+  <div class="<%=  %>">
     <div class="">
       <div class="flex-sb " style="margin-bottom: 15px;">
         <div class=" ">
@@ -152,7 +72,7 @@
       </div>
     </div>
   </div>
-    <div class="row">
+    <div class="row blog_margin_top">
       <div class="col-md-12">
         <div class="detail-img">
           <div class="img-block set-border-radius">
@@ -247,7 +167,6 @@
 				<div class="form-group">
 					<label></label>
 					<input type="text" class="form-control" placeholder="<%= t('blogs.show.comment_modal.comment_placeholder') %>" id="blog_comment"><%= hidden_field_tag :comment_id %>
->>>>>>> 9b62cf6882a8e01a4224ff9b1c7563a6b903aa30
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -257,14 +176,6 @@
 				</button>
 			</div>
 		</div>
-<<<<<<< HEAD
-		<div class="row detail_img_op">
-			<div class="col-md-12">
-				<div class="detail-img">
-					<div class="img-block set-border-radius">
-						<h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %>
-						</h4>
-=======
 	</div>
 </div>
 <div class="modal fade" id="shareBlogModal" role="dialog" style="z-index: 1600;">
@@ -283,7 +194,6 @@
 						<label>
 							<input type="checkbox" value="" id='user-share-perference'>Don't show this again.
 						</label>
->>>>>>> 9b62cf6882a8e01a4224ff9b1c7563a6b903aa30
 					</div>
 					<div class="col-md-6">
 						<button type="button" class="btn btn-default" id="facebook-share"><%= t(:cancel_label) %>
@@ -555,6 +465,7 @@
     });
     });
 </script>
+
 
 
 

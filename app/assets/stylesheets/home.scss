@@ -3850,11 +3850,7 @@ width: 100% !important;
 }
 
 .emojionearea-button-open{
-<<<<<<< HEAD
-  display: none !important;
-=======
  display: none !important;
->>>>>>> 9b62cf6882a8e01a4224ff9b1c7563a6b903aa30
 }
 
   .get-emoji:after, .get-emoji:before {
@@ -3892,8 +3888,10 @@ a.share-on-facebook.btn.btn-primary.set-border-radius {
 span.remove.fa.fa-times {
   font-size: 15px;
 }
+.blog_margin_top{
+  margin-top: 50px !important;
+}
 
-<<<<<<< HEAD
 // .emojionearea-button-open {
 //   position: absolute;
 //   right: 310px;
@@ -3920,41 +3918,3 @@ span.remove.fa.fa-times {
 //   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 //   opacity: 0;
 // }
-=======
-.emojionearea-button-open {
-  position: absolute;
-  right: 310px;
-  top: 151px;
-}
-.feell{
-  padding-left: 35px;
-}
-img.img_emoji_start {
-  //display: none;
-}
-
-
-// edit emoji plugin
-.emojionearea .emojionearea-button > div.emojionearea-button-open {
-  background-position: 0 -24px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1 !important;
-}
-.emojionearea .emojionearea-button.active > div.emojionearea-button-open {
-  -webkit-transform: rotate(0deg) !important;
-  -o-transform: rotate(0deg) !important;
-  transform: rotate(0deg) !important;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-}
-
-.btn-color {
-  background-color: #0e2c41;
-  color: #fff;
-}
-
-.btn-color:hover {
-  background-color: #0e2c41;
-  color: #fff;
-}
->>>>>>> 9b62cf6882a8e01a4224ff9b1c7563a6b903aa30
