@@ -1169,24 +1169,29 @@ button.comnt-btn-style {
 }
 
 .three-dots {
-  .three-dots .dropdown {
-    position: relative;
+  .dropdown {
+    position: absolute;
     display: inline-block;
-    left: 2.5em;
-    bottom: 2.4rem;
-}
+    right: 0.4em;
+  }
 }
 
 .dropdown-content {
   display: none;
-  position: relative;
-  margin-top: 69px;
-  margin-right: 29px;
+  position: absolute;
+  /* margin-top: 69px; */
+  /* margin-right: 29px; */
   background-color: #fff;
   width: 200px;
   overflow: auto;
   z-index: 1;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  top: 5rem;
+  right: 3rem;
+}
+ul.dropbtn.icons.showLeft {
+  position: relative;
+  top: 2rem;
 }
 
 .dropdown-content a {
@@ -1204,6 +1209,9 @@ button.comnt-btn-style {
   display: block;
 }
 
+.detail_img_op{
+margin-top: 7rem;
+}
 /*****/
 
 .featured-listing {
@@ -3842,7 +3850,7 @@ width: 100% !important;
 }
 
 .emojionearea-button-open{
-  // display: none !important;
+  display: none !important;
 }
 .add_height{
   height: 40px !important;
@@ -3874,29 +3882,29 @@ span.remove.fa.fa-times {
   font-size: 15px;
 }
 
-.emojionearea-button-open {
-  position: absolute;
-  right: 310px;
-  top: 151px;
-}
-.feell{
-  padding-left: 35px;
-}
-img.img_emoji_start {
-  display: none;
-}
+// .emojionearea-button-open {
+//   position: absolute;
+//   right: 310px;
+//   top: 151px;
+// }
+// .feell{
+//   padding-left: 35px;
+// }
+// img.img_emoji_start {
+//   display: none;
+// }
 
 
 // edit emoji plugin
-.emojionearea .emojionearea-button > div.emojionearea-button-open {
-  background-position: 0 -24px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1 !important;
-}
-.emojionearea .emojionearea-button.active > div.emojionearea-button-open {
-  -webkit-transform: rotate(0deg) !important;
-  -o-transform: rotate(0deg) !important;
-  transform: rotate(0deg) !important;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-}
+// .emojionearea .emojionearea-button > div.emojionearea-button-open {
+//   background-position: 0 -24px;
+//   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+//   opacity: 1 !important;
+// }
+// .emojionearea .emojionearea-button.active > div.emojionearea-button-open {
+//   -webkit-transform: rotate(0deg) !important;
+//   -o-transform: rotate(0deg) !important;
+//   transform: rotate(0deg) !important;
+//   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+//   opacity: 0;
+// }

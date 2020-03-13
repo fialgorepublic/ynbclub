@@ -38,20 +38,33 @@ border: solid 1px lightgrey;
 =end%>
 		<div class="">
 			<div class="flex-sb " style="margin-bottom: 15px;">
-				<%
+				<div class=" ">
+					<%
 =begin%>
- <div class=" ">
-					<div class="bt--blog bt--blog-goback">
+ <div class="bt--blog">
 						<span>
 							<a href="/blogs" style="text-decoration: none;">
 								<i class="fa fa-angle-left"></i><%= t('blogs.goto_list_label') %>
 							</a>
 						</span>
 						<!-- three dot menu -->
-					</div>
-				</div> 
+					</div> 
 <%
 =end%>
+<%
+=begin%>
+ <div class="dropdown">
+  <button class=" fa_dots dropdown-toggle" type="button" data-toggle="dropdown">
+  <span class=""></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+  </ul>
+</div> 
+<%
+=end%>
+				</div>
 				<div class="  ">
         <%# 
 					<div class="dropdown pull-right">
@@ -83,7 +96,7 @@ border: solid 1px lightgrey;
 								<a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %>
 								</a>
 							</div><% elsif current_user.is_admin? %>
-							<ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+							<ul class="dropbtn icons  showLeft" onclick="showDropdown()">
 								<li></li>
 								<li></li>
 								<li></li>
@@ -98,7 +111,7 @@ border: solid 1px lightgrey;
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row detail_img_op">
 			<div class="col-md-12">
 				<div class="detail-img">
 					<div class="img-block set-border-radius">
