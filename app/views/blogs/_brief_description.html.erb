@@ -10,8 +10,10 @@
 
         <div class="blog-box-content" >
           <p class="blog-sm-p">
-            <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
-            <span class="with-un-blog"><%= user_profile_link(blog.user) %></span>
+            <%= link_to user_path(blog.user) do %>
+              <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+            <% end %>
+            <span class="with-un-blog"><%= user_name(blog.user) %></span>
             <span><%= blog_date blog %></span>
             <span class="with-un-blog"><%= blog.category_name %></span>
           </p>
