@@ -108,7 +108,7 @@ color: red;
   }
 
   .con_banner_btn {
-    background-color: #54b2b2;
+    background-color: #0e2c41;
     border: 0px;
     border-radius: 20px;
     color: white !important;
@@ -118,7 +118,7 @@ color: red;
   }
 
   .con_banner_btn:hover {
-    background-color: #54b2b2;
+    background-color: #0e2c41;
     border: 0px;
     border-radius: 20px;
     color: white !important;
@@ -616,7 +616,7 @@ border: none;
 margin-bottom: 0px;
 }
 .set-border-radius{
-  color: #999;
+  //color: #999;
 
 }
 .post_icon_size img {
@@ -625,4 +625,9 @@ margin-bottom: 0px;
 }
 .pymt{
   color: #fff !important;
+}
+
+.set-body-paragraph {
+  line-height: 27px;
+  letter-spacing: 1px;
 }

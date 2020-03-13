@@ -64,7 +64,7 @@ en:
     ghtk_status_label:        Update GHTK Status
     invite_history_label:     Invite Friends History
     acc_setting_label:        Acc settings
-    referral_link_label:      Copy Referral Link
+    referral_link_label:      Copy link ambassador
     group_categories:         Group Categories
     earnings_label:           Earnings
 
@@ -213,7 +213,7 @@ en:
     billing_info:
       title:                  Billing Information
       sub_title:              Information used for payment
-      ncn_number_label:       National Security Number
+      ncn_number_label:       Identity card
       bank_branch_name_label: Name of Bank and Branch
       account_name_label:     Account name
       account_number_label:   Account number

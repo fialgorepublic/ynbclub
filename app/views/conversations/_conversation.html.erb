@@ -13,7 +13,8 @@
 
                   <div class="m-l-10 text-left">
                     <p class="p-l ">
-                      <span class="admin-txt con-truncate" title="<%= conversation.user.name %>"><%#= user_profile_link(conversation.user) %></span> <i
+
+                      <span class="admin-txt con-truncate" title="<%= conversation.user.name %>"><%= user_profile_link(conversation.user) %></span> <i
                         class="fa fa-angle-right pos-arrow-admin" aria-hidden="true"></i>
                       <span class="con-truncate"> <%= link_to conversation.group.name, group_path(conversation.group.id) %>
                       </span>
@@ -56,15 +57,19 @@
             <%= link_to conversation do %>
             <h2><%= conversation.subject %></h2>
             <% end %>
-
+            <h4 class="set-body-paragraph"><%= conversation.body&.html_safe %></h4>
             <div class="comment more">
-              <% if conversation.body.include?("http") && conversation.body.include?("figure") %>
-                <%= conversation.body&.html_safe %>
-              <% elsif conversation.body.include?("http")%>
-                <a href="<%= conversation.body%>" target="_blank"><%= conversation.body%></a>
-              <% else%>
-                <%= conversation.body&.html_safe %>
-              <% end %>
+              <%# if conversation.body.include?("http") && conversation.body.include?("figure") %>
+                <%#= conversation.body&.html_safe %>
+              <%# elsif conversation.body.include?("http")%>
+                <!-- <a href="<%#= conversation.body%>" target="_blank"><%#= conversation.body%></a> -->
+              <%# else%>
+                <% if conversation.avatar.attached? && conversation.avatar.content_type.include?("video") %>
+                      <%= video_tag url_for(conversation.avatar), size: "300x320", controls: true %>
+                    <% else %>
+                    <%= image_tag conversation.avatar, width: "50%", height: "50%" if conversation.avatar.attached? %>
+                    <% end %>
+              <%# end %>
             </div>
 
           </div>

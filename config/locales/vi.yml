@@ -40,12 +40,12 @@ vi:
 
   sidebar: 
     dashboard_label_text:     Bảng điều khiển
-    order_status_label_text:  Tình trạng đặt hàng
+    order_status_label_text:  Tình Trạng đặt hàng
     share_with_friends_label: Chia sẻ với bạn bè 
     take_and_share_label:     Chụp nhanh và chia sẻ 
     exchange_coins_label:     Đổi xu 
     my_orders_label:          Đơn hàng của tôi 
-    referral_sales_label:     Giới thiệu bán hang
+    referral_sales_label:     Đơn đại sứ
     blogs_label:              Blogs
     blogs_list_label:         danh sách blog
     all_orders_label:         Tất cả các đơn đặt hàng
@@ -64,7 +64,7 @@ vi:
     ghtk_status_label:        Cập nhập trạng thái GHTK
     invite_history_label:     Lịch sử mời bạn bè 
     acc_setting_label:        Cài đặt tài khoản 
-    referral_link_label:      Copy link giới thiệu
+    referral_link_label:      Copy link đại sứ
     group_categories:         Group Categories
     earnings_label:           thu nhập
 
@@ -216,7 +216,7 @@ vi:
     billing_info:
       title:                  Thông tin thanh toán 
       sub_title:              Thông tin được sử dụng để thanh toán 
-      ncn_number_label:       Số an ninh quốc gia 
+      ncn_number_label:       Chứng minh nhân dân 
       bank_branch_name_label: Tên ngân hàng chi nhánh 
       account_name_label:     Tên tài khoản (ngân hàng)
       account_number_label:   Số tài khoản 

@@ -6,10 +6,10 @@
 </style>
 <div class="blog-box blog-box-long">
   <div class="row">
-    <div class="col-md-6">
-      <%= link_to blog do %>
+    <div class="col-md-6" id="<%= blog.id%>" onclick="show_blog('<%= blog.id %>')" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">
+      <%#= link_to blog do %>
       <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : blog.avatar, width: '100%', class: 'image-height' %>
-      <% end %>
+      <%# end %>
     </div>
 
     <div class="col-md-6">
@@ -19,7 +19,7 @@
             <div class="col-md-12">
               <p>
                 <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
-                <span class="with-un-blog"><%= blog_user_name(blog) %></span>
+                <span class="with-un-blog"><%= user_profile_link(blog.user) %></span>
                 <span><%= blog_date blog %></span>
                 <span class="with-un-blog"><%= blog.category_name %></span>
               </p>
@@ -35,3 +35,42 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+        <div  class="close_btn_blg">
+         <button type="button" class="close close_btn_blg_in" data-dismiss="modal">&times;</button>
+        </div>
+          <div id="test13">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script type="text/javascript">
+  function show_blog(id){
+    $.ajax({
+      url: '/show_blog/'+id,
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        $('#test13').html(data);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+</script>
