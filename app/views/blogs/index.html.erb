@@ -247,4 +247,32 @@
     });
   };
 
+
+  function blog_show(id){
+    url = $(".dynamic-"+id).attr("id")
+    $.ajax({
+      url: '/show_blog/'+id,
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        console.log(data);
+        $('#test13').html(data);
+        history.pushState({}, null, window.location.href+"/"+url+" ");
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+$( document ).ready(function() {
+  if (window.location.href.includes("id")) {
+    url = window.location.href.split("?")[0]
+    id = window.location.href.split("=")[1]
+    history.pushState({}, null, url);
+    $(".dynamic-"+id).trigger( "click" );
+  }
+})
+
+
 </script>

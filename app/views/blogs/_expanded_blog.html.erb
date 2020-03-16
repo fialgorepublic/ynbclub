@@ -6,7 +6,7 @@
 </style>
 <div class="blog-box blog-box-long">
   <div class="row">
-    <div class="col-md-6" id="<%= blog.id%>" onclick="show_blog('<%= blog.id %>')" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">
+    <div class="col-md-6 dynamic-<%= blog.id%>" id="<%= blog.slug %>" onclick="blog_show('<%= blog.id %>')" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">
       <%#= link_to blog do %>
       <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : blog.avatar, width: '100%', class: 'image-height' %>
       <%# end %>
@@ -60,14 +60,19 @@
 
 
 
-<script type="text/javascript">
-  function show_blog(id){
+
+<!-- <script type="text/javascript">
+  function blog_show(id){
+    alert(id);
+    // url = event.srcElement.parentElement.id
     $.ajax({
       url: '/show_blog/'+id,
       type: 'get',
       data: {id: id},
       success: function(data) {
+        console.log(data);
         $('#test13').html(data);
+        // history.pushState({}, null, window.location.href+"/"+url+" ");
       },
       error: function(data) {
         $('.loader').hide()
@@ -75,4 +80,4 @@
       }
     })
   }
-</script>
+</script> -->
