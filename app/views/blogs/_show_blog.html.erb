@@ -87,6 +87,9 @@ blog_screen_size
     <div class="row">
       <div class="col-md-12 mob-p-t-20">
         <div class="detail-img detail-icon">
+          <div class="flex-sb">
+          <div class="flex-l">
+          <div class="">
           <i class="<%= liked_class(@blog) %>" onclick="like_comment(this,'<%= @blog.id %>');">
           </i>
           <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogText" value="<%= @blog.likes.count %>" >
@@ -100,12 +103,15 @@ blog_screen_size
             <i class="fa fa-eye"></i>
             <span><%= @blog.blog_views.count %>
             </span>
+          </div>
             <%# unless @blog.user == current_user %>
-              <a id="user-<%= @blog.user.id %>">
+              <div id="user-<%= @blog.user.id %>">
                 <%= follow_unfollow_link_blog(@blog.user)  %>
-              </a>
+              </div>
             <%# end %>
-            <h5 class="pull-right">
+     </div>
+            <div class="">
+            <h5 class="">
               <span class="category-style"><%= @blog.category_name %></span>
               <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span>
               <strong>
@@ -115,6 +121,8 @@ blog_screen_size
                 <i class="fa fa-pencil"></i><% end %><% end %><% end %>
               </strong>
             </h5>
+            </div>
+          </div>
             <hr>
           </div>
         </div>
