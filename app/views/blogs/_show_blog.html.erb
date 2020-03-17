@@ -100,11 +100,11 @@ blog_screen_size
             <i class="fa fa-eye"></i>
             <span><%= @blog.blog_views.count %>
             </span>
-            <%# unless @blog.user == current_user %>
-              <a id="user-<%= @blog.user.id %>">
+            <% unless @blog.user == current_user %>
+              <div id="user-<%= @blog.user.id %>">
                 <%= follow_unfollow_link_blog(@blog.user)  %>
-              </a>
-            <%# end %>
+              </div>
+            <% end %>
             <h5 class="pull-right">
               <span class="category-style"><%= @blog.category_name %></span>
               <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span>
@@ -209,6 +209,8 @@ blog_screen_size
 		</div>
 	</div>
 </div>
+
+<span class="cirle-profile cp4" id="user-<%= @blog.user.id %>-following-count" style="display: none"></span>
 
 <script>
   user_signed_in = <%= signed_in? %>;
