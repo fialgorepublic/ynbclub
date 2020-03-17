@@ -50,7 +50,11 @@ class BlogsController < ApplicationController
     # @comments = @blog.comments if @blog.is_published?
     # @selected_products = @blog.products
     # @blog.blog_views.create
-    redirect_to blogs_path(:id => @blog.id)
+    if @blog.present?
+      redirect_to blogs_path(:id => @blog.id)
+    else
+      redirect_to blogs_path
+    end
   end
 
   def show_blog
@@ -244,7 +248,7 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.eager_load_objects.friendly.find(params[:id])
+      @blog = Blog.eager_load_objects.friendly.find(params[:id]) rescue ''
     end
 
     def category_params

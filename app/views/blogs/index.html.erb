@@ -272,7 +272,16 @@ $( document ).ready(function() {
     history.pushState({}, null, url);
     $(".dynamic-"+id).trigger( "click" );
   }
+  else {
+  host = window.location.origin
+  get_url = host+"/blogs"
+  history.pushState({}, null, get_url);
+  }
+  
 })
 
-
+$('body').on('hidden.bs.modal', '.modal', function () {
+  $(this).removeData('bs.modal');
+  history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
+});
 </script>
