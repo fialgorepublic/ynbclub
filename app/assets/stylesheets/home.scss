@@ -2514,7 +2514,8 @@ label.error {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color:rgba(69, 152, 152, 0.58);;  width: 100px;
+  background-color: #cceceb;
+  width: 100px;
   height: 100px;
   display: block;
   text-decoration: none;
@@ -3812,7 +3813,7 @@ input[type="checkbox"]:checked:after {
   background-color: #f5f6f7;
 }
 .emoji_img_upload>input {
-  display: none;
+//  display: none;
 }
 
 .image-upload img{
@@ -3885,9 +3886,6 @@ input#file-input {
 a.share-on-facebook.btn.btn-primary.set-border-radius {
   color: white;
 }
-.bootstrap-filestyle.input-group {
-  // display: none;
-}
 span.remove.fa.fa-times {
   font-size: 15px;
 }
@@ -3921,3 +3919,16 @@ span.remove.fa.fa-times {
 //   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 //   opacity: 0;
 // }
+.follow_btn{
+  color: white;
+  background-color: #54b2b2;
+  text-transform: uppercase;
+  padding: 7px 20px;
+  font-size: 12px;
+  border-radius: 20px;
+  /* float: left; */
+  font-weight: bold;
+   margin-left: 10px; 
+  // margin-top: 10px;
+  width: 200px;
+}

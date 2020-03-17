@@ -17,7 +17,7 @@ module BlogsHelper
 
   def blog_description blog
     return if blog.description.blank?
-    blog.description.html_safe
+    blog.description.truncate(180).html_safe
   end
 
   def blog_title blog

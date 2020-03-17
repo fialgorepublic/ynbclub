@@ -100,6 +100,11 @@ blog_screen_size
             <i class="fa fa-eye"></i>
             <span><%= @blog.blog_views.count %>
             </span>
+            <%# unless @blog.user == current_user %>
+              <a id="user-<%= @blog.user.id %>">
+                <%= follow_unfollow_link(@blog.user)  %>
+              </a>
+            <%# end %>
             <h5 class="pull-right">
               <span class="category-style"><%= @blog.category_name %></span>
               <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span>
@@ -464,6 +469,18 @@ blog_screen_size
       $('body').removeAttr('style');
     });
     });
+
+  $(".close-myModal").click(function(){
+    $("#shareBlogModal").modal("hide");
+    history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
+  })
+
+  // $('#myModal').modal('hide').on('hidden.bs.modal', function (e) {
+  //   $("#shareBlogModal").modal("hide");
+  // })
+
+  // $('#myModal').modal('hide').on('hidden.bs.modal', function (e) {
+  //   });
 </script>
 
 
