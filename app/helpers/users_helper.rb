@@ -42,10 +42,20 @@ module UsersHelper
   def follow_unfollow_link(user)
     # return if user == current_user
     if current_user.blank?
+      link_to 'Follow', 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: 'btn profile-tag-btn-ad btn-default'
+    else
+      text, url = follow_button_text(user)
+      link_to text, url, class: 'btn profile-tag-btn-ad  btn-default', remote: true, type: 'button'
+    end
+  end
+
+  def follow_unfollow_link_blog(user)
+    # return if user == current_user
+    if current_user.blank?
       link_to 'Follow', 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: 'btn follow_btn btn-default'
     else
       text, url = follow_button_text(user)
-      link_to text, url, class: 'btn follow_btn btn-default', remote: true, type: 'button'
+      link_to text, url, class: 'btn follow_btn  btn-default', remote: true, type: 'button'
     end
   end
 end

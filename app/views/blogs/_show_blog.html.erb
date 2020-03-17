@@ -102,7 +102,7 @@ blog_screen_size
             </span>
             <%# unless @blog.user == current_user %>
               <a id="user-<%= @blog.user.id %>">
-                <%= follow_unfollow_link(@blog.user)  %>
+                <%= follow_unfollow_link_blog(@blog.user)  %>
               </a>
             <%# end %>
             <h5 class="pull-right">
