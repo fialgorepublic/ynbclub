@@ -3813,7 +3813,7 @@ input[type="checkbox"]:checked:after {
   background-color: #f5f6f7;
 }
 .emoji_img_upload>input {
-  display: none;
+//  display: none;
 }
 
 .image-upload img{
@@ -3886,9 +3886,7 @@ input#file-input {
 a.share-on-facebook.btn.btn-primary.set-border-radius {
   color: white;
 }
-.bootstrap-filestyle.input-group {
-  display: none;
-}
+
 span.remove.fa.fa-times {
   font-size: 15px;
 }
