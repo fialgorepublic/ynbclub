@@ -40,7 +40,7 @@ module UsersHelper
   end
 
   def follow_unfollow_link(user)
-    return if user == current_user
+    # return if user == current_user
     if current_user.blank?
       link_to 'Follow', 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: 'btn profile-tag-btn-ad btn-default'
     else
