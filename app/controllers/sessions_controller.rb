@@ -35,8 +35,8 @@ class SessionsController < ApplicationController
           unless point.any?
             insert_points(user_invited.id, 6, "Invitation accepted by #{user.name}")
             insert_points(user.id, 6, "Accepted the invitation of #{user_invited.name}")
+            UserMailer.referral_sign_up(user_invited, user).deliver
           end
-          UserMailer.referral_sign_up(user_invited, user).deliver
         end
       end
       UserMailer.user_sign_up(user).deliver
