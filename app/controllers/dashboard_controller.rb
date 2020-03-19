@@ -76,7 +76,7 @@ class DashboardController < ApplicationController
     return redirect_to step_one_path if user_shared_urls.find_by_url(url).present?
     date = Date.today
     instagram_share = user_shared_urls.where("created_at::date = ? AND url_type = ?", (date.midnight.to_date)..(date.end_of_day).to_date, "instagram")
-    if instagram_share.count > 3
+    if instagram_share.count >= 3
       redirect_to step_one_path, alert: I18n.t(:post_shared_limit)
     else
       share_url = user_shared_urls.create(url: url)
