@@ -454,6 +454,7 @@ vi:
   post_duplicate_share:        Bạn đã thêm bài này 
   group_update:                Nhóm đã được cập nhật thành công.
   post_shared_by_someone:    Ai đó đã thêm bài này 
+  post_shared_limit:         Bạn đã chia sẻ ba url
   url_make_sure:              Hãy chắc chắn URL đã chính xác
   invalid_url:                     URL không hợp lệ 
   changes_saved_message:      Thay đổi được lưu thành công
