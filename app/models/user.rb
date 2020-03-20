@@ -222,7 +222,11 @@ class User < ApplicationRecord
   def user_blogs(sort_type, category)
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    blogs.filter_by_category(category).sort_blogs(sort_type)
+    if blogs.include?(category)
+      blogs.filter_by_category(category).sort_blogs(sort_type)
+    else
+      blogs
+    end
   end
 
   def filtered_blogs(sort_type, category, title="")
