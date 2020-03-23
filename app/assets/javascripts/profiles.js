@@ -102,7 +102,6 @@ $(document).on('turbolinks:load', function(){
 
   function initGetBlogs(){
     $('#blogs-tab').click(function () {
-      debugger
       showLoader($('#your-blogs'));
       showLoader($('#liked-blogs'));
       $("html, body").animate({ scrollTop: 300 }, 500);
