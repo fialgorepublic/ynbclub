@@ -222,11 +222,7 @@ class User < ApplicationRecord
   def user_blogs(sort_type, category)
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    # if blogs.include?(category)
-      blogs.filter_by_category(category).sort_blogs(sort_type)
-    # else
-      # blogs
-    # end
+    blogs.filter_by_category(category).sort_blogs(sort_type)
   end
 
   def filtered_blogs(sort_type, category, title="")
@@ -313,7 +309,7 @@ class User < ApplicationRecord
   end
 
   def initiate_shopify_session
-    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: '2e4b3484ea853b5577e587bcd7cfd75d', api_version: '2019-04')
+    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'aa36877bc9e1a1746e3dfcf8a6deb8eb', api_version: '2019-04')
     ShopifyAPI::Base.activate_session(shopify_session)
   end
 
