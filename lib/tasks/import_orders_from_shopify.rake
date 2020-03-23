@@ -1,7 +1,7 @@
 desc 'Import Orders from shopify'
 
 task import_orders_from_shopify: :environment do
-  shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8a6f6c3187c79cd975c9bde50c12756', api_version: '2019-04')
+  shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'aa36877bc9e1a1746e3dfcf8a6deb8eb', api_version: '2019-04')
   ShopifyAPI::Base.activate_session(shopify_session)
 
   orders = []
