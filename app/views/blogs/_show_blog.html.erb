@@ -480,12 +480,13 @@
     history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
   })
 
-  // $('#myModal').modal('hide').on('hidden.bs.modal', function (e) {
-  //   $("#shareBlogModal").modal("hide");
-  // })
-
-  // $('#myModal').modal('hide').on('hidden.bs.modal', function (e) {
-  //   });
+  window.onclick = function(event) {
+    if (event.target.id == "myModal") {
+      $("#myModal").hide();
+      $('.modal-backdrop').remove();
+      history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
+    }
+  }
 </script>
 
 
