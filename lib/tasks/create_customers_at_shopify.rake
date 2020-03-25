@@ -2,7 +2,7 @@ desc "Create customers at shopify"
 
 task create_customers_at_shopify: :environment do
   customer_files = Dir.glob("#{Rails.root}/db/customers/**")
-  shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'b8a6f6c3187c79cd975c9bde50c12756', api_version: '2019-04')
+  shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'aa36877bc9e1a1746e3dfcf8a6deb8eb', api_version: '2019-04')
   ShopifyAPI::Base.activate_session(shopify_session)
 
   customer_files.each do |file_path|

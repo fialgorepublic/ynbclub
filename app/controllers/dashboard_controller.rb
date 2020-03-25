@@ -74,9 +74,14 @@ class DashboardController < ApplicationController
   def step_three
     url, @point_id, user_shared_urls = params[:url], 1, current_user.share_urls
     return redirect_to step_one_path if user_shared_urls.find_by_url(url).present?
-
-    share_url = user_shared_urls.create(url: url)
-    insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
+    date = Date.today
+    instagram_share = user_shared_urls.where("created_at::date = ? AND url_type = ?", (date.midnight.to_date)..(date.end_of_day).to_date, "instagram")
+    if instagram_share.count >= 3
+      redirect_to step_one_path, alert: I18n.t(:post_shared_limit)
+    else
+      share_url = user_shared_urls.create(url: url)
+      insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
+    end
   end
 
   def share_with_friends

@@ -54,7 +54,7 @@
             <a href="#conversations_tab" data-toggle="tab" id="conversations-tab"
               data-url="<%= user_conversations_path(user, type: 'both') %>">
               <span class="tab-profile-hreading">Converstaions</span> <span
-                class="cirle-profile cp3"><%= user.conversations_count %></span>
+                class="cirle-profile cp3"><%= user.conversations.count %></span>
             </a>
           </li>
 

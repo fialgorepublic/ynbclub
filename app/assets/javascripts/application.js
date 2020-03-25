@@ -16,6 +16,8 @@
 //= require best_in_place
 //= require best_in_place.jquery-ui
 //= require turbolinks
+//= require datatables
+//= require google_analytics
 //= require bootstrap.min.js
 //= require jquery.validate.min.js
 //= require toastr.js
@@ -28,6 +30,12 @@
 //= require blogs
 //= require groups
 //= require search 
+//= require profiles
+//= permissions
+//= cable
+//= conversations
+//= shared_url
+// user_cookies
 //= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
 

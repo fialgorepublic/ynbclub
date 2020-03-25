@@ -255,7 +255,6 @@
       type: 'get',
       data: {id: id},
       success: function(data) {
-        console.log(data);
         $('#test13').html(data);
         history.pushState({}, null, window.location.href+"/"+url+" ");
       },
@@ -280,8 +279,8 @@ $( document ).ready(function() {
   
 })
 
-$('body').on('hidden.bs.modal', '.modal', function () {
-  $(this).removeData('bs.modal');
-  history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
+$('body').on('hidden.bs.modal', function () {
+  // $(this).removeData('bs.modal');
+  // history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
 });
 </script>

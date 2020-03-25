@@ -447,6 +447,7 @@ en:
   post_duplicate_share:       You already have added this post.
   group_update:               Group was successfully updated.
   post_shared_by_someone:     Someone has already added this post
+  post_shared_limit:          You already shared three urls
   url_make_sure:              Please Make sure Url is correct.
   invalid_url:                Invalid Url.
   changes_saved_message:      Changes saved successfully.

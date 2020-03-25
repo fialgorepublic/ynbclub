@@ -31,9 +31,12 @@ class SessionsController < ApplicationController
       if invite.present?
         user_invited = User.find_by_email(invite)
         if user_invited
-          insert_points(user_invited.id, 6, "Invitation accepted by #{user.name}")
-          insert_points(user.id, 6, "Accepted the invitation of #{user_invited.name}")
-          UserMailer.referral_sign_up(user_invited, user).deliver
+          point = Point.where(invitee: "Invitation accepted by #{user.name}")
+          unless point.any?
+            insert_points(user_invited.id, 6, "Invitation accepted by #{user.name}")
+            insert_points(user.id, 6, "Accepted the invitation of #{user_invited.name}")
+            UserMailer.referral_sign_up(user_invited, user).deliver
+          end
         end
       end
       UserMailer.user_sign_up(user).deliver

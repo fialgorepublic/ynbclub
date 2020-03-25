@@ -2481,7 +2481,7 @@ label.error {
   }
   .description {
     height: 170px;
-    overflow: hidden;
+    overflow: scroll;
     // min-height: 132px;
     text-overflow: ellipsis;
     // margin-bottom: 25px;
@@ -2491,6 +2491,7 @@ label.error {
     font-weight: 300;
   }
 }
+
 
 .custom-showMore-btn {
   display: flex;
@@ -3933,6 +3934,9 @@ span.remove.fa.fa-times {
   width: 150px;
 }
 .detail-img p img {
+  // width: 100% !important;
+  // height: auto !important;
+  // max-width: 600px !important;
 }
 .mt15_blog{
   margin-top: 13px;
