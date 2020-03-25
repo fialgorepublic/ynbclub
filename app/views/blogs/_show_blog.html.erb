@@ -91,12 +91,12 @@
             <span style="display:inline-block;">
               <input style="border: none; width: 25px;; box-shadow: none; background: transparent" type="text" id="blogUrl" value="<%= @blog.share_urls.count %>" >
             </span>
+            <i class="fa fa-eye"></i>
+            <span><%= @blog.blog_views.count %>
+            </span>&nbsp;&nbsp;
             <% if @blog.is_published? %>
               <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
             <% end %>
-            <i class="fa fa-eye"></i>
-            <span><%= @blog.blog_views.count %>
-            </span>
             </div>
             <div class="">
             <% unless @blog.user == current_user %>
