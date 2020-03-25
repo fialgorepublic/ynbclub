@@ -167,7 +167,7 @@ class UsersController < ApplicationController
         @error_messages << msg
       }
       flash[:alert] = @error_messages
-      redirect_to dashboard_path
+      redirect_to dashboard_path(user_update_params)
     end
   end
 
