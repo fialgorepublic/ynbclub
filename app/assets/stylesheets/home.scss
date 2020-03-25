@@ -3934,8 +3934,9 @@ span.remove.fa.fa-times {
   width: 150px;
 }
 .detail-img p img {
-  width: auto !important;
+  width: 100% !important;
   height: auto !important;
+  max-width: 600px !important;
 }
 .mt15_blog{
   margin-top: 13px;
