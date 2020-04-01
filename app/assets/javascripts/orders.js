@@ -9,9 +9,10 @@ $(document).on('turbolinks:load', function() {
     searching:     false,
     "order":       [],
     rowCallback: function(row, data, index){
+      debugger
       if (data[2] == 'Paid') { $('td', row).css('background-color', '#8abfef'); return; }
-      string_index = data[7].indexOf('"selected"');
-      value = JSON.parse(data[7].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
+      string_index = data[8].indexOf('"selected"');
+      value = JSON.parse(data[8].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
       if(value == '1'){
         $('td', row).css('background-color', '#e8f4e7');
       }
