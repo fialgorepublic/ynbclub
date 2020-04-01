@@ -9,7 +9,6 @@ $(document).on('turbolinks:load', function() {
     searching:     false,
     "order":       [],
     rowCallback: function(row, data, index){
-      debugger
       if (data[2] == 'Paid') { $('td', row).css('background-color', '#8abfef'); return; }
       string_index = data[8].indexOf('"selected"');
       value = JSON.parse(data[8].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
