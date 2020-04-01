@@ -88,6 +88,7 @@ en:
       ambassador_label:       Ambassador
       commission_label:       Commission
       tracking_label:         Tracking Id
+      product_label:                Products
       shipment_label:         Shipment Status
       payment_status:         Payment Status
 

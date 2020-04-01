@@ -4,6 +4,7 @@
 <td><%= order.store %></th>
 <!-- <#% if current_user.is_admin? %> -->
 <td><%= order.ghtk_label %></td>
+<td><%= order.items.first.name %></td>
 <td><%= order.customer_name %></td>
 <td><%= order.phone_number.delete(' ') if order.phone_number %></td>
 <td>

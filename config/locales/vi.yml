@@ -88,6 +88,7 @@ vi:
       ambassador_label:       Ambassador
       commission_label:       Commission
       tracking_label:         Theo dõi ID 
+      product_label:          Các sản phẩm
       shipment_label:         Tình trạng giao hang 
       payment_status:         Tình trạng thanh toán 
 
