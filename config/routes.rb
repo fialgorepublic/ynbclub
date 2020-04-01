@@ -152,6 +152,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :cookies
     get 'last_order', to: 'orders#last_order'
+    get 'callback_url', to: 'orders#callback_url'
   end
 
   resource  :share_with_friends, only: [:edit, :update]
