@@ -151,6 +151,7 @@ Rails.application.routes.draw do
   resources :profiles
   namespace :api do
     resources :cookies
+    get 'last_order', to: 'orders#last_order'
   end
 
   resource  :share_with_friends, only: [:edit, :update]
