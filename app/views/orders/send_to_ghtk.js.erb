@@ -1,9 +1,9 @@
 $('.loader').hide();
-
+a = <%= @order_id %>
 <% if @result %>
   toastr.success('<%= @message %>');
   setTimeout(function(){
-    window.location.href = '/orders';
+    window.location.href = '/orders#'+a;
   }, 5000);
 <% else %>
   toastr.error('<%= @message %>');

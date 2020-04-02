@@ -1,4 +1,5 @@
-<td><%= order_date(order) %></td>
+
+<td><%= link_to order_date(order), '', id: order.id, style: 'color: #333333; cursor: auto; text-decoration: inherit;'%> </td>
 <td><%= order.order_name %></td>
 <td><%= order.financial_status&.titleize %></td>
 <td><%= order.store %></th>

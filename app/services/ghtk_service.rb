@@ -12,7 +12,7 @@ class GhtkService
     if address_present?
       place_order
     else
-      [false, I18n.t(:gthk_address_error)]
+      [false, I18n.t(:gthk_address_error), order.id]
     end
   end
 
@@ -43,7 +43,7 @@ class GhtkService
         update_order(response) if order.ghtk_label.blank? || order.ghtk_status.blank?
         result, message = false, response["message"]
       end
-      [result, message]
+      [result, message, order.id]
     end
 
     def update_order response
