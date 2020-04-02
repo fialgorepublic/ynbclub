@@ -85,6 +85,7 @@ Rails.application.routes.draw do
       get :wards
       get :my
       get :update_status
+      get :last_order
     end
   end
   resources :shared_urls,   only: [:index]

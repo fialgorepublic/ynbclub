@@ -25,6 +25,13 @@ class OrdersController < ApplicationController
     render head :ok
   end
 
+  def last_order
+    @order = Order.first
+    respond_to do |format|
+      format.js { flash.now[:notice] = 'New Order Placed.' }
+    end
+  end
+
   def update
     if OrderService.new(order_params).update_address
       respond_to do |format|

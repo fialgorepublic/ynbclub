@@ -47,7 +47,7 @@ $(document).on('turbolinks:load', function() {
     'scrollX': true
   });
 
-  $('.send_to_ghtk').click(function(){
+  $("#orders").on("click", ".send_to_ghtk", function () {    
     order_id = $(this).data('order-id');
     $('.loader').show();
     $.ajax({
@@ -61,7 +61,8 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $('.edit_address').click(function(){
+
+  $("#orders").on("click", ".edit_address", function () {
     order_id = $(this).data('order-id');
     $('#edit_address_modal').modal('show');
     $.ajax({
@@ -75,7 +76,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $('.phone-status').change(function(){
+  $("#orders").on("change", ".phone-status", function () {
     order_id = $(this).data('order-id');
     status = $(this).val();
     $.ajax({
