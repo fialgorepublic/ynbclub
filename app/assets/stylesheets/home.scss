@@ -2424,7 +2424,7 @@ label.error {
     }
     h3 {
       color: #030c36;
-      font-size: 14px !important;
+      font-size: 1vw !important;
       font-family: "Montserrat", sans-serif;
     }
     span:last-child {
@@ -3940,4 +3940,19 @@ span.remove.fa.fa-times {
 }
 .mt15_blog{
   margin-top: 13px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .blog-box .blog-box-content h3 {
+    color: #030c36;
+    font-size: 4vw !important;
+    font-family: "Montserrat", sans-serif;
+  }
+
+}
+@media only screen and (max-width: 980px) {
+  .menu-list {
+    overflow: hidden !important;
+  }
 }
