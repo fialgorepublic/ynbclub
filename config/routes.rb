@@ -85,6 +85,7 @@ Rails.application.routes.draw do
       get :wards
       get :my
       get :update_status
+      get :last_order
     end
   end
   resources :shared_urls,   only: [:index]
@@ -151,6 +152,8 @@ Rails.application.routes.draw do
   resources :profiles
   namespace :api do
     resources :cookies
+    get 'last_order', to: 'orders#last_order'
+    get 'callback_url', to: 'orders#callback_url'
   end
 
   resource  :share_with_friends, only: [:edit, :update]

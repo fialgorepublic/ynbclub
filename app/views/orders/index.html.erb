@@ -26,7 +26,7 @@
           <%= search_form_for @q do |f| %>
           <div class="flex-sb">
             <div class="input-group m0b-m-10 width-100">
-              <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_cont, { class: 'form-control', placeholder: t('orders.index.search_placeholder'), id: 'search-field' } %>
+              <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_or_phone_number_cont, { class: 'form-control', placeholder: t('orders.index.search_placeholder'), id: 'search-field' } %>
               <span class="input-group-btn ">
                 <button class="btn btn-default btn-lg pd-clear" id='clear-btn' type="button" data-url="<%= orders_path %>">
                   <i class="fa fa-times" aria-hidden="true"></i>
@@ -60,10 +60,10 @@
         </tr>
       </thead>
 
-      <tbody>
+      <tbody id="tbody">
 
         <% @orders.each do |order| %>
-        <tr>
+        <tr id="<%= order.id %>">
           <%= render partial: 'table_body', locals: { order: order } %>
         </tr>
         <% end %>
@@ -95,3 +95,23 @@
 
   </div>
 </div>
+
+
+<script type="text/javascript">
+  function executeQuery() {
+  $.ajax({
+    url: 'orders/last_order',
+    success: function(data) {
+    }
+  });
+  updateCall();
+}
+
+  function updateCall(){
+  setTimeout(function(){executeQuery()}, 5000);
+  }
+
+  $(document).ready(function() {
+    executeQuery();
+  });
+</script>

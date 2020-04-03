@@ -10,8 +10,8 @@ $(document).on('turbolinks:load', function() {
     "order":       [],
     rowCallback: function(row, data, index){
       if (data[2] == 'Paid') { $('td', row).css('background-color', '#8abfef'); return; }
-      string_index = data[7].indexOf('"selected"');
-      value = JSON.parse(data[7].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
+      string_index = data[8].indexOf('"selected"');
+      value = JSON.parse(data[8].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
       if(value == '1'){
         $('td', row).css('background-color', '#e8f4e7');
       }
@@ -47,7 +47,7 @@ $(document).on('turbolinks:load', function() {
     'scrollX': true
   });
 
-  $('.send_to_ghtk').click(function(){
+  $("#orders").on("click", ".send_to_ghtk", function () {    
     order_id = $(this).data('order-id');
     $('.loader').show();
     $.ajax({
@@ -61,7 +61,8 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $('.edit_address').click(function(){
+
+  $("#orders").on("click", ".edit_address", function () {
     order_id = $(this).data('order-id');
     $('#edit_address_modal').modal('show');
     $.ajax({
@@ -75,7 +76,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  $('.phone-status').change(function(){
+  $("#orders").on("change", ".phone-status", function () {
     order_id = $(this).data('order-id');
     status = $(this).val();
     $.ajax({
