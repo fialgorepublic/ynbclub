@@ -108,7 +108,10 @@
 }
 
   function updateCall(){
-  setTimeout(function(){executeQuery()}, 5000);
+  setTimeout(function(){
+    if(window.location.href.includes("orders")){
+            executeQuery()}
+  }, 5000);
   }
 
   $(document).ready(function() {
