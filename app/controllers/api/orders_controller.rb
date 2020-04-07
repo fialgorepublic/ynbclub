@@ -7,6 +7,7 @@ class Api::OrdersController < ApplicationController
   end
 
   def callback_url
+    params.inspect
     render json: [];
   end
 end
