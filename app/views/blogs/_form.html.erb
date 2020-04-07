@@ -237,6 +237,7 @@
         </div>
 
       </div>
+        <button id='content' data-toggle="popover" data-placement="top" data-content="Please Select Product" title="" style="float: right;visibility: collapse;margin-right: 122px;"></button>
       <div class="modal-footer">
         <div class="row">
           <div class="col-md-6">
@@ -495,6 +496,7 @@
     });
 
     function add_products(){
+
         var ids = [];
         $(".selected").each(function(index, v) {
             console.log($(v).attr('class').split(' ')[0]);
@@ -515,6 +517,10 @@
                     //    window.location.reload();
                 }
             });
+        }
+        else {
+          $('#content').trigger('click');
+
         }
     }
 
