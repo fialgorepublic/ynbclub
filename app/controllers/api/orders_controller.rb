@@ -7,7 +7,7 @@ class Api::OrdersController < ApplicationController
   end
 
   def callback_url
-    params.inspect
+    Rails.logger.info "===========================>>>>>>>>>>>>>>>><<<<<<<<<<<<<>#{params.inspect}" 
     render json: [];
   end
 end
