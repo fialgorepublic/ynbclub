@@ -27,7 +27,6 @@ class BlogsController < ApplicationController
     end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
-
     respond_to do |format|
       format.html
       format.js
@@ -69,6 +68,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new
     @blog.attach_default_image
     @category = Category.new
+    render partial: 'blogs/new_form'
   end
 
   # GET /blogs/1/edit
@@ -80,6 +80,7 @@ class BlogsController < ApplicationController
       @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
       clear_shopify_session
     end
+    render partial: 'blogs/new_form'
   end
 
   # POST /blogs

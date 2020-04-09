@@ -41,7 +41,10 @@
                     <li></li>
                   </ul>
               <!-- menu -->
-                <div id="myDropdown" class="dropdown-content"><%= link_to t(:edit_label), edit_blog_path(@blog) %><%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %><% if @blog.is_published %>
+                <div id="myDropdown" class="dropdown-content">
+                  <%#= link_to t(:edit_label), edit_blog_path(@blog) %>
+                  <%= link_to t(:edit_label), '', data: { toggle: 'modal', target: '#new-blog' }, id: @blog.id, onclick: "edit_blog(#{@blog.id})" %>
+                  <%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %><% if @blog.is_published %>
                     <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
                     </a>
                   <% end %>
@@ -212,6 +215,9 @@
 		</div>
 	</div>
 </div>
+
+
+
 
 <span class="cirle-profile cp4" id="user-<%= @blog.user.id %>-following-count" style="display: none"></span>
 

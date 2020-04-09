@@ -1,0 +1,576 @@
+<%= form_with(model: @blog, local: true, multipart: true, id: "blog-form") do |form| %>
+  <% if @blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+      <ul>
+        <% @blog.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= hidden_field_tag :translate_edit, params[:translate_edit]  if params[:translate_edit].present? %>
+  <div class="container">
+    <div class="ambassdor-box newBlog-style">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="field m-image-frame form-group">
+                <%= image_tag @blog.avatar.variable? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : @blog.avatar, alt: "Add  icon", id: 'blah', size: '100x100' %>
+                <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
+                <div class="field form-group" id="image-upload-button-div">
+                  <div class="fileUpload form-control start blog-imgUpload">
+                    <%= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false, accept: "image/png,image/jpeg" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-heading">
+                <h2><%= t('blogs.new.products_label') %></h2>
+              </div>
+
+              <div class="product-toolTips">
+                <div class="box-shadow-am sm-pd-am m-t-20 assign-Heading set-border-radius" type="button" data-toggle="popover" data-placement="bottom" data-contents="Please Select Product" title="">
+                  <h4><a href="javascript:void(0);" onclick="get_products();" style="text-decoration: none;">+ <%= t('blogs.new.assign_products') %></a></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="row m-t-20">
+                <div class="Newblog-category">
+                  <div class="col-md-12">
+                    <div class="category-option" type="button" data-toggle="popover" id="tooltip-stlye-category" data-placement="top" data-content="Please Select Category First" title="">
+                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => t('blogs.new.category_placeholder')}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <% if current_user.is_admin? %>
+                <div class="row m-t-20">
+                  <div class="col-md-8">
+                    <%= link_to t('blogs.new.category_label'), "javascript:void(0)", id: 'create-or-edit-category'%>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="row m-t-30">
+                <div class="col-md-12">
+                  <div class="blogBox-style">
+                    <div class="box-shadow-am">
+                      <div class="form-group">
+                        <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: t('blogs.new.title_placeholder'),  :required => true %>
+                      </div>
+
+                      <div class="form-group">
+                        <label><%=t('blogs.new.description') %></label>
+                        <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
+                        <span id="display_count"><%= t('blogs.new.total_words') %>: 0</span>
+                        <span class="float-right"><%= t('blogs.new.minimum_required_words') %>: 500 </span>
+                        <!--                        <span style="float:right;" id='max_limit'><%#= t('blogs.new.maximum_words_allowed') %>: 700</span>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="create-blog-img">
+      <div id="selectedProducts">
+        <% if @selected_products.present? %>
+          <%= render partial: 'blogs/selected_products' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="blog-submt-btn">
+        <%= form.submit t('blogs.new.publish_btn_label'), class: 'btn btn-success set-border-radius', style: 'margin-bottom: 30px;' %>
+      </div>
+    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+
+<!-- Modal -->
+<div class="modal fade" id="uploadVideo" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4 class="">Add Video from Youtube</h4>
+        <div class="form-group">
+          <label></label>
+          <input type="text" class="form-control" placeholder="Paste Copied">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="publishPost" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4 class="">Are you sure you want to unpublish</h4>
+        <h5>Blog post name goes here?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" >yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="create-or-edit-category-modal" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create or Edit Category</h4>
+      </div>
+      <%= hidden_field_tag :url, action_name == 'edit' ? edit_blog_path(@blog) : new_blog_path  %>
+      <div class="modal-body">
+        <h4>Create New</h4>
+        <br>
+        <%= form_for @category, url: create_or_update_cateogry_blogs_path, method: :post, remote: true do |form| %>
+          <div class="form-group">
+            <%= form.label :name %>
+            <%= form.text_field :name, id: :category_name, class: 'form-control', required: true %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit class: 'btn btn-success' %>
+          </div>
+        <% end %>
+
+        <hr>
+        <div id="update-category">
+          <h4>Update existing one</h4>
+          <%= form_for @category, url: create_or_update_cateogry_blogs_path, method: :post, remote: true  do |form| %>
+            <div class="form-group">
+              <%= collection_select(:category, :id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :name %>
+              <%= form.text_field :name, id: :category_name, class: 'form-control', required: true, id: 'update-category-name' %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit 'Update Category', class: 'btn btn-success' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade assignProduct" id="assignProduct" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close product-modal">&times;</button>
+        <h4 class="modal-title"><%= t('blogs.assign_product_modal.assign_title') %></h4>
+      </div>
+
+      <div class="modal-body ">
+        <div id="product-search-form">
+          <%= form_tag(search_products_path, method: "get", remote: true, id: 'search-form') do %>
+            <%= hidden_field_tag :blog_id, @blog.id %>
+            <%= hidden_field_tag :selected_products_ids, nil, id: 'selected_products_ids' %>
+            <div class="row">
+              <div class="col-md-9">
+                <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title', data: { type: 'search' } ) %>
+              </div>
+              <div class="col-md-3">
+                <%= submit_tag(t(:search_label), class: 'btn btn-primary form-group', id: 'search-btn') %>
+                <%= submit_tag(t(:clear_label), class: 'btn btn-default form-group', id: 'clear-btn-search') %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="products">
+          <% if @products.present? %>
+            <%= render partial: 'blogs/products' %>
+          <% end %>
+        </div>
+
+      </div>
+      <button id='content' data-toggle="popover" data-placement="top" data-content="Please Select Product" title="" style="float: right;visibility: collapse;margin-right: 122px;"></button>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-6">
+             <button type="button" class="btn btn-block btn-default product-modal"><%= t(:cancel_label) %></button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary" onclick="add_products();"><%= t(:save_label) %></button>
+          </div>
+          
+        </div>
+       
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade uploadImage" id="uploadImage" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:15px 25px;">
+          
+        <div class="row">
+          <div class="col-md-4">
+            <p>Preview</p>
+            <div class="image-box">
+              <form>
+                <img id="myImg" src="/assets/camera-icon.png" alt="your image" />
+                <input type='file' />
+            </form>
+            </div>
+          </div>
+          <div class="col-md-8 mt-5">
+            <div class="upload-right-holder">
+              <div class="form-group">
+                <select class="form-control" style="margin-left:-7px;">
+                  <option>Select Category</option>
+                </select>
+              </div>
+              <div class="form-group">
+               <p>Lorem Ipsum</p>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Write Preview">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:15px 25px;">
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade uploadImage" id="uploadedImage" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h4 class="modal-title text-center">Uploaded Photo</h4>
+      </div>
+      <div class="modal-body" style="padding:15px 25px;">
+        <div class="row" style="margin:0;">
+          <div class="col-md-12">
+            <img width="100%" src="http://localhost:3000/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1790c95b5824fb6e9aad14001a1a8e426dca51e5/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9VWTI5dFltbHVaVjl2Y0hScGIyNXpld282QzNKbGMybDZaVWtpRGpFd01EQjRNelV3WGdZNkJrVlVPZ3huY21GMmFYUjVTU0lMUTJWdWRHVnlCanNIVkRvTFpYaDBaVzUwU1NJT01UQXdNSGd6TlRCZUJqc0hWRG9QWW1GamEyZHliM1Z1WkVraUNXZHlaWGtHT3dkVU9neHhkV0ZzYVhSNWFXUT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--182073b62d1a41110db6c835d502a9e1c281a10e/Consulting-black.png">
+          </div>
+        </div>       
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Uploaded New Photo</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Save Photo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
+<script>
+    $('#create-or-edit-category').click(function() {
+        $('#create-or-edit-category-modal').modal('show');
+        $('#update-category-name').attr('disabled', true);
+    });
+
+    $('#search-form').submit(function(){
+        if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }
+        searchText = $('#product-title').val();
+        if(searchText == '') { return false; }
+        if(searchText.length < 3) { $('#search-form').append('<p>Please enter three or more letters</p>'); return false; }
+        $("p").hide('slow');
+    })
+
+    $('#clear-btn-search').click(function(e){
+        if ($('#product-title').val() == '') { return false; };
+        $('#product-title').data('type', 'clear');
+    });
+
+    $('#search-btn').click(function(e){
+        $('#product-title').data('type', 'search');
+    });
+
+    $('#category_id').change(function(){
+        $('#update-category-name').attr('disabled', false);
+        $('#update-category-name').val($('#category_id option:selected').text());
+    });
+
+    $(":file").filestyle({input: false});
+
+    // $('textarea.editor').ckeditor();
+
+    var menu = new BootstrapMenu('#demo1Box', {
+        actions: [{
+            name: 'Upload image',
+            onClick: function() {
+//                toastr.info("'Upload image");
+                $('#uploadVideo').modal('show')
+            }
+        },
+
+            {
+                name: 'Add video from youtube',
+                onClick: function() {
+                    $('#uploadVideo').modal('show')
+                }
+            }]
+    });
+
+    $(document).on('turbolinks:load', function(){
+
+        selected_products_ids = [];
+
+        $('#blog-form').submit(validateDescriptionLength)
+        $('#blog-form').submit(validateDefaultImage)
+        var v = CKEDITOR.instances.blog_description
+        words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
+        if (words) { $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`); }
+        v.on('key', function(event) {
+            words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
+            if (words) {
+                $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
+                if(words.length >= 659){
+                    $('#max_limit').text('<%= t('blogs.new.limit_reach_label') %>');
+                    $('#max_limit').css('color', 'red');
+                }
+                else{
+                    $('#max_limit').text(`<%= t('blogs.new.maximum_words_allowed') %>: 700`);
+                    $('#max_limit').css('color', 'black');
+                }
+            }
+        });
+
+        function validateDescriptionLength(){
+            var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
+            if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
+            if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
+            if (description) {
+                if (description.length < 500) {
+                    alert("<%= t('blogs.new.descriptn_length_errr') %>")
+                    return false
+                }
+            }
+            else {
+                alert("<%= t('blogs.new.blog_description_empty') %>");
+                return false;
+            }
+
+        }
+
+        function validateDefaultImage(){
+            file = $('#fileupload').val();
+            if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
+                toastr.error('<%= t('blogs.new.default_image_error') %>');
+                return false;
+            }
+        }
+    });
+
+    $("#fileupload").change(function () {
+        readURL(this);
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            var name = input.files[0].name
+            var fileType = input.files[0].type
+            var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+            if ($.inArray(fileType, ValidImageTypes) < 0) {
+                return alert("File type not allowed.")
+            }
+
+            reader.onload = function (e) {
+                var st = e.target.result;
+                $('#blah').attr('src', e.target.result);
+                $('#fileUpload').attr('src', e.target.result);
+            };
+            $('#file-name').text(name);
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function get_products(){
+        $('#assignProduct').modal('show');
+        $.ajax({
+            url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $('#products').html(data);
+              $(".selected").each(function(index, v) {
+                id = $(v).attr('class').split(' ')[0];
+                if(selected_products_ids.indexOf(id) === -1)
+                  selected_products_ids.push(id);
+              });
+            },
+            error: function (data) {
+                alert('Error');
+                //    window.location.reload();
+            }
+        });
+    }
+
+    $("#search-form").submit(function(){
+      // $(".selected").each(function(index, v) {
+      //   selected_products_ids.push($(v).attr('class').split(' ')[0]);
+      // });
+      $('#selected_products_ids').val(selected_products_ids.join(','));
+      return true;
+    });
+
+     $('.product-modal').click(function(e){
+    e.preventDefault();
+    $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#new-blog').modal('show');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+    });
+
+    function add_products(){
+
+        var ids = [];
+        $(".selected").each(function(index, v) {
+            console.log($(v).attr('class').split(' ')[0]);
+            ids.push($(v).attr('class').split(' ')[0]);
+        });
+        if (ids != ""){
+            $.ajax({
+                url: '/get_selected_products?ids='+ids,
+                type: 'get',
+                dataType: 'html',
+                processData: false,
+                success: function (data) {
+                    $('#selectedProducts').html(data);
+                     $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
+                      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+                      $('#new-blog').modal('show');
+                      $('body').addClass('modal-open');
+                      $('body').removeAttr('style');
+                    });
+                },
+                error: function (data) {
+                    alert('Error');
+                    //    window.location.reload();
+                }
+            });
+        }
+        else {
+          $('#content').trigger('click');
+
+        }
+    }
+
+
+
+
+
+    $.fn.extend({
+        popoverClosable: function (options) {
+            var defaults = {
+                template:
+                    '<div class="popover">\
+    <div class="arrow"></div>\
+    <div class="popover-header">\
+    <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>\
+    <h3 class="popover-title"></h3>\
+    </div>\
+    <div class="popover-content"></div>\
+    </div>'
+            };
+            options = $.extend({}, defaults, options);
+            var $popover_togglers = this;
+            $popover_togglers.popover(options);
+            $popover_togglers.on('click', function (e) {
+                e.preventDefault();
+                $popover_togglers.not(this).popover('hide');
+            });
+            $('html').on('click', '[data-dismiss="popover"]', function (e) {
+                $popover_togglers.popover('hide');
+            });
+        }
+    });
+
+    $(function () {
+        $('[data-toggle="popover"]').popoverClosable();
+    });
+
+    window.onclick = function(event) {
+    if (event.target.id == "new-blog") {
+      event.preventDefault();
+      alert('Please Save Your Blog First')
+    }
+  }
+</script>
