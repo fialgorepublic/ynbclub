@@ -12,13 +12,31 @@
               <h3><%= user_name(user) %></h3>
               <div class="flex-l">
                 <div class="">
-                  <img src="/assets/1.png">
+                  <% if user.profile.youtube.present? %>
+                    <%= link_to user.profile.youtube, target: "_blank", rel: "alternate" do %>
+                      <%= image_tag "1.png"%>
+                    <% end %>
+                    <% else %>
+                  <img src="/assets/1.png" style="opacity: 0.5">
+                  <% end %>
                 </div>
                 <div class="">
-                  <img src="/assets/2.png">
+                  <% if user.profile.facebook.present? %>
+                    <%= link_to user.profile.facebook, target: "_blank", rel: "alternate" do %>
+                      <%= image_tag "2.png"%>
+                    <% end %>
+                    <% else %>
+                  <img src="/assets/2.png" style="opacity: 0.5">
+                  <% end %>
                 </div>
                 <div class="">
-                  <img src="/assets/3.png">
+                  <% if user.profile.instagram.present? %>
+                    <%= link_to user.profile.instagram, target: "_blank", rel: "alternate" do %>
+                      <%= image_tag "3.png"%>
+                    <% end %>
+                    <% else %>
+                  <img src="/assets/3.png" style="opacity: 0.5">
+                  <% end %>
                 </div>
               </div>
             </div>

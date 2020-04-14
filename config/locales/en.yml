@@ -22,6 +22,7 @@ en:
     enter_name_placeholder:   Enter Username
     username_label:           Username
     email_label:              Email
+    social_icon:              Social Icons
     email_placeholder:        Enter Email
     password_label:           Password
     password_placeholder:     Enter Password
@@ -203,6 +204,9 @@ en:
     ambassador_label:         Brand Ambassador
     name_label:               Name
     referral_label:           Referral
+    facebook_link:            Facebook Link
+    instragram_link:          Instragram Link
+    youtube_link:             Youtube Link
     address_line1_label:      Address line 1
     address_line2_label:      Address line 2
     state_label:              State

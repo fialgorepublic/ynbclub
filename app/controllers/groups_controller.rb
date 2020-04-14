@@ -80,6 +80,11 @@ class GroupsController < ApplicationController
     @groups = Group.filter_by_name(params[:group_title])
   end
 
+  def search_conversation
+    @group = Group.find(params[:group_id])
+    @conversations = @group.post_conversations.where("subject ILIKE ?", "%#{params[:conversation_subject]}")
+  end
+
   def banner
     @page.update(group_banner: params[:page][:group_banner])
     redirect_to groups_path

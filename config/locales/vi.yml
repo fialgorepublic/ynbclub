@@ -22,6 +22,7 @@ vi:
     enter_name_placeholder:   Nhập tên người dung 
     username_label:           Tên người dung 
     email_label:              Email
+    social_icon:              Biểu tượng xã hội
     email_placeholder:        Nhập Email 
     password_label:           Mật khẩu
     password_placeholder:     Nhập mật khẩu
@@ -206,6 +207,9 @@ vi:
     ambassador_label:         Brand Ambassador
     name_label:               Tên 
     referral_label:           Giới thiệu 
+    facebook_link:            Đường dẫn Facebook
+    instragram_link:          Liên kết Instagram
+    youtube_link:             Liên kết Youtube
     address_line1_label:      Địa chỉ 1
     address_line2_label:      Địa chỉ  2
     state_label:              Quốc gia

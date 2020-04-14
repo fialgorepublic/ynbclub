@@ -167,6 +167,7 @@ Rails.application.routes.draw do
     collection do
       post :banner
       get  :search
+      get  :search_conversation
     end
     get :users, on: :member
     resources :conversations, only: [:index], module: 'groups'
