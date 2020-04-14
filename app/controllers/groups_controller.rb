@@ -82,7 +82,7 @@ class GroupsController < ApplicationController
 
   def search_conversation
     @group = Group.find(params[:group_id])
-    @conversations = @group.post_conversations.where("subject ILIKE ?", "%#{params[:conversation_subject]}")
+    @conversations = @group.post_conversations.where("subject ILIKE ?", "%#{params[:conversation_subject]}%")
   end
 
   def banner
