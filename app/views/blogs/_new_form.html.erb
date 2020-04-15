@@ -67,9 +67,11 @@
 
                       <div class="form-group">
                         <label><%=t('blogs.new.description') %></label>
-                        <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
-                        <span id="display_count"><%= t('blogs.new.total_words') %>: 0</span>
-                        <span class="float-right"><%= t('blogs.new.minimum_required_words') %>: 500 </span>
+                        <%#= form.text_area :description, class: 'quill_container' %>
+                        <%= form.text_area :description, cols: "30", rows: "10", class: 'quill_container form-control' %>
+                        <%#= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
+                        <!-- <span id="display_count"><%#= t('blogs.new.total_words') %>: 0</span> -->
+                        <!-- <span class="float-right"><%#= t('blogs.new.minimum_required_words') %>: 500 </span> -->
                         <!--                        <span style="float:right;" id='max_limit'><%#= t('blogs.new.maximum_words_allowed') %>: 700</span>-->
                       </div>
                     </div>
@@ -337,6 +339,51 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
 <script>
+  var toolbarOptions = [
+    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    ['blockquote', 'code-block'],
+
+    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+    [{ 'direction': 'rtl' }],                         // text direction
+
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    [ 'link', 'image', 'video', 'formula' ],          // add's image support
+    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+
+    ['clean']                                         // remove formatting button
+  ];
+
+  var defaults = {
+    theme: 'snow',
+    modules: {
+      toolbar: toolbarOptions
+    }
+  };
+
+
+//This is the global config object
+Quilljs.setDefaults(defaults)
+
+//       $(document).ready(function()
+// {   
+    a = $(".ql-editor")[0]
+
+    $(a).contentEditable=true;
+    
+    $('#blog_title').bind('mousedown',function(e)
+    {
+      debugger
+      window.getSelection().removeAllRanges();
+        // window.getSelection().getRangeAt(0).startContainer;
+        // e.preventDefault();
+    });
+// });
     $('#create-or-edit-category').click(function() {
         $('#create-or-edit-category-modal').modal('show');
         $('#update-category-name').attr('disabled', true);

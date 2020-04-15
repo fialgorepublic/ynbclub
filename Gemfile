@@ -60,6 +60,7 @@ gem 'yt', '~> 0.29.1'
 gem 'medium-editor-rails', '~> 2.3'
 gem 'medium-editor-insert-plugin-rails'
 gem 'local_time'
+gem 'quilljs-rails'
 gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

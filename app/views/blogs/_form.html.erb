@@ -59,9 +59,10 @@
 
                       <div class="form-group">
                         <label><%=t('blogs.new.description') %></label>
-                        <%= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
-                        <span id="display_count"><%= t('blogs.new.total_words') %>: 0</span>
-                        <span class="float-right"><%= t('blogs.new.minimum_required_words') %>: 500 </span>
+                          <%= form.text_area :description, class: 'quill_container' %>
+                        <%#= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
+                        <!-- <span id="display_count"><%#= t('blogs.new.total_words') %>: 0</span> -->
+                        <!-- <span class="float-right"><%#= t('blogs.new.minimum_required_words') %>: 500 </span> -->
                         <!--                        <span style="float:right;" id='max_limit'><%#= t('blogs.new.maximum_words_allowed') %>: 700</span>-->
                       </div>
                     </div>
@@ -343,6 +344,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
 <script>
+
     $('#create-or-edit-category').click(function() {
         $('#create-or-edit-category-modal').modal('show');
         $('#update-category-name').attr('disabled', true);
@@ -393,52 +395,52 @@
 
     $(document).on('turbolinks:load', function(){
 
-        selected_products_ids = [];
+        // selected_products_ids = [];
 
-        $('#blog-form').submit(validateDescriptionLength)
-        $('#blog-form').submit(validateDefaultImage)
-        var v = CKEDITOR.instances.blog_description
-        words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
-        if (words) { $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`); }
-        v.on('key', function(event) {
-            words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
-            if (words) {
-                $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
-                if(words.length >= 659){
-                    $('#max_limit').text('<%= t('blogs.new.limit_reach_label') %>');
-                    $('#max_limit').css('color', 'red');
-                }
-                else{
-                    $('#max_limit').text(`<%= t('blogs.new.maximum_words_allowed') %>: 700`);
-                    $('#max_limit').css('color', 'black');
-                }
-            }
-        });
+        // $('#blog-form').submit(validateDescriptionLength)
+        // $('#blog-form').submit(validateDefaultImage)
+        // var v = CKEDITOR.instances.blog_description
+        // words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
+        // if (words) { $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`); }
+        // v.on('key', function(event) {
+        //     words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
+        //     if (words) {
+        //         $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
+        //         if(words.length >= 659){
+        //             $('#max_limit').text('<%= t('blogs.new.limit_reach_label') %>');
+        //             $('#max_limit').css('color', 'red');
+        //         }
+        //         else{
+        //             $('#max_limit').text(`<%= t('blogs.new.maximum_words_allowed') %>: 700`);
+        //             $('#max_limit').css('color', 'black');
+        //         }
+        //     }
+        // });
 
-        function validateDescriptionLength(){
-            var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
-            if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
-            if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
-            if (description) {
-                if (description.length < 500) {
-                    alert("<%= t('blogs.new.descriptn_length_errr') %>")
-                    return false
-                }
-            }
-            else {
-                alert("<%= t('blogs.new.blog_description_empty') %>");
-                return false;
-            }
+        // function validateDescriptionLength(){
+        //     var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
+        //     if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
+        //     if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
+        //     if (description) {
+        //         if (description.length < 500) {
+        //             alert("<%= t('blogs.new.descriptn_length_errr') %>")
+        //             return false
+        //         }
+        //     }
+        //     else {
+        //         alert("<%= t('blogs.new.blog_description_empty') %>");
+        //         return false;
+        //     }
 
-        }
+        // }
 
-        function validateDefaultImage(){
-            file = $('#fileupload').val();
-            if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
-                toastr.error('<%= t('blogs.new.default_image_error') %>');
-                return false;
-            }
-        }
+        // function validateDefaultImage(){
+        //     file = $('#fileupload').val();
+        //     if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
+        //         toastr.error('<%= t('blogs.new.default_image_error') %>');
+        //         return false;
+        //     }
+        // }
     });
 
     $("#fileupload").change(function () {

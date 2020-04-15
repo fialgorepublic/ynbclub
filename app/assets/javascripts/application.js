@@ -38,7 +38,9 @@
 // user_cookies
 //= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
-
+//= require quill.min
+//= require quill.global
+//= require quil
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
 //= require local-time
