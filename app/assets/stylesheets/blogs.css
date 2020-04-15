@@ -123,3 +123,8 @@ input:checked + .slider:before {
 #myModal .modal-body{
   padding: 15px 25px;
 }
+
+
+.ql-container.ql-snow {
+  height: 370px !important;
+}
