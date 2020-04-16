@@ -45,7 +45,7 @@
         </div>
 
         <div class="join-grp-dscptn">
-          <div id="conversation-div">
+          <div id="conversation-div-<%= conversation.id%>">
           <h2><%= conversation.subject %></h2>
 
           <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
@@ -124,7 +124,7 @@
       data: {"id": id},
       type: 'get',
       success: function(data) {
-        $('#conversation-div').html(data);
+        $('#conversation-div-'+id).html(data);
       },
       error: function(data) {
         $('.loader').hide()

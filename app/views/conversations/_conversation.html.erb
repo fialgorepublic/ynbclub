@@ -51,7 +51,7 @@
           </div>
 
           <div class="join-grp-dscptn">
-            <div id="conversation-div">
+            <div id="conversation-div-<%= conversation.id%>">
             <h2><%= conversation.subject %></h2>
             <h4 class="set-body-paragraph">
               <%= truncate conversation.body&.html_safe, length: 160 %>
@@ -209,7 +209,8 @@
       data: {"id": id},
       type: 'get',
       success: function(data) {
-        $('#conversation-div').html(data);
+        debugger
+        $('#conversation-div-'+id).html(data);
       },
       error: function(data) {
         $('.loader').hide()
