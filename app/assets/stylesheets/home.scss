@@ -3933,8 +3933,9 @@ span.remove.fa.fa-times {
   width: 150px;
 }
 .detail-img p img {
-  width: -webkit-fill-available;
+  width: 640px !important;
   display: block;
+  margin: auto;
   // height: auto !important;
   // max-width: 80% !important;
 }
