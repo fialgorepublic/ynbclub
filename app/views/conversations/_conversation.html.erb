@@ -33,16 +33,13 @@
                   <div class="m-l-10">
                     <p class="p-b m-t-8"><%= posted_date(conversation) %></p>
                   </div>
-                  <!-- <div class="m-l-10">
+                  <div class="m-l-10">
                     <p class="p-b m-t-8">Group Name</p>
                     <p class="p-b m-t-8"><%= conversation.group.name %></p>
-                  </div> -->
+                  </div>
                 </div>
               </div>
 
-              <div class="m-l-10 mb-l-0 hidden-xs hidden-sm">
-                <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
-              </div>
             </div>
             <% if conversation.user == current_user  ||  current_user && current_user.role.id == 6 %>
             <div class="grp-edit-delete-icon ">
@@ -54,16 +51,14 @@
           </div>
 
           <div class="join-grp-dscptn">
-            <%= link_to conversation do %>
+            <div id="conversation-div">
             <h2><%= conversation.subject %></h2>
-            <% end %>
-            <h4 class="set-body-paragraph"><%= conversation.body&.html_safe %></h4>
+            <h4 class="set-body-paragraph">
+              <%= truncate conversation.body&.html_safe, length: 160 %>
+              <% if conversation.body.length > 160 %>
+              <%= link_to 'read more', "#", onclick:"see_more(#{conversation.id})" %>
+              <% end %></h4>
             <div class="comment more">
-              <%# if conversation.body.include?("http") && conversation.body.include?("figure") %>
-                <%#= conversation.body&.html_safe %>
-              <%# elsif conversation.body.include?("http")%>
-                <!-- <a href="<%#= conversation.body%>" target="_blank"><%#= conversation.body%></a> -->
-              <%# else%>
                 <% if conversation.avatar.attached? && conversation.avatar.content_type.include?("video") %>
                       <%= video_tag url_for(conversation.avatar), size: "300x320", controls: true %>
                     <% else %>
@@ -71,7 +66,29 @@
                     <% end %>
               <%# end %>
             </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-2">
+                  <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
+                    
+                <img src="/assets/like-icon.png" style="width: 46px;">
+                  </a>
 
+                <span style="font-size: 17px; margin-left: -8px;" class="likes-count-<%= conversation.id %>">
+                  <%= conversation.conversation_likes.count %>
+                </span>
+              </div>
+              <div class=" col-md-offset-8 col-md-2">
+                <p style="font-size: 15px; margin-top: 15px;">
+                 <span style="font-size: 17px;">
+                  <%= conversation.replies.count %>
+                </span>
+                <%= link_to "comments", conversation_path(conversation), style: "color: black" %>
+                 </p>
+                  <!-- <i class="fa fa-comment fs-20 "></i> -->
+              </div>            
+            </div>
           </div>
 
           <% if conversation.replies.present? %>
@@ -123,31 +140,26 @@
           </div>
           <% end %>
           <% end %>
-          <div class="flex-sb">
-            <div class="flex-l  m-t-8">
-              <div class="">
-                <%= like_dislike_link(conversation) %>
+          <!-- <div class="flex-sb"> -->
+            <div class="row" style="margin-top: 8px;">
+              <div class="col-md-4">
+                <%= like_dislike_link(conversation) %><span style="margin-left: 10px;"></span>
               </div>
 
-              <div class="m-l-10 m-t-8">
-                <p class="fs-12 m-t-3 likes-count-<%= conversation.id %>"><%= conversation.likes_count %></p>
+              <div class="col-md-4">
+                <%#= new_reply_link(conversation) %>
+              <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{conversation.id}" do %>
+              
+              <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+              <% end %>
               </div>
 
-              <div class="m-l-10">
-                <%= link_to conversation_path(conversation) do %>
-                  <i class="fa fa-comment fs-20 "></i>
-                <% end %>
+              <div class="col-md-4">
+                <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: conversation.id, type: 'facebook', attributes: conversation_attributes(conversation)} do %>
+                <i class="fa fa-share"></i>
+                  Share
+              <% end %>
               </div>
-
-              <div class="m-l-10 m-t-12">
-                <p class="fs-12"><%= conversation.replies_count %></p>
-              </div>
-            </div>
-
-            <div class="m-t-8">
-              <%#= new_reply_link(conversation) %>
-              <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
-            </div>
           </div>
           <div class="flex-l">
             <div class="">
@@ -159,3 +171,50 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  user_signed_in = <%= signed_in? %>;
+  $('.conversation-share-on-facebook').click(function () {
+    conversation_id = $(this).data('id');
+    type = $(this).data('type');
+    conversation = $(this).data('attributes');
+    // url     = $(this).data('share-url');
+    // limit_url = $(this).data('limit-url');
+    if (user_signed_in) {
+      var url = createFBShareLink(conversation_id, type, conversation, '1660844573983661');
+      window.open(url);
+    } else {
+      hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : '/?signin=true'
+      window.location.href = hostname
+    }
+  });
+
+  function createFBShareLink(id, type, conversation, fbAppId) {
+    var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
+    var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
+      &link=https://ambassador.saintlbeau.com/conversations/${id}
+      &name=${conversation.subject}
+      &caption=SainLBeau blogs
+      &description=This is just for testing purpose
+      &redirect_uri=${encodeURIComponent(`${link}/conversations/${id}`)}
+      &display=popup`;
+    return url;
+  }
+
+  function see_more(id){
+    event.preventDefault()
+    $.ajax({
+      url: '/conversations/' + id + '/show_conversation',
+      data: {"id": id},
+      type: 'get',
+      success: function(data) {
+        $('#conversation-div').html(data);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+</script>

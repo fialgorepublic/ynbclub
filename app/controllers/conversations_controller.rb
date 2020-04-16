@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :replies]
-  before_action :set_conversation, only: [:show, :edit, :update, :destroy, :reply, :conversation_reply, :replies]
+  before_action :set_conversation, only: [:show, :edit, :update, :destroy, :reply, :conversation_reply, :replies, :show_conversation]
   require "uri"
   # GET /conversations
   # GET /conversations.json
@@ -15,6 +15,10 @@ class ConversationsController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def show_conversation
+   render partial: 'conversations/show_conversation', locals: { conversation: @conversation } 
   end
 
   # GET /conversations/1

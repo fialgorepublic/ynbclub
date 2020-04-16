@@ -4,7 +4,7 @@
     <%= link_to image_tag("back-arrow-btn.png"), 'javascript:history.back()' %>
   </div>
     <br/>
-  <div class="user_conversation mb-p-0 <%= add_main_div_column %> change-font-family">
+  <div class="user_conversation mb-p-0 <%= add_main_div_column %>">
     <div class="middle-row-grp">
       <div class="col-md-12">
         <div class="lib-panel">
@@ -58,35 +58,48 @@
                   </div>
                 </div>
               </div>
-
-              <div class="flex-sb">
-                <div class="flex-l  m-t-8">
-
-                  <div class="">
-                    <%= like_dislike_link(@conversation) %>
-                  </div>
-
-                  <div class="m-l-10 m-t-8">
-                    <p class="fs-12 m-t-3 likes-count-<%= @conversation.id %>"><%= @conversation.likes_count %></p>
-                  </div>
-
-                  <div class="m-l-10">
-                    <i class="fa fa-comment fs-20 "></i>
-                  </div>
-
-                  <div class="m-l-10 m-t-12">
-                    <p class="fs-12"><%= @conversation.replies_count %></p>
-                  </div>
-
-                </div>
-
-                <div class="m-t-8">
-                  <div class="m-t-8">
-                    <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{@conversation.id}" %>
-                  </div>
-                </div>
+              <div class="row">
+              <div class="col-md-2">
+                <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: @conversation.id).pluck(:name).join("\n").html_safe %>">
+                    
+                <img src="/assets/like-icon.png" style="width: 46px;">
+                  </a>
+                <!-- <img src="/assets/like-icon.png" style="width: 46px;"> -->
+                <span style="font-size: 15px; margin-left: -8px;" class="likes-count-<%= @conversation.id %>">
+                  <%= @conversation.conversation_likes.count %>
+                </span>
               </div>
+              <div class=" col-md-offset-8 col-md-2">
+                <p style="font-size: 15px; margin-top: 15px;">
+                 <span style="font-size: 15px;">
+                  <%= @conversation.replies.count %>
+                </span>
+                comments
+                 </p>
+                  <!-- <i class="fa fa-comment fs-20 "></i> -->
+              </div>            
             </div>
+            </div>
+            <div class="row" style="margin-top: 8px;">
+              <div class="col-md-4">
+                <%= like_dislike_link(@conversation) %><span style="margin-left: 10px;"></span>
+              </div>
+
+              <div class="col-md-4">
+                <%#= new_reply_link(conversation) %>
+              <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{@conversation.id}" do %>
+              
+              <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+              <% end %>
+              </div>
+
+              <div class="col-md-4">
+                <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
+                <i class="fa fa-share"></i>
+                  Share
+              <% end %>
+              </div>
+          </div>
 
             <div class="row">
               <div class="text-left">

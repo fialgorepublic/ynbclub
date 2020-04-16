@@ -30,7 +30,7 @@
 
             <div class="m-l-10 mb-l-0">
               <%#= new_reply_link(conversation) %>
-              <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
+              <%#= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
             </div>
           </div>
           <div class="">
@@ -45,53 +45,91 @@
         </div>
 
         <div class="join-grp-dscptn">
-          <%= link_to conversation do %>
+          <div id="conversation-div">
           <h2><%= conversation.subject %></h2>
-          <% end %>
 
           <%# <p class="hhkt" > Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, tota rem aperiam, eaque ipsa  explicabo. Nemo enim ipsam voluptatem quia voluptas rem aperiam, </p> %>
           <div class="row">
             <div class="col-md-12">
               <div class="comment more">
-                <%= conversation.body.html_safe %>
+                <%#= conversation.body.html_safe %>
+                <h4 class="set-body-paragraph">
+                <%= truncate conversation.body&.html_safe, length: 160 %>
+              <% if conversation.body.length > 160 %>
+              <%= link_to 'read more', "#", onclick:"see_more(#{conversation.id})" %></h4>
+              <% end %>
               </div>
             </div>
           </div>
+          <div class="row">
+              <div class="col-md-2">
+                <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
+                    
+                <img src="/assets/like-icon.png" style="width: 46px;">
+                  </a>
+                <!-- <img src="/assets/like-icon.png" style="width: 46px;"> -->
+                <span style="font-size: 17px; margin-left: -8px;" class="likes-count-<%= conversation.id %>">
+                  <%= conversation.conversation_likes.count %>
+                </span>
+              </div>
+              <div class=" col-md-offset-8 col-md-2">
+                <p style="font-size: 15px; margin-top: 15px;">
+                 <span style="font-size: 17px;">
+                  <%= conversation.replies.count %>
+                </span>
+                <%= link_to "comments", conversation_path(conversation), style: "color: black" %>
+                 </p>
+                  <!-- <i class="fa fa-comment fs-20 "></i> -->
+              </div>            
+            </div>
+          </div>
         </div>
+           <div class="row" style="margin-top: 8px;">
+              <div class="col-md-4">
+                <%= like_dislike_link(conversation) %><span style="margin-left: 10px;"></span>
+              </div>
+
+              <div class="col-md-4">
+                <%#= new_reply_link(conversation) %>
+              <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{conversation.id}" do %>
+              
+              <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+              <% end %>
+              </div>
+
+              <div class="col-md-4">
+                <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: conversation.id, type: 'facebook', attributes: conversation_attributes(conversation)} do %>
+                <i class="fa fa-share"></i>
+                  Share
+              <% end %>
+              </div>
+          </div>
 
         <div class="flex-l">
           <div class="">
             <%= render partial: 'shared/conversation_reply', locals: { reply: conversation.replies.new , url: conversation_reply_conversations_path} %>
           </div>
         </div>
-
-        <div class="flex-sb">
-          <div class="flex-l  m-t-8">
-            <div class="">
-              <%= like_dislike_link(conversation) %>
-            </div>
-
-            <div class="m-l-10 m-t-8">
-              <p class="fs-12 likes-count-<%= conversation.id %>"><%= conversation.likes_count %></p>
-            </div>
-
-            <div class="m-l-10">
-              <%= link_to conversation_path(conversation) do %>
-              <i class="fa fa-comment fs-20 "></i>
-              <% end %>
-            </div>
-
-            <div class="m-l-10 m-t-8">
-              <p class="fs-12"><%= conversation.replies_count %></p>
-            </div>
-          </div>
-
-          <div class="m-t-8">
-            <%#= new_reply_link(conversation) %>
-            <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{conversation.id}" %>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  function see_more(id){
+    event.preventDefault()
+    $.ajax({
+      url: '/conversations/' + id + '/show_conversation',
+      data: {"id": id},
+      type: 'get',
+      success: function(data) {
+        $('#conversation-div').html(data);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+</script>

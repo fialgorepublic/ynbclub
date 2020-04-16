@@ -3,6 +3,10 @@ var linkElement = $(`[data-conversation-id=${conversationID}]`)
 linkElement.attr('href', '<%= like_conversation_path(params[:id]) %>')
 linkElement.find('i').addClass('green-color');
 linkElement.find('i').removeClass('red-color');
+var get_span = linkElement.find('span')[0]
+if (get_span.innerText == " Unlike") {
+	get_span.innerText = " Like"
+} 
 var countEle = $(`.likes-count-${conversationID}`);
 count    = $(countEle[0]).text();
 newCount =  parseInt(count) - 1;

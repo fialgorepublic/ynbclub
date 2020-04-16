@@ -185,6 +185,7 @@ Rails.application.routes.draw do
       get :replies
       get :like
       get :dislike
+      get :show_conversation
     end
   end
 

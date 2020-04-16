@@ -1,0 +1,11 @@
+<h2><%= conversation.subject %></h2>
+<h4 class="set-body-paragraph">
+  <%= conversation.body&.html_safe %>
+</h4>
+<div class="comment more">
+  <% if conversation.avatar.attached? && conversation.avatar.content_type.include?("video") %>
+    <%= video_tag url_for(conversation.avatar), size: "300x320", controls: true %>
+  <% else %>
+  <%= image_tag conversation.avatar, width: "50%", height: "50%" if conversation.avatar.attached? %>
+  <% end %>
+</div>
