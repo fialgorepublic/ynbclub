@@ -1074,10 +1074,6 @@ body {
 .detail-blog .detail-img {
   margin-bottom: 0px;
 }
-
-.title-style {
-  font-family: georgia !important;
-}
 .comnt-heading {
   background-color: #eeeeee;
   margin: 20px;
@@ -2429,7 +2425,6 @@ label.error {
       color: #030c36;
       font-size: 1vw !important;
     //font-family: "Montserrat", sans-serif;
-      font-family: georgia !important;
     }
     span:last-child {
       //          color:#ccc;
@@ -2463,7 +2458,7 @@ label.error {
   }
   h3 {
     font-size: 18px;
-    font-family: georgia;
+    font-family: "Montserrat", sans-serif;
     margin: 30px 0px 0px 0px;
   }
 }
