@@ -157,7 +157,7 @@ module ApplicationHelper
   end
 
   def blog_screen_size
-    current_user.present? ? 'col-md-9 change-font-family' : 'col-md-12 change-font-family'
+    current_user.present? ? 'col-md-9' : 'col-md-12'
   end
 
   def add_container

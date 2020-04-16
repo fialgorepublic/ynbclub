@@ -1075,6 +1075,9 @@ body {
   margin-bottom: 0px;
 }
 
+.title-style {
+  font-family: georgia !important;
+}
 .comnt-heading {
   background-color: #eeeeee;
   margin: 20px;
@@ -2425,7 +2428,8 @@ label.error {
     h3 {
       color: #030c36;
       font-size: 1vw !important;
-      font-family: "Montserrat", sans-serif;
+    //font-family: "Montserrat", sans-serif;
+      font-family: georgia !important;
     }
     span:last-child {
       //          color:#ccc;
@@ -3934,7 +3938,8 @@ span.remove.fa.fa-times {
   width: 150px;
 }
 .detail-img p img {
-  width: inherit !important;
+  width: -webkit-fill-available;
+  display: block;
   // height: auto !important;
   // max-width: 80% !important;
 }
