@@ -161,7 +161,7 @@
                 expires: 365,
                 domain: 'saintlbeau.com'
               })
-                  var remember_me = $('#resource_remember_me').val()
+            var remember_me = $('#resource_remember_me').val()
             var email = $('#resource_email').val();
             var password = $('#resource_password').val();
         if (remember_me == "1") {
@@ -255,7 +255,11 @@
               document.forms[0].elements[3].value = cookie[1];
             }
             if (cookie[0] == 'remember_me') {
-              document.forms[0].elements[4].value = cookie[1];
+              if (cookie[1] == "1") {
+              $('#resource_remember_me').prop( "checked", true );
+              document.forms[0].elements[5].value = cookie[1];
+              }
+
             }
         }
     }
