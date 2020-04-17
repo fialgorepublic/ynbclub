@@ -29,7 +29,7 @@
             </div>
             <% if devise_mapping.rememberable? -%>
             <div class="form-group">
-              <%= f.check_box t(:remember_me) %>
+              <%= f.check_box :remember_me, { checked: false }, '0', '1'  %>
               <%= f.label t(:remember_me) %>
             </div>
             <% end -%>
@@ -155,3 +155,17 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  
+ $('#resource_remember_me').click(function() {
+           if (this.value == "1") {
+            $(this).val("0")
+           } else {
+            $(this).val("1")
+           }
+
+           $('#id_of_hidden_field').val("true");
+         });
+       </script>
