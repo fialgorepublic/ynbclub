@@ -300,7 +300,9 @@ class User < ApplicationRecord
   end
 
   def set_total_income
-    self.total_income = 0.0
+    if self.new_record?
+      self.total_income = 0.0
+    end
   end
 
   def generate_coupon_code
