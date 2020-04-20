@@ -3933,7 +3933,7 @@ span.remove.fa.fa-times {
   width: 150px;
 }
 .detail-img p img {
-  width: 640px !important;
+  max-width: 600px !important;
   display: block;
   margin: auto;
   // height: auto !important;
