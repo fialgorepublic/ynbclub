@@ -13,7 +13,7 @@
     <%= form.text_field :subject, placeholder: "please enter subject", class: "form-control", required: true%>
     </div>
     <div class="form-group">
-    <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?", class: "set-border-radius"%>
+    <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?", class: "set-border-radius", required: true%>
     </div>
   </div>
     
@@ -90,7 +90,7 @@
             <%= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name),{}, :disabled => true, class: 'select_with_icon form-control set-border-radius' %>
             <%= form.hidden_field :group_id, value: group_id %>
           <% else %>
-            <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' },  class: 'select_with_icon form-control set-border-radius' %>
+            <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' },  class: 'select_with_icon form-control set-border-radius', required: true %>
           <% end %>
         </div>
       </div>
@@ -101,7 +101,7 @@
   </div>
 <% end %>
 <div class="">
-  <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form">Post</a>
+  <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form" id="create-post">Post</a>
 </div>
 
 
@@ -134,6 +134,14 @@
       $( ".con_tag" ).toggle();
     });
   });
+  $("#create-post").click(function(event){
+    // subject = document.getElementById("conversation_subject").innerText
+    text = $(".emojionearea-editor")[0].innerText
+   if (text == "") {
+    event.preventDefault();
+    alert("please enter body of post")
+   }
+  })
 </script>
 
 <script type="text/javascript">

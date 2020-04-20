@@ -179,6 +179,7 @@ Rails.application.routes.draw do
       post :banner
       get  :search
       post :conversation_reply
+      get :likes_user
     end
     member do
       get :reply

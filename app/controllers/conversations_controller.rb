@@ -92,6 +92,11 @@ class ConversationsController < ApplicationController
     redirect_to conversations_path
   end
 
+  def likes_user
+    @conversations = ConversationLike.joins(:user).where(conversation_id: params[:id])
+    render partial: 'conversations/likes_user', locals: { conversation: @conversations } 
+  end
+
   def reply
     @reply = @conversation.replies.new
   end

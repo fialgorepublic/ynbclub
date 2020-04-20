@@ -34,8 +34,8 @@
                     <p class="p-b m-t-8"><%= posted_date(conversation) %></p>
                   </div>
                   <div class="m-l-10">
-                    <p class="p-b m-t-8">Group Name</p>
-                    <p class="p-b m-t-8"><%= conversation.group.name %></p>
+                    <!-- <p class="p-b m-t-8">Group Name</p> -->
+                    <p class="p-b m-t-8"><%#= conversation.group.name %></p>
                   </div>
                 </div>
               </div>
@@ -69,11 +69,8 @@
             </div>
             
             <div class="row">
-              <div class="col-md-2">
-                  <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
-                    
-                <img src="/assets/like-icon.png" style="width: 46px;">
-                  </a>
+              <div class="col-md-2"> 
+                <img src="/assets/like-icon.png" onclick="show_modal(<%= conversation.id%>)" style="width: 46px;" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
 
                 <span style="font-size: 17px; margin-left: -8px;" class="likes-count-<%= conversation.id %>">
                   <%= conversation.conversation_likes.count %>
@@ -173,6 +170,27 @@
 </div>
 
 
+<div class="modal fade" id="tooltip-modal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-bottom: none !important">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="conversation-likes">
+              
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: none !important">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 <script type="text/javascript">
   user_signed_in = <%= signed_in? %>;
   $('.conversation-share-on-facebook').click(function () {
@@ -210,6 +228,22 @@
       type: 'get',
       success: function(data) {
         $('#conversation-div-'+id).html(data);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+
+  function show_modal(id) {
+    $("#tooltip-modal").modal('show');
+     $.ajax({
+      url: '/conversations/likes_user',
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        $('#conversation-likes').html(data);
       },
       error: function(data) {
         $('.loader').hide()
