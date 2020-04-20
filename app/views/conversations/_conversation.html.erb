@@ -14,8 +14,7 @@
                   <div class="m-l-10 text-left">
                     <p class="p-l ">
 
-                      <span class="admin-txt con-truncate" title="<%= conversation.user.name %>"><%= user_profile_link(conversation.user) %></span> <i
-                        class="fa fa-angle-right pos-arrow-admin" aria-hidden="true"></i>
+                      <span class="admin-txt con-truncate" title="<%= conversation.user.name %>"><%= user_profile_link(conversation.user) %></span> <i class="fa fa-angle-right pos-arrow-admin" aria-hidden="true"></i>
                       <span class="con-truncate"> <%= link_to conversation.group.name, group_path(conversation.group.id) %>
                       </span>
                     </p>
@@ -52,39 +51,39 @@
 
           <div class="join-grp-dscptn">
             <div id="conversation-div-<%= conversation.id%>">
-            <h2><%= conversation.subject %></h2>
-            <h4 class="set-body-paragraph">
-              <%= truncate conversation.body&.html_safe, length: 160 %>
-              <% if conversation.body.length > 160 %>
-              <%= link_to 'read more', "#", onclick:"see_more(#{conversation.id})" %>
-              <% end %></h4>
-            <div class="comment more">
+              <h2><%= conversation.subject %></h2>
+              <h4 class="set-body-paragraph">
+                <%= truncate conversation.body&.html_safe, length: 160 %>
+                <% if conversation.body.length > 160 %>
+                <%= link_to 'read more', "#", onclick:"see_more(#{conversation.id})" %>
+                <% end %></h4>
+              <div class="comment more">
                 <% if conversation.avatar.attached? && conversation.avatar.content_type.include?("video") %>
-                      <%= video_tag url_for(conversation.avatar), size: "300x320", controls: true %>
-                    <% else %>
-                    <%= image_tag conversation.avatar, width: "50%", height: "50%" if conversation.avatar.attached? %>
-                    <% end %>
-              <%# end %>
+                <%= video_tag url_for(conversation.avatar), size: "300x320", controls: true %>
+                <% else %>
+                <%= image_tag conversation.avatar, width: "50%", height: "50%" if conversation.avatar.attached? %>
+                <% end %>
+                <%# end %>
+              </div>
             </div>
-            </div>
-            
-            <div class="row">
-              <div class="col-md-2"> 
+
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-md-2 col-sm-4 col-xs-4">
                 <img src="/assets/like-icon.png" onclick="show_modal(<%= conversation.id%>)" style="width: 46px;" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
 
                 <span style="font-size: 17px; margin-left: -8px;" class="likes-count-<%= conversation.id %>">
                   <%= conversation.conversation_likes.count %>
                 </span>
               </div>
-              <div class=" col-md-offset-8 col-md-2">
+              <div class=" col-md-offset-8 col-sm-offset-2 col-xs-offset-2 col-md-2 col-sm-6 col-xs-6">
                 <p style="font-size: 15px; margin-top: 15px;">
-                 <span style="font-size: 17px;">
-                  <%= conversation.replies.count %>
-                </span>
-                <%= link_to "comments", conversation_path(conversation), style: "color: black" %>
-                 </p>
-                  <!-- <i class="fa fa-comment fs-20 "></i> -->
-              </div>            
+                  <span style="font-size: 17px;">
+                    <%= conversation.replies.count %>
+                  </span>
+                  <%= link_to "comments", conversation_path(conversation), style: "color: black" %>
+                </p>
+                <!-- <i class="fa fa-comment fs-20 "></i> -->
+              </div>
             </div>
           </div>
 
@@ -106,11 +105,11 @@
             <div class="col-md-12">
               <div class="comment more text-left pl-40 ">
                 <% if reply.body.include?("http") && reply.body.include?("figure") %>
-                  <%= reply.body&.html_safe %>
+                <%= reply.body&.html_safe %>
                 <% elsif reply.body.include?("http")%>
-                  <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+                <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
                 <% else%>
-                  <%= reply.body&.html_safe %>
+                <%= reply.body&.html_safe %>
                 <% end %>
               </div>
             </div>
@@ -138,25 +137,25 @@
           <% end %>
           <% end %>
           <!-- <div class="flex-sb"> -->
-            <div class="row" style="margin-top: 8px;">
-              <div class="col-md-4">
-                <%= like_dislike_link(conversation) %><span style="margin-left: 10px;"></span>
-              </div>
+          <div class="row" style="margin-top: 8px;">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <%= like_dislike_link(conversation) %><span style="margin-left: 10px;"></span>
+            </div>
 
-              <div class="col-md-4">
-                <%#= new_reply_link(conversation) %>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <%#= new_reply_link(conversation) %>
               <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{conversation.id}" do %>
-              
+
               <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
               <% end %>
-              </div>
+            </div>
 
-              <div class="col-md-4">
-                <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: conversation.id, type: 'facebook', attributes: conversation_attributes(conversation)} do %>
-                <i class="fa fa-share"></i>
-                  Share
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: conversation.id, type: 'facebook', attributes: conversation_attributes(conversation)} do %>
+              <i class="fa fa-share"></i>
+              Share
               <% end %>
-              </div>
+            </div>
           </div>
           <div class="flex-l">
             <div class="">
@@ -171,29 +170,29 @@
 
 
 <div class="modal fade" id="tooltip-modal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="border-bottom: none !important">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div id="conversation-likes">
-              
-          </div>
-        </div>
-        <div class="modal-footer" style="border-top: none !important">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: none !important">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="conversation-likes">
+
         </div>
       </div>
-      
+      <div class="modal-footer" style="border-top: none !important">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
+
   </div>
+</div>
 
 <script type="text/javascript">
-  user_signed_in = <%= signed_in? %>;
-  $('.conversation-share-on-facebook').click(function () {
+  user_signed_in = < %= signed_in ? % > ;
+  $('.conversation-share-on-facebook').click(function() {
     conversation_id = $(this).data('id');
     type = $(this).data('type');
     conversation = $(this).data('attributes');
@@ -220,14 +219,16 @@
     return url;
   }
 
-  function see_more(id){
+  function see_more(id) {
     event.preventDefault()
     $.ajax({
       url: '/conversations/' + id + '/show_conversation',
-      data: {"id": id},
+      data: {
+        "id": id
+      },
       type: 'get',
       success: function(data) {
-        $('#conversation-div-'+id).html(data);
+        $('#conversation-div-' + id).html(data);
       },
       error: function(data) {
         $('.loader').hide()
@@ -238,10 +239,12 @@
 
   function show_modal(id) {
     $("#tooltip-modal").modal('show');
-     $.ajax({
+    $.ajax({
       url: '/conversations/likes_user',
       type: 'get',
-      data: {id: id},
+      data: {
+        id: id
+      },
       success: function(data) {
         $('#conversation-likes').html(data);
       },
