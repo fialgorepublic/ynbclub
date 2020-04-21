@@ -25,13 +25,10 @@
     <!-- <div class="flex-sb"> -->
     <div class="row">
       <div class="col-md-2">
-        <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: reply.id).pluck(:name).join("\n").html_safe %>">
-            
-        <img src="/assets/like-icon.png" style="width: 46px;">
-          </a>
-        <span style="font-size: 15px; margin-left: -8px;" class="likes-count-<%= reply.id %>">
-          <%= reply.conversation_likes.count %>
-        </span>
+          <img src="/assets/like-icon.png" onclick="show_modal(<%= reply.id%>)" style="width: 46px;" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: reply.id).pluck(:name).join("\n").html_safe %>">
+          <span style="font-size: 15px; margin-left: -8px;" class="likes-count-<%= reply.id %>">
+            <%= reply.conversation_likes.count %>
+          </span>
       </div>
       <div class=" col-md-offset-8 col-md-2">
         <p style="font-size: 15px; margin-top: 15px;">
@@ -145,3 +142,42 @@
     </div>
   </div>
 <% end %>
+
+<div class="modal fade" id="tooltip-modal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-bottom: none !important">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="conversation-likes">
+              
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: none !important">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  function show_modal(id) {
+    $("#tooltip-modal").modal('show');
+     $.ajax({
+      url: '/conversations/likes_user',
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        $('#conversation-likes').html(data);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }  
+</script>
