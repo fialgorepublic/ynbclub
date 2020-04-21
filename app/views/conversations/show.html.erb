@@ -3,7 +3,7 @@
   <div class="group-back-btn hidden-md hidden-lg "> 
     <%= link_to image_tag("back-arrow-btn.png"), 'javascript:history.back()' %>
   </div>
-    <br/>
+  <br/>
   <div class="user_conversation mb-p-0 <%= add_main_div_column %>">
     <div class="middle-row-grp">
       <div class="col-md-12">
@@ -45,12 +45,12 @@
             </div>
 
             <div class="join-grp-dscptn">
-              <h2><%= @conversation.subject %></h2>
-              <h4 class="set-body-paragraph"><%= @conversation.body&.html_safe %></h4>
+              <h2><%= @conversation.body %></h2>
               <div class="row">
                 <div class="col-md-12">
                   <div class="comment more" style="text-align: center">
-                    <% if @conversation.avatar.attached? && @conversation.avatar.content_type.include?("video") %>
+                    
+                    <% if @conversation.avatar.attached? &&  @conversation.avatar.content_type.include?("video") %>
                       <%= video_tag url_for(@conversation.avatar), size: "300x320", controls: true %>
                     <% else %>
                     <%= image_tag @conversation.avatar, width: "50%", height: "50%" if @conversation.avatar.attached? %>
@@ -59,48 +59,44 @@
                 </div>
               </div>
               <div class="row">
-              <div class="col-md-2">
-                <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: @conversation.id).pluck(:name).join("\n").html_safe %>">
-                    
-                <img src="/assets/like-icon.png" style="width: 46px;">
-                  </a>
-                <!-- <img src="/assets/like-icon.png" style="width: 46px;"> -->
-                <span style="font-size: 15px; margin-left: -8px;" class="likes-count-<%= @conversation.id %>">
-                  <%= @conversation.conversation_likes.count %>
-                </span>
+                <div class="col-md-2">
+                  <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: @conversation.id).pluck(:name).join("\n").html_safe %>">
+                      
+                  <img src="/assets/like-icon.png" style="width: 46px;">
+                    </a>
+                  <span style="font-size: 15px; margin-left: -8px;" class="likes-count-<%= @conversation.id %>">
+                    <%= @conversation.conversation_likes.count %>
+                  </span>
+                </div>
+                <div class=" col-md-offset-8 col-md-2">
+                  <p style="font-size: 15px; margin-top: 15px;">
+                   <span style="font-size: 15px;">
+                    <%= @conversation.replies.count %>
+                  </span>
+                  comments
+                   </p>
+                </div>            
               </div>
-              <div class=" col-md-offset-8 col-md-2">
-                <p style="font-size: 15px; margin-top: 15px;">
-                 <span style="font-size: 15px;">
-                  <%= @conversation.replies.count %>
-                </span>
-                comments
-                 </p>
-                  <!-- <i class="fa fa-comment fs-20 "></i> -->
-              </div>            
             </div>
-            </div>
-            <div class="row" style="margin-top: 8px;">
+            <div class="row" style="margin-top: 8px; border-top: solid 1px #eee">
               <div class="col-md-4">
                 <%= like_dislike_link(@conversation) %><span style="margin-left: 10px;"></span>
               </div>
 
               <div class="col-md-4">
-                <%#= new_reply_link(conversation) %>
-              <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{@conversation.id}" do %>
+                <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{@conversation.id}" do %>
               
-              <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
-              <% end %>
+                  <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+                <% end %>
               </div>
 
               <div class="col-md-4">
                 <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
-                <i class="fa fa-share"></i>
+                  <i class="fa fa-share"></i>
                   Share
-              <% end %>
+                <% end %>
               </div>
-          </div>
-
+            </div>
             <div class="row">
               <div class="text-left">
                 <%= render partial: 'shared/conversation_reply', locals: { reply: @reply , url: conversation_reply_conversations_path} %>
@@ -108,15 +104,14 @@
             </div>
 
             <% unless @conversation.replies_count.zero? %>
-            <h3><%= @conversation.replies_count %> Replies</h3>
-            <hr>
+              <h3><%= @conversation.replies_count %> Replies</h3>
+              <hr>
 
-            <div id='replies'>
-              <%= render partial: 'reply', collection: @replies, as: :reply %>
-            </div>
+              <div id='replies'>
+                <%= render partial: 'reply', collection: @replies, as: :reply %>
+              </div>
             <% end %>
           </div>
-
           <%= hidden_field_tag :page, @replies.next_page %>
           <%= render partial: 'shared/show_more', locals: { objects_collection: @replies, url: replies_conversation_path(@conversation) } %>
         </div>
@@ -150,8 +145,8 @@
     </div>
 
     <% if @related_posts.present? %>
-    <h2 class="sidebar-h-con">Related Posts</h2>
-    <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
+      <h2 class="sidebar-h-con">Related Posts</h2>
+      <%= render partial: 'related_post', collection: @related_posts, as: :conversation %>
     <% end %>
 
     <h2 class="sidebar-h-con">Share on social network</h2>
@@ -163,7 +158,6 @@
               <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
               <img src="/assets/fb.png">
               <% end %>
-              <%# end %>
             </div>
             <div class="">
               <a

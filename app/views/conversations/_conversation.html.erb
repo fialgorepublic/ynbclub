@@ -13,8 +13,7 @@
 
                   <div class="m-l-10 text-left">
                     <p class="p-l ">
-
-                      <span class="admin-txt con-truncate" title="<%= conversation.user.name %>"><%= user_profile_link(conversation.user) %></span> <i
+                      <span class="admin-txt con-truncate" title="<%= conversation.user.name %>"><%#= user_profile_link(conversation.user) %></span> <i
                         class="fa fa-angle-right pos-arrow-admin" aria-hidden="true"></i>
                       <span class="con-truncate"> <%= link_to conversation.group.name, group_path(conversation.group.id) %>
                       </span>
@@ -33,13 +32,14 @@
                   <div class="m-l-10">
                     <p class="p-b m-t-8"><%= posted_date(conversation) %></p>
                   </div>
-                  <div class="m-l-10">
-                    <!-- <p class="p-b m-t-8">Group Name</p> -->
-                    <p class="p-b m-t-8"><%#= conversation.group.name %></p>
-                  </div>
+                  <!-- <div class="m-l-10">
+                    <p class="p-b m-t-8">Group Name</p>
+                    <p class="p-b m-t-8"><%= conversation.group.name %></p>
+                  </div> -->
                 </div>
               </div>
 
+             
             </div>
             <% if conversation.user == current_user  ||  current_user && current_user.role.id == 6 %>
             <div class="grp-edit-delete-icon ">
@@ -51,41 +51,20 @@
           </div>
 
           <div class="join-grp-dscptn">
-            <div id="conversation-div-<%= conversation.id%>">
+            <%= link_to conversation do %>
             <h2><%= conversation.subject %></h2>
-            <h4 class="set-body-paragraph">
-              <%= truncate conversation.body&.html_safe, length: 160 %>
-              <% if conversation.body.length > 160 %>
-              <%= link_to 'read more', "#", onclick:"see_more(#{conversation.id})" %>
-              <% end %></h4>
-            <div class="comment more">
-                <% if conversation.avatar.attached? && conversation.avatar.content_type.include?("video") %>
-                      <%= video_tag url_for(conversation.avatar), size: "300x320", controls: true %>
-                    <% else %>
-                    <%= image_tag conversation.avatar, width: "50%", height: "50%" if conversation.avatar.attached? %>
-                    <% end %>
-              <%# end %>
-            </div>
-            </div>
-            
-            <div class="row">
-              <div class="col-md-2"> 
-                <img src="/assets/like-icon.png" onclick="show_modal(<%= conversation.id%>)" style="width: 46px;" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
+            <% end %>
 
-                <span style="font-size: 17px; margin-left: -8px;" class="likes-count-<%= conversation.id %>">
-                  <%= conversation.conversation_likes.count %>
-                </span>
-              </div>
-              <div class=" col-md-offset-8 col-md-2">
-                <p style="font-size: 15px; margin-top: 15px;">
-                 <span style="font-size: 17px;">
-                  <%= conversation.replies.count %>
-                </span>
-                <%= link_to "comments", conversation_path(conversation), style: "color: black" %>
-                 </p>
-                  <!-- <i class="fa fa-comment fs-20 "></i> -->
-              </div>            
+            <div class="comment more">
+              <% if conversation.body.include?("http") && conversation.body.include?("figure") %>
+                <%= conversation.body&.html_safe %>
+              <% elsif conversation.body.include?("http")%>
+                <a href="<%= conversation.body%>" target="_blank"><%= conversation.body%></a>
+              <% else%>
+                <%= conversation.body&.html_safe %>
+              <% end %>
             </div>
+
           </div>
 
           <% if conversation.replies.present? %>
@@ -137,8 +116,25 @@
           </div>
           <% end %>
           <% end %>
-          <!-- <div class="flex-sb"> -->
-            <div class="row" style="margin-top: 8px;">
+          <div class="row">
+              <div class="col-md-2"> 
+                <img src="/assets/like-icon.png" onclick="show_modal(<%= conversation.id%>)" style="width: 46px;" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
+
+                <span style="font-size: 17px; margin-left: -8px;" class="likes-count-<%= conversation.id %>">
+                  <%= conversation.conversation_likes.count %>
+                </span>
+              </div>
+              <div class=" col-md-offset-8 col-md-2">
+                <p style="font-size: 15px; margin-top: 15px;">
+                 <span style="font-size: 17px;">
+                  <%= conversation.replies.count %>
+                </span>
+                <%= link_to "comments", conversation_path(conversation), style: "color: black" %>
+                 </p>
+                  <!-- <i class="fa fa-comment fs-20 "></i> -->
+              </div>            
+            </div>
+             <div class="row" style="margin-top: 8px; border-top: solid 1px #eee">
               <div class="col-md-4">
                 <%= like_dislike_link(conversation) %><span style="margin-left: 10px;"></span>
               </div>
@@ -168,87 +164,3 @@
     </div>
   </div>
 </div>
-
-
-<div class="modal fade" id="tooltip-modal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="border-bottom: none !important">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div id="conversation-likes">
-              
-          </div>
-        </div>
-        <div class="modal-footer" style="border-top: none !important">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-
-<script type="text/javascript">
-  user_signed_in = <%= signed_in? %>;
-  $('.conversation-share-on-facebook').click(function () {
-    conversation_id = $(this).data('id');
-    type = $(this).data('type');
-    conversation = $(this).data('attributes');
-    // url     = $(this).data('share-url');
-    // limit_url = $(this).data('limit-url');
-    if (user_signed_in) {
-      var url = createFBShareLink(conversation_id, type, conversation, '1660844573983661');
-      window.open(url);
-    } else {
-      hostname = window.location.hostname == 'localhost' ? 'http://localhost:3000?signin=true' : '/?signin=true'
-      window.location.href = hostname
-    }
-  });
-
-  function createFBShareLink(id, type, conversation, fbAppId) {
-    var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
-    var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-      &link=https://ambassador.saintlbeau.com/conversations/${id}
-      &name=${conversation.subject}
-      &caption=SainLBeau blogs
-      &description=This is just for testing purpose
-      &redirect_uri=${encodeURIComponent(`${link}/conversations/${id}`)}
-      &display=popup`;
-    return url;
-  }
-
-  function see_more(id){
-    event.preventDefault()
-    $.ajax({
-      url: '/conversations/' + id + '/show_conversation',
-      data: {"id": id},
-      type: 'get',
-      success: function(data) {
-        $('#conversation-div-'+id).html(data);
-      },
-      error: function(data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
-  }
-
-  function show_modal(id) {
-    $("#tooltip-modal").modal('show');
-     $.ajax({
-      url: '/conversations/likes_user',
-      type: 'get',
-      data: {id: id},
-      success: function(data) {
-        $('#conversation-likes').html(data);
-      },
-      error: function(data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
-  }
-</script>
