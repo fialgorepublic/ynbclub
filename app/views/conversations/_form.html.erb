@@ -222,4 +222,10 @@
   $(document).on("click",".emojionearea-editor",function() {
     // $( ".emojionearea-picker" ).toggleClass("hidden");
       });
+    window.onclick = function(event) {
+    if (event.target.id == "myModal") {
+      event.preventDefault();
+      alert('Please Save Your Post First')
+    }
+  }
 </script>

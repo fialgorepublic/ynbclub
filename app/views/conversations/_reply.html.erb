@@ -38,7 +38,7 @@
          <span style="font-size: 15px;">
           <%= reply.replies.count %>
         </span>
-        comments
+        <%= link_to "comments", conversation_path(reply.id), style: "color: black" %>
          </p>
           <!-- <i class="fa fa-comment fs-20 "></i> -->
       </div>            
@@ -113,7 +113,7 @@
              <span style="font-size: 15px;">
               <%= reply.replies.count %>
             </span>
-            comments
+            <%= link_to "comments", conversation_path(reply.id), style: "color: black" %>
              </p>
           </div>            
         </div>

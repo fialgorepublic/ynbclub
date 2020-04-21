@@ -73,7 +73,8 @@
                    <span style="font-size: 15px;">
                     <%= @conversation.replies.count %>
                   </span>
-                  comments
+                  <!-- comments -->
+                  <%= link_to "comments", conversation_path(@conversation), style: "color: black" %>
                    </p>
                 </div>            
               </div>
