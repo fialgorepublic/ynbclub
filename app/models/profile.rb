@@ -30,6 +30,6 @@ class Profile < ApplicationRecord
 
 
   def admin_updated
-    user.role.id.eql?(6)
+    user.role.id.eql?(6) if user.role.present?
   end
 end

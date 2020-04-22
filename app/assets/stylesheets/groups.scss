@@ -415,13 +415,14 @@ p.p-b {
     text-overflow: ellipsis;
     h2 {
         font-size: 22px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
         color: #000;
         // cursor: pointer;
     }
     h2:hover {
         // font-size: 22px;
         // color: #000;
-        text-decoration: underline;
+        // text-decoration: underline;
     }
     .jn-grp-img-show {
         img {

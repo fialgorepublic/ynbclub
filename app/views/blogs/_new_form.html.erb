@@ -69,6 +69,7 @@
                         <label><%=t('blogs.new.description') %></label>
                         <%#= form.text_area :description, class: 'quill_container' %>
                         <%= form.text_area :description, cols: "30", rows: "10", class: 'quill_container form-control' %>
+                        <div id="counter">Total Words: 0 Minimum Required Words: 500</div>
                         <%#= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
                         <!-- <span id="display_count"><%#= t('blogs.new.total_words') %>: 0</span> -->
                         <!-- <span class="float-right"><%#= t('blogs.new.minimum_required_words') %>: 500 </span> -->
@@ -89,7 +90,7 @@
     </div>
     <div class="actions">
       <div class="blog-submt-btn">
-        <%= form.submit t('blogs.new.publish_btn_label'), class: 'btn btn-success set-border-radius', style: 'margin-bottom: 30px;' %>
+        <%= form.submit t('blogs.new.publish_btn_label'), class: 'btn btn-success set-border-radius', id: 'create-new-blog', style: 'margin-bottom: 30px;' %>
       </div>
     </div>
           </div>
@@ -339,6 +340,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
 <script>
+
   var toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
     ['blockquote', 'code-block'],
@@ -359,9 +361,26 @@
     ['clean']                                         // remove formatting button
   ];
 
+  Quill.register('modules/counter', function(quill, options) {
+  var container = document.querySelector(options.container);
+  quill.on('text-change', function() {
+    var text = quill.getText();
+    if (options.unit === 'word') {
+      // Total Words: 5 Minimum Required Words: 500
+      container.innerText = "Total Words: " + text.split(/\s+/).length + ' Minimum Required Words: 500';
+    } else {
+      container.innerText = text.length + ' characters';
+    }
+  });
+});
+
   var defaults = {
     theme: 'snow',
     modules: {
+      counter: {
+      container: '#counter',
+      unit: 'word'
+    },
       toolbar: toolbarOptions
     }
   };
@@ -382,6 +401,21 @@ Quilljs.setDefaults(defaults)
         // window.getSelection().getRangeAt(0).startContainer;
         // e.preventDefault();
     });
+
+    $("#create-new-blog").click(function() {
+            var description = $(".ql-editor")[0].innerText.match(/\S+/g)
+            
+            if (description) {
+                if (description.length < 500) {
+                    alert("<%= t('blogs.new.descriptn_length_errr') %>")
+                    return false
+                }
+            }
+            else {
+                alert("<%= t('blogs.new.blog_description_empty') %>");
+                return false;
+            }
+    })
 // });
     $('#create-or-edit-category').click(function() {
         $('#create-or-edit-category-modal').modal('show');
@@ -456,7 +490,8 @@ Quilljs.setDefaults(defaults)
         });
 
         function validateDescriptionLength(){
-            var description = CKEDITOR.instances.blog_description.getData().match(/\S+/g);
+          debugger
+            var description = $(".ql-editor")[0].innerText.match(/\S+/g)
             if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
             if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
             if (description) {
