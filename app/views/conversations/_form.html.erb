@@ -14,6 +14,7 @@
     </div>
     <div class="form-group">
     <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?", class: "set-border-radius", required: true%>
+      <span style="color: red; display: none" id="custom-error">* please enter description</span>
     </div>
   </div>
     
@@ -135,11 +136,12 @@
     });
   });
   $("#create-post").click(function(event){
-    // subject = document.getElementById("conversation_subject").innerText
     text = $(".emojionearea-editor")[0].innerText
    if (text == "") {
     event.preventDefault();
-    alert("please enter body of post")
+    $("#custom-error").show();
+   } else {
+    $("#custom-error").hide();
    }
   })
 </script>
@@ -228,4 +230,17 @@
       alert('Please Save Your Post First')
     }
   }
+
+  $("#myModal").on("hidden.bs.modal", function(){
+    $(this).find('form').trigger('reset');
+    text_area = $(".emojionearea-editor")[0]
+    $(text_area).html("")
+});
+  $(window).on('popstate', function() { 
+    $("#myModal").modal('hide');
+    $("#myModal").find('form').trigger('reset');
+    text_area = $(".emojionearea-editor")[0]
+    $(text_area).html("")
+    location.reload();
+  });
 </script>
