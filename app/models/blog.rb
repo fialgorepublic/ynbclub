@@ -39,6 +39,7 @@ class Blog < ApplicationRecord
   has_many :products, :dependent => :destroy
   has_many :blog_views, :dependent => :destroy
   has_many :share_urls, :dependent => :destroy
+  has_many :blog_images, :dependent => :destroy
   has_one_attached :avatar
 
   scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}

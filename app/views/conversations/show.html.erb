@@ -258,4 +258,16 @@
       }
     })
   }
+// $(document).ready(function(){
+//    window.history.pushState('', null, './');
+//   $(window).on('popstate', function() {
+//     debugger
+//    location.reload(true);
+// });
+// });
+
+window.addEventListener('popstate', () => {
+  // alert('fasfdasdf')
+  location.reload();
+}, false);
 </script>
