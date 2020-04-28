@@ -68,7 +68,6 @@ class BlogsController < ApplicationController
     @blog = Blog.new
     @blog.attach_default_image
     @category = Category.new
-    @blog_image = BlogImage.last
     # render partial: 'blogs/new_form'
   end
 
@@ -84,16 +83,7 @@ class BlogsController < ApplicationController
     render partial: 'blogs/new_form'
   end
 
-  def blogs_image
-    # debugger  
-
-    @image = BlogImage.new(image_url: params[:image])
-    @image.save
-    render json: @image.id
-  end
-
   def blog_image_products
-    @blog_image = BlogImage.find(params[:id])
     product_params = params[:products]
     product_params.each do |prod|
     product = Product.new
