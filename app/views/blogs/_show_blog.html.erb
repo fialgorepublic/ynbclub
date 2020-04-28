@@ -130,7 +130,6 @@
           <div class="detail-img">
             <h2><%= @blog.title %>
             </h2>
-            <%# debugger %>
             <p><%= @blog.description.html_safe if @blog.description.present? %>
             </p>
           </div>
@@ -506,13 +505,6 @@
    
   if (this.parentElement.hasAttribute('href')) {
     url = this.parentElement.href;
-  //    var get_og = $.ajax(url)
-  // .done(function(data){
-    // var title = $(data).filter('meta[name="twitter:title"]').attr("content");
-    //   var price = $(data).filter('meta[property="og:price:amount"]').attr("content");
-    //   var image = $(data).filter('meta[property="og:image"]').attr("content");
-  //     debugger
-  // });
   myVariable = ""
 $.ajax({
     'async': false,

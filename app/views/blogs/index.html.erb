@@ -294,18 +294,15 @@
 
   function blog_show(id){
     blog_url = $(".dynamic-"+id).attr("id")
-    debugger
     $.ajax({
       url: '/show_blog/'+id,
       type: 'get',
       data: {id: id},
       success: function(data) {
-        debugger
         $('#test13').html(data);
         history.pushState({}, null, window.location.href+"/"+blog_url+" ");
       },
       error: function(data) {
-        debugger
         $('.loader').hide()
         alert('Something Wentwrong!')
       }
