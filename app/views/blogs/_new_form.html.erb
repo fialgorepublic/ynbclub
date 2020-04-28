@@ -360,7 +360,9 @@
 
     ['clean']                                         // remove formatting button
   ];
-
+  var Image = Quill.import('formats/image');
+  Image.className = 'img-fluid';
+  Quill.register(Image, true);
   Quill.register('modules/counter', function(quill, options) {
   var container = document.querySelector(options.container);
   quill.on('text-change', function() {
