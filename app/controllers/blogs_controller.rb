@@ -68,7 +68,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new
     @blog.attach_default_image
     @category = Category.new
-    # render partial: 'blogs/new_form'
+    render partial: 'blogs/new_form'
   end
 
   # GET /blogs/1/edit
@@ -81,22 +81,6 @@ class BlogsController < ApplicationController
       clear_shopify_session
     end
     render partial: 'blogs/new_form'
-  end
-
-  def blog_image_products
-    product_params = params[:products]
-    product_params.each do |prod|
-    product = Product.new
-    product.title = prod[:title]
-    product.price = prod[:price]
-    product.url = prod[:urs]
-    product.attach_avatar(prod[:image])
-    # product.avatar = prod[:image]
-    product.blog_image_id = @blog_image.id
-      debugger
-    product.save
-    end
-    # debugger
   end
 
   # POST /blogs

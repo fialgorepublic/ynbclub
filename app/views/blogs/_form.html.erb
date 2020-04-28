@@ -59,8 +59,7 @@
 
                       <div class="form-group">
                         <label><%=t('blogs.new.description') %></label>
-                        <div id="editor-container"></div>
-                          <%#= form.text_area :description, class: 'form-control', id:"editor-container" %>
+                          <%= form.text_area :description, class: 'quill_container' %>
                         <%#= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
                         <!-- <span id="display_count"><%#= t('blogs.new.total_words') %>: 0</span> -->
                         <!-- <span class="float-right"><%#= t('blogs.new.minimum_required_words') %>: 500 </span> -->
@@ -345,136 +344,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.js"></script>
 <script>
-    $(document).ready(function(){
-      $("#blog-form").on("submit", function () {
-        // debugger
-        var hvalue = $('#editor-container').text();
-        
-        $(this).append("<textarea name='blog[description]' style='display:none'>"+hvalue+"</textarea>");
-       });
-    });
-
-  // let editor = new Quill('#editor-container')
-  let editor = new Quill('#editor-container', {
-    theme: 'snow',
-    modules: {
-        toolbar: {
-            container: [['bold', 'italic', 'underline', 'strike'], ['link', 'image', 'video']],
-            // handlers: { image: quill_img_handler },
-        },
-    },
-    });
-
-  function b64toBlob(b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
-
-        var byteCharacters = atob(b64Data);
-        var byteArrays = [];
-
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-
-            var byteArray = new Uint8Array(byteNumbers);
-
-            byteArrays.push(byteArray);
-        }
-
-      var blob = new Blob(byteArrays, {type: contentType});
-      return blob;
-}
-function uploadImageToImgurAndReplaceSrc($image) {
-
-  var block = $image.attr('src').split(";");
-// Get the content type of the image
-var contentType = block[0].split(":")[1];// In this case "image/gif"
-// get the real base64 content of the file
-var realData = block[1].split(",")[1];// In this case "R0lGODlhPQBEAPeoAJosM...."
-
-// Convert it to a blob to upload
-var blob = b64toBlob(realData, contentType);
-
-// Create a FormData and append the file with "image" as parameter name
-var formDataToUpload = new FormData();
-formDataToUpload.append("image", blob);
-
-
-
-  // var imageBase64 = $image.attr('src');
-  // const formData = new FormData();
-  // formData.append('image', imageBase64);
-  // $('#progressbar').show()
-  
-  $.ajax({
-    url: '/blogs/blogs_image',
-    type: 'post',
-    data: formDataToUpload,
-    contentType:false,
-    processData:false,
-    cache:false,
-    dataType: 'json',
-    xhr: function() {
-      var xhr = $.ajaxSettings.xhr();
-      xhr.upload.onprogress = function(e) {
-      };
-      return xhr;
-    },
-    success: (response) => {
-        $image.attr('onClick', 'get_products' + '('+response+')');
-      // $image.attr('src', response.image_url.replace(/^http(s?):/, ''));
-      $('#progressbar').hide()
-    },
-    error: (xhr, type, err) => {
-      console.error(err)
-      alert("Sorry we couldn't upload your image to Imgur.")
-      $('#progressbar').hide()
-    }
-  })
-}
-// let updateInProgress = false
-editor.on('editor-change', () => {
-  
-  // if (updateInProgress) return;
-    debugger
-  var $images = $('#editor-container img')
-  $images.each(function () {
-    var imageSrc = $(this).attr('src')
-    if (imageSrc && imageSrc[0] === 'd') {
-      console.log('Starting image upload...')
-      // updateInProgress = true
-      // uploadImageToImgurAndReplaceSrc($(this))
-    }
-  })
-})
-  // const editor = new Quill('#editor-container', {
-  //   theme: 'snow',
-  //   modules: {
-  //       toolbar: {
-  //           container: [['bold', 'italic', 'underline', 'strike'], ['link', 'image', 'video']],
-  //           handlers: { image: quill_img_handler },
-  //       },
-  //   },
-  //   });
-
-
-
-// function quill_img_handler(image, callback) {
-//   // debugger
-//   var xhr = new XMLHttpRequest();
-// xhr.open('POST', '/blogs/blogs_image', true);
-// xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-// xhr.upload.addEventListener("progress", function(e) {
-//     var progress = Math.round((e.loaded * 100.0) / e.total);
-//     document.getElementById('progress').style.width = progress + "%";
-//   });
-// }
-  
-  
 
     $('#create-or-edit-category').click(function() {
         $('#create-or-edit-category-modal').modal('show');
@@ -598,10 +467,10 @@ editor.on('editor-change', () => {
             reader.readAsDataURL(input.files[0]);
         }
     }
-    function get_products(id){
+    function get_products(){
         $('#assignProduct').modal('show');
         $.ajax({
-            url: '/get_products_from_shopify?id='+id,
+            url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
             type: 'get',
             dataType: 'html',
             processData: false,
@@ -609,8 +478,8 @@ editor.on('editor-change', () => {
                 $('#products').html(data);
               $(".selected").each(function(index, v) {
                 id = $(v).attr('class').split(' ')[0];
-                // if(selected_products_ids.indexOf(id) === -1)
-                //   selected_products_ids.push(id);
+                if(selected_products_ids.indexOf(id) === -1)
+                  selected_products_ids.push(id);
               });
             },
             error: function (data) {
@@ -629,28 +498,20 @@ editor.on('editor-change', () => {
     });
 
     function add_products(){
-        var id = $(".selected")[0].value
-        var products = [];
+
+        var ids = [];
         $(".selected").each(function(index, v) {
-          if (index != 0) {
-            var obj = {}
             console.log($(v).attr('class').split(' ')[0]);
-            obj.image = v.firstElementChild.firstElementChild.src
-            obj.title = $(v).children().eq(1)[0].firstElementChild.innerText
-            obj.price = $(v).children().eq(2)[0].firstElementChild.innerText
-            obj.url = "https://www.saintlbeau.com/products/"+$(v).children().eq(3)[0].innerText.trim()
-            products.push(obj);
-          }
-          
+            ids.push($(v).attr('class').split(' ')[0]);
         });
+        if (ids != ""){
             $.ajax({
-                url: 'blog_image_products?id='+id,
-                type: 'post',
-                dataType: 'json',
-                contentType: 'application/json',
-                data : JSON.stringify({products: products}),
+                url: '/get_selected_products?ids='+ids,
+                type: 'get',
+                dataType: 'html',
+                processData: false,
                 success: function (data) {
-                    // $('#selectedProducts').html(data);
+                    $('#selectedProducts').html(data);
                     $('#assignProduct').modal('hide');
                 },
                 error: function (data) {
@@ -658,6 +519,11 @@ editor.on('editor-change', () => {
                     //    window.location.reload();
                 }
             });
+        }
+        else {
+          $('#content').trigger('click');
+
+        }
     }
 
 
