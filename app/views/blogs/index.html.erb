@@ -4,14 +4,14 @@
        <section id="features" class="blue">
         <div class="content">
           <div class="slider slider_video responsive_video_slider">
-            <% @videos.each do |video| %>
+            <%# @videos.each do |video| %>
               <div class="m_slider_vid">
               <div class="holder">
                 <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.id %>" data-target="#videoModal"
-              data-toggle="modal"><%= thumbnail_image(video) %></div>
+              data-toggle="modal"><%#= thumbnail_image(video) %></div>
           </div>
           <section class="entry-body">
-            <p class="video-title"><%= video.snippet.data['title'] %></p>
+            <p class="video-title"><%#= video.snippet.data['title'] %></p>
           </section>
             </div>
           <% end %>
@@ -300,10 +300,12 @@
       type: 'get',
       data: {id: id},
       success: function(data) {
+        debugger
         $('#test13').html(data);
         history.pushState({}, null, window.location.href+"/"+blog_url+" ");
       },
       error: function(data) {
+        debugger
         $('.loader').hide()
         alert('Something Wentwrong!')
       }
