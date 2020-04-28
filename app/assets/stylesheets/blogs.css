@@ -128,3 +128,14 @@ input:checked + .slider:before {
 .ql-container.ql-snow {
   height: 370px !important;
 }
+
+.newBlog-style .blogBox-style .box-shadow-am input {
+  border-left: 1px solid #ccc !important;
+  border-right: 1px solid #ccc !important;
+}
+
+.newBlog-style .Newblog-category .category-option select {
+  border-left: 1px solid #ccc !important;
+  border-right: 1px solid #ccc !important;
+  background-position: 1100px 15px  !important;
+}

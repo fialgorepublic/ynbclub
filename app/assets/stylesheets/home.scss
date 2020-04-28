@@ -3957,3 +3957,110 @@ span.remove.fa.fa-times {
     overflow: hidden !important;
   }
 }
+
+.image-box {
+  position: relative;
+  width: 65%;
+  margin-top: -90px;
+  height: 70px;
+  cursor: default;
+  margin-bottom: 0 !important;
+  transform: translateY(-15px);
+}
+
+.image-box.image-box-desktop .image-box-list {
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.025), 1px 1px 1px 1px rgba(0,0,0,.03);
+}
+
+.image-box .image-box-list {
+    display: flex;
+    flex-direction: column;
+    background: #F0F2F5;
+    padding: 0 20px 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0) translateX(0) translateY(0);
+    top: -7px;
+    left: 157px;
+    position: relative;
+    transform-origin: top left;
+    transition: 0.3s all ease-out 0s;
+}
+
+.image-box .image-box-heading {
+    text-transform: uppercase;
+    color: #757779;
+    font-family: avenir-next-demi-bold, arial !important;
+    font-size: 14px;
+    margin-bottom: 0 !important;
+    height: 50px;
+    line-height: 50px !important;
+    }
+    .image-box .image-box-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #FFF;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 10px !important;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.025), 1px 1px 1px 1px rgba(0,0,0,.03);
+    cursor: pointer;
+}
+
+.image-box .image-box-item img {
+    width: 100px !important;
+    display: block;
+    padding: 0;
+    min-width: 100px !important;
+    margin-right: 10px !important;
+}
+.image-box .image-box-item .image-box-item-info {
+    flex: 1;
+    margin: 0 !important;
+}
+
+.image-box .image-box-item .image-box-item-name {
+    font-family: avenir-next-demi-bold, arial !important;
+    font-size: 16px;
+    color: #2E3E4E;
+    margin-bottom: 5px !important;
+    line-height: 22px !important;
+    text-align: left;
+}
+
+.image-box .image-box-item .image-box-item-price {
+    font-family: avenir-next-demi-bold, arial !important;
+    color: #FF3333;
+    margin-bottom: 0 !important;
+    font-size: 14px;
+}
+
+.image-box .image-box-item-icon {
+    display: block;
+    background: rgba(0,0,0,0);
+    width: 12px;
+    height: 12px;
+    border-top: 1px solid #000204;
+    border-right: 1px solid #000204;
+    transform: rotate(45deg);
+    opacity: 0.5;
+    margin-right: 10px;
+    margin-bottom: 0 !important;
+}
+
+
+.image-box .image-box-icon {
+    background-image: url(https://js.lixibox.com/image-assets/icons/shop/red.png);
+    background-color: #FFF;
+    width: 50px;
+    height: 50px;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.025), 1px 1px 1px 1px rgba(0,0,0,.03);
+    margin: 20px !important;
+    margin-left: 190px !important;
+}

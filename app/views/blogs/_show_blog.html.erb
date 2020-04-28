@@ -499,6 +499,69 @@
       history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
     }
   }
+
+  $('.img-fluid').each(function(){
+    // $.get(url, 
+    // function(data) {
+    //  var title = $(data).filter('meta[name="twitter:title"]').attr("content");
+    //   var price = $(data).filter('meta[property="og:price:amount"]').attr("content");
+    //   var image = $(data).filter('meta[property="og:image"]').attr("content");
+    // });
+
+   
+  if (this.parentElement.hasAttribute('href')) {
+    url = this.parentElement.href;
+  //    var get_og = $.ajax(url)
+  // .done(function(data){
+    // var title = $(data).filter('meta[name="twitter:title"]').attr("content");
+    //   var price = $(data).filter('meta[property="og:price:amount"]').attr("content");
+    //   var image = $(data).filter('meta[property="og:image"]').attr("content");
+  //     debugger
+  // });
+  myVariable = ""
+$.ajax({
+    'async': false,
+    'type': "get",
+    'url': url,
+    'success': function (data) {
+        myVariable = data;
+    }
+});
+  var title = $(myVariable).filter('meta[name="twitter:title"]').attr("content");
+      var price = $(myVariable).filter('meta[property="og:price:amount"]').attr("content");
+      var image = $(myVariable).filter('meta[property="og:image"]').attr("content");
+    var button = '<div class="image-box image-box-desktop">'+
+          '<div class="image-box-icon"></div>'+
+          '<div class="image-box-list">'+
+            '<div class="image-box-heading"></div>'+
+          '<div class="image-box-item" onclick='+url+'>'+
+            '<img src='+image+' alt="Tinh" chất="" some="" by="" mi="" aha-bha-pha="" 30="" days="" miracle="" 50ml="" serum="">'+
+            '<div class="image-box-item-info">'+
+              '<div class="image-box-item-name">'+title+'</div>'+
+              '<div class="image-box-item-price">'+price+'</div>'+
+            '</div>'+
+            '<div class="image-box-item-icon"></div>'+
+          '</div>'+
+          '</div>'+
+        '</div>'
+        $(this).unwrap();
+        $(button).insertAfter(this)
+        $('.image-box-item').click(function() {
+          window.open(this.attributes[1].value);
+        });
+  }
+
+  })
+
+  $(".image-box-icon").mouseover(function() {
+    next_product = this.nextElementSibling
+      $(next_product).css({"opacity": "1", "visibility": "unset" , "transform": "none"
+    });
+  })
+
+  $(".img-fluid, .image-box").mouseleave(function() {
+    $('.image-box-list').css({"opacity": "0", "visibility": "hidden" , "transform": "scale(0) translateX(0) translateY(0)"});
+  })
 </script>
 
 
