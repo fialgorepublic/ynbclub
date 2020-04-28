@@ -133,11 +133,6 @@
             <%# debugger %>
             <p><%= @blog.description.html_safe if @blog.description.present? %>
             </p>
-            <% if @blog.blog_images.any? %>
-            <%= @blog.blog_images.each do |image| %>
-              <%= image_tag image.image_url %>
-            <% end %>
-            <% end %>
           </div>
           <hr>
         </div>
