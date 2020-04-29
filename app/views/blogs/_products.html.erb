@@ -1,5 +1,4 @@
 <div class="row  m-t-30">
-  <%= hidden_field_tag :blog_image, @blog_image.id, class: 'selected'  %>
   <% @products.each do |product| %>
       <div class="col-md-4">
         <div class="<%= product.id %> box-shadow-am sm-pd-am <%= ((@blog.present? && @blog.products.where(product_id: product.id).count > 0) || (@selected_products_ids.present? && @selected_products_ids.include?(product.id.to_s))) ? 'selected' : '' %>" onclick="showActive(this)">

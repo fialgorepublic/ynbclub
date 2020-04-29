@@ -75,8 +75,6 @@ Rails.application.routes.draw do
   get 'videos', to: 'dashboard#videos'
   get 'profile_admin', to: 'dashboard#profile'
   get 'show_blog/:id', to: 'blogs#show_blog'
-  post 'blogs/blogs_image', to: 'blogs#blogs_image'
-  post 'blogs/blog_image_products', to: 'blogs#blog_image_products'
 
   resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk

@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
   require 'time_ago_in_words'
 
   def get_products_from_shopify
-    @blog_image = BlogImage.find(params[:id])
     initiate_shopify_session
     @products = ShopifyAPI::Product.all
     clear_shopify_session
