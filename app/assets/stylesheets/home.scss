@@ -2480,7 +2480,8 @@ label.error {
   }
   .description {
     height: 170px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     // min-height: 132px;
     text-overflow: ellipsis;
     // margin-bottom: 25px;
