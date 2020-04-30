@@ -437,4 +437,11 @@
     // Remove the input from the body
     document.body.removeChild(aux);
   }
+  $( document ).ready(function() {
+    $('.active').each(function() {
+      if (this.hasAttribute("href")) {
+        this.scrollIntoView();
+      }
+    });
+  })
 </script>
