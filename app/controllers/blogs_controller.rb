@@ -68,7 +68,11 @@ class BlogsController < ApplicationController
     @blog = Blog.new
     @blog.attach_default_image
     @category = Category.new
+    if params[:id].present?
     render partial: 'blogs/new_form'
+    else
+      redirect_to blogs_path(new: '')
+    end
   end
 
   # GET /blogs/1/edit
@@ -80,7 +84,11 @@ class BlogsController < ApplicationController
       @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
       clear_shopify_session
     end
-    render partial: 'blogs/new_form'
+    if params[:edit_blog].present?
+      render partial: 'blogs/new_form'
+    else
+      redirect_to blogs_path(blog_id: @blog.id)
+    end
   end
 
   # POST /blogs
