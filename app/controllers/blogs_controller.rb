@@ -77,17 +77,22 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
-    @category = Category.new
-    selected_product_ids = @blog.products.pluck(:product_id)
-    if selected_product_ids.present?
-      initiate_shopify_session
-      @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
-      clear_shopify_session
-    end
-    if params[:edit_blog].present?
-      render partial: 'blogs/new_form'
+    if @blog.present?
+      @category = Category.new
+      selected_product_ids = @blog.products.pluck(:product_id)
+      if selected_product_ids.present?
+        initiate_shopify_session
+        @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
+        clear_shopify_session
+      end
+      if params[:edit_blog].present?
+        render partial: 'blogs/new_form'
+      else
+        redirect_to blogs_path(blog_id: @blog.id)
+      end
     else
-      redirect_to blogs_path(blog_id: @blog.id)
+      redirect_to blogs_path
+      flash[:notice] = "blogs with this name is not available"
     end
   end
 
@@ -247,7 +252,7 @@ class BlogsController < ApplicationController
       if params[:translate_edit].present? && params[:translate_edit] == 'true'
         set_blog
       else
-        @blog = current_user.blogs.eager_load_objects.friendly.find(params[:id])
+        @blog = current_user.blogs.eager_load_objects.friendly.find(params[:id]) rescue ''
       end
     end
 
