@@ -48,7 +48,9 @@
            
 <%
 =end%>
-						<a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a>
+						<% if current_user.present? %>
+							<a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a>
+						<% end %>
 					</div>
 				</div>
 			</div>

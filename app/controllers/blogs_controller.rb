@@ -21,7 +21,7 @@ class BlogsController < ApplicationController
           Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
         end
     begin
-      @videos = YoutubeService.get_channel_videos
+      @videos = YoutubeVideo.all
     rescue StandardError => e
       @videos = []
     end
