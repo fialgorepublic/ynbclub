@@ -113,7 +113,7 @@
     <div class="modal-dialog" style="width: 80%">
       <div class="modal-content" style="width: 100%">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" id="remove-modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">
             <span class="">Create New Blog
               </span>
@@ -127,33 +127,6 @@
           </div>
         </div> -->
         <div id="create-blog">
-
-          </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
-
-<div class="modal fade" id="edit-blog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" style="width: 80%">
-      <div class="modal-content" style="width: 100%">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">
-            <span class="">Create New Blog
-              </span>
-          </h4>
-        </div>
-        <!-- <div class="modal-body con_modal-content">
-          <div class="">
-            <%# debugger %>
-            <div class="ambassdor-box newBlog-style conversation-c"></div><%#= render partial: 'new_form', locals: { blog: @blog } %>
-            
-          </div>
-        </div> -->
-        <div id="edit-blog">
 
           </div>
       </div>
@@ -369,8 +342,8 @@
         $("#myModal").modal('hide')
         $("#new-blog").modal('show')
         $('#myModal').on('hidden.bs.modal', function () {
-          $('body').addClass('modal-open');
-          $('body').removeAttr('style');
+          // $('body').addClass('modal-open');
+          // $('body').removeAttr('style');
           $('#create-blog').html(data);
           history.pushState({}, null, window.location.href + "/edit")
         })
@@ -428,4 +401,9 @@ $('body').on('hidden.bs.modal', function () {
 $('#new-blog').on('hidden.bs.modal', function () {
   history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
   })
+$("#remove-modal").click(function(){
+  $("#new-blog").modal("hide")
+  $(".modal-backdrop").removeClass();
+
+})
 </script>
