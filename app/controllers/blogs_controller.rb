@@ -15,22 +15,18 @@ class BlogsController < ApplicationController
       redirect_to blogs_path
     end
     blogs = \
-        if current_user.present?
-          current_user.filtered_blogs(params[:sort], params[:category], params[:title])
-        else
-          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
-        end
-    begin
-      @videos = YoutubeVideo.all
-    rescue StandardError => e
-      @videos = []
-    end
+      if current_user.present?
+        current_user.filtered_blogs(params[:sort], params[:category], params[:title])
+      else
+        Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
+      end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
     respond_to do |format|
       format.html
       format.js
     end
+    @videos = YoutubeVideo.all
   end
 
   def list

@@ -233,8 +233,7 @@ class User < ApplicationRecord
   end
 
   def filter_by_category(category)
-    Blog.joins(:category)
-    # Blog.eager_load_objects.filter_by_category(category)
+    Blog.eager_load_objects.filter_by_category(category)
   end
 
   def full_name
