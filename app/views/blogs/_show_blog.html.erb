@@ -116,8 +116,13 @@
               <strong>
                 <i class="fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');">
                 </i><% if @blog.is_featured %>
-                Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %><% if signed_in? %><% if belongs_to_user %><%= link_to edit_blog_path(@blog) do %>
-                <i class="fa fa-pencil"></i><% end %><% end %><% end %>
+                Featured on <%= @blog.feature_date.to_time.strftime("%H:%M:%S %d-%m-%Y") %><% end %><% if signed_in? %>
+                <% if belongs_to_user %>
+                <%#= link_to edit_blog_path(@blog) do %>
+                <i class="fa fa-pencil" data-toggle="modal" data-target="#new-blog" onclick="edit_blog(<%= @blog.id %>)" style="cursor: pointer;"></i>
+                <%# end %>
+                <% end %>
+                <% end %>
               </strong>
             </h5>
           </div>
