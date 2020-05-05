@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
     else
       user = User.create(:name => name, :email => email, :password => provider_id, social_login: true,
                          referral: Devise.friendly_token)
+      
       if invite.present?
         user_invited = User.find_by_email(invite)
         if user_invited
@@ -39,7 +40,10 @@ class SessionsController < ApplicationController
           end
         end
       end
+      begin
       UserMailer.user_sign_up(user).deliver
+      rescue
+      end
       initiate_shopify_session
       customer = ShopifyAPI::Customer.search(query:"email:#{user.email}")
       if customer.nil?
