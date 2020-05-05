@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.6.3'
+ruby '2.4.1'
 
 gem 'rails', '~> 5.2.0'
 gem 'pg'
@@ -57,10 +57,12 @@ gem 'friendly_id', '~> 5.2.4'
 gem 'active_storage_validations'
 gem 'sitemap_generator'
 gem 'yt', '~> 0.29.1'
+gem 'newrelic_rpm'
 gem 'medium-editor-rails', '~> 2.3'
 gem 'medium-editor-insert-plugin-rails'
 gem 'local_time'
 gem 'quilljs-rails'
+# gem 'headless', '~> 2.2', '>= 2.2.3'
 gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
