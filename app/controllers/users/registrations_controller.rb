@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           UserMailer.referral_sign_up(user_invited, resource).deliver
         end
       end
-      UserMailer.user_sign_up(resource).deliver
+      # UserMailer.user_sign_up(resource).deliver
       SubscribeUserToMailchimp.perform_later(resource)
       begin
         initiate_shopify_session
