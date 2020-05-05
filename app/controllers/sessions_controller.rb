@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       user.update_attributes(social_login: true)
       redirect_to dashboard_path, notice: I18n.t(:successfully_signin)
     else
-      user = User.create!(:name => name, :email => email, :password => provider_id, social_login: true,
+      user = User.create(:name => name, :email => email, :password => provider_id, social_login: true,
                          referral: Devise.friendly_token)
       
       if invite.present?
