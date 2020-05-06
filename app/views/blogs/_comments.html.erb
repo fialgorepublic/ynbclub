@@ -20,7 +20,7 @@
 
             </div>
             <div class="meta user-name">
-              <p class="pull-left" style="padding-left: 10px; padding-right: 10px;"><b><%= comment.user.name %></b>
+              <p class="pull-left" style="padding-left: 10px; padding-right: 10px;"><b><%= link_to comment.user.name, user_path(comment.user.id) %></b>
               <h6 class="text-muted time"><%= comment.created_at.ago_in_words %></h6>
               <!--made a post.-->
               </p>
