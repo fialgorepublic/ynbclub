@@ -32,6 +32,9 @@
 //= require search 
 //= require profiles
 //= require users
+//= require approve_sales
+//= require buyer_to_ambassador
+//= require register
 //= permissions
 //= cable
 //= conversations
