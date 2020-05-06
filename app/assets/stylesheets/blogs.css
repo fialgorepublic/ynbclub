@@ -137,6 +137,7 @@ input:checked + .slider:before {
 .newBlog-style .Newblog-category .category-option select {
   border-left: 1px solid #ccc !important;
   border-right: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important;
 }
 
 

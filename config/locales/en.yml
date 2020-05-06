@@ -17,7 +17,7 @@ en:
   register:
     register_label:           Register to Saint L' Beau
     facebook_signup_label:    Signup with Facebook
-    google_signup_label:      Signup with Google +
+    google_signup_label:      Signup with Google
     or_label:                 or
     enter_name_placeholder:   Enter Username
     username_label:           Username
@@ -32,7 +32,7 @@ en:
   login:
     login_label:              Login to Saint L' Beau
     facebook_signin_label:    Login with Facebook
-    google_signin_label:      Login with Google +
+    google_signin_label:      Login with Google
     create_account_label:     Create Account
     forgot_password_label:    Forgot Password?
 

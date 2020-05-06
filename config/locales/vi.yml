@@ -17,7 +17,7 @@ vi:
   register:
     register_label:           Đăng ký cùng Saint L'Beau
     facebook_signup_label:    Đăng ký với Facebook
-    google_signup_label:      Đăng ký với Google +
+    google_signup_label:      Đăng ký với Google
     or_label:                 Hoặc 
     enter_name_placeholder:   Nhập tên người dung 
     username_label:           Tên người dung 
@@ -32,7 +32,7 @@ vi:
   login:
     login_label:              Đăng nhập vào  Saint L' Beau
     facebook_signin_label:    Đăng nhập bằng tài khoản Facebook
-    google_signin_label:      Đăng nhập bằng tài khoản Google +
+    google_signin_label:      Đăng nhập bằng tài khoản Google
     create_account_label:     Tạo tài khoản 
     forgot_password_label:    Quên mật khẩu?
 

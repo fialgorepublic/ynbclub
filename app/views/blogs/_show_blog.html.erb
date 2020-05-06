@@ -499,7 +499,9 @@
     }
   }
 
-  $('.img-fluid').each(function(){
+
+$('#myModal').on('shown.bs.modal', function (e) {
+    $('.img-fluid').each(function(){
     
   if (this.parentElement.hasAttribute('href')) {
     url = this.parentElement.href;
@@ -538,7 +540,7 @@ $.ajax({
 
   })
 
-  $(".image-box-icon").mouseover(function() {
+ $(".image-box-icon").mouseover(function() {
     next_product = this.nextElementSibling
       $(next_product).css({"opacity": "1", "visibility": "unset" , "transform": "none"
     });
@@ -547,6 +549,7 @@ $.ajax({
   $(".img-fluid, .image-box").mouseleave(function() {
     $('.image-box-list').css({"opacity": "0", "visibility": "hidden" , "transform": "scale(0) translateX(0) translateY(0)"});
   })
+})
 </script>
 
 
