@@ -31,6 +31,7 @@
 //= require groups
 //= require search 
 //= require profiles
+//= require users
 //= permissions
 //= cable
 //= conversations
