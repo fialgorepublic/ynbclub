@@ -1,6 +1,6 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
-    <div class="banner remove-space">
+    <div class="<%= current_user.present? ? 'banner remove-space' : 'banner' %>">
       <% if @videos.any? %>
        <section id="features" class="blue">
         <div class="content">
@@ -123,7 +123,6 @@
         </div>
         <!-- <div class="modal-body con_modal-content">
           <div class="">
-            <%# debugger %>
             <div class="ambassdor-box newBlog-style conversation-c"></div><%#= render partial: 'new_form', locals: { blog: @blog } %>
             
           </div>
@@ -308,8 +307,8 @@
       type: 'get',
       data: {id: id},
       success: function(data) {
-        $('#test13').html(data);
-        history.pushState({}, null, window.location.href+"/"+blog_url+" ");
+        $('#create-blog-modal').html(data);
+        history.pushState("", "", window.location.href+"/"+blog_url+" ");
       },
       error: function(data) {
         $('.loader').hide()
@@ -360,21 +359,19 @@
 
 
   function edit_blog(id){
+    $("#create-blog-modal").html('');
+    $("#myModal").modal('hide')
     $.ajax({
       url: id+"/edit",
       type: 'get',
       data: {edit_blog: 0},
       success: function(data) {
-        $("#myModal").modal('hide')
-        $('#myModal').on('hidden.bs.modal', function () {
-          $('body').addClass('modal-open');
-          $('body').removeAttr('style');
-          $('#create-blog').html(data);
-          history.pushState({}, null, window.location.href + "/edit")
-        })
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+        $('#create-blog').html(data);
+        history.pushState({}, null, window.location.href + "/edit")
       },
       error: function(data) {
-        debugger
         $('.loader').hide()
         alert('Something Wentwrong!')
       }
@@ -405,6 +402,8 @@ $('#new-blog').on('hidden.bs.modal', function () {
   })
 $("#remove-modal").click(function(){
   $("#new-blog").modal("hide")
+  $("#create-blog").html('');
+  $("#create-blog-modal").html('');
   $(".modal-backdrop").removeClass();
 
 })
