@@ -885,7 +885,7 @@ img.lib-img-show {
         text-align: center;
         background: #fff;
         margin-bottom: 20px;
-         max-height: 100%; 
+         max-height: 100%;
          min-height: 100%;
         -webkit-box-shadow: -1px 0px 13px -1px #c9c9c9;
         -moz-box-shadow: -1px 0px 13px -1px #c9c9c9;
@@ -897,8 +897,8 @@ img.lib-img-show {
         max-height: 100%;
         object-fit: cover;
     }
-    
-    
+
+
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 980px) {
@@ -1349,7 +1349,7 @@ button.medium-insert-buttons-show {
 .medium-insert-embeds figure figcaption,
 .mediumInsert-embeds figure figcaption {
     display: none !important;
-} 
+}
 .slick-prev:before {
     content: "" !important;
     font-family: 'FontAwesome' !important;
@@ -1360,4 +1360,10 @@ button.medium-insert-buttons-show {
     font-family: 'FontAwesome' !important;
     font-size: 22px !important;
     color: #83848a !important;
+}
+
+.group-category-label {
+    margin-top: 4px !important;
+    position: absolute;
+    margin-left: 3px;
 }
