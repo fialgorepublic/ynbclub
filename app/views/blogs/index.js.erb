@@ -1,4 +1,3 @@
-debugger
 $('.loader').hide();
 <% if params[:page].present? %>
   $('#blogs').append('<%= j render partial: "all_blogs", locals: { blogs: @blogs } %>');
