@@ -308,7 +308,7 @@
       type: 'get',
       data: {id: id},
       success: function(data) {
-        $('#test13').html(data);
+        $('.create-blog-modal').html(data);
         history.pushState({}, null, window.location.href+"/"+blog_url+" ");
       },
       error: function(data) {

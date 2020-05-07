@@ -49,3 +49,68 @@
   </div>
   <hr>
 </div>
+
+<div class="modal fade" id="new-blog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" style="width: 80%">
+    <div class="modal-content" style="width: 100%">
+      <div class="modal-header">
+        <button type="button" class="close" id="remove-modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+          <span class="">Create New Blog
+          </span>
+        </h4>
+      </div>
+      <div id="create-blog">
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+  function blog_show(id){
+    blog_url = $(".dynamic-"+id).attr("id")
+    $.ajax({
+      url: '/show_blog/'+id,
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        $('.create-blog-modal').html(data);
+        window.history.replaceState({},'','/blogs/'+ blog_url);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+
+  function edit_blog(id){
+    $(".create-blog-modal").html('');
+    $("#myModal").modal('hide')
+    $.ajax({
+      url: id+"/edit",
+      type: 'get',
+      data: {edit_blog: 0},
+      success: function(data) {
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+        $('#create-blog').html(data);
+        history.pushState({}, null, window.location.href + "/edit")
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+  
+  $("#remove-modal").click(function(){
+    $("#new-blog").modal("hide")
+    $("#create-blog").html('');
+    $(".modal-backdrop").removeClass();
+    window.history.replaceState({},'','/dashboard');
+  })
+</script>
