@@ -20,7 +20,7 @@
       <td id="blog-reject-status-<%= blog.id %>"><%= blog.rejected? ? t(:reject_label) : t(:unreject_label) %></td>
       <td>
         <label class="switch">
-          <input type="checkbox" class="reject-switch" id="<%= blog.id %>" <%= 'checked' if blog.rejected? %>>
+          <input type="checkbox" class="reject-switch" id="reject-<%= blog.id %>" <%= 'checked' if blog.rejected? %>>
           <span class="slider round"></span>
         </label>
       </td>
