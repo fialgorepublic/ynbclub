@@ -183,7 +183,7 @@ $(document).on('turbolinks:load', function () {
 
     $(".reject-switch").change(function(event){
     status = $(this).prop("checked");
-    id = event.target.id;
+    id = event.target.id.split("-")[1];
     if (confirm(`Are you sure?`)) {
       $.ajax({
         url: id + "/change_reject_status.json?id=" + "&status=" + status,
@@ -191,7 +191,7 @@ $(document).on('turbolinks:load', function () {
         contentType: "application/json",
         success: function(data){
           if(data.success){
-            $("#" + id).prop('checked', status == 'true');
+            $(`#reject-${id}`).prop('checked', status == 'true');
             $("#blog-reject-status-" + id).text(status == 'true' ? 'Reject' : 'Not Reject');
           }else{
             toastr.error(data.message);
@@ -199,7 +199,7 @@ $(document).on('turbolinks:load', function () {
         }
       })
     }else
-      $("#" + id).prop('checked', !(status == 'true'));
+      $(`#reject-${id}`).prop('checked', !(status == 'true'));
   })
 });
 
