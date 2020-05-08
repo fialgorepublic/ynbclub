@@ -96,6 +96,8 @@ vi:
   blogs:
     title_label:              Chức vụ
     category_label:           thể loại
+    reject_action_label:      Từ chối Blog
+    reject_status_label:      Từ chối trạng thái
     user_label:               Người dùng
     publish_status_label:     Xuất bản trạng thái
     index:
@@ -438,6 +440,8 @@ vi:
   delete_confirmation:    Bạn có chắc không?
   publish_label:              Đăng tải
   ubpublish_label:           Không đăng tải 
+  reject_label:               Từ chối
+  unreject_label:             Không từ chối
   close_label:                    Đóng 
   commission_label:           Commission
   apply_filter_label:          Áp dụng bộ lọc 

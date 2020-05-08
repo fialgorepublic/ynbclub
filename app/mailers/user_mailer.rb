@@ -23,5 +23,4 @@ class UserMailer < ApplicationMailer
     @referral = referral
     mail(to: user.email, subject: referral.name + ' has just registered at saintLBeau from your invite')
   end
-
 end
