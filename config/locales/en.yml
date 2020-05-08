@@ -96,6 +96,8 @@ en:
   blogs:
     title_label:              Title
     category_label:           Category
+    reject_action_label:      Reject Blog
+    reject_status_label:      Reject Status
     user_label:               User
     publish_status_label:     Publish Status
     index:
@@ -431,6 +433,8 @@ en:
   delete_confirmation:        Are you sure?
   publish_label:              Publish
   ubpublish_label:            Unpublish
+  reject_label:               Reject
+  unreject_label:             Not Reject
   close_label:                Close
   commission_label:           Commission
   apply_filter_label:         Apply Filter
