@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :search, :users]
+  before_action :authenticate_user!, except: [:index, :show, :search, :users, :search_conversation]
   before_action :authorize_user!, expect: [:index, :show, :search, :users]
   before_action :set_group, only: [:show, :edit, :update, :destroy, :users]
 
