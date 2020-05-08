@@ -159,34 +159,27 @@ class BlogsController < ApplicationController
   end
 
   def change_publish_status
+    if !@blog.is_published? && @blog.default_image?
+      message = "You need to change default picture before publishing your blog."
+      flash[:alert] = message
+    else
+      if params[:status] == 'true'
+        @blog.publish!
+        @blog.award_coins!
+      else
+        @blog.ubpublish!
+      end
+    end
+
     respond_to do |format|
-
-      format.html{
-        unless @blog.is_published?
-          return redirect_to @blog, alert: "You need to change default picture before publishing your blog." if @blog.default_image?
-        end
-
-        @blog.update_attributes(is_published: params[:status])
-        @blog.award_coins! if params[:status] == "true"
-        redirect_to @blog
-      }
-
-      format.json{
-        unless @blog.is_published?
-          render json: { success: false, message: 'You can not publish a blog with default image.' } if @blog.default_image?
-        end
-
-        @blog.update_attributes(is_published: params[:status])
-        @blog.award_coins! if params[:status] == "true"
-        render json: { success: true }
-      }
-
+      format.html { redirect_to @blog }
+      format.json { render json: { success: !@blog.default_image?, message: message }  }
     end
   end
 
   def change_reject_status
     @blog.reject!(params[:status])
-    UserMailer.reject_blog(@blog).deliver_later if @blog.rejected?
+    BlogMailer.rejected(@blog).deliver_later if @blog.rejected?
 
     render json: { success: true }
   end

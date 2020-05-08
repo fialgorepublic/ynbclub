@@ -23,11 +23,4 @@ class UserMailer < ApplicationMailer
     @referral = referral
     mail(to: user.email, subject: referral.name + ' has just registered at saintLBeau from your invite')
   end
-
-  def reject_blog(blog)
-    @user = blog.user
-    @blog = blog
-    mail(to: @user.email, subject: "Blog Rejected")
-  end
-
 end

@@ -105,24 +105,32 @@ class Blog < ApplicationRecord
   end
 
   def attach_default_image
-    self.avatar.attach(io: File.open(Rails.root.join('app/assets/images/default-blog-image.jpg')), filename: 'default-blog-image.jpg', content_type: 'image/jpg')
+    avatar.attach(io: File.open(Rails.root.join('app/assets/images/default-blog-image.jpg')), filename: 'default-blog-image.jpg', content_type: 'image/jpg')
   end
 
   def default_image?
-    self.avatar.filename == 'default-blog-image.jpg'
+    avatar.filename == 'default-blog-image.jpg'
   end
 
   def reject!(status)
-    self.update_attributes(rejected: status)
+    update_attributes(rejected: status)
   end
 
   def award_coins!
-    return if self.coins_awarded?
+    return if coins_awarded?
     point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
       return if point_type.blank? || point_type.zero_points?
 
-    self.user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
-    self.update(coins_awarded: true)
+    user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
+    update(coins_awarded: true)
+  end
+
+   def publish!
+    update_attributes(is_published: true)
+  end
+
+  def unpublish!
+    update_attributes(is_published: false)
   end
 
   private
