@@ -146,6 +146,14 @@ module ApplicationHelper
     "active" if current_page?(path)
   end
 
+  def active_class_deduct_point params
+    "active" if params[:deduct_points].present?
+  end
+
+  def active_class_ban_user params
+    "active" if action_name == "all_users" && !params[:deduct_points].present?
+  end
+
   def dashboard_class
     return 'snapshot-dashboard-holder' if action_name == "edit" && controller_name == "take_snapshot"
     return 'ambassador-dashboard' if blog_resource?

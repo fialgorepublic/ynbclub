@@ -212,7 +212,7 @@
 
       <% if current_user.is_admin? || current_user.has_permission?('ban', 'users') %>
       <li>
-        <%= link_to users_ban_users_path, class: active_class(users_ban_users_path) do %>
+        <%= link_to users_ban_users_path, class: active_class_ban_user(params) do %>
         <i class="sidebar-icon fa fa-ban" style="padding-right: 8px;"></i><span
           class="side-nav-style"><%= t('sidebar.ban_users_label') %></span>
         <% end %>
@@ -221,7 +221,7 @@
 
       <% if current_user.is_admin? || current_user.has_permission?('deduct_points', 'users') %>
       <li>
-        <%= link_to users_ban_users_path(deduct_points: true), class: active_class(users_ban_users_path(deduct_points: true)) do %>
+        <%= link_to users_ban_users_path(deduct_points: true), class: active_class_deduct_point(params) do %>
         <i class="custom-icon fa fa-minus-circle" style="padding-right: 4px;"></i> <span
           class="side-nav-style"><%= t('sidebar.deduct_points_label') %></span>
         <% end %>
