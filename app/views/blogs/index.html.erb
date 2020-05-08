@@ -300,23 +300,6 @@
   };
 
 
-  function blog_show(id){
-    blog_url = $(".dynamic-"+id).attr("id")
-    $.ajax({
-      url: '/show_blog/'+id,
-      type: 'get',
-      data: {id: id},
-      success: function(data) {
-        $('#create-blog-modal').html(data);
-        history.pushState("", "", window.location.href+"/"+blog_url+" ");
-      },
-      error: function(data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
-  }
-
   function create_blog(){
     var id = 0
     $.ajax({
@@ -357,27 +340,6 @@
   }
 
 
-
-  function edit_blog(id){
-    $("#create-blog-modal").html('');
-    $("#myModal").modal('hide')
-    $.ajax({
-      url: id+"/edit",
-      type: 'get',
-      data: {edit_blog: 0},
-      success: function(data) {
-        $('body').addClass('modal-open');
-        $('body').removeAttr('style');
-        $('#create-blog').html(data);
-        history.pushState({}, null, window.location.href + "/edit")
-      },
-      error: function(data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
-  }
-
 $( document ).ready(function() {
   if (window.location.href.includes("id")) {
     url = window.location.href.split("?")[0]
@@ -391,20 +353,5 @@ $( document ).ready(function() {
   history.pushState({}, null, get_url);
   }
   
-})
-
-$('body').on('hidden.bs.modal', function () {
-  // $(this).removeData('bs.modal');
-  // history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
-});
-$('#new-blog').on('hidden.bs.modal', function () {
-  history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
-  })
-$("#remove-modal").click(function(){
-  $("#new-blog").modal("hide")
-  $("#create-blog").html('');
-  $("#create-blog-modal").html('');
-  $(".modal-backdrop").removeClass();
-
 })
 </script>
