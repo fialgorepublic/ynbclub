@@ -32,6 +32,9 @@ Rails.application.routes.draw do
       get  :new_wizard, as: 'wizard'
       get :exceed_limit
     end
+    member do
+      get :change_reject_status
+    end
     get :shared
   end
   get 'approve_sales', to: 'referral_sales#approve_sales'

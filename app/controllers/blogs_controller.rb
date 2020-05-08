@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed, :show_blog]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
-  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog]
+  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :change_reject_status]
   before_action :check_limit, only: [:new]
 
   include ApplicationHelper
@@ -167,6 +167,7 @@ class BlogsController < ApplicationController
         end
 
         @blog.update_attributes(is_published: params[:status])
+        @blog.award_coins! if params[:status] == "true"
         redirect_to @blog
       }
 
@@ -176,10 +177,18 @@ class BlogsController < ApplicationController
         end
 
         @blog.update_attributes(is_published: params[:status])
+        @blog.award_coins! if params[:status] == "true"
         render json: { success: true }
       }
 
     end
+  end
+
+  def change_reject_status
+    @blog.reject!(params[:status])
+    UserMailer.reject_blog(@blog).deliver_later if @blog.rejected?
+
+    render json: { success: true }
   end
 
   def change_buyer_show_statusgs

@@ -180,6 +180,27 @@ $(document).on('turbolinks:load', function () {
     }else
       $("#" + id).prop('checked', !(status == 'true'));
   })
+
+    $(".reject-switch").change(function(event){
+    status = $(this).prop("checked");
+    id = event.target.id;
+    if (confirm(`Are you sure?`)) {
+      $.ajax({
+        url: id + "/change_reject_status.json?id=" + "&status=" + status,
+        method: "get",
+        contentType: "application/json",
+        success: function(data){
+          if(data.success){
+            $("#" + id).prop('checked', status == 'true');
+            $("#blog-reject-status-" + id).text(status == 'true' ? 'Reject' : 'Not Reject');
+          }else{
+            toastr.error(data.message);
+          }
+        }
+      })
+    }else
+      $("#" + id).prop('checked', !(status == 'true'));
+  })
 });
 
   function blog_show(id){

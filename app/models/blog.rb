@@ -72,7 +72,6 @@ class Blog < ApplicationRecord
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
-  after_save :add_coins_to_user_account
   before_destroy :valid_for_destroy?
 
   def add_products(product)
@@ -113,18 +112,20 @@ class Blog < ApplicationRecord
     self.avatar.filename == 'default-blog-image.jpg'
   end
 
-  private
-    def add_coins_to_user_account
-      return if coins_awarded?
-      return if user.blank?
+  def reject!(status)
+    self.update_attributes(rejected: status)
+  end
 
-      point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
+  def award_coins!
+    return if self.coins_awarded?
+    point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
       return if point_type.blank? || point_type.zero_points?
 
-      user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
-      self.update(coins_awarded: true)
-    end
+    self.user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
+    self.update(coins_awarded: true)
+  end
 
+  private
     def should_generate_new_friendly_id?
       title_changed?
     end
@@ -137,5 +138,7 @@ class Blog < ApplicationRecord
         point.destroy if point.present?
       end
     end
+
+
 
 end
