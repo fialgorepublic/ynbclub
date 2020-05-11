@@ -439,7 +439,7 @@ vi:
   delete_label:               Xoá
   delete_confirmation:    Bạn có chắc không?
   publish_label:              Đăng tải
-  ubpublish_label:           Không đăng tải 
+  unpublish_label:           Không đăng tải 
   reject_label:               Từ chối
   unreject_label:             Không từ chối
   close_label:                    Đóng 

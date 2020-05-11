@@ -171,7 +171,7 @@ $(document).on('turbolinks:load', function () {
         success: function(data){
           if(data.success){
             $("#" + id).prop('checked', status == 'true');
-            $("#blog-status-" + id).text(status == 'true' ? 'Published' : 'Unpublished');
+            $("#blog-status-" + id).text(status == 'true' ? I18n.t('publish_label') : I18n.t('unpublish_label'));
           }else{
             toastr.error(data.message);
           }
@@ -192,7 +192,7 @@ $(document).on('turbolinks:load', function () {
         success: function(data){
           if(data.success){
             $(`#reject-${id}`).prop('checked', status == 'true');
-            $("#blog-reject-status-" + id).text(status == 'true' ? 'Reject' : 'Not Reject');
+            $("#blog-reject-status-" + id).text(status == 'true' ? I18n.t('reject_label') : I18n.t('unreject_label'));
           }else{
             toastr.error(data.message);
           }
