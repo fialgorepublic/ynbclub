@@ -179,7 +179,7 @@ class BlogsController < ApplicationController
 
   def change_reject_status
     @blog.reject!(params[:status])
-    BlogMailer.rejected(@blog).deliver_later if @blog.rejected?
+    BlogMailer.rejected(@blog).deliver if @blog.rejected?
 
     render json: { success: true }
   end
