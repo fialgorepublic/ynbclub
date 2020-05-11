@@ -82,16 +82,28 @@
               </div>
 
               <div class="col-md-4">
-                <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{@conversation.id}" do %>
-              
+                <% if current_user.blank? %>
+                  <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: "btn btn-default comment-button like-button" do %>
                   <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+                  <% end %>
+                <% else %>
+                  <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{@conversation.id}" do %>
+                    <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+                  <% end %>
                 <% end %>
               </div>
 
               <div class="col-md-4">
-                <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
-                  <i class="fa fa-share"></i>
-                  Share
+                <% if current_user.blank? %>
+                  <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: "btn btn-default like-button" do %>
+                    <i class="fa fa-share"></i>
+                    Share
+                  <% end %>
+                <% else %>
+                  <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
+                    <i class="fa fa-share"></i>
+                    Share
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -153,14 +165,27 @@
         <div class="row box-shadow-conversation-profile-admin-middle">
           <div class="flex-c social-con-padding">
             <div class="">
-              <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
-              <img src="/assets/fb.png">
+              <% if current_user.blank? %>
+                <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' } do %>
+                <img src="/assets/fb.png">
+                <% end %>
+              <% else %>
+                <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook", data: { id: @conversation.id, type: 'facebook', attributes: conversation_attributes(@conversation)} do %>
+                <img src="/assets/fb.png">
+                <% end %>
               <% end %>
             </div>
             <div class="">
+              <% if current_user.blank? %>
+                <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' } do %>
+                <img
+                  src="/assets/m.png">
+                <% end %>
+              <% else %>
               <a
                 href="mailto:<%= current_user.present? ? current_user.email : User.first.email %>?subject=<%= @conversation.subject%>&body=<%= @conversation.body %>"><img
                   src="/assets/m.png"></a>
+                  <% end %>
             </div>
           </div>
         </div>
