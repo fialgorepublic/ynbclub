@@ -167,7 +167,7 @@ class UsersController < ApplicationController
         @error_messages << msg
       }
       flash[:alert] = @error_messages
-      redirect_to dashboard_path
+      redirect_to dashboard_path(user_update_params)
     end
   end
 
@@ -190,6 +190,7 @@ class UsersController < ApplicationController
   end
 
   def all_users
+    # I18n.default_locale = locale
     filter_type = params[:filter_type].present? ? params[:filter_type] : ''
     users = filter_type == "filter" ? User.users_with_points : User.all_users(params)
     @users = users.includes(:points, :profile).paginate(page: params[:page])

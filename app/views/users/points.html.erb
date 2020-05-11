@@ -15,6 +15,7 @@
             <img src="/assets/coin-lg.png">
             <h4>+<%= point.point_value %> coins.</h4>
             <p><%= point_name(point) %></p>
+            <p><%= point.created_at.strftime("%F %T") %></p>
           </div>
         </div>
     <% end %>

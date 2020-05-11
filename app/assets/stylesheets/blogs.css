@@ -113,7 +113,7 @@ input:checked + .slider:before {
 } */
 #custom-topPage-btn i {
   font-weight: bold;
-  color: #54b2b2;
+  color:#54b2b2;
   margin: 0;
   position: relative;
   left: 0px;
@@ -122,4 +122,25 @@ input:checked + .slider:before {
 }
 #myModal .modal-body{
   padding: 15px 25px;
+}
+
+
+.ql-container.ql-snow {
+  height: 370px !important;
+}
+
+.newBlog-style .blogBox-style .box-shadow-am input {
+  border-left: 1px solid #ccc !important;
+  border-right: 1px solid #ccc !important;
+}
+
+.newBlog-style .Newblog-category .category-option select {
+  border-left: 1px solid #ccc !important;
+  border-right: 1px solid #ccc !important;
+  border-bottom: 1px solid #ccc !important;
+}
+
+
+.remove-space {
+  margin-top: -30px;
 }

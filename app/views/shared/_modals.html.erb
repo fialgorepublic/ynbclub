@@ -11,7 +11,7 @@
                   <a href='/auth/facebook?invite=<%= params[:invite] %>' class="btn btn-lg btn-primary button-fonts btn-block"> <i class="fa fa-facebook-square"></i> <%= t('login.facebook_signin_label') %></a>
                 </div>
                 <div class="col-md-6 pd-l-0 pd-r-0 col-sm-12 col-xs-12">
-                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger button-fonts btn-block"> <i class="fa fa-google-plus-square "></i> <%= t('login.google_signin_label') %></a>
+                  <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger button-fonts btn-block"> <i class="fa fa-google "></i> <%= t('login.google_signin_label') %></a>
                 </div>
               </div>
             </div>
@@ -29,7 +29,7 @@
             </div>
             <% if devise_mapping.rememberable? -%>
             <div class="form-group">
-              <%= f.check_box t(:remember_me) %>
+              <%= f.check_box :remember_me, { checked: false }, '0', '1'  %>
               <%= f.label t(:remember_me) %>
             </div>
             <% end -%>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 pd-r-0 pd-l-0 col-xs-6">
                   <a href='/auth/google?invite=<%= params[:invite] %>' class="btn btn-lg btn-danger btn-block button-fonts">
-                    <i class="fa fa-google-plus-square "></i> <%= t('register.google_signup_label') %></a>
+                    <i class="fa fa-google "></i> <%= t('register.google_signup_label') %></a>
                 </div>
               </div>
             </div>
@@ -155,3 +155,17 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  
+ $('#resource_remember_me').click(function() {
+           if (this.value == "1") {
+            $(this).val("0")
+           } else {
+            $(this).val("1")
+           }
+
+           $('#id_of_hidden_field').val("true");
+         });
+       </script>

@@ -79,11 +79,13 @@ class MediumBlogsService
 
   def get_blogs_content
     blogs_urls.each do |blog_page_url|
-      begin
-        doc = Nokogiri::HTML(open("#{blog_page_url}"))
-        create_blog(medium_own_format_scrape(doc))
-      rescue OpenURI::HTTPError => ex
-        puts "URL not found"
+      unless blog_page_url.include?("reflecting-on-my-failure")
+        begin
+          doc = Nokogiri::HTML(open("#{blog_page_url}"))
+          create_blog(medium_own_format_scrape(doc))
+        rescue OpenURI::HTTPError => ex
+          puts "URL not found"
+        end
       end
     end
   end

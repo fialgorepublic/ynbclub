@@ -26,8 +26,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           UserMailer.referral_sign_up(user_invited, resource).deliver
         end
       end
+      begin
       UserMailer.user_sign_up(resource).deliver
       SubscribeUserToMailchimp.perform_later(resource)
+      rescue
+      end
       begin
         initiate_shopify_session
         customers = ShopifyAPI::Customer.all(:params => {:page => 1, :limit => 250}, query: {fields: %w(id email).join(',')})

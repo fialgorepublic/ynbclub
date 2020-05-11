@@ -32,6 +32,9 @@ Rails.application.routes.draw do
       get  :new_wizard, as: 'wizard'
       get :exceed_limit
     end
+    member do
+      get :change_reject_status
+    end
     get :shared
   end
   get 'approve_sales', to: 'referral_sales#approve_sales'
@@ -85,6 +88,7 @@ Rails.application.routes.draw do
       get :wards
       get :my
       get :update_status
+      get :last_order
     end
   end
   resources :shared_urls,   only: [:index]
@@ -151,6 +155,8 @@ Rails.application.routes.draw do
   resources :profiles
   namespace :api do
     resources :cookies
+    get 'last_order', to: 'orders#last_order'
+    get 'callback_url', to: 'orders#callback_url'
   end
 
   resource  :share_with_friends, only: [:edit, :update]
@@ -164,6 +170,7 @@ Rails.application.routes.draw do
     collection do
       post :banner
       get  :search
+      get  :search_conversation
     end
     get :users, on: :member
     resources :conversations, only: [:index], module: 'groups'
@@ -175,12 +182,14 @@ Rails.application.routes.draw do
       post :banner
       get  :search
       post :conversation_reply
+      get :likes_user
     end
     member do
       get :reply
       get :replies
       get :like
       get :dislike
+      get :show_conversation
     end
   end
 

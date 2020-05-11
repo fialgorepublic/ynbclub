@@ -1,0 +1,16 @@
+<% if @conversations.any? %>
+<% @conversations.each do |conversation|%>
+<div class="row">
+	<div class="col-md-12" style="border-bottom: 1px solid #e5e5e5">
+		<p style="float: left;"><%= link_to conversation.user.name, user_path(conversation.user.id) %></p>
+	</div>
+</div>
+<br>
+<% end %>
+<% else %>
+	<div class="row">
+	<div class="col-md-12" style="border-bottom: 1px solid #e5e5e5">
+		<p>No any like yet</p>
+	</div>
+</div>
+<% end %>

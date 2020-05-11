@@ -16,6 +16,8 @@
 //= require best_in_place
 //= require best_in_place.jquery-ui
 //= require turbolinks
+//= require datatables
+//= require google_analytics
 //= require bootstrap.min.js
 //= require jquery.validate.min.js
 //= require toastr.js
@@ -28,9 +30,21 @@
 //= require blogs
 //= require groups
 //= require search 
+//= require profiles
+//= require users
+//= require approve_sales
+//= require buyer_to_ambassador
+//= require register
+//= permissions
+//= cable
+//= conversations
+//= shared_url
+// user_cookies
 //= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
-
+//= require quill.min
+//= require quill.global
+//= require quil
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
 //= require local-time

@@ -1,9 +1,11 @@
-<td><%= order_date(order) %></td>
+
+<td><%= order_date(order)%> </td>
 <td><%= order.order_name %></td>
 <td><%= order.financial_status&.titleize %></td>
 <td><%= order.store %></th>
 <!-- <#% if current_user.is_admin? %> -->
 <td><%= order.ghtk_label %></td>
+<td><%= order.items.pluck(:name).join(",  ")  if order.items.any? %></td>
 <td><%= order.customer_name %></td>
 <td><%= order.phone_number.delete(' ') if order.phone_number %></td>
 <td>
@@ -26,7 +28,7 @@
   <% if order.sent_to_ghtk? %>
     <%= t('orders.index.already_sent') %>
   <% else %>
-    <%= link_to t('orders.index.table_headers.send_ghtk_label'), 'Javascript:void(0);', class: 'send_to_ghtk', data: { order_id: order.id } %>
+    <%= link_to t('orders.index.table_headers.send_ghtk_label'), 'Javascript:void(0);', class: 'send_to_ghtk', id: order.id, data: { order_id: order.id } %>
   <% end %>
 </td>
 <!-- <#% else %>

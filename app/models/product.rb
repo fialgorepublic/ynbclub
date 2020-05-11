@@ -17,7 +17,7 @@
 #
 
 class Product < ApplicationRecord
-  belongs_to :blog
+  belongs_to :blog, optional: true
   has_one_attached :avatar
 
 

@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2020_04_24_092631) do
 
-ActiveRecord::Schema.define(version: 2020_01_01_123231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "blog_images", force: :cascade do |t|
+    t.string "image_url"
+    t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "blog_views", force: :cascade do |t|
@@ -143,6 +150,7 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
     t.datetime "updated_at", null: false
     t.integer "views_count", default: 0
     t.string "slug"
+    t.string "avatar"
     t.index ["group_id"], name: "index_conversations_on_group_id"
     t.index ["slug"], name: "index_conversations_on_slug", unique: true
     t.index ["user_id"], name: "index_conversations_on_user_id"
@@ -364,6 +372,7 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string "url"
+    t.integer "blog_image_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -384,6 +393,9 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
     t.string "account_number"
     t.string "acc_holder_name"
     t.string "bank_name"
+    t.string "facebook"
+    t.string "instagram"
+    t.string "youtube"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -531,6 +543,16 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
     t.index ["province_id"], name: "index_wards_on_province_id"
   end
 
+  create_table "webhook_endpoints", force: :cascade do |t|
+    t.string "target_url", null: false
+    t.string "events", null: false, array: true
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["events"], name: "index_webhook_endpoints_on_events"
+    t.index ["user_id"], name: "index_webhook_endpoints_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "users", on_delete: :cascade
   add_foreign_key "cities", "states", on_delete: :cascade
@@ -554,4 +576,5 @@ ActiveRecord::Schema.define(version: 2020_01_01_123231) do
   add_foreign_key "provinces", "cities", on_delete: :cascade
   add_foreign_key "wards", "districts", on_delete: :cascade
   add_foreign_key "wards", "provinces", on_delete: :cascade
+  add_foreign_key "webhook_endpoints", "users"
 end

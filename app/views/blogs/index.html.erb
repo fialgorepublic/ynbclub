@@ -1,6 +1,26 @@
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner ">
+    <div class="<%= current_user.present? ? 'banner remove-space' : 'banner' %>">
+      <% if @videos.any? %>
+       <section id="features" class="blue">
+        <div class="content">
+          <div class="slider slider_video responsive_video_slider">
+            <% @videos.each do |video| %>
+              <div class="m_slider_vid">
+              <div class="holder">
+                <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.url %>" data-target="#videoModal"
+              data-toggle="modal"><%= image_tag video.thumbnail, width: "100%" %></div>
+          </div>
+          <section class="entry-body">
+            <p class="video-title"><%= video.title %></p>
+          </section>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </section>
+      <% end%>
       <div class="col-md-12 blog_banner_btn">
         <div class="col-lg-12 padding-lr-20">
           <%= text_field_tag :title, params[:title], class: "form-control set-border-radius", placeholder: 'Search by title', id: 'blog-title-textbox' %>
@@ -45,7 +65,9 @@
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
-          <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
+          <%#= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
+          <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", '', class: "btn btn-primary new_blog_btn", id: "create-new-blog", data: { toggle: 'modal', target: '#new-blog' }, onclick: "create_blog()" if signed_in? %>
+          <!-- <a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a> -->
         </div>
 
         <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
@@ -118,6 +140,31 @@
   <!-- </div> -->
 <!-- </div> -->
 
+
+  <div class="modal fade" id="new-blog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" style="width: 80%">
+      <div class="modal-content" style="width: 100%">
+        <div class="modal-header">
+          <button type="button" class="close" id="remove-modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">
+            <span class="">Create New Blog
+              </span>
+          </h4>
+        </div>
+        <!-- <div class="modal-body con_modal-content">
+          <div class="">
+            <div class="ambassdor-box newBlog-style conversation-c"></div><%#= render partial: 'new_form', locals: { blog: @blog } %>
+            
+          </div>
+        </div> -->
+        <div id="create-blog">
+
+          </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 
 <script>
 
@@ -198,7 +245,7 @@
         },
         error: function(data) {
           $('.loader').hide()
-          alert('Something Wentwrong!')
+          // alert('Something Wentwrong!')
         }
       })
     }
@@ -206,6 +253,13 @@
   });
 
   $(document).ready(function () {
+    if (window.location.href.includes("new")) {
+      $("#create-new-blog").trigger("click")
+    }
+    else if (window.location.href.includes("blog_id")) {
+      id = window.location.href.split("=")[1]
+      edit_new_blog(id)
+    }
     $('.responsive_video_slider').not('.slick-initialized').slick({
         dots: false,
         arrows: true,
@@ -275,4 +329,59 @@
     });
   };
 
+
+  function create_blog(){
+    var id = 0
+    $.ajax({
+      url: '/blogs/new',
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        $('#create-blog').html(data);
+        history.pushState({}, null, window.location.href + "/new")
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+
+  function edit_new_blog(id){
+    $.ajax({
+      url: "blogs/"+id+"/edit",
+      type: 'get',
+      data: {edit_blog: 0},
+      success: function(data) {
+        $("#myModal").modal('hide')
+        $("#new-blog").modal('show')
+        $('#myModal').on('hidden.bs.modal', function () {
+          // $('body').addClass('modal-open');
+          // $('body').removeAttr('style');
+          $('#create-blog').html(data);
+          history.pushState({}, null, window.location.href + "/edit")
+        })
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+
+
+$( document ).ready(function() {
+  if (window.location.href.includes("id")) {
+    url = window.location.href.split("?")[0]
+    id = window.location.href.split("=")[1]
+    history.pushState({}, null, url);
+    $(".dynamic-"+id).trigger( "click" );
+  }
+  else {
+  host = window.location.origin
+  get_url = host+"/blogs"
+  history.pushState({}, null, get_url);
+  }
+  
+})
 </script>

@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed]
+  before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed, :show_blog]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
-  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog]
+  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :change_reject_status]
   before_action :check_limit, only: [:new]
 
   include ApplicationHelper
@@ -15,23 +15,18 @@ class BlogsController < ApplicationController
       redirect_to blogs_path
     end
     blogs = \
-        if current_user.present?
-          current_user.filtered_blogs(params[:sort], params[:category], params[:title])
-        else
-          Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
-        end
-    begin
-      @videos = YoutubeService.get_channel_videos
-    rescue StandardError => e
-      @videos = []
-    end
+      if current_user.present?
+        current_user.filtered_blogs(params[:sort], params[:category], params[:title])
+      else
+        Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
+      end
     @blogs = blogs.paginate(page: params[:page], per_page: 10)
     @next_page = @blogs.next_page
-
     respond_to do |format|
       format.html
       format.js
     end
+    @videos = YoutubeVideo.all
   end
 
   def list
@@ -47,9 +42,14 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @comments = @blog.comments if @blog.is_published?
-    @selected_products = @blog.products
-    @blog.blog_views.create
+    # @comments = @blog.comments if @blog.is_published?
+    # @selected_products = @blog.products
+    # @blog.blog_views.create
+    if @blog.present?
+      redirect_to blogs_path(:id => @blog.id)
+    else
+      redirect_to blogs_path
+    end
   end
 
   def show_blog
@@ -64,16 +64,31 @@ class BlogsController < ApplicationController
     @blog = Blog.new
     @blog.attach_default_image
     @category = Category.new
+    if params[:id].present?
+    render partial: 'blogs/new_form'
+    else
+      redirect_to blogs_path(new: '')
+    end
   end
 
   # GET /blogs/1/edit
   def edit
-    @category = Category.new
-    selected_product_ids = @blog.products.pluck(:product_id)
-    if selected_product_ids.present?
-      initiate_shopify_session
-      @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
-      clear_shopify_session
+    if @blog.present?
+      @category = Category.new
+      selected_product_ids = @blog.products.pluck(:product_id)
+      if selected_product_ids.present?
+        initiate_shopify_session
+        @selected_products = ShopifyAPI::Product.where(ids: selected_product_ids.join(','))
+        clear_shopify_session
+      end
+      if params[:edit_blog].present?
+        render partial: 'blogs/new_form'
+      else
+        redirect_to blogs_path(blog_id: @blog.id)
+      end
+    else
+      redirect_to blogs_path
+      flash[:notice] = "blogs with this name is not available"
     end
   end
 
@@ -144,27 +159,29 @@ class BlogsController < ApplicationController
   end
 
   def change_publish_status
-    respond_to do |format|
-
-      format.html{
-        unless @blog.is_published?
-          return redirect_to @blog, alert: "You need to change default picture before publishing your blog." if @blog.default_image?
-        end
-
-        @blog.update_attributes(is_published: params[:status])
-        redirect_to @blog
-      }
-
-      format.json{
-        unless @blog.is_published?
-          render json: { success: false, message: 'You can not publish a blog with default image.' } if @blog.default_image?
-        end
-
-        @blog.update_attributes(is_published: params[:status])
-        render json: { success: true }
-      }
-
+    if !@blog.is_published? && @blog.default_image?
+      message = "You need to change default picture before publishing your blog."
+      flash[:alert] = message
+    else
+      if params[:status] == 'true'
+        @blog.publish!
+        @blog.award_coins!
+      else
+        @blog.unpublish!
+      end
     end
+
+    respond_to do |format|
+      format.html { redirect_to @blog }
+      format.json { render json: { success: !@blog.default_image?, message: message }  }
+    end
+  end
+
+  def change_reject_status
+    @blog.reject!(params[:status])
+    BlogMailer.rejected(@blog).deliver_later if @blog.rejected?
+
+    render json: { success: true }
   end
 
   def change_buyer_show_statusgs
@@ -233,7 +250,7 @@ class BlogsController < ApplicationController
       if params[:translate_edit].present? && params[:translate_edit] == 'true'
         set_blog
       else
-        @blog = current_user.blogs.eager_load_objects.friendly.find(params[:id])
+        @blog = current_user.blogs.eager_load_objects.friendly.find(params[:id]) rescue ''
       end
     end
 
@@ -243,7 +260,7 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.eager_load_objects.friendly.find(params[:id])
+      @blog = Blog.eager_load_objects.friendly.find(params[:id]) rescue ''
     end
 
     def category_params

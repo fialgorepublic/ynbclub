@@ -4,6 +4,8 @@
     <th><%= t('blogs.title_label') %></th>
     <th><%= t('blogs.user_label') %></th>
     <th><%= t('blogs.category_label') %></th>
+    <th><%= t('blogs.reject_status_label') %></th>
+    <th><%= t('blogs.reject_action_label')%></th>
     <th><%= t('blogs.publish_status_label') %></th>
     <th><%= t('actions_lable') %></th>
   </tr>
@@ -15,6 +17,13 @@
       <td><%= link_to blog.title, blog %></td>
       <td><%= blog.user_name %></td>
       <td><%= blog.category_name %></td>
+      <td id="blog-reject-status-<%= blog.id %>"><%= blog.rejected? ? t(:reject_label) : t(:unreject_label) %></td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" class="reject-switch" id="reject-<%= blog.id %>" <%= 'checked' if blog.rejected? %>>
+          <span class="slider round"></span>
+        </label>
+      </td>
       <td id="blog-status-<%= blog.id %>"><%= blog.is_published? ? t(:ubpublish_label) : t(:publish_label) %></td>
       <td>
         <label class="switch">

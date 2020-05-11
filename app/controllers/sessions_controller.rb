@@ -28,15 +28,22 @@ class SessionsController < ApplicationController
     else
       user = User.create(:name => name, :email => email, :password => provider_id, social_login: true,
                          referral: Devise.friendly_token)
+      
       if invite.present?
         user_invited = User.find_by_email(invite)
         if user_invited
-          insert_points(user_invited.id, 6, "Invitation accepted by #{user.name}")
-          insert_points(user.id, 6, "Accepted the invitation of #{user_invited.name}")
-          UserMailer.referral_sign_up(user_invited, user).deliver
+          point = Point.where(invitee: "Invitation accepted by #{user.name}")
+          unless point.any?
+            insert_points(user_invited.id, 6, "Invitation accepted by #{user.name}")
+            insert_points(user.id, 6, "Accepted the invitation of #{user_invited.name}")
+            UserMailer.referral_sign_up(user_invited, user).deliver
+          end
         end
       end
+      begin
       UserMailer.user_sign_up(user).deliver
+      rescue
+      end
       initiate_shopify_session
       customer = ShopifyAPI::Customer.search(query:"email:#{user.email}")
       if customer.nil?
@@ -50,6 +57,7 @@ class SessionsController < ApplicationController
       clear_shopify_session
       sign_in :user, user
       begin
+        
         current_user.update_attributes(:avatar => user_image) # update user profile image
       rescue Exception => e
       end

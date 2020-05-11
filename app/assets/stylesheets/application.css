@@ -28,6 +28,8 @@
   *= require medium-editor/themes/flat
   *= require medium-editor-insert-plugin
   *= require emojionearea.css
+  *= require quill.snow
+  *= require quill.bubble
  */
 
 /*#referral-div {*/

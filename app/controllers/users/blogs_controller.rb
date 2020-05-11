@@ -1,6 +1,7 @@
 class Users::BlogsController < ApplicationController
 
   def index
+    Rails.logger.info "=========================================>#{params[:user_id]}"
     @user = User.find(params[:user_id])
     @your_blogs, @liked_blogs =\
       if params[:type] == 'both'

@@ -12,6 +12,9 @@
           <div class="product-price">
             <h5><%= number_with_delimiter(product.variants.first.price, delimiter: '.') %>₫</h5>
           </div>
+          <div class="product-handle" style="display: none">
+            <h5><%= product.handle %></h5>
+          </div>
         </div>
       </div>
   <% end %>

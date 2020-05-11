@@ -1,123 +1,183 @@
 <% if reply_counter % 2 == 0 %>
-<div class="simple-comment-div bbbb">
-  <div class="flex-l pt-10">
-    <div class="">
-      <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
-    </div>
-
-    <div class="m-l-10 ">
-      <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
-      <p class="p-l"><%= posted_date(reply) %></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="comment more text-left pl-40">
-        <% if reply.body.include?("http") && reply.body.include?("figure") %>
-          <%= reply.body&.html_safe %>
-        <% elsif reply.body.include?("http")%>
-          <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
-        <% else%>
-          <%= reply.body&.html_safe %>
-        <% end %>
-      </div>
-
-    </div>
-  </div>
-  <div class="flex-sb">
-    <div class="flex-l  m-t-8">
+  <div class="simple-comment-div bbbb">
+    <div class="flex-l pt-10">
       <div class="">
-        <%= like_dislike_link(reply) %>
+        <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
+      </div>
+      <div class="m-l-10 ">
+        <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
+        <p class="p-l"><%= posted_date(reply) %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="comment more text-left pl-40">
+          <% if reply.body.include?("http") && reply.body.include?("figure") %>
+            <%= reply.body&.html_safe %>
+          <% elsif reply.body.include?("http")%>
+            <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+          <% else%>
+            <%= reply.body&.html_safe %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="flex-sb"> -->
+    <div class="row">
+      <div class="col-md-2">
+          <img src="/assets/like-icon.png" onclick="show_modal(<%= reply.id%>)" style="width: 46px;" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: reply.id).pluck(:name).join("\n").html_safe %>">
+          <span style="font-size: 15px; margin-left: -8px;" class="likes-count-<%= reply.id %>">
+            <%= reply.conversation_likes.count %>
+          </span>
+      </div>
+      <div class=" col-md-offset-7 col-md-3">
+        <p style="font-size: 15px; margin-top: 15px;">
+         <span style="font-size: 15px;">
+          <%= reply.replies.count %>
+        </span>
+        <%= link_to "comments", conversation_path(reply.id), style: "color: black" %>
+         </p>
+          <!-- <i class="fa fa-comment fs-20 "></i> -->
+      </div>            
+    </div>
+    <div class="row" style="margin-top: 8px; border-top: solid 1px #eee">
+      <div class="col-md-4">
+        <%= like_dislike_link(reply) %><span style="margin-left: 10px;"></span>
       </div>
 
-      <div class="m-l-10 m-t-8">
-        <p class="fs-12 m-t-3 likes-count-<%= reply.id %>"><%= reply.likes_count %></p>
+      <div class="col-md-4">
+        <%#= new_reply_link(conversation) %>
+        <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{reply.id}" do %>
+          <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+        <% end %>
       </div>
 
-      <div class="m-l-10">
-        <i class="fa fa-comment fs-20" style="color: #256664;"></i>
-      </div>
-
-      <div class="m-l-10 m-t-12">
-        <%= link_to reply do %>
-        <p class="fs-12"><%= reply.replies_count %></p>
+      <div class="col-md-4">
+        <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: reply.id, type: 'facebook', attributes: conversation_attributes(reply)} do %>
+            <i class="fa fa-share"></i>
+          Share
         <% end %>
       </div>
     </div>
-
-    <div class="m-t-8">
-      <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{reply.id}" %>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="text-left">
-      <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
+    <div class="row">
+      <div class="text-left">
+        <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
+      </div>
     </div>
   </div>
-</div>
 <% else %>
 <!-- blog quote -->
-<div class="quoted-comment-div bbbb">
-  <div class="p-t-10">
-    <blockquote class="blockquotee">
-      <div class="flex-l pt-10">
-        <div class="">
-          <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
-        </div>
-        <div class="m-l-10 ">
-          <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
-          <p class="p-l"><%= posted_date(reply) %></p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="comment more text-left pl-40">
-            <% if reply.body.include?("http") && reply.body.include?("figure") %>
-              <%= reply.body&.html_safe %>
-            <% elsif reply.body.include?("http")%>
-              <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
-            <% else%>
-              <%= reply.body&.html_safe %>
-            <% end %>
-            <%#= reply.body.html_safe %>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex-sb">
-        <div class="flex-l  m-t-8">
+  <div class="quoted-comment-div bbbb">
+    <div class="p-t-10">
+      <blockquote class="blockquotee">
+        <div class="flex-l pt-10">
           <div class="">
-            <%= like_dislike_link(reply) %>
+            <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
+          </div>
+          <div class="m-l-10 ">
+            <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
+            <p class="p-l"><%= posted_date(reply) %></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="comment more text-left pl-40">
+              <% if reply.body.include?("http") && reply.body.include?("figure") %>
+                <%= reply.body&.html_safe %>
+              <% elsif reply.body.include?("http")%>
+                <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+              <% else%>
+                <%= reply.body&.html_safe %>
+              <% end %>
+              <%#= reply.body.html_safe %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <a href="#" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: reply.id).pluck(:name).join("\n").html_safe %>">
+                
+            <img src="/assets/like-icon.png" style="width: 46px;">
+              </a>
+            <span style="font-size: 15px; margin-left: -8px;" class="likes-count-<%= reply.id %>">
+              <%= reply.conversation_likes.count %>
+            </span>
+          </div>
+          <div class=" col-md-offset-7 col-md-3">
+            <p style="font-size: 15px; margin-top: 15px;">
+             <span style="font-size: 15px;">
+              <%= reply.replies.count %>
+            </span>
+            <%= link_to "comments", conversation_path(reply.id), style: "color: black" %>
+             </p>
+          </div>            
+        </div>
+        <div class="row" style="margin-top: 8px; border-top: solid 1px #eee">
+          <div class="col-md-4">
+            <%= like_dislike_link(reply) %><span style="margin-left: 10px;"></span>
           </div>
 
-          <div class="m-l-10 m-t-8">
-            <p class="fs-12 m-t-3 likes-count-<%= reply.id %>"><%= reply.likes_count %></p>
+          <div class="col-md-4">
+            <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{reply.id}" do %>
+            
+              <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+            <% end %>
           </div>
 
-          <div class="m-l-10">
-            <i class="fa fa-comment fs-20" style="color: #256664;"></i>
-          </div>
-
-          <div class="m-l-10 m-t-12">
-            <%= link_to reply do %>
-            <p class="fs-12"><%= reply.replies_count %></p>
+          <div class="col-md-4">
+            <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: reply.id, type: 'facebook', attributes: conversation_attributes(reply)} do %>
+              <i class="fa fa-share"></i>
+              Share
             <% end %>
           </div>
         </div>
-
-        <div class="m-t-8">
-          <%= link_to 'New Reply', "#", class: "btn btn-primary new_reply_btn", id: "reply-#{reply.id}" %>
-        </div>
+      </blockquote>
+    </div>
+    <div class="row">
+      <div class="text-left">
+        <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
       </div>
-    </blockquote>
-  </div>
-  <div class="row">
-    <div class="text-left">
-      <%= render partial: 'shared/conversation_reply', locals: { reply: reply.replies.new , url: conversation_reply_conversations_path} %>
     </div>
   </div>
-</div>
 <% end %>
+
+<div class="modal fade" id="tooltip-modal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-bottom: none !important">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="conversation-likes">
+              
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: none !important">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+  function show_modal(id) {
+    $("#tooltip-modal").modal('show');
+     $.ajax({
+      url: '/conversations/likes_user',
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        $('#conversation-likes').html(data);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }  
+</script>

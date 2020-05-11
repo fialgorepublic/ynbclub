@@ -181,4 +181,74 @@ $(document).on('turbolinks:load', function () {
       $("#" + id).prop('checked', !(status == 'true'));
   })
 
+    $(".reject-switch").change(function(event){
+    status = $(this).prop("checked");
+    id = event.target.id.split("-")[1];
+    if (confirm(`Are you sure?`)) {
+      $.ajax({
+        url: id + "/change_reject_status.json?id=" + "&status=" + status,
+        method: "get",
+        contentType: "application/json",
+        success: function(data){
+          if(data.success){
+            $(`#reject-${id}`).prop('checked', status == 'true');
+            $("#blog-reject-status-" + id).text(status == 'true' ? 'Reject' : 'Not Reject');
+          }else{
+            toastr.error(data.message);
+          }
+        }
+      })
+    }else
+      $(`#reject-${id}`).prop('checked', !(status == 'true'));
+  })
 });
+
+  function blog_show(id){
+    blogId = $(".dynamic-"+id).attr("id")
+    $.ajax({
+      url: '/show_blog/'+id,
+      type: 'get',
+      data: {id: id},
+      success: function(data) {
+        $('.create-blog-modal').html(data);
+        window.history.replaceState({},'','/blogs/'+ blogId);
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+
+  function edit_blog(id){
+    $(".create-blog-modal").html('');
+    $("#myModal").modal('hide')
+    $.ajax({
+      url: id+"/edit",
+      type: 'get',
+      data: {edit_blog: 0},
+      success: function(data) {
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+        $('#create-blog').html(data);
+        history.pushState({}, null, window.location.href + "/edit")
+      },
+      error: function(data) {
+        $('.loader').hide()
+        alert('Something Wentwrong!')
+      }
+    })
+  }
+  
+  $("#remove-modal").click(function(){
+    $("#new-blog").modal("hide")
+    $("#create-blog").html('');
+    $(".modal-backdrop").removeClass();
+    blogsTab = document.getElementById("blogs-tab")
+     if (blogsTab == null) {
+    history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
+    }
+    else {
+      window.history.replaceState({},'','/dashboard');
+    }
+  })

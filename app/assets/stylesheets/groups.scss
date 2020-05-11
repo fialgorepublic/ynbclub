@@ -394,7 +394,9 @@ p.p-b {
     // margin-left: 74px;
 }
 
-.new_reply_btn:hover {
+.new_reply_btn:hover ,
+.new_reply_btn:focus,
+.new_reply_btn:active {
     padding: 6px 20px;
     width: 100%;
     border-radius: 20px;
@@ -409,21 +411,18 @@ p.p-b {
 .join-grp-dscptn {
     text-align: left;
     padding-bottom: 10px;
-    border-bottom: solid 1px #eee;
-    max-height: 400px;
-    overflow: hidden;
     // white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
     h2 {
-        font-size: 22px;
-        color: #000;
+        font-size: 20px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+        // color: #000;
         // cursor: pointer;
     }
     h2:hover {
         // font-size: 22px;
         // color: #000;
-        text-decoration: underline;
+        // text-decoration: underline;
     }
     .jn-grp-img-show {
         img {
@@ -624,7 +623,6 @@ img.lib-img-show {
 .color-for-icon {
     color: #54b2b2;
 }
-
 .fs-icon-22 {
     font-size: 22px;
 }
@@ -887,7 +885,7 @@ img.lib-img-show {
         text-align: center;
         background: #fff;
         margin-bottom: 20px;
-         max-height: 100%; 
+         max-height: 100%;
          min-height: 100%;
         -webkit-box-shadow: -1px 0px 13px -1px #c9c9c9;
         -moz-box-shadow: -1px 0px 13px -1px #c9c9c9;
@@ -899,8 +897,8 @@ img.lib-img-show {
         max-height: 100%;
         object-fit: cover;
     }
-    
-    
+
+
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 980px) {
@@ -1196,8 +1194,8 @@ input.form-control.con-title-:focus {
         position: fixed;
         bottom: 20px !important;
         right: 20px !important;
-        background-color: #cceceb;
-        width: 50px !important;
+        background-color: rgba(69, 152, 152, 0.58);;
+                width: 50px !important;
         height: 50px !important;
         display: block;
         text-decoration: none;
@@ -1351,7 +1349,7 @@ button.medium-insert-buttons-show {
 .medium-insert-embeds figure figcaption,
 .mediumInsert-embeds figure figcaption {
     display: none !important;
-} 
+}
 .slick-prev:before {
     content: "" !important;
     font-family: 'FontAwesome' !important;
@@ -1362,4 +1360,10 @@ button.medium-insert-buttons-show {
     font-family: 'FontAwesome' !important;
     font-size: 22px !important;
     color: #83848a !important;
+}
+
+.group-category-label {
+    margin-top: 4px !important;
+    position: absolute;
+    margin-left: 3px;
 }

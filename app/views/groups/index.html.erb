@@ -2,9 +2,13 @@
   <div class="<%= blog_screen_size %>">
 
     <div class="banner pos-rel-banner text-center">
-      <%#= image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' %>
+      <%= image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' if @page.group_banner.attached? %>
       <div class="pos-abs-banner">
+        <% if @page.group_banner.attached? %>
         <h1 class="">You're in good company now.</h1>
+        <% else %>
+        <h1 style="color: transparent;">You're in good company now.</h1>
+        <% end %>
         <h3>Join groups to find interesting content <br> and meet amazingf insider members.</h3>
         <%= form_tag search_groups_path, method: :get, remote: true, id: 'search-form' do |f| %>
         <div class="wrap">
@@ -59,7 +63,7 @@
                   tabIndex="-1"><span>&nbsp;All categories</a></li>
               <% @group_categories.each do |category| %>
               <li><a href="#" class="small" data-value="<%= category.id %>"><input type="checkbox"
-                    data-category-id="<%= category.id %>" />&nbsp;<%= category.name %> </a></li>
+                    data-category-id="<%= category.id %>" /><span class="group-category-label"><%= category.name %></span></a></li>
               <% end %>
             </ul>
           </div>

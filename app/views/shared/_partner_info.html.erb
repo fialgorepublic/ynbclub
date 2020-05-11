@@ -18,25 +18,24 @@
 
                 <div class="form-group">
                   <%= f.label "Phone Number *"%><br />
-                  <%= f.text_field :phone_number, placeholder: "Enter Phone Number", class: 'form-control', required: true, title: "Enter bank name" %>
+                  <%= f.text_field :phone_number, placeholder: "Enter Phone Number", class: 'form-control', required: true, title: "Enter bank name", value: params[:phone_number].present? ? params[:phone_number] : '' %>
                 </div>
-
                 <%= f.hidden_field :id, value: current_user.id %>
                 <%= f.fields_for :profile do |profile| %>
                   <div class="nested-fields">
                     <div class="form-group">
                       <%= profile.label "Bank Name *" %><br />
-                      <%= profile.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control', required: true, title: "Enter bank name" %>
+                      <%= profile.text_field :bank_name, placeholder: "Enter Bank Name", class: 'form-control', required: true, title: "Enter bank name", value: params[:profile_attributes].present? ? params[:profile_attributes][:bank_name] : '' %>
                     </div>
 
                     <div class="form-group">
                       <%= profile.label "Acc Holder Name *" %><br />
-                      <%= profile.text_field :acc_holder_name, placeholder: "Enter Account Title", class: 'form-control', required: true, title: "Enter account title" %>
+                      <%= profile.text_field :acc_holder_name, placeholder: "Enter Account Title", class: 'form-control', required: true, title: "Enter account title", value: params[:profile_attributes].present? ? params[:profile_attributes][:acc_holder_name] : '' %>
                     </div>
 
                     <div class="form-group">
                       <%= profile.label "Account Number *" %><br />
-                      <%= profile.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control', required: true, title: "Enter account number" %>
+                      <%= profile.text_field :account_number, placeholder: "Enter Account Number", class: 'form-control', required: true, title: "Enter account number", value: params[:profile_attributes].present? ? params[:profile_attributes][:account_number] : '' %>
                     </div>
                   </div>
                 <% end %>
@@ -53,3 +52,11 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+    url = window.location.href.split("?")[0]
+    history.pushState({}, null, url);
+  });
+</script>

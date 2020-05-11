@@ -1,19 +1,24 @@
-<div class="blog-box blog-box-sm">
+
+<div class="blog-box blog-box-sm" >
   <div class="row">
     <div class="height-sm">
       <div class="col-md-12">
-        <div class="blog-box-small-img" >
-          <%= link_to blog do %>
+        <div class="blog-box-small-img dynamic-<%= blog.id%>" id="<%= blog.slug %>" onclick="blog_show('<%= blog.id %>')" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">
+          <%#= link_to blog do %>
             <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '330x180^', gravity: 'Center', extent: '330x180^', background: "grey", quality: 95 }) : blog.avatar, width: "100%" %>
-          <% end %>
+          <%# end %>
         </div>
 
-        <div class="blog-box-content" data-toggle="modal" data-target="#myModal1" id="<%= blog.id%>">
+        <div class="blog-box-content" >
           <p class="blog-sm-p">
-            <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
-            <span class="with-un-blog"><%= blog_user_name(blog) %></span>
-            <span><%= blog_date blog %></span>
+            <%= link_to user_path(blog.user) do %>
+              <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+            <% end %>
+            <span class="with-un-blog"><%= user_name(blog.user) %></span>
+            <span class="-sm"><%= blog_date blog %></span>
             <span class="with-un-blog"><%= blog.category_name %></span>
+            <br>
+            <br><br><br><br>
           </p>
           <h3><%= blog_title blog %></h3>
         </div>
@@ -26,41 +31,21 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <!-- <div class="modal fade" id="myModal" role="dialog"> -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1400;">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-body">
         <div  class="close_btn_blg">
-         <button type="button" class="close close_btn_blg_in" data-dismiss="modal">&times;</button>
+         <button type="button" class="close close_btn_blg_in close-myModal" data-dismiss="modal">&times;</button>
         </div>
-          <%#= render :template => "blogs/show" %>
-          <div id="test13">
+          <div class="create-blog-modal">
 
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default close-myModal" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-
-
-
-<script type="text/javascript">
-  $(".blog-box-content").click(function(){
-    id = this.id
-    $.ajax({
-        url: '/show_blog/'+id,
-        type: 'get',
-        data: {id: id},
-        success: function(data) {
-          $('#test13').html(data);
-        },
-        error: function(data) {
-          $('.loader').hide()
-          alert('Something Wentwrong!')
-        }
-      })
-  })
-</script>

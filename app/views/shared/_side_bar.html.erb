@@ -62,7 +62,7 @@
 
       <li>
         <%= link_to order_status_path, class: active_class(order_status_path) do %>
-        <i class="custom-icon" style="padding-right: 20px;"><img
+        <i class="custom-icon" style="padding-right: 15px;"><img
             src="/assets/order-status.png" style="width: 25px;"></i><%= t('sidebar.order_status_label_text') %>
         <% end %>
       </li>
@@ -212,7 +212,7 @@
 
       <% if current_user.is_admin? || current_user.has_permission?('ban', 'users') %>
       <li>
-        <%= link_to users_ban_users_path, class: active_class(users_ban_users_path) do %>
+        <%= link_to users_ban_users_path, class: active_class_ban_user(params) do %>
         <i class="sidebar-icon fa fa-ban" style="padding-right: 8px;"></i><span
           class="side-nav-style"><%= t('sidebar.ban_users_label') %></span>
         <% end %>
@@ -221,7 +221,7 @@
 
       <% if current_user.is_admin? || current_user.has_permission?('deduct_points', 'users') %>
       <li>
-        <%= link_to users_ban_users_path(deduct_points: true), class: active_class(users_ban_users_path(deduct_points: true)) do %>
+        <%= link_to users_ban_users_path(deduct_points: true), class: active_class_deduct_point(params) do %>
         <i class="custom-icon fa fa-minus-circle" style="padding-right: 4px;"></i> <span
           class="side-nav-style"><%= t('sidebar.deduct_points_label') %></span>
         <% end %>
@@ -273,7 +273,7 @@
       <% if current_user.is_admin? %>
       <li>
         <%= link_to update_status_orders_path, remote: :true, class: active_class(update_status_orders_path) do %>
-        <i class="fa fa-job" style="padding-right: 2px;"></i> <span
+        <i class="fa fa-tasks" style="padding-right: 2px;"></i> <span
           class="side-nav-style"><%= t('sidebar.ghtk_status_label') %></span>
         <% end %>
       </li>
@@ -437,4 +437,11 @@
     // Remove the input from the body
     document.body.removeChild(aux);
   }
+  $( document ).ready(function() {
+    $('.active').each(function() {
+      if (this.hasAttribute("href")) {
+        this.scrollIntoView();
+      }
+    });
+  })
 </script>

@@ -72,7 +72,6 @@ class Blog < ApplicationRecord
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :full_name, :name, :email, to: :user, prefix: true, allow_nil: true
 
-  after_save :add_coins_to_user_account
   before_destroy :valid_for_destroy?
 
   def add_products(product)
@@ -106,25 +105,35 @@ class Blog < ApplicationRecord
   end
 
   def attach_default_image
-    self.avatar.attach(io: File.open(Rails.root.join('app/assets/images/default-blog-image.jpg')), filename: 'default-blog-image.jpg', content_type: 'image/jpg')
+    avatar.attach(io: File.open(Rails.root.join('app/assets/images/default-blog-image.jpg')), filename: 'default-blog-image.jpg', content_type: 'image/jpg')
   end
 
   def default_image?
-    self.avatar.filename == 'default-blog-image.jpg'
+    avatar.filename == 'default-blog-image.jpg'
+  end
+
+  def reject!(status)
+    update_attributes(rejected: status)
+  end
+
+  def award_coins!
+    return if coins_awarded?
+    point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
+      return if point_type.blank? || point_type.zero_points?
+
+    user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
+    update(coins_awarded: true)
+  end
+
+   def publish!
+    update_attributes(is_published: true)
+  end
+
+  def unpublish!
+    update_attributes(is_published: false)
   end
 
   private
-    def add_coins_to_user_account
-      return if coins_awarded?
-      return if user.blank?
-
-      point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
-      return if point_type.blank? || point_type.zero_points?
-
-      user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
-      self.update(coins_awarded: true)
-    end
-
     def should_generate_new_friendly_id?
       title_changed?
     end
@@ -137,5 +146,7 @@ class Blog < ApplicationRecord
         point.destroy if point.present?
       end
     end
+
+
 
 end

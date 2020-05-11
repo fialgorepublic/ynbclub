@@ -45,7 +45,7 @@ img{
   .product-detail{
     margin-top: 10px;
     font-size: 15px;
-    height: 68px;
+    height: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -188,7 +188,7 @@ button:active{
 }
   .Newblog-category{
     .category-option{
-    border-bottom:1px solid;
+    border-bottom:none;
       select{
     border:unset;
     -webkit-appearance: none;

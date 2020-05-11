@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-m-9 col-md-offset-3" style="padding:0 15px;">
             <p><strong><%= t('users.show.referral_code_label') %>:</strong> <%= @user.referral %> </p>
-            <p><strong><%= t('users.show.total_income_label') %>:</strong>  <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
+            
             <p><strong><%= t('users.show.has_paid_label') %>:</strong> <%= number_with_delimiter(@user.paid.to_i, delimiter: ".") %> ₫</p>
             <p><strong><%= t('users.show.not_paid_label') %>:</strong> <%= number_with_delimiter(@user.total_income.to_i, delimiter: ".") %> ₫</p>
           </div>

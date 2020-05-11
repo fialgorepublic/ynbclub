@@ -145,11 +145,12 @@
         var redirect_to_saved_path = "<%= params[:signin] %>"
         var email = $('#resource_email').val();
         var password = $('#resource_password').val();
+        var remember_me = $('#resource_remember_me').val();
         if (!jQuery("#sign_in_user").valid()) {
           return false;
         }
         $.ajax({
-          url: `/sign_in_user?user[email]=${email}&user[password]=${password}&redirect=${redirect_to_saved_path}`,
+        url: `/sign_in_user?user[email]=${email}&user[password]=${password}&user[remember_me]=${remember_me}&redirect=${redirect_to_saved_path}`,
           type: 'post',
           dataType: 'json',
           processData: false,
@@ -160,6 +161,27 @@
                 expires: 365,
                 domain: 'saintlbeau.com'
               })
+            var remember_me = $('#resource_remember_me').val()
+            var email = $('#resource_email').val();
+            var password = $('#resource_password').val();
+        if (remember_me == "1") {
+            Cookies.set('email', email, {
+                expires: 14
+              })
+            Cookies.set('password', password, {
+                expires: 14
+              })
+            Cookies.set('remember_me', remember_me, {
+                expires: 14
+              })              
+        }
+        else
+        {
+            // reset cookies
+            Cookies.set('email', '')
+            Cookies.set('password', '')
+            Cookies.set('remember_me', '')
+        }
               window.location.href = data.path
             } else {
               return toastr.error(data.message);
@@ -210,6 +232,7 @@
             }
           },
           error: function (data) {
+            $('#register-btn').attr('disabled', false)
             alert("Error");
           }
         });
@@ -221,6 +244,27 @@
         $('#signIn').validate().resetForm();
         $('#signIn').find('.error').removeClass('error');
         $('#signIn').modal('show');
+         if (document.cookie != ""){
+        cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+            cookie = cookies[i].trim().split("=");
+            if (cookie[0] == 'email') {
+                document.forms[0].elements[2].value = cookie[1];
+            }
+            if (cookie[0] == 'password') {
+              
+              document.forms[0].elements[3].value = cookie[1];
+            }
+            if (cookie[0] == 'remember_me') {
+              if (cookie[1] == "1") {
+              $('#resource_remember_me').prop( "checked", true );
+              document.forms[0].elements[5].value = cookie[1];
+              }
+
+            }
+        }
+    }
+
       }
 
       function register_form() {

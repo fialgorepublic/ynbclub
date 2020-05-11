@@ -17,11 +17,12 @@ en:
   register:
     register_label:           Register to Saint L' Beau
     facebook_signup_label:    Signup with Facebook
-    google_signup_label:      Signup with Google +
+    google_signup_label:      Signup with Google
     or_label:                 or
     enter_name_placeholder:   Enter Username
     username_label:           Username
     email_label:              Email
+    social_icon:              Social Icons
     email_placeholder:        Enter Email
     password_label:           Password
     password_placeholder:     Enter Password
@@ -31,7 +32,7 @@ en:
   login:
     login_label:              Login to Saint L' Beau
     facebook_signin_label:    Login with Facebook
-    google_signin_label:      Login with Google +
+    google_signin_label:      Login with Google
     create_account_label:     Create Account
     forgot_password_label:    Forgot Password?
 
@@ -64,7 +65,7 @@ en:
     ghtk_status_label:        Update GHTK Status
     invite_history_label:     Invite Friends History
     acc_setting_label:        Acc settings
-    referral_link_label:      Copy Referral Link
+    referral_link_label:      Copy link ambassador
     group_categories:         Group Categories
     earnings_label:           Earnings
 
@@ -88,12 +89,15 @@ en:
       ambassador_label:       Ambassador
       commission_label:       Commission
       tracking_label:         Tracking Id
+      product_label:                Products
       shipment_label:         Shipment Status
       payment_status:         Payment Status
 
   blogs:
     title_label:              Title
     category_label:           Category
+    reject_action_label:      Reject Blog
+    reject_status_label:      Reject Status
     user_label:               User
     publish_status_label:     Publish Status
     index:
@@ -202,6 +206,9 @@ en:
     ambassador_label:         Brand Ambassador
     name_label:               Name
     referral_label:           Referral
+    facebook_link:            Facebook Link
+    instragram_link:          Instragram Link
+    youtube_link:             Youtube Link
     address_line1_label:      Address line 1
     address_line2_label:      Address line 2
     state_label:              State
@@ -213,7 +220,7 @@ en:
     billing_info:
       title:                  Billing Information
       sub_title:              Information used for payment
-      ncn_number_label:       National Security Number
+      ncn_number_label:       Identity card
       bank_branch_name_label: Name of Bank and Branch
       account_name_label:     Account name
       account_number_label:   Account number
@@ -426,6 +433,8 @@ en:
   delete_confirmation:        Are you sure?
   publish_label:              Publish
   ubpublish_label:            Unpublish
+  reject_label:               Reject
+  unreject_label:             Not Reject
   close_label:                Close
   commission_label:           Commission
   apply_filter_label:         Apply Filter
@@ -447,6 +456,7 @@ en:
   post_duplicate_share:       You already have added this post.
   group_update:               Group was successfully updated.
   post_shared_by_someone:     Someone has already added this post
+  post_shared_limit:          You already shared three urls
   url_make_sure:              Please Make sure Url is correct.
   invalid_url:                Invalid Url.
   changes_saved_message:      Changes saved successfully.

@@ -2,6 +2,10 @@ var conversationID = <%= params[:id] %>;
 var linkElement = $(`[data-conversation-id=${conversationID}]`)
 linkElement.attr('href', '<%= dislike_conversation_path(params[:id]) %>')
 linkElement.find('i').addClass('red-color');
+var get_span = linkElement.find('span')[0]
+if (get_span.innerText == " Like") {
+	get_span.innerText = " Unlike"
+}
 linkElement.find('i').removeClass('green-color');
 var countEle = $(`.likes-count-${conversationID}`);
 count    = $(countEle[0]).text();

@@ -1,132 +1,110 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"  />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" rel="stylesheet">
-<style>
-
-</style>
 <%= form_for(conversation, url: url, local: true) do |form| %>
   <% unless reply? %>
     <%# if params[:group_id].blank? %>
     <%# else %>
     <%#= form.hidden_field :group_id, value: params[:group_id] %>
     <%# end %>
-        <% else %>
-          <%= form.hidden_field :group_id, value: @conversation.group_id %>
-            <%= hidden_field_tag  :id, @conversation.id %>
-    <% end %>
-    <div class="ambassador-dashboard-con">
-      <div class="form-group">
-      <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?", class: "set-border-radius"%>
-      <!-- <textarea id="exampleee1"></textarea> -->
-      </div>
-    </div>
-    
+    <% else %>
+    <%= form.hidden_field :group_id, value: @conversation.group_id %>
+    <%= hidden_field_tag  :id, @conversation.id %>
+  <% end %>
+  <div class="ambassador-dashboard-con">
     <div class="form-group">
-      <div id="divImageMediaPreview"></div>
-      <div id="divVideoMediaPreview"></div>
+    <%= form.text_field :subject, placeholder: "please enter subject", class: "form-control", required: true%>
     </div>
-    <div class="tags-div con_tag">
-        <%= text_field_tag 'conversation[tags][]', nil, class: "tags-field form-group", data: { role: "tagsinput" }, placeholder: "Add comma separated tags." %>
+    <div class="form-group">
+      <% if current_user.present?%>
+        <%= form.text_area :body, id: "exampleee1", placeholder: "whats on your mind #{current_user.name}?", class: "set-border-radius", required: true%>
+      <% end %>
     </div>
-      <hr class="mb-0">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="flex-c">
-            <div class="flex-l bgbtn_create_post c_pointer">
-              <div class="image-upload emoji_img_upload">
-                <label for="file-input">
-                  <img src="/assets/upload.png" /> Photo/video
-                <%= form.file_field :avatar, id: "file-input", class: "ImageMedias"%>
-
-                </label>
-                <!-- <input id="file-input" type="file" /> -->
-              </div>
-              <%
-=begin%>
- <div class="font_post">
-                <p>
-                  Photo/video
-                </p>
-              </div> 
-<%
-=end%>
-            </div>
-          </div>
-        </div>
-          <div class="col-md-4">
-              <div class="flex-c ">
-                  <div class="flex-l bgbtn_create_post c_pointer" id="feeling_icon_tog">
-                      <div class="post_icon_size padding-smile">
-                          <img class="img_emoji_start" src="/assets/smile.png">
-                      </div>
-                      <div class="font_post">
-                          <p class="feell"> Feelings
-                          </p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class=" col-md-4">
-            <div class="flex-c">
-              <div class="flex-l bgbtn_create_post c_pointer" id="tag_friend">
-                <div class="post_icon_size padding-tag">
-                  <img src="/assets/friend.png">
-                </div>
-                <div class="font_post">
-                  <p>
-                    Add Tag
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr>
-      </div>
-      <hr>
-    <div class="row mt-feed">
-      <div class="col-md-6">
-        <div class="flex-l">
-          
-          <div id="updateUserImage_feed">
-             <img src="/assets/news-feed.png">
-              <div class="plus_icon">
-                <ul class="dropdown-menu">
-                    <li> <a href="javascript:void(0);" onclick="uploadImage();">image</a></li>
-                </ul>
-              </div>
-          </div>
-          <div class="feed-p">
-              <p>Choose Group </p>
+  </div>
+    
+  <div class="form-group">
+    <div id="divImageMediaPreview"></div>
+    <div id="divVideoMediaPreview"></div>
+  </div>
+  <div class="tags-div con_tag">
+    <%= text_field_tag 'conversation[tags][]', nil, class: "tags-field form-group", data: { role: "tagsinput" }, placeholder: "Add comma separated tags." %>
+  </div>
+  <hr class="mb-0">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="flex-c">
+        <div class="flex-l bgbtn_create_post c_pointer">
+          <div class="image-upload emoji_img_upload">
+            <label for="file-input">
+              <img src="/assets/upload.png" /> Photo/video
+              <%= form.file_field :avatar, id: "file-input", class: "ImageMedias chose_file"%>
+            </label>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-         <div class="ambassador-dashboard-con">
+    </div>
+    <div class="col-md-4">
+      <div class="flex-c ">
+        <div class="flex-l bgbtn_create_post c_pointer" id="feeling_icon_tog" onclick="onClickHandler()">
+          <div class="post_icon_size padding-smile">
+            <img class="img_emoji_start" src="/assets/smile.png">
+          </div>
+          <div class="font_post">
+            <p> Feelings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-md-4">
+      <div class="flex-c">
+        <div class="flex-l bgbtn_create_post c_pointer" id="tag_friend">
+          <div class="post_icon_size padding-tag">
+            <img src="/assets/friend.png">
+          </div>
+          <div class="font_post">
+            <p>
+              Add Tag
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <hr>
+  <div class="row mt-feed">
+    <div class="col-md-6">
+      <div class="flex-l">
+        <div id="updateUserImage_feed">
+          <img src="/assets/news-feed.png">
+          <div class="plus_icon">
+            <ul class="dropdown-menu">
+              <li> <a href="javascript:void(0);" onclick="uploadImage();">image</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="feed-p">
+          <p>Choose Group </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="ambassador-dashboard-con">
         <div class="form-group">
-          <%# debugger %>
           <% if params[:controller].eql?("groups") && group_id.present? %>
-             <%#= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name) %>
-          <%= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name),{}, :disabled => true, class: 'select_with_icon form-control set-border-radius' %>
+            <%= form.select :group_id, options_for_select(Group.pluck(:name), :selected => Group.find(group_id).name),{}, :disabled => true, class: 'select_with_icon form-control set-border-radius' %>
             <%= form.hidden_field :group_id, value: group_id %>
           <% else %>
-            <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' },  class: 'select_with_icon form-control set-border-radius' %>
+            <%= form.select :group_id, options_for_select(groups, selected: form.object.group_id), { prompt: 'Choose a group' },  class: 'select_with_icon form-control set-border-radius', required: true %>
           <% end %>
         </div>
       </div>
-      </div>
+    </div>
   </div>
   <div class="actions">
-      <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
+    <%= form.submit 'Save', id: 'submit-button', class: 'hidden' %>
   </div>
-  <% end %>
-
-  <input type="button"
-class="bbutton"/>
-    <div class="">
-    <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form">Post</a>
-    </div>
-
-
-
+<% end %>
+<div class="">
+  <a class="btn blog_library btn-primary con_modal_width modal_con_banner_btn submit-conversatioin-form" id="create-post">Post</a>
+</div>
 
 
 <script type="text/javascript">
@@ -140,109 +118,130 @@ class="bbutton"/>
       hidePickerOnBlur: false
     });
 
-
-
-
-
-$( "#feeling_icon_tog" ).click(function() {
-console.log('ssssss')
-
-
-  $( ".emojionearea-button" ).toggleClass('active');
-$('.emojionearea-picker').css({
+    $( "#feeling_icon_tog" ).click(function() {
+      $( ".emojionearea-button" ).toggleClass('active');
+      $('.emojionearea-picker').css({
         'display': 'block',
+      });
+      $( ".emojionearea-button-open" ).toggleClass("ds_none_block");
+      $( ".emojionearea-picker" ).toggleClass("opa");
+      $( ".emojionearea-picker" ).addClass("add_height");
+      $( ".emojionearea-picker" ).toggleClass("hidden");
+      $( ".emojionearea-filter" ).click(function() {
+        $( ".emojionearea-picker" ).removeClass("add_height");
+      });
     });
-
-$( ".emojionearea-button-open" ).toggleClass("ds_none_block");
-$( ".emojionearea-picker" ).toggleClass("opa");
-$( ".emojionearea-picker" ).addClass("add_height");
-
-$( ".emojionearea-picker" ).toggleClass("hidden");
- 
- $( ".emojionearea-filter" ).click(function() {
-console.log('removeClass("add_height")');
-
-  $( ".emojionearea-picker" ).removeClass("add_height");
-
-   });
-
-
-});
-
-
-
-
-  $( ".con_tag" ).hide();
-
-$( "#tag_friend" ).click(function() {
-console.log('tag_friend')
-  $( ".con_tag" ).toggle();
+    $( ".con_tag" ).hide();
+    $( "#tag_friend" ).click(function() {
+      $( ".con_tag" ).toggle();
     });
-
-
- });
-
+  });
+  $("#create-post").click(function(event){
+    text = $(".emojionearea-editor")[0].innerText
+   if (text == "") {
+    event.preventDefault();
+    $("#custom-error").show();
+   } else {
+    $("#custom-error").hide();
+   }
+  })
 </script>
 
 <script type="text/javascript">
-
-if (window.File && window.FileList && window.FileReader) {
+  if (window.File && window.FileList && window.FileReader) {
     $(".ImageMedias").change(function (e) {
       var files = e.target.files,
-        filesLength = files.length;
+      filesLength = files.length;
       for (var i = 0; i < filesLength; i++) {
         var f = files[i]
         if (f.type.includes("image")){
-        var fileReader = new FileReader();
-        fileReader.onload = (function(e) {
-          var file = e.target;
-          $("<span class=\"pip\">" +
-            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-            "<br/><span class=\"remove fa fa-times\"></span>" +
-            "</span>").insertAfter("#divImageMediaPreview");
-          $(".remove").click(function(){
-            $(this).parent(".pip").remove();
-          });
-          
-        });
-        fileReader.readAsDataURL(f);
-      }
-      else {
           var fileReader = new FileReader();
-        fileReader.onload = (function(e) {
-          var file = e.target;
-          $("<span class=\"pip\">" +
+          fileReader.onload = (function(e) {
+            var file = e.target;
+            $("<span class=\"pip\">" +
+              "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+              "<br/><span class=\"remove fa fa-times\"></span>" +
+              "</span>").insertAfter("#divImageMediaPreview");
+            $(".remove").click(function(){
+              $(this).parent(".pip").remove();
+            });  
+          });
+          fileReader.readAsDataURL(f);
+        }
+        else {
+          var fileReader = new FileReader();
+          fileReader.onload = (function(e) {
+            var file = e.target;
+            $("<span class=\"pip\">" +
             "<video class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/></video>" +
             "<br/><span class=\"remove fa fa-times\"></span>" +
             "</span>").insertAfter("#divImageMediaPreview");
-          $(".remove").click(function(){
-            $(this).parent(".pip").remove();
+            $(".remove").click(function(){
+              $(this).parent(".pip").remove();
+            });
           });
-          
-        });
-        fileReader.readAsDataURL(f);
-      }
+          fileReader.readAsDataURL(f);
+        }
       }
     });
   } else {
     alert("Your browser doesn't support to File API")
   }
-<<<<<<< HEAD
-
-  // $(".rm_btn").click(function(){
 </script>
+
 <script type="text/javascript">
+  function onClickHandler() {
+    setCaret(document.getElementsByClassName("emojionearea-editor")[0]);
+  }
 
-$(".bbutton").on("click", function() {
- var myEm = $(this).attr('role');
-    //alert(myEm);
-$( ".emojionearea" ).addClass("focused");
+  function setCaret(el) {
 
+    let range = document.createRange(),
+    sel = window.getSelection(),
+    lastKnownIndex = -1;
+    for (let i = 0; i < el.childNodes.length; i++) {
+      if (isTextNodeAndContentNoEmpty(el.childNodes[i])) {
+        lastKnownIndex = i;
+      }
+    }
+    if (lastKnownIndex === -1) {
+      // throw new Error('Could not find valid text content');
+    }
+    if (el.childNodes.length > 0) {
+      let row = el.childNodes[lastKnownIndex];
+      col = row.textContent.length;
+      range.setStart(row, col);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      el.focus();
+    }
+
+    function isTextNodeAndContentNoEmpty(node) {
+      return node.nodeType == Node.TEXT_NODE && node.textContent.trim().length > 0
+    }
+  }
+
+  $(document).on("click",".emojionearea-editor",function() {
+    // $( ".emojionearea-picker" ).toggleClass("hidden");
+      });
+    window.onclick = function(event) {
+    if (event.target.id == "myModal") {
+      event.preventDefault();
+      alert('Please Save Your Post First')
+    }
+  }
+
+  $("#myModal").on("hidden.bs.modal", function(){
+    $(this).find('form').trigger('reset');
+    text_area = $(".emojionearea-editor")[0]
+    $(text_area).html("")
 });
-
-$("html").click(function(){
-   $("#emojionearea").focus();
-});
-=======
->>>>>>> 3861e63f47c780e5ff5fbdaf89cef195ccf3550c
+  $(window).on('popstate', function() { 
+    $("#myModal").modal('hide');
+    $("#myModal").find('form').trigger('reset');
+    text_area = $(".emojionearea-editor")[0]
+    $(text_area).html("")
+    location.reload();
+  });
 </script>

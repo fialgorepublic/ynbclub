@@ -85,6 +85,7 @@ class User < ApplicationRecord
   after_save :set_default_permissions
   after_save :set_profile
   after_commit :generate_coupon_code, on: :create
+  before_save :set_total_income
 
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
@@ -232,8 +233,7 @@ class User < ApplicationRecord
   end
 
   def filter_by_category(category)
-    Blog.joins(:category)
-    # Blog.eager_load_objects.filter_by_category(category)
+    Blog.eager_load_objects.filter_by_category(category)
   end
 
   def full_name
@@ -255,7 +255,9 @@ class User < ApplicationRecord
   def update_total_income(price, order_no)
     user_commission  = commission.present? ? commission.to_f : 10.0
     old_income = self.total_income
-    self.update_attributes(total_income: total_income.to_f + (price.to_f * user_commission/100))
+    # self.update_attributes(total_income: total_income.to_f + (price.to_f * user_commission/100))
+    self.total_income = (total_income.to_f + (price.to_f * user_commission/100))
+    self.save(validate: false)
     commission_history = self.commission_histories.find_or_create_by(order_no: order_no, old_income: old_income, new_income: self.total_income)
     self.notifications.find_or_create_by(source: commission_history)
   end
@@ -296,6 +298,12 @@ class User < ApplicationRecord
     sort_type.present? ? all_converations.sort_by_title(sort_type) : all_converations
   end
 
+  def set_total_income
+    if self.new_record?
+      self.total_income = 0.0
+    end
+  end
+
   def generate_coupon_code
     if reference_no.present?
       initiate_shopify_session
@@ -304,7 +312,7 @@ class User < ApplicationRecord
   end
 
   def initiate_shopify_session
-    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: '2e4b3484ea853b5577e587bcd7cfd75d', api_version: '2019-04')
+    shopify_session = ShopifyAPI::Session.new(domain: "saintlbeau.myshopify.com", token: 'aa36877bc9e1a1746e3dfcf8a6deb8eb', api_version: '2019-04')
     ShopifyAPI::Base.activate_session(shopify_session)
   end
 

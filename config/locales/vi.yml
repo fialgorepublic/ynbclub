@@ -17,11 +17,12 @@ vi:
   register:
     register_label:           Đăng ký cùng Saint L'Beau
     facebook_signup_label:    Đăng ký với Facebook
-    google_signup_label:      Đăng ký với Google +
+    google_signup_label:      Đăng ký với Google
     or_label:                 Hoặc 
     enter_name_placeholder:   Nhập tên người dung 
     username_label:           Tên người dung 
     email_label:              Email
+    social_icon:              Biểu tượng xã hội
     email_placeholder:        Nhập Email 
     password_label:           Mật khẩu
     password_placeholder:     Nhập mật khẩu
@@ -31,7 +32,7 @@ vi:
   login:
     login_label:              Đăng nhập vào  Saint L' Beau
     facebook_signin_label:    Đăng nhập bằng tài khoản Facebook
-    google_signin_label:      Đăng nhập bằng tài khoản Google +
+    google_signin_label:      Đăng nhập bằng tài khoản Google
     create_account_label:     Tạo tài khoản 
     forgot_password_label:    Quên mật khẩu?
 
@@ -40,12 +41,12 @@ vi:
 
   sidebar: 
     dashboard_label_text:     Bảng điều khiển
-    order_status_label_text:  Tình trạng đặt hàng
+    order_status_label_text:  Tình Trạng đặt hàng
     share_with_friends_label: Chia sẻ với bạn bè 
     take_and_share_label:     Chụp nhanh và chia sẻ 
     exchange_coins_label:     Đổi xu 
     my_orders_label:          Đơn hàng của tôi 
-    referral_sales_label:     Giới thiệu bán hang
+    referral_sales_label:     Đơn đại sứ
     blogs_label:              Blogs
     blogs_list_label:         danh sách blog
     all_orders_label:         Tất cả các đơn đặt hàng
@@ -64,7 +65,7 @@ vi:
     ghtk_status_label:        Cập nhập trạng thái GHTK
     invite_history_label:     Lịch sử mời bạn bè 
     acc_setting_label:        Cài đặt tài khoản 
-    referral_link_label:      Copy link giới thiệu
+    referral_link_label:      Copy link đại sứ
     group_categories:         Group Categories
     earnings_label:           thu nhập
 
@@ -88,12 +89,15 @@ vi:
       ambassador_label:       Ambassador
       commission_label:       Commission
       tracking_label:         Theo dõi ID 
+      product_label:          Các sản phẩm
       shipment_label:         Tình trạng giao hang 
       payment_status:         Tình trạng thanh toán 
 
   blogs:
     title_label:              Chức vụ
     category_label:           thể loại
+    reject_action_label:      Từ chối Blog
+    reject_status_label:      Từ chối trạng thái
     user_label:               Người dùng
     publish_status_label:     Xuất bản trạng thái
     index:
@@ -205,6 +209,9 @@ vi:
     ambassador_label:         Brand Ambassador
     name_label:               Tên 
     referral_label:           Giới thiệu 
+    facebook_link:            Đường dẫn Facebook
+    instragram_link:          Liên kết Instagram
+    youtube_link:             Liên kết Youtube
     address_line1_label:      Địa chỉ 1
     address_line2_label:      Địa chỉ  2
     state_label:              Quốc gia
@@ -216,7 +223,7 @@ vi:
     billing_info:
       title:                  Thông tin thanh toán 
       sub_title:              Thông tin được sử dụng để thanh toán 
-      ncn_number_label:       Số an ninh quốc gia 
+      ncn_number_label:       Chứng minh nhân dân 
       bank_branch_name_label: Tên ngân hàng chi nhánh 
       account_name_label:     Tên tài khoản (ngân hàng)
       account_number_label:   Số tài khoản 
@@ -433,6 +440,8 @@ vi:
   delete_confirmation:    Bạn có chắc không?
   publish_label:              Đăng tải
   ubpublish_label:           Không đăng tải 
+  reject_label:               Từ chối
+  unreject_label:             Không từ chối
   close_label:                    Đóng 
   commission_label:           Commission
   apply_filter_label:          Áp dụng bộ lọc 
@@ -454,6 +463,7 @@ vi:
   post_duplicate_share:        Bạn đã thêm bài này 
   group_update:                Nhóm đã được cập nhật thành công.
   post_shared_by_someone:    Ai đó đã thêm bài này 
+  post_shared_limit:         Bạn đã chia sẻ ba url
   url_make_sure:              Hãy chắc chắn URL đã chính xác
   invalid_url:                     URL không hợp lệ 
   changes_saved_message:      Thay đổi được lưu thành công
