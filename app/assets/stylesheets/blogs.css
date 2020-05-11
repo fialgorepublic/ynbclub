@@ -144,3 +144,7 @@ input:checked + .slider:before {
 .remove-space {
   margin-top: -30px;
 }
+
+.unavailable-blog {
+  top: 105px;
+}
