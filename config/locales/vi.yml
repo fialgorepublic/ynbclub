@@ -109,6 +109,7 @@ vi:
       add_new_blog_post:      Add New Blog Post
       go_to_blogs:            Go To Blogs
       share_blog_label:       chia sẻ_blog_label
+      category_blogs:         Không có blog nào có sẵn cho thể loại này
     new:
       create_blog_title:       Tạo bài blog mới 
       edit_blog_title:         Chỉnh sửa bài viêys 
