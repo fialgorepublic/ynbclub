@@ -35,6 +35,7 @@
 //= require approve_sales
 //= require buyer_to_ambassador
 //= require register
+//= require common
 //= permissions
 //= cable
 //= conversations
