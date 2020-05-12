@@ -167,4 +167,17 @@ $(document).on('turbolinks:load', function(){
   function showLoader(contentDivId) {
     $(contentDivId).html('<div class="text-center" id="users-loader"><i class="fa fa-spin fa-circle-o-notch"></i></div>');
   }
+
+  $("#remove-modal").click(function(){
+    $("#new-blog").modal("hide")
+    $("#create-blog").html('');
+    $(".modal-backdrop").removeClass();
+    blogsTab = document.getElementById("blogs-tab")
+     if (blogsTab == null) {
+    history.pushState({}, null, window.location.href.split("blogs")[0]+"blogs");
+    }
+    else {
+      window.history.replaceState({},'','/dashboard');
+    }
+  })
 });
