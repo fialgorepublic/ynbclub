@@ -148,3 +148,8 @@ input:checked + .slider:before {
 .unavailable-blog {
   top: 105px;
 }
+
+.category-name-error {
+  color: red;
+  display: none;
+}
