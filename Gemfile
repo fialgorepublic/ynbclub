@@ -62,6 +62,7 @@ gem 'medium-editor-rails', '~> 2.3'
 gem 'medium-editor-insert-plugin-rails'
 gem 'local_time'
 gem 'quilljs-rails'
+gem "i18n-js"
 # gem 'headless', '~> 2.2', '>= 2.2.3'
 gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
 group :development, :test do
