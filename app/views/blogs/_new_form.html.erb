@@ -195,7 +195,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close cancel-category">&times;</button>
         <h4 class="modal-title">Create or Edit Category</h4>
       </div>
       <%= hidden_field_tag :url, action_name == 'edit' ? edit_blog_path(@blog) : new_blog_path  %>
@@ -206,6 +206,7 @@
           <div class="form-group">
             <%= form.label :name %>
             <%= form.text_field :name, id: :category_name, class: 'form-control', required: true %>
+            <span class="category-name-error" id="new-category">* Please enter name first</span>
           </div>
 
           <div class="actions">
@@ -220,21 +221,22 @@
             <div class="form-group">
               <%= collection_select(:category, :id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
             </div>
-
+            <span class="category-name-error" id="edit-category">* Please select category first</span>
             <div class="form-group">
               <%= form.label :name %>
               <%= form.text_field :name, id: :category_name, class: 'form-control', required: true, id: 'update-category-name' %>
+              <span class="category-name-error" id="edit-category-name">* Please select category first</span>
             </div>
 
             <div class="actions">
-              <%= form.submit 'Update Category', class: 'btn btn-success' %>
+              <%= form.submit 'Update Category', class: 'btn btn-success', id: "update-blog-category" %>
             </div>
           <% end %>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="cancle-category">Cancel</button>
+        <button type="button" class="btn btn-danger cancel-category">Cancel</button>
       </div>
     </div>
 
@@ -461,20 +463,66 @@ Quilljs.setDefaults(defaults)
             }
     })
 // });
-    // $('#create-or-edit-category').click(function() {
-    //     $('#create-or-edit-category-modal').modal('show');
-    //     $('#update-category-name').attr('disabled', true);
-    // });
+    $('#create-or-edit-category').click(function() {
+        $('#create-or-edit-category-modal').modal('show');
+        $('#update-category-name').attr('disabled', true);
+    });
 
-    //  $('#cancle-category').click(function(e){
-    // e.preventDefault();
-    // $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
-    //   $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-    //   // $('#myModal').modal('show');
-    //   $('body').addClass('modal-open');
-    //   $('body').removeAttr('style');
-    // });
-    // });
+    $('.cancel-category').click(function(e){
+      e.preventDefault();
+      $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
+        $(this).off('hidden.bs.modal');
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+      });
+    });
+
+    $("#create-new-category").click(function(){
+      categoryName = $("#category_name").val()
+      if (categoryName == "") {
+        $("#new-category").show();
+        event.preventDefault();
+      }else {
+        $.ajax({
+            url: 'create_or_update_cateogry',
+            type: 'get',
+            contentType: "application/json",
+            data: {name: categoryName},
+            success: function (data) {
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        });
+      }
+    });
+
+    $("#update-blog-category").click(function(){
+      categoryId = $("#category_id").val()
+      categoryName = $("#update-category-name").val();
+      if (categoryId == "") {
+        $("#edit-category").show();
+        event.preventDefault();
+      } else if (categoryName == "") {
+        $("#edit-category-name").show();
+        event.preventDefault();
+      }
+      else {
+        $.ajax({
+            url: 'create_or_update_cateogry',
+            type: 'get',
+            contentType: "application/json",
+            data: {id: categoryId, name: categoryName},
+            success: function (data) {
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        });
+      }
+    });
+
+
 
     $('#search-form').submit(function(){
         if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }

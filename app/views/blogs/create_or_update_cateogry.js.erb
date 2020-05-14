@@ -1,5 +1,15 @@
 <% if @success %>
-  window.location.href = "<%= @url %>"
+  $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
+    $(this).off('hidden.bs.modal');
+    $('#new-blog').modal('show');
+    $("#new-category").hide();
+    $("#category_name").val("")
+    $("#category-name-error").hide();
+    $("#edit-category").hide();
+    $("#edit-category-name").hide();
+    $('body').addClass('modal-open');
+    $('body').removeAttr('style');
+  });
 <% else %>
   toastr.error("Name has already been taken")
 <% end %>
