@@ -36,6 +36,9 @@
 //= require buyer_to_ambassador
 //= require register
 //= require common
+//= require i18n
+//= require i18n/translations
+//= require localization
 //= permissions
 //= cable
 //= conversations

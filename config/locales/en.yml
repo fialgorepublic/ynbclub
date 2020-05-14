@@ -433,7 +433,7 @@ en:
   delete_label:               Delete
   delete_confirmation:        Are you sure?
   publish_label:              Publish
-  ubpublish_label:            Unpublish
+  unpublish_label:            Unpublish
   reject_label:               Reject
   unreject_label:             Not Reject
   close_label:                Close

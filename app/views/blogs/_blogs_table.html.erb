@@ -24,7 +24,7 @@
           <span class="slider round"></span>
         </label>
       </td>
-      <td id="blog-status-<%= blog.id %>"><%= blog.is_published? ? t(:ubpublish_label) : t(:publish_label) %></td>
+      <td id="blog-status-<%= blog.id %>"><%= blog.is_published? ? t(:publish_label) : t(:unpublish_label) %></td>
       <td>
         <label class="switch">
           <input type="checkbox" class="publish-switch" id="<%= blog.id %>" <%= 'checked' if blog.is_published? %>>
