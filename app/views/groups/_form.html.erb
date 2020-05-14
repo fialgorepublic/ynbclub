@@ -10,7 +10,7 @@
                   <div class="img-caption">
                     <label class="cabinet center-block">
                       <figure>
-                        <%= image_tag @group.logo.attached? ? @group.logo : '', class: "gambar img-responsive img-thumbnail", id: "item-img-output", width: "100%", style: "border: 1px solid #ccc !important; border-radius: 15px;" %>
+                        <%= image_tag @group.logo.attached? ? @group.logo : '', class: "gambar img-responsive img-thumbnail lazy", id: "item-img-output", width: "100%", style: "border: 1px solid #ccc !important; border-radius: 15px;", lazy: true %>
                         <figcaption>
                           <p>Upload preview image</p>
                         </figcaption>

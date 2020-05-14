@@ -1,7 +1,7 @@
 <%= form_for @page, url: banner_conversations_path, method: :post,  html: { id: "conversation-banner", multipart: true }    do |f| %>
   <div class="modal-body">
     <div class="modal-holder text-center">
-      <%= image_tag conversation_banner_url(@page), size: "80x80", alt: "Add icon", id: 'blah' %>
+      <%= image_tag conversation_banner_url(@page), size: "80x80", alt: "Add icon", id: 'blah', class: "lazy", lazy: true %>
       <lable for="file_name" id="file-name"><%= conversation_banner_name(@page) %></lable> </br>
       <div class="field form-group" id="image-upload-button-div">
         <div class="fileUpload start blog-imgUpload">

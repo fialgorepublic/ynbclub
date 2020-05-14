@@ -2,7 +2,7 @@
              :html => {:id =>"user_profile_picture", :multipart => true}    do |f| %>
   <div class="modal-body">
     <div class="modal-holder text-center">
-      <%= image_tag(image_url(current_user), :size => "80x80", :alt => "Add icon" , :id =>'blah') %>
+      <%= image_tag(image_url(current_user), :size => "80x80", :alt => "Add icon" , :id =>'blah', class: "lazy", lazy: true) %>
       <lable for="file_name" id="file-name"><%= profile_pic_name current_user %></lable> </br>
       <div class="field form-group" id="image-upload-button-div">
         <div class="fileUpload start blog-imgUpload">

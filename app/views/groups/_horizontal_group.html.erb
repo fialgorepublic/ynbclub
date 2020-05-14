@@ -3,7 +3,7 @@
     <div class="row box-shadow ">
       <div class="col-md-5 m-p-0">
         <%= link_to group do %>
-        <%= image_tag group.logo, width: '100%' , class: "lib-img-show", draggable: "false" %>
+        <%= image_tag group.logo, width: '100%' , class: "lib-img-show lazy", draggable: "false", lazy: true %>
         <% end %>
       </div>
       <div class="col-md-7">

@@ -42,6 +42,7 @@
 //= cable
 //= conversations
 //= shared_url
+//= require jquery.lazyload
 // user_cookies
 //= require js.cookies.min.js
 //= require emoji/dist/emojionearea.js
@@ -52,3 +53,15 @@
 //= require medium-editor-insert-plugin.js
 //= require local-time
 //= require_tree .
+
+
+$(document).on('turbolinks:load', function () {
+  $("img.lazy").lazyload({
+    failure_limit : 1000,
+    event: "lazyload",
+    threshold : 500,
+    effect: "fadeIn",
+    skip_invisible: false
+    })
+  $(window).scroll();
+});

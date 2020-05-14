@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="user-list1" id="user-<%= user.id %>">
     <div class="text-center">
-      <%= image_tag user_avatar(user), size: '120x120', class: 'user-image' %>
+      <%= image_tag user_avatar(user), size: '120x120', class: 'user-image lazy', lazy: true %>
     </div>
 
     <div class="text-center">

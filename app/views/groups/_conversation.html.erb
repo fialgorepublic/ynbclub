@@ -7,7 +7,7 @@
             <div class="">
               <div class="flex-l">
                 <div class="">
-                  <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image' %>
+                  <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image lazy', lazy: true %>
                 </div>
                 <div class="m-l-10">
                   <p class="p-l"><%= user_profile_link(conversation.user) %></p>

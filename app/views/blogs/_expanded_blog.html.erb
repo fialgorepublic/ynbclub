@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-md-6 dynamic-<%= blog.id%>" id="<%= blog.slug %>" onclick="blog_show('<%= blog.id %>')" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">
       <%#= link_to blog do %>
-      <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : blog.avatar, width: '100%', class: 'image-height' %>
+      <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : blog.avatar, width: '100%', class: 'image-height lazy', lazy: true %>
       <%# end %>
     </div>
 
@@ -19,7 +19,7 @@
             <div class="col-md-12">
               <p>
                 <%= link_to user_path(blog.user) do %>
-              <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img" %>
+              <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img lazy", lazy: true %>
               <% end %>
                 <span class="with-un-blog"><%= user_name(blog.user) %></span>
                 <span><%= blog_date blog %></span>

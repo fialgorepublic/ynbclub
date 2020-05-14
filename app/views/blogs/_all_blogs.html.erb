@@ -17,3 +17,14 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $("img.lazy").lazyload({
+    failure_limit : 1000,
+    event: "lazyload",
+    threshold : 500,
+    effect: "fadeIn",
+    skip_invisible: false
+    })
+  $(window).scroll();
+</script>
