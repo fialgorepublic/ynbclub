@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   def last_order
     @order = Order.first
     respond_to do |format|
-      format.js { flash.now[:notice] = 'New Order Placed.' }
+      format.js
     end
   end
 
