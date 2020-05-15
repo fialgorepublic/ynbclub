@@ -1,0 +1,18 @@
+<% if @success %>
+  $("#comments-count-<%= @conversation.id%>").text("<%= @conversation.replies.count %>")
+  $(".medium-editor").empty();
+  textArea = $("#text-area-<%= @conversation.id%>")[0]
+  getChildren = textArea.parentElement.children[0]
+  $(getChildren).append('<p class="medium-insert-active"><br></p')
+  $(getChildren).append('<div class="medium-insert-buttons" contenteditable="false" style="left: 15px; top: 22px;">'+'<button class="medium-insert-buttons-show" type="button"><span>+</span></button>'+'<ul class="medium-insert-buttons-addons" style="display: none"><li><button data-addon="images" data-action="add" class="medium-insert-action" type="button"><span class="fa fa-camera"></span></button></li><li><button data-addon="embeds" data-action="add" class="medium-insert-action" type="button"><span class="fa fa-youtube-play"></span></button></li></ul>'+'</div>')
+  $("#new-reply-<%= @conversation.id %>").hide();
+  toastr.success("reply created successfully");
+  if (window.location.href.split("/").length) {
+    $('#conversation-<%= @conversation.id%>').append('<%= j render partial: 'last_reply',  :locals => { :reply => @reply } %>');
+  }else {
+
+    $('#conversation-<%= @conversation.id%>').html('<%= j render partial: 'last_reply',  :locals => { :reply => @reply } %>');
+  }
+<% else %>
+  toastr.error("Please enter reply first");
+<% end%>

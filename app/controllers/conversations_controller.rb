@@ -102,16 +102,10 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_reply
-    reply = @conversation.replies.new(conversation_params.merge(user: current_user))
-    if reply.body.include?("figure")
-      reply.body = reply.body
-    elsif reply.body.include?("<p>")
-      reply.body = URI.extract(reply.body)[0]
-    end
-    if reply.save
-      redirect_to @conversation, notice: 'Posted your reply successfully.'
-    else
-      redirect_to request.referer, alert: "#{reply.errors.full_messages.join(",")}"
+    @reply = @conversation.replies.new(conversation_params.merge(user: current_user))
+    @success = @reply.save
+    respond_to do |format|
+      format.js
     end
   end
 
