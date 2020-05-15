@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
   before_action :redirect_to_blogs, if: :shopify_redirected?
 
   def set_locale
-    I18n.locale = Rails.env.development? ? params[:locale] : params[:locale] || I18n.default_locale
+    if session[:locale].present?
+      I18n.locale = session[:locale]
+    else
+      I18n.locale = Rails.env.development? ? params[:locale] : params[:locale] || I18n.default_locale
+    end
   end
 
   def check_role
