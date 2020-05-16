@@ -19,7 +19,7 @@ class Conversation < ApplicationRecord
   has_many   :conversation_likes
   has_one_attached :avatar
   validates :body, presence: true
-  scope :post_conversations,  ->             { unscoped.where(parent_id: nil).order(created_at: :desc) }
+  scope :post_conversations,  ->             { where(parent_id: nil).reorder(created_at: :desc) }
   scope :filter_by_subject,   -> (subject)   { where('lower(subject) like ?', "%#{subject&.downcase}%") }
   scope :popular_first,       ->             { reorder(likes_count: :desc, replies_count: :desc) }
   scope :unanswered,          ->             { where(replies_count: 0, parent_id: nil) }
