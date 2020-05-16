@@ -48,20 +48,20 @@
         </div>
 
         <% if @blogs.count > 0 %>
-        <div class="col-md-2 post-sorting  ">
-          <p>SORTING</p>
-          <select class="sorting-fltr" id="sort-blogs">
-            <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-            <!-- <option value="0"><%#= t(:A_Z) %></option> -->
-            <option value="1">A-Z </option>
-            <option value="2">Z-A </option>
-          </select>
-        </div>
+          <div class="col-md-2 post-sorting  ">
+            <p>SORTING</p>
+            <select class="sorting-fltr" id="sort-blogs">
+              <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
+              <!-- <option value="0"><%#= t(:A_Z) %></option> -->
+              <option value="1">A-Z </option>
+              <option value="2">Z-A </option>
+            </select>
+          </div>
 
-        <div class="col-md-2 post-sorting">
-          <p>CATEGORY</p>
-          <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
-        </div>
+          <div class="col-md-2 post-sorting">
+            <p>CATEGORY</p>
+            <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
+          </div>
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
@@ -123,7 +123,7 @@
         <!-- <div class="modal-body con_modal-content">
           <div class="">
             <div class="ambassdor-box newBlog-style conversation-c"></div><%#= render partial: 'new_form', locals: { blog: @blog } %>
-            
+
           </div>
         </div> -->
         <div id="create-blog">
@@ -265,7 +265,7 @@
                 slidesToScroll: 2,
                 dots: true,
                 infinite: true,
-                
+
             }
         }, {
             breakpoint: 480,
@@ -351,6 +351,6 @@ $( document ).ready(function() {
   get_url = host+"/blogs"
   history.pushState({}, null, get_url);
   }
-  
+
 })
 </script>
