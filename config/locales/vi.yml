@@ -7,7 +7,7 @@ vi:
     conversations:            cuộc hội thoại
     register_label:           Đăng ký
 
-  header: 
+  header:
     home_label:               Trang chủ
     catalog_label:            Mục lục
     about_us_label:           Về chúng tôi
@@ -18,60 +18,60 @@ vi:
     register_label:           Đăng ký cùng Saint L'Beau
     facebook_signup_label:    Đăng ký với Facebook
     google_signup_label:      Đăng ký với Google
-    or_label:                 Hoặc 
-    enter_name_placeholder:   Nhập tên người dung 
-    username_label:           Tên người dung 
+    or_label:                 Hoặc
+    enter_name_placeholder:   Nhập tên người dung
+    username_label:           Tên người dung
     email_label:              Email
     social_icon:              Biểu tượng xã hội
-    email_placeholder:        Nhập Email 
+    email_placeholder:        Nhập Email
     password_label:           Mật khẩu
     password_placeholder:     Nhập mật khẩu
     have_account_label:       Tôi đã có tài khoản
-    close_label:              Đóng 
+    close_label:              Đóng
 
   login:
     login_label:              Đăng nhập vào  Saint L' Beau
     facebook_signin_label:    Đăng nhập bằng tài khoản Facebook
     google_signin_label:      Đăng nhập bằng tài khoản Google
-    create_account_label:     Tạo tài khoản 
+    create_account_label:     Tạo tài khoản
     forgot_password_label:    Quên mật khẩu?
 
   forgot_password:
-    send_instruction_label:   Gửi tôi hướng dẫn đặt lại mật khẩu 
+    send_instruction_label:   Gửi tôi hướng dẫn đặt lại mật khẩu
 
-  sidebar: 
+  sidebar:
     dashboard_label_text:     Bảng điều khiển
     order_status_label_text:  Tình Trạng đặt hàng
-    share_with_friends_label: Chia sẻ với bạn bè 
-    take_and_share_label:     Chụp nhanh và chia sẻ 
-    exchange_coins_label:     Đổi xu 
-    my_orders_label:          Đơn hàng của tôi 
+    share_with_friends_label: Chia sẻ với bạn bè
+    take_and_share_label:     Chụp nhanh và chia sẻ
+    exchange_coins_label:     Đổi xu
+    my_orders_label:          Đơn hàng của tôi
     referral_sales_label:     Đơn đại sứ
     blogs_label:              Blogs
     blogs_list_label:         danh sách blog
     all_orders_label:         Tất cả các đơn đặt hàng
-    permissions_label:        Quản lý cấp phép 
+    permissions_label:        Quản lý cấp phép
     shared_urls_label:        Chia sẻ link URL
     commission_label:         Commission
-    approve_sales_label:      Phê duyệt bán hàng 
-    configuration_label:      Cấu hình 
-    payment_histroy_label:    Lịch sử thanh toán 
+    approve_sales_label:      Phê duyệt bán hàng
+    configuration_label:      Cấu hình
+    payment_histroy_label:    Lịch sử thanh toán
     ambassadors_label:        Ambassadors
-    ban_users_label:          Chặn người sử dụng 
-    deduct_points_label:      Điểm trừ 
-    categories_label:         Danh mục 
-    manage_rewards_label:     Quản lý điểm thưởng 
-    pages_design_label:       Thiết kế trang 
+    ban_users_label:          Chặn người sử dụng
+    deduct_points_label:      Điểm trừ
+    categories_label:         Danh mục
+    manage_rewards_label:     Quản lý điểm thưởng
+    pages_design_label:       Thiết kế trang
     ghtk_status_label:        Cập nhập trạng thái GHTK
-    invite_history_label:     Lịch sử mời bạn bè 
-    acc_setting_label:        Cài đặt tài khoản 
+    invite_history_label:     Lịch sử mời bạn bè
+    acc_setting_label:        Cài đặt tài khoản
     referral_link_label:      Copy link đại sứ
     group_categories:         Group Categories
     earnings_label:           thu nhập
 
   referral_sales:
     index:
-      page_title:             Giới thiệu bán hang 
+      page_title:             Giới thiệu bán hang
       post_blog:              Đăng blog
       share_snapshot:         Chụp và chia sẻ ảnh chụp nhanh
       order_product:          Đặt hàng sản phẩm trong bài viết trên blog
@@ -80,18 +80,18 @@ vi:
       product_order:          Sản phẩm của bạn đã được đặt hàng
 
     table_headers:
-      order_label:            Đơn đặt hàng 
+      order_label:            Đơn đặt hàng
       price_label:            Giá
-      customer_name:          Tên khách hang 
+      customer_name:          Tên khách hang
       email_label:            Email
-      shop_name_label:        Tên cửa hàng 
-      address_label:          Địa chỉ 
+      shop_name_label:        Tên cửa hàng
+      address_label:          Địa chỉ
       ambassador_label:       Ambassador
       commission_label:       Commission
-      tracking_label:         Theo dõi ID 
+      tracking_label:         Theo dõi ID
       product_label:          Các sản phẩm
-      shipment_label:         Tình trạng giao hang 
-      payment_status:         Tình trạng thanh toán 
+      shipment_label:         Tình trạng giao hang
+      payment_status:         Tình trạng thanh toán
 
   blogs:
     title_label:              Chức vụ
@@ -102,28 +102,28 @@ vi:
     publish_status_label:     Xuất bản trạng thái
     index:
       page_title:             Blogs
-      blog_libray_label:      Thư viện Blog 
+      blog_libray_label:      Thư viện Blog
       edit_banner_label:      Chỉnh sửa Banner
-      new_blog_label:         Bài blog mới 
+      new_blog_label:         Bài blog mới
       show_more_label:        Show More
       add_new_blog_post:      Add New Blog Post
       go_to_blogs:            Go To Blogs
       share_blog_label:       chia sẻ_blog_label
-      category_blogs:         Không có blog nào có sẵn cho thể loại này
+      blogs_not_found:         Không tỉm được bài đăng
     new:
-      create_blog_title:       Tạo bài blog mới 
-      edit_blog_title:         Chỉnh sửa bài viêys 
-      category_label:          Thêm hoặc chỉnh sửa danh mục 
-      category_placeholder:    Lựa chọn danh mục 
-      title_placeholder:       Thêm tiêu đề 
-      total_words:             Tổng ký tự 
+      create_blog_title:       Tạo bài blog mới
+      edit_blog_title:         Chỉnh sửa bài viêys
+      category_label:          Thêm hoặc chỉnh sửa danh mục
+      category_placeholder:    Lựa chọn danh mục
+      title_placeholder:       Thêm tiêu đề
+      total_words:             Tổng ký tự
       minimum_required_words:  Từ bắt buộc tối thiểu
-      products_label:          Các sản phẩm 
-      assign_products:         Chỉ định sản phẩm 
-      blog_description_empty:  Vui lòng điền thêm mô tả Blog 
+      products_label:          Các sản phẩm
+      assign_products:         Chỉ định sản phẩm
+      blog_description_empty:  Vui lòng điền thêm mô tả Blog
       descriptn_length_errr:   Phần mô tả phải có độ dài ít nhất 500 từ
-      default_image_error:     Vui lòng thay đổi hình ảnh mặc định trước khi đăng bài 
-      publish_btn_label:       Đăng bài 
+      default_image_error:     Vui lòng thay đổi hình ảnh mặc định trước khi đăng bài
+      publish_btn_label:       Đăng bài
       description:             Nhập văn bản
       creat_first_blog_label:  Tạo bài đăng blog đầu tiên của bạn.
       assign_product_label:    Chỉ định sản phẩm của bạn để quảng bá nó. LƯU Ý nội dung không được sao chép, hệ thống sẽ tự ban.
@@ -136,28 +136,28 @@ vi:
       limit_reach_label:       Đạt tới giới hạn
       products_limit_label:    Bạn không thể liên kết hơn 5 sản phẩm với một blog
     show:
-      buyer_view_label:        Hiển thị khi người mua thấy 
+      buyer_view_label:        Hiển thị khi người mua thấy
       comment_modal:
-        title:                 Thêm bình luận 
-        comment_placeholder:   Nhập bình luận tại đây 
-      share_modal: 
-        title:                 Chia sẻ bài viết/bài blog này trên Facebook và nhận 5 xu. 
+        title:                 Thêm bình luận
+        comment_placeholder:   Nhập bình luận tại đây
+      share_modal:
+        title:                 Chia sẻ bài viết/bài blog này trên Facebook và nhận 5 xu.
     assign_product_modal:
       assign_title:            Chỉ định sản phẩm cho bài blog
     share_on_facebook_label:   Chia sẻ trên Facebook
-    feautre_blog_text:         Bạn có chắc chắn muốn thay đổi trạng thái ? 
-    goto_list_label:           Đi đến danh sách bài Blogs 
-    post_comment_label:        Đăng bình luận 
+    feautre_blog_text:         Bạn có chắc chắn muốn thay đổi trạng thái ?
+    goto_list_label:           Đi đến danh sách bài Blogs
+    post_comment_label:        Đăng bình luận
 
     controller:
       create_blog_success:     Bài Blog đã được tạo thành công.
-      updated_blog:            Bài Blog đã được cập nhập thành công 
+      updated_blog:            Bài Blog đã được cập nhập thành công
       destroy_blog_success:    Bài Blog đã được huỷ thành công
       create_limit_alert:      Bạn đã vượt quá giới hạn của mình để xuất bản blog cho ngày hôm nay.
- 
+
   orders:
     index:
-      title:                  Tất cả các đơn hang 
+      title:                  Tất cả các đơn hang
       search_placeholder:     Tìm kiếm tên khách hàng/Thành phố/Quận/Tỉnh/Mã đơn hàng/Email
       already_sent:           Đã gửi
       table_headers:
@@ -165,19 +165,19 @@ vi:
         order_label:          Mã đơn hàng#(Shop)
         payment_label:        Tình trạng thanh toán
         tracking_label:       Mã theo dõi đơn#(GHTK)
-        customer_name_label:  Tên khách hàng 
-        number_label:         Số điện thoại 
-        picked_phone_label:   Số điện thoại đặt hàng 
+        customer_name_label:  Tên khách hàng
+        number_label:         Số điện thoại
+        picked_phone_label:   Số điện thoại đặt hàng
         email_label:          Email
-        address_label:        Địa chỉ 
-        ward_label:           Phường 
-        province_label:       Tỉnh 
-        district_label:       Quận 
-        city_label:           Thành phố 
-        country_label:        Quốc gia 
-        price_label:          Giá 
-        transport_label:      Hình thức vận chuyển 
-        edit_address_label:   Chỉnh sửa địa chỉ 
+        address_label:        Địa chỉ
+        ward_label:           Phường
+        province_label:       Tỉnh
+        district_label:       Quận
+        city_label:           Thành phố
+        country_label:        Quốc gia
+        price_label:          Giá
+        transport_label:      Hình thức vận chuyển
+        edit_address_label:   Chỉnh sửa địa chỉ
         send_ghtk_label:      Gửi đến Giao hang tích kiệm (GHTK)
 
       update_adress_modal:
@@ -186,12 +186,12 @@ vi:
 
   permissions:
     index:
-      title:                  Cấp phép quyền quản lý 
-      view_permissions_label: Xem quyền 
+      title:                  Cấp phép quyền quản lý
+      view_permissions_label: Xem quyền
     show:
-      title:                  Gán quyền mới 
-      change_btn_label:       Thay đổi quyền 
-      choose_permision_label: Lựa chọn quyền 
+      title:                  Gán quyền mới
+      change_btn_label:       Thay đổi quyền
+      choose_permision_label: Lựa chọn quyền
   order_status:
     title:                    Kiểm tra trạng thái đơn hàng
     checking_order:           Kiểm tra đơn hàng
@@ -201,183 +201,183 @@ vi:
     status:                   tình trạng đặt hàng
     ghtk_label:               Đơn hàng chưa được gửi đến GHTK
   users:
-    username_label:           Tên người dùng  
-    firstname_label:          Tên 
+    username_label:           Tên người dùng
+    firstname_label:          Tên
     lastname_label:           Họ
     email_label:              Email
-    phone_no_label:           Số điện thoại 
-    join_date_label:          Ngày đăng ký 
+    phone_no_label:           Số điện thoại
+    join_date_label:          Ngày đăng ký
     ambassador_label:         Brand Ambassador
-    name_label:               Tên 
-    referral_label:           Giới thiệu 
+    name_label:               Tên
+    referral_label:           Giới thiệu
     facebook_link:            Đường dẫn Facebook
     instragram_link:          Liên kết Instagram
     youtube_link:             Liên kết Youtube
     address_line1_label:      Địa chỉ 1
     address_line2_label:      Địa chỉ  2
     state_label:              Quốc gia
-    city_label:               Thành phố 
+    city_label:               Thành phố
     zipcode_label:            Zip code
-    password_label:           Mật khẩu 
-    date_of_birth_label:      Ngày sinh 
-    select_gender_label:      Lựa chọn giới tính 
+    password_label:           Mật khẩu
+    date_of_birth_label:      Ngày sinh
+    select_gender_label:      Lựa chọn giới tính
     billing_info:
-      title:                  Thông tin thanh toán 
-      sub_title:              Thông tin được sử dụng để thanh toán 
-      ncn_number_label:       Chứng minh nhân dân 
-      bank_branch_name_label: Tên ngân hàng chi nhánh 
+      title:                  Thông tin thanh toán
+      sub_title:              Thông tin được sử dụng để thanh toán
+      ncn_number_label:       Chứng minh nhân dân
+      bank_branch_name_label: Tên ngân hàng chi nhánh
       account_name_label:     Tên tài khoản (ngân hàng)
-      account_number_label:   Số tài khoản 
+      account_number_label:   Số tài khoản
       bank_account_label:     Tài khoản ngân hàng
     show:
-      partner_info_label:     Thông tin đối tác 
-      discount_label:         Lịch sử giảm giá 
-      go_back_label:          Quay lại 
-      referral_code_label:    Mã giới thiệu 
-      total_income_label:     Tổng thu nhập 
-      has_paid_label:         Đã thanh toán 
-      not_paid_label:         Chưa thanh toán 
+      partner_info_label:     Thông tin đối tác
+      discount_label:         Lịch sử giảm giá
+      go_back_label:          Quay lại
+      referral_code_label:    Mã giới thiệu
+      total_income_label:     Tổng thu nhập
+      has_paid_label:         Đã thanh toán
+      not_paid_label:         Chưa thanh toán
       general_info_label:     Thông tin chung
-      basic_info_label:       Một số thông tin cơ bản 
-      stt_label:              Số thứ tự 
-      recording_time_label:   Thời gian ghi nhận 
-      describe_label:         Mô tả 
+      basic_info_label:       Một số thông tin cơ bản
+      stt_label:              Số thứ tự
+      recording_time_label:   Thời gian ghi nhận
+      describe_label:         Mô tả
       income_label :          Thu nhập
-      pay_label :             Thanh toán 
+      pay_label :             Thanh toán
 
-  shared_urls: 
+  shared_urls:
     title :                   Chia sẻ URL
     table_headers:
       id_label:                 Số ID
-      shared_by_label:          Được chia sẻ bởi 
+      shared_by_label:          Được chia sẻ bởi
       platform_label:           Nền tảng
       url_label:                URL
       shared_at_label:          Chia sẻ tại thời điểm
 
-  approve_sales:  
-    title:                    Quản lý đơn hàng  
-    since_label:              Từ ngày 
-    to_date_label:            Đến ngày 
-    discount_status_label:    Trạng thái giảm giá 
-    payment_status_label:     Trạng thái thanh toán 
-    referral_partner_label:   Giới thiệu/Đối tác 
-    order_paid_label:         Đơn hàng đã được thanh toán 
+  approve_sales:
+    title:                    Quản lý đơn hàng
+    since_label:              Từ ngày
+    to_date_label:            Đến ngày
+    discount_status_label:    Trạng thái giảm giá
+    payment_status_label:     Trạng thái thanh toán
+    referral_partner_label:   Giới thiệu/Đối tác
+    order_paid_label:         Đơn hàng đã được thanh toán
     errors:
-      date_error:             Vui lòng trọn ngày trước 
+      date_error:             Vui lòng trọn ngày trước
       since_date_error:       Vui long trọn từ ngày đầu tiên trước
     table_headers:
-      order_id_label:         ID đặt hàng 
-      created_date_label:     Ngày tạo 
-      customer_label:         Khách hàng 
-      tt_discount_label:      Tổng giảm giá 
-      total_money:            Tổng tiền 
-      discount_label:         Giảm giá 
-      payment_status_label:   Tình trạng thanh toán 
-      partner_label:          Đối tác 
-      referral_code_label:    Mã giới thiệu 
+      order_id_label:         ID đặt hàng
+      created_date_label:     Ngày tạo
+      customer_label:         Khách hàng
+      tt_discount_label:      Tổng giảm giá
+      total_money:            Tổng tiền
+      discount_label:         Giảm giá
+      payment_status_label:   Tình trạng thanh toán
+      partner_label:          Đối tác
+      referral_code_label:    Mã giới thiệu
     placeholders:
       select_option:          Chọn một tùy chọn
       start_date:             Vui lòng chọn ngày kể từ khi bộ lọc bắt đầu
       end_date:               Vui lòng chọn ngày kể từ khi bộ lọc kết thúc
 
   setting:
-    title:                    Cấu hình chung 
-    payement_setting_label:   Thanh toán của đối tác 
-    minimum_payment_label:    Số tiền tối thiểu phải thanh toán 
-    amount_description_label: Số tiền tối thiểu phải đạt được vào cuối tháng để chủ Shop có thể thanh toán cho đối tác 
+    title:                    Cấu hình chung
+    payement_setting_label:   Thanh toán của đối tác
+    minimum_payment_label:    Số tiền tối thiểu phải thanh toán
+    amount_description_label: Số tiền tối thiểu phải đạt được vào cuối tháng để chủ Shop có thể thanh toán cho đối tác
     cookies_setting_label:    Cookie
     cookie_time_label:        Thời gian Cookie  (trong ngày)
     cookie_description_label: Thời gian lưu trữ Linkref tối đa trên máy khách khi nhập linkref của đối tác
 
   payments:
-    title:                    Xem lịch sử thanh toán 
-    make_payment_label:       Thực hiện thanh toán 
-    payemnt_start_date_label: Ngày bắt đầu thanh toán 
-    payemnt_end_date_label:   Ngày kết thúc thanh toán 
+    title:                    Xem lịch sử thanh toán
+    make_payment_label:       Thực hiện thanh toán
+    payemnt_start_date_label: Ngày bắt đầu thanh toán
+    payemnt_end_date_label:   Ngày kết thúc thanh toán
     partner_label:            Đối tác
     end_date_placeholder:     Ngày kết thúc thanh toán
     start_date_placeholder:   Ngày bắt đầu thanh toán
     selct_partnr_placeholder: Vui lòng lựa chọn đối tác
     search_placeholder:       Mã thanh toán/ Tên người nhận/ Email
     table_headers:
-      payment_code_label:     Mã thanh toán 
-      payment_date_label:     Ngày thanh toán 
-      amount_label:           Giá trị thanh toán 
-      recipient_name_label:   Tên người nhận 
+      payment_code_label:     Mã thanh toán
+      payment_date_label:     Ngày thanh toán
+      amount_label:           Giá trị thanh toán
+      recipient_name_label:   Tên người nhận
       email_label:            Email
       number_math_label:      Number Math
-      status_label:           Trạng thái 
-      note_label:             Ghi chú 
+      status_label:           Trạng thái
+      note_label:             Ghi chú
     modal:
-      create_payment_label:   TẠO THANH TOÁN 
-      create_btn_label:       Tạo thanh toán 
+      create_payment_label:   TẠO THANH TOÁN
+      create_btn_label:       Tạo thanh toán
 
   point_types:
     index:
-      title:                  Phần thưởng 
+      title:                  Phần thưởng
       new_btn_label:          Phần thưởng mới
       reward_label:           Gửi đi
     table_headers:
-      name_label:             Tên 
-      points_label:           Số điểm thưởng 
+      name_label:             Tên
+      points_label:           Số điểm thưởng
     edit:
-      title:                  Chỉnh sửa phần thưởng 
-  
+      title:                  Chỉnh sửa phần thưởng
+
   categories:
     index:
       title:                  Danh mục
-      new_btn_label:          Danh mục mới 
-    name_label:               Tên 
+      new_btn_label:          Danh mục mới
+    name_label:               Tên
     edit:
-      title:                  Chỉnh sửa danh mục 
+      title:                  Chỉnh sửa danh mục
     new:
       create_category_label:  Tạo danh mục
     controller:
-      create_success:         Danh mục đã được tạo thành công 
-      update_success:         Danh mục đã được cập nhập thành công 
-      destroy_success:        Huỷ danh mục thành công 
-  
+      create_success:         Danh mục đã được tạo thành công
+      update_success:         Danh mục đã được cập nhập thành công
+      destroy_success:        Huỷ danh mục thành công
+
   invite:
     title:                    Lịch sử mời bạn bè
     search_placeholer:        Tìm kiếm theo tên / Email
 
-  acc_settings: 
+  acc_settings:
     title:                    Cài đặt tài khoản
-    current_email_label:      Email hiện tại 
+    current_email_label:      Email hiện tại
     new_email_label:          Email mới
-    current_password_label:   Mật khẩu hiện tại 
-    new_password_label:       Mật khẩu mới 
-    rept_new_passwd_label:    Nhập lại mật khẩu mới 
-    personal_details_label:   Thông tin cá nhân 
+    current_password_label:   Mật khẩu hiện tại
+    new_password_label:       Mật khẩu mới
+    rept_new_passwd_label:    Nhập lại mật khẩu mới
+    personal_details_label:   Thông tin cá nhân
     shipping_address_label:   Địa chỉ giao hang
 
-  page_design: 
-    title:                    Thiết kế trang 
-    home_page_label:          Trang chủ 
-    snapshot_label:           Chụp nhanh và chia sẻ 
-    earn_coins_label:         Cách kiếm xu 
-    share_label:              Chia sẻ với bạn bè 
-    edit_snapshot_label:      Chỉnh sửa chụp nhanh và chia sẻ 
+  page_design:
+    title:                    Thiết kế trang
+    home_page_label:          Trang chủ
+    snapshot_label:           Chụp nhanh và chia sẻ
+    earn_coins_label:         Cách kiếm xu
+    share_label:              Chia sẻ với bạn bè
+    edit_snapshot_label:      Chỉnh sửa chụp nhanh và chia sẻ
     copy_share_link_label:    Copy link chia sẻ
     share_referral_label:     Link đại sứ.
-    share_description_label:  Chia sẻ link giới thiệu của bạn với bạn bè của bạn.	
+    share_description_label:  Chia sẻ link giới thiệu của bạn với bạn bè của bạn.
     share_on_facebook_label:  Chia sẻ trên Facebook
     share_on_twitter_label:   Chia sẻ trên Twitter
     share_on_email_label:     Chia sẻ trên Email
-  
+
   affiliates:
     title:                    Quản lý Affiliate
-    search_placeholder:       Tên / Email / Số điện thoại 
+    search_placeholder:       Tên / Email / Số điện thoại
     payment_status:           Trạng thái thanh toán
-    browsing_status:          Trạng thái duyệt 
+    browsing_status:          Trạng thái duyệt
 
   all_users:
-    deduct_label:            Điểm khấu trừ 
-    ban_label:                 Chặn người sử dụng 
+    deduct_label:            Điểm khấu trừ
+    ban_label:                 Chặn người sử dụng
     filter_type_label:        Chọn loại bộ lọc
     points_label:              Điểm
-    banned_label:             Đã bị chặn 
-    points_history_label:    Lịch sử điểm 
+    banned_label:             Đã bị chặn
+    points_history_label:    Lịch sử điểm
     deduct_btn_label:         Điểm trừ
     deduct_field_label:       “Nhập điểm để khấu trừ”
 
@@ -389,7 +389,7 @@ vi:
   will_paginate:
     previous_label:           Trước đó
     next_label:               Tiếp theo
-  
+
   my_orders:
     order_label:              Đơn đặt hàng
     date_label:               Ngày
@@ -401,10 +401,10 @@ vi:
     username:                 Tên đăng nhập
     password:                 Mật mã
     email:                    Vui lòng nhập email
-    valid_email:              Vui lòng nhập một địa chỉ email hợp lệ          
+    valid_email:              Vui lòng nhập một địa chỉ email hợp lệ
 
   groups:
-    index: 
+    index:
       title:                  Groups
       edit_banner_text:       Edit Banner
       add_new_group:          Add New Group
@@ -420,87 +420,87 @@ vi:
   group_categories:
     index:
       title:                  Nhóm danh mục
-      new_btn_label:          nhóm Danh mục mới 
-    name_label:               Tên 
+      new_btn_label:          nhóm Danh mục mới
+    name_label:               Tên
     edit:
-      title:                  Chỉnh sửa nhóm danh mục 
+      title:                  Chỉnh sửa nhóm danh mục
     new:
       create_category_label:  Tạo nhóm danh mục
     controller:
-      create_success:         Nhóm Danh mục đã được tạo thành công 
-      update_success:         Nhóm Danh mục đã được cập nhập thành công 
+      create_success:         Nhóm Danh mục đã được tạo thành công
+      update_success:         Nhóm Danh mục đã được cập nhập thành công
       destroy_success:        Nhóm Huỷ danh mục thành công
 
-  actions_lable:              Các hoạt động 
-  cancel_label:               Huỷ 
+  actions_lable:              Các hoạt động
+  cancel_label:               Huỷ
   save_label:                  Lưu
   search_label:               Tìm kiếm
-  clear_label:                 Dọn dẹp 
-  edit_label:                   Chỉnh sửa 
+  clear_label:                 Dọn dẹp
+  edit_label:                   Chỉnh sửa
   delete_label:               Xoá
   delete_confirmation:    Bạn có chắc không?
   publish_label:              Đăng tải
-  unpublish_label:           Không đăng tải 
+  unpublish_label:           Không đăng tải
   reject_label:               Từ chối
   unreject_label:             Không từ chối
-  close_label:                    Đóng 
+  close_label:                    Đóng
   commission_label:           Commission
-  apply_filter_label:          Áp dụng bộ lọc 
-  clear_filter_label:          Xoá bộ lọc 
-  approve_sales_label:      Phê duyệt bán hàng 
-  cancel_sale_label:          Huỷ bán hàng 
-  apply_label:                 Áp dụng 
-  show_label:                 Hiển thị 
-  destroy_label:              Huỷ 
-  back_label:                  Trở lại 
-  update_label:               Cập nhập 
-  upload_image_label:       Tải hình ảnh lên 
+  apply_filter_label:          Áp dụng bộ lọc
+  clear_filter_label:          Xoá bộ lọc
+  approve_sales_label:      Phê duyệt bán hàng
+  cancel_sale_label:          Huỷ bán hàng
+  apply_label:                 Áp dụng
+  show_label:                 Hiển thị
+  destroy_label:              Huỷ
+  back_label:                  Trở lại
+  update_label:               Cập nhập
+  upload_image_label:       Tải hình ảnh lên
   joining_date_label:         Ngày tham gia
-  referral_code_label:        Mã giới thiệu 
-  money_label:                   Tiền 
+  referral_code_label:        Mã giới thiệu
+  money_label:                   Tiền
   new_ambassador_label:       New Ambassador
-  update_role_success_mesage: Cập nhập vai trò thành công 
+  update_role_success_mesage: Cập nhập vai trò thành công
   image_success_message:       Cập nhập thành công hình ảnh người sử dụng.
-  post_duplicate_share:        Bạn đã thêm bài này 
+  post_duplicate_share:        Bạn đã thêm bài này
   group_update:                Nhóm đã được cập nhật thành công.
-  post_shared_by_someone:    Ai đó đã thêm bài này 
+  post_shared_by_someone:    Ai đó đã thêm bài này
   post_shared_limit:         Bạn đã chia sẻ ba url
   url_make_sure:              Hãy chắc chắn URL đã chính xác
-  invalid_url:                     URL không hợp lệ 
+  invalid_url:                     URL không hợp lệ
   changes_saved_message:      Thay đổi được lưu thành công
-  login_success:                  Đăng nhập thành công 
-  email_password_invalid:     Email và mật khẩu không hợp lệ 
-  banned_message:              Bạn đã bị chặn từ quản trị viên 
-  blocked_buyer_message:   Bạn không được phép thực hiện hoạt động này 
+  login_success:                  Đăng nhập thành công
+  email_password_invalid:     Email và mật khẩu không hợp lệ
+  banned_message:              Bạn đã bị chặn từ quản trị viên
+  blocked_buyer_message:   Bạn không được phép thực hiện hoạt động này
   order_address_success:      Địa chỉ đặt hàng được cập nhập thành công.
   order_update_error:         Đã xảy ra lỗi!
-  gthk_address_error:         Địa chỉ không hợp lệ 
+  gthk_address_error:         Địa chỉ không hợp lệ
   partner_info_success:       Thông tin đối tác được lưu thành công
-  payment_created_success:    Thanh toán đã được tạo thành công. 
+  payment_created_success:    Thanh toán đã được tạo thành công.
   permission_success_message: “Quyền cho % {email} được cập nhật thành công.”
-  reward_success:             Điểm thưởng đã được tạo thành công. 
+  reward_success:             Điểm thưởng đã được tạo thành công.
   reward_update_success:      Điểm thưởng đã được cập nhật thành công.
   reward_destroy_success:     Hủy phần thường thành công.
-  profile_update_success:     Hồ sơ được cập nhật thành công! 
+  profile_update_success:     Hồ sơ được cập nhật thành công!
   referral_sale_create_suces: Giới thiệu bán hàng đã được tạo thành công.
   referral_sale_update_suces: Giới thiệu bán hàng đã được cập nhật thành công
-  successfully_signin:        Đã đăng nhập thành công 
-  successfully_signed_up:     Đăng ký thành công 
+  successfully_signin:        Đã đăng nhập thành công
+  successfully_signed_up:     Đăng ký thành công
   changes_update_success:     Thay đổi được cập nhật thành công.
-  update_snapshot:            Cập nhật thành công. 
+  update_snapshot:            Cập nhật thành công.
   picture_removed:            Hình ảnh bị xóa.
-  user_create_success:        Người dùng đã được tạo thành công. 
-  user_update_success:        Người dùng đã được cập nhật thành công. 
-  user_destroy_success:       Hủy người dùng thành công. 
+  user_create_success:        Người dùng đã được tạo thành công.
+  user_update_success:        Người dùng đã được cập nhật thành công.
+  user_destroy_success:       Hủy người dùng thành công.
   user_email_update:          Email được cập nhật thành công! Bạn cần đăng nhập lại để tiếp tục
-  email_not_matched:          Email hiện tại không khớp với hồ sơ bạn đang đăng nhập! 
+  email_not_matched:          Email hiện tại không khớp với hồ sơ bạn đang đăng nhập!
   password_update_success:    Mật khẩu được cập nhật!. Bạn cần đăng nhập lại để tiếp tục.
-  password_mismatch:          Mật khẩu hiện tại không khớp! 
+  password_mismatch:          Mật khẩu hiện tại không khớp!
   active_status_changed:      Thay đổi trạng thái hoạt động thành công
-  profile_update:             Cập nhật thành công 
+  profile_update:             Cập nhật thành công
   banned_user_message:        Người sử dụng đã bị chặn gia nhập SaintLBeau!
-  invalid_points:             Giá trị điểm không hợp lệ 
-  admin_update_points:        Điểm quản trị viên cập nhật thành công. 
+  invalid_points:             Giá trị điểm không hợp lệ
+  admin_update_points:        Điểm quản trị viên cập nhật thành công.
   enough_coins_message:       Bạn không có đủ xu.
   exchange_success:           Trao đổi đã được hoàn thành
   exchange_error:             Đã xảy ra lỗi, không thể trao đổi tại thời điểm này!

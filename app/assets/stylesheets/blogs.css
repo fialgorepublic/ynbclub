@@ -146,7 +146,7 @@ input:checked + .slider:before {
 }
 
 .unavailable-blog {
-  top: 105px;
+  top: 20px;
 }
 
 .category-name-error {

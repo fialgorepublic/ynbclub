@@ -7,7 +7,7 @@ en:
     conversations:            Conversation
     register_label:           Register
 
-  header: 
+  header:
     home_label:               Home
     catalog_label:            Catalog
     about_us_label:           About Us
@@ -109,7 +109,7 @@ en:
       add_new_blog_post:      Add New Blog Post
       go_to_blogs:            Go To Blogs
       share_blog_label:       Share Blog
-      category_blogs:         Blogs not exists for this category
+      blogs_not_found:         No blogs found
     new:
       create_blog_title:      Create new blog post
       edit_blog_title:        Edit blog post
@@ -319,7 +319,7 @@ en:
       points_label:           Points
     edit:
       title:                  Edit Rewards
-  
+
   categories:
     index:
       title:                  Categories
@@ -333,7 +333,7 @@ en:
       create_success:         Category was successfully created.
       update_success:         Category was successfully updated.
       destroy_success:        Category was successfully destroyed.
-  
+
   invite:
     title:                    Invite Friends History
     search_placeholer:        Search for Name / Email
@@ -361,7 +361,7 @@ en:
     share_on_facebook_label:  Share On Facebook
     share_on_twitter_label:   Share On Twitter
     share_on_email_label:     Share On Email
-  
+
   affiliates:
     title:                    Manage Affiliate
     search_placeholder:       Name / Email / Phone Number
@@ -377,12 +377,12 @@ en:
     points_history_label:     Points History
     deduct_btn_label:         Deduct
     deduct_field_label:       "Enter points to deduct"
-  
+
   scrap_blogs:
     title:                    Search blogs from Blog Library
     translate:                Translate and Edit
     belongs_to_other:         This blog belongs to another user. you can't modify that.
-  
+
   my_orders:
     order_label:              Order
     date_label:               Date
@@ -394,10 +394,10 @@ en:
     username:                 Please enter username
     password:                 Please enter password
     email:                    Please enter email
-    valid_email:              Please Enter a valid email address.             
+    valid_email:              Please Enter a valid email address.
 
   groups:
-    index: 
+    index:
       title:                  Groups
       edit_banner_text:       Edit Banner
       add_new_group:          Add New Group
@@ -409,7 +409,7 @@ en:
       join_group:             Join group
       start_conversation:     Start New Conversation
       no_conversation:        There is no conversation yet in this group.
-  
+
   group_categories:
     index:
       title:                  Group Categories
