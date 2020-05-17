@@ -32,3 +32,23 @@ $(document).on 'turbolinks:load', ->
           toastr.error data.message
       error: ->
         alert "Something wentwrong"
+
+  $('.ban-user').change ->
+    value = $(this).prop('checked')
+    string = if value then I18n.t('ban_user_confirmation') else I18n.t('resume_user_confirmation')
+    box = confirm(string);
+    if box
+      $.ajax
+        url: $(this).data('url') + '&value=' + value
+        type: 'get'
+        dataType: 'json'
+        success: (data) ->
+          if data.success
+            toastr.success data.message
+          else
+            $(this).attr 'checked', false
+            toastr.error data.message
+          return
+    else
+      $(this).attr 'checked', false
+    return

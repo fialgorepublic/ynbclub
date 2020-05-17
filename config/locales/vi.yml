@@ -499,6 +499,9 @@ vi:
   active_status_changed:      Thay đổi trạng thái hoạt động thành công
   profile_update:             Cập nhật thành công
   banned_user_message:        Người sử dụng đã bị chặn gia nhập SaintLBeau!
+  ban_user_confirmation:      Are you sure you want to Ban this user account?
+  resume_user_confirmation:   Are you sure you want to Resume this user account?
+  resume_user_message:        Tài khoản người dùng được nối lại
   invalid_points:             Giá trị điểm không hợp lệ
   admin_update_points:        Điểm quản trị viên cập nhật thành công.
   enough_coins_message:       Bạn không có đủ xu.
@@ -524,6 +527,9 @@ vi:
   all_label:                  Tất cả
   remember_me:                Nhớ tôi
   update_role_success_label:  Vai trò được cập nhật thành công
+
+  general:
+    error: Đã xảy ra lỗi!
 
   activerecord:
     errors:
