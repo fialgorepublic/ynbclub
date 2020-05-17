@@ -43,10 +43,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :referral, uniqueness: true, if: :is_ambassador?
-  validates :name, uniqueness: true
-  validates :phone_number,:numericality => true,
-                 :length => { :minimum => 10, :maximum => 25 }, on: :update
+
   belongs_to :role, optional: true
   has_many :referral_sales
   has_many :payments
@@ -71,6 +68,11 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :followings,  through: :following_relationships, source: :following
   has_many :admin_groups, class_name: 'Group'
+
+  validates :referral, uniqueness: true, if: :is_ambassador?
+  validates :name, uniqueness: true
+  validates :phone_number, numericality: true,
+                          length: { minimum: 10, maximum: 25 }, on: :update, if: :phone_number_changed?
 
   has_one_attached :avatar
 
