@@ -70,7 +70,8 @@ class User < ApplicationRecord
   has_many :admin_groups, class_name: 'Group'
 
   validates :referral, uniqueness: true, if: :is_ambassador?
-  validates :name, uniqueness: true
+  validates :name, presence: true
+  validates_uniqueness_of :name, if: :name_changed?
   validates :phone_number, numericality: true,
                           length: { minimum: 10, maximum: 25 }, on: :update, if: :phone_number_changed?
 
