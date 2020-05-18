@@ -133,21 +133,6 @@
       if ($('#searchText').val() == '') { event.preventDefault(); return; }
     })
 
-    $('.ban-user').change(function () {
-      var value = $(this).prop('checked');
-      var string = value ? "Ban" : "Resume"
-      var box = confirm(`Are you sure you want to ${string} this user account?`);
-      if (box) {
-        $.ajax({
-          url: $(this).data('url') + `&value=${value}`,
-          type: 'get',
-          dataType: 'html'
-        });
-      }
-      else { $(this).attr('checked', false) }
-
-    });
-
     $('#filter-users').change(function () {
       type = $(this).val();
       $('#filter_type_hidden_field').val(type);

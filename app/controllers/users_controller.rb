@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!, except: [:find_user_by_email, :find_user, :show]
   before_action :authorize_user!, except: [:find_user_by_email, :find_user, :show]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :check_role, only: [:find_user_by_email, :find_user, :add_user_info, :show]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :ban]
+  skip_before_action :check_role, only: [:find_user_by_email, :find_user, :add_user_info, :show, :ban]
 
   require 'csv'
   require 'roo'
@@ -197,10 +197,13 @@ class UsersController < ApplicationController
   end
 
   def ban
-    user = User.find_by_id(params[:id])
-    user.update(banned: params[:value])
-    flash = I18n.t(:banned_user_message)
-    redirect_to users_ban_users_path
+    if @user.update_attributes(banned: params[:value])
+      message = @user.banned ? I18n.t(:banned_user_message) : I18n.t(:resume_user_message)
+    else
+      message = I18n.t('general.error')
+    end
+
+    render json: { success: @user.valid?, message: message }
   end
 
   def deduct_points
