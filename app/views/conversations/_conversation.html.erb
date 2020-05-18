@@ -62,62 +62,12 @@
             <div class="comment more">
               <% if conversation.body.include?("http") && conversation.body.include?("figure") %>
                 <%= conversation.body&.html_safe %>
-              <% elsif conversation.body.include?("http")%>
-                <a href="<%= conversation.body%>" target="_blank"><%= conversation.body%></a>
+              <% elsif conversation.body.include?("http") %>
+                <a href="<%= conversation.body%>" target="_blank"><%= conversation.body %></a>
               <% end %>
             </div>
 
           </div>
-
-          <% if conversation.replies.present? %>
-          <% reply = conversation.replies.first %>
-          <h5>Latest reply</h5>
-          <div class="flex-l pt-10">
-            <div class="">
-              <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
-            </div>
-
-            <div class="m-l-10 ">
-              <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
-              <p class="p-l"><%= posted_date(reply) %></p>
-            </div>
-          </div>
-
-          <div class="row bbbb">
-            <div class="col-md-12">
-              <div class="comment more text-left pl-40 ">
-                <% if reply.body.include?("http") && reply.body.include?("figure") %>
-                  <%= reply.body&.html_safe %>
-                <% elsif reply.body.include?("http")%>
-                  <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
-                <% else%>
-                  <%= reply.body&.html_safe %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <% if reply.replies.present? %>
-          <% reply = reply.replies.first %>
-          <h5>Latest reply of reply</h5>
-          <div class="flex-l pt-10">
-            <div class="">
-              <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
-            </div>
-
-            <div class="m-l-10 ">
-              <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
-              <p class="p-l"><%= posted_date(reply) %></p>
-            </div>
-          </div>
-          <div class="row bbbb">
-            <div class="col-md-12">
-              <div class="comment more text-left pl-40 ">
-                <%= reply.body&.html_safe %>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <% end %>
           <div class="row">
               <div class="col-md-2"> 
                 <img src="/assets/like-icon.png" onclick="show_modal(<%= conversation.id%>)" style="width: 46px;" data-toggle="tooltip" data-placement="left" title="<%= ConversationLike.joins(:user).where(conversation_id: conversation.id).pluck(:name).join("\n").html_safe %>">
@@ -128,7 +78,7 @@
               </div>
               <div class=" col-md-offset-7 col-md-3">
                 <p style="font-size: 15px; margin-top: 15px;">
-                 <span style="font-size: 17px;">
+                 <span style="font-size: 17px;" id="comments-count-<%= conversation.id %>">
                   <%= conversation.replies.count %>
                 </span>
                 <%= link_to "comments", conversation_path(conversation), style: "color: black" %>
@@ -167,6 +117,36 @@
                   <% end %>
                 <% end %>
               </div>
+          </div>
+          <div id="conversation-<%= conversation.id%>">
+            <% if conversation.replies.present? %>
+              <% reply = conversation.replies.first %>
+              <h5>Latest reply</h5>
+              <div class="flex-l pt-10">
+                <div class="">
+                  <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
+                </div>
+
+                <div class="m-l-10 ">
+                  <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
+                  <p class="p-l"><%= posted_date(reply) %></p>
+                </div>
+              </div>
+
+              <div class="row bbbb">
+                <div class="col-md-12">
+                  <div class="comment more text-left pl-40 ">
+                    <% if reply.body.include?("http") && reply.body.include?("figure") %>
+                      <%= reply.body&.html_safe %>
+                    <% elsif reply.body.include?("http") %>
+                      <a href="<%= reply.body%>" target="_blank"><%= reply.body %></a>
+                    <% else %>
+                      <%= reply.body&.html_safe %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
           <div class="flex-l">
             <div class="">

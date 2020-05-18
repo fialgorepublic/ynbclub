@@ -22,7 +22,6 @@ class OrdersController < ApplicationController
 
   def create
     OrderService.new(params[:order]).create_order
-    render head :ok
   end
 
   def last_order

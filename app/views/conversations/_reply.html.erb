@@ -1,5 +1,6 @@
 <% if reply_counter % 2 == 0 %>
   <div class="simple-comment-div bbbb">
+  <div id="conversation-<%= reply.parent.id %>">
     <div class="flex-l pt-10">
       <div class="">
         <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
@@ -22,6 +23,7 @@
         </div>
       </div>
     </div>
+  </div>
     <!-- <div class="flex-sb"> -->
     <div class="row">
       <div class="col-md-2">
@@ -32,7 +34,7 @@
       </div>
       <div class=" col-md-offset-7 col-md-3">
         <p style="font-size: 15px; margin-top: 15px;">
-         <span style="font-size: 15px;">
+         <span style="font-size: 15px;" id="comments-count-<%= reply.id %>">
           <%= reply.replies.count %>
         </span>
         <%= link_to "comments", conversation_path(reply.id), style: "color: black" %>

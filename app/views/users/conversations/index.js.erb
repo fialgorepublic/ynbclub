@@ -42,3 +42,19 @@ function likedConversationsPaginationsLink() {
     $('#liked-conversations-previous').addClass('hidden');
   <% end %>
 }
+
+
+$(".comment-button").click(function(e){
+  e.preventDefault();
+  get_id = this.id.split("-")[1]
+  find_reply_form = document.getElementById("new-reply-"+get_id)
+  $(find_reply_form).show();
+})
+
+
+var editor = new MediumEditor('.medium-editor', {
+});
+
+$('.medium-editor').mediumInsert({
+  editor: editor
+});

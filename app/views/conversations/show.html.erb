@@ -67,7 +67,7 @@
                 </div>
                 <div class=" col-md-offset-7 col-md-3">
                   <p style="font-size: 15px; margin-top: 15px;">
-                   <span style="font-size: 15px;">
+                   <span style="font-size: 15px;" id="comments-count-<%= @conversation.id%>">
                     <%= @conversation.replies.count %>
                   </span>
                   <!-- comments -->
@@ -119,6 +119,9 @@
 
               <div id='replies'>
                 <%= render partial: 'reply', collection: @replies, as: :reply %>
+              </div>
+            <% else %>
+              <div id="conversation-<%= @conversation.id%>">
               </div>
             <% end %>
           </div>

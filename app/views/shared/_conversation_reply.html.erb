@@ -1,11 +1,11 @@
 <div class="col-md-12" id="new-reply-<%= reply.parent_id%>" style="display: none">
   <div class="lib-panel">
-    <%= form_for(reply, url: url, html: {id: "reply_#{reply.parent_id}", class: "reply"}) do |form| %>
+    <%= form_for(reply, url: url, html: {id: "reply_#{reply.parent_id}", class: "reply", :remote => true}) do |form| %>
     <%= form.hidden_field :group_id, value: reply.parent.group_id %>
     <%= hidden_field_tag  :id, reply.parent_id %>
     <div class="ambassador-dashboard-con">
       <div class="form-group text-left">
-        <%= form.text_area :body, class: 'medium-editor' %>
+        <%= form.text_area :body, class: 'medium-editor', id: "text-area-#{reply.parent_id}" %>
       </div>
     </div>
     <div class="flex-l">
@@ -24,17 +24,3 @@
     <% end %>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(".submit-reply").click(function (event) {
-    get_parent_id = this.id.split("-")[2]
-    get_form = document.getElementById("reply_" + get_parent_id)
-    $(get_form).submit(function (event) {
-      if (this.elements[7].value.length == 0) {
-        alert("Please enter reply first");
-        event.stopImmediatePropagation();
-        return false;
-      }
-    })
-  })
-</script>
