@@ -78,9 +78,6 @@
                     <div class="col-md-12">
                       <div class="lib-row lib-desc">
                         <h3><%= t('groups.show.no_conversation') %></h3>
-                        <% if @group.users.include?(current_user)%>
-                          <%= link_to t('groups.show.start_conversation'), new_conversation_path(group_id: @group.id), class: "btn conversation-btn btn-default converstaion-mob", type: "button" %>
-                        <% end %>
                       </div>
                     </div>
                   </div>
@@ -146,12 +143,11 @@
                   </div>
                 <% end %>
               </div>
-            <% end %>
+          <% end %>
           </div>
           <br><br>
           <%= render partial: 'groups/conversation', collection: @conversations, as: :conversation %>
         </div>
-
         <%= hidden_field_tag :page, @conversations.next_page %>
         <%= render partial: 'shared/show_more', locals: { objects_collection: @conversations, url: group_conversations_path(@group.id) } %>
       </div>
