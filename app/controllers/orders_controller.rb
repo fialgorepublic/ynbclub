@@ -21,16 +21,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    OrderService.new(params[:order]).create_order
-    render head :ok
+    get_order = OrderService.new(params[:order]).create_order
+    @order = Order.where(order_name: get_order[1]).first
+    respond_to do |format|
+        format.js
+      end
   end
 
-  def last_order
-    @order = Order.first
-    respond_to do |format|
-      format.js
-    end
-  end
 
   def update
     if OrderService.new(order_params).update_address
