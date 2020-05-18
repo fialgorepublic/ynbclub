@@ -48,7 +48,7 @@
             <li>
               <div class="dropdown">
                 <button class="btn btn-primary btn-none dropdown-toggle" type="button" data-toggle="dropdown">
-                  <%= image_tag current_user.avatar.attached? ? current_user.avatar.variant(resize: "100x100") : "/assets/user-img.png", class: 'user-image-header' %>
+                  <%= image_tag current_user.avatar.attached? ? current_user.avatar.variant(resize: "100x100") : "/assets/user-img.png", class: 'user-image-header lazy', lazy: true %>
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <li class="active">

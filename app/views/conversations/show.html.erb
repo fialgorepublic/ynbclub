@@ -14,7 +14,7 @@
                 <div class="">
                   <div class="flex-l">
                     <div class="">
-                      <%= image_tag author_avatar(@conversation), width: "100%", class: 'author-image' %>
+                      <%= image_tag author_avatar(@conversation), width: "100%", class: 'author-image lazy', lazy: true %>
                     </div>
 
                     <div class="m-l-10">
@@ -53,7 +53,7 @@
                     <% if @conversation.avatar.attached? &&  @conversation.avatar.content_type.include?("video") %>
                       <%= video_tag url_for(@conversation.avatar), size: "300x320", controls: true %>
                     <% else %>
-                    <%= image_tag @conversation.avatar, width: "50%", height: "50%" if @conversation.avatar.attached? %>
+                    <%= image_tag @conversation.avatar, width: "50%", height: "50%", class: "lazy", lazy: true if @conversation.avatar.attached? %>
                     <% end %>
                   </div>
                 </div>

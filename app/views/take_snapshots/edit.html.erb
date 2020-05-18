@@ -28,7 +28,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="overlay-layer">
-                  <%= image_tag @snapshot.step1_avatar.attached? ? @snapshot.step1_avatar : 'placeholder.png', width: "100%", id: "step1_avatar_show" %>
+                  <%= image_tag @snapshot.step1_avatar.attached? ? @snapshot.step1_avatar : 'placeholder.png', width: "100%", id: "step1_avatar_show", class: "lazy", lazy: true %>
               <div class="stepone">1</div>
                 </div>
               </div>
@@ -66,7 +66,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="overlay-layer">
-                  <%= image_tag @snapshot.step2_avatar.attached? ? @snapshot.step2_avatar : 'placeholder.png', width: "100%", id: "step2_avatar_show" %>
+                  <%= image_tag @snapshot.step2_avatar.attached? ? @snapshot.step2_avatar : 'placeholder.png', width: "100%", id: "step2_avatar_show", class: "lazy", lazy: true %>
               <div class="stepone">2</div>
                 </div>
               </div>
@@ -107,7 +107,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="overlay-layer">
-                  <%= image_tag @snapshot.step3_avatar.attached? ? @snapshot.step3_avatar : 'placeholder.png', width: "100%", id: "step3_avatar_show" %>
+                  <%= image_tag @snapshot.step3_avatar.attached? ? @snapshot.step3_avatar : 'placeholder.png', width: "100%", id: "step3_avatar_show", class: "lazy", lazy: true %>
               <div class="stepone">3</div>
                 </div>
               </div>
@@ -146,7 +146,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="overlay-layer">
-                  <%= image_tag @snapshot.step4_avatar.attached? ? @snapshot.step4_avatar : 'placeholder.png', width: "100%", id: "step4_avatar_show" %>
+                  <%= image_tag @snapshot.step4_avatar.attached? ? @snapshot.step4_avatar : 'placeholder.png', width: "100%", id: "step4_avatar_show", class: "lazy", lazy: true %>
               <div class="stepone">4</div>
                 </div>
               </div>

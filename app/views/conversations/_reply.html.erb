@@ -3,7 +3,7 @@
   <div id="conversation-<%= reply.parent.id %>">
     <div class="flex-l pt-10">
       <div class="">
-        <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
+        <%= image_tag author_avatar(reply), width: "100%", class: 'author-image lazy', lazy: true %>
       </div>
       <div class="m-l-10 ">
         <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
@@ -87,7 +87,7 @@
       <blockquote class="blockquotee">
         <div class="flex-l pt-10">
           <div class="">
-            <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
+            <%= image_tag author_avatar(reply), width: "100%", class: 'author-image lazy', lazy: true %>
           </div>
           <div class="m-l-10 ">
             <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>

@@ -77,7 +77,7 @@
             <h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %>
             </h4>
           </div>
-          <div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;' %>
+          <div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;', class: "lazy", lazy: true %>
           </div>
         </div>
       </div>
@@ -518,7 +518,14 @@
 
 
 $('#myModal').on('shown.bs.modal', function (e) {
-    $('.img-fluid').each(function(){
+  $("img.lazy").lazyload({
+    failure_limit : 1000, 
+    event: "lazyload", 
+    threshold : 1000,
+    effect: "fadeIn", 
+    skip_invisible: false
+  })
+  $('.img-fluid').each(function(){
     
   if (this.parentElement.hasAttribute('href')) {
     url = this.parentElement.href;

@@ -89,7 +89,7 @@ border: solid 1px lightgrey;
 						<h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %>
 						</h4>
 					</div>
-					<div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;' %>
+					<div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;', class: "lazy", lazy: true %>
 					</div>
 				</div>
 			</div>
@@ -145,7 +145,7 @@ border: solid 1px lightgrey;
 						<div class="row product-shadow product-border-style"><% @selected_products.each do |product| %>
 							<div class="col-md-3">
 								<div class="box-shadow-am sm-pd-am set-border-radius"><%= link_to product_url_referral_code(product), target: :blank do %>
-									<div class=""><%= image_tag product.avatar.attached? ? product.avatar.variant(combine_options: { resize: product_image_size, gravity: 'Center', extent: product_image_size, background: "grey", quality: 95 }) : '/placeholder.png', width: '100%' %>
+									<div class=""><%= image_tag product.avatar.attached? ? product.avatar.variant(combine_options: { resize: product_image_size, gravity: 'Center', extent: product_image_size, background: "grey", quality: 95 }) : '/placeholder.png', width: '100%', class: "lazy", lazy: true %>
 									</div><% end %>
 									<div class="product-price">
 										<h5><%= number_with_delimiter(product.price, delimiter: '.') %>₫

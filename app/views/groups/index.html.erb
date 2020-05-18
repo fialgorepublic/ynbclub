@@ -2,7 +2,7 @@
   <div class="<%= blog_screen_size %>">
 
     <div class="banner pos-rel-banner text-center">
-      <%= image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%' if @page.group_banner.attached? %>
+      <%= image_tag @page.group_banner.variant(combine_options: { resize: banner_size, gravity: 'Center', extent: banner_size, background: "grey", quality: 95 }), width: '100%', class: "lazy", lazy: true if @page.group_banner.attached? %>
       <div class="pos-abs-banner">
         <% if @page.group_banner.attached? %>
         <h1 class="">You're in good company now.</h1>

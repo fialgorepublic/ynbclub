@@ -8,7 +8,7 @@
               <div class="">
                 <div class="flex-l">
                   <div class="">
-                    <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image' %>
+                    <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image lazy', lazy: true %>
                   </div>
 
                   <div class="m-l-10 text-left">
@@ -217,6 +217,13 @@
       type: 'get',
       success: function(data) {
         $('#conversation-div-'+id).html(data);
+        $("img.lazy").lazyload({
+          failure_limit : 1000,
+          event: "lazyload",
+          threshold : 1000,
+          effect: "fadeIn",
+          skip_invisible: false
+        })
       },
       error: function(data) {
         $('.loader').hide()

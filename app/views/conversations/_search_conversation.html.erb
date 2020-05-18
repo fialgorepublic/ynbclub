@@ -1,6 +1,6 @@
 <div class="flex-lll p-con-srch">
   <div class=" hidden-sm hidden-xs">
-    <%= image_tag 'conversation-icon.png' %>
+    <%= image_tag 'conversation-icon.png', class: "lazy", lazy: true %>
   </div>
 
   <div class="pl-3 padding-left-result">
@@ -8,7 +8,7 @@
       <div class="">
         <div class="flex-l">
           <div class="">
-            <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image-con' %>
+            <%= image_tag author_avatar(conversation), width: "100%", class: 'author-image-con lazy', lazy: true %>
           </div>
 
           <div class="m-l-10">

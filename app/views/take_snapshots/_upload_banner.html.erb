@@ -1,7 +1,7 @@
 <%= form_for @page, url: banner_take_snapshots_path, method: :post,  html: { id: "snapshot_banner", multipart: true }    do |f| %>
   <div class="modal-body">
     <div class="modal-holder text-center">
-      <%= image_tag snapshot_banner_url(@page), size: "80x80", alt: "Add icon", id: 'blah' %>
+      <%= image_tag snapshot_banner_url(@page), size: "80x80", alt: "Add icon", id: 'blah', class: "lazy", lazy: true %>
       <label for="file_name" id="file-name"><%= snapshot_banner_name(@page) %></label> </br>
       <div class="field form-group" id="image-upload-button-div">
         <div class="fileUpload start blog-imgUpload">
