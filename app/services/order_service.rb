@@ -25,7 +25,7 @@ class OrderService
       return [false, order] if order.present?
 
       order = Order.create(order_params.merge(address_params))
-      return [true, order]
+      [true, order]
     end
 
     def order_params
