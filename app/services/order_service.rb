@@ -6,7 +6,7 @@ class OrderService
   end
 
   def create_order
-    [true, create.order_name]
+    create
   end
 
   def update_address
@@ -21,7 +21,11 @@ class OrderService
   private
 
     def create
-      order = Order.find_by(order_id: params['id']) || Order.create(order_params.merge(address_params))
+      order = Order.find_by(order_id: params['id'])
+      return [false, order] if order.present?
+
+      order = Order.create(order_params.merge(address_params))
+      [true, order]
     end
 
     def order_params

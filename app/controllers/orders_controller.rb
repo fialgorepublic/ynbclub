@@ -21,11 +21,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    OrderService.new(params[:order]).create_order
-  end
-
-  def last_order
-    @order = Order.first
+    @success, @order = OrderService.new(params[:order]).create_order
     respond_to do |format|
       format.js
     end

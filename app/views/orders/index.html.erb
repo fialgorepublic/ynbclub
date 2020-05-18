@@ -95,27 +95,3 @@
 
   </div>
 </div>
-
-
-<script type="text/javascript">
-  function executeQuery() {
-  if(window.location.href.includes("orders")) {
-  $.ajax({
-    url: 'orders/last_order',
-    success: function(data) {
-    }
-  });
-  updateCall();
-}
-}
-
-  function updateCall(){
-
-  setTimeout(function(){executeQuery()}, 5000);
-  }
-
-  $(document).ready(function() {
-    
-    executeQuery();
-  });
-</script>

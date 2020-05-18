@@ -1,8 +1,0 @@
-<% if @order.created_at > 30.seconds.ago %>
-  if ($("#<%= @order.id%>").length == 0 ) {
-    if(window.location.href.includes("orders")) {
-      toastr.success('New Order Placed.')
-    }
-   $("#tbody").prepend("<%= j render(:partial => 'orders/last_order')%>");
-  }
-<% end %>
