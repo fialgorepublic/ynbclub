@@ -21,8 +21,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    get_order = OrderService.new(params[:order]).create_order
-    @order = Order.where(order_name: get_order[1]).first
+    @success, @order = OrderService.new(params[:order]).create_order
     respond_to do |format|
         format.js
       end

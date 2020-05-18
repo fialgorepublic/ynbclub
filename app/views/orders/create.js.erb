@@ -1,2 +1,6 @@
-$("#tbody").prepend("<%= j render(:partial => 'orders/last_order')%>");
-toastr.success('New Order Placed.')
+<% if @success %>
+  if (window.location.href.includes("orders")){
+    $("#tbody").prepend("<%= j render(:partial => 'orders/last_order') %>");
+    toastr.success('New Order Placed.')
+  }
+<% end %>
