@@ -492,6 +492,9 @@ en:
   active_status_changed:      Active status Successfully changed.
   profile_update:             Successfully update
   banned_user_message:        User has been banned from accesing saintlbeau!
+  ban_user_confirmation:      Are you sure you want to Ban this user account?
+  resume_user_confirmation:   Are you sure you want to Resume this user account?
+  resume_user_message:        User account is resumed
   invalid_points:             Invalid points value
   admin_update_points:        Admin points updated successfully.
   enough_coins_message:       You don't have enough coins.
@@ -517,3 +520,6 @@ en:
   all_label:                  All
   remember_me:                Remember me
   update_role_success_label:  Role is updated successfully.
+
+  general:
+    error: Something went wrong!
