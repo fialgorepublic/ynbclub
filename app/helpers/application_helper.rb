@@ -51,6 +51,11 @@ module ApplicationHelper
     end
   end
 
+  def active_language(language)
+    current_language = params[:locale] || I18n.default_locale.to_s
+    'active' if current_language == language
+  end
+
   def compare_payment
     Setting.first ? Setting.first.min_payment : 0
   end
