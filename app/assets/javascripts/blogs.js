@@ -204,14 +204,14 @@ $(document).on('turbolinks:load', function () {
 });
 
   function blog_show(id){
-    blogId = $(".dynamic-"+id).attr("id")
     $.ajax({
       url: '/show_blog/'+id,
       type: 'get',
       data: {id: id},
       success: function(data) {
         $('.create-blog-modal').html(data);
-        window.history.replaceState({},'','/blogs/'+ blogId);
+        blogText = $("#blog-slug")[0].innerText
+        window.history.replaceState({},'','/blogs/'+ blogText);
       },
       error: function(data) {
         $('.loader').hide()
