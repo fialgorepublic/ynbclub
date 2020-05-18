@@ -60,7 +60,7 @@ $(document).on('turbolinks:load', function () {
   $("img.lazy").lazyload({
     failure_limit : 1000,
     event: "lazyload",
-    threshold : 500,
+    threshold : 1000,
     effect: "fadeIn",
     skip_invisible: false
     })
