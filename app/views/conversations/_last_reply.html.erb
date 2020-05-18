@@ -1,0 +1,24 @@
+<div class="flex-l pt-10">
+  <div class="">
+    <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
+  </div>
+
+  <div class="m-l-10 ">
+    <p class="p-b m-p-0 text-left"><%= user_profile_link(reply.user) %></p>
+    <p class="p-l"><%= posted_date(reply) %></p>
+  </div>
+</div>
+
+<div class="row bbbb">
+  <div class="col-md-12">
+    <div class="comment more text-left pl-40 ">
+      <% if reply.body.include?("http") && reply.body.include?("figure") %>
+        <%= reply.body&.html_safe %>
+      <% elsif reply.body.include?("http") %>
+        <a href="<%= reply.body%>" target="_blank"><%= reply.body %></a>
+      <% else%>
+        <%= reply.body&.html_safe %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner ">
@@ -110,30 +111,48 @@
 </div>
 
 
-  <div class="modal fade" id="new-blog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" style="width: 80%">
-      <div class="modal-content" style="width: 100%">
-        <div class="modal-header">
-          <button type="button" class="close" id="remove-modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">
-            <span class="">Create New Blog
-              </span>
-          </h4>
-        </div>
-        <!-- <div class="modal-body con_modal-content">
-          <div class="">
-            <div class="ambassdor-box newBlog-style conversation-c"></div><%#= render partial: 'new_form', locals: { blog: @blog } %>
-
-          </div>
-        </div> -->
-        <div id="create-blog">
-
-          </div>
+<div class="modal fade" id="new-blog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" style="width: 80%">
+    <div class="modal-content" style="width: 100%">
+      <div class="modal-header">
+        <button type="button" class="close" id="remove-modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+          <span class="">Create New Blog
+            </span>
+        </h4>
       </div>
-      <!-- /.modal-content -->
+      <!-- <div class="modal-body con_modal-content">
+        <div class="">
+          <div class="ambassdor-box newBlog-style conversation-c"></div><%#= render partial: 'new_form', locals: { blog: @blog } %>
+
+        </div>
+      </div> -->
+      <div id="create-blog">
+
+        </div>
     </div>
-    <!-- /.modal-dialog -->
+    <!-- /.modal-content -->
   </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+      <div  class="close_btn_blg">
+       <button type="button" class="close close_btn_blg_in" data-dismiss="modal">&times;</button>
+      </div>
+        <div class="create-blog-modal">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 
@@ -342,14 +361,14 @@
 $( document ).ready(function() {
   if (window.location.href.includes("id")) {
     url = window.location.href.split("?")[0]
-    id = window.location.href.split("=")[1]
+    blogId = window.location.href.split("=")[1]
+    $("#myModal").modal('show')
+    blog_show(blogId)
     history.pushState({}, null, url);
-    $(".dynamic-"+id).trigger( "click" );
   }
   else {
   host = window.location.origin
   get_url = host+"/blogs"
-  history.pushState({}, null, get_url);
   }
 
 })
