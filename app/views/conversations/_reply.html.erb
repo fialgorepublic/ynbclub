@@ -1,5 +1,6 @@
 <% if reply_counter % 2 == 0 %>
   <div class="simple-comment-div bbbb">
+  <div id="conversation-<%= reply.parent.id %>">
     <div class="flex-l pt-10">
       <div class="">
         <%= image_tag author_avatar(reply), width: "100%", class: 'author-image' %>
@@ -22,6 +23,7 @@
         </div>
       </div>
     </div>
+  </div>
     <!-- <div class="flex-sb"> -->
     <div class="row">
       <div class="col-md-2">
@@ -32,7 +34,7 @@
       </div>
       <div class=" col-md-offset-7 col-md-3">
         <p style="font-size: 15px; margin-top: 15px;">
-         <span style="font-size: 15px;">
+         <span style="font-size: 15px;" id="comments-count-<%= reply.id %>">
           <%= reply.replies.count %>
         </span>
         <%= link_to "comments", conversation_path(reply.id), style: "color: black" %>
@@ -47,15 +49,28 @@
 
       <div class="col-md-4">
         <%#= new_reply_link(conversation) %>
-        <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{reply.id}" do %>
+        <% if current_user.blank? %>
+          <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: "btn btn-default comment-button like-button" do %>
           <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+          <% end %>
+        <% else %>
+          <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{reply.id}" do %>
+            <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+          <% end %>
         <% end %>
       </div>
 
       <div class="col-md-4">
-        <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: reply.id, type: 'facebook', attributes: conversation_attributes(reply)} do %>
+        <% if current_user.blank? %>
+          <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: "btn btn-default like-button" do %>
             <i class="fa fa-share"></i>
-          Share
+            Share
+          <% end %>
+        <% else %>
+          <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: reply.id, type: 'facebook', attributes: conversation_attributes(reply)} do %>
+            <i class="fa fa-share"></i>
+            Share
+          <% end %>
         <% end %>
       </div>
     </div>

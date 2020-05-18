@@ -23,10 +23,9 @@ class OrdersController < ApplicationController
   def create
     @success, @order = OrderService.new(params[:order]).create_order
     respond_to do |format|
-        format.js
-      end
+      format.js
+    end
   end
-
 
   def update
     if OrderService.new(order_params).update_address
