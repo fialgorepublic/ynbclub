@@ -14,8 +14,8 @@
     <div class="comment more text-left pl-40 ">
       <% if reply.body.include?("http") && reply.body.include?("figure") %>
         <%= reply.body&.html_safe %>
-      <% elsif reply.body.include?("http")%>
-        <a href="<%= reply.body%>" target="_blank"><%= reply.body%></a>
+      <% elsif reply.body.include?("http") %>
+        <a href="<%= reply.body%>" target="_blank"><%= reply.body %></a>
       <% else%>
         <%= reply.body&.html_safe %>
       <% end %>

@@ -1,4 +1,6 @@
-<% if @success %>
+<% if @reply.errors.any? %>
+  toastr.error("Please enter reply first");
+<% else %>
   $("#comments-count-<%= @conversation.id%>").text("<%= @conversation.replies.count %>")
   $(".medium-editor").empty();
   textArea = $("#text-area-<%= @conversation.id%>")[0]
@@ -10,9 +12,6 @@
   if (window.location.href.split("/").length) {
     $('#conversation-<%= @conversation.id%>').append('<%= j render partial: 'last_reply',  :locals => { :reply => @reply } %>');
   }else {
-
     $('#conversation-<%= @conversation.id%>').html('<%= j render partial: 'last_reply',  :locals => { :reply => @reply } %>');
   }
-<% else %>
-  toastr.error("Please enter reply first");
 <% end%>

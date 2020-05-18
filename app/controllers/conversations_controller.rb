@@ -102,8 +102,7 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_reply
-    @reply = @conversation.replies.new(conversation_params.merge(user: current_user))
-    @success = @reply.save
+    @reply = @conversation.replies.create(conversation_params.merge(user: current_user))
     respond_to do |format|
       format.js
     end
