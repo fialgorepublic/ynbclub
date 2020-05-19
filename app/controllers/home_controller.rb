@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  skip_before_action :block_banned_users, only: [:get_referral]
+
   include ApplicationHelper
   def index
     if user_signed_in?

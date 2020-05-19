@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
+  before_action :block_banned_users
   before_action :set_locale
   before_action :check_role
   before_action :allow_iframe_requests
@@ -51,6 +52,15 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def block_banned_users
+    return if current_user.blank?
+    return unless current_user.banned
+
+    request.format = :html
+    sign_out
+    redirect_to root_path, alert: I18n.t(:banned_message)
+  end
 
   def allow_user_request
     headers['Access-Control-Allow-Origin'] = '*'
