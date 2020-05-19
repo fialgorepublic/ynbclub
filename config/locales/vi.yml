@@ -470,7 +470,7 @@ vi:
   changes_saved_message:      Thay đổi được lưu thành công
   login_success:                  Đăng nhập thành công
   email_password_invalid:     Email và mật khẩu không hợp lệ
-  banned_message: Xin lỗi, tài khoản này đã bị cấm. Vui lòng kết nối với nhóm hỗ trợ của chúng tôi
+  banned_message: Xin lỗi, tài khoản này đã bị chặn. Vui lòng kết nối nhóm hỗ trợ của chúng tôi.
   blocked_buyer_message:   Bạn không được phép thực hiện hoạt động này
   order_address_success:      Địa chỉ đặt hàng được cập nhập thành công.
   order_update_error:         Đã xảy ra lỗi!
