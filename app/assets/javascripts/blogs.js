@@ -175,6 +175,10 @@ $(document).on('turbolinks:load', function () {
           }else{
             toastr.error(data.message);
           }
+        },
+        error: function(data){
+          $("#" + id).prop('checked', !(status == 'true'));
+          toastr.error('You need to change default picture before publishing your blog.')
         }
       })
     }else

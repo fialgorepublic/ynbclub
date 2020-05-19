@@ -160,8 +160,7 @@ class BlogsController < ApplicationController
 
   def change_publish_status
     if !@blog.is_published? && @blog.default_image?
-      message = "You need to change default picture before publishing your blog."
-      flash[:alert] = message
+      render json: { error: true }
     else
       if params[:status] == 'true'
         @blog.publish!
