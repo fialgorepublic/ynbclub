@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
     end
     blogs = \
       if current_user.present?
-        current_user.filtered_blogs(params[:sort], params[:category], params[:title])
+        current_user.filtered_blogs(params[:sort], params[:category], params[:title]).where(rejected: false)
       else
         Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
       end
@@ -178,9 +178,9 @@ class BlogsController < ApplicationController
   end
 
   def change_reject_status
+    reason = params[:reject_reason]
     @blog.reject!(params[:status])
-    BlogMailer.rejected(@blog).deliver if @blog.rejected?
-
+    BlogMailer.rejected(@blog, reason).deliver if @blog.rejected? && params[:reject_reason]
     render json: { success: true }
   end
 

@@ -185,21 +185,38 @@ $(document).on('turbolinks:load', function () {
     status = $(this).prop("checked");
     id = event.target.id.split("-")[1];
     if (confirm(`Are you sure?`)) {
-      $.ajax({
-        url: id + "/change_reject_status.json?id=" + "&status=" + status,
-        method: "get",
-        contentType: "application/json",
-        success: function(data){
-          if(data.success){
-            $(`#reject-${id}`).prop('checked', status == 'true');
-            $("#blog-reject-status-" + id).text(status == 'true' ? I18n.t('reject_label') : I18n.t('unreject_label'));
-          }else{
-            toastr.error(data.message);
+      if (status == "true") {
+        $("#reject-blog").modal('show')
+        $("#reject-reason").attr("action", `/blogs/${id}/change_reject_status`)
+        $("#status").val(status)
+        $('#reject-reason').on('submit', function() {
+          $('#reject-blog').modal('hide');
+          $("#reject_reason").val('');
+          $(`#reject-${id}`).prop('checked', status == 'true');
+          $("#blog-reject-status-" + id).text(status == 'true' ? I18n.t('reject_label') : I18n.t('unreject_label'));
+          toastr.success("Blog rejected");
+        });
+        $(".close-reject-modal").click(function(){
+          $(`#reject-${id}`).prop('checked', !(status == 'true'));
+        })
+      }
+      else {
+        $.ajax({
+          url: id + "/change_reject_status.json?id=" + "&status=" + status,
+          method: "get",
+          contentType: "application/json",
+          success: function(data){
+            if(data.success){
+              $(`#reject-${id}`).prop('checked', status == 'true');
+              $("#blog-reject-status-" + id).text(status == 'true' ? I18n.t('reject_label') : I18n.t('unreject_label'));
+            }else{
+              toastr.error(data.message);
+            }
           }
-        }
-      })
+        })
+      }
     }else
-      $(`#reject-${id}`).prop('checked', !(status == 'true'));
+    $(`#reject-${id}`).prop('checked', !(status == 'true'));
   })
 });
 
