@@ -160,8 +160,7 @@ class BlogsController < ApplicationController
 
   def change_publish_status
     if !@blog.is_published? && @blog.default_image?
-      message = "You need to change default picture before publishing your blog."
-      flash[:alert] = message
+      message = 'You need to change default picture before publishing your blog.'
     else
       if params[:status] == 'true'
         @blog.publish!
@@ -172,7 +171,11 @@ class BlogsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to @blog }
+      if !@blog.is_published? && @blog.default_image?
+        format.html { redirect_to @blog, flash: {error: message }  }
+      else
+        format.html { redirect_to @blog  }
+      end
       format.json { render json: { success: !@blog.default_image?, message: message }  }
     end
   end
@@ -259,7 +262,7 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.eager_load_objects.friendly.find(params[:id]) rescue ''
+      @blog = Blog.eager_load_objects.friendly.find(params[:id].split("&")[0]) rescue ''
     end
 
     def category_params
