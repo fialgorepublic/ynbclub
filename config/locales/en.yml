@@ -463,7 +463,7 @@ en:
   changes_saved_message:      Changes saved successfully.
   login_success:              Successfully login
   email_password_invalid:     Email and password invalid
-  banned_message:             You are banned from admin
+  banned_message: Sorry, this account was banned. Please connect to our support team
   blocked_buyer_message:      You are not permitted for this operation.
   order_address_success:      Order address updated Successfully.
   order_update_error:         Something went wrong!
