@@ -23,9 +23,13 @@ class OrdersController < ApplicationController
 
   def create
     @success, @order = OrderService.new(params[:order]).create_order
-    respond_to do |format|
-      format.js
+    if @success
+      ActionCable.server.broadcast 'orders',
+      order: redner_partial(@order)
     end
+    # respond_to do |format|
+    #   format.js
+    # end
   end
 
   def update
@@ -97,6 +101,9 @@ class OrdersController < ApplicationController
     else
       result = false
     end
+    ActionCable.server.broadcast "update_status",
+      order: order.id,
+      status: params[:status]
     render json: { result: result, order: order.id }
   end
 
@@ -149,5 +156,12 @@ class OrdersController < ApplicationController
         end
       end
       orders
+    end
+
+    def redner_partial(order)
+      render partial: 'orders/last_order',
+      locals: {
+        order: order
+      }
     end
 end

@@ -85,7 +85,7 @@ $(document).on('turbolinks:load', function() {
       contentType: 'json',
       success: function (data) {
         if(data.result) {
-          toastr.success('Phone Status updated successuflly.');
+          // toastr.success('Phone Status updated successuflly.');
           // window.location.href = '/orders?id='+order_id;
         }
         else
