@@ -1,4 +1,5 @@
 class Api::OrdersController < ApplicationController
+  skip_before_action :block_banned_users
 
   def last_order
     @order = Order.first
@@ -7,7 +8,7 @@ class Api::OrdersController < ApplicationController
   end
 
   def callback_url
-    Rails.logger.info "===========================>>>>>>>>>>>>>>>><<<<<<<<<<<<<>#{params.inspect}" 
+    Rails.logger.info "===========================>>>>>>>>>>>>>>>><<<<<<<<<<<<<>#{params.inspect}"
     render json: [];
   end
 end

@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: [:create, :ghtk_status]
-  before_action :authorize_user!, except: [:create, :ghtk_status]
-  skip_before_action :verify_authenticity_token, only: [:create, :ghtk_status]
+  before_action :authenticate_user!, except: [:create]
+  before_action :authorize_user!, except: [:create]
+  skip_before_action :block_banned_users, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create]
 
   # def my_orders
   #   initiate_shopify_session
