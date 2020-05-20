@@ -3,6 +3,7 @@ class BlogsController < ApplicationController
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :change_reject_status]
   before_action :check_limit, only: [:new]
+  before_action :set_videos, only: [:index]
 
   include ApplicationHelper
 
@@ -26,7 +27,6 @@ class BlogsController < ApplicationController
       format.html
       format.js
     end
-    @videos = YoutubeVideo.all
   end
 
   def list
@@ -42,13 +42,13 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    # @comments = @blog.comments if @blog.is_published?
-    # @selected_products = @blog.products
-    # @blog.blog_views.create
-    if @blog.present?
-      redirect_to blogs_path(:id => @blog.id)
-    else
-      redirect_to blogs_path
+    @comments = @blog.comments if @blog.is_published?
+    @selected_products = @blog.products
+    @blog.blog_views.create
+
+    respond_to do |format|
+      format.html { redirect_to blogs_path(id: @blog.id) }
+      format.js
     end
   end
 
@@ -159,20 +159,22 @@ class BlogsController < ApplicationController
   end
 
   def change_publish_status
-    if !@blog.is_published? && @blog.default_image?
-      render json: { error: true }
-    else
-      if params[:status] == 'true'
-        @blog.publish!
-        @blog.award_coins!
+    @message, @success =
+      if !@blog.is_published? && @blog.default_image?
+        ['You need to change default picture before publishing your blog.', false]
       else
-        @blog.unpublish!
+        if params[:status] == 'true'
+          @blog.publish!
+          @blog.award_coins!
+        else
+          @blog.unpublish!
+        end
+        ["Blog is #{@blog.is_published ? I18n.t(:publish_label) : I18n.t(:unpublish_label)}", true]
       end
-    end
 
     respond_to do |format|
-      format.html { redirect_to @blog }
-      format.json { render json: { success: !@blog.default_image?, message: message }  }
+      format.js
+      format.json { render json: { success: !@blog.default_image?, message: @message }  }
     end
   end
 
@@ -248,7 +250,7 @@ class BlogsController < ApplicationController
       if params[:translate_edit].present? && params[:translate_edit] == 'true'
         set_blog
       else
-        @blog = current_user.blogs.eager_load_objects.friendly.find(params[:id]) rescue ''
+        @blog = current_user.blogs.friendly.find(params[:id]) rescue ''
       end
     end
 
@@ -258,7 +260,7 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.eager_load_objects.friendly.find(params[:id]) rescue ''
+      @blog = Blog.friendly.find(params[:id].split("&")[0]) rescue ''
     end
 
     def category_params
@@ -273,4 +275,7 @@ class BlogsController < ApplicationController
       end
     end
 
+    def set_videos
+      @videos ||= YoutubeVideo.all
+    end
 end

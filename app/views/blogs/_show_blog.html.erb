@@ -46,8 +46,9 @@
                   <%#= link_to t(:edit_label), edit_blog_path(@blog) %>
                   <%= link_to t(:edit_label), '', data: { toggle: 'modal', target: '#new-blog' }, id: @blog.id, onclick: "edit_blog(#{@blog.id})" %>
                   <%= link_to t(:delete_label), @blog, method: :delete, data: { confirm: t(:delete_confirmation) } %><% if @blog.is_published %>
-                    <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
-                    </a>
+                  <%= link_to change_publish_status_path(id: @blog.id, status: !@blog.is_published), class: "blog-publish-link-#{@blog.id}", data: { confirm: t(:delete_confirmation), remote: true } do %>
+                    <span><%= @blog.is_published ? t(:unpublish_label) : t(:publish_label) %></span>
+                  <% end %>
                   <% end %>
                   <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %>
                   </a>
@@ -60,8 +61,9 @@
                 </ul>
                 <!-- menu -->
                 <div id="myDropdown" class="dropdown-content">
-                  <a href="/change_publish_status?id=<%= @blog.id %>&status=<%= @blog.is_published ? false : true %>" onclick="return confirm('<%= t(:delete_confirmation) %>')"><%= @blog.is_published ? t(:ubpublish_label) : t(:publish_label) %>
-                  </a>
+                  <%= link_to change_publish_status_path(id: @blog.id, status: !@blog.is_published), class: "blog-publish-link-#{@blog.id}", data: { confirm: t(:delete_confirmation), remote: true } do %>
+                    <span><%= @blog.is_published ? t(:unpublish_label) : t(:publish_label) %></span>
+                  <% end %>
                 </div>
               <% end %>
             <% end %>
@@ -74,7 +76,7 @@
       <div class="col-md-12">
         <div class="detail-img">
           <div class="img-block set-border-radius">
-            <h4><%= @blog.is_published ? t(:publish_label) : t(:ubpublish_label) %>
+            <h4 id='publish-tag'><%= @blog.is_published ? t(:publish_label) : t(:unpublish_label) %>
             </h4>
           </div>
           <div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;', class: "lazy", lazy: true %>
