@@ -180,6 +180,7 @@ class BlogsController < ApplicationController
   def change_reject_status
     reason = params[:reject_reason]
     @blog.reject!(params[:status])
+    @blog.destroy
     BlogMailer.rejected(@blog, reason).deliver if @blog.rejected? && params[:reject_reason]
     render json: { success: true }
   end

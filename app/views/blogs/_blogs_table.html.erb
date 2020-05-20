@@ -13,7 +13,7 @@
 
   <tbody>
   <% blogs.each do |blog| %>
-    <tr>
+    <tr id="blog-<%= blog.id %>">
       <td><%= link_to blog.title, blog %></td>
       <td><%= blog.user_name %></td>
       <td><%= blog.category_name %></td>
