@@ -27,9 +27,6 @@ class OrdersController < ApplicationController
       ActionCable.server.broadcast 'orders',
       order: redner_partial(@order)
     end
-    # respond_to do |format|
-    #   format.js
-    # end
   end
 
   def update
