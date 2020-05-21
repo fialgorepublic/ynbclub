@@ -60,10 +60,10 @@
         </tr>
       </thead>
 
-      <tbody id="tbody">
+      <tbody id="<%= order.id %>">
 
         <% @orders.each do |order| %>
-        <tr id="<%= order.id %>">
+        <tr id="order-table">
           <%= render partial: 'table_body', locals: { order: order } %>
         </tr>
         <% end %>
