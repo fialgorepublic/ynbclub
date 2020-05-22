@@ -1,0 +1,13 @@
+<%= form_tag(delete_rejected_blog_path(blog), method: "post", remote: true, id: 'reject-reason') do %>
+  <div class="row">
+    <div class="col-md-12 form-group">
+      <%= text_area_tag :reject_reason, nil, class: 'form-control', placeholder: 'Enter reason for rejection', cols: 40, rows: 10, required: true  %>
+    </div>
+    <%= hidden_field_tag :status, id: "reject-status"%>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+      <%= submit_tag t(:reject_send_label), class: 'btn btn-primary form-group', id: 'send-btn' %>
+    </div>
+  </div>
+<% end %>

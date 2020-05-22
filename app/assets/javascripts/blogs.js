@@ -114,7 +114,7 @@ $(document).on('turbolinks:load', function () {
       window.location.href = hostname
     }
   });
-    
+
   function already_shared_blog(blog_id, url) {
     $.ajax({
       url: url,
@@ -176,41 +176,20 @@ $(document).on('turbolinks:load', function () {
           }
         }
       })
-    
+
   })
 
     $(".reject-switch").change(function(event){
     status = $(this).prop("checked");
     id = event.target.id.split("-")[1];
-      if (status == "true") {
-        $("#reject-blog").modal('show')
-        $("#reject-reason").attr("action", `/blogs/${id}/change_reject_status`)
-        $("#status").val(status)
-        $('#reject-reason').on('submit', function() {
-          $('#reject-blog').modal('hide');
-          $("#reject_reason").val('');
-          toastr.success("Blog rejected");
-          $(`#blog-${id}`).remove()
-        });
-        $(".close-reject-modal").click(function(){
-          $(`#reject-${id}`).prop('checked', !(status == 'true'));
-        })
+
+    $.ajax({
+      url: `${id}/reject`,
+      method: "get",
+      contentType: "application/json",
+      success: function(data){
       }
-      else {
-        $.ajax({
-          url: id + "/change_reject_status.json?id=" + "&status=" + status,
-          method: "get",
-          contentType: "application/json",
-          success: function(data){
-            if(data.success){
-              $(`#reject-${id}`).prop('checked', status == 'true');
-              $("#blog-reject-status-" + id).text(status == 'true' ? I18n.t('reject_label') : I18n.t('unreject_label'));
-            }else{
-              toastr.error(data.message);
-            }
-          }
-        })
-      }
+    })
   })
 });
 

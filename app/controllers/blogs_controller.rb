@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed, :show_blog]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
-  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :change_reject_status]
+  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :delete_rejected, :reject]
   before_action :check_limit, only: [:new]
 
   include ApplicationHelper
@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
     end
     blogs = \
       if current_user.present?
-        current_user.filtered_blogs(params[:sort], params[:category], params[:title]).where(rejected: false)
+        current_user.filtered_blogs(params[:sort], params[:category], params[:title])
       else
         Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
       end
@@ -177,12 +177,12 @@ class BlogsController < ApplicationController
     end
   end
 
-  def change_reject_status
-    reason = params[:reject_reason]
-    @blog.reject!(params[:status])
+  def delete_rejected
     @blog.destroy
-    BlogMailer.rejected(@blog, reason).deliver if @blog.rejected? && params[:reject_reason]
-    render json: { success: true }
+    BlogMailer.rejected(@blog, params[:reject_reason]).deliver
+  end
+
+  def reject
   end
 
   def change_buyer_show_statusgs
