@@ -1,0 +1,5 @@
+$('#reject-blog').modal('show');
+$('#reject-reason').html('<%= j render partial: "blogs/reject_blog", locals: { blog: @blog } %>');
+$(".close-reject-modal").click(function(){
+  $(`#reject-<%= @blog.id %>`).prop('checked', !(status == 'true'));
+})

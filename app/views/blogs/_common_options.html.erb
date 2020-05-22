@@ -33,7 +33,9 @@
               <% end %>
             </li>
             <li>
-              <a href="/change_publish_status?id=<%= blog.id %>&status=<%= blog.is_published ? false : true %>" onclick="return confirm('Are you sure?')"><i class="fa fa-upload"></i> <%= blog.is_published ? 'Un publish' : 'Publish' %></a>
+              <%= link_to change_publish_status_path(id: blog.id, status: !blog.is_published), class: "blog-publish-link-#{blog.id}", data: { confirm: t(:delete_confirmation), remote: true } do %>
+                <i class="fa fa-upload"></i> <span><%= blog.is_published ? 'Un publish' : 'Publish' %></span>
+              <% end %>
             </li>
           </ul>
         </div>

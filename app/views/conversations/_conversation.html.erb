@@ -54,7 +54,7 @@
             <div id="conversation-div-<%= conversation.id%>">
             <h2><%= conversation.subject %></h2>
             <h4 class="set-body-paragraph">
-              <%= truncate conversation.body&.html_safe, length: 160 %>
+             <%= raw conversation.body.gsub(/\n/, '<br/>').html_safe.truncate(160) %>
               <% if conversation.body.length > 160 %>
               <%= link_to 'read more', "#", onclick:"see_more(#{conversation.id})" %>
               <% end %></h4>

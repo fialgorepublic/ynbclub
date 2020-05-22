@@ -520,6 +520,7 @@ en:
   all_label:                  All
   remember_me:                Remember me
   update_role_success_label:  Role is updated successfully.
+  reject_send_label:          Send
 
   general:
     error: Something went wrong!

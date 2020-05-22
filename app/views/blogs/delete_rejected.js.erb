@@ -1,0 +1,3 @@
+$('#reject-blog').modal('hide');
+toastr.success("Blog rejected");
+$(`#blog-<%= @blog.id %>`).remove()

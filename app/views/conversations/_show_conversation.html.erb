@@ -1,6 +1,6 @@
 <h2><%= conversation.subject %></h2>
 <h4 class="set-body-paragraph">
-  <%= conversation.body&.html_safe %>
+  <%= conversation.body.gsub(/\n/, '<br/>').html_safe %>
 </h4>
 <div class="comment more">
   <% if conversation.avatar.attached? && conversation.avatar.content_type.include?("video") %>

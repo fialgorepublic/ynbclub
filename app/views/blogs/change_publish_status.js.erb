@@ -1,0 +1,16 @@
+liElement = $('.blog-publish-link-<%= @blog.id %>')
+newStatus = '<%= @blog.is_published ? t(:unpublish_label) : t(:publish_label) %>'
+publishedTagLable = '<%= @blog.is_published ? t(:publish_label) : t(:unpublish_label) %>'
+newUrl = '<%= change_publish_status_path(id: @blog.id, status: !@blog.is_published) %>'
+
+<% if @success %>
+  if (liElement.length > 0) {
+    liElement.find('span').text(newStatus);
+    liElement.attr('href', newUrl);
+    $('.dropdown').removeClass('open');
+  }
+  $('#publish-tag').text(publishedTagLable)
+  toastr.success('<%= @message %>');
+<% else %>
+  toastr.error('<%= @message %>');
+<% end %>
