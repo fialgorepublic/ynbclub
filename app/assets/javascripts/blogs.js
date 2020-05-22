@@ -173,8 +173,9 @@ $(document).on('turbolinks:load', function () {
             toastr.success(data.message);
           }else{
             $("#" + id).prop('checked', !(status == 'true'));
-            toastr.error("Need to change default picture before publishing this blog.");
+            toastr.error(data.message)
           }
+
         },
         error: function(data){
           $("#" + id).prop('checked', !(status == 'true'));
