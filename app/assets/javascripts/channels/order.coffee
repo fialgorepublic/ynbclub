@@ -29,6 +29,8 @@ App.Channels.Order.subscribe = ->
       else if value == '5'
         $(table_row).children('td, th').css 'background-color', '#fa9b9b'
 
+      $('#order_' + data.order_id).val(value)
+
     updateTable: (data) ->
       order = $('#tbody')
       order.prepend data.order
