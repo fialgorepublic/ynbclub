@@ -63,7 +63,7 @@
       <tbody id="tbody">
 
         <% @orders.each do |order| %>
-        <tr id="<%= order.id %>">
+          <tr id="<%= order.id %>">
           <%= render partial: 'table_body', locals: { order: order } %>
         </tr>
         <% end %>
@@ -95,3 +95,7 @@
 
   </div>
 </div>
+
+<script type="text/javascript">
+  App.Channels.Order.subscribe();
+</script>

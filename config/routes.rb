@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   mount Ckeditor::Engine => '/ckeditor'
+  mount ActionCable.server => '/cable'
 
   resources :payments do
     collection do

@@ -18,13 +18,14 @@ class OrdersController < ApplicationController
   def index
     @q = Order.ransack(params[:q])
     orders = @q.result(distinct: true)
-    @orders = orders.includes(:city, :district, :province, :ward).paginate(page: params[:page])
+    @orders = orders.includes(:city, :district, :province, :ward, :items).paginate(page: params[:page])
   end
 
   def create
     @success, @order = OrderService.new(params[:order]).create_order
-    respond_to do |format|
-      format.js
+    if @success
+      ActionCable.server.broadcast 'orders',
+      order: redner_partial(@order)
     end
   end
 
@@ -97,6 +98,9 @@ class OrdersController < ApplicationController
     else
       result = false
     end
+    ActionCable.server.broadcast "orders",
+      order_id: order.id,
+      status: params[:status]
     render json: { result: result, order: order.id }
   end
 
@@ -149,5 +153,12 @@ class OrdersController < ApplicationController
         end
       end
       orders
+    end
+
+    def redner_partial(order)
+      render partial: 'orders/last_order',
+      locals: {
+        order: order
+      }
     end
 end
