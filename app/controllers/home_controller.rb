@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     user = User.find_by(referral: params[:referrer])
     return if user.blank?
 
-    point_type = PointType.find_by(name: 'Order product in the blog post (Mua t    blog)')
+    point_type = PointType.find_by(name: 'Order product in the blog post (Mua từ blog)')
     return if point_type.blank?
 
     user.points.create(point_type: point_type, point_value: point_type.point, invitee: point_type.name)
