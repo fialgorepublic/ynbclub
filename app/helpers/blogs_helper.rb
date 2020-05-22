@@ -91,6 +91,6 @@ module BlogsHelper
 
   def product_url_referral_code product
     user = product.blog.user
-    user.is_ambassador? ? "#{product.url}?referral_url=#{user.referral}" : product.url
+    user.is_ambassador? ? "#{product.url}?referrer=#{user.referral}" : product.url
   end
 end

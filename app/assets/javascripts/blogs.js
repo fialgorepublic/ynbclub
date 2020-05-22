@@ -170,6 +170,7 @@ $(document).on('turbolinks:load', function () {
           if(data.success){
             $("#" + id).prop('checked', status == 'true');
             $("#blog-status-" + id).text(status == 'true' ? I18n.t('publish_label') : I18n.t('unpublish_label'));
+            toastr.success(data.message);
           }else{
             $("#" + id).prop('checked', !(status == 'true'));
             toastr.error("Need to change default picture before publishing this blog.");

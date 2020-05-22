@@ -16,7 +16,9 @@ App.Channels.Order.subscribe = ->
     updatePhoneStatus: (data) ->
       value = data.status
       table_row = $('#' + data.order_id)[0]
-      if value == '1'
+      if value == '0'
+        $(table_row).children('td, th').css 'background-color', '#f9f9f9'
+      else if value == '1'
         $(table_row).children('td, th').css 'background-color', '#e8f4e7'
       else if value == '2'
         $(table_row).children('td, th').css 'background-color', '#fff5c7'
