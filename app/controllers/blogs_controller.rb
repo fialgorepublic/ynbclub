@@ -169,7 +169,7 @@ class BlogsController < ApplicationController
         else
           @blog.unpublish!
         end
-        ["Blog is #{@blog.is_published ? I18n.t(:publish_label) : I18n.t(:unpublish_label)}", true]
+        ["Successfully #{(@blog.is_published ? I18n.t(:publish_label) : I18n.t(:unpublish_label)).downcase}ed the blog.", true]
       end
 
     respond_to do |format|

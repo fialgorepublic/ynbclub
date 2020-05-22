@@ -173,7 +173,7 @@ $(document).on('turbolinks:load', function () {
             $("#blog-status-" + id).text(status == 'true' ? I18n.t('publish_label') : I18n.t('unpublish_label'));
           }else{
             $("#" + id).prop('checked', !(status == 'true'));
-            toastr.error(data.message);
+            toastr.error("Need to change default picture before publishing this blog.");
           }
         },
         error: function(data){

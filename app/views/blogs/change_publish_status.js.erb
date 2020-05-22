@@ -7,8 +7,10 @@ newUrl = '<%= change_publish_status_path(id: @blog.id, status: !@blog.is_publish
   if (liElement.length > 0) {
     liElement.find('span').text(newStatus);
     liElement.attr('href', newUrl);
-    $('.dropdown').removeClass('open');  }
-    $('#publish-tag').text(publishedTagLable)
+    $('.dropdown').removeClass('open');
+  }
+  $('#publish-tag').text(publishedTagLable)
+  toastr.success('<%= @message %>');
 <% else %>
   toastr.error('<%= @message %>');
 <% end %>
