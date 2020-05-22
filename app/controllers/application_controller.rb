@@ -23,7 +23,8 @@ class ApplicationController < ActionController::Base
   def check_role
     return if current_user.blank?
     return if controller_name == 'dashboard'
-    return redirect_to dashboard_path if current_user&.role.blank? || current_user.is_ambassador? && current_user.incomplete_profile?
+
+    redirect_to dashboard_path if current_user.role.blank? || current_user.is_ambassador? && current_user.incomplete_profile?
   end
 
   def after_sign_up_path(resource)
@@ -76,41 +77,39 @@ class ApplicationController < ActionController::Base
   def blog_not_found
     return if current_user.blank?
     return if params[:blog_not_found].blank?
+
     redirect_to dashboard_path(blog_not_found: true) if controller_name == "home"
   end
 
   def set_earn_coin
-    @earn_coin = EarnCoin.first
-    begin
-    if I18n.locale == :en
-      if @earn_coin.main_text == "<p> Get Saint money and redeem coupons </p>"
-        @earn_coin
-      else
-        translate_to_main_text = GoogleTranslateService.new(@earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way )
-        translated_text = translate_to_main_text.translate.translate @earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way, to: "en"
-        @earn_coin.update(main_text: translated_text.first.text, how_spend_text: translated_text.second.text, how_earn_text: translated_text.third.text, earn_way: translated_text.fourth.text )
+    @earn_coin ||=
+      EarnCoin.first
+      begin
+        if I18n.locale == :en
+          unless @earn_coin.main_text == "<p> Get Saint money and redeem coupons </p>"
+            translate_to_main_text = GoogleTranslateService.new(@earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way )
+            translated_text = translate_to_main_text.translate.translate @earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way, to: "en"
+            @earn_coin.update(main_text: translated_text.first.text, how_spend_text: translated_text.second.text, how_earn_text: translated_text.third.text, earn_way: translated_text.fourth.text )
+          end
+        else
+          unless @earn_coin.main_text == "<p> Nhận tiền Saint và đổi phiếu giảm giá </p>"
+            translate_to_main_text = GoogleTranslateService.new(@earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way)
+            translated_text = translate_to_main_text.translate.translate @earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way , to: "vi"
+            @earn_coin.update(main_text: translated_text.first.text, how_spend_text: translated_text.second.text, how_earn_text: translated_text.third.text, earn_way: translated_text.fourth.text )
+          end
+        end
+      rescue
       end
-    else
-      if @earn_coin.main_text == "<p> Nhận tiền Saint và đổi phiếu giảm giá </p>"
-        @earn_coin
-      else
-        translate_to_main_text = GoogleTranslateService.new(@earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way)
-        translated_text = translate_to_main_text.translate.translate @earn_coin.main_text, @earn_coin.how_spend_text, @earn_coin.how_earn_text, @earn_coin.earn_way , to: "vi"
-        @earn_coin.update(main_text: translated_text.first.text, how_spend_text: translated_text.second.text, how_earn_text: translated_text.third.text, earn_way: translated_text.fourth.text )
-      end
-    end
-    rescue
-    end
     @earn_coin.point_types
   end
 
   def set_page
-    @page = Page.with_attached_image.first || Page.create(heading: "Who are we?", sub_heading: "")
+    @page ||= (Page.first || Page.create(heading: "Who are we?", sub_heading: ""))
   end
 
   def set_snapshot
-    @snapshot = Snapshot.first || Snapshot.create(step1_text: "Make selfie photo or video with product bought on your mobile", step2_text: "Upload to facebook , twitter or intstagram and copy link to your post, Don't forget to add a hashtag #saintlbeau",
-                                      step3_text: "Insert copied link to the special field on the web site", step4_text: "Confirm and receive 20 coins!")
+    @snapshot ||= (Snapshot.first || Snapshot.create(step1_text: "Make selfie photo or video with product bought on your mobile", step2_text: "Upload to facebook , twitter or intstagram and copy link to your post, Don't forget to add a hashtag #saintlbeau",
+                                      step3_text: "Insert copied link to the special field on the web site", step4_text: "Confirm and receive 20 coins!"))
   end
 
   def shopify_redirected?
@@ -122,7 +121,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_share_with_friend
-    @share_with_friends = ShareWithFriend.first || create_new
+    @share_with_friends ||= (ShareWithFriend.first || create_new)
   end
 
   def create_new

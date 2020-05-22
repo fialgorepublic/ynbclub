@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', function () {
   var blogSearchtimerId = null;
-
   $('#sort-blogs, #category-dropdown').on('change', function(){
     searchBlogs();
   });
@@ -114,7 +113,7 @@ $(document).on('turbolinks:load', function () {
       window.location.href = hostname
     }
   });
-    
+
   function already_shared_blog(blog_id, url) {
     $.ajax({
       url: url,
@@ -173,8 +172,13 @@ $(document).on('turbolinks:load', function () {
             $("#" + id).prop('checked', status == 'true');
             $("#blog-status-" + id).text(status == 'true' ? I18n.t('publish_label') : I18n.t('unpublish_label'));
           }else{
-            toastr.error(data.message);
+            $("#" + id).prop('checked', !(status == 'true'));
+            toastr.error("Need to change default picture before publishing this blog.");
           }
+        },
+        error: function(data){
+          $("#" + id).prop('checked', !(status == 'true'));
+          toastr.error('You need to change default picture before publishing your blog.')
         }
       })
     }else
@@ -210,7 +214,7 @@ $(document).on('turbolinks:load', function () {
       data: {id: id},
       success: function(data) {
         $('.create-blog-modal').html(data);
-        blogText = $("#blog-slug")[0].innerText
+        blogText = $("#blog-slug").text()
         window.history.replaceState({},'','/blogs/'+ blogText);
       },
       error: function(data) {

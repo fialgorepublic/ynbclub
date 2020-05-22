@@ -135,16 +135,28 @@
           </div>
 
           <div class="col-md-4">
-            <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{reply.id}" do %>
-            
+            <% if current_user.blank? %>
+              <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: "btn btn-default comment-button like-button" do %>
               <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+              <% end %>
+            <% else %>
+              <%= link_to "", class: "btn btn-default comment-button like-button", id: "reply-#{reply.id}" do %>
+                <i class='fa fa-comment'></i>&nbsp;&nbsp;Comment
+              <% end %>
             <% end %>
           </div>
 
           <div class="col-md-4">
-            <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: reply.id, type: 'facebook', attributes: conversation_attributes(reply)} do %>
-              <i class="fa fa-share"></i>
-              Share
+            <% if current_user.blank? %>
+              <%= link_to 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: "btn btn-default like-button" do %>
+                <i class="fa fa-share"></i>
+                Share
+              <% end %>
+            <% else %>
+              <%= link_to "javascript:void(0);", class: "conversation-share-on-facebook btn btn-default like-button", data: { id: reply.id, type: 'facebook', attributes: conversation_attributes(reply)} do %>
+                <i class="fa fa-share"></i>
+                Share
+              <% end %>
             <% end %>
           </div>
         </div>
