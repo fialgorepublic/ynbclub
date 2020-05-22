@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
   def index
     @q = Order.ransack(params[:q])
     orders = @q.result(distinct: true)
-    @orders = orders.includes(:city, :district, :province, :ward).paginate(page: params[:page])
+    @orders = orders.includes(:city, :district, :province, :ward, :items).paginate(page: params[:page])
   end
 
   def create
@@ -98,8 +98,8 @@ class OrdersController < ApplicationController
     else
       result = false
     end
-    ActionCable.server.broadcast "update_status",
-      order: order.id,
+    ActionCable.server.broadcast "orders",
+      order_id: order.id,
       status: params[:status]
     render json: { result: result, order: order.id }
   end
