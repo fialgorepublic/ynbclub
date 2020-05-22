@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed, :show_blog]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
-  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :change_reject_status]
+  before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :delete_rejected, :reject]
   before_action :check_limit, only: [:new]
   before_action :set_videos, only: [:index]
 
@@ -178,11 +178,12 @@ class BlogsController < ApplicationController
     end
   end
 
-  def change_reject_status
-    @blog.reject!(params[:status])
-    BlogMailer.rejected(@blog).deliver if @blog.rejected?
+  def delete_rejected
+    @blog.destroy
+    BlogMailer.rejected(@blog, params[:reject_reason]).deliver
+  end
 
-    render json: { success: true }
+  def reject
   end
 
   def change_buyer_show_statusgs

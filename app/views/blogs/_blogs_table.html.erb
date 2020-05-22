@@ -13,7 +13,7 @@
 
   <tbody>
   <% blogs.each do |blog| %>
-    <tr>
+    <tr id="blog-<%= blog.id %>">
       <td><%= link_to blog.title, blog %></td>
       <td><%= blog.user_name %></td>
       <td><%= blog.category_name %></td>
@@ -35,3 +35,23 @@
   <% end %>
   </tbody>
 </table>
+
+
+<div class="modal fade" id="reject-blog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div  class="close_btn_blg">
+           <button type="button" class="close close_btn_blg_in close-reject-modal" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body" id="reject-reason">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default close-reject-modal" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

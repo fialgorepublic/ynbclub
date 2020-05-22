@@ -33,7 +33,8 @@ Rails.application.routes.draw do
       get :exceed_limit
     end
     member do
-      get :change_reject_status
+      post :delete_rejected
+      get :reject
     end
     get :shared
   end
