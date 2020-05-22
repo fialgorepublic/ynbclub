@@ -34,7 +34,6 @@ class Order < ApplicationRecord
   }
 
   after_save   :update_commission, if: :status_updated?
-  after_create :add_product_coins
 
   private
     def update_commission
@@ -52,16 +51,4 @@ class Order < ApplicationRecord
       saved_change_to_ghtk_status?
     end
 
-    def add_product_coins
-      point_type = PointType.find_by(name: 'Order product in the blog post (Mua từ blog)')
-      return if point_type.blank? || point_type.zero_points?
-      product_titles = items.pluck(:name)
-      already_visited = nil
-      Product.where(title: product_titles).collect(&:blog).compact.each do |blog|
-        user = blog.user
-        next if !blog.is_published? || user == already_visited
-        user.points.create(point_type: point_type, point_value: point_type.point, invitee: point_type.name)
-        already_visited = user
-      end
-    end
 end

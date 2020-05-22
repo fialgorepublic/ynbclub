@@ -12,7 +12,14 @@ Rails.application.routes.draw do
   resources :settings
   resources :point_types
   resources :categories
-  get 'home', to: 'home#index'
+  resources :home, only: [:index] do
+    collection do
+      get :get_referral
+      get :award_referrer_coins
+      get :set_default_language
+      post :sign_in_user
+    end
+  end
   resources :referral_sales do
     collection do
       post :upate_ghtk_status
@@ -50,11 +57,9 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   post "add_partner_information", to: 'partner_informations#add_partner_information'
   post "add_user_info", to: 'users#add_user_info'
-  get "get_referral", to: 'home#get_referral'
   post "change_profile_picture", to: "dashboard#change_profile_picture"
   get "get_user_object", to: "dashboard#get_user_object"
   get 'share_with_friends', to: 'dashboard#share_with_friends'
-  # get 'earn_coin', to: 'dashboard#earn_coin'
   get 'page_design', to: 'dashboard#page_design'
   get 'take_snapshot', to: 'dashboard#take_snapshot'
   get 'step_one', to: 'dashboard#step_one'
@@ -73,10 +78,7 @@ Rails.application.routes.draw do
   post 'update_profile', to: 'users#update_profile'
   get 'import_partner', to: 'users#import_partner'
   post 'import_ambassador', to: 'users#import_ambassador'
-  post 'sign_in_user', to: 'home#sign_in_user'
-  # get 'my_orders', to: 'orders#my_orders'
   get 'home_page', to: 'dashboard#home_page'
-  get 'set_language', to: 'home#set_default_language'
   get 'videos', to: 'dashboard#videos'
   get 'profile_admin', to: 'dashboard#profile'
   get 'show_blog/:id', to: 'blogs#show_blog'

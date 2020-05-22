@@ -150,7 +150,7 @@
           return false;
         }
         $.ajax({
-        url: `/sign_in_user?user[email]=${email}&user[password]=${password}&user[remember_me]=${remember_me}&redirect=${redirect_to_saved_path}`,
+        url: `/home/sign_in_user?user[email]=${email}&user[password]=${password}&user[remember_me]=${remember_me}&redirect=${redirect_to_saved_path}`,
           type: 'post',
           dataType: 'json',
           processData: false,
