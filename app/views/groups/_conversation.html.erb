@@ -54,7 +54,7 @@
               <div class="comment more">
                 <%#= conversation.body.html_safe %>
                 <h4 class="set-body-paragraph">
-                <%= truncate conversation.body&.html_safe, length: 160 %>
+                <%= raw conversation.body.gsub(/\n/, '<br/>').html_safe.truncate(160) %>
               <% if conversation.body.length > 160 %>
               <%= link_to 'read more', "#", onclick:"see_more(#{conversation.id})" %></h4>
               <% end %>
@@ -182,6 +182,13 @@
       type: 'get',
       success: function(data) {
         $('#conversation-div-'+id).html(data);
+        $("img.lazy").lazyload({
+          failure_limit : 1000,
+          event: "lazyload",
+          threshold : 1000,
+          effect: "fadeIn",
+          skip_invisible: false
+        })
       },
       error: function(data) {
         $('.loader').hide()
