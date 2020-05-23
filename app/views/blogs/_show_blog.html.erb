@@ -58,19 +58,19 @@
                     <a href="javascript:void(0);" onclick="showBuyerView('<%= @blog.id %>');"><%= t('blogs.show.buyer_view_label') %>
                     </a>
                   </div>
+                <% elsif current_user.is_admin? %>
+                  <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <!-- menu -->
+                  <div id="myDropdown" class="dropdown-content">
+                    <%= link_to change_publish_status_path(id: @blog.id, status: !@blog.is_published), class: "blog-publish-link-#{@blog.id}", data: { confirm: t(:delete_confirmation), remote: true } do %>
+                      <span><%= @blog.is_published ? t(:unpublish_label) : t(:publish_label) %></span>
+                    <% end %>
+                  </div>
                 <% end %>
-              <% elsif current_user.is_admin? %>
-                <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul>
-                <!-- menu -->
-                <div id="myDropdown" class="dropdown-content">
-                  <%= link_to change_publish_status_path(id: @blog.id, status: !@blog.is_published), class: "blog-publish-link-#{@blog.id}", data: { confirm: t(:delete_confirmation), remote: true } do %>
-                    <span><%= @blog.is_published ? t(:unpublish_label) : t(:publish_label) %></span>
-                  <% end %>
-                </div>
               <% end %>
             </div>
           </div>
