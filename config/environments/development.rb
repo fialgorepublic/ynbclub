@@ -38,7 +38,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_cable.url = "ws://localhost:3000/cable"
-
+  config.action_cable.worker_pool_size = 10
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
