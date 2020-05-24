@@ -5,8 +5,13 @@ App.Channels.Order.subscribe = ->
   console.log('Subscribed to order channel')
   App.order = App.cable.subscriptions.create('OrderChannel',
     connected: ->
+      toastr.remove()
       console.log('Connected to order channel')
     disconnected: ->
+      currentAction = $('body').data('action-name')
+      currentController = $('body').data('controller-name')
+      if currentController == 'orders' && currentAction == 'index'
+        toastr.error 'Connecting to live updates..', 'Please reload the page if it take long time', { timeOut: 0 }
     received: (data) ->
       if data.order_id
         this.updatePhoneStatus data

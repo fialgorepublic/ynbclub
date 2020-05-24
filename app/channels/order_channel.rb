@@ -4,6 +4,6 @@ class OrderChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    puts 'I am unsubscribed'
   end
 end

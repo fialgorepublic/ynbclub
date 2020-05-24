@@ -29,7 +29,7 @@
 //= require payments
 //= require blogs
 //= require groups
-//= require search 
+//= require search
 //= require profiles
 //= require users
 //= require approve_sales
@@ -65,4 +65,16 @@ $(document).on('turbolinks:load', function () {
     skip_invisible: false
     })
   $(window).scroll();
+
+  unsubscribeChannel();
+  function unsubscribeChannel(){
+    console.log('In unsubscribeChannel method');
+    currentController = $('body').data('controller-name');
+    currentActionName = $('body').data('action-name');
+    if (currentController != 'orders') {
+      if (App.order == undefined || App.order.connected.lenght == 0) { return; }
+      console.log('Unsubscribed Channel')
+      App.order.unsubscribe();
+    }
+  }
 });

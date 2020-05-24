@@ -42,9 +42,9 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @comments = @blog.comments if @blog.is_published?
-    @selected_products = @blog.products
-    @blog.blog_views.create
+    # @comments = @blog.comments if @blog.is_published?
+    # @selected_products = @blog.products
+    # @blog.blog_views.create
 
     respond_to do |format|
       format.html { redirect_to blogs_path(id: @blog.id) }
@@ -277,6 +277,6 @@ class BlogsController < ApplicationController
     end
 
     def set_videos
-      @videos ||= YoutubeVideo.all
+      @videos ||= YoutubeVideo.with_attached_thumbnail.all
     end
 end

@@ -97,5 +97,7 @@
 </div>
 
 <script type="text/javascript">
-  App.Channels.Order.subscribe();
+  if(App.order == undefined  || App.order.connected.length == 0) {
+    App.Channels.Order.subscribe();
+  }
 </script>

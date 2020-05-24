@@ -35,7 +35,7 @@
     <%= render 'layouts/google_analytics' %>
 </head>
 
-  <body data-locale="<%= I18n.locale %>">
+  <body data-locale="<%= I18n.locale %>" data-action-name='<%= action_name %>' data-controller-name='<%= controller_name %>'>
     <% if user_signed_in? %>
       <%=render :partial => "/shared/header"%>
       <div class="dashboard-holder <%= dashboard_class %>">
@@ -65,6 +65,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"></script>
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.min.js'></script>
     <script type="text/javascript">
+
       $(document).ready(function () {
         $("#sign_in_user").validate({
           rules: {
@@ -173,7 +174,7 @@
               })
             Cookies.set('remember_me', remember_me, {
                 expires: 14
-              })              
+              })
         }
         else
         {
@@ -252,7 +253,7 @@
                 document.forms[0].elements[2].value = cookie[1];
             }
             if (cookie[0] == 'password') {
-              
+
               document.forms[0].elements[3].value = cookie[1];
             }
             if (cookie[0] == 'remember_me') {
