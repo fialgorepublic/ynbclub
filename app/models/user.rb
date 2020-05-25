@@ -227,14 +227,14 @@ class User < ApplicationRecord
   def user_blogs(sort_type, category)
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    blogs.filter_by_category(category).sort_blogs(sort_type)
+    blogs.filter_by_category(category).sorted_by(sort_type)
   end
 
   def filtered_blogs(sort_type, category, title="")
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
     blogs = self.is_admin? ? filter_by_category(category) : filter_by_category(category).published_and_drafted_blogs(self.id)
-    title.present? ? blogs.search_by_title(title).sort_blogs(sort_by) : blogs.sort_blogs(sort_by)
+    title.present? ? blogs.search_by_title(title).sorted_by(sort_by) : blogs.sorted_by(sort_by)
   end
 
   def filter_by_category(category)
@@ -290,7 +290,7 @@ class User < ApplicationRecord
   def liked_blogs(sort_type, category)
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    Blog.joins(:likes).where(likes: { user_id: self.id }).filter_by_category(category).sort_blogs(sort_by)
+    Blog.joins(:likes).where(likes: { user_id: self.id }).filter_by_category(category).sorted_by(sort_by)
   end
 
   def post_conversations(sort_type)

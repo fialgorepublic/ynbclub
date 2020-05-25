@@ -23,7 +23,7 @@
 <%= render 'blogs/og_tags_content' %>
 <% belongs_to_user = false %>
 <% if current_user.present? %>
-  <% belongs_to_user = current_user.users_blog?(@blog.id)%>
+  <% belongs_to_user = current_user == blog.user %>
 <% end %>
 
 <p style="display: none" id="blog-slug"><%= @blog.slug%></p>

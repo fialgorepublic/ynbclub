@@ -22,7 +22,11 @@ border: solid 1px lightgrey;
       display: flex;
     justify-content: space-between;
 }
-</style><%= render 'blogs/og_tags_content' %><% belongs_to_user = false %><% if current_user.present? %><% belongs_to_user = current_user.users_blog?(@blog.id) %><% end %>
+</style><%= render 'blogs/og_tags_content' %>
+<% belongs_to_user = false %>
+<% if current_user.present? %>
+  <% belongs_to_user = current_user == @blog.user %>
+<% end %>
 <div class="<%= add_container %>">
 	<div class="<%= blog_screen_size %>">
 		<div class="">
@@ -122,9 +126,8 @@ border: solid 1px lightgrey;
 							<hr>
 							</div>
 						</div>
-					</div><%# 
-					<div class=""><% if @blog.is_published? %><%# <%= render partial: 'facebook_share_button', locals: { blog: @blog } %><%# <% end %><%# 
-					</div> ÷ %>
+					</div>
+
 					<div class="row">
 						<div class="col-md-12 title-style">
 							<div class="detail-img">

@@ -15,14 +15,23 @@ class BlogsController < ApplicationController
       current_user.save(validate: false)
       redirect_to blogs_path
     end
-    blogs = \
+
+    scope = \
       if current_user.present?
-        current_user.filtered_blogs(params[:sort], params[:category], params[:title])
+        current_user.is_admin? ? Blog : Blog.published_and_drafted_blogs(current_user.id)
       else
-        Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
+        Blog.published
       end
-    @blogs = blogs.paginate(page: params[:page], per_page: 10)
+    sort_by = params[:sort_by].presence || 0
+
+    @q = scope.ransack(params[:q])
+    @blogs = @q.result(distinct: true)
+               .eager_load_objects
+               .sorted_by(sort_by)
+               .paginate(page: params[:page], per_page: 10)
+
     @next_page = @blogs.next_page
+
     respond_to do |format|
       format.html
       format.js
