@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
 
     scope = \
       if current_user.present?
-        current_user.is_admin? ? Blog : current_user.blogs
+        current_user.is_admin? ? Blog : Blog.published_and_drafted_blogs(current_user.id)
       else
         Blog.published
       end
@@ -26,8 +26,8 @@ class BlogsController < ApplicationController
 
     @q = scope.ransack(params[:q])
     @blogs = @q.result(distinct: true)
-               .sorted_by(sort_by)
                .eager_load_objects
+               .sorted_by(sort_by)
                .paginate(page: params[:page], per_page: 10)
 
     @next_page = @blogs.next_page

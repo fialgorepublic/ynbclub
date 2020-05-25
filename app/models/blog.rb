@@ -41,7 +41,7 @@ class Blog < ApplicationRecord
   has_many :share_urls, :dependent => :destroy
   has_one_attached :avatar
 
-  scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}
+  scope :published_and_drafted_blogs, -> (user_id) { published.or(where(is_published: false, user_id: user_id))}
 
   scope :all_users_blogs, -> { where.not(user_id: nil).order(is_published: :asc) }
 
@@ -65,7 +65,7 @@ class Blog < ApplicationRecord
     where(is_published: true).filter_by_category(category).search_by_title(title).sort_blogs(sort_by)
   }
   scope :first_three_latest_blogs, -> { where(is_published: true).order(updated_at: :desc).first(3) }
-  scope :eager_load_objects , -> { includes(:category, :user, :comments, :likes, :products, :blog_views, :share_urls).with_attached_avatar }
+  scope :eager_load_objects , -> { includes(:category, :comments, :likes, :products, :share_urls, :blog_views, user: :profile).with_attached_avatar }
   scope :search_by_title, -> (title) { where('lower(title) like ?', "%#{title&.downcase}%")  }
   scope :published, -> { where(is_published: true) }
 
