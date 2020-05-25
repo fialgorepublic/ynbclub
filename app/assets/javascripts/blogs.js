@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function () {
   var blogSearchtimerId = null;
-  $('#sort-blogs, #category-dropdown').on('change', function(){
-    searchBlogs();
+  $('#sort-blogs, #category-dropdown, #publish-dropdown').on('change', function(){
+    fetchBlogs();
   });
 
   // $('#search-by-title').click(function(){
@@ -12,37 +12,19 @@ $(document).on('turbolinks:load', function () {
   $('#blog-title-textbox').keyup(function (e) {
     if (e.keyCode == 13) { return; }
     clearTimeout(blogSearchtimerId);
-    blogSearchtimerId = setTimeout(searchBlogs.bind(undefined), 500);
+    blogSearchtimerId = setTimeout(fetchBlogs.bind(undefined), 500);
   });
 
-  // $('#clear-blog-filters').click(function(){
-  //   if ($('#sort-blogs').val() == '0' && $('#blog-title-textbox').val() == '' && $('#category-dropdown').val() == '') { return; }
-  //   $('#sort-blogs').val(0);
-  //   $('#blog-title-textbox').val('');
-  //   $('#category-dropdown').val('')
-  //   fetchBlogs('', '', '');
-  // })
+  // function searchBlogs(){
+  //   sort_type     = $('#sort-blogs').val();
+  //   category_type = $('#category-dropdown').val();
+  //   title         = $('#blog-title-textbox').val();
+  //   fetchBlogs(category_type, sort_type, title);
+  // }
 
-  function searchBlogs(){
-    sort_type     = $('#sort-blogs').val();
-    category_type = $('#category-dropdown').val();
-    title         = $('#blog-title-textbox').val();
-    fetchBlogs(category_type, sort_type, title);
-  }
-
-  function fetchBlogs(category_type, sort_type, title) {
+  function fetchBlogs() {
     $('.loader').show()
-    $.ajax({
-      url: `/blogs?sort=${sort_type}&category=${category_type}&title=${title}`,
-      type: 'GET',
-      dataType: 'script',
-      success: function (data) {
-      },
-      error: function (data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
+    $('#search-form-button').click();
   }
 
   $('#sort-blogs-list, #category-dropdown-blog-list, #per-page-blogs-list').on('change', function(){
@@ -59,24 +41,8 @@ $(document).on('turbolinks:load', function () {
   });
 
   $("#load-more").click(function() {
-    params = '';
-    page   = $('#page').val();
-    params = `page=${page}`;
-    if ($('#subject-sort').length > 0) {
-      params += `&sort_type=${$('#subject-sort').val()}`;
-    }
-    $('.loader').show();
-    $.ajax({
-      url: `${$(this).data('url')}?${params}`,
-      type: 'GET',
-      dataType: 'script',
-      success: function(data) {
-      },
-      error: function(data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
+    $('#page').val($('#next_page').val());
+    fetchBlogs();
   })
 
   $(window).scroll(function() {

@@ -45,7 +45,7 @@ class Blog < ApplicationRecord
 
   scope :all_users_blogs, -> { where.not(user_id: nil).order(is_published: :asc) }
 
-  scope :sort_blogs, -> (sort_type) {
+  scope :sorted_by, -> (sort_type) {
     case sort_type
       when 0, "0"
         order(created_at: :desc, is_published: :desc)
@@ -67,6 +67,7 @@ class Blog < ApplicationRecord
   scope :first_three_latest_blogs, -> { where(is_published: true).order(updated_at: :desc).first(3) }
   scope :eager_load_objects , -> { includes(:category, :user, :comments, :likes, :products, :blog_views, :share_urls).with_attached_avatar }
   scope :search_by_title, -> (title) { where('lower(title) like ?', "%#{title&.downcase}%")  }
+  scope :published, -> { where(is_published: true) }
 
   # Ex:- scope :active, -> {where(:active => true)}
   delegate :name, to: :category, prefix: true, allow_nil: true

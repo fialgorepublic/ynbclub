@@ -4,7 +4,7 @@ $('.loader').hide();
 <% else %>
   $('#blogs').html('<%= j render partial: "all_blogs", locals: { blogs: @blogs } %>');
 <% end %>
-$('#page').val('<%= @next_page %>')
+$('#next_page').val('<%= @next_page %>')
 $('#load-more').show();
 currentPage = '<%= @blogs.current_page %>';
 totalPages  = '<%= @blogs.total_pages %>';
