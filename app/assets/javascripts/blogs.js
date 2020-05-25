@@ -30,6 +30,10 @@ $(document).on('turbolinks:load', function () {
     })
   });
 
+  $('.close_btn_blg_in').click(function(){
+    window.history.replaceState({}, '', '/blogs')
+  });
+
   $("#load-more").click(function() {
     $('#page').val($('#next_page').val());
     fetchBlogs();
