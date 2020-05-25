@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
 
     scope = \
       if current_user.present?
-        current_user.is_admin? ? Blog.vaid_blogs : Blog.published_and_drafted_blogs(current_user.id)
+        current_user.is_admin? ? Blog.valid_blogs : Blog.published_and_drafted_blogs(current_user.id)
       else
         Blog.published
       end
