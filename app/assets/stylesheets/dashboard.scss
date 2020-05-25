@@ -19,7 +19,7 @@
 #products{
 .box-shadow-am.sm-pd-am{
   margin-top: 10px;
-} 
+}
 }
 
 .product-box{
@@ -176,7 +176,7 @@ button:active{
   .box-shadow-am{
   padding:0px;
   border: unset;
-  
+
   input{
   border: unset;
   padding: 30px 10px;
@@ -213,7 +213,7 @@ button:active{
     appearance: none;
     background-image: url(/assets/select-arrow.png);
       }
-    }  
+    }
   .popover{
   border-radius:unset;
   top: -70px!important;}
@@ -305,7 +305,8 @@ margin-top:40px;
 .close_btn_blg{
 position: relative;
 }
-.close_btn_blg_in{
+
+.close_btn_blg_in {
   position: absolute;
   right: -16px;
   bottom: -9px;
