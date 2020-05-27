@@ -529,6 +529,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_092631) do
     t.integer "following_count", default: 0
     t.string "reference_no"
     t.boolean "blog_show", default: false
+    t.float "total_points", default: 0.0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

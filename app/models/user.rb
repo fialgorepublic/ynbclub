@@ -84,6 +84,7 @@ class User < ApplicationRecord
   scope :avtive_ambassadors, -> (status) { where(role_id: ambassador_role_id, is_activated: status) }
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
   scope :sort_by_banned, -> { order(banned: :desc) }
+  scope :with_points, -> { where('total_points > 0') }
 
   after_save :set_default_permissions
   after_save :set_profile
@@ -149,16 +150,8 @@ class User < ApplicationRecord
     def all_users params
       return User.search_users(params[:q]) if params[:q].present?
       return User.all if params[:deduct_points].present?
-      User.sort_by_banned if params[:q].blank? && params[:deduct_points].blank?
-    end
 
-    def users_with_points
-      users_with_points = []
-      users = User.includes(:points).all
-      users.each do |user|
-        users_with_points << user.id if user.total_points > 0
-      end
-      User.where(id: users_with_points)
+      User.sort_by_banned
     end
   end
 
@@ -249,8 +242,8 @@ class User < ApplicationRecord
     points.order(created_at: :desc).first(4)
   end
 
-  def total_points
-    points.present? ? points.sum(:point_value) : 0
+  def add_points!(points)
+    update_attributes(total_points: total_points + points)
   end
 
   def has_permission? action, controller
