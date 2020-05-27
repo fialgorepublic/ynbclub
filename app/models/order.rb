@@ -35,6 +35,10 @@ class Order < ApplicationRecord
 
   after_save   :update_commission, if: :status_updated?
 
+  def status
+    ghtk_status.present? ? ghtk_status : 'Status not updated yet.'
+  end
+
   private
     def update_commission
       referral_sale = ReferralSale.find_by(order_id: self.order_id)
