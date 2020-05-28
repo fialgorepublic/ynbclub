@@ -29,7 +29,7 @@
         <td><%= referral_sale.is_approved ? 'Approved' : "Pending" %></td>
         <td><%= number_with_delimiter(referral_sale.price.to_i, delimiter: ".") %>₫</td>
         <td><%= number_with_delimiter(((referral_sale.price.to_f * referral_sale.user_commission.to_f)/100).to_i, delimiter: ".") %>₫</td>
-        <td><%= referral_sale.order_ghtk_status %></td>
+        <td><%= @order_status[referral_sale.order_id] || 'GHTK Order Not Found' %></td>
         <td><%= referral_sale.user.present? ? referral_sale.user_name : "" %></td>
         <td><a href="/user_show?id=<%= referral_sale.user.present? ? referral_sale.user.id : "" %>"><%= referral_sale.user.present? ? referral_sale.user.referral : "" %></a></td></td>
       </tr>

@@ -82,12 +82,14 @@ class ReferralSalesController < ApplicationController
       referral_sales = ReferralSale.all
     end
     if (discount_status.present? && (discount_status.split(',').size == 1))
-      @referral_sales = @referral_sales.where(is_approved: discount_status)
+      referral_sales = referral_sales.where(is_approved: discount_status)
     end
     if (params[:payment].present? && params[:payment] != "null" && params[:payment].split(',').size == 1)
       @payment = params[:payment]
     end
     @referral_sales = referral_sales.includes(:user).paginate(page: params[:page])
+    @order_status = {}
+    Order.where(order_id: @referral_sales.pluck(:order_id)).collect { |order| @order_status[order.order_id] = order.status }
   end
 
   def changed_sale_approved_status

@@ -80,7 +80,8 @@ class DashboardController < ApplicationController
       redirect_to step_one_path, alert: I18n.t(:post_shared_limit)
     else
       share_url = user_shared_urls.create(url: url)
-      insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
+      point = insert_points(current_user.id, 1, "", share_url.id) if params[:saintlbeau_post].to_s == "true"
+      current_user.add_points!(point.point_value) unless point.errors.any?
     end
   end
 

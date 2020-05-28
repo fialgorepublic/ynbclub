@@ -1,6 +1,6 @@
 module DashboardHelper
   def point_name point
-    share_url = ShareUrl.find_by(id: point.share_url_id)
+    share_url = point.share_url
     case point.point_type_id
       when 6
         point.invitee
