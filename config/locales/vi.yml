@@ -528,6 +528,7 @@ vi:
   remember_me:                Nhớ tôi
   update_role_success_label:  Vai trò được cập nhật thành công
   reject_send_label:          Gửi
+  coin_exchange_label:        Thánh bitcoin
 
   general:
     error: Đã xảy ra lỗi!
