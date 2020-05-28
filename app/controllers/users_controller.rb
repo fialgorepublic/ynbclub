@@ -209,7 +209,7 @@ class UsersController < ApplicationController
     user = User.find_by_id(params[:id])
     return render json: { success: false, message: 'User not found' } if user.blank?
 
-    if user.points.pluck(:point_value).sum < params[:point_value].to_i
+    if user.total_points < params[:point_value].to_i
       render json: { success: false, message: I18n.t(:invalid_points) }
     else
       point = user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points")
