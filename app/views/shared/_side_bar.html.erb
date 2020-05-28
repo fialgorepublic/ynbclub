@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-md-12 account-brand-icon">
           <p style="color: gold"> <img src="/assets/coin.png">
-            <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <button
+            <%= current_user.total_points %> Coins <button
               style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal"
               data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button> <span
               class="pull-right">
@@ -44,7 +44,7 @@
         <div class="col-md-12 account-brand-icon">
           <% unless current_user.is_admin? %>
           <p style="color: gold; text-align: center;"> <img src="/assets/coin.png">
-            <%= current_user.points.present? ? current_user.points.sum(:point_value).to_i : 0 %> Coins <button
+            <%= current_user.total_points %> Coins <button
               style="display: inline-block; border: none; vertical-align: top;margin: 3px 0" data-target="#coinModal"
               data-toggle="modal" class="btn btn-default"><i class="fa fa-question-circle"></i></button> <span>
               <img src="/assets/dollar.png"> <%= current_user.total_income %>₫</span>
