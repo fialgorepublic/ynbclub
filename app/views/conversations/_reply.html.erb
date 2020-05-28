@@ -122,9 +122,9 @@
           </div>
           <div class=" col-md-offset-7 col-md-3">
             <p style="font-size: 15px; margin-top: 15px;">
-             <span style="font-size: 15px;">
-              <%= reply.replies.count %>
-            </span>
+            <span style="font-size: 17px;" id="comments-count-<%= reply.id %>">
+                  <%= reply.replies.count %>
+                </span>
             <%= link_to "comments", conversation_path(reply.id), style: "color: black" %>
              </p>
           </div>            
