@@ -6,6 +6,7 @@ class BlogsController < ApplicationController
   before_action :set_videos, only: [:index]
 
   include ApplicationHelper
+  require 'open-uri'
 
   # GET /blogs
   # GET /blogs.json
@@ -96,7 +97,10 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = current_user.blogs.new(blog_params)
-
+    if params[:avatar].present?
+      downloaded_image = open(params[:avatar])
+      @blog.avatar.attach(io: downloaded_image  , filename: "foo.jpg")
+    end
     respond_to do |format|
       if @blog.save
         @blog.attach_default_image unless @blog.avatar.attached?
@@ -181,6 +185,19 @@ class BlogsController < ApplicationController
   def delete_rejected
     @blog.destroy
     BlogMailer.rejected(@blog, params[:reject_reason]).deliver
+  end
+
+  def search_unsplash_images
+    begin
+      @images = Unsplash::Photo.search(params[:q], params[:page], 10)
+      @search_image = params[:q]
+      @page = params[:page].to_i
+    rescue Exception => e
+      @images = []
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   def reject

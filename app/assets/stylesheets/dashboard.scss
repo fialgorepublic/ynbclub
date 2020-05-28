@@ -310,3 +310,9 @@ position: relative;
   right: -16px;
   bottom: -9px;
 }
+
+#images{
+  .box-shadow-am.selected{
+   border:5px solid #ccc;
+  }
+}

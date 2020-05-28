@@ -153,3 +153,22 @@ input:checked + .slider:before {
   color: red;
   display: none;
 }
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.next-previous-btn {
+  margin-left: 270px;
+  margin-top: 30px;
+}
+
+.set-position {
+  margin-left: 65px;
+}
