@@ -59,7 +59,7 @@
                 <% if params[:deduct_points].present? %>
                   <td><%= user.total_points %></td>
                   <td>
-                    <%= link_to t('all_users.deduct_label'), "javascript:void(0);", class: "deduct_modal btn btn-primary", data: { id: user.id } %>
+                    <%= link_to t('all_users.deduct_label'), "javascript:void(0);", class: "deduct_modal btn btn-primary", data: { id: user.id } if user.total_points > 0 %>
                   </td>
                 <% else %>
                   <td>
