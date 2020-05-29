@@ -29,7 +29,7 @@ class FreeShippingService
                         starts_at: DateTime.now
                       )
           discount_code = ShopifyAPI::DiscountCode.create(price_rule_id: price_rule.id, discount_code: { code: user.reference_no} )
-          UserMailer.send_discount_code(user).deliver
+          UserMailer.send_discount_code(user).deliver_later
           [true, "Discount code is created Successfully!"]
         rescue => ex
           [false, ex.message]

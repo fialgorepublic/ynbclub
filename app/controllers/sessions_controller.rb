@@ -38,12 +38,12 @@ class SessionsController < ApplicationController
             user_invited.add_points!(point.point_value) unless point.errors.any?
             point = insert_points(user.id, 6, "Accepted the invitation of #{user_invited.name}")
             user.add_points!(point.point_value) unless point.errors.any?
-            UserMailer.referral_sign_up(user_invited, user).deliver
+            UserMailer.referral_sign_up(user_invited, user).deliver_later
           end
         end
       end
       begin
-      UserMailer.user_sign_up(user).deliver
+      UserMailer.user_sign_up(user).deliver_later
       rescue
       end
       initiate_shopify_session

@@ -46,7 +46,7 @@ class HomeController < ApplicationController
                             address: params[:address], shopdomain: params[:shopdomain], price: params[:price], order_no: order_no)
         point = insert_points(user.id, 2, "", nil, order_no)
         user.add_points!(point.point_value) unless point.errors.any?
-        UserMailer.referral_sale(user, name, params[:shopdomain]).deliver
+        UserMailer.referral_sale(user, name, params[:shopdomain]).deliver_later
       end
     end
     clear_shopify_session
