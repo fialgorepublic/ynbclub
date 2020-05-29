@@ -19,8 +19,8 @@
             <div class="col-md-12">
               <p>
                 <%= link_to user_path(blog.user) do %>
-              <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img lazy", lazy: true %>
-              <% end %>
+                  <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img lazy", lazy: true %>
+                <% end %>
                 <span class="with-un-blog"><%= user_name(blog.user) %></span>
                 <span><%= blog_date blog %></span>
                 <span class="with-un-blog"><%= blog.category_name %></span>

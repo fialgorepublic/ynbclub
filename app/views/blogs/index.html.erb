@@ -11,7 +11,7 @@
                   <div class="m_slider_vid">
                     <div class="holder">
                       <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.url %>" data-target="#videoModal" data-toggle="modal">
-                        <%= image_tag video.thumbnail, width: "100%" %>
+                        <%= image_tag video.thumbnail, width: "100%", class: "lazy", lazy: true %>
                       </div>
                     </div>
                     <section class="entry-body">
@@ -24,68 +24,80 @@
           </section>
         <% end%>
 
-        <div class="col-md-12 blog_banner_btn">
-          <div class="col-lg-12 padding-lr-20">
-            <%= text_field_tag :title, params[:title], class: "form-control set-border-radius", placeholder: 'Search by title', id: 'blog-title-textbox' %>
-          </div><!-- /input-group -->
-        </div>
-
-        <br>
-        <br>
-
-        <div class="row">
-          <div class="col-md-12 blog_banner_btn class-z">
-            <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
-              <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
-            <% end %>
-
-            <% if current_user&.is_admin? %>
-              <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="post-heading blog-redesign-style">
-            <div class="col-md-4">
-              <div class="heading-featured text-left">
-                <h1><%= t('blogs.index.page_title') %></h1>
-              </div>
+        <%= search_form_for @q, remote: true do |f| %>
+          <div class="col-md-12 blog_banner_btn">
+            <div class="col-lg-12 padding-lr-20">
+              <%= f.search_field :title_i_cont, { class: 'form-control set-border-radius', placeholder: 'Search by title', id: 'blog-title-textbox', style: 'height: 20px;' } %>
             </div>
-
-            <% if @blogs.count > 0 %>
-              <div class="col-md-2 post-sorting  ">
-                <p>SORTING</p>
-                <select class="sorting-fltr" id="sort-blogs">
-                  <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
-                  <!-- <option value="0"><%#= t(:A_Z) %></option> -->
-                  <option value="1">A-Z </option>
-                  <option value="2">Z-A </option>
-                </select>
-              </div>
-
-              <div class="col-md-2 post-sorting">
-                <p>CATEGORY</p>
-                <%= select_tag 'blog[category]', options_for_select(Category.pluck(:name, :id)), { prompt: t(:All_Categories), class: "sorting-fltr", required: true, id: 'category-dropdown' } %>
-              </div>
-            <% end %>
-
-            <div class="col-md-3 add_blog_btn pull-right">
-              <%#= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
-              <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", '', class: "btn btn-primary new_blog_btn", id: "create-new-blog", data: { toggle: 'modal', target: '#new-blog' }, onclick: "create_blog()" if signed_in? %>
-              <!-- <a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a> -->
-            </div>
-
-            <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
           </div>
-        </div>
+
+          <br>
+          <br>
+
+          <div class="row">
+            <div class="col-md-12 blog_banner_btn class-z">
+              <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
+                <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
+              <% end %>
+
+              <% if current_user&.is_admin? %>
+                <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="post-heading blog-redesign-style">
+              <div class="col-md-3">
+                <div class="heading-featured text-left">
+                  <h1><%= t('blogs.index.page_title') %></h1>
+                </div>
+              </div>
+
+              <% if @blogs.count > 0 %>
+                <% if current_user %>
+                  <div class="col-md-2">
+                    <div class="post-sorting">
+                      <p>Publish Status</p>
+                      <%= f.select :is_published_eq, options_for_select([['Published', 1], ['Unpublished', 0]]), { include_blank: true }, { class: "sorting-fltr", id: 'publish-dropdown' } %>
+                    </div>
+                  </div>
+                <% end %>
+
+                <div class="col-md-2">
+                  <div class="post-sorting">
+                    <p>SORTING</p>
+                    <%= select_tag :sort_by, options_for_select([['A-Z', 1], ['Z-A', 2]]), class: 'sorting-fltr', id: 'sort-blogs' %>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="post-sorting">
+                    <p>CATEGORY</p>
+                    <%= f.select :category_id_eq, options_for_select(Category.pluck(:name, :id)), { include_blank: t(:All_Categories) }, { class: "sorting-fltr", id: 'category-dropdown' } %>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="col-md-3 add_blog_btn pull-right">
+                <%#= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
+                <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", '', class: "btn btn-primary new_blog_btn", id: "create-new-blog", data: { toggle: 'modal', target: '#new-blog' }, onclick: "create_blog()" if signed_in? %>
+                <!-- <a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a> -->
+              </div>
+
+              <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
+            </div>
+            <%= hidden_field_tag :page, @blogs.current_page  %>
+            <%= f.submit 'search', class: 'hidden', id: 'search-form-button' %>
+          </div>
+        <% end %>
 
         <div class="row" id="blogs">
           <%= render partial: "all_blogs", locals: { blogs: @blogs } %>
         </div>
         <br />
 
-        <%= hidden_field_tag :page, @next_page %>
+        <%= hidden_field_tag :next_page, @next_page %>
         <%= render partial: 'shared/show_more', locals: { objects_collection: @blogs, url: blogs_path } %>
       </div>
     </div>
@@ -214,31 +226,6 @@
       }
     });
   }
-
-  $(window).scroll(function() {
-    if (window.location.href.endsWith("blogs") && ($(window).scrollTop() == $(document).height() - $(window).height())) {
-      params = '';
-      page   = $('#page').val();
-      if (page != "") {
-      params = `page=${page}`;
-      if ($('#subject-sort').length > 0) {
-        params += `&sort_type=${$('#subject-sort').val()}`;
-      }
-      $('.loader').show();
-      $.ajax({
-        url: `/blogs?${params}`,
-        type: 'GET',
-        dataType: 'script',
-        success: function(data) {
-        },
-        error: function(data) {
-          $('.loader').hide()
-          // alert('Something Wentwrong!')
-        }
-      })
-    }
-    }
-  });
 
   $(document).ready(function () {
     if (window.location.href.includes("new")) {

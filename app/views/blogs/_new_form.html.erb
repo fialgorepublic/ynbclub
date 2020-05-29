@@ -692,6 +692,7 @@ Quilljs.setDefaults(defaults)
             };
             $('#file-name').text(name);
             reader.readAsDataURL(input.files[0]);
+            $('#unsplash-button-upload').attr('disabled','disabled');
         }
     }
     function get_products(){

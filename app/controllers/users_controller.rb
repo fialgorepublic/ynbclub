@@ -173,7 +173,7 @@ class UsersController < ApplicationController
 
   def points
     user = params[:user_id].present? ? User.find(params[:user_id]) : current_user
-    @points = user.points.order(created_at: :desc)
+    @points = user.points.includes(:share_url).order(created_at: :desc)
   end
 
   def find_user_by_email
@@ -190,9 +190,8 @@ class UsersController < ApplicationController
   end
 
   def all_users
-    # I18n.default_locale = locale
-    filter_type = params[:filter_type].present? ? params[:filter_type] : ''
-    users = filter_type == "filter" ? User.users_with_points : User.all_users(params)
+    filter_type = params[:filter_type].presence || ''
+    users = filter_type == "filter" ? User.with_points : User.all_users(params)
     @users = users.includes(:points, :profile).paginate(page: params[:page])
   end
 
@@ -208,10 +207,13 @@ class UsersController < ApplicationController
 
   def deduct_points
     user = User.find_by_id(params[:id])
-    if user.points.pluck(:point_value).sum < params[:point_value].to_i
+    return render json: { success: false, message: 'User not found' } if user.blank?
+
+    if user.total_points < params[:point_value].to_i
       render json: { success: false, message: I18n.t(:invalid_points) }
     else
-      user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points") if user.present?
+      point = user.points.create(point_value: (-1 * params[:point_value].to_i), invitee: "Admin Deducted #{params[:point_value]} points")
+      user.add_points!(point.point_value) unless point.errors.any?
       render json: { success: true, message: I18n.t(:admin_update_points)}
     end
   end

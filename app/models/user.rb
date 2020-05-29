@@ -84,6 +84,7 @@ class User < ApplicationRecord
   scope :avtive_ambassadors, -> (status) { where(role_id: ambassador_role_id, is_activated: status) }
   scope :ambassadors, -> { where(role_id: ambassador_role_id) }
   scope :sort_by_banned, -> { order(banned: :desc) }
+  scope :with_points, -> { where('total_points > 0') }
 
   after_save :set_default_permissions
   after_save :set_profile
@@ -149,16 +150,8 @@ class User < ApplicationRecord
     def all_users params
       return User.search_users(params[:q]) if params[:q].present?
       return User.all if params[:deduct_points].present?
-      User.sort_by_banned if params[:q].blank? && params[:deduct_points].blank?
-    end
 
-    def users_with_points
-      users_with_points = []
-      users = User.includes(:points).all
-      users.each do |user|
-        users_with_points << user.id if user.total_points > 0
-      end
-      User.where(id: users_with_points)
+      User.sort_by_banned
     end
   end
 
@@ -227,14 +220,14 @@ class User < ApplicationRecord
   def user_blogs(sort_type, category)
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    blogs.filter_by_category(category).sort_blogs(sort_type)
+    blogs.filter_by_category(category).sorted_by(sort_type)
   end
 
   def filtered_blogs(sort_type, category, title="")
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
     blogs = self.is_admin? ? filter_by_category(category) : filter_by_category(category).published_and_drafted_blogs(self.id)
-    title.present? ? blogs.search_by_title(title).sort_blogs(sort_by) : blogs.sort_blogs(sort_by)
+    title.present? ? blogs.search_by_title(title).sorted_by(sort_by) : blogs.sorted_by(sort_by)
   end
 
   def filter_by_category(category)
@@ -249,8 +242,8 @@ class User < ApplicationRecord
     points.order(created_at: :desc).first(4)
   end
 
-  def total_points
-    points.present? ? points.sum(:point_value) : 0
+  def add_points!(points)
+    update_attributes(total_points: total_points + points)
   end
 
   def has_permission? action, controller
@@ -290,7 +283,7 @@ class User < ApplicationRecord
   def liked_blogs(sort_type, category)
     sort_by = sort_type.present? ? sort_type : 0
     category = category.present? ? category : Category.ids
-    Blog.joins(:likes).where(likes: { user_id: self.id }).filter_by_category(category).sort_blogs(sort_by)
+    Blog.joins(:likes).where(likes: { user_id: self.id }).filter_by_category(category).sorted_by(sort_by)
   end
 
   def post_conversations(sort_type)

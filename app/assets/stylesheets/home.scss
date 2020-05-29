@@ -1012,9 +1012,10 @@ body {
   position: relative;
   .img-block {
     position: absolute;
-    top: 50px;
+    top: 5%;
     padding: 2px 20px;
     background-color: #fd9938;
+    margin: 1%;
   }
   h4 {
     color: #333333;
@@ -1030,6 +1031,8 @@ body {
 .title-style {
   .detail-img {
     padding-top: 0px;
+    overflow-wrap: break-word;
+    padding: 2%;
   }
   h2 {
     margin-top: 0px;
@@ -3203,7 +3206,7 @@ background: #ccc;
   .modal-content .btn {
     width: 100%;
     font-size: 14px;
-  
+
   }
 .width_modal_con{
   width: 100% !important;
@@ -3464,7 +3467,7 @@ body {
     clear: both;
     display: table;
   }
-  
+
   .middle-row-grp .lib-row.lib-desc button.conversation-btn:hover {
     background-color: transparent;
   }
@@ -3712,7 +3715,7 @@ input[type="checkbox"]:checked:after {
 }
 .close_video_modal{
   color: #fff !important;
- text-shadow: 0 1px 0 #fff; 
+ text-shadow: 0 1px 0 #fff;
   filter: alpha(opacity=20) !important;
   opacity: 1 !important;
   position: relative;
@@ -3819,7 +3822,7 @@ input[type="checkbox"]:checked:after {
 
 .image-upload img{
   width: 20px;
-  margin-right: 10px;  
+  margin-right: 10px;
 }
 .emojionearea.emojionearea-inline {
   height: 100px;
@@ -3929,7 +3932,7 @@ span.remove.fa.fa-times {
   border-radius: 20px;
   /* float: left; */
   font-weight: bold;
-   margin-left: 20px; 
+   margin-left: 20px;
   // margin-top: 10px;
   width: 150px;
 }

@@ -41,11 +41,11 @@ class Blog < ApplicationRecord
   has_many :share_urls, :dependent => :destroy
   has_one_attached :avatar
 
-  scope :published_and_drafted_blogs, -> (user_id) { where(is_published: true).or(where(is_published: false, user_id: user_id))}
+  scope :published_and_drafted_blogs, -> (user_id) { published.or(where(is_published: false, user_id: user_id))}
 
   scope :all_users_blogs, -> { where.not(user_id: nil).order(is_published: :asc) }
 
-  scope :sort_blogs, -> (sort_type) {
+  scope :sorted_by, -> (sort_type) {
     case sort_type
       when 0, "0"
         order(created_at: :desc, is_published: :desc)
@@ -65,8 +65,10 @@ class Blog < ApplicationRecord
     where(is_published: true).filter_by_category(category).search_by_title(title).sort_blogs(sort_by)
   }
   scope :first_three_latest_blogs, -> { where(is_published: true).order(updated_at: :desc).first(3) }
-  scope :eager_load_objects , -> { includes(:category, :user, :comments, :likes, :products, :blog_views, :share_urls).with_attached_avatar }
+  scope :eager_load_objects , -> { includes(:category, :comments, :likes, :products, :share_urls, :blog_views, user: :profile).with_attached_avatar }
   scope :search_by_title, -> (title) { where('lower(title) like ?', "%#{title&.downcase}%")  }
+  scope :published, -> { where(is_published: true) }
+  scope :valid_blogs, -> { where.not(user_id: nil) }
 
   # Ex:- scope :active, -> {where(:active => true)}
   delegate :name, to: :category, prefix: true, allow_nil: true
@@ -121,7 +123,8 @@ class Blog < ApplicationRecord
     point_type = PointType.find_by_name('Post the blog (Ghi bài Blog)')
       return if point_type.blank? || point_type.zero_points?
 
-    user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
+    point = user.points.create(point_type: point_type, point_value: point_type.point, invitee: "Posted new blog")
+    user.add_points!(point.point_value) unless point.errors.any?
     update(coins_awarded: true)
   end
 

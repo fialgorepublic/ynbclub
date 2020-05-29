@@ -16,14 +16,23 @@ class BlogsController < ApplicationController
       current_user.save(validate: false)
       redirect_to blogs_path
     end
-    blogs = \
+
+    scope = \
       if current_user.present?
-        current_user.filtered_blogs(params[:sort], params[:category], params[:title])
+        current_user.is_admin? ? Blog.valid_blogs : Blog.published_and_drafted_blogs(current_user.id)
       else
-        Blog.eager_load_objects.all_published_blogs(params[:sort], params[:category], params[:title])
+        Blog.published
       end
-    @blogs = blogs.paginate(page: params[:page], per_page: 10)
+    sort_by = params[:sort_by].presence || 0
+
+    @q = scope.ransack(params[:q])
+    @blogs = @q.result(distinct: true)
+               .eager_load_objects
+               .sorted_by(sort_by)
+               .paginate(page: params[:page], per_page: 10)
+
     @next_page = @blogs.next_page
+
     respond_to do |format|
       format.html
       format.js
@@ -168,17 +177,28 @@ class BlogsController < ApplicationController
         ['You need to change default picture before publishing your blog.', false]
       else
         if params[:status] == 'true'
-          @blog.publish!
-          @blog.award_coins!
+          if @blog.description.scan(/img-fluid/).length < 3
+            ['Blog required minimun three image to publich.', false]
+          else
+            @blog.publish!
+            @blog.award_coins!
+            ["Successfully #{(I18n.t(:publish_label)).downcase}ed the blog.", true]
+          end
         else
           @blog.unpublish!
+          ["Successfully #{(I18n.t(:unpublish_label)).downcase}ed the blog.", true]
         end
-        ["Successfully #{(@blog.is_published ? I18n.t(:publish_label) : I18n.t(:unpublish_label)).downcase}ed the blog.", true]
       end
 
     respond_to do |format|
       format.js
-      format.json { render json: { success: !@blog.default_image?, message: @message }  }
+      if @blog.default_image?
+        format.json { render json: { success: false , message: @message }  }
+      elsif !@blog.default_image? && @blog.description.scan(/img-fluid/).length < 3 && params[:status] == "true"
+        format.json { render json: { success: false , message: @message }  }
+      else
+      format.json { render json: { success: true , message: @message }  }
+      end
     end
   end
 
@@ -223,8 +243,13 @@ class BlogsController < ApplicationController
 
   def share_blog
     share_url = ShareUrl.create(user_id: current_user&.id, blog_id: params[:id], url_type: params[:value])
-    point_type = PointType.find_by(name: 'Share blog on facebook')&.id
-    insert_points(current_user.id, point_type, "Shared Blog on Facebook", share_url.id) if current_user.present?
+
+    if current_user.present?
+      point_type = PointType.find_by(name: 'Share blog on facebook')&.id
+      point = insert_points(current_user.id, point_type, "Shared Blog on Facebook", share_url.id)
+      current_user.add_points!(point.point_value) unless point.errors.any?
+    end
+
     redirect_to blogs_path
   end
 

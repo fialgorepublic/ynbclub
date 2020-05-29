@@ -17,7 +17,8 @@ class HomeController < ApplicationController
     point_type = PointType.find_by(name: 'Order product in the blog post (Mua từ blog)')
     return if point_type.blank?
 
-    user.points.create(point_type: point_type, point_value: point_type.point, invitee: point_type.name)
+    point = user.points.create(point_type: point_type, point_value: point_type.point, invitee: point_type.name)
+    user.add_points!(point.point_value) unless point.errors.any?
   end
 
   def get_referral
@@ -43,7 +44,8 @@ class HomeController < ApplicationController
 
         ReferralSale.create(user_id: user.id, order_id: order_id, name: name, email: params[:email],
                             address: params[:address], shopdomain: params[:shopdomain], price: params[:price], order_no: order_no)
-        insert_points(user.id, 2, "", nil, order_no)
+        point = insert_points(user.id, 2, "", nil, order_no)
+        user.add_points!(point.point_value) unless point.errors.any?
         UserMailer.referral_sale(user, name, params[:shopdomain]).deliver
       end
     end

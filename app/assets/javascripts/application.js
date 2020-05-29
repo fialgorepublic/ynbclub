@@ -72,7 +72,7 @@ $(document).on('turbolinks:load', function () {
     currentController = $('body').data('controller-name');
     currentActionName = $('body').data('action-name');
     if (currentController != 'orders') {
-      if (App.order == undefined || App.order.connected.lenght == 0) { return; }
+      if (App.order == undefined || App.order.connected.length == 0) { return; }
       console.log('Unsubscribed Channel')
       App.order.unsubscribe();
     }
