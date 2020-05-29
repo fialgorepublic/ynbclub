@@ -189,7 +189,7 @@ class BlogsController < ApplicationController
 
   def delete_rejected
     @blog.destroy
-    BlogMailer.rejected(@blog, params[:reject_reason]).deliver
+    BlogMailer.rejected(@blog, params[:reject_reason]).deliver_later
   end
 
   def reject

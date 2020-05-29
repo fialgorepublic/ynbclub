@@ -25,11 +25,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           user_invited.add_points!(point.point_value) unless point.errors.any?
           point = insert_points(resource.id, 6, "Accepted the invitation of #{user_invited.name}")
           resource.add_points!(point.point_value) unless point.errors.any?
-          UserMailer.referral_sign_up(user_invited, resource).deliver
+          UserMailer.referral_sign_up(user_invited, resource).deliver_later
         end
       end
       begin
-      UserMailer.user_sign_up(resource).deliver
+      UserMailer.user_sign_up(resource).deliver_later
       SubscribeUserToMailchimp.perform_later(resource)
       rescue
       end
