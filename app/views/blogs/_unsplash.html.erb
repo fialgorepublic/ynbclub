@@ -1,39 +1,38 @@
 <div class="row  m-t-30">
   <% @images.each do |image| %>
     <div class="col-md-4">
-      <div class="box-shadow-am sm-pd-am"  onclick="showActiveImages(this)">
+      <div class="box-shadow-am sm-pd-am custom-card"  onclick="showActiveImages(this)">
+        <div class="custom-card-border">
         <div class="product-box">
           <img width="100%" src="<%= image.urls.regular %>">
         </div>
-
         <div class="product-detail">
           <p><%= image.alt_description %></p>
         </div>
       </div>
-      <a href="<%= image.urls.regular %>" download="newname" target="_blank" class="btn btn-primary set-position" >Download Link</a>
+    </div>
+    <div class="custom-download-btn">
+        <a href="<%= image.urls.regular %>" download="newname" target="_blank" class="btn btn-primary set-position" >Download Link</a>
+      </div>
     </div>
   <% end %>
 </div>
-
 <div class="next-previous-btn">
-	<% if @page > 1 %>
+  <% if @page > 1 %>
   <button type="button" class="btn previous" onclick="previousPage(<%= @page -1 %>, '<%= @search_image.to_s %>')">&laquo; Previous</button>
   <% end %>
   <button type="button" class="btn next" onclick="nextPage(<%= @page + 1 %>, '<%= @search_image %>')">Next &laquo;</button>
-
 </div>
-
 
 <script type="text/javascript">
   function showActiveImages (obj){
     $(obj).toggleClass('selected');
   }
-
   function nextPage(page, search) {
-    $('.loader').show()   
-    $('body').addClass("loading")
+    $('.loader').show()
+    $('body').addClass('loading')
     $.ajax({
-      url: `/search_unsplash_images`,
+      url: '/search_unsplash_images',
       type: 'GET',
       data: {page: page, q: search},
       dataType: 'script',
@@ -45,11 +44,10 @@
       }
     })
   }
-
   function previousPage(page, search) {
     $('.loader').show()
     $.ajax({
-      url: `/search_unsplash_images`,
+      url: '/search_unsplash_images',
       type: 'GET',
       data: {page: page, q: search},
       dataType: 'script',
