@@ -11,13 +11,13 @@
   <% end %>
   <%= hidden_field_tag :translate_edit, params[:translate_edit]  if params[:translate_edit].present? %>
   <!-- <div class="container"> -->
-    <div class="ambassdor-box newBlog-style custom-style" style="padding: 60px;">
+    <div class="ambassdor-box newBlog-style custom-style">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8">
               <!-- <div class="field m-image-frame form-group"> -->
-                <div style="border: 1px solid #eee;padding: 25px; text-align: center;">
+                <div class="default-image">
                 <%= image_tag @blog.avatar.variable? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : @blog.avatar, alt: "Add  icon", id: 'blah', size: '100x100', class: "lazy", lazy: true %>
                 <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
                 <div class="field form-group" id="image-upload-button-div" style="display: flex;">
@@ -694,23 +694,24 @@ Quilljs.setDefaults(defaults)
 
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            var name = input.files[0].name
-            var fileType = input.files[0].type
-            var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+          var reader = new FileReader();
+          var name = input.files[0].name
+          var fileType = input.files[0].type
+          var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-            if ($.inArray(fileType, ValidImageTypes) < 0) {
-                return alert("File type not allowed.")
-            }
+          if ($.inArray(fileType, ValidImageTypes) < 0) {
+              return alert("File type not allowed.")
+          }
 
-            reader.onload = function (e) {
-                var st = e.target.result;
-                $('#blah').attr('src', e.target.result);
-                $('#fileUpload').attr('src', e.target.result);
-            };
-            $('#file-name').text(name);
-            reader.readAsDataURL(input.files[0]);
-            $('#unsplash-button-upload').attr('disabled','disabled');
+          reader.onload = function (e) {
+            var st = e.target.result;
+            gettingDefaultImage = $(".default-image")[0].children[0]
+            $(gettingDefaultImage).attr('src', e.target.result)
+          };
+          gettingDefaultImageText = $(".default-image")[0].children[1]
+          $(gettingDefaultImageText).text(name)
+          $("#unsplash-button-upload").find('span').remove();
+          reader.readAsDataURL(input.files[0]);
         }
     }
     function get_products(){
@@ -758,6 +759,8 @@ Quilljs.setDefaults(defaults)
       $('#unsplashImage').modal('hide').on('hidden.bs.modal', function (e) {
         $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
         $('#new-blog').modal('show');
+        $("#images").html("")
+        $("#product-title").val("")
         $('body').addClass('modal-open');
         $('body').removeAttr('style');
       });
@@ -773,8 +776,10 @@ Quilljs.setDefaults(defaults)
         url = selectedImage[0].children[0].children[0].children[0].src
         name = selectedImage[0].children[0].children[1].innerText
         $('<input>').attr('type','hidden').attr('name','avatar').attr('value',url).appendTo('#blog-form');
-        $('label[for="fileupload"]').attr('disabled','disabled');
-        $("#unsplash-button-upload").append("  <span class='badge'>1</span>");
+        if ($("#unsplash-button-upload").children().length == 0) {
+          $("#unsplash-button-upload").append("  <span class='badge'>1</span>");
+        }
+
         var file;
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -797,11 +802,20 @@ Quilljs.setDefaults(defaults)
 
           reader.onload = function (e) {
             var st = e.target.result;
-            $('#blah').attr('src', e.target.result);
-            $('#fileUpload').attr('src', e.target.result);
+            gettingDefaultImage = $(".default-image")[0].children[0]
+            $(gettingDefaultImage).attr('src',"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=")
           };
-            $("#file-name").replaceWith('');
-            $("#file-name").replaceWith(name);
+          gettingDefaultImageText = $(".default-image")[0].children[1]
+          if (name == "") {
+            $(gettingDefaultImageText).text("image.png")
+          }
+          else {
+            $(gettingDefaultImageText).text(name)
+          }
+
+          if ($('label[for="fileupload"]').children()[1] != undefined) {
+            $('label[for="fileupload"]').children()[1].remove()
+          }
 
           reader.readAsDataURL(input);
         }

@@ -178,7 +178,7 @@ class BlogsController < ApplicationController
       else
         if params[:status] == 'true'
           if @blog.description.scan(/img-fluid/).length < 3
-            ['Blog required minimun three image to publich.', false]
+            ['Blog required minimun three image to publish.', false]
           else
             @blog.publish!
             @blog.award_coins!
@@ -192,13 +192,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       format.js
-      if @blog.default_image?
-        format.json { render json: { success: false , message: @message }  }
-      elsif !@blog.default_image? && @blog.description.scan(/img-fluid/).length < 3 && params[:status] == "true"
-        format.json { render json: { success: false , message: @message }  }
-      else
-      format.json { render json: { success: true , message: @message }  }
-      end
+      format.json { render json: { success: @success , message: @message }  }
     end
   end
 
@@ -208,16 +202,9 @@ class BlogsController < ApplicationController
   end
 
   def search_unsplash_images
-    begin
-      @images = Unsplash::Photo.search(params[:q], params[:page], 10)
-      @search_image = params[:q]
-      @page = params[:page].to_i
-    rescue Exception => e
-      @images = []
-    end
-    respond_to do |format|
-      format.js
-    end
+    @page = params[:page].to_i
+    @search_image = params[:q]
+    @images = UnsplashService.new(name: @search_image, page: @page).fetch_image
   end
 
   def reject

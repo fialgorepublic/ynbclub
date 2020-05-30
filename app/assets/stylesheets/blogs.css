@@ -200,6 +200,9 @@ input:checked + .slider:before {
   margin: 10px 0px !important;
   height: 385px !important;
   position: relative;}
+  .custom-style {
+    padding: 60px;
+  }
 /********************/
 /** END Custom CSS **/
 /********************/

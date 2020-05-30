@@ -17,46 +17,26 @@
     </div>
   <% end %>
 </div>
+
 <div class="next-previous-btn">
   <% if @page > 1 %>
-  <button type="button" class="btn previous" onclick="previousPage(<%= @page -1 %>, '<%= @search_image.to_s %>')">&laquo; Previous</button>
+    <%= link_to "Previous", search_unsplash_images_path(page: @page - 1, q: @search_image.to_s), class: "unsplash-button btn previous", remote: true %>
   <% end %>
-  <button type="button" class="btn next" onclick="nextPage(<%= @page + 1 %>, '<%= @search_image %>')">Next &laquo;</button>
+  <%= link_to "Next", search_unsplash_images_path(page: @page + 1, q: @search_image.to_s), class: "unsplash-button btn next", remote: true %>
 </div>
 
 <script type="text/javascript">
   function showActiveImages (obj){
     $(obj).toggleClass('selected');
+    selectedImages = $(".selected")
+    if (selectedImages.length > 1) {
+      firstImage = selectedImages[0]
+      $(firstImage).removeClass("selected")
+    }
+    $("#image-save").prop("disabled", false);
   }
-  function nextPage(page, search) {
-    $('.loader').show()
-    $('body').addClass('loading')
-    $.ajax({
-      url: '/search_unsplash_images',
-      type: 'GET',
-      data: {page: page, q: search},
-      dataType: 'script',
-      success: function (data) {
-      },
-      error: function (data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
-  }
-  function previousPage(page, search) {
-    $('.loader').show()
-    $.ajax({
-      url: '/search_unsplash_images',
-      type: 'GET',
-      data: {page: page, q: search},
-      dataType: 'script',
-      success: function (data) {
-      },
-      error: function (data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
-  }
+
+  $(".unsplash-button").click(function(){
+    $('.loader').show();
+  })
 </script>

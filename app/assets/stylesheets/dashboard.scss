@@ -312,8 +312,36 @@ position: relative;
   bottom: -9px;
 }
 
-#images{
-  .box-shadow-am.selected{
-   border:5px solid #ccc;
+#images {
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .box-shadow-am.selected {
+    border:5px solid #ccc;
+  }
+  .box-shadow-am {
+    border:5px solid transparent
+  }
+  .box-shadow-am.sm-pd-am {
+    margin-top: 10px;
+  }
+}
+
+.default-image {
+  border: 1px solid #eee;
+  padding: 25px; 
+  text-align: center;
+}#images {
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .box-shadow-am.selected {
+    border:5px solid #ccc;
+  }
+  .box-shadow-am {
+    border:5px solid transparent
+  }
+  .box-shadow-am.sm-pd-am {
+    margin-top: 10px;
   }
 }
