@@ -521,7 +521,6 @@ en:
   remember_me:                Remember me
   update_role_success_label:  Role is updated successfully.
   reject_send_label:          Send
-  coin_exchange_label:        Saintcoin
 
   general:
     error: Something went wrong!
