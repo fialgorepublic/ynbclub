@@ -58,6 +58,9 @@ $(".click").click(function() {
     get_id = this.id.split("-")[1]
     find_reply_form = document.getElementById("new-reply-"+get_id)
     $(find_reply_form).show();
+    var div = $(".medium-editor")
+    $('.medium-insert-buttons').show()
+    div.focus();
   })
 
   $(".reply-cancel").click(function(e){
