@@ -1,7 +1,7 @@
 <div class="col-md-9">
   <h1><%= t('referral_sales.index.page_title') %></h1>
   <hr>
-<div class="table-responsive"> 
+<div class="table-responsive">
   <table class="table table-striped table-bordered" id="referral-sales">
     <thead>
       <tr>
@@ -33,7 +33,7 @@
           <td><%= referral_sale.user_name %></td>
           <td><%= number_with_delimiter(user_commission(referral_sale), delimiter: ".") %></td>
           <td><%= referral_sale.tracking_id %></td>
-          <td><%= referral_sale.order_ghtk_status %></td>
+          <td><%= @order_status[referral_sale.order_id] || 'GHTK Order Not Found' %></td>
           <td><%= referral_sale.is_approved? ? "Paid" : "Pending" %></td>
         </tr>
       <% end %>

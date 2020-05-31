@@ -7,6 +7,8 @@ class ReferralSalesController < ApplicationController
   # GET /referral_sales.json
   def index
     @referral_sales = ReferralSale.where(user_id: current_user.id).paginate(page: params[:page])
+    @order_status = {}
+    Order.where(order_id: @referral_sales.pluck(:order_id)).collect { |order| @order_status[order.order_id] = order.status }
   end
 
   # GET /referral_sales/1
