@@ -7,7 +7,7 @@ every 1.day, :at => '5:00 am' do
 end
 
 every 7.days, :at => '5:00 pm' do
-  rake "get_youtube_video:youtube_video", :output => {:error => 'task_reminder_error.log', :standard => 'task_reminder.log'}
+  rake "get_youtube_video:youtube_video", output: { error: 'task_reminder_error.log', standard: 'task_reminder.log' }
 end
 
 every :sunday, at: '12pm' do
