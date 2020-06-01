@@ -20,9 +20,9 @@
 
 <div class="next-previous-btn">
   <% if @page > 1 %>
-    <%= link_to "Previous", search_unsplash_images_path(page: @page - 1, q: @search_image.to_s), class: "unsplash-button btn previous", remote: true %>
+    <%= link_to "Previous", search_unsplash_images_path(page: @page - 1, q: @search_image), class: "unsplash-button btn previous", remote: true %>
   <% end %>
-  <%= link_to "Next", search_unsplash_images_path(page: @page + 1, q: @search_image.to_s), class: "unsplash-button btn next", remote: true %>
+  <%= link_to "Next", search_unsplash_images_path(page: @page + 1, q: @search_image), class: "unsplash-button btn next", remote: true %>
 </div>
 
 <script type="text/javascript">
