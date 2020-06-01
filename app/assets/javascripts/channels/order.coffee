@@ -40,4 +40,8 @@ App.Channels.Order.subscribe = ->
       order = $('#tbody')
       order.prepend data.order
       toastr.success 'New Order Placed.'
+      if data.response_code == "100"
+        toastr.success data.message
+      else
+        toastr.error "Sms not send to user due to this reason:" + data.message
   )
