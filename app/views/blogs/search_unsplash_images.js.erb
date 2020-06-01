@@ -1,0 +1,8 @@
+<% if @images.any? %>
+  $("#images").html('<%= j render partial: 'blogs/unsplash', locals: { images: @images } %>');
+  $("#image-save").prop("disabled", true);
+  $('.loader').hide();
+<% else %>
+  $('.loader').hide();
+  alert('There is some issue in Unsplash api')
+<% end %>

@@ -1,0 +1,42 @@
+<div class="row  m-t-30">
+  <% @images.each do |image| %>
+    <div class="col-md-4">
+      <div class="box-shadow-am sm-pd-am custom-card"  onclick="showActiveImages(this)">
+        <div class="custom-card-border">
+        <div class="product-box">
+          <img width="100%" src="<%= image.urls.regular %>">
+        </div>
+        <div class="product-detail">
+          <p><%= image.alt_description %></p>
+        </div>
+      </div>
+    </div>
+    <div class="custom-download-btn">
+        <a href="<%= image.urls.regular %>" download="newname" target="_blank" class="btn btn-primary set-position" >Download Link</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="next-previous-btn">
+  <% if @page > 1 %>
+    <%= link_to "Previous", search_unsplash_images_path(page: @page - 1, q: @search_image), class: "unsplash-button btn previous", remote: true %>
+  <% end %>
+  <%= link_to "Next", search_unsplash_images_path(page: @page + 1, q: @search_image), class: "unsplash-button btn next", remote: true %>
+</div>
+
+<script type="text/javascript">
+  function showActiveImages (obj){
+    $(obj).toggleClass('selected');
+    selectedImages = $(".selected")
+    if (selectedImages.length > 1) {
+      firstImage = selectedImages[0]
+      $(firstImage).removeClass("selected")
+    }
+    $("#image-save").prop("disabled", false);
+  }
+
+  $(".unsplash-button").click(function(){
+    $('.loader').show();
+  })
+</script>

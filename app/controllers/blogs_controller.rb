@@ -6,6 +6,7 @@ class BlogsController < ApplicationController
   before_action :set_videos, only: [:index]
 
   include ApplicationHelper
+  require 'open-uri'
 
   # GET /blogs
   # GET /blogs.json
@@ -105,7 +106,10 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = current_user.blogs.new(blog_params)
-
+    if params[:avatar].present?
+      downloaded_image = open(params[:avatar])
+      @blog.avatar.attach(io: downloaded_image  , filename: "foo.jpg")
+    end
     respond_to do |format|
       if @blog.save
         @blog.attach_default_image unless @blog.avatar.attached?
@@ -173,23 +177,34 @@ class BlogsController < ApplicationController
         ['You need to change default picture before publishing your blog.', false]
       else
         if params[:status] == 'true'
-          @blog.publish!
-          @blog.award_coins!
+          if @blog.description.scan(/img-fluid/).length < 3
+            ['Blog required minimun three image to publish.', false]
+          else
+            @blog.publish!
+            @blog.award_coins!
+            ["Successfully #{(I18n.t(:publish_label)).downcase}ed the blog.", true]
+          end
         else
           @blog.unpublish!
+          ["Successfully #{(I18n.t(:unpublish_label)).downcase}ed the blog.", true]
         end
-        ["Successfully #{(@blog.is_published ? I18n.t(:publish_label) : I18n.t(:unpublish_label)).downcase}ed the blog.", true]
       end
 
     respond_to do |format|
       format.js
-      format.json { render json: { success: !@blog.default_image?, message: @message }  }
+      format.json { render json: { success: @success , message: @message }  }
     end
   end
 
   def delete_rejected
     @blog.destroy
     BlogMailer.rejected(@blog, params[:reject_reason]).deliver_later
+  end
+
+  def search_unsplash_images
+    @page = params[:page].to_i
+    @search_image = params[:q]
+    @images = UnsplashService.new(name: @search_image, page: @page).fetch_image
   end
 
   def reject

@@ -11,19 +11,25 @@
   <% end %>
   <%= hidden_field_tag :translate_edit, params[:translate_edit]  if params[:translate_edit].present? %>
   <!-- <div class="container"> -->
-    <div class="ambassdor-box newBlog-style" style="padding: 60px;">
+    <div class="ambassdor-box newBlog-style custom-style">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8">
               <!-- <div class="field m-image-frame form-group"> -->
-                <div style="border: 1px solid #eee;padding: 25px;">
+                <div class="default-image">
                 <%= image_tag @blog.avatar.variable? ? @blog.avatar.variant(combine_options: { resize: '100x100^', gravity: 'Center', extent: '100x100^', quality: 95 }) : @blog.avatar, alt: "Add  icon", id: 'blah', size: '100x100', class: "lazy", lazy: true %>
                 <lable for="file_name" id="file-name"><%= file_name @blog %></lable>
-                <div class="field form-group" id="image-upload-button-div" style="margin-left: -17px !important;">
-                  <div class="fileUpload form-control start blog-imgUpload">
+                <div class="field form-group" id="image-upload-button-div" style="display: flex;">
+                    <div class="custom-btn" >
+                  <div class="fileUpload start blog-imgUpload">
                     <%= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false, accept: "image/png,image/jpeg" %>
                   </div>
+
+                  <div class="fileUpload start blog-imgUpload">
+                    <button type="button" class="btn btn-primary" id="unsplash-button-upload" data-toggle="modal" data-target="#unsplashImage" style="text-decoration: none;">Unsplash Image</button>
+                  </div>
+</div>
                 </div>
                 <!-- </div> -->
               </div>
@@ -222,6 +228,7 @@
               <%= collection_select(:category, :id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
             </div>
             <span class="category-name-error" id="edit-category">* Please select category first</span>
+
             <div class="form-group">
               <%= form.label :name %>
               <%= form.text_field :name, id: :category_name, class: 'form-control', required: true, id: 'update-category-name' %>
@@ -244,6 +251,53 @@
 </div>
 
 <!-- Modal -->
+<div class="modal fade" id="unsplashImage" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close image-modal">&times;</button>
+        <h4 class="modal-title">Unsplash Images</h4>
+      </div>
+
+      <div class="modal-body ">
+        <div id="product-search-images-form">
+          <%= form_tag(search_unsplash_images_path, method: "get", remote: true, id: 'search-images-form') do %>
+            <div class="row">
+              <div class="col-md-9">
+                <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title', data: { type: 'search' } ) %>
+              </div>
+              <%= hidden_field_tag :page, 1 %>
+              <div class="col-md-3">
+                <%= submit_tag(t(:search_label), class: 'btn btn-primary form-group', id: 'search-image-btn') %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="images">
+        </div>
+        <div class="loader">
+          <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+        </div>
+
+      </div>
+      <button id='content' data-toggle="popover" data-placement="top" data-content="Please Select Product" title="" style="float: right;visibility: collapse;margin-right: 122px;"></button>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-6">
+             <button type="button" class="btn btn-block btn-default image-modal"><%= t(:cancel_label) %></button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary" id="image-save" onclick="add_images();" disabled><%= t(:save_label) %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade assignProduct" id="assignProduct" role="dialog">
   <div class="modal-dialog modal-lg">
 
@@ -468,6 +522,20 @@ Quilljs.setDefaults(defaults)
         $('#update-category-name').attr('disabled', true);
     });
 
+     $('#cancle-category').click(function(e){
+    e.preventDefault();
+    $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      // $('#myModal').modal('show');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+    });
+    $('#create-or-edit-category').click(function() {
+        $('#create-or-edit-category-modal').modal('show');
+        $('#update-category-name').attr('disabled', true);
+    });
+
     $('.cancel-category').click(function(e){
       e.preventDefault();
       $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
@@ -522,7 +590,9 @@ Quilljs.setDefaults(defaults)
       }
     });
 
-
+    $("#search-image-btn").click(function(){
+      $('.loader').show()
+    })
 
     $('#search-form').submit(function(){
         if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }
@@ -624,22 +694,24 @@ Quilljs.setDefaults(defaults)
 
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            var name = input.files[0].name
-            var fileType = input.files[0].type
-            var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+          var reader = new FileReader();
+          var name = input.files[0].name
+          var fileType = input.files[0].type
+          var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-            if ($.inArray(fileType, ValidImageTypes) < 0) {
-                return alert("File type not allowed.")
-            }
+          if ($.inArray(fileType, ValidImageTypes) < 0) {
+              return alert("File type not allowed.")
+          }
 
-            reader.onload = function (e) {
-                var st = e.target.result;
-                $('#blah').attr('src', e.target.result);
-                $('#fileUpload').attr('src', e.target.result);
-            };
-            $('#file-name').text(name);
-            reader.readAsDataURL(input.files[0]);
+          reader.onload = function (e) {
+            var st = e.target.result;
+            gettingDefaultImage = $(".default-image")[0].children[0]
+            $(gettingDefaultImage).attr('src', e.target.result)
+          };
+          gettingDefaultImageText = $(".default-image")[0].children[1]
+          $(gettingDefaultImageText).text(name)
+          $("#unsplash-button-upload").find('span').remove();
+          reader.readAsDataURL(input.files[0]);
         }
     }
     function get_products(){
@@ -662,7 +734,7 @@ Quilljs.setDefaults(defaults)
                 //    window.location.reload();
             }
         });
-    }
+    }  
 
     $("#search-form").submit(function(){
       // $(".selected").each(function(index, v) {
@@ -672,15 +744,90 @@ Quilljs.setDefaults(defaults)
       return true;
     });
 
-     $('.product-modal').click(function(e){
-    e.preventDefault();
-    $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
-      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-      $('#new-blog').modal('show');
-      $('body').addClass('modal-open');
-      $('body').removeAttr('style');
+    $('.product-modal').click(function(e){
+      e.preventDefault();
+      $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
+        $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+        $('#new-blog').modal('show');
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+      });
     });
+
+    $('.image-modal').click(function(e){
+      e.preventDefault();
+      $('#unsplashImage').modal('hide').on('hidden.bs.modal', function (e) {
+        $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+        $('#new-blog').modal('show');
+        $("#images").html("")
+        $("#product-title").val("")
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+      });
     });
+
+    function add_images() {
+      var selectedImage = $(".selected")
+      if (selectedImage.length > 1) {
+        event.preventDefault();
+        alert('please select one image')
+      }
+      else {
+        url = selectedImage[0].children[0].children[0].children[0].src
+        name = selectedImage[0].children[0].children[1].innerText
+        $('<input>').attr('type','hidden').attr('name','avatar').attr('value',url).appendTo('#blog-form');
+        if ($("#unsplash-button-upload").children().length == 0) {
+          $("#unsplash-button-upload").append("  <span class='badge'>1</span>");
+        }
+
+        var file;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onload = function(e) {
+          if (this.status == 200) {
+            file = new File([this.response], name);
+            readImageURL(file)
+          }
+        };
+        xhr.send();
+        function readImageURL(input) {
+          var reader = new FileReader();
+          var name = input.name
+          var fileType = "image/png"
+          var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+          if ($.inArray(fileType, ValidImageTypes) < 0) {
+            return alert("File type not allowed.")
+          }
+
+          reader.onload = function (e) {
+            var st = e.target.result;
+            gettingDefaultImage = $(".default-image")[0].children[0]
+            $(gettingDefaultImage).attr('src',"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=")
+          };
+          gettingDefaultImageText = $(".default-image")[0].children[1]
+          if (name == "") {
+            $(gettingDefaultImageText).text("image.png")
+          }
+          else {
+            $(gettingDefaultImageText).text(name)
+          }
+
+          if ($('label[for="fileupload"]').children()[1] != undefined) {
+            $('label[for="fileupload"]').children()[1].remove()
+          }
+
+          reader.readAsDataURL(input);
+        }
+      
+        $('#unsplashImage').modal('hide').on('hidden.bs.modal', function (e) {
+          $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+          $('#new-blog').modal('show');
+          $('body').addClass('modal-open');
+          $('body').removeAttr('style');
+        });
+      }
+    }
 
     function add_products(){
 
