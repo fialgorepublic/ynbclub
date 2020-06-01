@@ -3,18 +3,18 @@
     <div class="col-md-4">
       <div class="box-shadow-am sm-pd-am custom-card"  onclick="showActiveImages(this)">
         <div class="custom-card-border">
-        <div class="product-box">
-          <img width="100%" src="<%= image.urls.regular %>">
-        </div>
-        <div class="product-detail">
-          <p><%= image.alt_description %></p>
+          <div class="product-box">
+            <img width="100%" src="<%= image.urls.regular %>">
+          </div>
+          <div class="product-detail">
+            <p><%= image.alt_description %></p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="custom-download-btn">
-        <a href="<%= image.urls.regular %>" download="newname" target="_blank" class="btn btn-primary set-position" >Download Link</a>
+      <div class="custom-download-btn">
+        <a class="btn btn-primary set-position" title="Download photo" href="https://unsplash.com/photos/<%= image.id %>/download?force=true" rel="nofollow" download="" target="_blank">Download Link</a>
+        </div>
       </div>
-    </div>
   <% end %>
 </div>
 
