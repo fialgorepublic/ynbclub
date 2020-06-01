@@ -200,9 +200,13 @@ input:checked + .slider:before {
   margin: 10px 0px !important;
   height: 385px !important;
   position: relative;}
-  .custom-style {
-    padding: 60px;
-  }
+.custom-style {
+  padding: 60px;
+}
+.custom-btn {
+  margin: 10px auto !important;
+  display: flex;
+}
 /********************/
 /** END Custom CSS **/
 /********************/
