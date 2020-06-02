@@ -1,5 +1,28 @@
-<div class="row  m-t-30">
-  <% @products.each do |product| %>
+<% if params[:image].present? %>
+  <div class="row  m-t-30">
+    <% @products.each do |product| %>
+      <div class="col-md-4">
+        <div class="<%= product.id %> box-shadow-am sm-pd-am <%= ((@blog.present? && @blog.products.where(product_id: product.id).count > 0) || (@selected_products_ids.present? && @selected_products_ids.include?(product.id.to_s))) ? 'selected-product' : '' %>" onclick="showActiveProduct(this)">
+          <div class="product-box">
+            <img width="100%" src="<%= product.images.present? ? product.images[0].src : '/placeholder.png' %>">
+          </div>
+
+          <div class="product-detail">
+            <p><%= product.title %></p>
+          </div>
+          <div class="product-price">
+            <h5><%= number_with_delimiter(product.variants.first.price, delimiter: '.') %>₫</h5>
+          </div>
+          <div class="product-handle" style="display: none">
+            <h5><%= product.handle %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="row  m-t-30">
+    <% @products.each do |product| %>
       <div class="col-md-4">
         <div class="<%= product.id %> box-shadow-am sm-pd-am <%= ((@blog.present? && @blog.products.where(product_id: product.id).count > 0) || (@selected_products_ids.present? && @selected_products_ids.include?(product.id.to_s))) ? 'selected' : '' %>" onclick="showActive(this)">
           <div class="product-box">
@@ -17,8 +40,9 @@
           </div>
         </div>
       </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>
 
 <script type="text/javascript">
   function showActive (obj){
@@ -30,6 +54,15 @@
         selected_products_ids.push(id);
     }else{
       selected_products_ids.splice( selected_products_ids.indexOf($(obj).attr('class').split(" ")[0]), 1 );
+    }
+  }
+
+  function showActiveProduct(obj) {
+    $(obj).toggleClass('selected-product');
+    selectedImages = $(".selected-product")
+    if (selectedImages.length > 1) {
+      firstImage = selectedImages[0]
+      $(firstImage).removeClass("selected-product")
     }
   }
 </script>

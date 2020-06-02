@@ -350,6 +350,59 @@
   </div>
 </div>
 
+<div class="modal fade get_products_for_image" id="get_products_for_image" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close image-product-modal">&times;</button>
+        <h4 class="modal-title"><%= t('blogs.product_to_image') %></h4>
+      </div>
+
+      <div class="modal-body ">
+        <div id="product-search-form">
+          <%= form_tag(search_products_path, method: "get", remote: true, id: 'search-form') do %>
+            <%= hidden_field_tag :blog_id, @blog.id %>
+            <%= hidden_field_tag :selected_products_ids, nil, id: 'selected_products_ids' %>
+            <div class="row">
+              <div class="col-md-9">
+                <%= text_field_tag(:q, params[:q], class: 'form-control', placeholder: 'Search for products', id: 'product-title', data: { type: 'search' } ) %>
+              </div>
+              <div class="col-md-3">
+                <%= submit_tag(t(:search_label), class: 'btn btn-primary form-group', id: 'search-btn') %>
+                <%= submit_tag(t(:clear_label), class: 'btn btn-default form-group', id: 'clear-btn-search') %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="image_products">
+          <% if @products.present? %>
+            <%= render partial: 'blogs/products' %>
+          <% end %>
+           <div class="loader">
+          <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+        </div>
+        </div>
+
+      </div>
+      <button id='content' data-toggle="popover" data-placement="top" data-content="Please Select Product" title="" style="float: right;visibility: collapse;margin-right: 122px;"></button>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-6">
+             <button type="button" class="btn btn-block btn-default image-product-modal"><%= t(:cancel_label) %></button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-block btn-primary product-image" onclick="add_products_for_image();"><%= t(:save_label) %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade uploadImage" id="uploadImage" role="dialog">
@@ -461,18 +514,28 @@
   var Image = Quill.import('formats/image');
   Image.className = 'img-fluid';
   Quill.register(Image, true);
+  const ImageBlot = Quill.import('formats/image');
+  const Parchment = Quill.import('parchment');
   Quill.register('modules/counter', function(quill, options) {
-  var container = document.querySelector(options.container);
-  quill.on('text-change', function() {
-    var text = quill.getText();
-    if (options.unit === 'word') {
-      // Total Words: 5 Minimum Required Words: 500
-      container.innerText = "Total Words: " + text.split(/\s+/).length + ' Minimum Required Words: 500';
-    } else {
-      container.innerText = text.length + ' characters';
-    }
+    quill.root.addEventListener('click', (e) => {
+      const img = Parchment.find(e.target);
+      if (img instanceof ImageBlot) {
+        id = e.target.id = "dynamic_"+Math.random();
+        $('.product-image').attr('id', id)
+        attach_product_with_image();
+      }
+    });
+    var container = document.querySelector(options.container);
+    quill.on('text-change', function() {
+      var text = quill.getText();
+      if (options.unit === 'word') {
+        // Total Words: 5 Minimum Required Words: 500
+        container.innerText = "Total Words: " + text.split(/\s+/).length + ' Minimum Required Words: 500';
+      } else {
+        container.innerText = text.length + ' characters';
+      }
+    });
   });
-});
 
   var defaults = {
     theme: 'snow',
@@ -494,12 +557,9 @@ Quilljs.setDefaults(defaults)
     a = $(".ql-editor")[0]
 
     $(a).contentEditable=true;
-    
-    $('#blog_title').bind('mousedown',function(e)
+    $('#blog_title, #unsplash-button-upload').bind('mousedown',function(e)
     {
       window.getSelection().removeAllRanges();
-        // window.getSelection().getRangeAt(0).startContainer;
-        // e.preventDefault();
     });
 
     $("#create-new-blog").click(function() {
@@ -735,6 +795,25 @@ Quilljs.setDefaults(defaults)
                 //    window.location.reload();
             }
         });
+    }
+
+        function attach_product_with_image(){
+        $('#get_products_for_image').modal('show');
+        $('.loader').show();
+        $.ajax({
+            url: '/get_products_from_shopify?image=true',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $('#image_products').html(data);
+                $('.loader').hide();
+            },
+            error: function (data) {
+                alert('Error');
+                //    window.location.reload();
+            }
+        });
     }  
 
     $("#search-form").submit(function(){
@@ -748,6 +827,15 @@ Quilljs.setDefaults(defaults)
     $('.product-modal').click(function(e){
       e.preventDefault();
       $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
+        $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+        $('#new-blog').modal('show');
+        $('body').addClass('modal-open');
+        $('body').removeAttr('style');
+      });
+    });
+    $('.image-product-modal').click(function(e){
+      e.preventDefault();
+      $('#get_products_for_image').modal('hide').on('hidden.bs.modal', function (e) {
         $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
         $('#new-blog').modal('show');
         $('body').addClass('modal-open');
@@ -768,7 +856,7 @@ Quilljs.setDefaults(defaults)
     });
 
     function add_images() {
-      var selectedImage = $(".selected")
+      var selectedImage = $(".selected-image")
       if (selectedImage.length > 1) {
         event.preventDefault();
         alert('please select one image')
@@ -793,10 +881,9 @@ Quilljs.setDefaults(defaults)
         xhr.send();
         function readImageURL(input) {
           var reader = new FileReader();
-          var name = input.name
+          var name = input.name.substr(0,35)
           var fileType = "image/png"
           var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
-
           if ($.inArray(fileType, ValidImageTypes) < 0) {
             return alert("File type not allowed.")
           }
@@ -865,9 +952,24 @@ Quilljs.setDefaults(defaults)
         }
     }
 
+      function add_products_for_image() {
+        var selectedImage = $(".selected-product")
+        get_product_url = selectedImage[0].children[3].children[0].innerText
+        var url = "https://www.saintlbeau.com/products/"+get_product_url
+        var image = selectedImage[0].children[0].children[0].src
+        var title = selectedImage[0].children[1].children[0].textContent.replace(/\"/g, "").split(' ').join("|")
+        var price = selectedImage[0].children[2].children[0].innerText
+        var getImage = document.getElementById(this.id)
+        $(getImage).wrap(`<a href=${url} data-price=${price} data-image=${image} data-title=${title} />`);
 
-
-
+        $('#get_products_for_image').modal('hide').on('hidden.bs.modal', function (e) {
+          $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+          $('#new-blog').modal('show');
+          $('#image_products').html('');
+          $('body').addClass('modal-open');
+          $('body').removeAttr('style');
+        });
+      }
 
     $.fn.extend({
         popoverClosable: function (options) {

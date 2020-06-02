@@ -100,6 +100,7 @@ en:
     reject_status_label:      Reject Status
     user_label:               User
     publish_status_label:     Publish Status
+    product_to_image:         Assign Product to Image
     index:
       page_title:             Blogs
       blog_libray_label:      Blog Library

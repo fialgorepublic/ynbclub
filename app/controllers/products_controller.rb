@@ -7,7 +7,11 @@ class ProductsController < ApplicationController
     initiate_shopify_session
     @products = ShopifyAPI::Product.all
     clear_shopify_session
-    render partial: 'blogs/products'
+    if params[:image].present?
+      render partial: 'blogs/products', locals: { image: "image" }
+    else
+      render partial: 'blogs/products'
+    end
   end
 
   def get_selected_products
