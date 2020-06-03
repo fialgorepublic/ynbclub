@@ -1,6 +1,11 @@
 $(document).on('turbolinks:load', function () {
   var blogSearchtimerId = null;
-  $('#sort-blogs, #category-dropdown, #publish-dropdown').on('change', function(){
+  $('#sort-blogs, #category-dropdown, #publish-dropdown, #sort-blogs-by-date').on('change', function(){
+    if (this.id == "sort-blogs-by-date"){
+      $("#sort-blogs").val('')
+    }else if (this.id == "sort-blogs") {
+      $("#sort-blogs-by-date").val('')
+    }
     $('#page').val('1');
     fetchBlogs();
   });

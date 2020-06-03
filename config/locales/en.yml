@@ -95,6 +95,7 @@ en:
 
   blogs:
     title_label:              Title
+    date_label:               Date
     category_label:           Category
     reject_action_label:      Reject Blog
     reject_status_label:      Reject Status

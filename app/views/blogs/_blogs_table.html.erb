@@ -1,6 +1,7 @@
 <table id="blogs-list" class="table table-striped table-bordered" style="width:100%">
   <thead>
   <tr>
+    <th><%= t('blogs.date_label') %></th>
     <th><%= t('blogs.title_label') %></th>
     <th><%= t('blogs.user_label') %></th>
     <th><%= t('blogs.category_label') %></th>
@@ -11,9 +12,10 @@
   </tr>
   </thead>
 
-  <tbody>
+  <tbody id="blog-list-table">
   <% blogs.each do |blog| %>
     <tr id="blog-<%= blog.id %>">
+      <td><%= format_created_at(blog.created_at) %></td>
       <td><%= link_to blog.title, blog %></td>
       <td><%= blog.user_name %></td>
       <td><%= blog.category_name %></td>

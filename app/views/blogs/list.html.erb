@@ -13,6 +13,11 @@
         <% if @blogs.count > 0 %>
 
           <div class="col-md-2 post-sorting  ">
+            <p>SORTING BY Date </p>
+            <%= select_tag :sort_by, options_for_select([['Default', -1] ,['Newest', 3], ['Oldest', 4]]), class: 'sorting-fltr', id: 'sort-blogs-list' %>
+          </div>
+
+          <div class="col-md-2 post-sorting  ">
             <p>SORTING</p>
             <select class="sorting-fltr" id="sort-blogs-list">
               <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
