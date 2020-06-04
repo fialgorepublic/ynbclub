@@ -265,7 +265,7 @@ class User < ApplicationRecord
   end
 
   def blog_sharing_limit_exceed?(url_type)
-    share_urls.where(url_type: url_type, created_at: DateTime.now.all_day).count >= 10
+    share_urls.where(url_type: url_type, created_at: (Time.now - 1.hour)..Time.now).count > 1
   end
 
   def joined_group?(group_id)
