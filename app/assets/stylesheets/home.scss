@@ -706,6 +706,21 @@ body {
     padding-left: 20px;
     line-height: 50px !important;
   }
+  .detail-img {
+    .img-block {
+      margin-top: 26% !important;
+    }
+  }
+  .create-blog-modal {
+    .follow-button {
+      margin-top: 3%;
+    }
+  }
+
+  .blog_margin_top {
+    margin-top: 38px !important;
+    margin-bottom: -70px;
+  }
 }
 
 .user-show-right {
@@ -1013,9 +1028,12 @@ body {
   .img-block {
     position: absolute;
     top: 5%;
-    padding: 2px 20px;
+    padding: 2px 15px;
     background-color: #fd9938;
-    margin: 1%;
+    margin-top: 1%;
+  }
+  .publish-tag {
+    border-radius: 0 6px 6px 0 !important;
   }
   h4 {
     color: #333333;
@@ -1174,7 +1192,7 @@ button.comnt-btn-style {
   .dropdown {
     position: absolute;
     display: inline-block;
-    right: 0.4em;
+    right: 0;
   }
 }
 
@@ -1193,7 +1211,6 @@ button.comnt-btn-style {
 }
 ul.dropbtn.icons.showLeft {
   position: relative;
-  top: 2rem;
 }
 
 .dropdown-content a {
@@ -4078,4 +4095,36 @@ span.remove.fa.fa-times {
   text-align: center;
   background: #fff;
   margin-bottom: 36px;
+}
+
+.facebook-share-content {
+  #remove-facebook-share-content {
+    margin-left: 4%;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+.create-blog-modal {
+  .options-menu {
+    margin-top: 1%;
+  }
+  .follow-button {
+    color: white !important;
+    background-color: #54b2b2 !important;
+    text-transform: uppercase !important;
+    font-size: 13px !important;
+    border-radius: 20px !important;
+    width: 150px !important;
+    float: none !important;
+    font-weight: 400;
+    padding: 7px;
+  }
+  .share-on-facebook {
+    margin-top: 1px;
+  }
+}
+
+.pl-0 {
+  padding-left: 0px !important;
 }
