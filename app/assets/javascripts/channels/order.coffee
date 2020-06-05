@@ -33,6 +33,8 @@ App.Channels.Order.subscribe = ->
         $(table_row).children('td, th').css 'background-color', '#f0b9a2'
       else if value == '5'
         $(table_row).children('td, th').css 'background-color', '#fa9b9b'
+      else if value == '6'
+        $(table_row).children('td, th').css 'background-color', '#eeacef'
 
       $('#order_' + data.order_id).val(value)
 

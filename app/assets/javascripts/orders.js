@@ -27,6 +27,9 @@ $(document).on('turbolinks:load', function() {
       else if(value == '5'){
         $('td', row).css('background-color', '#fa9b9b');
       }
+       else if(value == '6'){
+        $('td', row).css('background-color', '#eeacef');
+      }
     }
   });
 
@@ -105,4 +108,14 @@ $(document).on('turbolinks:load', function() {
     url = $(this).data('url');
     window.location.href = url
   });
+
+  $("#sort-phone-status" ).change(function() {
+      phoneStatus = $(this).find('option:selected').text();
+    $('#picked_phone').val(phoneStatus);
+    fetchorders();
+  });
+
+  function fetchorders() {
+    $('#search-order').click();
+  }
 })

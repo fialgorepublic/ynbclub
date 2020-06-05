@@ -18,6 +18,13 @@ class Order < ApplicationRecord
   delegate :name, :id, to: :ward,     prefix: true, allow_nil: true
 
   scope :user_orders, -> (email) { where(email: email) }
+  scope :filter_by, ->(filter) {
+    if filter == 7
+      order(created_at: :desc)
+    else
+      where(picked_phone: filter)
+    end
+  }
 
   enum picked_phone: {
     'N/A' => 0,
@@ -25,7 +32,8 @@ class Order < ApplicationRecord
     'Call Day 1'  => 2,
     'Call Day 2'  => 3,
     'Đã nhắn tin'  => 4,
-    'No'  => 5
+    'No'  => 5,
+    'PREORDER' => 6
   }
 
   enum transport_type: {

@@ -16,8 +16,10 @@ class OrdersController < ApplicationController
   # end
 
   def index
+    filter = params[:picked_phone].presence || 7
+
     @q = Order.ransack(params[:q])
-    orders = @q.result(distinct: true)
+    orders = @q.result(distinct: true).filter_by(filter)
     @orders = orders.includes(:city, :district, :province, :ward, :items).paginate(page: params[:page])
   end
 
