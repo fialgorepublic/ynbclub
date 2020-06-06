@@ -29,21 +29,21 @@
 <p style="display: none" id="blog-slug"><%= @blog.slug%></p>
 
 <div>
-  <div class="row facebook-share-content">
+  <div class="row facebook-share-content mt-5">
     <div class="col-md-8">
-      <h4 class=""><%= t('blogs.show.share_modal.title') %></h4>
+      <h4 class="mt-15"><%= t('blogs.show.share_modal.title') %></h4>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 button-mt-5">
       <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
       <%= link_to t(:cancel_label), 'javascript:void(0);', id: 'remove-facebook-share-content' %>
     </div>
   </div>
 
-  <div class="row options-menu">
-    <div class="three-dots ">
-      <div class="dropdown">
-        <% if current_user.present? %>
+  <% if current_user.present? %>
+    <div class="row options-menu">
+      <div class="three-dots ">
+        <div class="dropdown">
           <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
             <li></li>
             <li></li>
@@ -64,19 +64,19 @@
               <% end %>
             <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
-  <div class="row blog_margin_top">
+  <div class="row <%= current_user.present? ? 'blog_margin_top' : 'image-margin-top' %>">
     <div class="col-md-12">
-      <div class="detail-img">
+      <div class="detail-img mobile-bottom-space">
         <div class="img-block publish-tag">
           <h4 id='publish-tag'><%= @blog.is_published ? t(:publish_label) : t(:unpublish_label) %>
           </h4>
         </div>
-        <div class=""><%= image_tag render_image(@blog), width: '100%', style: 'max-height:448px; object-fit: cover;' %>
+        <div class=""><%= image_tag render_image(@blog), width: '100%', style: "max-height:448px; object-fit: cover;", class: 'mobile-height' %>
         </div>
       </div>
     </div>
@@ -86,11 +86,11 @@
     <div class="detail-img detail-icon">
       <div class="col-md-5 col-xs-8" style="margin-top: 0.7em">
         <i class="<%= liked_class(@blog) %> pl-0" onclick="like_comment(this,'<%= @blog.id %>');"></i>
-        <span id='blog-like-count'><%= @blog.likes.count %></span>
+        <span id='blog-like-count'><%= @blog.likes.length %></span>
         <i class="fa fa-share"></i>
         <span id='blogUrl'><%= @blog.share_urls.length %></span>
         <i class="fa fa-eye"></i>
-        <span><%= @blog.blog_views.count %></span>
+        <span><%= @blog.blog_views.length %></span>
       </div>
 
       <div class="col-md-3 col-xs-4" style="margin-top: 0.4em;">
