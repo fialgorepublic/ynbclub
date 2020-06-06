@@ -4123,9 +4123,16 @@ span.remove.fa.fa-times {
 
 .facebook-share-content {
   #remove-facebook-share-content {
-    margin-left: 4%;
     color: black;
     font-weight: bold;
+  }
+
+  .share-button-div {
+    display: inline;
+  }
+  .remove-button-div {
+    display: inline-block;
+    margin-top: 15px;
   }
 }
 

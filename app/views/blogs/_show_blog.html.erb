@@ -34,8 +34,11 @@
       <h4 class="mt-15"><%= t('blogs.show.share_modal.title') %></h4>
     </div>
 
-    <div class="col-md-4 button-mt-5">
+    <div class="col-md-3 share-button-div button-mt-5">
       <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
+    </div>
+
+    <div class="col-md-1 remove-button-div button-mt-5">
       <%= link_to t(:cancel_label), 'javascript:void(0);', id: 'remove-facebook-share-content' %>
     </div>
   </div>
