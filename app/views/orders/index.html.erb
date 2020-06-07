@@ -14,38 +14,47 @@
   }
 </style>
 <div class="col-md-9">
-  <div class="order-dropDown-style">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="card-header"><%= t('orders.index.title') %></h1>
-        <hr>
-      </div>
-
-      <div class="col-md-12">
-        <div class="col-lg-12 pl-0 pr-0">
-          <%= search_form_for @q do |f| %>
-          <div class="flex-sb">
-            <div class="input-group m0b-m-10 width-100">
-              <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_or_phone_number_cont, { class: 'form-control', placeholder: t('orders.index.search_placeholder'), id: 'search-field' } %>
-              <span class="input-group-btn ">
-                <button class="btn btn-default btn-lg pd-clear" id='clear-btn' type="button" data-url="<%= orders_path %>">
-                  <i class="fa fa-times" aria-hidden="true"></i>
-                </button>
-              </span>
-
-            </div><!-- /input-group -->
-
-
-            <div class="text-center m0b-m-10">
-              <%= f.submit t(:search_label), class: 'btn btn-lg btn-primary set-border-radius', style: "background-color:#54b2b2; border-color: #fff;" %>
-            </div>
-          </div>
-          <% end %>
+  <%= search_form_for @q do |f| %>
+    <div class="order-dropDown-style">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="card-header"><%= t('orders.index.title') %></h1>
+          <hr>
         </div>
 
+        <div class="col-md-12">
+          <div class="col-lg-12 pl-0 pr-0">
+            <div class="flex-sb">
+              <div class="input-group m0b-m-10 width-100">
+                <%= f.search_field :customer_name_or_city_name_or_district_name_or_province_name_or_email_or_order_name_or_phone_number_cont, { class: 'form-control', placeholder: t('orders.index.search_placeholder'), id: 'search-field' } %>
+                <span class="input-group-btn ">
+                  <button class="btn btn-default btn-lg pd-clear" id='clear-btn' type="button" data-url="<%= orders_path %>">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </span>
+
+              </div><!-- /input-group -->
+
+              <div class="text-center m0b-m-10">
+                <%= f.submit t(:search_label), class: 'btn btn-lg btn-primary set-border-radius', style: "background-color:#54b2b2; border-color: #fff;", id: 'search-order' %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="row picked-phone-filter">
+      <div class="col-md-2">
+        <div class="post-sorting">
+          <p>Filter By Picked Phone</p>
+          <%= f.select :picked_phone_eq, options_for_select(Order.picked_phones, selected: params.dig(:q, :picked_phone_eq)), { include_blank: 'All' }, { class: "sorting-fltr", id: 'sort-phone-status' } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <br><br>
+
   <div class="table-responsive">
 
     <table class="table table-striped table-bordered table-border-radius" id="orders">
@@ -61,7 +70,6 @@
       </thead>
 
       <tbody id="tbody">
-
         <% @orders.each do |order| %>
           <tr id="<%= order.id %>">
           <%= render partial: 'table_body', locals: { order: order } %>

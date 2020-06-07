@@ -2,6 +2,8 @@ class Order < ApplicationRecord
   self.per_page = 200
   default_scope { order(id: :desc) }
 
+  MESSAGE_CONTENT = 'Tin nhan nay den tu SAINTLBEAU.COM. Don hang cua ban da duoc CONFIRM, Voi nhung don hang tai noi thanh Tp.HCM ban se nhan duoc trong vong 24-48h va nhung don hang COD toan quoc ban se nhan duoc trong 4-6 ngay lam viec ke tiep (tru nguy cuoi tuan va ngay Le) tinh tu ngay xac nhan don hang. Neu co y dinh huy hay LH 1900 633 610 .'.freeze
+
   belongs_to :city,     optional: true
   belongs_to :district, optional: true
   belongs_to :province, optional: true
@@ -25,7 +27,8 @@ class Order < ApplicationRecord
     'Call Day 1'  => 2,
     'Call Day 2'  => 3,
     'Đã nhắn tin'  => 4,
-    'No'  => 5
+    'No'  => 5,
+    'PREORDER' => 6
   }
 
   enum transport_type: {
