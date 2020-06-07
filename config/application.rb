@@ -31,6 +31,7 @@ module SaintLBeauApp
     config.i18n.default_locale = :vi
     config.secret_key_base = "f99d5c6ceadd66e53177b0955c7d6a03104000d8d50dc170ce465ed9e0cd4c2aec44cbb72da02ebe1edd1bc1400874470ef1744e3b40171ec44aa1dab928369b"
     config.i18n.available_locales = [:vi, :en]
+    config.autoload_paths << "#{Rails.root}/lib"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

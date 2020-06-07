@@ -24,8 +24,12 @@ class OrdersController < ApplicationController
   def create
     @success, @order = OrderService.new(params[:order]).create_order
     if @success
+      @response_code, @message = Esms.send_sms(to: @order.phone_number, content: Order::MESSAGE_CONTENT)
+
       ActionCable.server.broadcast 'orders',
-      order: redner_partial(@order)
+      order: redner_partial(@order),
+      response_code: @response_code,
+      message: @message
     end
   end
 
