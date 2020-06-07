@@ -2,6 +2,7 @@ require 'httparty'
 
 class Esms
   class << self
+
     API_URL = 'http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get'
     API_KEY = Rails.application.credentials.esms[:api_key]
     SECRET_KEY = Rails.application.credentials.esms[:secret_key]
