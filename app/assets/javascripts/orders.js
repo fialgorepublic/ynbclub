@@ -27,6 +27,9 @@ $(document).on('turbolinks:load', function() {
       else if(value == '5'){
         $('td', row).css('background-color', '#fa9b9b');
       }
+       else if(value == '6'){
+        $('td', row).css('background-color', '#eeacef');
+      }
     }
   });
 
@@ -47,7 +50,7 @@ $(document).on('turbolinks:load', function() {
     'scrollX': true
   });
 
-  $("#orders").on("click", ".send_to_ghtk", function () {    
+  $("#orders").on("click", ".send_to_ghtk", function () {
     order_id = $(this).data('order-id');
     $('.loader').show();
     $.ajax({
@@ -104,5 +107,9 @@ $(document).on('turbolinks:load', function() {
     $('#search-field').val('');
     url = $(this).data('url');
     window.location.href = url
+  });
+
+  $("#sort-phone-status").change(function() {
+    $('#search-order').click();
   });
 })

@@ -25,7 +25,8 @@ class Order < ApplicationRecord
     'Call Day 1'  => 2,
     'Call Day 2'  => 3,
     'Đã nhắn tin'  => 4,
-    'No'  => 5
+    'No'  => 5,
+    'PREORDER' => 6
   }
 
   enum transport_type: {

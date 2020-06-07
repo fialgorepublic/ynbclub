@@ -11,7 +11,7 @@ App.Channels.Order.subscribe = ->
       currentAction = $('body').data('action-name')
       currentController = $('body').data('controller-name')
       if currentController == 'orders' && currentAction == 'index'
-        toastr.error 'Connecting to live updates..', 'Please reload the page if it take long time', { timeOut: 0 }
+        toastr.error 'Please reload the page if it take long time', 'Connecting to live updates..', { timeOut: 0 }
     received: (data) ->
       if data.order_id
         this.updatePhoneStatus data
@@ -33,6 +33,8 @@ App.Channels.Order.subscribe = ->
         $(table_row).children('td, th').css 'background-color', '#f0b9a2'
       else if value == '5'
         $(table_row).children('td, th').css 'background-color', '#fa9b9b'
+      else if value == '6'
+        $(table_row).children('td, th').css 'background-color', '#eeacef'
 
       $('#order_' + data.order_id).val(value)
 
