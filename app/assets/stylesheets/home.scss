@@ -728,16 +728,16 @@ body {
       margin-top: 3%;
     }
 
-    .facebook-share-content {
-      .button-mt-5 {
-        margin-top: 5%;
-      }
-    }
     .options-menu {
       .showLeft {
         margin-top: 25px;
         z-index: 9999;
       }
+    }
+
+    .share-button-div {
+      margin-top: 20px;
+      margin-bottom: -10px;
     }
 
   }
@@ -4129,7 +4129,20 @@ span.remove.fa.fa-times {
   }
 
   .share-button-div {
-    display: inline;
+    .facebook-icon-span {
+      background: #4267b2;
+      width: 41px;
+      padding-top: 7px;
+      padding-right: 9px;
+      padding-bottom: 7px;
+      padding-left: 9px;
+      border-radius: 15px;
+      margin-right: 1%;
+    }
+
+    i {
+      color: white;
+    }
   }
   .remove-button-div {
     display: inline-block;
@@ -4172,4 +4185,12 @@ span.remove.fa.fa-times {
 
 .mt-15 {
   margin-top: 15px;
+}
+
+.ml-5 {
+  margin-left: 5%;
+}
+
+.mt-12 {
+  margin-top: 12px;
 }

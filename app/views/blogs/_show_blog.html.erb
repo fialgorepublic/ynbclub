@@ -31,15 +31,13 @@
 <div>
   <div class="row facebook-share-content mt-5">
     <div class="col-md-8">
-      <h4 class="mt-15"><%= t('blogs.show.share_modal.title') %></h4>
+      <h4><%= t('blogs.show.share_modal.title') %></h4>
     </div>
 
-    <div class="col-md-3 share-button-div button-mt-5">
+    <div class="col-md-4 share-button-div mt-12">
+      <span class="facebook-icon-span"><i class="fa fa-facebook-square" aria-hidden="true"></i></span>
       <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
-    </div>
-
-    <div class="col-md-1 remove-button-div button-mt-5">
-      <%= link_to t(:cancel_label), 'javascript:void(0);', id: 'remove-facebook-share-content' %>
+      <%= link_to t(:cancel_label), 'javascript:void(0);', id: 'remove-facebook-share-content', class: 'ml-5' %>
     </div>
   </div>
 
