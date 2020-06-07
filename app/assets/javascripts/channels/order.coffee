@@ -11,7 +11,7 @@ App.Channels.Order.subscribe = ->
       currentAction = $('body').data('action-name')
       currentController = $('body').data('controller-name')
       if currentController == 'orders' && currentAction == 'index'
-        toastr.error 'Connecting to live updates..', 'Please reload the page if it take long time', { timeOut: 0 }
+        toastr.error 'Please reload the page if it take long time', 'Connecting to live updates..', { timeOut: 0 }
     received: (data) ->
       if data.order_id
         this.updatePhoneStatus data

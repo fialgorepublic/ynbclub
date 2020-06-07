@@ -18,13 +18,6 @@ class Order < ApplicationRecord
   delegate :name, :id, to: :ward,     prefix: true, allow_nil: true
 
   scope :user_orders, -> (email) { where(email: email) }
-  scope :filter_by, ->(filter) {
-    if filter == 7
-      order(created_at: :desc)
-    else
-      where(picked_phone: filter)
-    end
-  }
 
   enum picked_phone: {
     'N/A' => 0,

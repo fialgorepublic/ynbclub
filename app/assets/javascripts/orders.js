@@ -50,7 +50,7 @@ $(document).on('turbolinks:load', function() {
     'scrollX': true
   });
 
-  $("#orders").on("click", ".send_to_ghtk", function () {    
+  $("#orders").on("click", ".send_to_ghtk", function () {
     order_id = $(this).data('order-id');
     $('.loader').show();
     $.ajax({
@@ -109,13 +109,7 @@ $(document).on('turbolinks:load', function() {
     window.location.href = url
   });
 
-  $("#sort-phone-status" ).change(function() {
-      phoneStatus = $(this).find('option:selected').text();
-    $('#picked_phone').val(phoneStatus);
-    fetchorders();
-  });
-
-  function fetchorders() {
+  $("#sort-phone-status").change(function() {
     $('#search-order').click();
-  }
+  });
 })
