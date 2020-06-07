@@ -20,6 +20,7 @@ Rails.application.configure do
   config.read_encrypted_secrets = true
 
   config.active_storage.service = :local
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
