@@ -12,14 +12,4 @@ module OrdersHelper
   def fulfillment_status order
     order.fulfilment_status.present? ?  order.fulfilment_status : "Unfulfilled"
   end
-
-  def order_date order
-    if order.order_created_at.to_date == Date.today
-      order.order_created_at.to_time.strftime("%H:%M %P")
-    elsif order.order_created_at.to_date == Date.yesterday
-      order.order_created_at.to_time.strftime("yesterday %H:%M %P")
-    else
-      order.order_created_at.to_time.strftime("%b %d, %H:%M %P")
-    end
-  end
 end

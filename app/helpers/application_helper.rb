@@ -184,4 +184,14 @@ module ApplicationHelper
   def add_container
     current_user.present? ? 'container-fluid' : 'container'
   end
+
+  def format_created_at(created_at)
+    created_at_date = created_at.to_date
+    created_at_time = created_at.to_time
+
+    return created_at_time.strftime("%H:%M %P") if  created_at_date == Date.today
+    return created_at_time.strftime("yesterday %H:%M %P") if created_at_date == Date.yesterday
+
+    created_at_time.strftime("%b %d, %H:%M %P")
+  end
 end

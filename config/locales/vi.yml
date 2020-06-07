@@ -95,6 +95,7 @@ vi:
 
   blogs:
     title_label:              Chức vụ
+    date_label:               Ngày
     category_label:           thể loại
     reject_action_label:      Từ chối Blog
     reject_status_label:      Từ chối trạng thái
