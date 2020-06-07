@@ -730,14 +730,13 @@ body {
 
     .options-menu {
       .showLeft {
-        margin-top: 25px;
+        margin-top: 2px;
         z-index: 9999;
       }
     }
 
     .share-button-div {
       margin-top: 20px;
-      margin-bottom: -10px;
     }
 
   }
@@ -3929,9 +3928,7 @@ button.rm_btn {
 input#file-input {
   display: none;
 }
-a.share-on-facebook.btn.btn-primary.set-border-radius {
-  color: white;
-}
+
 span.remove.fa.fa-times {
   font-size: 15px;
 }
@@ -4161,9 +4158,6 @@ span.remove.fa.fa-times {
     float: none !important;
     font-weight: 400;
     padding: 7px;
-  }
-  .share-on-facebook {
-    margin-top: 1px;
   }
 
   .image-margin-top {
