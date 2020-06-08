@@ -40,8 +40,11 @@ $(document).on('turbolinks:load', function () {
   });
 
   $("#load-more").click(function() {
-    $('#page').val($('#next_page').val());
-    fetchBlogs();
+    nextPage = parseInt($('#next_page').val())
+    if(nextPage != NaN) {
+      $('#page').val(nextPage);
+      fetchBlogs();
+    }
   })
 
   $(document).on('click', '.create-blog-modal #remove-facebook-share-content', function(){

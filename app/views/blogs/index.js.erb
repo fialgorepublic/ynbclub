@@ -1,9 +1,9 @@
-$('.loader').hide();
 <% if params[:page].present? && params[:page].to_i != 1 %>
   $('#blogs').append('<%= j render partial: "all_blogs", locals: { blogs: @blogs } %>');
 <% else %>
   $('#blogs').html('<%= j render partial: "all_blogs", locals: { blogs: @blogs } %>');
 <% end %>
+$('.loader').hide();
 $('#next_page').val('<%= @next_page %>')
 $('#load-more').show();
 currentPage = '<%= @blogs.current_page %>';
