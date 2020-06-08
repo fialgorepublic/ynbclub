@@ -22,7 +22,7 @@
       <% @orders.each do |order| %>
         <tr>
           <td><%= order.order_name %></td>
-          <td><%= order_date(order) %></td>
+          <td><%= format_created_at(order.created_at) %></td>
           <td><%= order.financial_status %></td>
           <td><%= fulfillment_status(order) %></td>
           <td><%= number_with_delimiter(order.total.to_i, delimiter: ".") %>₫</td>
