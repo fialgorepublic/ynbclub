@@ -40,7 +40,8 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        flash[:success] =  'Group was successfully created.' 
+        AddGroupFollowersJob.perform_later(@group.id)
+        flash[:success] =  'Group was successfully created. Please reload the page after some time to view the followers.'
         format.html { redirect_to @group }
         format.json { render :show, status: :created, location: @group }
       else

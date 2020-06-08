@@ -30,6 +30,7 @@ gem 'turbolinks', '~> 5.2.0'
 gem 'jbuilder', '~> 2.5'
 gem "aws-s3", :require => "aws/s3"
 # gem "aws-sdk"
+gem 'activerecord-import'
 gem 'aws-sdk', '< 2.0'
 gem 'jquery-rails'
 gem 'shopify_app', '~> 7.2.9'
