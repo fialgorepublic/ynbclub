@@ -459,11 +459,12 @@
 
   $('.img-fluid').each(function(){
     getAnchorTag = this.parentElement
-    var url = getAnchorTag.href
-    var title = $(getAnchorTag).data('title').split("|").join(" ")
-    var price = $(getAnchorTag).data('price')
-    var image = $(getAnchorTag).data('image')
-    var button = '<div class="image-box image-box-desktop">'+
+    if ($(getAnchorTag).is('a')) {
+      var url = getAnchorTag.href
+      var title = $(getAnchorTag).data('title').split("|").join(" ")
+      var price = $(getAnchorTag).data('price')
+      var image = $(getAnchorTag).data('image')
+      var button = '<div class="image-box image-box-desktop">'+
         '<div class="image-box-icon"></div>'+
         '<div class="image-box-list">'+
           '<div class="image-box-heading"></div>'+
@@ -482,6 +483,7 @@
       $('.image-box-item').click(function() {
         window.open(this.attributes[1].value);
       });
+    }
   })
 
  $(".image-box-icon").mouseover(function() {
