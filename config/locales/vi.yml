@@ -101,6 +101,7 @@ vi:
     reject_status_label:      Từ chối trạng thái
     user_label:               Người dùng
     publish_status_label:     Xuất bản trạng thái
+    product_to_image:         Gán sản phẩm cho hình ảnh
     index:
       page_title:             Blogs
       blog_libray_label:      Thư viện Blog

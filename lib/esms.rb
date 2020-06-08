@@ -10,11 +10,15 @@ class Esms
     SMS_TYPE = 2
 
     def send_sms(to:, content:)
-      response = HTTParty.get(API_URL+"?Phone=#{to}&Content=#{content}&ApiKey=#{API_KEY}&SecretKey=#{SECRET_KEY}&SmsType=#{SMS_TYPE}&Brandname=#{BRAND_NAME}")
-      code_result = response["CodeResult"]
-      message = code_result == "100" ? "Message sent to #{to} successfully" : response["ErrorMessage"]
+      begin
+        response = HTTParty.get(API_URL+"?Phone=#{to}&Content=#{content}&ApiKey=#{API_KEY}&SecretKey=#{SECRET_KEY}&SmsType=#{SMS_TYPE}&Brandname=#{BRAND_NAME}")
+        code_result = response["CodeResult"]
+        message = code_result == "100" ? "Message sent to #{to} successfully" : response["ErrorMessage"]
 
-      [code_result, message]
+        [code_result, message]
+      rescue => ex
+        [500, ex.message]
+      end
     end
 
   end
