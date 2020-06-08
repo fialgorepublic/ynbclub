@@ -114,8 +114,9 @@ $(document).on('turbolinks:load', function () {
 
   function createFBShareLink(id, type, blog, fbAppId) {
     var link = window.location.hostname == 'localhost' ? 'http://localhost:3000' : `https://${window.location.hostname}`
+    var root_url = "<%= Rails.env.staging? ? 'https://ambassador-staging.saintlbeau.com' : 'https://ambassador.saintlbeau.com' %>"
     var url = `http://www.facebook.com/dialog/feed?app_id=${fbAppId}
-      &link=https://ambassador.saintlbeau.com/blog_detail?id=${id}
+      &link=${root_url}/blog_detail?id=${id}
       &picture=${encodeURIComponent(`${blog.file_name}`)}
       &name=${blog.title}
       &caption=SainLBeau blogs
