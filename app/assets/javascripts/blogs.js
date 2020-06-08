@@ -39,6 +39,10 @@ $(document).on('turbolinks:load', function () {
     fetchBlogs();
   })
 
+  $(document).on('click', '.create-blog-modal #remove-facebook-share-content', function(){
+    $('.facebook-share-content').remove()
+  })
+
   $(window).scroll(function() {
     if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
       $('#custom-topPage-btn').fadeIn(200);    // Fade in the arrow

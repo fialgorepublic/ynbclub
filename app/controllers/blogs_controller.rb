@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :delete_rejected, :reject]
   before_action :check_limit, only: [:new]
   before_action :set_videos, only: [:index]
+  before_action :set_blog_by_id, only: [:blog_like_unlike]
 
   include ApplicationHelper
   require 'open-uri'
@@ -149,21 +150,15 @@ class BlogsController < ApplicationController
   end
 
   def blog_like_unlike
-    if params[:value].to_s == "false"
-      user_like = Like.where(user_id: current_user.id, blog_id: params[:id]).first
-      if user_like.present?
-        user_like.destroy
-        Like.create(user_id: current_user.id, blog_id: params[:id])
-      else
-        Like.create(user_id: current_user.id, blog_id: params[:id])
-      end
+    like = @blog.likes.find_by(user_id: current_user.id)
+
+    if like.blank? && params[:liked] == 'false'
+      current_user.likes.create(blog_id: @blog.id)
     else
-      Like.where(user_id: current_user.id, blog_id: params[:id]).first.destroy
+      like&.destroy
     end
-    respond_to do |format|
-      format.html { redirect_to '/blogs/'+params[:id] }
-      format.json { head :no_content }
-    end
+
+    render json: { like_count: @blog.likes.length }
   end
 
   def change_featured_state
@@ -282,6 +277,10 @@ class BlogsController < ApplicationController
       else
         @blog = current_user.blogs.friendly.find(params[:id]) rescue ''
       end
+    end
+
+    def set_blog_by_id
+      @blog = Blog.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
