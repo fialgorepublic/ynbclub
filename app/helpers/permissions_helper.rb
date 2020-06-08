@@ -24,7 +24,8 @@ module PermissionsHelper
     when 'scrap_blogs'
       I18n.t('blogs.index.blog_libray_label')
     when 'blogs'
-      I18n.t('blogs.index.share_blog_label')
+      return I18n.t('blogs.index.share_blog_label') if action == 'share_blog'
+      I18n.t('blogs.index.list_blog_label')
     end
   end
 

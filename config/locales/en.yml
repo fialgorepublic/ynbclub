@@ -111,6 +111,7 @@ en:
       add_new_blog_post:      Add New Blog Post
       go_to_blogs:            Go To Blogs
       share_blog_label:       Share Blog
+      list_blog_label:        Blog List
       blogs_not_found:         No blogs found
     new:
       create_blog_title:      Create new blog post
