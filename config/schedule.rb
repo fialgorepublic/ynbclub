@@ -6,8 +6,8 @@ every 1.day, :at => '5:00 am' do
   rake "-s sitemap:refresh"
 end
 
-every 7.days, :at => '5:00 pm' do
-  rake "get_youtube_video:youtube_video", output: { error: 'task_reminder_error.log', standard: 'task_reminder.log' }
+every :day, at: '10pm' do
+  rake "get_youtube_video:youtube_video", output: { error: 'youtube_task_error.log', standard: 'youtube_task.log' }
 end
 
 every :sunday, at: '12pm' do
