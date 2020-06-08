@@ -69,6 +69,7 @@ class Blog < ApplicationRecord
   scope :search_by_title, -> (title) { where('lower(title) like ?', "%#{title&.downcase}%")  }
   scope :published, -> { where(is_published: true) }
   scope :valid_blogs, -> { where.not(user_id: nil) }
+  scope :latest, -> { order(created_at: :desc) }
 
   # Ex:- scope :active, -> {where(:active => true)}
   delegate :name, to: :category, prefix: true, allow_nil: true

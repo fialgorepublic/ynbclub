@@ -115,6 +115,7 @@ class BlogsController < ApplicationController
       if @blog.save
         @blog.attach_default_image unless @blog.avatar.attached?
         @blog.add_products(params[:product])
+        AddBlogViewsJob.perform_now(@blog.id)
         format.html { redirect_to @blog, notice: I18n.t('blogs.controller.create_blog_success') }
         format.json { render :show, status: :created, location: @blog }
       else
