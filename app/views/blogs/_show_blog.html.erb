@@ -527,52 +527,31 @@
     }
   }
 
-
-$('#myModal').on('shown.bs.modal', function (e) {
-  $("img.lazy").lazyload({
-    failure_limit : 1000,
-    event: "lazyload",
-    threshold : 1000,
-    effect: "fadeIn",
-    skip_invisible: false
-  })
   $('.img-fluid').each(function(){
-
-  if (this.parentElement.hasAttribute('href')) {
-    url = this.parentElement.href;
-  myVariable = ""
-$.ajax({
-    'async': false,
-    'type': "get",
-    'url': url,
-    'success': function (data) {
-        myVariable = data;
-    }
-});
-  var title = $(myVariable).filter('meta[name="twitter:title"]').attr("content");
-      var price = $(myVariable).filter('meta[property="og:price:amount"]').attr("content");
-      var image = $(myVariable).filter('meta[property="og:image"]').attr("content");
+    getAnchorTag = this.parentElement
+    var url = getAnchorTag.href
+    var title = $(getAnchorTag).data('title').split("|").join(" ")
+    var price = $(getAnchorTag).data('price')
+    var image = $(getAnchorTag).data('image')
     var button = '<div class="image-box image-box-desktop">'+
-          '<div class="image-box-icon"></div>'+
-          '<div class="image-box-list">'+
-            '<div class="image-box-heading"></div>'+
-          '<div class="image-box-item" onclick='+url+'>'+
-            '<img src='+image+' alt="Tinh" chất="" some="" by="" mi="" aha-bha-pha="" 30="" days="" miracle="" 50ml="" serum="">'+
-            '<div class="image-box-item-info">'+
-              '<div class="image-box-item-name">'+title+'</div>'+
-              '<div class="image-box-item-price">'+price+'</div>'+
-            '</div>'+
-            '<div class="image-box-item-icon"></div>'+
+        '<div class="image-box-icon"></div>'+
+        '<div class="image-box-list">'+
+          '<div class="image-box-heading"></div>'+
+        '<div class="image-box-item" onclick='+url+'>'+
+          '<img src='+image+' alt="Tinh" chất="" some="" by="" mi="" aha-bha-pha="" 30="" days="" miracle="" 50ml="" serum="">'+
+          '<div class="image-box-item-info">'+
+            '<div class="image-box-item-name">'+title+'</div>'+
+            '<div class="image-box-item-price">'+price+'</div>'+
           '</div>'+
-          '</div>'+
-        '</div>'
-        $(this).unwrap();
-        $(button).insertAfter(this)
-        $('.image-box-item').click(function() {
-          window.open(this.attributes[1].value);
-        });
-  }
-
+          '<div class="image-box-item-icon"></div>'+
+        '</div>'+
+        '</div>'+
+      '</div>'
+      $(this).unwrap();
+      $(button).insertAfter(this)
+      $('.image-box-item').click(function() {
+        window.open(this.attributes[1].value);
+      });
   })
 
  $(".image-box-icon").mouseover(function() {
@@ -584,6 +563,17 @@ $.ajax({
   $(".img-fluid, .image-box").mouseleave(function() {
     $('.image-box-list').css({"opacity": "0", "visibility": "hidden" , "transform": "scale(0) translateX(0) translateY(0)"});
   })
+
+
+$('#myModal').on('shown.bs.modal', function (e) {
+  $("img.lazy").lazyload({
+    failure_limit : 1000,
+    event: "lazyload",
+    threshold : 1000,
+    effect: "fadeIn",
+    skip_invisible: false
+  })
+
 })
 </script>
 
