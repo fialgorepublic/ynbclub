@@ -13,6 +13,11 @@
         <% if @blogs.count > 0 %>
 
           <div class="col-md-2 post-sorting  ">
+            <p>SORTING BY Date </p>
+            <%= select_tag :sort_by, options_for_select([['Default', -1] ,['Newest', 3], ['Oldest', 4]]), class: 'sorting-fltr', id: 'sort-blogs-list' %>
+          </div>
+
+          <div class="col-md-2 post-sorting  ">
             <p>SORTING</p>
             <select class="sorting-fltr" id="sort-blogs-list">
               <!-- <option class="fltr-dropdown" value="-1">Default</option> -->
@@ -43,7 +48,23 @@
 
         <% end %>
         <div class="affiliate_table_responsive">
-          <%= render partial: 'blogs/blogs_table', locals: { blogs: @blogs } %>
+          <table id="blogs-list" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th><%= t('blogs.date_label') %></th>
+                <th><%= t('blogs.title_label') %></th>
+                <th><%= t('blogs.user_label') %></th>
+                <th><%= t('blogs.category_label') %></th>
+                <th><%= t('blogs.reject_status_label') %></th>
+                <th><%= t('blogs.reject_action_label')%></th>
+                <th><%= t('blogs.publish_status_label') %></th>
+                <th><%= t('actions_lable') %></th>
+              </tr>
+            </thead>
+            <tbody id="blog-list-table">
+              <%= render partial: 'blogs/blogs_table', locals: { blogs: @blogs } %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

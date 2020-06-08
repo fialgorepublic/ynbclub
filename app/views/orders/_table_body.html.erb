@@ -1,5 +1,4 @@
-
-<td><%= order_date(order)%> </td>
+<td><%= format_created_at(order.created_at) %> </td>
 <td><%= order.order_name %></td>
 <td><%= order.financial_status&.titleize %></td>
 <td><%= order.store %></th>
@@ -31,6 +30,7 @@
     <%= link_to t('orders.index.table_headers.send_ghtk_label'), 'Javascript:void(0);', class: 'send_to_ghtk', id: order.id, data: { order_id: order.id } %>
   <% end %>
 </td>
+  
 <!-- <#% else %>
   <td><#%= order.financial_status %></td>
   <td><#%= order.fulfilment_status %></td>

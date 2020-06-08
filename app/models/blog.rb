@@ -53,6 +53,10 @@ class Blog < ApplicationRecord
         order(title: :asc, is_published: :desc )
       when 2, "2"
         order(title: :desc, is_published: :desc)
+      when 3, "3"
+        order(created_at: :desc)
+      when 4, "4"
+        order(created_at: :asc)
       when -1, "-1"
         order(is_published: :desc, updated_at: :desc)
     end

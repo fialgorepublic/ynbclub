@@ -316,7 +316,7 @@ position: relative;
   height: 80vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  .box-shadow-am.selected {
+  .box-shadow-am.selected-image {
     border:5px solid #ccc;
   }
   .box-shadow-am {
@@ -333,3 +333,17 @@ position: relative;
   text-align: center;
 }
 
+#image_products {
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .box-shadow-am.selected-product {
+    border:5px solid #ccc;
+  }
+  .box-shadow-am {
+    border:5px solid transparent
+  }
+  .box-shadow-am.sm-pd-am {
+    margin-top: 10px;
+  }
+}

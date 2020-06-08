@@ -95,11 +95,13 @@ en:
 
   blogs:
     title_label:              Title
+    date_label:               Date
     category_label:           Category
     reject_action_label:      Reject Blog
     reject_status_label:      Reject Status
     user_label:               User
     publish_status_label:     Publish Status
+    product_to_image:         Assign Product to Image
     index:
       page_title:             Blogs
       blog_libray_label:      Blog Library

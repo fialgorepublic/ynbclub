@@ -27,11 +27,11 @@
 
 <script type="text/javascript">
   function showActiveImages (obj){
-    $(obj).toggleClass('selected');
-    selectedImages = $(".selected")
+    $(obj).toggleClass('selected-image');
+    selectedImages = $(".selected-image")
     if (selectedImages.length > 1) {
       firstImage = selectedImages[0]
-      $(firstImage).removeClass("selected")
+      $(firstImage).removeClass("selected-image")
     }
     $("#image-save").prop("disabled", false);
   }

@@ -95,11 +95,13 @@ vi:
 
   blogs:
     title_label:              Chức vụ
+    date_label:               Ngày
     category_label:           thể loại
     reject_action_label:      Từ chối Blog
     reject_status_label:      Từ chối trạng thái
     user_label:               Người dùng
     publish_status_label:     Xuất bản trạng thái
+    product_to_image:         Gán sản phẩm cho hình ảnh
     index:
       page_title:             Blogs
       blog_libray_label:      Thư viện Blog

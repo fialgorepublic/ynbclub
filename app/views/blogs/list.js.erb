@@ -1,3 +1,3 @@
-$(".affiliate_table_responsive").html('<%= j render partial: 'blogs/blogs_table', locals: { blogs: @blogs } %>');
+$("#blog-list-table").html('<%= j render partial: 'blogs/blogs_table', locals: { blogs: @blogs } %>');
 $("#pagination-div").html('<%= will_paginate @blogs,renderer: BootstrapPagination::Rails %>');
 $('.loader').hide();
