@@ -118,6 +118,7 @@
                         <%#= form.text_area :description, class: 'quill_container' %>
                         <%= form.text_area :description, cols: "30", rows: "10", class: 'quill_container form-control' %>
                         <div id="counter">Total Words: 0 Minimum Required Words: 500</div>
+                        <div id="image_counter">Total images: <span id="image-length">0</span> Minimum Required Images: 3</div>
                         <%#= form.cktext_area :description, id: :blog_description, class: 'form-control editor', placeholder: "Enter your Text", required: true %>
                         <!-- <span id="display_count"><%#= t('blogs.new.total_words') %>: 0</span> -->
                         <!-- <span class="float-right"><%#= t('blogs.new.minimum_required_words') %>: 500 </span> -->
@@ -138,7 +139,7 @@
     </div>
     <div class="actions">
       <div class="blog-submt-btn">
-        <%= form.submit t('blogs.new.publish_btn_label'), class: 'btn btn-success set-border-radius', id: 'create-new-blog', style: 'margin-bottom: 30px;' %>
+        <%= form.submit t('blogs.new.publish_btn_label'), class: 'btn btn-success set-border-radius', id: 'publish-btn', style: 'margin-bottom: 30px;' %>
       </div>
     </div>
           </div>
@@ -525,13 +526,17 @@
         attach_product_with_image();
       }
     });
+
     var container = document.querySelector(options.container);
     quill.on('text-change', function() {
       var text = quill.getText();
+      var images = $(".ql-editor").find('.img-fluid').length
+
+      $('#image-length').text(images)
       if (options.unit === 'word') {
-        // Total Words: 5 Minimum Required Words: 500
         container.innerText = "Total Words: " + text.split(/\s+/).length + ' Minimum Required Words: 500';
-      } else {
+      }
+      else {
         container.innerText = text.length + ' characters';
       }
     });
@@ -543,465 +548,419 @@
       counter: {
       container: '#counter',
       unit: 'word'
-    },
+      },
       toolbar: toolbarOptions
     }
   };
 
 
-//This is the global config object
-Quilljs.setDefaults(defaults)
+  //This is the global config object
+  Quilljs.setDefaults(defaults)
 
-//       $(document).ready(function()
-// {   
-    a = $(".ql-editor")[0]
+  a = $(".ql-editor")[0]
 
-    $(a).contentEditable=true;
-    $('#blog_title, #unsplash-button-upload').bind('mousedown',function(e)
-    {
-      window.getSelection().removeAllRanges();
-    });
+  $(a).contentEditable=true;
+  $('#blog_title, #unsplash-button-upload').bind('mousedown',function(e)
+  {
+    window.getSelection().removeAllRanges();
+  });
 
-    $("#create-new-blog").click(function() {
-            var description = $(".ql-editor")[0].innerText.match(/\S+/g)
-            
-            if (description) {
-                if (description.length < 500) {
-                    alert("<%= t('blogs.new.descriptn_length_errr') %>")
-                    return false
-                }
-            }
-            else {
-                alert("<%= t('blogs.new.blog_description_empty') %>");
-                return false;
-            }
-    })
-// });
-    $('#create-or-edit-category').click(function() {
-        $('#create-or-edit-category-modal').modal('show');
-        $('#update-category-name').attr('disabled', true);
-    });
+  $("#publish-btn").click(function() {
+    var description = $(".ql-editor")[0].innerText.match(/\S+/g)
+    var images = $(".ql-editor").find('.img-fluid')
 
-     $('#cancle-category').click(function(e){
+    if (images.length < 3) {
+      alert("<%= t('blogs.new.images_count_error') %>")
+      return false
+    }
+
+    if (description) {
+      if (description.length < 500) {
+        alert("<%= t('blogs.new.descriptn_length_errr') %>")
+        return false
+      }
+    }
+    else {
+      alert("<%= t('blogs.new.blog_description_empty') %>");
+      return false;
+    }
+  })
+
+  $('#create-or-edit-category').click(function() {
+    $('#create-or-edit-category-modal').modal('show');
+    $('#update-category-name').attr('disabled', true);
+  });
+
+  $('#cancle-category').click(function(e){
     e.preventDefault();
     $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
       $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-      // $('#myModal').modal('show');
       $('body').addClass('modal-open');
       $('body').removeAttr('style');
     });
+  });
+
+  $('#create-or-edit-category').click(function() {
+    $('#create-or-edit-category-modal').modal('show');
+    $('#update-category-name').attr('disabled', true);
+  });
+
+  $('.cancel-category').click(function(e){
+    e.preventDefault();
+    $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
     });
-    $('#create-or-edit-category').click(function() {
-        $('#create-or-edit-category-modal').modal('show');
-        $('#update-category-name').attr('disabled', true);
-    });
+  });
 
-    $('.cancel-category').click(function(e){
-      e.preventDefault();
-      $('#create-or-edit-category-modal').modal('hide').on('hidden.bs.modal', function (e) {
-        $(this).off('hidden.bs.modal');
-        $('body').addClass('modal-open');
-        $('body').removeAttr('style');
-      });
-    });
-
-    $("#create-new-category").click(function(){
-      categoryName = $("#category_name").val()
-      if (categoryName == "") {
-        $("#new-category").show();
-        event.preventDefault();
-      }else {
-        $.ajax({
-            url: 'create_or_update_cateogry',
-            type: 'get',
-            contentType: "application/json",
-            data: {name: categoryName},
-            success: function (data) {
-            },
-            error: function (data) {
-                alert('Error');
-            }
-        });
-      }
-    });
-
-    $("#update-blog-category").click(function(){
-      categoryId = $("#category_id").val()
-      categoryName = $("#update-category-name").val();
-      if (categoryId == "") {
-        $("#edit-category").show();
-        event.preventDefault();
-      } else if (categoryName == "") {
-        $("#edit-category-name").show();
-        event.preventDefault();
-      }
-      else {
-        $.ajax({
-            url: 'create_or_update_cateogry',
-            type: 'get',
-            contentType: "application/json",
-            data: {id: categoryId, name: categoryName},
-            success: function (data) {
-            },
-            error: function (data) {
-                alert('Error');
-            }
-        });
-      }
-    });
-
-    $("#search-image-btn").click(function(){
-      $('.loader').show()
-    })
-
-    $('#search-form').submit(function(){
-        if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }
-        searchText = $('#product-title').val();
-        if(searchText == '') { return false; }
-        if(searchText.length < 3) { $('#search-form').append('<p>Please enter three or more letters</p>'); return false; }
-        $("p").hide('slow');
-    })
-
-    $('#clear-btn-search').click(function(e){
-        if ($('#product-title').val() == '') { return false; };
-        $('#product-title').data('type', 'clear');
-    });
-
-    $('#search-btn').click(function(e){
-        $('#product-title').data('type', 'search');
-    });
-
-    $('#category_id').change(function(){
-        $('#update-category-name').attr('disabled', false);
-        $('#update-category-name').val($('#category_id option:selected').text());
-    });
-
-    $(":file").filestyle({input: false});
-
-    // $('textarea.editor').ckeditor();
-
-    var menu = new BootstrapMenu('#demo1Box', {
-        actions: [{
-            name: 'Upload image',
-            onClick: function() {
-//                toastr.info("'Upload image");
-                $('#uploadVideo').modal('show')
-            }
+  $("#create-new-category").click(function(){
+    categoryName = $("#category_name").val()
+    if (categoryName == "") {
+      $("#new-category").show();
+      event.preventDefault();
+    }
+    else {
+      $.ajax({
+        url: 'create_or_update_cateogry',
+        type: 'get',
+        contentType: "application/json",
+        data: {name: categoryName},
+        success: function (data) {
         },
-
-            {
-                name: 'Add video from youtube',
-                onClick: function() {
-                    $('#uploadVideo').modal('show')
-                }
-            }]
-    });
-
-    $(document).on('turbolinks:load', function(){
-
-        selected_products_ids = [];
-
-        // $('#blog-form').submit(validateDescriptionLength)
-        // $('#blog-form').submit(validateDefaultImage)
-        // var v = CKEDITOR.instances.blog_description
-        // words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
-        // if (words) { $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`); }
-        // v.on('key', function(event) {
-        //     words = CKEDITOR.instances.blog_description.getData().match(/\S+/g)
-        //     if (words) {
-        //         $('#display_count').text(`<%= t('blogs.new.total_words') %>: ${words.length}`);
-        //         if(words.length >= 659){
-        //             $('#max_limit').text('<%= t('blogs.new.limit_reach_label') %>');
-        //             $('#max_limit').css('color', 'red');
-        //         }
-        //         else{
-        //             $('#max_limit').text(`<%= t('blogs.new.maximum_words_allowed') %>: 700`);
-        //             $('#max_limit').css('color', 'black');
-        //         }
-        //     }
-        // });
-
-        // function validateDescriptionLength(){
-        //   debugger
-        //     var description = $(".ql-editor")[0].innerText.match(/\S+/g)
-        //     if ($('#blog_category_id').val() == '' ) { alert("Select Category"); return false; }
-        //     if ($('#blog_title').val() == '' ) { alert("Add title"); return false; }
-        //     if (description) {
-        //         if (description.length < 500) {
-        //             alert("<%= t('blogs.new.descriptn_length_errr') %>")
-        //             return false
-        //         }
-        //     }
-        //     else {
-        //         alert("<%= t('blogs.new.blog_description_empty') %>");
-        //         return false;
-        //     }
-
-        // }
-
-        function validateDefaultImage(){
-            file = $('#fileupload').val();
-            if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
-                toastr.error('<%= t('blogs.new.default_image_error') %>');
-                return false;
-            }
+        error: function (data) {
+          alert('Error');
         }
+      });
+    }
+  });
+
+  $("#update-blog-category").click(function(){
+    categoryId = $("#category_id").val()
+    categoryName = $("#update-category-name").val();
+    if (categoryId == "") {
+      $("#edit-category").show();
+      event.preventDefault();
+    } else if (categoryName == "") {
+      $("#edit-category-name").show();
+      event.preventDefault();
+    }
+    else {
+      $.ajax({
+        url: 'create_or_update_cateogry',
+        type: 'get',
+        contentType: "application/json",
+        data: {id: categoryId, name: categoryName},
+        success: function (data) {
+        },
+        error: function (data) {
+            alert('Error');
+        }
+      });
+    }
+  });
+
+  $("#search-image-btn").click(function(){
+    $('.loader').show()
+  })
+
+  $('#search-form').submit(function(){
+    if($('#product-title').data('type') != 'search') { $('#product-title').val(''); return true; }
+    searchText = $('#product-title').val();
+    if(searchText == '') { return false; }
+    if(searchText.length < 3) { $('#search-form').append('<p>Please enter three or more letters</p>'); return false; }
+    $("p").hide('slow');
+  })
+
+  $('#clear-btn-search').click(function(e){
+    if ($('#product-title').val() == '') { return false; };
+    $('#product-title').data('type', 'clear');
+  });
+
+  $('#search-btn').click(function(e){
+    $('#product-title').data('type', 'search');
+  });
+
+  $('#category_id').change(function(){
+    $('#update-category-name').attr('disabled', false);
+    $('#update-category-name').val($('#category_id option:selected').text());
+  });
+
+  $(":file").filestyle({input: false});
+
+  var menu = new BootstrapMenu('#demo1Box', {
+    actions: [{
+      name: 'Upload image',
+      onClick: function() {
+        $('#uploadVideo').modal('show')
+      }
+    },
+    {
+      name: 'Add video from youtube',
+      onClick: function() {
+        $('#uploadVideo').modal('show')
+      }
+    }]
+  });
+
+  $(document).on('turbolinks:load', function(){
+    selected_products_ids = [];
+    function validateDefaultImage(){
+      file = $('#fileupload').val();
+      if(file == '' && $('#file-name').text() == 'default-blog-image.jpg') {
+        toastr.error('<%= t('blogs.new.default_image_error') %>');
+        return false;
+      }
+    }
+  });
+
+  $("#fileupload").change(function () {
+    readURL(this);
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      var name = input.files[0].name
+      var fileType = input.files[0].type
+      $( "input[name='avatar']" ).remove();
+      var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
+      if ($.inArray(fileType, ValidImageTypes) < 0) {
+        return alert("File type not allowed.")
+      }
+
+      reader.onload = function (e) {
+        var st = e.target.result;
+        gettingDefaultImage = $(".default-image")[0].children[0]
+        $(gettingDefaultImage).attr('src', e.target.result)
+      };
+      gettingDefaultImageText = $(".default-image")[0].children[1]
+      $(gettingDefaultImageText).text(name)
+      $("#unsplash-button-upload").find('span').remove();
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  function get_products(){
+    $('#assignProduct').modal('show');
+    $.ajax({
+      url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
+      type: 'get',
+      dataType: 'html',
+      processData: false,
+      success: function (data) {
+        $('#products').html(data);
+        $(".selected").each(function(index, v) {
+          id = $(v).attr('class').split(' ')[0];
+          if(selected_products_ids.indexOf(id) === -1)
+            selected_products_ids.push(id);
+        });
+      },
+      error: function (data) {
+        alert('Error');
+      }
     });
+  }
 
-    $("#fileupload").change(function () {
-        readURL(this);
+  function attach_product_with_image(){
+    $('#get_products_for_image').modal('show');
+    $('.loader').show();
+    $.ajax({
+      url: '/get_products_from_shopify?image=true',
+      type: 'get',
+      dataType: 'html',
+      processData: false,
+      success: function (data) {
+        $('#image_products').html(data);
+        $('.loader').hide();
+      },
+      error: function (data) {
+        alert('Error');
+      }
     });
+  }  
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          var name = input.files[0].name
-          var fileType = input.files[0].type
-          $( "input[name='avatar']" ).remove();
-          var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+  $("#search-form").submit(function(){
+    $('#selected_products_ids').val(selected_products_ids.join(','));
+    return true;
+  });
 
-          if ($.inArray(fileType, ValidImageTypes) < 0) {
-              return alert("File type not allowed.")
-          }
+  $('.product-modal').click(function(e){
+    e.preventDefault();
+    $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#new-blog').modal('show');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+  });
 
-          reader.onload = function (e) {
-            var st = e.target.result;
-            gettingDefaultImage = $(".default-image")[0].children[0]
-            $(gettingDefaultImage).attr('src', e.target.result)
-          };
-          gettingDefaultImageText = $(".default-image")[0].children[1]
+  $('.image-product-modal').click(function(e){
+    e.preventDefault();
+    $('#get_products_for_image').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#new-blog').modal('show');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+  });
+
+  $('.image-modal').click(function(e){
+    e.preventDefault();
+    $('#unsplashImage').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#new-blog').modal('show');
+      $("#images").html("")
+      $("#product-title").val("")
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+  });
+
+  function add_images() {
+    var selectedImage = $(".selected-image")
+    if (selectedImage.length > 1) {
+      event.preventDefault();
+      alert('please select one image')
+    }
+    else {
+      url = selectedImage[0].children[0].children[0].children[0].src
+      name = selectedImage[0].children[0].children[1].innerText
+      $('<input>').attr('type','hidden').attr('name','avatar').attr('value',url).appendTo('#blog-form');
+      if ($("#unsplash-button-upload").children().length == 0) {
+        $("#unsplash-button-upload").append("  <span class='badge'>1</span>");
+      }
+
+      var file;
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.onload = function(e) {
+        if (this.status == 200) {
+          file = new File([this.response], name);
+          readImageURL(file)
+        }
+      };
+
+      xhr.send();
+      function readImageURL(input) {
+        var reader = new FileReader();
+        var name = input.name.substr(0,35)
+        var fileType = "image/png"
+        var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+        if ($.inArray(fileType, ValidImageTypes) < 0) {
+          return alert("File type not allowed.")
+        }
+
+        reader.onload = function (e) {
+          var st = e.target.result;
+          gettingDefaultImage = $(".default-image")[0].children[0]
+          $(gettingDefaultImage).attr('src',"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=")
+          $("#fileupload").val('');
+        };
+
+        gettingDefaultImageText = $(".default-image")[0].children[1]
+        if (name == "") {
+          $(gettingDefaultImageText).text("image.png")
+        }
+        else {
           $(gettingDefaultImageText).text(name)
-          $("#unsplash-button-upload").find('span').remove();
-          reader.readAsDataURL(input.files[0]);
         }
-    }
-    function get_products(){
-        $('#assignProduct').modal('show');
-        $.ajax({
-            url: '/get_products_from_shopify?id=<%= @blog.present? ? @blog.id : '' %>',
-            type: 'get',
-            dataType: 'html',
-            processData: false,
-            success: function (data) {
-                $('#products').html(data);
-              $(".selected").each(function(index, v) {
-                id = $(v).attr('class').split(' ')[0];
-                if(selected_products_ids.indexOf(id) === -1)
-                  selected_products_ids.push(id);
-              });
-            },
-            error: function (data) {
-                alert('Error');
-                //    window.location.reload();
-            }
-        });
-    }
-
-        function attach_product_with_image(){
-        $('#get_products_for_image').modal('show');
-        $('.loader').show();
-        $.ajax({
-            url: '/get_products_from_shopify?image=true',
-            type: 'get',
-            dataType: 'html',
-            processData: false,
-            success: function (data) {
-                $('#image_products').html(data);
-                $('.loader').hide();
-            },
-            error: function (data) {
-                alert('Error');
-                //    window.location.reload();
-            }
-        });
-    }  
-
-    $("#search-form").submit(function(){
-      // $(".selected").each(function(index, v) {
-      //   selected_products_ids.push($(v).attr('class').split(' ')[0]);
-      // });
-      $('#selected_products_ids').val(selected_products_ids.join(','));
-      return true;
-    });
-
-    $('.product-modal').click(function(e){
-      e.preventDefault();
-      $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
-        $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-        $('#new-blog').modal('show');
-        $('body').addClass('modal-open');
-        $('body').removeAttr('style');
-      });
-    });
-    $('.image-product-modal').click(function(e){
-      e.preventDefault();
-      $('#get_products_for_image').modal('hide').on('hidden.bs.modal', function (e) {
-        $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-        $('#new-blog').modal('show');
-        $('body').addClass('modal-open');
-        $('body').removeAttr('style');
-      });
-    });
-
-    $('.image-modal').click(function(e){
-      e.preventDefault();
+        if ($('label[for="fileupload"]').children()[1] != undefined) {
+          $('label[for="fileupload"]').children()[1].remove()
+        }
+        reader.readAsDataURL(input);
+      }
+    
       $('#unsplashImage').modal('hide').on('hidden.bs.modal', function (e) {
         $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
         $('#new-blog').modal('show');
-        $("#images").html("")
-        $("#product-title").val("")
         $('body').addClass('modal-open');
         $('body').removeAttr('style');
       });
-    });
-
-    function add_images() {
-      var selectedImage = $(".selected-image")
-      if (selectedImage.length > 1) {
-        event.preventDefault();
-        alert('please select one image')
-      }
-      else {
-        url = selectedImage[0].children[0].children[0].children[0].src
-        name = selectedImage[0].children[0].children[1].innerText
-        $('<input>').attr('type','hidden').attr('name','avatar').attr('value',url).appendTo('#blog-form');
-        if ($("#unsplash-button-upload").children().length == 0) {
-          $("#unsplash-button-upload").append("  <span class='badge'>1</span>");
-        }
-
-        var file;
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.onload = function(e) {
-          if (this.status == 200) {
-            file = new File([this.response], name);
-            readImageURL(file)
-          }
-        };
-        xhr.send();
-        function readImageURL(input) {
-          var reader = new FileReader();
-          var name = input.name.substr(0,35)
-          var fileType = "image/png"
-          var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
-          if ($.inArray(fileType, ValidImageTypes) < 0) {
-            return alert("File type not allowed.")
-          }
-
-          reader.onload = function (e) {
-            var st = e.target.result;
-            gettingDefaultImage = $(".default-image")[0].children[0]
-            $(gettingDefaultImage).attr('src',"data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=")
-            $("#fileupload").val('');
-          };
-          gettingDefaultImageText = $(".default-image")[0].children[1]
-          if (name == "") {
-            $(gettingDefaultImageText).text("image.png")
-          }
-          else {
-            $(gettingDefaultImageText).text(name)
-          }
-          if ($('label[for="fileupload"]').children()[1] != undefined) {
-            $('label[for="fileupload"]').children()[1].remove()
-          }
-
-
-          reader.readAsDataURL(input);
-        }
-      
-        $('#unsplashImage').modal('hide').on('hidden.bs.modal', function (e) {
-          $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-          $('#new-blog').modal('show');
-          $('body').addClass('modal-open');
-          $('body').removeAttr('style');
-        });
-      }
     }
+  }
 
-    function add_products(){
-
-        var ids = [];
-        $(".selected").each(function(index, v) {
-            console.log($(v).attr('class').split(' ')[0]);
-            ids.push($(v).attr('class').split(' ')[0]);
-        });
-        if (ids != ""){
-            $.ajax({
-                url: '/get_selected_products?ids='+ids,
-                type: 'get',
-                dataType: 'html',
-                processData: false,
-                success: function (data) {
-                    $('#selectedProducts').html(data);
-                     $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
-                      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-                      $('#new-blog').modal('show');
-                      $('body').addClass('modal-open');
-                      $('body').removeAttr('style');
-                    });
-                },
-                error: function (data) {
-                    alert('Error');
-                    //    window.location.reload();
-                }
-            });
+  function add_products(){
+    var ids = [];
+    $(".selected").each(function(index, v) {
+      console.log($(v).attr('class').split(' ')[0]);
+      ids.push($(v).attr('class').split(' ')[0]);
+    });
+    if (ids != ""){
+      $.ajax({
+        url: '/get_selected_products?ids='+ids,
+        type: 'get',
+        dataType: 'html',
+        processData: false,
+        success: function (data) {
+          $('#selectedProducts').html(data);
+           $('#assignProduct').modal('hide').on('hidden.bs.modal', function (e) {
+            $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+            $('#new-blog').modal('show');
+            $('body').addClass('modal-open');
+            $('body').removeAttr('style');
+          });
+        },
+        error: function (data) {
+          alert('Error');
         }
-        else {
-          $('#content').trigger('click');
-
-        }
+      });
     }
+    else {
+      $('#content').trigger('click');
+    }
+  }
 
-      function add_products_for_image() {
-        var selectedImage = $(".selected-product")
-        get_product_url = selectedImage[0].children[3].children[0].innerText
-        var url = "https://www.saintlbeau.com/products/"+get_product_url
-        var image = selectedImage[0].children[0].children[0].src
-        var title = selectedImage[0].children[1].children[0].textContent.replace(/\"/g, "").split(' ').join("|")
-        var price = selectedImage[0].children[2].children[0].innerText
-        var getImage = document.getElementById(this.id)
-        $(getImage).wrap(`<a href=${url} data-price=${price} data-image=${image} data-title=${title} />`);
+  function add_products_for_image() {
+    var selectedImage = $(".selected-product")
+    get_product_url = selectedImage[0].children[3].children[0].innerText
+    var url = "https://www.saintlbeau.com/products/"+get_product_url
+    var image = selectedImage[0].children[0].children[0].src
+    var title = selectedImage[0].children[1].children[0].textContent.replace(/\"/g, "").split(' ').join("|")
+    var price = selectedImage[0].children[2].children[0].innerText
+    var getImage = document.getElementById(this.id)
+    $(getImage).wrap(`<a href=${url} data-price=${price} data-image=${image} data-title=${title} />`);
 
-        $('#get_products_for_image').modal('hide').on('hidden.bs.modal', function (e) {
-          $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
-          $('#new-blog').modal('show');
-          $('#image_products').html('');
-          $('body').addClass('modal-open');
-          $('body').removeAttr('style');
-        });
-      }
-
-    $.fn.extend({
-        popoverClosable: function (options) {
-            var defaults = {
-                template:
-                    '<div class="popover">\
-    <div class="arrow"></div>\
-    <div class="popover-header">\
-    <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>\
-    <h3 class="popover-title"></h3>\
-    </div>\
-    <div class="popover-content"></div>\
-    </div>'
-            };
-            options = $.extend({}, defaults, options);
-            var $popover_togglers = this;
-            $popover_togglers.popover(options);
-            $popover_togglers.on('click', function (e) {
-                e.preventDefault();
-                $popover_togglers.not(this).popover('hide');
-            });
-            $('html').on('click', '[data-dismiss="popover"]', function (e) {
-                $popover_togglers.popover('hide');
-            });
-        }
+    $('#get_products_for_image').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#new-blog').modal('show');
+      $('#image_products').html('');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
     });
+  }
 
-    $(function () {
-        $('[data-toggle="popover"]').popoverClosable();
-    });
+  $.fn.extend({
+    popoverClosable: function (options) {
+      var defaults = {
+        template:
+        '<div class="popover">\
+        <div class="arrow"></div>\
+        <div class="popover-header">\
+        <button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>\
+        <h3 class="popover-title"></h3>\
+        </div>\
+        <div class="popover-content"></div>\
+        </div>'
+      };
+      options = $.extend({}, defaults, options);
+      var $popover_togglers = this;
+      $popover_togglers.popover(options);
+      $popover_togglers.on('click', function (e) {
+        e.preventDefault();
+        $popover_togglers.not(this).popover('hide');
+      });
+      $('html').on('click', '[data-dismiss="popover"]', function (e) {
+        $popover_togglers.popover('hide');
+      });
+    }
+  });
 
-    window.onclick = function(event) {
+  $(function () {
+    $('[data-toggle="popover"]').popoverClosable();
+  });
+
+  window.onclick = function(event) {
     if (event.target.id == "new-blog") {
       event.preventDefault();
       alert('Please Save Your Blog First')

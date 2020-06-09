@@ -124,6 +124,7 @@ en:
       assign_products:        Assign Product
       blog_description_empty: Please add Blog description
       descriptn_length_errr:  Description must be atleast 500 words long.
+      images_count_error:     Atleast three images required to save blog
       default_image_error:    please change the default image before publishing.
       publish_btn_label:      Publish
       description:            Enter Text
