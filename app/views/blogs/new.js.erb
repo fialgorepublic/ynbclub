@@ -1,0 +1,8 @@
+<% if @blog.nil? %>
+  toastr.error('<%= t('blogs.controller.create_limit_alert')%>')
+<% else %>
+  $("#new-blog").modal('show')
+  $('#create-blog').html('<%= j render partial: "new_form", locals: { blogs: @blog } %>');
+  history.pushState({}, null, window.location.origin + "/blogs/new")
+  $('.loader').hide()
+<% end %>
