@@ -44,6 +44,7 @@ class Blog < ApplicationRecord
   scope :published_and_drafted_blogs, -> (user_id) { published.or(where(is_published: false, user_id: user_id))}
 
   scope :all_users_blogs, -> { where.not(user_id: nil).order(is_published: :asc) }
+  scope :today, -> {where(created_at: Date.today.midnight .. Date.today.end_of_day)}
 
   scope :sorted_by, -> (sort_type) {
     case sort_type

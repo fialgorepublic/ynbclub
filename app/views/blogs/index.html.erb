@@ -87,12 +87,8 @@
               <% end %>
 
               <div class="col-md-3 add_blog_btn pull-right">
-                <%#= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path, class: "btn btn-primary new_blog_btn" if signed_in? %>
-                <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", '', class: "btn btn-primary new_blog_btn", id: "create-new-blog", data: { toggle: 'modal', target: '#new-blog' }, onclick: "create_blog()" if signed_in? %>
-                <!-- <a class="btn btn-primary new_blog_btn" data-toggle="modal" href="#myModal">+ Start New Conversation</a> -->
+                <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path(new: 'new-blog'), class: "btn btn-primary new_blog_btn", id: "create-new-blog", remote: true if signed_in? %>
               </div>
-
-              <!-- <h2> <i class="fa fa-file"></i> Last Posts </h2> -->
             </div>
             <%= hidden_field_tag :page, @blogs.current_page  %>
             <%= f.submit 'search', class: 'hidden', id: 'search-form-button' %>
@@ -236,7 +232,7 @@
 
   $(document).ready(function () {
     if (window.location.href.includes("new")) {
-      $("#create-new-blog").trigger("click")
+      document.getElementById('create-new-blog').click();
     }
     else if (window.location.href.includes("blog_id")) {
       id = window.location.href.split("=")[1]
@@ -311,23 +307,9 @@
     });
   };
 
-
-  function create_blog(){
-    var id = 0
-    $.ajax({
-      url: '/blogs/new',
-      type: 'get',
-      data: {id: id},
-      success: function(data) {
-        $('#create-blog').html(data);
-        history.pushState({}, null, window.location.href + "/new")
-      },
-      error: function(data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
-    })
-  }
+  $("#create-new-blog").click(function(){
+    $('.loader').show()
+  })
 
   function edit_new_blog(id){
     $.ajax({
