@@ -456,8 +456,10 @@
       }
     }
   }
-
-  $('.img-fluid').each(function(){
+  
+  blogID = 'dynamic-blog-<%= @blog.id%>'
+  blogImages = $("."+blogID).children().find('.img-fluid')
+  $(blogImages).each(function(){
     getAnchorTag = this.parentElement
     if ($(getAnchorTag).is('a')) {
       var url = getAnchorTag.href+"?referrer="+"<%= @blog.user.referral %>"
