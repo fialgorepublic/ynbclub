@@ -460,7 +460,7 @@
   $('.img-fluid').each(function(){
     getAnchorTag = this.parentElement
     if ($(getAnchorTag).is('a')) {
-      var url = getAnchorTag.href
+      var url = getAnchorTag.href+"?referrer="+"<%= @blog.user.referral %>"
       var title = $(getAnchorTag).data('title').split("|").join(" ")
       var price = $(getAnchorTag).data('price')
       var image = $(getAnchorTag).data('image')
