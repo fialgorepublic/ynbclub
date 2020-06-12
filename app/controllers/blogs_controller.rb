@@ -2,7 +2,6 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, except: [:blog_detail, :index, :show, :share_blog, :feed, :show_blog]
   before_action :load_user_blog, only: [:edit, :update, :change_buyer_show_statusgs, :buyer_show]
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :delete_rejected, :reject]
-  before_action :check_limit, only: [:new]
   before_action :set_videos, only: [:index]
   before_action :set_blog_by_id, only: [:blog_like_unlike]
 
@@ -72,15 +71,17 @@ class BlogsController < ApplicationController
 
   # GET /blogs/new
   def new
-    @blog = Blog.new
-    @blog.attach_default_image
-    @category = Category.new
-    if params[:id].present?
-    render partial: 'blogs/new_form'
-    else
-      redirect_to blogs_path(new: '')
+    if current_user.is_admin? || !current_user.exceed_blogs_limit?
+      @blog = Blog.new
+      @blog.attach_default_image
+      @category = Category.new
     end
-  end
+
+    respond_to do |format|
+      format.js
+      format.html { redirect_to blogs_path(new: '') }
+    end
+   end
 
   # GET /blogs/1/edit
   def edit
@@ -295,14 +296,6 @@ class BlogsController < ApplicationController
 
     def category_params
       params.require(:category).permit(:id, :name)
-    end
-
-    def check_limit
-      unless current_user.is_admin?
-        if current_user.exceed_blogs_limit?
-          return redirect_to blogs_path, alert: t('blogs.controller.create_limit_alert')
-        end
-      end
     end
 
     def set_videos

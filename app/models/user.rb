@@ -190,8 +190,8 @@ class User < ApplicationRecord
     end
   end
 
-  def exceed_blogs_limit? ## Limit set to 10
-    self.blogs.where('CAST(created_at AS DATE) = ?', DateTime.now.strftime("%Y-%m-%d")).count >= 10
+  def exceed_blogs_limit?
+    blogs.today.count >= Blog::PER_DAY_CREATE_LIMIT
   end
 
   def is_admin?

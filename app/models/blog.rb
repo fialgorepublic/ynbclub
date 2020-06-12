@@ -32,6 +32,8 @@ class Blog < ApplicationRecord
     }
   end
 
+  PER_DAY_CREATE_LIMIT = 5
+
   belongs_to :category, optional: true
   belongs_to :user,     optional: true
   has_many :comments
@@ -44,6 +46,7 @@ class Blog < ApplicationRecord
   scope :published_and_drafted_blogs, -> (user_id) { published.or(where(is_published: false, user_id: user_id))}
 
   scope :all_users_blogs, -> { where.not(user_id: nil).order(is_published: :asc) }
+  scope :today, -> { where(created_at: Date.today.beginning_of_day..Date.today.end_of_day) }
 
   scope :sorted_by, -> (sort_type) {
     case sort_type

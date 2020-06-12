@@ -154,7 +154,7 @@ en:
       create_blog_success:    Blog was successfully created.
       updated_blog:           Blog was successfully updated.
       destroy_blog_success:   Blog was successfully destroyed.
-      create_limit_alert:     You have exceeded your limit to publish blogs for today.
+      create_limit_alert:     You have exceeded your limit to create blogs for today.
 
   orders:
     index:
