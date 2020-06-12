@@ -124,6 +124,7 @@ vi:
       assign_products:         Chỉ định sản phẩm
       blog_description_empty:  Vui lòng điền thêm mô tả Blog
       descriptn_length_errr:   Phần mô tả phải có độ dài ít nhất 500 từ
+      images_count_error:     Có ba hình ảnh cần thiết để lưu blog
       default_image_error:     Vui lòng thay đổi hình ảnh mặc định trước khi đăng bài
       publish_btn_label:       Đăng bài
       description:             Nhập văn bản
