@@ -91,8 +91,6 @@ class User < ApplicationRecord
   after_commit :generate_coupon_code, on: :create
   before_save :set_total_income
 
-  PER_DAY_CREATE_LIMIT = 5
-
   BUYER_PERMISSIONS = [
                         { action_names: ['update_email', 'update_password', 'points', 'exchange_coins', 'generate_discount_code', 'add_user_info'], controller_name: 'users' },
                         { action_names: ['index'], controller_name: 'referral_sales' },
@@ -192,8 +190,8 @@ class User < ApplicationRecord
     end
   end
 
-  def exceed_blogs_limit? ## Limit set to 5
-    self.blogs.today.count >= PER_DAY_CREATE_LIMIT
+  def exceed_blogs_limit?
+    blogs.today.count >= Blog::PER_DAY_CREATE_LIMIT
   end
 
   def is_admin?

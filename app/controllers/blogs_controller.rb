@@ -71,25 +71,17 @@ class BlogsController < ApplicationController
 
   # GET /blogs/new
   def new
-    if params[:new].present?
-      unless current_user.is_admin?
-        if current_user.exceed_blogs_limit?
-          @blog = nil
-        else
-          @blog = Blog.new
-          @blog.attach_default_image
-          @category = Category.new
-        end
-      end
-    else
-      redirect_to blogs_path(new: '')
+    if current_user.is_admin? || !current_user.exceed_blogs_limit?
+      @blog = Blog.new
+      @blog.attach_default_image
+      @category = Category.new
     end
 
     respond_to do |format|
       format.js
-      format.html
+      format.html { redirect_to blogs_path(new: '') }
     end
-  end
+   end
 
   # GET /blogs/1/edit
   def edit
