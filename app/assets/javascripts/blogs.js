@@ -178,6 +178,7 @@ $(document).on('turbolinks:load', function () {
 });
 
   function blog_show(id){
+    $("#myModal").addClass('dynamic-blog-'+id)
     $.ajax({
       url: '/show_blog/'+id,
       type: 'get',
@@ -186,6 +187,44 @@ $(document).on('turbolinks:load', function () {
         $('.create-blog-modal').html(data);
         blogText = $("#blog-slug").text()
         window.history.replaceState({},'','/blogs/'+ blogText);
+        blogID = `dynamic-blog-${id}`
+        blogImages = $("."+blogID).children().find('.img-fluid')
+        $(blogImages).each(function(){
+          getAnchorTag = this.parentElement
+          if ($(getAnchorTag).is('a')) {
+            var url = getAnchorTag.href+"?referrer="
+            var title = $(getAnchorTag).data('title').split("|").join(" ")
+            var price = $(getAnchorTag).data('price')
+            var image = $(getAnchorTag).data('image')
+            var button = '<div class="image-box image-box-desktop">'+
+              '<div class="image-box-icon"></div>'+
+              '<div class="image-box-list">'+
+                '<div class="image-box-heading"></div>'+
+              '<div class="image-box-item" onclick='+url+'>'+
+                '<img src='+image+' alt="Tinh" chất="" some="" by="" mi="" aha-bha-pha="" 30="" days="" miracle="" 50ml="" serum="">'+
+                '<div class="image-box-item-info">'+
+                  '<div class="image-box-item-name">'+title+'</div>'+
+                  '<div class="image-box-item-price">'+price+'</div>'+
+                '</div>'+
+                '<div class="image-box-item-icon"></div>'+
+              '</div>'+
+              '</div>'+
+            '</div>'
+            $(this).unwrap();
+            $(button).insertAfter(this)
+            $('.image-box-item').click(function() {
+              window.open(this.attributes[1].value);
+            });
+          }
+        })
+        $(".image-box-icon").mouseover(function() {
+          next_product = this.nextElementSibling
+          $(next_product).css({"opacity": "1", "visibility": "unset" , "transform": "none" });
+        })
+
+        $(".img-fluid, .image-box").mouseleave(function() {
+          $('.image-box-list').css({"opacity": "0", "visibility": "hidden" , "transform": "scale(0) translateX(0) translateY(0)"});
+        })
       },
       error: function(data) {
         $('.loader').hide()
