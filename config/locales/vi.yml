@@ -111,6 +111,7 @@ vi:
       add_new_blog_post:      Add New Blog Post
       go_to_blogs:            Go To Blogs
       share_blog_label:       chia sẻ_blog_label
+      list_blog_label:        Danh sách blog
       blogs_not_found:         Không tỉm được bài đăng
     new:
       create_blog_title:       Tạo bài blog mới

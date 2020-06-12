@@ -118,7 +118,7 @@
         <% end %>
       </li>
 
-      <% if current_user.is_admin? %>
+      <% if current_user.is_admin? || current_user.has_permission?('list', 'blogs') %>
         <li data-toggle="" data-target="#" class="collapsed">
           <a href="/blogs/list" class="<%= 'active' if blog_list_action? %>">
             <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
