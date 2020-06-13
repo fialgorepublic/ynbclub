@@ -436,8 +436,8 @@ en:
   edit_label:                 Edit
   delete_label:               Delete
   delete_confirmation:        Are you sure?
-  publish_label:              Publish
-  unpublish_label:            Unpublish
+  publish_label:              Published
+  unpublish_label:            Unpublished
   reject_label:               Reject
   unreject_label:             Not Reject
   close_label:                Close

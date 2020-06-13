@@ -180,11 +180,11 @@ class BlogsController < ApplicationController
           else
             @blog.publish!
             @blog.award_coins!
-            ["Successfully #{(I18n.t(:publish_label)).downcase}ed the blog.", true]
+            ["Successfully #{(I18n.t(:publish_label)).downcase} the blog.", true]
           end
         else
           @blog.unpublish!
-          ["Successfully #{(I18n.t(:unpublish_label)).downcase}ed the blog.", true]
+          ["Successfully #{(I18n.t(:unpublish_label)).downcase} the blog.", true]
         end
       end
 
