@@ -183,6 +183,7 @@ $(document).on('turbolinks:load', function () {
 });
 
   function blog_show(id){
+    $("#myModal").addClass('dynamic-blog-'+id)
     $.ajax({
       url: '/show_blog/'+id,
       type: 'get',
