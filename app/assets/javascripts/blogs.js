@@ -175,22 +175,17 @@ $(document).on('turbolinks:load', function () {
       }
     })
   })
+
+  $(document).on('click', '#myModal #open-edit-blog-modal', function(e) {
+    blogId = $(this).find('i').data('blog-id');
+    edit_blog(blogId);
+  })
 });
 
   function blog_show(id){
     $.ajax({
       url: '/show_blog/'+id,
       type: 'get',
-      data: {id: id},
-      success: function(data) {
-        $('.create-blog-modal').html(data);
-        blogText = $("#blog-slug").text()
-        window.history.replaceState({},'','/blogs/'+ blogText);
-      },
-      error: function(data) {
-        $('.loader').hide()
-        alert('Something Wentwrong!')
-      }
     })
   }
 

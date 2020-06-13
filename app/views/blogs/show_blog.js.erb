@@ -1,0 +1,11 @@
+blogId = '<%= @blog.id %>';
+<% if @belong_to_user %>
+  element = $('#open-edit-blog-modal');
+  element.removeClass('d-none');
+  element.find('i').data('blog-id', blogId);
+<% else %>
+  $('#open-edit-blog-modal').addClass('d-none')
+<% end %>
+$('.create-blog-modal').html("<%= j render 'show_blog' %>");
+blogText = $("#blog-slug").text()
+window.history.replaceState({},'','/blogs/'+ blogText);

@@ -307,9 +307,15 @@ position: relative;
 }
 
 .close_btn_blg_in {
-  position: absolute;
-  right: -16px;
-  bottom: -9px;
+  margin-left: 11px;
+  margin-right: 10px;
+}
+
+#open-edit-blog-modal {
+  background: white;
+  border: 0;
+  float: right;
+  margin-top: 3px;
 }
 
 #images {
@@ -329,7 +335,7 @@ position: relative;
 
 .default-image {
   border: 1px solid #eee;
-  padding: 25px; 
+  padding: 25px;
   text-align: center;
 }
 

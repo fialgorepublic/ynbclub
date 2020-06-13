@@ -66,7 +66,8 @@ class BlogsController < ApplicationController
     @comments = @blog.comments if @blog.is_published?
     @selected_products = @blog.products
     @blog.blog_views.create
-    render partial: 'blogs/show_blog'
+
+    @belong_to_user = current_user.present? && @blog.user == current_user
   end
 
   # GET /blogs/new
