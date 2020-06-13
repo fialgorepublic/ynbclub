@@ -759,11 +759,13 @@ body {
     .feature-blog-tag {
       float: none !important;
       display: inline;
+      margin-left: 10px;
     }
 
     .follow-button-tag {
-      float: none !important;
+      float: left !important;
       display: inline;
+      margin-top: 0;
     }
 
   }
