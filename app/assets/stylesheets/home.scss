@@ -677,7 +677,24 @@ body {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .create-blog-modal {
+    #remove-facebook-share-content {
+      margin-left: 0 !important;
+    }
+  }
+
+  .modal-dialog {
+    max-width: 100% !important;
+    padding-right: 16px;
+  }
+}
+
 @media (max-width: 767px) {
+  .modal-dialog {
+    max-width: 100% !important;
+    padding-right: 16px;
+  }
   .main {
     margin-left: 0 !important;
     padding: 0 15px 15px 15px;
@@ -737,6 +754,16 @@ body {
 
     .share-button-div {
       margin-top: 20px;
+    }
+
+    .feature-blog-tag {
+      float: none !important;
+      display: inline;
+    }
+
+    .follow-button-tag {
+      float: none !important;
+      display: inline;
     }
 
   }
@@ -4126,6 +4153,7 @@ span.remove.fa.fa-times {
 .facebook-share-content {
   #remove-facebook-share-content {
     color: black;
+    margin-left: 5%;
   }
 
   .share-button-div {
@@ -4157,14 +4185,25 @@ span.remove.fa.fa-times {
     text-transform: uppercase !important;
     font-size: 13px !important;
     border-radius: 20px !important;
-    width: 150px !important;
+    width: 130px !important;
     float: none !important;
     font-weight: 400;
-    padding: 7px;
+    padding: 5px;
   }
 
   .image-margin-top {
     margin-top: 3%;
+  }
+
+  .feature-blog-tag {
+    float: right;
+    display: inline;
+  }
+
+  .follow-button-tag {
+    float: right;
+    display: inline;
+    margin-top: 0.4em;
   }
 }
 
@@ -4190,4 +4229,12 @@ span.remove.fa.fa-times {
 
 .mt-12 {
   margin-top: 12px;
+}
+
+.mt-2 {
+  margin-top: 2px;
+}
+
+.mr-5 {
+  margin-right: 5px;
 }

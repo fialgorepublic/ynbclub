@@ -30,14 +30,14 @@
 
 <div>
   <div class="row facebook-share-content mt-5">
-    <div class="col-md-8">
+    <div class="col-md-8 col-sm-8">
       <h4><%= t('blogs.show.share_modal.title') %></h4>
     </div>
 
-    <div class="col-md-4 share-button-div mt-12">
+    <div class="col-md-4 share-button-div mt-12 col-sm-4">
       <span class="facebook-icon-span"><i class="fa fa-facebook-square" aria-hidden="true"></i></span>
       <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
-      <%= link_to t(:cancel_label), 'javascript:void(0);', id: 'remove-facebook-share-content', class: 'ml-5' %>
+      <%= link_to t(:cancel_label), 'javascript:void(0);', id: 'remove-facebook-share-content' %>
     </div>
   </div>
 
@@ -85,7 +85,7 @@
 
   <div class="row">
     <div class="detail-img detail-icon">
-      <div class="col-md-5 col-xs-8" style="margin-top: 0.7em">
+      <div class="col-md-3 col-xs-12 col-sm-4" style="margin-top: 0.7em">
         <i class="<%= liked_class(@blog) %> pl-0" onclick="like_comment(this,'<%= @blog.id %>');"></i>
         <span id='blog-like-count'><%= @blog.likes.length %></span>
         <i class="fa fa-share"></i>
@@ -94,42 +94,28 @@
         <span><%= @blog.blog_views.length %></span>
       </div>
 
-      <div class="col-md-3 col-xs-4" style="margin-top: 0.4em;">
+      <div class="col-md-4 col-xs-12 col-sm-3" style="margin-top: 0.4em;">
         <h5>
           <span class="category-style"><%= @blog.category_name %></span>
           <span>| <%= @blog.created_at.to_date.strftime("%d-%m-%Y") %></span>
         </h5>
       </div>
 
-      <div class="col-md-4 col-xs-12">
-        <h5>
-          <strong>
-            <i class="pl-0 fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
+      <div class="col-md-5 col-xs-12 col-sm-5">
+        <span class="follow-button-tag">
+          <% unless @blog.user == current_user %>
+            <%= follow_unfollow_link_blog(@blog.user)  %>
+          <% end %>
+        </span>
+        <h5 class="feature-blog-tag">
+          <i class="mt-2 pl-0 fa fa-star <%= @blog.is_featured ? 'featureBlog' : '' %>" onclick="set_featured_blog(this, '<%= @blog.id %>');"></i>
+          <span class="mr-5">
             <% if @blog.is_featured %>
-              Featured on <%= @blog.feature_date.to_time.strftime("%d-%m-%Y") %>
+              <%= @blog.feature_date.to_time.strftime("%d-%m-%Y") %>
             <% end %>
-            <% if signed_in? %>
-              <% if belongs_to_user %>
-                <i class="fa fa-pencil" data-toggle="modal" data-target="#new-blog" onclick="edit_blog(<%= @blog.id %>)" style="cursor: pointer;"></i>
-              <% end %>
-            <% end %>
-          </strong>
+          </span>
         </h5>
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <% if @blog.is_published? %>
-      <div class='col-md-3 facebbook-button'>
-        <%= render partial: 'facebook_share_button', locals: { blog: @blog } %>
-      </div>
-    <% end %>
-
-    <div class='col-md-3' id="user-<%= @blog.user.id %>">
-      <% unless @blog.user == current_user %>
-        <%= follow_unfollow_link_blog(@blog.user)  %>
-      <% end %>
     </div>
   </div>
   <hr>
