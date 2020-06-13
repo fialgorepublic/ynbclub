@@ -757,15 +757,16 @@ body {
     }
 
     .feature-blog-tag {
-      float: none !important;
+      float: left !important;
       display: inline;
       margin-left: 10px;
+      margin-top: 7px !important;
     }
 
     .follow-button-tag {
       float: left !important;
       display: inline;
-      margin-top: 0;
+      margin-top: 0 !important;
     }
 
   }
