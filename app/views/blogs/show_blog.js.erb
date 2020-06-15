@@ -9,9 +9,8 @@ blogId = '<%= @blog.id %>';
 $('.create-blog-modal').html("<%= j render 'show_blog' %>");
 blogText = $("#blog-slug").text()
 window.history.replaceState({},'','/blogs/'+ blogText);
-
-blogID = `dynamic-blog-${id}`
-blogImages = $("."+blogID).children().find('.img-fluid')
+get_blogID = `dynamic-blog-${blogId}`
+blogImages = $("."+get_blogID).children().find('.img-fluid')
 $(blogImages).each(function(){
   getAnchorTag = this.parentElement
   if ($(getAnchorTag).is('a')) {
