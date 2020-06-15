@@ -830,75 +830,93 @@ img.lib-img-show {
 }
 
 @media (max-width: 824px) {
-    .blog_banner_btn {
-        margin: 10px 0px;
-        position: relative;
-        bottom: 20px;
-    }
-    img.lib-img-show {
-        max-height: 100%;
-        object-fit: cover;
-        object-position: top;
-    }
-    .pos-rel-banner img {
-        position: relative;
-        height: 50vh;
-    }
-    .groups-cards-2 .lib-panel .row,
-    .groups-cards-2 .lib-panel .col-md-6 {
-        padding: 0;
-        background-color: #ffffff;
-        min-height: 100%;
-        max-height: 100%;
-    }
-    .groups-cards {
-        width: 100%;
-    }
-    .groups-cards .lib-panel .lib-row.lib-header .grp-edit-delete-icon {
-        top: 10px;
-        right: 20px;
-        height: 25px;
-        width: 25px;
-        position: absolute;
-        display: inline-flex;
-        cursor: pointer;
-        cursor: pointer;
-    }
-    .max-height-tag {
-        height: 222px;
-    }
-    .lib-img-tag-show img {
-        height: 100% !important;
-    }
+  .blog_banner_btn {
+    margin: 10px 0px;
+    position: relative;
+    bottom: 20px;
+  }
+  img.lib-img-show {
+    max-height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .pos-rel-banner img {
+    position: relative;
+    height: auto;
+  }
+  .groups-cards-2 .lib-panel .row,
+  .groups-cards-2 .lib-panel .col-md-6 {
+    padding: 0;
+    background-color: #ffffff;
+    min-height: 100%;
+    max-height: 100%;
+  }
+  .groups-cards {
+    width: 100%;
+  }
+  .groups-cards .lib-panel .lib-row.lib-header .grp-edit-delete-icon {
+    top: 10px;
+    right: 20px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    display: inline-flex;
+    cursor: pointer;
+    cursor: pointer;
+  }
+  .max-height-tag {
+    height: 222px;
+  }
+  .lib-img-tag-show img {
+    height: 100% !important;
+  }
 
+  // auto heights  for saint blogs
+  .groups-cards .box-shadow {
+    box-shadow: none;
+    padding: 0px 0px 20px 0px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    font-size: 22px;
+    text-align: center;
+    background: #fff;
+    margin-bottom: 20px;
+     max-height: 100%;
+     min-height: 100%;
+    -webkit-box-shadow: -1px 0px 13px -1px #c9c9c9;
+    -moz-box-shadow: -1px 0px 13px -1px #c9c9c9;
+    box-shadow: -1px 0px 13px -1px #c9c9c9;
+  }
+  .groups-cards .lib-img-show {
+    width: 100%;
+    position: relative;
+    max-height: 100%;
+    object-fit: cover;
+  }
+}
 
+@media screen and (max-width: 768px) {
+ .pos-rel-banner{
+    background-color: #F7D6E7;
+    height: 250px;
+  }
 
+  .pos-abs-banner{
+    top: 50%;
+  }
 
+  .pos-abs-banner h1{
+    font-size: 25px;
+    margin-left: 39px;
+  }
+  .pos-abs-banner h3{
+    font-size: 17px;
+  }
 
-    // auto heights  for saint blogs
-    .groups-cards .box-shadow {
-        box-shadow: none;
-        padding: 0px 0px 20px 0px;
-        border-radius: 15px;
-        border: 1px solid #eee;
-        font-size: 22px;
-        text-align: center;
-        background: #fff;
-        margin-bottom: 20px;
-         max-height: 100%;
-         min-height: 100%;
-        -webkit-box-shadow: -1px 0px 13px -1px #c9c9c9;
-        -moz-box-shadow: -1px 0px 13px -1px #c9c9c9;
-        box-shadow: -1px 0px 13px -1px #c9c9c9;
-    }
-    .groups-cards .lib-img-show {
-        width: 100%;
-        position: relative;
-        max-height: 100%;
-        object-fit: cover;
-    }
-
-
+  .blog_banner_btn{
+    marign:0px;
+  bottom: 0px;
+  }
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 980px) {
