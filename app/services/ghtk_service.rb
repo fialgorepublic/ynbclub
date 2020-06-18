@@ -42,6 +42,8 @@ class GhtkService
       elsif response['error']
         update_order(response) if order.ghtk_label.blank? || order.ghtk_status.blank?
         result, message = false, response["message"]
+      else
+        result, message = false, response["message"]
       end
       [result, message, order.id]
     end
