@@ -289,14 +289,11 @@
     {
       apprise('<%= t('blogs.feautre_blog_text') %>', {'verify': true}, function (r) {
         if (r) {
-          var obj_cls = $(obj).attr('class');
           var status = ''
-          if (obj_cls === 'fa fa-star ') {
-            $(obj).addClass('featureBlog');
-            status = true
-          } else {
-            $(obj).removeClass('featureBlog');
+          if ($(obj).hasClass("featureBlog")) {
             status = false
+          } else {
+            status = true
           }
           $.ajax({
             url: '/change_featured_state?id=' + id + '&value=' + status,
@@ -304,7 +301,12 @@
             dataType: 'json',
             processData: false,
             success: function (data) {
-              window.location.reload();
+              if (data.success){
+                $(obj).addClass('featureBlog');
+              }
+              else {
+                $(obj).removeClass('featureBlog');
+              }
             },
             error: function (data) {
               alert('Error');
