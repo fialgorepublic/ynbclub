@@ -32,6 +32,10 @@ class Blog < ApplicationRecord
     }
   end
 
+  ransacker :created_at, formatter: proc { |value| Date.parse(value).strftime('%Y-%m-%d') } do
+    Arel.sql("DATE(#{table_name}.created_at)")
+  end
+
   PER_DAY_CREATE_LIMIT = 5
 
   belongs_to :category, optional: true

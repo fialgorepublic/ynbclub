@@ -67,7 +67,7 @@
                 <div class="col-md-2">
                   <div class="post-sorting">
                     <p>SORTING BY DATE</p>
-                    <%= select_tag :sort_by, options_for_select([['Newest', 3], ['Oldest', 4]]), class: 'sorting-fltr', id: 'sort-blogs-by-date' %>
+                      <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
                   </div>
                 </div>
 
