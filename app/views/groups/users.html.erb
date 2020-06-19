@@ -8,7 +8,7 @@
         <%=  @group.name %> Members
       </h2>
       <div class="">
-        <a class="btn btn-primary new_userlist_btn" href="javascript:void(0);"><%= @group.users_count %></a>
+        <a class="btn btn-primary new_userlist_btn" href="javascript:void(0);"><%= @group.users.length %></a>
       </div>
     </div>
 
@@ -16,4 +16,8 @@
       <%= render partial: 'groups/user', collection: @users %>
     </div>
   </div>
+</div>
+
+<div class="col-md-12 text-center">
+  <%= will_paginate @users, class: 'custom-showMore-btn users-pagination', renderer: BootstrapPagination::Rails %>
 </div>

@@ -38,7 +38,7 @@
                 <p class="hhkt"><%= @group.description %> </p>
                 <div class="grp-card-icon">
                   <i class="fa fa-users color-for-icon" width="100%" style="font-size: 22px;"></i>
-                  <%= link_to @group.users_count, users_group_path(@group), class: "padding-a", id: "group-users-count" %>
+                  <%= link_to @group.users.length, users_group_path(@group), class: "padding-a", id: "group-users-count" %>
                   <i class="fa fa-comment color-for-icon" width="100%" style="font-size: 22px;"></i>
                   <p><%= @group.conversations_count %></p>
                 </div>
