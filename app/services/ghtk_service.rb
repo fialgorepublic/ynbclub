@@ -42,6 +42,8 @@ class GhtkService
       elsif response['error']
         update_order(response) if order.ghtk_label.blank? || order.ghtk_status.blank?
         result, message = false, response["message"]
+      else
+        result, message = false, response["message"]
       end
       [result, message, order.id]
     end
@@ -95,7 +97,8 @@ class GhtkService
         pick_date:      Time.now,
         pick_money:     order.total.to_i,
         value:          order.total.to_i,
-        transport:      transport_type
+        transport:      transport_type,
+        hamlet:         "Khac"
       }
     end
 
