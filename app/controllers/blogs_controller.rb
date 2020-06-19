@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :delete_rejected, :reject]
   before_action :set_videos, only: [:index]
   before_action :set_blog_by_id, only: [:blog_like_unlike]
+  skip_before_action :set_snapshot, :get_share_with_friend, :set_page, :set_earn_coin, :check_role,  only: [:change_featured_state, :blog_like_unlike]
 
   include ApplicationHelper
   require 'open-uri'
@@ -166,7 +167,7 @@ class BlogsController < ApplicationController
 
   def change_featured_state
     blog = @blog.update_attributes(is_featured: params[:value], feature_date: DateTime.now)
-    render json: {success: true}
+    render json: { success: @blog.is_featured }
   end
 
   def change_publish_status
