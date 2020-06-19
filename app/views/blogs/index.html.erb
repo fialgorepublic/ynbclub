@@ -310,8 +310,10 @@
     });
   };
 
-  $("#create-new-blog").click(function(){
-    $('.loader').show()
+  $("#create-new-blog").click(function(e){
+    if (!(e.ctrlKey)) {
+      $('.loader').show()
+    }
   })
 
   function edit_new_blog(id){
