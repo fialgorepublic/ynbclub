@@ -5,15 +5,11 @@ class ApplicationController < ActionController::Base
   end
 
   before_action :block_banned_users
+  before_action :check_request_type
   before_action :set_locale
-  before_action :check_role
   before_action :allow_iframe_requests
   before_action :allow_user_request
   before_action :blog_not_found
-  before_action :set_earn_coin
-  before_action :set_page
-  before_action :get_share_with_friend
-  before_action :set_snapshot
   before_action :redirect_to_blogs, if: :shopify_redirected?
 
   def set_locale
@@ -168,5 +164,15 @@ class ApplicationController < ActionController::Base
 
   def dashboard_default_option?(action_name)
     ['dashboard', 'change_profile_picture', 'take_snapshot', 'get_user_object', 'step_one', 'step_two', 'step_three', 'share_with_friends', 'acc_settings', 'cities'].include?(action_name)
+  end
+
+  def check_request_type
+    unless request.xhr?
+      set_snapshot
+      get_share_with_friend
+      set_page
+      set_earn_coin
+      check_role
+    end
   end
 end
