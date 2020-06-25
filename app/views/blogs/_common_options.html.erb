@@ -1,7 +1,7 @@
-<div class="" style="margin-top:10px; margin-left:10px;">
-<div class="<%= render_row_class(blog_type) %> row">
+<div class="custom-bottom-icon-style">
+<div class="<%= render_row_class(blog_type) %> custom-blog-row">
   <div class="col-md-3 col-lg-3  col-sm-3  col-xs-3 <%= render_padding_class(blog_type) %> pr-0">
-    <span  class="box_bottom_icon click"><i class="fa fa-heart"></i> <%= blog.likes.length %></span>
+    <span  class="box_bottom_icon custom-blog-expand click"><i class="fa fa-heart"></i> <%= blog.likes.length %></span>
   </div>
 
   <% if blog.is_published? %>
