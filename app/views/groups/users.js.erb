@@ -1,7 +1,0 @@
-$('#users').html('<%= j render partial: 'groups/user', collection: @users, as: :user %>');
-$('.pagination a').attr('data-remote', 'true');
-currentPage = '<%= @users.current_page %>';
-getCurrentLink = $(".pagination li").find(`a:contains(${currentPage})`)[0]
-$(".pagination").children().removeClass('active');
-$(getCurrentLink).parent().addClass("active")
-window.scrollTo(0, 0);
