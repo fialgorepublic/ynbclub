@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :allow_iframe_requests
   before_action :allow_user_request
   before_action :blog_not_found
+  before_action :check_role
   before_action :redirect_to_blogs, if: :shopify_redirected?
 
   def set_locale
@@ -172,7 +173,6 @@ class ApplicationController < ActionController::Base
       get_share_with_friend
       set_page
       set_earn_coin
-      check_role
     end
   end
 end
