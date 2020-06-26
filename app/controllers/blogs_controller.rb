@@ -25,12 +25,12 @@ class BlogsController < ApplicationController
         Blog.published
       end
     sort_by = params[:sort_by].presence || 0
-
+    @categories = Category.all
     @q = scope.ransack(params[:q])
     @blogs = @q.result(distinct: true)
                .eager_load_objects
                .sorted_by(sort_by)
-               .paginate(page: params[:page], per_page: 10)
+               .paginate(page: params[:page], per_page: 12)
 
     @next_page = @blogs.next_page
 
