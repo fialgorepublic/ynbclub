@@ -7,11 +7,11 @@ class Esms
     API_KEY = Rails.application.credentials.esms[:api_key]
     SECRET_KEY = Rails.application.credentials.esms[:secret_key]
     SMS_TYPE = 2
-    Brand_Name = "SAINTLBEAU"
+    BRAND_NAME = "SAINTLBEAU"
 
     def send_sms(to:, content:)
       begin
-        response = HTTParty.get(API_URL+"?Phone=#{to}&Content=#{content}&ApiKey=#{API_KEY}&SecretKey=#{SECRET_KEY}&Brandname=#{Brand_Name}&SmsType=#{SMS_TYPE}")
+        response = HTTParty.get(API_URL+"?Phone=#{to}&Content=#{content}&ApiKey=#{API_KEY}&SecretKey=#{SECRET_KEY}&Brandname=#{BRAND_NAME}&SmsType=#{SMS_TYPE}")
         code_result = response["CodeResult"]
         message = code_result == "100" ? "Message sent to #{to} successfully" : response["ErrorMessage"]
         [code_result, message]
