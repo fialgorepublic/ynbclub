@@ -25,6 +25,262 @@
         <% end%>
 
         <%= search_form_for @q, remote: true do |f| %>
+<!-------------------------------><!-------------------------------><!------------------------------->
+<!-------------------------------><!-------------------------------><!------------------------------->
+<hr>
+<hr>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="tabbable-line custom-blog-nav">
+          <ul class="nav nav-tabs ">
+            <li class="active"><a href="#"> All Topic </a></li>
+            <li><a href="#"> Fashion </a></li>
+            <li><a href="#"> Reviews </a></li>
+            <li><a href="#"> Skincare </a></li>
+            <li><a href="#"> Oral Care </a></li>
+            <li><a href="#"> Inspiration </a></li>
+            <li><a href="#"> Health </a></li>
+            <li><a href="#"> Ambassador University </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<!---- Search Bar --->
+  <div class="row">
+    <div class="col-md-8">
+      <div class="custom-blog-search-bar">
+        <input class="form-control set-border-radius" placeholder="Search" id=""  type="search">
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="custom-blog-sort-date">
+        <p>SORTING</p>
+          <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
+      </div>
+    </div>
+  </div>    
+<!----- Custom Blog Card ---->
+<div class="row">
+  <!--- Card BOX -->
+  <div class="col-md-4">
+    <div class="blog-box blog-box-sm custom-blog-box">
+      <div class="blog-box-small-img">
+        <div class="height-sm">
+        <img width="100%" class="" src=" ">
+      <div class="blog-box-content">
+          <p class="blog-sm-p">
+            <a href="#">
+              <img width="30" class="circle-img" src="" ></a>
+              <span class="with-un-blog">Saint L Beau</span>
+              <span class="-sm">20.05.29</span>
+              <span class="with-un-blog">Reviews</span>
+             </p>
+          <h3>testing</h3>
+        </div>
+      </div>
+      <div class="custom-blog-bottom-bar">
+          <div class="row">
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-heart"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-share"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-eye"></i> 123</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--- Card BOX END-->
+    <!---->
+<!--- Card BOX -->
+  <div class="col-md-4">
+    <div class="blog-box blog-box-sm custom-blog-box">
+      <div class="blog-box-small-img">
+        <div class="height-sm">
+        <img width="100%" class="" src=" ">
+      <div class="blog-box-content">
+          <p class="blog-sm-p">
+            <a href="#">
+              <img width="30" class="circle-img" src="" ></a>
+              <span class="with-un-blog">Saint L Beau</span>
+              <span class="-sm">20.05.29</span>
+              <span class="with-un-blog">Reviews</span>
+             </p>
+          <h3>testing</h3>
+        </div>
+      </div>
+      <div class="custom-blog-bottom-bar">
+          <div class="row">
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-heart"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-share"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-eye"></i> 123</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--- Card BOX END-->
+    <!---->
+<!--- Card BOX -->
+  <div class="col-md-4">
+    <div class="blog-box blog-box-sm custom-blog-box">
+      <div class="blog-box-small-img">
+        <div class="height-sm">
+        <img width="100%" class="" src=" ">
+      <div class="blog-box-content">
+          <p class="blog-sm-p">
+            <a href="#">
+              <img width="30" class="circle-img" src="" ></a>
+              <span class="with-un-blog">Saint L Beau</span>
+              <span class="-sm">20.05.29</span>
+              <span class="with-un-blog">Reviews</span>
+             </p>
+          <h3>testing</h3>
+        </div>
+      </div>
+      <div class="custom-blog-bottom-bar">
+          <div class="row">
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-heart"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-share"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-eye"></i> 123</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--- Card BOX END-->
+</div>
+<!----- Custom Blog Card END---->
+        <!---------------->
+<!----- Custom Blog Card ---->
+<div class="row">
+  <!--- Card BOX -->
+  <div class="col-md-4">
+    <div class="blog-box blog-box-sm custom-blog-box">
+      <div class="blog-box-small-img">
+        <div class="height-sm">
+        <img width="100%" class="" src=" ">
+      <div class="blog-box-content">
+          <p class="blog-sm-p">
+            <a href="#">
+              <img width="30" class="circle-img" src="" ></a>
+              <span class="with-un-blog">Saint L Beau</span>
+              <span class="-sm">20.05.29</span>
+              <span class="with-un-blog">Reviews</span>
+             </p>
+          <h3>testing</h3>
+        </div>
+      </div>
+      <div class="custom-blog-bottom-bar">
+          <div class="row">
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-heart"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-share"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-eye"></i> 123</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--- Card BOX END-->
+    <!---->
+<!--- Card BOX -->
+  <div class="col-md-4">
+    <div class="blog-box blog-box-sm custom-blog-box">
+      <div class="blog-box-small-img">
+        <div class="height-sm">
+        <img width="100%" class="" src=" ">
+      <div class="blog-box-content">
+          <p class="blog-sm-p">
+            <a href="#">
+              <img width="30" class="circle-img" src="" ></a>
+              <span class="with-un-blog">Saint L Beau</span>
+              <span class="-sm">20.05.29</span>
+              <span class="with-un-blog">Reviews</span>
+             </p>
+          <h3>testing</h3>
+        </div>
+      </div>
+      <div class="custom-blog-bottom-bar">
+          <div class="row">
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-heart"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-share"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-eye"></i> 123</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--- Card BOX END-->
+    <!---->
+<!--- Card BOX -->
+  <div class="col-md-4">
+    <div class="blog-box blog-box-sm custom-blog-box">
+      <div class="blog-box-small-img">
+        <div class="height-sm">
+        <img width="100%" class="" src=" ">
+      <div class="blog-box-content">
+          <p class="blog-sm-p">
+            <a href="#">
+              <img width="30" class="circle-img" src="" ></a>
+              <span class="with-un-blog">Saint L Beau</span>
+              <span class="-sm">20.05.29</span>
+              <span class="with-un-blog">Reviews</span>
+             </p>
+          <h3>testing</h3>
+        </div>
+      </div>
+      <div class="custom-blog-bottom-bar">
+          <div class="row">
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-heart"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-share"></i> 123</span>
+            </div>
+            <div class="col-md-3">
+              <span class=""><i class="fa fa-eye"></i> 123</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--- Card BOX END-->
+</div>
+<!----- Custom Blog Card END---->
+<hr>
+<hr>
+<!-------------------------------><!-------------------------------><!------------------------------->
+<!-------------------------------><!-------------------------------><!------------------------------->
           <div class="col-md-12 blog_banner_btn">
             <div class="col-lg-12 padding-lr-20">
               <%= f.search_field :title_i_cont, { class: 'form-control set-border-radius', placeholder: 'Search by title', id: 'blog-title-textbox', style: 'height: 20px;' } %>
@@ -106,6 +362,7 @@
     </div>
   </div>
 </div>
+
 
 <div id="bannerUploadModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
