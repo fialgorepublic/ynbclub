@@ -97,7 +97,8 @@ class GhtkService
         pick_date:      Time.now,
         pick_money:     order.total.to_i,
         value:          order.total.to_i,
-        transport:      transport_type
+        transport:      transport_type,
+        hamlet:         "Khac"
       }
     end
 

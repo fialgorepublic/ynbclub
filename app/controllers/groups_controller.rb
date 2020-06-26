@@ -92,7 +92,8 @@ class GroupsController < ApplicationController
   end
 
   def users
-    @users = @group.users
+    @users = @group.users.includes(:likes, :conversations).paginate(page: params[:page], per_page: 100)
+    @next_page = @users.next_page
   end
 
   private

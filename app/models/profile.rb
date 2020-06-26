@@ -24,12 +24,8 @@
 
 class Profile < ApplicationRecord
   belongs_to :user
-  validates :bank_name, presence: true, unless: :admin_updated
-  validates :account_number, presence: true,  :numericality => { :greater_than_or_equal_to => 0 }, unless: :admin_updated
-  validates :acc_holder_name, presence: true, unless: :admin_updated
+  validates :bank_name, :acc_holder_name, presence: true,  if: :is_ambassador?
+  validates :account_number, presence: true,  :numericality => { :greater_than_or_equal_to => 0 },  if: :is_ambassador?
 
-
-  def admin_updated
-    user.role.id.eql?(6) if user.role.present?
-  end
+  delegate :is_ambassador?, to: :user, prefix: false
 end
