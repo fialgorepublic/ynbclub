@@ -2,110 +2,51 @@
   <div class="<%= blog_screen_size %>">
     <div class="banner ">
       <div class="<%= current_user.present? ? 'banner remove-space' : 'banner' %>">
-        <% if @videos.any? %>
-          <section id="features" class="blue">
-            <div class="content">
-              <div class="slider slider_video responsive_video_slider">
-                <% @videos.each do |video| %>
-                  <div class="m_slider_vid">
-                    <div class="holder">
-                      <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.url %>" data-target="#videoModal" data-toggle="modal">
-                        <%= image_tag video.thumbnail, width: "100%", class: "lazy", lazy: true %>
-                      </div>
-                    </div>
-                    <section class="entry-body">
-                      <p class="video-title"><%= video.title %></p>
-                    </section>
-                  </div>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="tabbable-line custom-blog-nav">
+              <ul class="nav nav-tabs ">
+                <li class="blog-category active"><%= link_to "All", blogs_path %></li>
+                <% @categories.each do |category|  %>
+                  <li class='blog-category' id='category_id-<%= category.id %>'>
+                    <%=  link_to category.name.titleize, blogs_path(q: { category_id_eq: category.id } ),  class: 'blog-category',  remote: true %>
+                  </li>
                 <% end %>
-              </div>
+              </ul>
             </div>
-          </section>
-        <% end%>
-​
+          </div>
+        </div>
         <%= search_form_for @q, remote: true do |f| %>
-          <div class="col-md-12 blog_banner_btn">
-            <div class="col-lg-12 padding-lr-20">
-              <%= f.search_field :title_or_description_cont, { class: 'form-control set-border-radius', placeholder: 'Search by title', id: 'blog-title-textbox', style: 'height: 20px;' } %>
-            </div>
-          </div>
-​
-          <br>
-          <br>
-​
           <div class="row">
-            <div class="col-md-12 blog_banner_btn class-z">
-              <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
-                <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
-              <% end %>
-​
-              <% if current_user&.is_admin? %>
-                <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
-              <% end %>
-            </div>
-          </div>
-​
-          <div class="row">
-            <div class="post-heading blog-redesign-style">
-              <div class="col-md-1">
-                <div class="heading-featured text-left">
-                  <h1><%= t('blogs.index.page_title') %></h1>
-                </div>
+            <div class="col-md-8">
+              <div class="custom-blog-search-bar">
+                <%= f.search_field :title_i_cont, { class: 'form-control set-border-radius', placeholder: 'Search', id: 'blog-title-textbox', style: 'height: 20px;' } %>
               </div>
-​
-              <% if @blogs.count > 0 %>
-                <% if current_user %>
-                  <div class="col-md-2">
-                    <div class="post-sorting">
-                      <p>Publish Status</p>
-                      <%= f.select :is_published_eq, options_for_select([['Published', 1], ['Unpublished', 0]]), { include_blank: true }, { class: "sorting-fltr", id: 'publish-dropdown' } %>
-                    </div>
-                  </div>
-                <% end %>
-​
-                <div class="col-md-2">
-                  <div class="post-sorting">
-                    <p>SORTING BY DATE</p>
-                      <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
-                  </div>
-                </div>
-​
-                <div class="col-md-2">
-                  <div class="post-sorting">
-                    <p>SORTING</p>
-                    <%= select_tag :sort_by, options_for_select([['A-Z', 1], ['Z-A', 2]]), class: 'sorting-fltr', id: 'sort-blogs' %>
-                  </div>
-                </div>
-​
-                <div class="col-md-2">
-                  <div class="post-sorting">
-                    <p>CATEGORY</p>
-                    <%= f.select :category_id_eq, options_for_select(Category.pluck(:name, :id)), { include_blank: t(:All_Categories) }, { class: "sorting-fltr", id: 'category-dropdown' } %>
-                  </div>
-                </div>
-              <% end %>
-​
-              <div class="col-md-3 add_blog_btn pull-right">
-                <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path(new: 'new-blog'), class: "btn btn-primary new_blog_btn", id: "create-new-blog", remote: true if signed_in? %>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <div class="custom-blog-sort-date">
+                <p>SORTING</p>
+                <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
               </div>
             </div>
             <%= hidden_field_tag :page, @blogs.current_page  %>
             <%= f.submit 'search', class: 'hidden', id: 'search-form-button' %>
           </div>
         <% end %>
-​
         <div class="row" id="blogs">
           <%= render partial: "all_blogs", locals: { blogs: @blogs } %>
         </div>
         <br />
-​
+
         <%= hidden_field_tag :next_page, @next_page %>
         <%= render partial: 'shared/show_more', locals: { objects_collection: @blogs, url: blogs_path } %>
       </div>
     </div>
   </div>
 </div>
-​
+
+
 <div id="bannerUploadModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -117,13 +58,13 @@
     </div>
   </div>
 </div>
-​
+
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <button type="button" class="close close_video_modal btn-round btn-primary bb" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-​
+
     <div class="modal-content video-modal">
       <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
@@ -131,8 +72,8 @@
     </div>
   </div>
 </div>
-​
-​
+
+
 <div class="modal fade" id="new-blog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog" style="width: 80%">
     <div class="modal-content" style="width: 100%">
@@ -142,13 +83,13 @@
           <span class="">Create New Blog</span>
         </h4>
       </div>
-​
+
       <div id="create-blog">
       </div>
     </div>
   </div>
 </div>
-​
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -159,24 +100,24 @@
             <i class="fa fa-pencil pull-right" data-toggle="modal" data-target="#new-blog" data-blog-id="" style="cursor: pointer; color: gray;"></i>
           </button>
         </div>
-​
+
         <div class="create-blog-modal">
         </div>
       </div>
-​
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-​
+
 <script>
-​
+
   $('#uploaderBanner').click(function () {
     $('#bannerUploadModal').modal('show');
   });
-​
+
   $("div.descriptionBlog").text(function (index, currentText) {
     return currentText.substr(0, 300);
   });
@@ -212,10 +153,10 @@
       });
     }
   }
-​
+
   function blog_share(id, type, url) {
     var blogUrl = $('#blogUrl').val();
-​
+
     $.ajax({
       url: '/share_blog?id=' + id + '&value=' + type,
       type: 'get',
@@ -231,7 +172,7 @@
       }
     });
   }
-​
+
   $(document).ready(function () {
     if (window.location.href.includes("new")) {
       document.getElementById('create-new-blog').click();
@@ -255,9 +196,9 @@
                 slidesToShow: 6,
                 slidesToScroll: 1,
                 // centerMode: true,
-​
+
             }
-​
+
         }, {
             breakpoint: 800,
             settings: {
@@ -265,10 +206,10 @@
                 slidesToScroll: 2,
                 dots: true,
                 infinite: true,
-​
+
             }
-​
-​
+
+
         }, {
             breakpoint: 600,
             settings: {
@@ -276,7 +217,7 @@
                 slidesToScroll: 2,
                 dots: true,
                 infinite: true,
-​
+
             }
         }, {
             breakpoint: 480,
@@ -291,10 +232,10 @@
         }]
     });
     $(".responsive_video_slider").not('.slick-initialized').slick()
-​
+
     autoPlayYouTubeModal();
   });
-​
+
   function autoPlayYouTubeModal() {
     var trigger = $('.trigger');
     trigger.click(function (e) {
@@ -308,13 +249,13 @@
       });
     });
   };
-​
+
   $("#create-new-blog").click(function(e){
     if (!(e.ctrlKey)) {
       $('.loader').show()
     }
   })
-​
+
   function edit_new_blog(id){
     $.ajax({
       url: "blogs/"+id+"/edit",
@@ -336,7 +277,7 @@
       }
     })
   }
-​
+
   $('#myModal').on('shown.bs.modal', function (e) {
     $("img.lazy").lazyload({
       failure_limit : 1000,
@@ -346,7 +287,7 @@
       skip_invisible: false
     })
   })
-​
+
 $( document ).ready(function() {
   if (window.location.href.includes("id")) {
     url = window.location.href.split("?")[0]
@@ -359,6 +300,12 @@ $( document ).ready(function() {
   host = window.location.origin
   get_url = host+"/blogs"
   }
-​
+
+  $('.blog-category').click(function(){
+    $('.loader').show();
+    $('.blog-category').removeClass('active')
+    $(this).addClass('active');
+  })
+
 })
 </script>
