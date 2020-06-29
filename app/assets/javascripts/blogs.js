@@ -40,8 +40,8 @@ $(document).on('turbolinks:load', function () {
   });
 
   $("#load-more").click(function() {
-    nextPage = parseInt($('#next_page').val())
-    if(nextPage != NaN) {
+    nextPage = $('#next_page').val()
+    if(nextPage != "") {
       $('#page').val(nextPage);
       fetchBlogs();
     }

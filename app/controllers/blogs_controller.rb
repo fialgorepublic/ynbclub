@@ -4,7 +4,6 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :destroy, :change_featured_state, :change_publish_status, :show_blog, :delete_rejected, :reject]
   before_action :set_videos, only: [:index]
   before_action :set_blog_by_id, only: [:blog_like_unlike]
-  skip_before_action :set_snapshot, :get_share_with_friend, :set_page, :set_earn_coin, :check_role,  only: [:change_featured_state, :blog_like_unlike]
 
   include ApplicationHelper
   require 'open-uri'
@@ -25,12 +24,12 @@ class BlogsController < ApplicationController
         Blog.published
       end
     sort_by = params[:sort_by].presence || 0
-
+    @categories = Category.all
     @q = scope.ransack(params[:q])
     @blogs = @q.result(distinct: true)
                .eager_load_objects
                .sorted_by(sort_by)
-               .paginate(page: params[:page], per_page: 10)
+               .paginate(page: params[:page], per_page: 12)
 
     @next_page = @blogs.next_page
 

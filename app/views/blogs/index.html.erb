@@ -1,4 +1,3 @@
-
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner ">
@@ -23,285 +22,29 @@
             </div>
           </section>
         <% end%>
-
+​
         <%= search_form_for @q, remote: true do |f| %>
-<!-------------------------------><!-------------------------------><!------------------------------->
-<!-------------------------------><!-------------------------------><!------------------------------->
-<hr>
-<hr>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="tabbable-line custom-blog-nav">
-          <ul class="nav nav-tabs ">
-            <li class="active"><a href="#"> All Topic </a></li>
-            <li><a href="#"> Fashion </a></li>
-            <li><a href="#"> Reviews </a></li>
-            <li><a href="#"> Skincare </a></li>
-            <li><a href="#"> Oral Care </a></li>
-            <li><a href="#"> Inspiration </a></li>
-            <li><a href="#"> Health </a></li>
-            <li><a href="#"> Ambassador University </a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-<!---- Search Bar --->
-  <div class="row">
-    <div class="col-md-8">
-      <div class="custom-blog-search-bar">
-        <input class="form-control set-border-radius" placeholder="Search" id=""  type="search">
-      </div>
-    </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-2">
-      <div class="custom-blog-sort-date">
-        <p>SORTING</p>
-          <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
-      </div>
-    </div>
-  </div>    
-<!----- Custom Blog Card ---->
-<div class="row">
-  <!--- Card BOX -->
-  <div class="col-md-4">
-    <div class="blog-box blog-box-sm custom-blog-box">
-      <div class="blog-box-small-img">
-        <div class="height-sm">
-        <img width="100%" class="" src=" ">
-      <div class="blog-box-content">
-          <p class="blog-sm-p">
-            <a href="#">
-              <img width="30" class="circle-img" src="" ></a>
-              <span class="with-un-blog">Saint L Beau</span>
-              <span class="-sm">20.05.29</span>
-              <span class="with-un-blog">Reviews</span>
-             </p>
-          <h3>testing</h3>
-        </div>
-      </div>
-      <div class="custom-blog-bottom-bar">
-          <div class="row">
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-heart"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-share"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-eye"></i> 123</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--- Card BOX END-->
-    <!---->
-<!--- Card BOX -->
-  <div class="col-md-4">
-    <div class="blog-box blog-box-sm custom-blog-box">
-      <div class="blog-box-small-img">
-        <div class="height-sm">
-        <img width="100%" class="" src=" ">
-      <div class="blog-box-content">
-          <p class="blog-sm-p">
-            <a href="#">
-              <img width="30" class="circle-img" src="" ></a>
-              <span class="with-un-blog">Saint L Beau</span>
-              <span class="-sm">20.05.29</span>
-              <span class="with-un-blog">Reviews</span>
-             </p>
-          <h3>testing</h3>
-        </div>
-      </div>
-      <div class="custom-blog-bottom-bar">
-          <div class="row">
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-heart"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-share"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-eye"></i> 123</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--- Card BOX END-->
-    <!---->
-<!--- Card BOX -->
-  <div class="col-md-4">
-    <div class="blog-box blog-box-sm custom-blog-box">
-      <div class="blog-box-small-img">
-        <div class="height-sm">
-        <img width="100%" class="" src=" ">
-      <div class="blog-box-content">
-          <p class="blog-sm-p">
-            <a href="#">
-              <img width="30" class="circle-img" src="" ></a>
-              <span class="with-un-blog">Saint L Beau</span>
-              <span class="-sm">20.05.29</span>
-              <span class="with-un-blog">Reviews</span>
-             </p>
-          <h3>testing</h3>
-        </div>
-      </div>
-      <div class="custom-blog-bottom-bar">
-          <div class="row">
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-heart"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-share"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-eye"></i> 123</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--- Card BOX END-->
-</div>
-<!----- Custom Blog Card END---->
-        <!---------------->
-<!----- Custom Blog Card ---->
-<div class="row">
-  <!--- Card BOX -->
-  <div class="col-md-4">
-    <div class="blog-box blog-box-sm custom-blog-box">
-      <div class="blog-box-small-img">
-        <div class="height-sm">
-        <img width="100%" class="" src=" ">
-      <div class="blog-box-content">
-          <p class="blog-sm-p">
-            <a href="#">
-              <img width="30" class="circle-img" src="" ></a>
-              <span class="with-un-blog">Saint L Beau</span>
-              <span class="-sm">20.05.29</span>
-              <span class="with-un-blog">Reviews</span>
-             </p>
-          <h3>testing</h3>
-        </div>
-      </div>
-      <div class="custom-blog-bottom-bar">
-          <div class="row">
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-heart"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-share"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-eye"></i> 123</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--- Card BOX END-->
-    <!---->
-<!--- Card BOX -->
-  <div class="col-md-4">
-    <div class="blog-box blog-box-sm custom-blog-box">
-      <div class="blog-box-small-img">
-        <div class="height-sm">
-        <img width="100%" class="" src=" ">
-      <div class="blog-box-content">
-          <p class="blog-sm-p">
-            <a href="#">
-              <img width="30" class="circle-img" src="" ></a>
-              <span class="with-un-blog">Saint L Beau</span>
-              <span class="-sm">20.05.29</span>
-              <span class="with-un-blog">Reviews</span>
-             </p>
-          <h3>testing</h3>
-        </div>
-      </div>
-      <div class="custom-blog-bottom-bar">
-          <div class="row">
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-heart"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-share"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-eye"></i> 123</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--- Card BOX END-->
-    <!---->
-<!--- Card BOX -->
-  <div class="col-md-4">
-    <div class="blog-box blog-box-sm custom-blog-box">
-      <div class="blog-box-small-img">
-        <div class="height-sm">
-        <img width="100%" class="" src=" ">
-      <div class="blog-box-content">
-          <p class="blog-sm-p">
-            <a href="#">
-              <img width="30" class="circle-img" src="" ></a>
-              <span class="with-un-blog">Saint L Beau</span>
-              <span class="-sm">20.05.29</span>
-              <span class="with-un-blog">Reviews</span>
-             </p>
-          <h3>testing</h3>
-        </div>
-      </div>
-      <div class="custom-blog-bottom-bar">
-          <div class="row">
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-heart"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-share"></i> 123</span>
-            </div>
-            <div class="col-md-3">
-              <span class=""><i class="fa fa-eye"></i> 123</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!--- Card BOX END-->
-</div>
-<!----- Custom Blog Card END---->
-<hr>
-<hr>
-<!-------------------------------><!-------------------------------><!------------------------------->
-<!-------------------------------><!-------------------------------><!------------------------------->
           <div class="col-md-12 blog_banner_btn">
             <div class="col-lg-12 padding-lr-20">
-              <%= f.search_field :title_i_cont, { class: 'form-control set-border-radius', placeholder: 'Search by title', id: 'blog-title-textbox', style: 'height: 20px;' } %>
+              <%= f.search_field :title_or_description_cont, { class: 'form-control set-border-radius', placeholder: 'Search by title', id: 'blog-title-textbox', style: 'height: 20px;' } %>
             </div>
           </div>
-
+​
           <br>
           <br>
-
+​
           <div class="row">
             <div class="col-md-12 blog_banner_btn class-z">
               <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
                 <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
               <% end %>
-
+​
               <% if current_user&.is_admin? %>
                 <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
               <% end %>
             </div>
           </div>
-
+​
           <div class="row">
             <div class="post-heading blog-redesign-style">
               <div class="col-md-1">
@@ -309,7 +52,7 @@
                   <h1><%= t('blogs.index.page_title') %></h1>
                 </div>
               </div>
-
+​
               <% if @blogs.count > 0 %>
                 <% if current_user %>
                   <div class="col-md-2">
@@ -319,21 +62,21 @@
                     </div>
                   </div>
                 <% end %>
-
+​
                 <div class="col-md-2">
                   <div class="post-sorting">
                     <p>SORTING BY DATE</p>
                       <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
                   </div>
                 </div>
-
+​
                 <div class="col-md-2">
                   <div class="post-sorting">
                     <p>SORTING</p>
                     <%= select_tag :sort_by, options_for_select([['A-Z', 1], ['Z-A', 2]]), class: 'sorting-fltr', id: 'sort-blogs' %>
                   </div>
                 </div>
-
+​
                 <div class="col-md-2">
                   <div class="post-sorting">
                     <p>CATEGORY</p>
@@ -341,7 +84,7 @@
                   </div>
                 </div>
               <% end %>
-
+​
               <div class="col-md-3 add_blog_btn pull-right">
                 <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path(new: 'new-blog'), class: "btn btn-primary new_blog_btn", id: "create-new-blog", remote: true if signed_in? %>
               </div>
@@ -350,20 +93,19 @@
             <%= f.submit 'search', class: 'hidden', id: 'search-form-button' %>
           </div>
         <% end %>
-
+​
         <div class="row" id="blogs">
           <%= render partial: "all_blogs", locals: { blogs: @blogs } %>
         </div>
         <br />
-
+​
         <%= hidden_field_tag :next_page, @next_page %>
         <%= render partial: 'shared/show_more', locals: { objects_collection: @blogs, url: blogs_path } %>
       </div>
     </div>
   </div>
 </div>
-
-
+​
 <div id="bannerUploadModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -375,13 +117,13 @@
     </div>
   </div>
 </div>
-
+​
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <button type="button" class="close close_video_modal btn-round btn-primary bb" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-
+​
     <div class="modal-content video-modal">
       <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
@@ -389,8 +131,8 @@
     </div>
   </div>
 </div>
-
-
+​
+​
 <div class="modal fade" id="new-blog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog" style="width: 80%">
     <div class="modal-content" style="width: 100%">
@@ -400,13 +142,13 @@
           <span class="">Create New Blog</span>
         </h4>
       </div>
-
+​
       <div id="create-blog">
       </div>
     </div>
   </div>
 </div>
-
+​
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -417,24 +159,24 @@
             <i class="fa fa-pencil pull-right" data-toggle="modal" data-target="#new-blog" data-blog-id="" style="cursor: pointer; color: gray;"></i>
           </button>
         </div>
-
+​
         <div class="create-blog-modal">
         </div>
       </div>
-
+​
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-
+​
 <script>
-
+​
   $('#uploaderBanner').click(function () {
     $('#bannerUploadModal').modal('show');
   });
-
+​
   $("div.descriptionBlog").text(function (index, currentText) {
     return currentText.substr(0, 300);
   });
@@ -470,10 +212,10 @@
       });
     }
   }
-
+​
   function blog_share(id, type, url) {
     var blogUrl = $('#blogUrl').val();
-
+​
     $.ajax({
       url: '/share_blog?id=' + id + '&value=' + type,
       type: 'get',
@@ -489,7 +231,7 @@
       }
     });
   }
-
+​
   $(document).ready(function () {
     if (window.location.href.includes("new")) {
       document.getElementById('create-new-blog').click();
@@ -513,9 +255,9 @@
                 slidesToShow: 6,
                 slidesToScroll: 1,
                 // centerMode: true,
-
+​
             }
-
+​
         }, {
             breakpoint: 800,
             settings: {
@@ -523,10 +265,10 @@
                 slidesToScroll: 2,
                 dots: true,
                 infinite: true,
-
+​
             }
-
-
+​
+​
         }, {
             breakpoint: 600,
             settings: {
@@ -534,7 +276,7 @@
                 slidesToScroll: 2,
                 dots: true,
                 infinite: true,
-
+​
             }
         }, {
             breakpoint: 480,
@@ -549,10 +291,10 @@
         }]
     });
     $(".responsive_video_slider").not('.slick-initialized').slick()
-
+​
     autoPlayYouTubeModal();
   });
-
+​
   function autoPlayYouTubeModal() {
     var trigger = $('.trigger');
     trigger.click(function (e) {
@@ -566,13 +308,13 @@
       });
     });
   };
-
+​
   $("#create-new-blog").click(function(e){
     if (!(e.ctrlKey)) {
       $('.loader').show()
     }
   })
-
+​
   function edit_new_blog(id){
     $.ajax({
       url: "blogs/"+id+"/edit",
@@ -594,7 +336,7 @@
       }
     })
   }
-
+​
   $('#myModal').on('shown.bs.modal', function (e) {
     $("img.lazy").lazyload({
       failure_limit : 1000,
@@ -604,7 +346,7 @@
       skip_invisible: false
     })
   })
-
+​
 $( document ).ready(function() {
   if (window.location.href.includes("id")) {
     url = window.location.href.split("?")[0]
@@ -617,6 +359,6 @@ $( document ).ready(function() {
   host = window.location.origin
   get_url = host+"/blogs"
   }
-
+​
 })
 </script>
