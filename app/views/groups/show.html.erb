@@ -44,8 +44,9 @@
                 </div>
               </div>
 
-              <div class="flex-l pp-k">
-                <div class="m-tag">
+            <div class="flex-l pp-k">
+              <div class="custom-leave-new-conversation-btn">
+                <div class="m-tag custom-leave-grp">
                   <% if current_user.blank? %>
                     <a data-toggle="modal" data-target="#signIn" href="javascript:void(0);" class="btn btn-primary new_tag_btn">
                       Join Group
@@ -54,7 +55,7 @@
                     <%= link_to join_button_text(@group.id), join_link_path(@group.id), remote: true, class: "btn btn-primary new_tag_btn", id: 'join-group-link' %>
                   <% end %>
                 </div>
-                <div class="">
+                <div class="custom-start-new-conversation">
                   <% if @group.users.include?(current_user)%>
                   <%= link_to "+ Start New Conversation", "#myModal", :class => "btn btn-primary new_blog_btn", "data-toggle" => "modal", "group-id" => "#{@group.id}"%>
 
@@ -63,7 +64,7 @@
                   <% end %>
                 </div>
               </div>
-
+            </div>
             </div>
             <br>
           </div>

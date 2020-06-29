@@ -21,7 +21,7 @@
       <div class="discount-dropDown">
       <div class="col-sm-12">
         <h5><%= t('approve_sales.discount_status_label')  %></h5>
-        <select id="discountStatus" class="form-control" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
+        <select id="discountStatus" class="form-control custom-discount-dropDown" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
           <!--<option value="No Discount">No Discount</option>-->
           <option value="false" >Pending</option>
           <option value="true" >Approved</option>
@@ -36,7 +36,7 @@
       <div class="payment-dropDown">
       <div class="col-sm-12">
         <h5><%= t('approve_sales.payment_status_label')  %></h5>
-        <select id="paymentStatus" class="form-control" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
+        <select id="paymentStatus" class="form-control custom-payment-dropDown" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
           <option value="pending">Unpaid</option>
           <option value="paid" >Paid</option>
           <!--<option value="refunded" >Refunded</option>-->
@@ -68,7 +68,7 @@
     <div class="col-md-12">
       <div class="form-inline m-b-sm">
         <div class="form-group m-b-sm">
-          <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched" ng-model="multiDiscountStatus">
+          <select id="updateDiscountMulti" name="updateDiscountMulti" class="form-control m-r-sm width-175-px float-left-moblie ng-pristine ng-valid ng-touched custom-updateDiscountMulti" ng-model="multiDiscountStatus">
             <option value="order_discount_approved"> <%= t(:approve_sales_label) %></option>
             <option value="order_discount_cancel"> <%= t(:cancel_sale_label) %></option>
           </select>
