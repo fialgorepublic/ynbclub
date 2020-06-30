@@ -4298,7 +4298,27 @@ span.remove.fa.fa-times {
   .custom-blog-row{
     padding:0px !important;
   }
-   
+   .custom-blog-search-icon i { 
+    position: absolute; 
+  } 
+  .custom-blog-search-icon { 
+    width: 100%; 
+    margin-bottom: 10px; 
+  } 
+  .custom-blog-search-icon .icon { 
+    padding: 7px 15px; 
+    min-width: 40px;
+    font-size: 20px;
+    color: #c3c3c3; 
+  } 
+  .custom-blog-search-icon .input-field { 
+    width: 100%; 
+    padding: 10px; 
+    text-align: center; 
+  }
+  .custom-blog-search-bar input#blog-title-textbox{
+    text-indent:30px;
+  }
 
 @media screen and (max-width: 1024px) and (min-width: 300px) {
   .groups-cards-2 .lib-panel .lib-row.lib-desc{
@@ -4384,10 +4404,12 @@ span.remove.fa.fa-times {
      display: none;
   }
   .custom-blog-search-bar{
-    margin: 30px 0px;
+    margin: 20px 0px;
   }
   .custom-blog-sort-date{
     margin: 0px 0px 30px;
   }
 }
+
+  
 
