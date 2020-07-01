@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-5">
+    <%= image_tag 'warranty.png', width: '75%', class: 'img-responsive warranty-img' %>
+    <p class="product-warranty">Official warranty information page of Saintlbeau product lines</p>
+    <p class="product-warranty-info">Please enter your code in the box below to check warranty or check your product warranty information</p>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-5">
+        <div class="text-center">
+          <%= form_tag(check_warranties_path) do %>
+            <%= text_field_tag(:warranty_number, params[:warranty_number], class: "form-control", placeholder: "Input your code") %>
+            <br>
+            <%= submit_tag ("Submit"), class: "btn btn-primary btn-block" %>
+          <% end %>
+        </div>    
+      </div>
+    </div>
+  </div>
+</div>

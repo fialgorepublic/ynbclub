@@ -83,10 +83,17 @@ Rails.application.routes.draw do
   get 'profile_admin', to: 'dashboard#profile'
   get 'show_blog/:id', to: 'blogs#show_blog'
 
+  resources :warranties, only: [:index, :update] do
+    collection do
+      post :check
+    end
+  end
+
   resources :orders, only: [:index, :create, :update] do
     get :send_to_ghtk
     get :edit_address
     get :update_phone_status
+    get :edit_product_warranty
     collection do
       get :district_cities
       get :wards

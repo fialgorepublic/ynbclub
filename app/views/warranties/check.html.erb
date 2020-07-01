@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-offset-1 col-md-4">
+    <div class="main-container">
+      <div class="custom-img-text">
+        <div class="custom-img">
+          <%= image_tag @product.image.src, width: '100%', class: 'img-responsive product-img' %>
+        </div>
+        <h3><%= @product.title %></h3>
+        <p>Serial number: <%= @item.warranty_number %></p>
+      </div>
+      <div class="custom-description">
+        <div class="custom-point-one">
+          <div class="custom-point-one-img">
+            <%= image_tag 'checked-icon' %>
+              <!-- <img src="img/checked-icon.svg"> -->
+            </div>
+            <div class="custom-details-point-one">
+             <h3>product is original</h3>
+              <p>Product was manufactured on original factory in Hong Kong governed by company name based in USA.</p>
+            </div>
+        </div>
+        <div class="custom-point-two">
+          <div class="custom-point-two-img">
+            <%= image_tag 'checked-icon' %>
+            <!-- <img src="img/checked-icon.svg"> -->
+          </div>
+            <div class="custom-details-point-two">
+              <h3>Producty warranty: <%= distance_of_time_in_words(Date.today, @item.warranty_expiry_date).gsub('about ','')  %></h3>
+             <!-- <h3>Product warranty: 1 year</h3> -->
+              <p>You can return this product within <%= distance_of_time_in_words(Date.today, @item.warranty_expiry_date).gsub('about ','') %> if you met any breakdowns.</p>
+            </div>
+        </div>
+        <p><%= link_to "Check another product", warranties_path %></p>
+      </div>
+    </div>
+  </div>
+</div>

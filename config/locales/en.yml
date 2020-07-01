@@ -68,6 +68,7 @@ en:
     referral_link_label:      Copy link ambassador
     group_categories:         Group Categories
     earnings_label:           Earnings
+    warranty_label:           Product Warranty
 
   referral_sales:
     index:
@@ -89,7 +90,7 @@ en:
       ambassador_label:       Ambassador
       commission_label:       Commission
       tracking_label:         Tracking Id
-      product_label:                Products
+      product_label:          Products
       shipment_label:         Shipment Status
       payment_status:         Payment Status
 
@@ -139,6 +140,7 @@ en:
       max_words_label:         Max 700 words are allowed for blog description
       limit_reach_label:       Limit reached
       products_limit_label:    You can not link more than 5 products to a blog
+
     show:
       buyer_view_label:       Show as buyers see it
       comment_modal:
@@ -182,8 +184,14 @@ en:
         transport_label:      Transport Type
         edit_address_label:   Edit Address
         send_ghtk_label:      Send To GHTK
+        product_warranty_label: Edit Product Warranty
+        product-not-found:      Product not found with this number
+        check-another-product: Check Another Product
+        
       update_adress_modal:
         title:                Edit Address
+      update_warranty_modal:
+        title:              Edit Warranty
     sweeper_message:          Sweeper in progress. You will receive an email when it completes.
   permissions:
     index:
@@ -470,6 +478,7 @@ en:
   banned_message: Sorry, this account was blocked. Please connect our support team.
   blocked_buyer_message:      You are not permitted for this operation.
   order_address_success:      Order address updated Successfully.
+  update_warranty_success:    Product warranty updated Successfully
   order_update_error:         Something went wrong!
   gthk_address_error:         Address is not valid.
   partner_info_success:       Partner information saved successfully

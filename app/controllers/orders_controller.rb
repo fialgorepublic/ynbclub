@@ -71,6 +71,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit_product_warranty
+    @order = Order.find(params[:order_id])
+    @products = @order.items
+  end
+
   def district_cities
     city = City.includes(:districts, :provinces).find_by(id: params[:city_id])
     @districts = city.districts.pluck(:name, :id)

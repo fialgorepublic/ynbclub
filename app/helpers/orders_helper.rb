@@ -12,4 +12,11 @@ module OrdersHelper
   def fulfillment_status order
     order.fulfilment_status.present? ?  order.fulfilment_status : "Unfulfilled"
   end
+
+  def  options_for_warrenty_dropdown
+    [
+      ['1 Year', 1],
+      ['2 Year', 2],
+    ]
+  end
 end

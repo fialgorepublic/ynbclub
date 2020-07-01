@@ -5,6 +5,7 @@
 <!-- <#% if current_user.is_admin? %> -->
 <td><%= order.ghtk_label %></td>
 <td><%= order.items.pluck(:name).join(",  ")  if order.items.any? %></td>
+<td><%= link_to t('orders.index.table_headers..product_warranty_label'), order_edit_product_warranty_path(order.id), remote: true %></td>
 <td><%= order.customer_name %></td>
 <td><%= order.phone_number.delete(' ') if order.phone_number %></td>
 <td>
