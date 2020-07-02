@@ -23,7 +23,8 @@ class ReferralSale < ApplicationRecord
 
   belongs_to :user
   #after_save :set_ambassador_value
-
+  scope :date_filter_with_users, -> (start_date, end_date, user_id) { where("referral_sales.created_at >= ? AND referral_sales.created_at <= ? AND user_id = ?", start_date, end_date, user_id ) }
+  scope :date_filter, -> (date_range) {where(created_at: date_range)}
   delegate :commission, :name, to: :user, prefix: true, allow_nil: true
 
   def tracking_id
