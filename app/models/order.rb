@@ -20,6 +20,7 @@ class Order < ApplicationRecord
   delegate :name, :id, to: :ward,     prefix: true, allow_nil: true
 
   scope :user_orders, -> (email) { where(email: email) }
+  scope :by_ghtk_status, -> (status) { where(ghtk_status: status) }
 
   enum picked_phone: {
     'N/A' => 0,

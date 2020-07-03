@@ -86,8 +86,13 @@ class ReferralSalesController < ApplicationController
     if (discount_status.present? && (discount_status.split(',').size == 1))
       referral_sales = referral_sales.where(is_approved: discount_status)
     end
+
     if (params[:payment].present? && params[:payment] != "null" && params[:payment].split(',').size == 1)
-      @payment = params[:payment]
+      payment_status = params[:payment]
+      ghtk_status =  payment_status == 'Status not updated yet.' ? nil : payment_status
+      order_ids = Order.by_ghtk_status(ghtk_status).pluck(:order_id)
+      referral_sales = referral_sales.presence || ReferralSale
+      referral_sales = referral_sales.for_orders(order_ids)
     end
     @referral_sales = referral_sales.includes(:user).paginate(page: params[:page])
     @order_status = {}
