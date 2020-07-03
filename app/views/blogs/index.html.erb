@@ -29,8 +29,8 @@
             <div class="col-md-2"></div>
             <div class="col-md-2">
               <div class="custom-blog-sort-date">
-                <p>SORTING</p>
-                <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
+                <p>SORTING BY DATE</p>
+                <%= f.text_field :created_at_eq, :class => 'datepicker', max: Date.today, id: 'sort-blogs-by-date' %>
               </div>
             </div>
             <div class="col-md-3 add_blog_btn pull-right">
@@ -120,6 +120,7 @@
 </div>
 
 <script>
+  $('.datepicker').datepicker({format: 'dd/mm/yyyy'});
 
   $('#uploaderBanner').click(function () {
     $('#bannerUploadModal').modal('show');

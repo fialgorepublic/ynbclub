@@ -72,7 +72,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/new
   def new
-    if current_user.is_admin? || !current_user.exceed_blogs_limit?
+    unless current_user.exceed_blogs_limit?
       @blog = Blog.new
       @blog.attach_default_image
       @category = Category.new
