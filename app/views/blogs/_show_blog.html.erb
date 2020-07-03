@@ -286,6 +286,10 @@
     }
   }
   function set_featured_blog(obj, id){
+    if(!user_signed_in) {
+      showSignInModal();
+      return;
+    }
     {
       apprise('<%= t('blogs.feautre_blog_text') %>', {'verify': true}, function (r) {
         if (r) {
@@ -446,7 +450,15 @@
     }
   }
 
-
+  $('.sign-in-modal').click(function(e){
+     e.preventDefault();
+    $('#signIn').modal('hide').on('hidden.bs.modal', function (e) {
+      $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+      $('#myModal').modal('show');
+      $('body').addClass('modal-open');
+      $('body').removeAttr('style');
+    });
+  })
 
 </script>
 
