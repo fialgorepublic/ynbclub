@@ -10,8 +10,8 @@ $(document).on('turbolinks:load', function() {
     "order":       [],
     rowCallback: function(row, data, index){
       if (data[2] == 'Paid') { $('td', row).css('background-color', '#8abfef'); return; }
-      string_index = data[8].indexOf('"selected"');
-      value = JSON.parse(data[8].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
+      string_index = data[9].indexOf('"selected"');
+      value = JSON.parse(data[9].substring(string_index, string_index + 20).split(' ')[1].split('=')[1])
       if(value == '1'){
         $('td', row).css('background-color', '#e8f4e7');
       }
@@ -93,6 +93,22 @@ $(document).on('turbolinks:load', function() {
         }
         else
           toastr.error('Somethng Went wrong.')
+      },
+      error: function () {
+        $('.loader').hide();
+        alert('Error');
+      }
+    });
+  });
+
+   $("#edit_warranty_form").on("change", ".warranty-year", function () {
+    product_id = $(this).data('product-id');
+    year = $(this).val();
+    $.ajax({
+      url: `/warranties/${product_id}?year=${year}`,
+      type: 'PUT',
+      contentType: 'json',
+      success: function (data) {
       },
       error: function () {
         $('.loader').hide();
