@@ -15,8 +15,8 @@
               <!-- <img src="img/checked-icon.svg"> -->
             </div>
             <div class="custom-details-point-one">
-             <h3>product is original</h3>
-              <p>Product was manufactured on original factory in Hong Kong governed by company name based in USA.</p>
+             <h3><%= t('warranties.index.original-product') %></h3>
+              <p><%= t('warranties.index.original-product-info') %></p>
             </div>
         </div>
         <div class="custom-point-two">
@@ -25,9 +25,9 @@
             <!-- <img src="img/checked-icon.svg"> -->
           </div>
             <div class="custom-details-point-two">
-              <h3>Producty warranty: <%= distance_of_time_in_words(Date.today, @item.warranty_expiry_date).gsub('about ','')  %></h3>
+              <h3><%= t('warranties.index.product-warranty-label') %>: <%= (@item.warranty_expiry_date.to_i - Time.now.to_i ) / 86400  %> <%= t('warranties.index.product-warranty-days') %></h3>
              <!-- <h3>Product warranty: 1 year</h3> -->
-              <p>You can return this product within <%= distance_of_time_in_words(Date.today, @item.warranty_expiry_date).gsub('about ','') %> if you met any breakdowns.</p>
+              <p>You can return this product within <%= (@item.warranty_expiry_date.to_i - Time.now.to_i ) / 86400  %> <%= t('warranties.index.product-warranty-days') %> if you met any breakdowns.</p>
             </div>
         </div>
         <p><%= link_to "Check another product", warranties_path %></p>

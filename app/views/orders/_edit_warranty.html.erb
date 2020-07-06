@@ -1,9 +1,12 @@
 <div class="modal-body">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-offset-1 col-md-3">
       <h4><%= product.name%></h4>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+      <h4><%= product.warranty_number%></h4>
+    </div>
+    <div class="col-md-4">
       <div class="form-group">
         <%= select_tag 'item[warranty_valid_for_years,]', options_for_select(options_for_warrenty_dropdown, selected: product.warranty_valid_for_years) , { class: "form-control warranty-year", id: "product_#{product.id}", data: { product_id: product.id} } %>
       </div>
