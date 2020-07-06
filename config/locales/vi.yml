@@ -542,6 +542,17 @@ vi:
   update_role_success_label:  Vai trò được cập nhật thành công
   reject_send_label:          Gửi
 
+  warranties:
+    index:
+      product-warranty:       Trang thông tin bảo hành chính thức của dòng sản phẩm Saintlbeau
+      product-warranty-info:  Vui lòng nhập mã của bạn vào ô bên dưới để kiểm tra bảo hành hoặc kiểm tra thông tin bảo hành sản phẩm của bạn
+      product-warranty-placeholder: Nhập mã của bạn
+      submit-label:                 Gửi đi
+      original-product:             sản phẩm là bản gốc
+      original-product-info:        Sản phẩm được sản xuất trên nhà máy ban đầu ở Hồng Kông được quản lý bởi tên công ty có trụ sở tại Hoa Kỳ.
+      product-warranty-label:       Bảo hành sản xuất
+      product-warranty-days:        ngày
+
   general:
     error: Đã xảy ra lỗi!
 

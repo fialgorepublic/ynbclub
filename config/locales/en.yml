@@ -535,5 +535,16 @@ en:
   update_role_success_label:  Role is updated successfully.
   reject_send_label:          Send
 
+  warranties:
+    index:
+      product-warranty:       Official warranty information page of Saintlbeau product lines
+      product-warranty-info:  Please enter your code in the box below to check warranty or check your product warranty information
+      product-warranty-placeholder: Input your code
+      submit-label:                 Submit
+      original-product:             product is original
+      original-product-info:        Product was manufactured on original factory in Hong Kong governed by company name based in USA.
+      product-warranty-label:       Producty warranty
+      product-warranty-days:        days
+
   general:
     error: Something went wrong!
