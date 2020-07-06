@@ -14,6 +14,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="fb:app_id" content="164286157812635">
+  <link href="<%= blogs_url %>" rel='canonical' />
 
   <%= csrf_meta_tags %>
   <%= action_cable_meta_tag %>
@@ -36,6 +37,7 @@
 </head>
 
   <body data-locale="<%= I18n.locale %>" data-action-name='<%= action_name %>' data-controller-name='<%= controller_name %>'>
+    
     <% if user_signed_in? %>
       <%=render :partial => "/shared/header"%>
       <div class="dashboard-holder <%= dashboard_class %>">
