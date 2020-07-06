@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-offset-1 col-md-4">
+    <div class="main-container">
+      <div class="custom-img-text">
+        <div class="custom-img">
+          <%= image_tag @product.image.src, width: '100%', class: 'img-responsive product-img' %>
+        </div>
+        <h3><%= @product.title %></h3>
+        <p>Serial number: <%= @item.warranty_number %></p>
+      </div>
+      <div class="custom-description">
+        <div class="custom-point-one">
+          <div class="custom-point-one-img">
+            <%= image_tag 'checked-icon' %>
+              <!-- <img src="img/checked-icon.svg"> -->
+            </div>
+            <div class="custom-details-point-one">
+             <h3><%= t('warranties.index.original-product') %></h3>
+              <p><%= t('warranties.index.original-product-info') %></p>
+            </div>
+        </div>
+        <div class="custom-point-two">
+          <div class="custom-point-two-img">
+            <%= image_tag 'checked-icon' %>
+            <!-- <img src="img/checked-icon.svg"> -->
+          </div>
+            <div class="custom-details-point-two">
+              <h3><%= t('warranties.index.product-warranty-label') %>: <%= (@item.warranty_expiry_date.to_i - Time.now.to_i ) / 86400  %> <%= t('warranties.index.product-warranty-days') %></h3>
+             <!-- <h3>Product warranty: 1 year</h3> -->
+              <p>You can return this product within <%= (@item.warranty_expiry_date.to_i - Time.now.to_i ) / 86400  %> <%= t('warranties.index.product-warranty-days') %> if you met any breakdowns.</p>
+            </div>
+        </div>
+        <p><%= link_to "Check another product", warranties_path %></p>
+      </div>
+    </div>
+  </div>
+</div>

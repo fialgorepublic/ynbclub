@@ -58,7 +58,7 @@ class OrderService
 
     def items_attributes
       params["line_items"].map { |line_item| { name: line_item["title"], weight: line_item["grams"].to_f/1000,
-                  quantity: line_item["quantity"], amount: line_item["price"]  } }
+                  quantity: line_item["quantity"], amount: line_item["price"], warranty_number: SecureRandom.random_number(10**10).to_s, warranty_valid_for_years: 1, warranty_expiry_date: Date.today + 1.year  } }
     end
 
     # def sent_to_ghtk?

@@ -1,100 +1,46 @@
-
 <div class="<%= add_container %>">
   <div class="<%= blog_screen_size %>">
     <div class="banner ">
       <div class="<%= current_user.present? ? 'banner remove-space' : 'banner' %>">
-        <% if @videos.any? %>
-          <section id="features" class="blue">
-            <div class="content">
-              <div class="slider slider_video responsive_video_slider">
-                <% @videos.each do |video| %>
-                  <div class="m_slider_vid">
-                    <div class="holder">
-                      <div class="overlay trigger" src="https://www.youtube.com/embed/<%= video.url %>" data-target="#videoModal" data-toggle="modal">
-                        <%= image_tag video.thumbnail, width: "100%", class: "lazy", lazy: true %>
-                      </div>
-                    </div>
-                    <section class="entry-body">
-                      <p class="video-title"><%= video.title %></p>
-                    </section>
-                  </div>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="tabbable-line custom-blog-nav">
+              <ul class="nav nav-tabs ">
+                <li class="blog-category active"><%= link_to "All", blogs_path %></li>
+                <% @categories.each do |category|  %>
+                  <li class='blog-category' id='category_id-<%= category.id %>'>
+                    <%=  link_to category.name.titleize, blogs_path(q: { category_id_eq: category.id } ),  class: 'blog-category',  remote: true %>
+                  </li>
                 <% end %>
-              </div>
+              </ul>
             </div>
-          </section>
-        <% end%>
-
+          </div>
+        </div>
         <%= search_form_for @q, remote: true do |f| %>
-          <div class="col-md-12 blog_banner_btn">
-            <div class="col-lg-12 padding-lr-20">
-              <%= f.search_field :title_i_cont, { class: 'form-control set-border-radius', placeholder: 'Search by title', id: 'blog-title-textbox', style: 'height: 20px;' } %>
-            </div>
-          </div>
-
-          <br>
-          <br>
-
           <div class="row">
-            <div class="col-md-12 blog_banner_btn class-z">
-              <% if current_user&.is_admin? || current_user&.has_permission?('scrap_blogs', 'scrap_blogs') %>
-                <%= link_to t('blogs.index.blog_libray_label'), scrap_blogs_path, class: 'btn blog_library btn-primary' %>
-              <% end %>
-
-              <% if current_user&.is_admin? %>
-                <%= link_to t('blogs.index.edit_banner_label'), "javascript:void(0);", class: 'btn edit_banner_btn btn-primary', id: 'uploaderBanner' %>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="post-heading blog-redesign-style">
-              <div class="col-md-1">
-                <div class="heading-featured text-left">
-                  <h1><%= t('blogs.index.page_title') %></h1>
+            <div class="col-md-8">
+              <div class="custom-blog-search-bar">
+                <div class="custom-blog-search-icon">
+                <i class="fa fa-search icon"></i>
+                <%= f.search_field :title_i_cont, { class: 'form-control set-border-radius', placeholder: 'Search', id: 'blog-title-textbox', style: 'height: 20px;' } %>
                 </div>
               </div>
-
-              <% if @blogs.count > 0 %>
-                <% if current_user %>
-                  <div class="col-md-2">
-                    <div class="post-sorting">
-                      <p>Publish Status</p>
-                      <%= f.select :is_published_eq, options_for_select([['Published', 1], ['Unpublished', 0]]), { include_blank: true }, { class: "sorting-fltr", id: 'publish-dropdown' } %>
-                    </div>
-                  </div>
-                <% end %>
-
-                <div class="col-md-2">
-                  <div class="post-sorting">
-                    <p>SORTING BY DATE</p>
-                      <%= f.date_field :created_at_eq, max: Date.today, id: 'sort-blogs-by-date' %>
-                  </div>
-                </div>
-
-                <div class="col-md-2">
-                  <div class="post-sorting">
-                    <p>SORTING</p>
-                    <%= select_tag :sort_by, options_for_select([['A-Z', 1], ['Z-A', 2]]), class: 'sorting-fltr', id: 'sort-blogs' %>
-                  </div>
-                </div>
-
-                <div class="col-md-2">
-                  <div class="post-sorting">
-                    <p>CATEGORY</p>
-                    <%= f.select :category_id_eq, options_for_select(Category.pluck(:name, :id)), { include_blank: t(:All_Categories) }, { class: "sorting-fltr", id: 'category-dropdown' } %>
-                  </div>
-                </div>
-              <% end %>
-
-              <div class="col-md-3 add_blog_btn pull-right">
-                <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path(new: 'new-blog'), class: "btn btn-primary new_blog_btn", id: "create-new-blog", remote: true if signed_in? %>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <div class="custom-blog-sort-date">
+                <p>SORTING BY DATE</p>
+                <%= f.text_field :created_at_eq, :class => 'datepicker', max: Date.today, id: 'sort-blogs-by-date' %>
               </div>
+            </div>
+            <div class="col-md-3 add_blog_btn pull-right">
+              <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path(new: 'new-blog'), class: "btn btn-primary new_blog_btn", id: "create-new-blog", remote: true if signed_in? %>
             </div>
             <%= hidden_field_tag :page, @blogs.current_page  %>
             <%= f.submit 'search', class: 'hidden', id: 'search-form-button' %>
           </div>
         <% end %>
-
+        <br>
         <div class="row" id="blogs">
           <%= render partial: "all_blogs", locals: { blogs: @blogs } %>
         </div>
@@ -106,6 +52,7 @@
     </div>
   </div>
 </div>
+
 
 <div id="bannerUploadModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -173,6 +120,7 @@
 </div>
 
 <script>
+  $('.datepicker').datepicker({format: 'dd/mm/yyyy'});
 
   $('#uploaderBanner').click(function () {
     $('#bannerUploadModal').modal('show');
@@ -360,6 +308,12 @@ $( document ).ready(function() {
   host = window.location.origin
   get_url = host+"/blogs"
   }
+
+  $('.blog-category').click(function(){
+    $('.loader').show();
+    $('.blog-category').removeClass('active')
+    $(this).addClass('active');
+  })
 
 })
 </script>

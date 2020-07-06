@@ -68,6 +68,8 @@ vi:
     referral_link_label:      Copy link đại sứ
     group_categories:         Group Categories
     earnings_label:           thu nhập
+    warranty_label:           Bảo hành sản phẩm
+
 
   referral_sales:
     index:
@@ -184,9 +186,14 @@ vi:
         transport_label:      Hình thức vận chuyển
         edit_address_label:   Chỉnh sửa địa chỉ
         send_ghtk_label:      Gửi đến Giao hang tích kiệm (GHTK)
+        product_warranty_label: Chỉnh sửa bảo hành sản phẩm
+        product-not-found:      Không tìm thấy sản phẩm có số này
+        check-another-product: Kiểm tra sản phẩm khác
 
       update_adress_modal:
         title:                Chỉnh sửa địa chỉ
+      update_warranty_modal:
+        title:                Chỉnh sửa bảo hành
     sweeper_message:          Đang trong quá trình quét. Bạn sẽ nhận được email ngay sau khi quá trình hoàn tất
 
   permissions:
@@ -478,6 +485,7 @@ vi:
   banned_message: Xin lỗi, tài khoản này đã bị chặn. Vui lòng kết nối nhóm hỗ trợ của chúng tôi.
   blocked_buyer_message:   Bạn không được phép thực hiện hoạt động này
   order_address_success:      Địa chỉ đặt hàng được cập nhập thành công.
+  update_warranty_success:    Bảo hành sản phẩm được cập nhật thành công
   order_update_error:         Đã xảy ra lỗi!
   gthk_address_error:         Địa chỉ không hợp lệ
   partner_info_success:       Thông tin đối tác được lưu thành công
@@ -533,6 +541,17 @@ vi:
   remember_me:                Nhớ tôi
   update_role_success_label:  Vai trò được cập nhật thành công
   reject_send_label:          Gửi
+
+  warranties:
+    index:
+      product-warranty:       Trang thông tin bảo hành chính thức của dòng sản phẩm Saintlbeau
+      product-warranty-info:  Vui lòng nhập mã của bạn vào ô bên dưới để kiểm tra bảo hành hoặc kiểm tra thông tin bảo hành sản phẩm của bạn
+      product-warranty-placeholder: Nhập mã của bạn
+      submit-label:                 Gửi đi
+      original-product:             sản phẩm là bản gốc
+      original-product-info:        Sản phẩm được sản xuất trên nhà máy ban đầu ở Hồng Kông được quản lý bởi tên công ty có trụ sở tại Hoa Kỳ.
+      product-warranty-label:       Bảo hành sản xuất
+      product-warranty-days:        ngày
 
   general:
     error: Đã xảy ra lỗi!

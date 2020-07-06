@@ -37,8 +37,11 @@
       <div class="col-sm-12">
         <h5><%= t('approve_sales.payment_status_label')  %></h5>
         <select id="paymentStatus" class="form-control custom-payment-dropDown" data-placeholder="<%= t('approve_sales.placeholders.select_option') %>" name="label[]" multiple>
-          <option value="pending">Unpaid</option>
-          <option value="paid" >Paid</option>
+          <option value="Status not updated yet.">Status not updated yet</option>
+          <option value="Controled">Controled</option>
+          <option value="Debt repayment has been controlled">Debt repayment has been controlled</option>
+          <option value="Do not get the goods">Do not get the goods</option>
+
           <!--<option value="refunded" >Refunded</option>-->
           <!--<option value="canceled" >Canceled</option>-->
         </select>
@@ -167,7 +170,7 @@
           }
           if (to_date != ""){
               if (since == ""){
-                  alert("t('approve_sales.errors.since_date_error') %>");
+                  alert("<%= t('approve_sales.errors.since_date_error') %>");
                   return false;
               }
           }

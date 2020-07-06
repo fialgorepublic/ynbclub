@@ -12,7 +12,7 @@ module BlogsHelper
   end
 
   def blog_date blog
-    blog.created_at.strftime("%y.%m.%d")
+    blog.created_at.strftime("%d.%m.%y")
   end
 
   def blog_description blog

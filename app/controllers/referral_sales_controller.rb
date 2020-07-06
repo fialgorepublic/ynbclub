@@ -69,12 +69,12 @@ class ReferralSalesController < ApplicationController
     partner_ids = (params[:search].present? && params[:search][:partner] != "null") ? params[:search][:partner] : nil
     discount_status = (params[:search].present? && params[:search][:discountStatus] != "null") ? params[:search][:discountStatus] : ""
     if params[:search].present?
+      start_date = params["search"]["start_date"].to_date if params["search"]["start_date"]
+      end_date = params["search"]["end_date"].to_date if params["search"]["end_date"]
       if (params[:search][:start_date].present? && params[:search][:end_date].present? && partner_ids.present?)
-        date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
-        referral_sales = ReferralSale.where("created_at::date IN (?) AND user_id = (?)", date_range, partner_ids.split(','))
+        referral_sales =  ReferralSale.date_filter_with_users(start_date, end_date, partner_ids.split(','))
       elsif(params[:search][:start_date].present? && params[:search][:end_date].present?)
-        date_range = (Date.parse(params[:search][:start_date])..Date.parse(params[:search][:end_date]))
-        referral_sales = ReferralSale.where("created_at::date IN (?)", date_range)
+        referral_sales = ReferralSale.date_filter(start_date..end_date)
       elsif (partner_ids.present?)
         referral_sales = ReferralSale.where(user_id: partner_ids.split(','))
       else
@@ -86,8 +86,13 @@ class ReferralSalesController < ApplicationController
     if (discount_status.present? && (discount_status.split(',').size == 1))
       referral_sales = referral_sales.where(is_approved: discount_status)
     end
+
     if (params[:payment].present? && params[:payment] != "null" && params[:payment].split(',').size == 1)
-      @payment = params[:payment]
+      payment_status = params[:payment]
+      ghtk_status =  payment_status == 'Status not updated yet.' ? nil : payment_status
+      order_ids = Order.by_ghtk_status(ghtk_status).pluck(:order_id)
+      referral_sales = referral_sales.presence || ReferralSale
+      referral_sales = referral_sales.for_orders(order_ids)
     end
     @referral_sales = referral_sales.includes(:user).paginate(page: params[:page])
     @order_status = {}
@@ -100,6 +105,8 @@ class ReferralSalesController < ApplicationController
       sale.update_attributes(is_approved: true)
     end
     @referral_sales = ReferralSale.all.paginate(page: params[:page])
+    @order_status = {}
+    Order.where(order_id: @referral_sales.pluck(:order_id)).collect { |order| @order_status[order.order_id] = order.status }
   end
 
   def upate_ghtk_status
