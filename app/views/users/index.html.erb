@@ -133,10 +133,9 @@
           $.ajax({
             url: '/change_activeStatus?id=' + id + '&value=' + status,
             type: 'get',
-            dataType: 'html',
+            dataType: 'script',
             processData: false,
             success: function (data) {
-
             },
             error: function (data) {
                 alert('Error');
