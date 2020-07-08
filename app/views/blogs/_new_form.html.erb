@@ -23,7 +23,7 @@
                 <div class="field form-group" id="image-upload-button-div" style="display: flex;">
                     <div class="custom-btn" >
                   <div class="fileUpload start blog-imgUpload">
-                    <%= form.file_field :avatar, :id => 'fileupload', class: "filestyle upload", "data-input" => false, accept: "image/png,image/jpeg" %>
+                    <%= form.file_field :avatar, id: 'fileupload', class: "filestyle upload", "data-input": false, accept: "image/png,image/jpeg" %>
                   </div>
 
                   <div class="fileUpload start blog-imgUpload">
@@ -50,8 +50,8 @@
               <div class="row m-t-20">
                 <div class="Newblog-category">
                   <div class="col-md-12">
-                    <div class="category-option" type="button" data-toggle="popover" id="tooltip-stlye-category" data-placement="top" data-content="Please Select Category First" title="">
-                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, {:include_blank => t('blogs.new.category_placeholder')}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
+                    <div class="category-option">
+                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, {include_blank: t('blogs.new.category_placeholder')}, html_options = {class: "form-control", required: true, oninvalid: "this.setCustomValidity('Please Select Category First')", oninput: "setCustomValidity('')"}) %>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="blogBox-style">
                     <div class="box-shadow-am">
                       <div class="form-group">
-                        <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: t('blogs.new.title_placeholder'),  :required => true %>
+                        <%= form.text_field :title, id: :blog_title, class: 'form-control', placeholder: t('blogs.new.title_placeholder'),  required: true %>
                       </div>
 
                       <div class="form-group">
@@ -226,7 +226,7 @@
           <h4>Update existing one</h4>
           <%= form_for @category, url: create_or_update_cateogry_blogs_path, method: :post, remote: true  do |form| %>
             <div class="form-group">
-              <%= collection_select(:category, :id, Category.all, :id, :name, {:include_blank => 'Select Category'}, html_options = {:class=>"form-control",  :required => true, title: "Please Select Category First"}) %>
+              <%= collection_select(:category, :id, Category.all, :id, :name, {include_blank: 'Select Category'}, html_options = {class: "form-control", required: true, title: "Please Select Category First"}) %>
             </div>
             <span class="category-name-error" id="edit-category">* Please select category first</span>
 
