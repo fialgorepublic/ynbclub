@@ -116,7 +116,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.update_attributes(is_activated: params[:value])
     respond_to do |format|
-      format.html { redirect_to users_url, notice: I18n.t(:active_status_changed) }
+      format.js
       format.json { head :no_content }
     end
   end
