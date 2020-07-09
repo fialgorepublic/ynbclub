@@ -5,10 +5,10 @@
         <div class="blog-box-small-img">
           <div class="height-sm dynamic-<%= blog.id%>" id="<%= blog.slug %>" onclick="blog_show('<%= blog.id %>')" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">
             <%= image_tag blog.avatar.variable? ? blog.avatar.variant(combine_options: { resize: '320x320^', gravity: 'Center', extent: '320x320^', quality: 95 }) : blog.avatar, width: '100%', class: 'image-height lazy', lazy: true %>
-            <div class="blog-box-content">
+            <div class="blog-box-content custom-blog-box-content">
               <p class="blog-sm-p">
                 <%= link_to user_path(blog.user) do %>
-                  <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img lazy", lazy: true %>
+                  <%= image_tag blog_author_avatar(blog), width: "30", class: "circle-img lazy custom-blog-card-avatar-img", lazy: true %>
                 <% end %>
                 <span class="with-un-blog"><%= user_name(blog.user) %></span>
                 <span class="-sm"><%= blog_date blog %></span>
