@@ -50,8 +50,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_route
-    flash.notice = 'No page found at that address'
-    redirect_to root_path
+    redirect_to root_path, alert: 'The page you are trying to access does not exist.'
   end
 
   private
