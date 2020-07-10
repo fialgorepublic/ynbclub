@@ -211,6 +211,10 @@ Rails.application.routes.draw do
       get :unfollow
     end
   end
-  get '*path' => redirect('/')
+
+  get '*all', to: 'application#check_route', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

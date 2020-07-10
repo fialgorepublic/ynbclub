@@ -49,6 +49,10 @@ class ApplicationController < ActionController::Base
     nil
   end
 
+  def check_route
+    redirect_to root_path, alert: 'The page you are trying to access does not exist.'
+  end
+
   private
 
   def block_banned_users
