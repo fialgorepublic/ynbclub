@@ -51,7 +51,7 @@
                 <div class="Newblog-category">
                   <div class="col-md-12">
                     <div class="category-option">
-                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, {include_blank: t('blogs.new.category_placeholder')}, html_options = {class: "form-control", required: true, oninvalid: "this.setCustomValidity('Please Select Category First')", oninput: "setCustomValidity('')"}) %>
+                      <%= collection_select(:blog, :category_id, Category.all, :id, :name, { include_blank: t('blogs.new.category_placeholder') }, html_options: { class: "form-control", required: true, oninvalid: "this.setCustomValidity('Please Select Category First')", oninput: "setCustomValidity('')" }) %>
                     </div>
                   </div>
                 </div>
