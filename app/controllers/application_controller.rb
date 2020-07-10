@@ -49,6 +49,11 @@ class ApplicationController < ActionController::Base
     nil
   end
 
+  def check_route
+    flash.notice = 'No page found at that address'
+    redirect_to root_path
+  end
+
   private
 
   def block_banned_users
