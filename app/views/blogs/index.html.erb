@@ -3,7 +3,8 @@
     <div class="banner ">
       <div class="<%= current_user.present? ? 'banner remove-space' : 'banner' %>">
         <div class="row">
-          <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-10 col-md-offset-1" align="center">
+            <div class="custom-blog-nav-scroll">
             <div class="tabbable-line custom-blog-nav">
               <ul class="nav nav-tabs ">
                 <li class="blog-category active"><%= link_to "All", blogs_path %></li>
@@ -15,10 +16,11 @@
               </ul>
             </div>
           </div>
+          </div>
         </div>
         <%= search_form_for @q, remote: true do |f| %>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-xs-11">
               <div class="custom-blog-search-bar">
                 <div class="custom-blog-search-icon">
                 <i class="fa fa-search icon"></i>
