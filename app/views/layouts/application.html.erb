@@ -5,7 +5,7 @@
 
   <!-- <title>SaintLBeau</title> -->
   <title>SaintLBeau</title>
-  <link href="<%= blogs_url %>" rel='canonical' />
+    <%= canonical_tag -%>
   <!-- Facebook Open Graph data -->
   <%= tag :meta, property: "og:title", content: content_for?(:og_title) ? yield(:og_title) : "Saint L Beau" %>
   <%= tag :meta, property: "og:type", content: content_for?(:og_type) ? yield(:og_type) : "website" %>
