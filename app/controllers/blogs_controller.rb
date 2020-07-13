@@ -66,6 +66,7 @@ class BlogsController < ApplicationController
     @comments = @blog.comments if @blog.is_published?
     @selected_products = @blog.products
     @blog.blog_views.create
+    @referrer = @blog.user.referral
 
     @belong_to_user = current_user.present? && @blog.user == current_user
   end

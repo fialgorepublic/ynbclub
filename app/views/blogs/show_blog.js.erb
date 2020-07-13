@@ -11,10 +11,11 @@ blogText = $("#blog-slug").text()
 window.history.replaceState({},'','/blogs/'+ blogText);
 get_blogID = `dynamic-blog-${blogId}`
 blogImages = $("."+get_blogID).children().find('.img-fluid')
+referrerParam = '<%= @referrer.present? ? "?referral_url=#{@referrer}" : "" %>';
 $(blogImages).each(function(){
   getAnchorTag = this.parentElement
   if ($(getAnchorTag).is('a')) {
-    var url = getAnchorTag.href+"?referrer="
+    var url = getAnchorTag.href+referrerParam
     var title = $(getAnchorTag).data('title').split("|").join(" ")
     var price = $(getAnchorTag).data('price')
     var image = $(getAnchorTag).data('image')
