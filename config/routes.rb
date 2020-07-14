@@ -85,7 +85,7 @@ Rails.application.routes.draw do
 
   resources :warranties, only: [:index, :update] do
     collection do
-      post :check
+      get :check
     end
   end
 
