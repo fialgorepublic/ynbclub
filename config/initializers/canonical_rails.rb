@@ -10,9 +10,9 @@ CanonicalRails.setup do |config|
   if Rails.env.development?
     config.host = 'localhost'
   elsif Rails.env.staging?
-    config.host = 'https://ambassador-staging.saintlbeau.com'
+    config.host = 'ambassador-staging.saintlbeau.com'
   else
-    config.host = 'https://ambassador.saintlbeau.com'
+    config.host = 'ambassador.saintlbeau.com'
   end
   config.port# = '3000'
 
