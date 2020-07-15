@@ -58,7 +58,7 @@ $(document).on('turbolinks:load', function () {
       $('#custom-topPage-btn').fadeOut(200);   // Else fade out the arrow
     }
 
-    if (window.location.href.endsWith("blogs") && ($(window).scrollTop() == $(document).height() - $(window).height())) {
+    if (window.location.href.endsWith("blogs") && (($(window).scrollTop() + $(window).height() > $(document).height() - 100) || ($(window).scrollTop() == $(document).height() - $(window).height()) )) {
       $("#load-more").click();
     }
   });
