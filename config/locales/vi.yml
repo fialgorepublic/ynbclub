@@ -109,9 +109,9 @@ vi:
       blog_libray_label:      Thư viện Blog
       edit_banner_label:      Chỉnh sửa Banner
       new_blog_label:         Bài blog mới
-      show_more_label:        Show More
-      add_new_blog_post:      Add New Blog Post
-      go_to_blogs:            Go To Blogs
+      show_more_label:        Cho xem nhiều hơn
+      add_new_blog_post:      + Thêm bài đăng blog mới
+      go_to_blogs:            Chuyển đến blog
       share_blog_label:       chia sẻ_blog_label
       list_blog_label:        Danh sách blog
       blogs_not_found:         Không tỉm được bài đăng

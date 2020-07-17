@@ -35,11 +35,13 @@
                 <%= f.text_field :created_at_eq, class: 'datepicker', max: Date.today, id: 'sort-blogs-by-date', placeholder: 'Select Date' %>
               </div>
             </div>
-            <div class="col-md-3 add_blog_btn pull-right">
-              <%= link_to "+ #{t('blogs.index.add_new_blog_post')}", new_blog_path(new: 'new-blog'), class: "btn btn-primary new_blog_btn", id: "create-new-blog", remote: true if signed_in? %>
-            </div>
             <%= hidden_field_tag :page, @blogs.current_page  %>
             <%= f.submit 'search', class: 'hidden', id: 'search-form-button' %>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-10 col-md-2 add_blog_btn pull-right">
+              <%= link_to t('blogs.index.add_new_blog_post'), new_blog_path(new: 'new-blog'), class: "btn btn-primary new_blog_btn blog-btn-position", id: "create-new-blog", remote: true if signed_in? %>
+            </div>
           </div>
         <% end %>
         <br>
