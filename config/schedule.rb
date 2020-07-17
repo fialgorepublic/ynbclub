@@ -2,7 +2,7 @@ every 1.days, at: '11:00 pm' do
   runner "p UpdateOrderStatusJob.perform_now", output: { error: 'update_status.log', standard: 'update_status_standard.log'}
 end
 
-every 1.day, :at => '5:00 am' do
+every :sunday, at: '5:00 am' do
   rake "-s sitemap:refresh"
 end
 
