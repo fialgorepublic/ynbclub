@@ -419,7 +419,7 @@ vi:
     index:
       title:                  Groups
       edit_banner_text:       Edit Banner
-      add_new_group:          Add New Group
+      add_new_group:          + Thêm nhóm mới
 
     new:
       name_missing:           Name is required
@@ -442,6 +442,19 @@ vi:
       create_success:         Nhóm Danh mục đã được tạo thành công
       update_success:         Nhóm Danh mục đã được cập nhập thành công
       destroy_success:        Nhóm Huỷ danh mục thành công
+
+  dashboard:
+    index:
+      title:
+        groups:               Các nhóm
+        blogs:                Blog
+        followings:           Theo dõi
+        followers:            Người theo dõi
+        following_groups:     Theo dõi nhóm
+        your_blogs:           Blog của bạn
+        liked_blogs:          Blog thích
+        next_page:            Trang tiếp theo →
+        previous_page:        ← Trang trước
 
   actions_lable:              Các hoạt động
   cancel_label:               Huỷ

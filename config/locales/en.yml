@@ -412,7 +412,7 @@ en:
     index:
       title:                  Groups
       edit_banner_text:       Edit Banner
-      add_new_group:          Add New Group
+      add_new_group:          + Add New Group
 
     new:
       name_missing:           Name is required
@@ -435,6 +435,19 @@ en:
       create_success:         Group Category was successfully created.
       update_success:         Group Category was successfully updated.
       destroy_success:        Group Category was successfully destroyed.
+
+  dashboard:
+    index:
+      title:
+        groups:               Groups
+        blogs:                Blogs
+        followings:           Followings
+        followers:            Followers
+        following_groups:     Following Groups
+        your_blogs:           Your Blogs
+        liked_blogs:          Liked Blogs
+        next_page:            Next Page →
+        previous_page:        ← Previous Page
 
   actions_lable:              Actions
   cancel_label:               Cancel
