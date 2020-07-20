@@ -2005,6 +2005,11 @@ label.error {
   }
 }
 
+.btn-allignment{
+  float: right;
+  margin-right: 20px;
+}
+
 .nested-fields .remove_field {
   position: absolute;
   right: 0;
@@ -2079,7 +2084,7 @@ label.error {
     font-size: 3vw !important;
   }
   .blog-btn-position {
-    margin-left: 66px;
+    margin-right: 50px;
   }
 
   .blog-box {
@@ -3898,10 +3903,10 @@ input[type="checkbox"]:checked:after {
 .select_with_icon {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   width: 100%;
-  height: 30px;
+  height: 40px;
   margin-top: 8px;
   background-color: transparent;
-  color: black;
+  color: #3e3c3c;
 }
 
 .modal_header_feed {
@@ -4567,6 +4572,7 @@ span.remove.fa.fa-times {
 
   .custom-blog-sort-date {
     margin: 0px 0px 30px;
+    margin-right: 50px;
   }
 
   .product-warranty {
