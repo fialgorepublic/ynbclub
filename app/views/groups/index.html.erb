@@ -71,7 +71,7 @@
         <% end %>
 
         <div class="col-md-3 add_blog_btn pull-right">
-          <%= link_to "+ #{t('groups.index.add_new_group')}", new_group_path, class: "btn btn-primary new_blog_btn" if current_user && current_user.is_admin? %>
+          <%= link_to t('groups.index.add_new_group'), new_group_path, class: "btn btn-primary new_blog_btn" if current_user && current_user.is_admin? %>
         </div>
       </div>
     </div>

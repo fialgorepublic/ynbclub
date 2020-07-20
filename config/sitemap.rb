@@ -18,10 +18,22 @@ SitemapGenerator::Sitemap.create do
   #
   # Add '/blogs'
   #
-  add blogs_path, :priority => 1, :changefreq => 'daily'
+  add videos_path, priority: 0.6
+  add groups_path, priority: 0.8
+  add conversations_path, priority: 0.9
+  add blogs_path, priority: 1, changefreq: 'daily'
+
   #
   # Add Blogs:
   Blog.where(is_published: true).find_each do |blog|
     add blog_path(blog), lastmod: blog.updated_at
+  end
+
+  Group.all.each do |group|
+    add group_path(group), lastmod: group.updated_at
+  end
+
+  Conversation.all.each do |conversation|
+    add conversation_path(conversation), lastmod: conversation.updated_at
   end
 end

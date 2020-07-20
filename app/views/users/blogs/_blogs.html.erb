@@ -2,7 +2,7 @@
   <div class="">
     <div class="row">
       <div class="heading-featured col-md-7">
-        <h1>Your Blogs</h1>
+        <h1><%= t('dashboard.index.title.your_blogs') %></h1>
       </div>
 
       <%= render partial: 'users/blogs/filters', locals: { type: 'your-blogs', user: user } %>
@@ -14,11 +14,11 @@
     <div class="row">
       <div class="col-md-12 pagination-div flex-sb">
         <div class="">
-          <%= link_to '← Previous Page', user_blogs_path(user_id: user.id, your_blogs_page: @your_blogs&.previous_page, type: 'your-blogs'), remote: true, id: 'your-blogs-previous', class: @your_blogs&.previous_page ? '' : 'hidden'  %>
+          <%= link_to t('dashboard.index.title.previous_page'), user_blogs_path(user_id: user.id, your_blogs_page: @your_blogs&.previous_page, type: 'your-blogs'), remote: true, id: 'your-blogs-previous', class: @your_blogs&.previous_page ? '' : 'hidden'  %>
         </div>
 
         <div class="">
-          <%= link_to 'Next Page →', user_blogs_path(user_id: user.id, your_blogs_page: @your_blogs&.next_page, type: 'your-blogs'), remote: true, id: 'your-blogs-next', class: @your_blogs&.next_page ? '' : 'hidden' %>
+          <%= link_to t('dashboard.index.title.next_page'), user_blogs_path(user_id: user.id, your_blogs_page: @your_blogs&.next_page, type: 'your-blogs'), remote: true, id: 'your-blogs-next', class: @your_blogs&.next_page ? '' : 'hidden' %>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
 
   <div class="row">
     <div class="heading-featured col-md-7">
-      <h1>Liked Blogs</h1>
+      <h1><%= t('dashboard.index.title.liked_blogs') %></h1>
     </div>
 
     <%= render partial: 'users/blogs/filters', locals: { type: 'liked-blogs', user: user } %>
@@ -39,11 +39,11 @@
   <div class="row">
     <div class="col-md-12 pagination-div flex-sb">
       <div class="text-left">
-        <%= link_to '← Previous Page', user_blogs_path(user_id: user.id, liked_blogs_page: @liked_blogs&.previous_page, type: 'liked-blogs'), remote: true, id: 'liked-blogs-previous', class: @liked_blogs&.previous_page ? '' : 'hidden'  %>
+        <%= link_to t('dashboard.index.title.previous_page'), user_blogs_path(user_id: user.id, liked_blogs_page: @liked_blogs&.previous_page, type: 'liked-blogs'), remote: true, id: 'liked-blogs-previous', class: @liked_blogs&.previous_page ? '' : 'hidden'  %>
       </div>
 
       <div class="text-right">
-        <%= link_to 'Next Page →', user_blogs_path(user_id: user.id, liked_blogs_page: @liked_blogs&.next_page, type: 'liked-blogs'), remote: true, id: 'liked-blogs-next' %>
+        <%= link_to t('dashboard.index.title.next_page'), user_blogs_path(user_id: user.id, liked_blogs_page: @liked_blogs&.next_page, type: 'liked-blogs'), remote: true, id: 'liked-blogs-next' %>
       </div>
     </div>
   </div>
