@@ -101,22 +101,6 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-   $("#edit_warranty_form").on("change", ".warranty-year", function () {
-    product_id = $(this).data('product-id');
-    year = $(this).val();
-    $.ajax({
-      url: `/warranties/${product_id}?year=${year}`,
-      type: 'PUT',
-      contentType: 'json',
-      success: function (data) {
-      },
-      error: function () {
-        $('.loader').hide();
-        alert('Error');
-      }
-    });
-  });
-
   $('#clear-btn').click(function(){
     value = $('#search-field').val();
     if (value == "") { return false; }
@@ -127,5 +111,30 @@ $(document).on('turbolinks:load', function() {
 
   $("#sort-phone-status").change(function() {
     $('#search-order').click();
+  });
+
+  $( "#edit_product_warranty_modal" ).on('shown.bs.modal', function(){
+    $(".warranty_number").each(function(){
+      id = this.id.split("-")[1]
+      $input = $(`[data-behavior='autocomplete-${$(this).data('id')}']`)
+      var options = {
+        getValue: "number",
+        url: function(phrase) {
+          return "/search_warranty.json?q=" + phrase;
+        },
+        categories: [
+          {
+            listLocation: "product_warranties",
+            header: "<strong>Warranties</strong>",
+          }
+        ],
+        list: {
+          onChooseEvent: function() {
+            $input.getSelectedItemData().warranty_number
+          }
+        }
+      }
+      $input.easyAutocomplete(options)
+    });
   });
 })

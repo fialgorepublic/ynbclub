@@ -146,7 +146,7 @@
 
       <% if current_user.is_admin? || current_user.is_ambassador? %>
         <li>
-        <%= link_to warranties_path, class: active_class(warranties_path) do %>
+        <%= link_to check_warranties_path, class: active_class(check_warranties_path) do %>
           <img src="https://img.icons8.com/fluent/25/000000/warranty.png"/>
         <span class="side-nav-style"><%= t('sidebar.warranty_label') %></span>
 
@@ -155,20 +155,25 @@
       <% end %>
 
       <% if current_user.is_admin? %>
-      <li>
-        <%= link_to permissions_path, class: active_class(permissions_path) do %>
-        <i class="custom-icon fa fa-universal-access" style="padding-right: 2px;"></i>
-        <span class="side-nav-style"><%= t('sidebar.permissions_label') %></span>
+        <li>
+          <%= link_to warranties_path, class: active_class(warranties_path) do %>
+            <%= image_tag 'warranty.jpeg', width: '21px' %>
+            <span class="side-nav-style"><%= t('sidebar.product_warranty_label') %></span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to permissions_path, class: active_class(permissions_path) do %>
+            <i class="custom-icon fa fa-universal-access" style="padding-right: 2px;"></i>
+            <span class="side-nav-style"><%= t('sidebar.permissions_label') %></span>
+          <% end %>
+        </li>
 
-        <% end %>
-      </li>
-
-      <li>
-        <%= link_to shared_urls_path, class: active_class(shared_urls_path) do %>
-        <i class="custom-icon fa fa-share-alt" style="padding-right: 2px;"></i> <span
-          class="side-nav-style"><%= t('sidebar.shared_urls_label') %></span>
-        <% end %>
-      </li>
+        <li>
+          <%= link_to shared_urls_path, class: active_class(shared_urls_path) do %>
+            <i class="custom-icon fa fa-share-alt" style="padding-right: 2px;"></i> <span
+            class="side-nav-style"><%= t('sidebar.shared_urls_label') %></span>
+          <% end %>
+        </li>
       <% end %>
 
 

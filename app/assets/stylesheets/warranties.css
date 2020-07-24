@@ -1,0 +1,7 @@
+.change-style {
+  font-size: 20px;
+}
+
+.change-style > table tbody tr td {
+  font-size: 24px;
+}

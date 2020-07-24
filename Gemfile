@@ -70,6 +70,9 @@ gem "lazyload-rails"
 gem 'redis'
 gem 'unsplash'
 gem 'canonical-rails', github: 'jumph4x/canonical-rails'
+gem 'wicked_pdf'
+gem 'barby', '~> 0.6.2'
+gem 'chunky_png', '~> 1.3', '>= 1.3.5'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'

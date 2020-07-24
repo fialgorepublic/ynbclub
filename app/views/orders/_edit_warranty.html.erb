@@ -1,15 +1,34 @@
 <div class="modal-body">
   <div class="row">
-    <div class="col-md-offset-1 col-md-3">
+    <div class="col-md-3">
       <h4><%= product.name%></h4>
     </div>
-    <div class="col-md-4">
-      <h4><%= product.warranty_number%></h4>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group">
-        <%= select_tag 'item[warranty_valid_for_years,]', options_for_select(options_for_warrenty_dropdown, selected: product.warranty_valid_for_years) , { class: "form-control warranty-year", id: "product_#{product.id}", data: { product_id: product.id} } %>
+    <%= form_tag update_product_warranties_path, remote: true do %>
+      <div class="col-md-3">
+        <%= text_field_tag :number, "", placeholder: "Search warranty number", data: { behavior: "autocomplete-#{product.id}", id: product.id }, class: "form-control warranty_number", id: "warranty-#{product.id}", required: true %>
       </div>
-    </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= select_tag 'warranty[valid_for_years]', options_for_select(options_for_warrenty_dropdown) , { class: "form-control warranty-year", id: "product_#{product.id}", data: { product_id: product.id} } %>
+        </div>
+      </div>
+      <div class="col-md-offset-1 col-md-2">
+        <div class="form-group">
+          <%= text_field_tag "warranty[start_date]", "", class: 'datepicker form-control', placeholder: 'Select Date', required: true %>
+        </div>
+      </div>
+      <%= hidden_field_tag 'warranty[item_id]', product.id  %>
+      <%= hidden_field_tag 'warranty[assigned]', true  %>
+      <%= submit_tag("Save", id: "button", class: "btn btn-primary btn-position", name: "submit") %>
+    <% end %>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  var dateToday = new Date();
+  $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    'startDate': dateToday
+  });
+</script>

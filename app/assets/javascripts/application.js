@@ -53,6 +53,8 @@
 //= require medium-editor.js
 //= require medium-editor-insert-plugin.js
 //= require local-time
+//= require jquery.easy-autocomplete
+//= require warranties
 //= require_tree .
 
 

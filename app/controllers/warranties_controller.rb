@@ -1,22 +1,58 @@
 class WarrantiesController < ApplicationController
+  before_action :authenticate_user!
   
   def index
-  end 
+    @warranties = Warranty.group('date(created_at)').count
+  end
 
-  def check
-    @item = Item.find_by(warranty_number: params[:warranty_number])
-    if @item.present?
-      initiate_shopify_session
-      @product = ShopifyAPI::Product.find(:all, params: { title: @item.name }).first
-      clear_shopify_session
-    else
-      redirect_to warranties_path, flash: { error: "product Not Found" }
+  def show
+    @warranties = Warranty.where('Date(created_at) = ?', params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Invoice No. #{@warranties.first}",
+        page_size: 'A4',
+        template: "warranties/show.html.erb",
+        layout: "pdf.html",
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
     end
   end
 
-  def update
-    item = Item.find(params[:id])
-    warrenty_year =  params[:year].to_i
-    item.update(warranty_valid_for_years: warrenty_year, warranty_expiry_date: warrenty_year.years.from_now.end_of_day)
+  def new
+    @warranty = Warranty.new
+  end
+
+  def create
+    ProductWarrantiesJob.perform_later(params[:no_of_warranties].to_i)
+    redirect_to warranties_path, notice: 'warranties are creating.'
+  end
+
+
+  def update_product
+    @warranty = Warranty.find_by(number:params["number"])
+    if @warranty.present?
+      @warranty.update_attributes(warranty_params.merge(expiry_date: params["warranty"]["start_date"].to_date + params["warranty"]["valid_for_years"].to_i.year))
+    end
+  end
+
+  def search_warranty
+    @warranties    = Warranty.get_warranties(params[:q])
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        @warranties  = @warranties.limit(5)
+      }
+    end
+  end
+
+  private
+
+  def warranty_params
+    params.require(:warranty).permit(:item_id, :assigned, :valid_for_years, :start_date)
   end
 end

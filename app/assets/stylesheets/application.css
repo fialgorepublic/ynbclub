@@ -30,6 +30,8 @@
   *= require emojionearea.css
   *= require quill.snow
   *= require quill.bubble
+  *= require easy-autocomplete
+  *= require easy-autocomplete.themes
  */
 
 /*#referral-div {*/

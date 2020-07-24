@@ -105,7 +105,7 @@
 </div>
 
   <div class="modal fade" id="edit_product_warranty_modal" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-width">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -114,14 +114,17 @@
       </div>
         <h4 class=" text-center"><%= t('orders.index.update_warranty_modal.title') %></h4>
         <div class="row">
-          <div class="col-md-offset-1 col-md-3">
+          <div class="col-md-offset-1 col-md-2">
             Product Name
           </div>
-            <div class="col-md-4">
+            <div class="col-md-offset-1 col-md-2">
             Warranty Number
           </div>
-            <div class="col-md-4">
+          <div class="col-md-offset-1 col-md-2">
             Warranty Year
+          </div>
+          <div class="col-md-offset-1 col-md-2">
+            Warranty Start Date
           </div>
         </div>
       <div id="edit_warranty_form">
