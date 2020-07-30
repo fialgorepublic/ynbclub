@@ -55,7 +55,7 @@ module UsersHelper
       link_to 'Follow', 'javascript:void(0);', data: { toggle: 'modal', target: '#signIn' }, class: 'btn btn-default follow-button', type: 'button'
     else
       text, url = follow_button_text(user)
-      link_to text, url, class: 'btn btn-default follow-button profile-tag-btn-ad btn-default', remote: true, type: 'button'
+      link_to text, url, class: 'btn btn-default follow-button' , remote: true, type: 'button'
     end
   end
 
