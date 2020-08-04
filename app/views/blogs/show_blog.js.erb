@@ -8,7 +8,7 @@ blogId = '<%= @blog.id %>';
 <% end %>
 $('.create-blog-modal').html("<%= j render 'show_blog' %>");
 blogText = $("#blog-slug").text()
-window.history.replaceState({},'','/blogs/'+ blogText);
+window.history.replaceState({},'','/blogs?id='+ blogId);
 get_blogID = `dynamic-blog-${blogId}`
 blogImages = $("."+get_blogID).children().find('.img-fluid')
 referrerParam = '<%= @referrer.present? ? "?referral_url=#{@referrer}" : "" %>';
