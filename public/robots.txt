@@ -6,3 +6,6 @@ https://ambassador.saintlbeau.com/auth/google?invite=linhdinh186@gmail.com
 https://ambassador.saintlbeau.com/auth/google?invite=thuhuong.21.hpu2@gmail.com
 https://ambassador.saintlbeau.com/auth/google?invite=beautytalk11597@gmail.comambassador.saintlbeau.com/?invite=beauty
 https://ambassador.saintlbeau.com/auth/google?invite=
+
+User-agent: *
+Disallow: /users
