@@ -147,9 +147,8 @@
       <% if current_user.is_admin? || current_user.is_ambassador? %>
         <li>
         <%= link_to warranties_path, class: active_class(warranties_path) do %>
-          <img src="https://img.icons8.com/fluent/25/000000/warranty.png"/>
-        <span class="side-nav-style"><%= t('sidebar.warranty_label') %></span>
-
+          <%= image_tag 'ribbon.png', width: '20px' %>
+          <span class="side-nav-style"><%= t('sidebar.warranty_label') %></span>
         <% end %>
       </li>
       <% end %>
