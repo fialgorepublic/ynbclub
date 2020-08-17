@@ -82,10 +82,16 @@ Rails.application.routes.draw do
   get 'videos', to: 'dashboard#videos'
   get 'profile_admin', to: 'dashboard#profile'
   get 'show_blog/:id', to: 'blogs#show_blog'
-
-  resources :warranties, only: [:index, :update] do
+  get 'search_warranty', to: 'warranties#search_warranty'
+  resources :check_warranties, only: [:index] do
     collection do
       get :check
+    end
+  end
+
+  resources :warranties, only: [:new, :create, :index, :show] do
+    collection do
+      post :update_product
     end
   end
 

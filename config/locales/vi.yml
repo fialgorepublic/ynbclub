@@ -69,6 +69,7 @@ vi:
     group_categories:         Group Categories
     earnings_label:           thu nhập
     warranty_label:           Bảo hành sản phẩm
+    product_warranty_label:   Tạo bảo hành
 
 
   referral_sales:
@@ -193,7 +194,7 @@ vi:
       update_adress_modal:
         title:                Chỉnh sửa địa chỉ
       update_warranty_modal:
-        title:                Chỉnh sửa bảo hành
+        title:                Chỉ định bảo hành cho sản phẩm
     sweeper_message:          Đang trong quá trình quét. Bạn sẽ nhận được email ngay sau khi quá trình hoàn tất
 
   permissions:
@@ -498,7 +499,8 @@ vi:
   banned_message: Xin lỗi, tài khoản này đã bị chặn. Vui lòng kết nối nhóm hỗ trợ của chúng tôi.
   blocked_buyer_message:   Bạn không được phép thực hiện hoạt động này
   order_address_success:      Địa chỉ đặt hàng được cập nhập thành công.
-  update_warranty_success:    Bảo hành sản phẩm được cập nhật thành công
+  update_warranty_success:    bảo hành thành công cho sản phẩm
+  update_warranty_error:      không tìm thấy số bảo hành
   order_update_error:         Đã xảy ra lỗi!
   gthk_address_error:         Địa chỉ không hợp lệ
   partner_info_success:       Thông tin đối tác được lưu thành công
@@ -565,6 +567,16 @@ vi:
       original-product-info:        Sản phẩm được sản xuất trên nhà máy ban đầu ở Hồng Kông được quản lý bởi tên công ty có trụ sở tại Hoa Kỳ.
       product-warranty-label:       Bảo hành sản xuất
       product-warranty-days:        ngày
+      no_of_warranties:             Không bảo hành
+      title:                        Bảo hành
+      warranty_assigned:            Được giao cho sản phẩm
+      warranty_not_assigned:        Chưa được phân công
+
+    table_headers:
+      date_label:                   Ngày
+      count_label:                  Không bảo hành
+      warranties_label:             Bảo hành
+      add_new_warranties:           Thêm bảo hành mới
 
   general:
     error: Đã xảy ra lỗi!
