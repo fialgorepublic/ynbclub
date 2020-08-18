@@ -17,7 +17,7 @@
             <tr>
               <td><%= format_created_at(date) %></td>
               <td><%= record %></td>
-              <td><%= link_to 'Warranties', warranty_path(date.strftime('%d-%m-%y'), format: :pdf) %></td>
+              <td><%= link_to 'Warranties', warranty_path(date.strftime('%Y-%m-%d'), format: :pdf) %></td>
             </tr>
           <% end %>
         <% end %>
