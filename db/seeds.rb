@@ -2,7 +2,7 @@ if Role.first.blank?
   Role.create(name: "Buyer")
   Role.create(name: "Brand ambassador")
   role = Role.create(name: "Admin")
-  user = User.create(name: "Admin", email: 'admin@saintlbeau.com', password: 'admin123', role_id: role.id)
+  user = User.create(name: "Admin", email: 'admin@ynbclub.com', password: 'admin123', role_id: role.id)
   user.permissions.create(action_name: ['all'])
 end
 
