@@ -57,7 +57,13 @@ class BlogsController < ApplicationController
     # @blog.blog_views.create
 
     respond_to do |format|
-      format.html { redirect_to blogs_path(id: @blog.id) }
+      format.html {
+        if @blog.present?
+          redirect_to blogs_path(id: @blog.id)
+        else
+          redirect_to blogs_path, alert: 'blog not found'
+        end
+      }
       format.js
     end
   end
@@ -293,7 +299,7 @@ class BlogsController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.friendly.find(params[:id].split("&")[0]) rescue ''
+      @blog = Blog.friendly.find(params[:id]) rescue ''
     end
 
     def category_params

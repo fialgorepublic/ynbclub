@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-2">
+    <%= form_tag warranties_path, id: 'new_warranty' do |form| %>
+      <div class="form-group">
+        <%= label_tag t('warranties.index.no_of_warranties') %>
+        <%= number_field_tag :no_of_warranties, class: "form-control", placeholder: "Enter No. of warranties", required: true %>
+      </div>
+      <div class="actions">
+        <%= submit_tag("Create", class:"btn btn-success set-border-radius") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="warranty-loader">
+  <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+  <h1 class="fix-position">Creating warrenties please wait.</h1>
+</div>

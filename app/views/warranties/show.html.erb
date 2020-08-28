@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-md-3">
+      <table class="table table-bordered change-style">
+        <thead>
+          <tr>
+            <th>Warranty Number</th>
+            <th>Barcode</th>
+            <th>Assigned to product</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @warranties.each do |warranty| %>
+            <tr>
+              <td><%= warranty.number %></td>
+              <td><%= image_tag "data:image/png;base64,#{Rack::Utils.escape(warranty.barcode)}" %></td>
+              <td><%= warranty.assigned? ? t('warranties.indes.warranty_assigned') : t('warranties.indes.warranty_not_assigned') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -32,7 +32,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
-  config.action_controller.asset_host = 'https://ambassador.saintlbeau.com'
+  config.action_controller.asset_host = 'https://ambassador.ynbclub.com'
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
@@ -46,8 +46,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://ambassador.saintlbeau.com/cable'
-  config.action_cable.allowed_request_origins = [ 'https://ambassador.saintlbeau.com', 'http://ambassador.saintlbeau.com' ]
+  config.action_cable.url = 'wss://ambassador.ynbclub.com/cable'
+  config.action_cable.allowed_request_origins = [ 'https://ambassador.ynbclub.com', 'http://ambassador.ynbclub.com' ]
   config.action_cable.worker_pool_size = 10
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
@@ -68,7 +68,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "SaintLBeau-app_#{Rails.env}"
   config.action_mailer.perform_caching = false
   # config.action_mailer.default_url_options = { host: 'https://beta.saintlbeau.com'}
-  config.action_mailer.default_url_options = { host: 'https://ambassador.saintlbeau.com'}
+  config.action_mailer.default_url_options = { host: 'https://ambassador.ynbclub.com'}
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {

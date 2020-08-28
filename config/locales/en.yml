@@ -69,6 +69,7 @@ en:
     group_categories:         Group Categories
     earnings_label:           Earnings
     warranty_label:           Product Warranty
+    product_warranty_label:   Create Warranties
 
   referral_sales:
     index:
@@ -191,7 +192,7 @@ en:
       update_adress_modal:
         title:                Edit Address
       update_warranty_modal:
-        title:              Edit Warranty
+        title:              Assign warranty to product
     sweeper_message:          Sweeper in progress. You will receive an email when it completes.
   permissions:
     index:
@@ -491,7 +492,8 @@ en:
   banned_message: Sorry, this account was blocked. Please connect our support team.
   blocked_buyer_message:      You are not permitted for this operation.
   order_address_success:      Order address updated Successfully.
-  update_warranty_success:    Product warranty updated Successfully
+  update_warranty_success:    warranty assigned to product successfully
+  update_warranty_error:      warranty number not found
   order_update_error:         Something went wrong!
   gthk_address_error:         Address is not valid.
   partner_info_success:       Partner information saved successfully
@@ -550,6 +552,7 @@ en:
 
   warranties:
     index:
+      title:                  Warranties
       product-warranty:       Official warranty information page of Saintlbeau product lines
       product-warranty-info:  Please enter your code in the box below to check warranty or check your product warranty information
       product-warranty-placeholder: Input your code
@@ -558,6 +561,14 @@ en:
       original-product-info:        Product was manufactured on original factory in Hong Kong governed by company name based in USA.
       product-warranty-label:       Producty warranty
       product-warranty-days:        days
+      no_of_warranties:             No of warranties
+      add_new_warranties:           Add New Warranty
+      warranty_assigned:            Assigned to product
+      warranty_not_assigned:        Not Assigned yet 
+    table_headers:
+      date_label:                   Date
+      count_label:                  No of Warranties
+      warranties_label:             Warranties
 
   general:
     error: Something went wrong!

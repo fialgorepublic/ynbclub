@@ -1,0 +1,5 @@
+<% if @warranty.present?%>
+  toastr.success("<%= t(:update_warranty_success) %>");
+<% else %>
+  toastr.error("<%= t(:update_warranty_error) %>");
+<% end %>

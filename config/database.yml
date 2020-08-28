@@ -7,16 +7,12 @@ default: &default
 
 development:
   <<: *default
-  database: saintLBeau-app
+  database: ynbclub
 
 test:
   <<: *default
-  database: saintLBeau-app
+  database: ynbclub
 
 production:
   <<: *default
-  database: saintLBeau-app
-
-staging:
-  <<: *default
-  database: saintlbeau-staging
+  database: ynbclub

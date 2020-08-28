@@ -30,7 +30,7 @@
               <p>You can return this product within <%= (@item.warranty_expiry_date.to_i - Time.now.to_i ) / 86400  %> <%= t('warranties.index.product-warranty-days') %> if you met any breakdowns.</p>
             </div>
         </div>
-        <p><%= link_to "Check another product", warranties_path %></p>
+        <p><%= link_to "Check another product", check_warranties_path %></p>
       </div>
     </div>
   </div>
