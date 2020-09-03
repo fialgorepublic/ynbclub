@@ -1,5 +1,5 @@
 class BlogMailer < ApplicationMailer
-  default from: 'info.saintlbeau@gmail.com'
+  default from: 'info.ynbclub@gmail.com'
 
   def rejected(blog, reject_reason)
     attachments.inline["logo.png"] = File.read("#{Rails.root}/app/assets/images/email-logo.png")

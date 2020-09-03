@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, '164286157812635', 'aca44f48809b3604ca6075f31fcde0e8'
+  provider :facebook, '592199631473385', 'aa852d87d61d6f2fae451d8fab4a674d'
   
            {
                display: 'popup',
@@ -13,7 +13,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
                    }
                }
            }
-  provider :google_oauth2, '331326190192-hd1hs5sm6aec0aci26lp277ukvrr6ve9.apps.googleusercontent.com', 'lZOamR_focsB1TEofAYnSaIG',
+  provider :google_oauth2, '555781400009-hr0q2gr71orj6hf8omqm67h1hlic5m9p.apps.googleusercontent.com', 'NPsn0Tryzl1TE1BmbkxcxlRq',
            {
                name: 'google',
                prompt: 'select_account',

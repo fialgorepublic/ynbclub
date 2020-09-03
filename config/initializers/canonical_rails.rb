@@ -12,7 +12,7 @@ CanonicalRails.setup do |config|
   # elsif Rails.env.staging?
   #   config.host = 'ambassador-staging.saintlbeau.com'
   # else
-  #   config.host = 'ambassador.saintlbeau.com'
+  #   config.host = 'ambassador.ynbclub.com'
   # end
   # config.port# = '3000'
 

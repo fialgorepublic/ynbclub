@@ -30,11 +30,11 @@
 
               <div class="col-md-12">
                 <div class="form-box" style="overflow: hidden">
-                  <input type="text" id="clipboardShareFriend" value=" https://ambassador.saintlbeau.com?invite=<%= current_user.email %>">
+                  <input type="text" id="clipboardShareFriend" value=" https://ambassador.ynbclub.com?invite=<%= current_user.email %>">
                   <a href="javascript:void(0);" onclick="clipboardShareFriend()"  class="btn btn-default share_link_btn pull-right"><%= t('page_design.copy_share_link_label') %></a>
                 </div>
 
-                <% url = "https://ambassador.saintlbeau.com?invite=#{current_user.email}" %>
+                <% url = "https://ambassador.ynbclub.com?invite=#{current_user.email}" %>
                 <div class="row text-center social_btn"> 
                   <div class="col-md-4 share_link_div">
                     <a href="javascript:void(0);" onclick="clipboardShareFriend()"  class="btn btn-primary share_btn_link"><%= t('page_design.copy_share_link_label') %></a>
@@ -73,14 +73,14 @@
                 <p class="text-center"><%= t('page_design.share_description_label') %></p>
                 <div class="col-md-12">
                   <div class="form-box" style="overflow: hidden">
-                    <input type="text" id="clipboardShareReferral" value="https://www.saintlbeau.com/?referral_url=<%= current_user.referral %>">
+                    <input type="text" id="clipboardShareReferral" value="https://ynbclub.com/?referral_url=<%= current_user.referral %>">
                     <a href="javascript:void(0);" onclick="clipboardShareReferral()"  class="btn btn-default pull-right share_link_btn"><%= t('sidebar.referral_link_label') %></a>
                   </div>
                 </div>
               </div>
             </div>
 
-            <% url = "https://www.saintlbeau.com/?referral_url=#{current_user.referral}" %>
+            <% url = "https://ynbclub.com/?referral_url=#{current_user.referral}" %>
             <div class="row text-center social_btn">
               <div class="col-md-4 share_link_div">
                 <a href="javascript:void(0);" onclick="clipboardShareReferral()"  class="btn btn-primary share_btn_link"><%= t('page_design.copy_share_link_label') %></a>

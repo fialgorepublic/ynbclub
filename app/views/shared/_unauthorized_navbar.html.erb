@@ -10,17 +10,19 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">
-          <img src="https://cdn.shopify.com/s/files/1/1197/6404/files/saint_lbeau_logo_2-01_192x.png?v=1544811147">
+          <div style= "width:160px;height:40px">
+            <%= image_tag 'yacht and boat logo.png', width: '100%' %>
+            </div>
         </a>
       </div>
 
       <div class="collapse navbar-collapse header-custom-style" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/blogs"><%= t('unauthorized_header.blog_label') %></a></li>
-          <li><a href="/users"><%= t('unauthorized_header.brand_ambassador_label') %></a></li>
-          <li><%= link_to t('unauthorized_header.store_label'), "https://saintlbeau.myshopify.com/" %></li>
-          <li><%= link_to t('header.groups'), groups_path %></li>
-          <li><%= link_to "Videos", videos_path %></li>
+          <!-- <li><a href="/blogs"><%= t('unauthorized_header.blog_label') %></a></li> -->
+          <!-- <li><a href="/users"><%= t('unauthorized_header.brand_ambassador_label') %></a></li> -->
+          <!-- <li><%#= link_to t('header.groups'), groups_path %></li> -->
+          <!-- <li><%#= link_to "Videos", videos_path %></li> -->
+          <li><%= link_to t('unauthorized_header.store_label'), "https://ynbclub.myshopify.com/" %></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

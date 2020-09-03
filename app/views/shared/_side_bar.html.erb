@@ -74,19 +74,23 @@
           <% end %>
         </li>
 
+        <% if current_user.is_admin? || current_user.has_permission?('take_snapshot', 'dashboard') %>
         <li>
           <%= link_to take_snapshot_path, class: active_class(take_snapshot_path) do %>
           <i style="padding-right: 17px;"><img src="/assets/icon-3.png"> </i>
           <span><%= t('sidebar.take_and_share_label') %></span>
           <% end %>
         </li>
+        <% end %>
 
+        <% if current_user.is_admin? || current_user.has_permission?('exchange_coins', 'users') %>
         <li data-toggle="" data-target="#" class="collapsed">
           <%= link_to exchange_coins_users_path, class: "#{active_class(exchange_coins_users_path)}" do %>
           <i class="fa fa-exchange" style="padding-right: 20px;"></i>
           <span class=""><%= t('sidebar.exchange_coins_label') %></span>
           <% end %>
         </li>
+        <% end %>
 
         <li data-toggle="" data-target="#" class="collapsed">
           <a href="/orders/my" class="<%= active_class(my_orders_path) %>">
@@ -107,14 +111,16 @@
       <% end %>
 
       <li data-toggle="" data-target="#" class="collapsed">
-        <% if current_user.blog_show? %>
-        <a href="/blogs" class="<%= 'active' if blog_related_action? %>">
-          <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
-          <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
-        <% else %>
-          <a href="/blogs/new_wizard" class="<%= 'active' if blog_related_action? %>">
-          <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
-          <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
+        <% if current_user.is_admin? || current_user.has_permission?('index', 'blogs') %>
+          <% if current_user.blog_show? %>
+          <a href="/blogs" class="<%= 'active' if blog_related_action? %>">
+            <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
+            <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
+          <% else %>
+            <a href="/blogs/new_wizard" class="<%= 'active' if blog_related_action? %>">
+            <i class="custom-icon"><img src="/assets/icon-6.png" style="padding-right: 2px;"> </i>
+            <span class="side-nav-style"><%= t('sidebar.blogs_label') %></span></a>
+          <% end %>
         <% end %>
       </li>
 
@@ -145,12 +151,14 @@
       <% end %>
 
       <% if current_user.is_admin? || current_user.is_ambassador? %>
-        <li>
-        <%= link_to warranties_path, class: active_class(warranties_path) do %>
-          <%= image_tag 'ribbon.png', width: '20px' %>
-          <span class="side-nav-style"><%= t('sidebar.warranty_label') %></span>
+        <% if current_user.is_admin? || current_user.has_permission?('index', 'warranties') %>
+          <li>
+            <%= link_to warranties_path, class: active_class(warranties_path) do %>
+              <%= image_tag 'ribbon.png', width: '20px' %>
+              <span class="side-nav-style"><%= t('sidebar.warranty_label') %></span>
+            <% end %>
+          </li>
         <% end %>
-      </li>
       <% end %>
 
       <% if current_user.is_admin? %>
@@ -241,13 +249,15 @@
         <% end %>
       </li>
       <% end %>
-
-      <li>
-        <%= link_to videos_path,  class: active_class(videos_path) do %>
-        <i class="fa fa-youtube custom-icon" aria-hidden="true" style="padding-right: 4px;"></i>
-        <span class="side-nav-style">Videos</span> </a>
-        <% end %>
-      </li>
+      
+      <% if current_user.is_admin? || current_user.has_permission?('videos', 'dashboard') %>
+        <li>
+          <%= link_to videos_path,  class: active_class(videos_path) do %>
+          <i class="fa fa-youtube custom-icon" aria-hidden="true" style="padding-right: 4px;"></i>
+          <span class="side-nav-style">Videos</span> </a>
+          <% end %>
+        </li>
+      <% end %>
 
       <% if current_user.is_admin? || current_user.has_permission?('categories', 'categories') %>
       <li>
@@ -414,7 +424,7 @@
 
 
 
-<p id="text_element" style="display: none">https://www.saintlbeau.com/?referral_url=<%= current_user.referral %></p>
+<p id="text_element" style="display: none">https://ynbclub.com/?referral_url=<%= current_user.referral %></p>
 <script>
   function uploadImage() {
     $.ajax({

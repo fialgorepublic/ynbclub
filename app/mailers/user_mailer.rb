@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'info.saintlbeau@gmail.com'
+  default from: 'info.ynbclub@gmail.com'
 
   def referral_sale(user, cust_name, shop_domain)
     attachments.inline["logo.png"] = File.read("#{Rails.root}/app/assets/images/email-logo.png")
@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
   def user_sign_up(user)
     attachments.inline["logo.png"] = File.read("#{Rails.root}/app/assets/images/email-logo.png")
     @user = user
-    mail(to: user.email, subject: 'Welcome to SaintLBeau')
+    mail(to: user.email, subject: 'Welcome to YnbClub')
   end
 
   def send_discount_code(user)
@@ -25,6 +25,6 @@ class UserMailer < ApplicationMailer
     attachments.inline["logo.png"] = File.read("#{Rails.root}/app/assets/images/email-logo.png")
     @user = user
     @referral = referral
-    mail(to: user.email, subject: referral.name + ' has just registered at saintLBeau from your invite')
+    mail(to: user.email, subject: referral.name + ' has just registered at YnbClub from your invite')
   end
 end
