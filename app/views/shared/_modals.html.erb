@@ -29,7 +29,7 @@
             </div>
             <% if devise_mapping.rememberable? -%>
             <div class="form-group">
-              <%= f.check_box :remember_me, { checked: false }, '0', '1'  %>
+              <%= f.check_box :remember_me, { checked: false, class: 'set-position' }, '0', '1'  %>
               <%= f.label t(:remember_me) %>
             </div>
             <% end -%>
