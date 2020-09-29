@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <h3 class="sidebar_name-heading"><%= current_user.name %></h3>
+    <h3 class="sidebar_name-heading"><%= current_user.full_name.presence || current_user.name.presence || "SainLBeau User" %></h3>
     <h2 class="m-profile-holder">
       <div class="row">
         <div class="col-md-12 account-brand-icon">

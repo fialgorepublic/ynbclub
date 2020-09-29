@@ -70,35 +70,37 @@
 
     <!-- Change Password Box !-->
     <% unless current_user.social_login %>
-      <div class="row" id="password">
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-12">
-              <h3><%= t('users.password_label') %></h3>
-            </div>
-          </div>
-
-          <div class="box-shadow">
+      <div class="col-md-12">
+        <div class="row" id="password">
+          <div class="col-md-12">
             <div class="row">
               <div class="col-md-12">
-                <%= form_tag update_password_users_path do |f| %>
-                  <%= hidden_field_tag :id, current_user.id %>
-                  <div class="form-group">
-                    <label><%= t('acc_settings.current_password_label') %></label>
-                    <%= password_field_tag :current_password, "", class: "form-control", placeholder: "**********", required: true %>
-                  </div>
+                <h3><%= t('users.password_label') %></h3>
+              </div>
+            </div>
 
-                  <div class="form-group">
-                    <label><%= t('acc_settings.new_password_label') %></label>
-                    <%= password_field_tag :password, "", class: "form-control", required: true %>
-                  </div>
+            <div class="box-shadow">
+              <div class="row">
+                <div class="col-md-12">
+                  <%= form_tag update_password_users_path do |f| %>
+                    <%= hidden_field_tag :id, current_user.id %>
+                    <div class="form-group">
+                      <label><%= t('acc_settings.current_password_label') %></label>
+                      <%= password_field_tag :current_password, "", class: "form-control", placeholder: "**********", required: true %>
+                    </div>
 
-                  <div class="form-group">
-                    <label><%= t('acc_settings.rept_new_passwd_label') %></label>
-                    <%= password_field_tag :password_confirmation, "", class: "form-control", required: true %>
-                  </div>
-                  <%= submit_tag t(:save_label), class: "btn btn-lg btn-block btn-primary" %>
-                <% end %>
+                    <div class="form-group">
+                      <label><%= t('acc_settings.new_password_label') %></label>
+                      <%= password_field_tag :password, "", class: "form-control", required: true %>
+                    </div>
+
+                    <div class="form-group">
+                      <label><%= t('acc_settings.rept_new_passwd_label') %></label>
+                      <%= password_field_tag :password_confirmation, "", class: "form-control", required: true %>
+                    </div>
+                    <%= submit_tag t(:save_label), class: "btn btn-lg btn-block btn-primary" %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -107,71 +109,76 @@
     <% end %>
 
     <!-- Add/update phonenumber Box !-->
-    <div class="row" id="phone_number">
-      <div class="col-md-12 account-heading-style">
-        <h3><%= t('orders.index.table_headers.number_label') %></h3>
+    <div class="col-md-12">
+      <div class="row" id="phone_number">
+        <div class="col-md-12 account-heading-style">
+          <h3><%= t('orders.index.table_headers.number_label') %></h3>
+        </div>
       </div>
-    </div>
 
-    <div class="box-shadow">
-      <div class="row">
-        <div class="col-md-12">
-          <%= form_for current_user.profile do |f| %>
-              <div class="form-group">
-                <%= f.text_field :phone_number, class: "form-control", placeholder: "+--", required: true %>
-              </div>
-              <%= f.submit t(:save_label), class: "btn btn-lg btn-block btn-primary" %>
-          <% end %>
+      <div class="box-shadow">
+        <div class="row">
+          <div class="col-md-12">
+            <%= form_for current_user.profile do |f| %>
+                <div class="form-group">
+                  <%= f.text_field :phone_number, class: "form-control", placeholder: "+--", required: true %>
+                </div>
+                <%= f.submit t(:save_label), class: "btn btn-lg btn-block btn-primary" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Add/update personal Details Box !-->
-    <div class="row" id="personal_details">
-      <div class="col-md-12 account-heading-style">
-        <h3><%= t('acc_settings.personal_details_label') %></h3>
-      </div>
-    </div>
-
-    <div class="box-shadow">
-      <%= form_for current_user.profile do |f| %>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.text_field :first_name, class: "form-control", placeholder: "#{t('users.firstname_label')} *", max_length: 100, required: true %>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="form-group">
-              <%= f.text_field :surname, class: "form-control", placeholder: "#{t('users.lastname_label')} *", max_length: 100, required: true %>
-            </div>
-          </div>
+    <div class="col-md-12">
+      <div class="row" id="personal_details">
+        <div class="col-md-12 account-heading-style">
+          <h3><%= t('acc_settings.personal_details_label') %></h3>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group" >
-              <%= f.select(:gender, options_for_select(["Male", "Female"], selected: f.object.gender), {prompt: "#{t('users.select_gender_label')} *"}, {class: "form-control", required: true}) %>
+      <div class="box-shadow">
+        <%= form_for current_user.profile do |f| %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.text_field :first_name, class: "form-control", placeholder: "#{t('users.firstname_label')} *", max_length: 100, required: true %>
+              </div>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="input-group date" data-provide="datepicker">
-              <%= f.text_field :date_of_birth, class: "form-control", placeholder: "#{t('users.date_of_birth_label')} *", id: "data-date", required: true %>
-              <div class="input-group-addon date-arrow-down">
-                ▾
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.text_field :surname, class: "form-control", placeholder: "#{t('users.lastname_label')} *", max_length: 100, required: true %>
               </div>
             </div>
           </div>
 
-          <div class="col-md-12">
-            <%= f.submit t(:save_label), class: "btn btn-lg btn-block btn-primary" %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" >
+                <%= f.select(:gender, options_for_select(["Male", "Female"], selected: f.object.gender), {prompt: "#{t('users.select_gender_label')} *"}, {class: "form-control", required: true}) %>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="input-group date" data-provide="datepicker">
+                <%= f.text_field :date_of_birth, class: "form-control", placeholder: "#{t('users.date_of_birth_label')} *", id: "data-date", required: true %>
+                <div class="input-group-addon date-arrow-down">
+                  ▾
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <%= f.submit t(:save_label), class: "btn btn-lg btn-block btn-primary" %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
 
+    <div class="col-md-12">
       <div class="row" id="shipping_address">
         <div class="col-md-12 account-heading-style">
           <h3><%= t('acc_settings.shipping_address_label') %></h3>
@@ -220,7 +227,9 @@
           <% end %>
         </div>
       </div>
+    </div>
 
+    <div class="col-md-12">
       <div class="row" id="bank_account">
         <div class="col-md-12 account-heading-style">
           <h3><%= t('users.billing_info.bank_account_label') %></h3>
@@ -252,6 +261,7 @@
           <% end %>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>

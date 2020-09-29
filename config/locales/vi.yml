@@ -15,7 +15,7 @@ vi:
     logout_lable:             Đăng xuất
 
   register:
-    register_label:           Đăng ký cùng Saint L'Beau
+    register_label:           Đăng ký cùng YnbClub
     facebook_signup_label:    Đăng ký với Facebook
     google_signup_label:      Đăng ký với Google
     or_label:                 Hoặc
@@ -30,7 +30,7 @@ vi:
     close_label:              Đóng
 
   login:
-    login_label:              Đăng nhập vào  Saint L' Beau
+    login_label:              Đăng nhập vào  YnbClub
     facebook_signin_label:    Đăng nhập bằng tài khoản Facebook
     google_signin_label:      Đăng nhập bằng tài khoản Google
     create_account_label:     Tạo tài khoản
